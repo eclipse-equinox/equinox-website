@@ -34,7 +34,47 @@ from other modules.
 Re-packaging existing programs into OSGi bundles is a significant step.
 To ease adoption and support non-intrusive prototyping, the OSGi framework can be executed
 outside Eclipse and can be accessed via a simple module framework interface.
+The module framework interface allows bundles to be defined based on existing JAR files
+in the local filesystem.
 </p>
+<p>
+For example, suppose you would have a program comprising two jars, main.jar and util.jar, which
+you want to wrap in OSGi bundles. For whatever reason, you prefer not to package these jars
+into bundles, but want to create (runtime) bundles that simply refer to them.
+For example, you may wish to refresh the jars during development and not have to
+recreate bundle packaging.
+</p>
+<p>
+The following code snippet shows how to approach this with the module framework:
+<font color=008000>
+<pre>
+import org.eclipse.osgi.module.Framework;
+import org.osgi.framework.Bundle;
+
+...
+
+private static final String mainManifest = "Bundle-ManifestVersion: 2\n"
+                                         + "Bundle-SymbolicName: main\n"
+                                         + "Bundle-Version: 1.0.0\n"
+                                         + "Bundle-ClassPath: ./main.jar\n"
+                                         + "Import-Package: org.foo.util";
+
+private static final String utilManifest = "Bundle-ManifestVersion: 2\n"
+                                         + "Bundle-SymbolicName: util\n"
+                                         + "Bundle-Version: 1.0.0\n"
+                                         + "Bundle-ClassPath: ./util.jar\n"
+                                         + "Export-Package: org.foo.util";
+
+Framework framework = new Framework(args);
+
+Bundle mainBundle = framework.defineBundle("file:///C:/main/jar/dir", mainManifest);
+Bundle barBundle = framework.defineBundle("file:///C:/util/jar/dir", utilManifest);
+
+Class clazz = mainBundle.loadClass(initialClassName);
+
+...
+</pre>
+</font>
 <p>
 The org.eclipse.osgi project contains a jar packager (OSGi.jardesc) which can be used to
 build a standalone JAR (here's a <a href="./osgi.jar">snapshot</a> for easy download).
