@@ -26,17 +26,33 @@
     recovering the space required for its classes. </li>
   <li> as a prelude to removing the plugin from the registry. </li>
 </ol>
-<p> Deactivating a plugin does not itself require additional lifecycle events. 
+<p> Note that deactivating a plugin A which is required by plugin B does <b>not</b> 
+  imply the B <b>must</b> be deactivated -- just as activating B does not imply 
+  that A is activated.</p>
+<p></p>
+<p>Deactivating a plugin does not itself require additional lifecycle events. 
   However, in general, other plugins have references to newly deactivated classes/objects 
   and the plugin being deactivated may not cleaned up after themselves. As a result, 
   some notification will be required to tell plugins to clean up their structures. 
 </p>
-<p>Note that deactivating a plugin A which is required by plugin B does <b>not</b> 
-  imply the B <b>must</b> be deactivated -- just as activating B does not imply 
-  that A is activated.</p>
+<p>A plugin that is being shutdown should clean up its internals to limit the 
+  number of external references it might have. However, it is often other plugins 
+  have references to instances of the deactivated plugin's classes (e.g., the 
+  resources plugin references supplied builder classes). This prevents those classes 
+  and thus the plugin's classloader from being garbage collected. </p>
+<p> One simple approach that can be implemented in the Eclipse runtime infrastructure 
+  is to manage instances created via createExecutableExtension(). This is the 
+  method used to create instances of classes provided via extensions to extension-points. 
+  Since this code path goes through runtime code, the runtime could track instances 
+  created and at report on plugins which retain references after a plugin is deactivated. 
+  For more details, see <a href="classloadersAndInstances.html"> managing classloaders 
+  and instances</a>. </p>
+<p>Another approach simply broadcasts the deactivation notice and plugins hosting 
+  extensions from the plugin being deactivated are responsible for the cleanup. 
+</p>
+<p>Pragmatically, both approaches should be supported.</p>
 <p>See also:</p>
 <ul>
-  <li><a href="approaches.html">deactivation approaches</a></li>
   <li><a href="usecases.html">usecases</a></li>
 </ul>
 <p>&nbsp;</p>
