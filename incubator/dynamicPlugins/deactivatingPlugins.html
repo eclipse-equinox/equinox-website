@@ -70,21 +70,22 @@ For more details on this issue, see <a href="classloadersAndInstances.html">mana
       <li>a plugin PA created non-persistent markers that it defines, PA is deactivated. 
         Shall the markers be cleaned-up, if yes should it be the responsibility 
         of the resources plugin or of PA?</li>
-      <li>a plugin P1 created non-persistent markers that are defined by PA, PA 
-        is deactivated. In this case, because all PA markers may have not been 
-        created by the P1, then it seems that collecting the markers is P1 
-				responsibility, if they must be collected.</li>
       <li>plugins P1 and P2 created non-persistent markers that are defined by 
-        PA, PA is deactivated. Shall the markers be cleaned-up, by who?</li>
+        PA, PA is deactivated. Shall the markers be cleaned-up, by who?
+        <ul>JohnA:  I think when a plugin is deactivated, you should never get rid of markers
+         that are of types defined by that plugin.  So if PA defines a marker type, and P1 and P2 use 
+         markers of that type, then deactivation of PA should not affect those markers.  This is symetrical 
+         with the fact that defining a marker of a type defined by plugin 'P' does not require activation of
+         plugin 'P'.  I think markers should only be removed when the plugin that added the markers is deactivated.
+       </li>
+        
     </ol>
     <font color="#FF0000">*** Questions:</font> 
     <ul>
       <li>Does a plugin being deactivated imply that its markers should be removed? 
         Relate this to the possibility that the plugin was never activated. It's 
         markers could still be shown since other plugins can create them. </li>
-      <li>What is the difference between #2 and #3 above?</li>
-			<li><font color="#0000FF">
-			What is the semantics of persistent/transient markers?
+	  <li><font color="#0000FF">What is the semantics of persistent/transient markers?
 			<ul>
 				Persistent markers are saved by the platform when it is shutdown, whereas transient ones are dropped.
 			</ul>
