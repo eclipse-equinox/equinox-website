@@ -33,9 +33,6 @@
     registry. </li>
   <li><b>Configured</b>: A plugin is configured when it is part of a configuration.
   A plugin can be configured in several configurations.</li>
-  <li><b>Inactive</b>: A plugin is in the inactive state if its shutdown() method 
-    has been called, or the platform has been started and its startup() method 
-    has not been subsequently called;</li>
   <li><b>Deactivation</b>: The process of changing a plugin state from activated 
     to deactivated;</li>
   <li><b>Disabled</b>: A plugin is in disabled state if it is installed but either 
@@ -46,6 +43,9 @@
     at runtime. The disablement can only be done is the plugin is deactivated.</li>
   <li><b>Enabled</b>: A plugin is enabled if it has been installed and has 
     been explicitly marked as enabled or has never been disabled. A plugin is enabled relatively to a configuration and only if it is configured it this one.</li>
+  <li><b>Inactive</b>: A plugin is in the inactive state if its shutdown() method 
+    has been called, or the platform has been started and its startup() method 
+    has not been subsequently called;</li>    
   <li><b>Installed</b>: A plugin is installed when it is physically present. It is then available for inclusion in any configuration.</li>
   <li><b>Resolved</b>: A plugin is resolved relative to a given configuration. 
     Resolved plugins are present in the runtime registry and their functionality 
