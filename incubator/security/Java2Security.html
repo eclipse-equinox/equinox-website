@@ -92,53 +92,44 @@ a.nav:hover { text-decoration: underline; color: "#000000"; }
 <!--  start of main content  -->
 <td bgcolor="white" valign="top" >
 <!-- tpl:put name="bodyarea" -->
-<P></P><H1>ExtensionsParser.java changes</H1>
-<B>Detail</B><BR><BR>
-<BR><BR>
-<B>DoPrivilegedLocation:</B>
-<PRE>
-Line# 584 org.eclipse.core.internal.registry.Extension[] fixRenamedExtensionPoints( org.eclipse.core.internal.registry.Extension[] )
-   Permission: java.util.PropertyPermission "*", "read,write"
-      Primordial/java.util.Properties java.lang.System.getProperties(  )
-</PRE>
-<B>CODE:</B>
-<CODE>
-<PRE>
-   579. 	/**
-   580. 	 * Fixes up the extension declarations in the given pre-3.0 plug-in or fragment to compensate
-   581. 	 * for extension points that were renamed between release 2.1 and 3.0.
-   582. 	 */
-   583. 	private Extension[] fixRenamedExtensionPoints(Extension[] extensions) {
-<FONT style="background-color:yellow;display;inline">   000.			Object extensionMunging = null;
-   000.			if (System.getSecurityManager()==null)
-   000.				extensionMunging = System.getProperty(NO_EXTENSION_MUNGING); //$NON-NLS-1$
-   000.			else
-   000.				extensionMunging = AccessController.doPrivileged(new GetSystemPropertyAction(NO_EXTENSION_MUNGING)); //$NON-NLS-1$
-   584. 		if (extensions == null || (schemaVersion != null && schemaVersion.equals("3.0")) || extensionMunging != null) //$NON-NLS-1$</FONT>
-   585. 			return extensions;
-   586. 		for (int i = 0; i < extensions.length; i++) {
-   587. 			Extension extension = extensions[i];
-   588. 			String oldPointId = extension.getExtensionPointIdentifier();
-   589. 			String newPointId = (String) extensionPointMap.get(oldPointId);
-   590. 			if (newPointId != null) {
-   591. 				extension.setExtensionPointIdentifier(newPointId);
-   592. 			}
-   593. 		}
-   594. 		return extensions;
-   595. 	}
-</PRE>
-</CODE>
-<B>Tainted variable reference trace:</B> Not applicable.  This method is retrieving a system property with a hard-coded string.   Simply wrap this
-instruction in a privileged action.
-<BR><BR>
-<B>Permission requirements:</B><BR>
-<UL>
-<LI>java.util.PropertyPermission "eclipse.noExtensionMunging", "read,write"</LI>
-</UL>
-<BR>
-<B>Conclusion:</B> Wrap the retrieval of the system property in a privileged action, and grant
-the required permission to runtime.jar.   Also (use System.getProperty() instead of System.getProperties().get().
-This limits the scope requirement for the retrieved key.
+<H3>Java 2 Security</H3>
+<P>The first part is to enable basic Java 2 (J2SE) security sandboxing. This
+  requires enabling code-source-based authentication and authorization as implemented
+  by a J2SE SecurityManager. From practical experience we know that Eclipse will
+  not run if the J2SE SecurityManager is turned on. Also, simply defining a security
+  policy that enables Eclipse to run with a SecurityManager is insufficient to
+  enable the security sandbox. Modifications to the base platform code are needed
+  (e.g., adding calls to AccessController.doPrivileged()) as appropriate in the
+  code base. This must be done very carefully to avoid opening security holes
+  and affecting performance.</P>
+<P>Enabling the security sandbox and defining appropriate security policies can
+  be a daunting process if the code base was not designed for security from the
+  beginning. We have had some experience with porting applications from JDK 1.1
+  security to Java 2 security. We created a tool which would identify locations
+  within the code base where AccessController.doPrivileged() calls may be appropriate.
+  We then inspected the code to see whether the call was appropriate or might
+  open a security hole. If appropriate, the doPrivileged() call is added. Otherwise
+  the code needs to be inspected to see where the call may be more appropriate
+  and/or do restructuring of the code. While time consuming, it is far less effort
+  than alternative approaches, and is less prone to opening security holes. Instead
+  of being an intractable problem, the conversion of large applications to Java
+  2 security was accomplished in a reasonable timeframe. We propose following
+  the same process for adding doPrivileged() to the Eclipse RCP code. </P>
+<P>The second part is a review of the Eclipse APIs, needed to identify unsafe
+  operations which must be protected by authorization calls or be modified to
+  close the holes. For example, there are methods in SWT that allow a program
+  to navigate the UI and access Eclipse functionality. While useful, these types
+  of methods open up security holes. </P>
+<P>In Equinox we have started a project on enabling the Java security sandboxing
+  of Eclipse 3.0. We have modified one plugin to demonstrate the feasibility
+  of enabling security sandboxing of Eclipse. The Eclipse OSGi bundle has been
+  modified to enable launching Eclipse with a Java security sandbox enabled (the
+  default JVM SecurityManager). </P>
+<P>In addition to code modifications, we must help educate the Eclipse community
+  about security and secure coding practices. We have proposed a tutorial, talk,
+  demo and BoF at EclipseCon in 2005. We also have both a half day and a one
+  day Java 2 security tutorials. We can present these to the Eclipse development
+  community.</P>
 <!-- /tpl:put -->
 <!--  end of main content -->
 </td>

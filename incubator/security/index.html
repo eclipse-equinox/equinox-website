@@ -1,4 +1,4 @@
-<!-- tpl:insert page="/equinox______.htpl" --><!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<!-- tpl:insert page="/equinox.htpl" --><!doctype html public "-//w3c//dtd html 4.0 transitional//en">
 <html>
 <head>
 <title>Equinox Security Home</title>
@@ -22,7 +22,7 @@ a.nav:hover { text-decoration: underline; color: "#000000"; }
      <tr>
           <td BGCOLOR="#000000" width="116" ><a href="http://www.eclipse.org" target="_top"><img src="http://www.eclipse.org/images/EclipseBannerPic.jpg" width="115" height="50" border="0"></a></td>
           <td WIDTH="637"><img SRC="http://www.eclipse.org/images/gradient.jpg" BORDER=0 height=50 width=282></td>
-          <td WIDTH="250" nowrap><font align="right" color="white" size="6" class=indextop>equinox security</font></td>
+          <td WIDTH="250" nowrap><img SRC="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/icons/eclipse-org-security-small.GIF" width="250" height="48"> </td>
      </tr>
     </table>
    </td>
@@ -51,6 +51,19 @@ a.nav:hover { text-decoration: underline; color: "#000000"; }
 	  <tr VALIGN=CENTER WIDTH="40"> 
 	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/ejs.html" class="nav">rcp plug-in analysis</a></td>
 	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/java2security.html" class="nav" >java2 security</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/Signing.html" class="nav" >plug-in signing</a></td>
+	  </tr>
+
 	  <tr> 
 	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
 	  </tr>
@@ -96,86 +109,17 @@ a.nav:hover { text-decoration: underline; color: "#000000"; }
   To that end, there are changes that need to be made to core parts of the Eclipse
 RCP. These changes can be broken down into manageable pieces as follows:</P>
 <UL>
-  <LI> Java 2 Security</LI>
-  <LI> Signing plugins</LI>
-  <LI> Authentication, key/credential stores</LI>
-  <LI> End to end (i.e., complete) securing of an Eclipse-based product (install,
-    configuration, update, ...)</LI>
+  <LI> <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/java2security.html">Java 2 Security</a></LI>
+  <LI> <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/signing.html">Signing plugins</LI>
+  <LI> <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/rcp/keystore.html">Authentication, key/credential stores</a></LI>
+  <LI> <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/rcp/end2end.html">End to end (i.e., complete) securing of an Eclipse-based product (install,
+    configuration, update, ...)</a></LI>
 </UL>
 <P>The OSGI framework implementation underlying Eclipse is already security-enabled
   and the OSGi platform specificiation includes various security related services
   such as PermissionsAdmin and UserAdmin. Work on a secure platform will utilize
   existing services and facilities as much as possible.</P>
-<H3>Java 2 Security</H3>
-<P>The first part is to enable basic Java 2 (J2SE) security sandboxing. This
-  requires enabling code-source-based authentication and authorization as implemented
-  by a J2SE SecurityManager. From practical experience we know that Eclipse will
-  not run if the J2SE SecurityManager is turned on. Also, simply defining a security
-  policy that enables Eclipse to run with a SecurityManager is insufficient to
-  enable the security sandbox. Modifications to the base platform code are needed
-  (e.g., adding calls to AccessController.doPrivileged()) as appropriate in the
-  code base. This must be done very carefully to avoid opening security holes
-  and affecting performance.</P>
-<P>Enabling the security sandbox and defining appropriate security policies can
-  be a daunting process if the code base was not designed for security from the
-  beginning. We have had some experience with porting applications from JDK 1.1
-  security to Java 2 security. We created a tool which would identify locations
-  within the code base where AccessController.doPrivileged() calls may be appropriate.
-  We then inspected the code to see whether the call was appropriate or might
-  open a security hole. If appropriate, the doPrivileged() call is added. Otherwise
-  the code needs to be inspected to see where the call may be more appropriate
-  and/or do restructuring of the code. While time consuming, it is far less effort
-  than alternative approaches, and is less prone to opening security holes. Instead
-  of being an intractable problem, the conversion of large applications to Java
-  2 security was accomplished in a reasonable timeframe. We propose following
-  the same process for adding doPrivileged() to the Eclipse RCP code. </P>
-<P>The second part is a review of the Eclipse APIs, needed to identify unsafe
-  operations which must be protected by authorization calls or be modified to
-  close the holes. For example, there are methods in SWT that allow a program
-  to navigate the UI and access Eclipse functionality. While useful, these types
-  of methods open up security holes. </P>
-<P>In Equinox we have started a project on enabling the Java security sandboxing
-  of Eclipse 3.0. We have modified one plugin to demonstrate the feasibility
-  of enabling security sandboxing of Eclipse. The Eclipse OSGi bundle has been
-  modified to enable launching Eclipse with a Java security sandbox enabled (the
-  default JVM SecurityManager). </P>
-<P>In addition to code modifications, we must help educate the Eclipse community
-  about security and secure coding practices. We have proposed a tutorial, talk,
-  demo and BoF at EclipseCon in 2005. We also have both a half day and a one
-  day Java 2 security tutorials. We can present these to the Eclipse development
-  community.</P>
-<H3>Signing Plugins</H3>
-<P>A code signing tool already exists within the Java SDK (e.g., jarsigner).
-  However, how should PDE be extended to sign plugins? Similarly, what kind of
-  interface should be in PDE to define the Java 2 Permissions that a plugin requires
-  in a way that the OSGi framework implementation can interpret when bundles
-  (plugins/fragments) are loaded?</P>
-<H3>Authentication and credential management</H3>
-<P>A key part to achieving the vision of the Eclipse RCP as a secure client is
-  a well-defined, robust and extensible model for user identification and authentication.
-  This is an essential piece of the overall security architecture. It is proposed
-  that the Eclipse RCP adopt the <A href="http://java.sun.com/security/jaas/faq.html">Java
-  2 Authentication and Authorization Service (JAAS)</A> as the core identification and authorization model. JAAS is included
-in the core of Java 1.4.x, but is an extension to Java 1.3.x</P>
-<P>JAAS provides a
-    framework based on a pluggable architecture. An important aspect of JAAS
-  is that it can support a wide variety of authentication mechanisms. An application
-  wanting to provide this level of security will have to be &quot;JAAS
-  enabled&quot;. Typically a user &quot;logs into&quot; a JAAS enabled application
-  similar to how they would log into an operating system.</P>
-<P>JAAS represents an authenticated user with the <A href="http://java.sun.com/security/jaas/apidoc/javax/security/auth/Subject.html">Subject
-  class</A>. One or more
-        Principals (identities) can be associated with a Subject. In most typical
-        enterprise
-        environments a single user can have multiple identities (Principals)
-  that uniquely identify them. JAAS allows for the configuration of LoginModules;
-        methods in LoginModule classes are called during authentication and can
-        append Principals to the Subject. JAAS Subjects are used as input for
-  controlling
-        access to system resources (e.g., the file system or the network) configured
-        via JAAS Security Policies. In addition a Subject may contain other security
-        related attributes. These attributes are called credentials and may contain
-information to authenticate the Subject with other services.</P>
+
 <P>Issues:</P>
 <UL>
   <LI> Assuming some core plugins become security enabled, how will Eclipse be
@@ -190,8 +134,6 @@ information to authenticate the Subject with other services.</P>
   <LI>Support for login dialogs and scoping of plugins based on the authenticated
     user.</LI>
 </UL>
-<H3>End to end security</H3>
-<P>TBD</P>
 <P><A href="SecurityConcerns.html">Security Concerns on a Pluggable
 Applications Platform</A><BR>
 </P>

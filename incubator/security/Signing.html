@@ -92,53 +92,12 @@ a.nav:hover { text-decoration: underline; color: "#000000"; }
 <!--  start of main content  -->
 <td bgcolor="white" valign="top" >
 <!-- tpl:put name="bodyarea" -->
-<P></P><H1>ExtensionsParser.java changes</H1>
-<B>Detail</B><BR><BR>
-<BR><BR>
-<B>DoPrivilegedLocation:</B>
-<PRE>
-Line# 584 org.eclipse.core.internal.registry.Extension[] fixRenamedExtensionPoints( org.eclipse.core.internal.registry.Extension[] )
-   Permission: java.util.PropertyPermission "*", "read,write"
-      Primordial/java.util.Properties java.lang.System.getProperties(  )
-</PRE>
-<B>CODE:</B>
-<CODE>
-<PRE>
-   579. 	/**
-   580. 	 * Fixes up the extension declarations in the given pre-3.0 plug-in or fragment to compensate
-   581. 	 * for extension points that were renamed between release 2.1 and 3.0.
-   582. 	 */
-   583. 	private Extension[] fixRenamedExtensionPoints(Extension[] extensions) {
-<FONT style="background-color:yellow;display;inline">   000.			Object extensionMunging = null;
-   000.			if (System.getSecurityManager()==null)
-   000.				extensionMunging = System.getProperty(NO_EXTENSION_MUNGING); //$NON-NLS-1$
-   000.			else
-   000.				extensionMunging = AccessController.doPrivileged(new GetSystemPropertyAction(NO_EXTENSION_MUNGING)); //$NON-NLS-1$
-   584. 		if (extensions == null || (schemaVersion != null && schemaVersion.equals("3.0")) || extensionMunging != null) //$NON-NLS-1$</FONT>
-   585. 			return extensions;
-   586. 		for (int i = 0; i < extensions.length; i++) {
-   587. 			Extension extension = extensions[i];
-   588. 			String oldPointId = extension.getExtensionPointIdentifier();
-   589. 			String newPointId = (String) extensionPointMap.get(oldPointId);
-   590. 			if (newPointId != null) {
-   591. 				extension.setExtensionPointIdentifier(newPointId);
-   592. 			}
-   593. 		}
-   594. 		return extensions;
-   595. 	}
-</PRE>
-</CODE>
-<B>Tainted variable reference trace:</B> Not applicable.  This method is retrieving a system property with a hard-coded string.   Simply wrap this
-instruction in a privileged action.
-<BR><BR>
-<B>Permission requirements:</B><BR>
-<UL>
-<LI>java.util.PropertyPermission "eclipse.noExtensionMunging", "read,write"</LI>
-</UL>
-<BR>
-<B>Conclusion:</B> Wrap the retrieval of the system property in a privileged action, and grant
-the required permission to runtime.jar.   Also (use System.getProperty() instead of System.getProperties().get().
-This limits the scope requirement for the retrieved key.
+<H3>Signing Plugins</H3>
+<P>A code signing tool already exists within the Java SDK (e.g., jarsigner).
+  However, how should PDE be extended to sign plugins? Similarly, what kind of
+  interface should be in PDE to define the Java 2 Permissions that a plugin requires
+  in a way that the OSGi framework implementation can interpret when bundles
+  (plugins/fragments) are loaded?</P>
 <!-- /tpl:put -->
 <!--  end of main content -->
 </td>
