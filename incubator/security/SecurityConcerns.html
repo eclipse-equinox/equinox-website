@@ -1,0 +1,294 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="content-type"
+ content="text/html; charset=ISO-8859-1">
+  <title>Security on a Pluggable Applications Platform</title>
+</head>
+<body>
+Tracking document for gathering notes on security concerns for the Rich
+Client Platform theme of Eclipse 3.0.&nbsp; <br>
+<br>
+Change history:<br>
+<br>
+2003/05/28 - MEM - started document<br>
+2003/05/29 - MEM - added development ramifications<br>
+2003/06/04 - MEM - added MEZ' concerns about priority of plugin
+signatures<br style="font-weight: bold;">
+<br style="font-weight: bold;">
+<span style="font-weight: bold;">Motives</span><br>
+<br>
+The Rich Client Platform theme of the Eclipse 3.0 plan is motivated by
+the desire to develop general purpose applications (i.e. non-IDE
+applications) using the Eclipse platform. &nbsp;A key motivation is to
+leverage the Eclipse plugin architecture so as to create modular,
+pluggable applications that are easily extensible. &nbsp;With this
+extensibility, however comes risks that must be ameliorated in order to
+use the eclipse platform for develpment and deployment of
+mission-critical applications. &nbsp;Even as an IDE, developers of
+mission-critical code are exposed when using the Eclipse IDE should they
+make use of rogue plugins.<br>
+<br>
+<span style="font-weight: bold;">Where we are now:</span><br>
+<br>
+Eclipse 2.1 platform does not provide any security features at this
+point.&nbsp; There is no concept of a user (thus no user authentication
+or access control) and all plugins execute as local code with no
+security manager in effect.&nbsp; When talking to a feature server to
+retrieve new plugins, no authentication takes place (is this true? Need
+to verify).&nbsp; Jars can be examined for signatures but there is no
+enforcement or sandboxing.&nbsp; The documentation on the Update Manager
+does recommend to the user to not download plugins except from a trusted
+source.&nbsp; :-)<br>
+<br>
+<span style="font-weight: bold;">Vulnerabilities:</span><br>
+<br>
+Multiple users of the same installation running in the same machine
+account (i.e. kiosk applications) have free access to all of each
+other's data.<br>
+Rogue user co-opting a machine account can use the platform to connect
+to servers as configured for that user's workspace (for example, CVS
+Repository connections are configured and persisted in the workspace).<br>
+Plugins are run with full access to the machine.&nbsp; Introduction of
+a rogue plugin thus enables the following types of attacks:<br>
+<ul>
+  <li>plugin reads critical data on machine</li>
+  <li>plugin erases or modifies critical data on machine</li>
+  <li>plugin opens connections to other server to either communicate
+stolen data or to download malicious code or data</li>
+  <li>plugin modifies other plugins to spread virus (simple virus
+example: &nbsp;First examine other plugins to see which ones do not have
+a Plugin subclass then simply insert new Plugin subclass into the target
+plugin directory.)</li>
+</ul>
+<br>
+<br>
+<span style="font-weight: bold;">Where we want to be:</span><br>
+<br>
+User - based security:<br>
+<ul>
+  <li>Need the optional concept of a 'user' within the RCP/Eclipse
+world to support the secure shared use of a single Eclipse install from
+within a single machine user account.&nbsp; I.E. the user would 'log in'
+to the RCP application.&nbsp; Users would have independent
+workspaces.&nbsp; This likely will require slight modification to
+org.eclipse.resources in order to assert user authentication prior to
+workspace association and to make use of (optional) encryption of local
+user data. &nbsp; Should of course also support single-signon mode where
+Eclipse User == Machine User.</li>
+  <li>Need to optionally use JCE to encrypt data in workspaces.</li>
+  <li>Need to authenticate users that access feature servers for
+updates/new features.&nbsp; (is this already there?)</li>
+  <li>Need to authenticate feature servers that users connect
+with.&nbsp; (is this already there?)</li>
+  <li>Need secure connection to feature server. (&nbsp; (is this
+already there?)</li>
+  <li>Provisioning&nbsp; - remote - need to be able to have
+administrator do a 'server push' of plugin code out to a client in a
+secure manner.</li>
+  <li>Provisioning - need ability to establish a policy that determines
+what features/plugins a user has installed.</li>
+</ul>
+<br>
+Code - based security<br>
+<ul>
+  <li>Need to be able to verify signatures of&nbsp; plugins at load
+time (not just download time) in order to authenticate source of the
+code. This will likely require manifest changes.</li>
+  <li>Need to be able to protect plugins and local data from other,
+malicious or otherwise destructive plugins.&nbsp; This will likely
+require sandboxing.</li>
+  <li>Want to be able to grant different levels of access to code from
+different sources.&nbsp; How
+fine-grained?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Trade-off:
+precision versus ease-of-use.</li>
+  <li>Declarative model (plugin manifest requests permissions - ask
+user at install time) versus implicit (only ask user if a security
+exception is tripped).&nbsp;&nbsp; Have to catch the latter anyway, but
+might make nicer UI to get as much of it out of the way early.</li>
+</ul>
+<br>
+<br>
+<span style="font-weight: bold;">Scenario:&nbsp; Installing a plugin</span><br>
+<br>
+Initial conditions:<br>
+<div style="margin-left: 40px;">User has Eclipse platform installed.
+&nbsp;<br>
+User runs platfrom with a security manager enabled.<br>
+Current policy includes grants for known sources (for example,
+'org.eclipse' would be a trusted signature as shipped).<br>
+</div>
+Steps:<br>
+<div style="margin-left: 40px;">User downloads a plugin to install into
+the platform (Example: stock watcher)<br>
+Upon 'installing', the plugin is inspected for a signature and
+declaritive permission requests<br>
+if not signed<br>
+&nbsp;&nbsp; &nbsp;plugin is run in tight sandbox<br>
+else if signed by known source<br>
+&nbsp;&nbsp; &nbsp;is plugin asking for more permissions than code from
+that source is already granted?<br>
+&nbsp;&nbsp; &nbsp;if not<br>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;run in sandbox already defined
+for that source<br>
+&nbsp;&nbsp; &nbsp;else<br>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;prompt user : "this plugin
+(signed by known source) wants additonal permissions X - what do you
+want to do?" &nbsp;<br>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;case<br>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;grant this
+plugin - add permissions X for this plugin from this source<br>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;grant all from
+this source - add permissions X for all code signed by source<br>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;deny - do not
+add the permission and do not install the plugin<br>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;endcase<br>
+&nbsp;&nbsp; &nbsp;endif<br>
+else if signed by unknown source <br>
+&nbsp;&nbsp; &nbsp;is plugin asking for more permissions than those
+provided by default (tight) sandbox?<br>
+&nbsp;&nbsp; &nbsp;if not<br>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;run in default sandbox<br>
+&nbsp;&nbsp; &nbsp;else<br>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;prompt user : "this plugin
+(signed by known source) wants additonal permissions X - what do you
+want to do?" &nbsp;<br>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;case<br>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;grant this
+plugin - add permissions X for this plugin from this source<br>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;grant all from
+this source - add permissions X for all code signed by source<br>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;deny - do not
+add the permission and do not install the plugin<br>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;endcase<br>
+&nbsp;&nbsp; &nbsp;endif<br>
+endif<br>
+</div>
+Results:<br>
+<div style="margin-left: 40px;">The plugin runs in an appropriate set
+of permissions or is not installed if denied by user.. &nbsp;<br>
+In some cases, new permission information may have been persisted.<br>
+</div>
+<br>
+<span style="font-weight: bold;">Scenario: Running a plugin that tries
+an unpermitted action</span><br>
+Initial conditions:<br>
+<div style="margin-left: 40px;">plugin has been installed and is
+running with a specific set of permissions<br>
+</div>
+Steps:<br>
+<div style="margin-left: 40px;">plugin invokes (directly or indirectly)
+an unpermitted action<br>
+AccessController's checkPermission() method is invoked and fails<br>
+User is prompted "Code from the plugin "&lt;plugin name&gt;" signed by
+"&lt;plugin source&gt;" is attempting to do &lt;action&gt; on
+&lt;target&gt;.&nbsp; Do you want to allow this?&nbsp; Just this
+once?&nbsp; Always?&nbsp; [Other possible options]"<br>
+</div>
+Results:<br>
+<div style="margin-left: 40px;">plugin is allowed/denied the action
+based on the user's choice.<br>
+</div>
+Questions<br>
+<div style="margin-left: 40px;">if denied, do we uninstall the plugin?<br>
+</div>
+<div style="margin-left: 40px;">if allowed, depending on user options,
+new permission may be added to the policy.<br>
+</div>
+<br>
+<br>
+<span style="font-weight: bold;">Development ramifications of adding
+security to the platform</span><br>
+<br>
+<ul>
+  <li>Need to define format for applying signatures to plugins. Even in
+the absence of enforcement, we need to define a standard as soon as
+possible. &nbsp;This spec should be able to work whether the plugin is
+run as a jar or a directory. &nbsp;Tthe issue here is that plugins are
+not currently run from closed jar files for which a simple single
+signature would suffice for verification.&nbsp; Signing just a the
+'code' jars in a plugin also would not catch illicit resources contained
+in the plugin, or modifications to the manifest, etc.&nbsp;&nbsp; If the
+runtime moves to a model where plugins are deployed and run from as
+unexploded jar files, then we can probably use a single signature for
+the whole thing.&nbsp; However, in the current model, we would need a
+manifest of signatures that confirms the source and the unmodified state
+of each file in the plugin.</li>
+  <li> Will probably need new CodeSource and ClassLoader classes.</li>
+  <li>Need new Policy format and implementation. &nbsp;The default
+policy implementation uses a permissions format that is insufficiently
+expressive for what we want to do.&nbsp; Would probably use an XML based
+format (XACML?).&nbsp; The Policy class implementation also needs to
+support dynamic changes during runtime</li>
+  <li>Will need to add doPrivileged() blocks to critical code in the
+platform . &nbsp;Basically, when Permissions are insufficiently
+expressive such that code needs to figure out dynamically based on
+context whether an operation should be carried out, a 'doPrivileged'
+section needs to be introduced in the code. &nbsp;For example consider
+the following call stack:<br>
+    <div style="margin-left: 40px;">platform.Code.criticalMethod()&nbsp;
+-&gt; performs critical operation<br>
+platform.Code.someMethod() -&gt; calls criticalMethod()<br>
+unknown.Code.otherMethod() -&gt; calls someMethod()<br>
+    <br>
+    </div>
+If there is a sufficiently expressive Permission object that could
+apply to this call stack in all scenarios, (i.e. no matter what the
+context, the permission defines whether "unknown.Code.otherMethod()" is
+allowed to do the critical operation) then we do not need a doPrivileged
+block.  An example of that might be using a FilePermission to protect a
+specific file.  I.E. if critical method is going to access a specific
+File (or directory) and we know that in ALL circumstances we want
+unknown.Code.otherMethod() to only have 'read' permission on that file
+then we don't need a doPrivileged block inside criticalMethod. We
+would simply grant the permission to read the particular file.  Note
+that a Permission that granted permission to read ALL files would not be
+expressive enough here because it would be more permissive than we want.<br>
+If, on the other hand, whether we allow the "unknown.Code.otherMethod"
+to perform the operation is determined by contextual information
+unavailable when the Permission is defined (we didn't know the path to
+the file), or simply of a nature that can't be expressed by the
+Permission (for example, we want to provide access to parts of a file
+but not other parts, and perhaps only if other context metadata is
+satisfied such as who the current 'user' is, then in that case, we need
+to do two things to the 'criticalMethod()' code.&nbsp; 1) we need to put
+a doPrivileged section in it to stop the security checks from going
+further down the stack and 2) we need to actually codify the logic to
+figure out programmatically whether the operation should be performed or
+not.</li>
+  <li>Need a new AccessController implementation. &nbsp;This is where
+we need to trap unpermitted actions and handle them in a user-friendly
+way such as by asking the user if he/she wants to allow the action once,
+or allow the action always or deny it, whatever. &nbsp;In a GUI
+application, this means putting up appropriate wizard panels to prompt
+the user. &nbsp;For a headless application, it may mean prompting at
+stdin.</li>
+  <li>Need a keystore to protect each user's local data with
+encryption. &nbsp;We can probably use the default keystore provided with
+Java</li>
+  <li>Need mechanism for administrative provisioning of application
+configuration. &nbsp;This requires a secure 'remote control' feature for
+the client. &nbsp;This may be beyond the scope of the Eclipse platform
+in particular, but we want to make sure we do nothing to preclude such a
+feature in specific applications developed on the platform.
+&nbsp;Provisioning mechanisms may be provided by use of an OSGi
+framework as platform runtime.&nbsp; However, useful GUI's will need to
+be developed appropriate for RCP and Eclipse use cases.&nbsp; Not
+certain yet if framework API's are sufficient for all use cases.</li>
+</ul>
+<br>
+<span style="font-weight: bold;"> Performance ramifications of adding
+security to the platform:</span><br>
+<ul>
+  <li> It is expected that running the platform with a security manager
+enabled will cause a performance hit during runtime.&nbsp; This impact
+can be avoided by code that does not directly or indirectly invoke a
+privileged action (thus triggering a security stack crawl), however that
+does not seem likely for the bulk of really useful code.</li>
+  <li> the platform could run without a security manager enabled and
+this hit should go away.&nbsp; However, 'doPrivileged()' sections of
+code may still have an impact, depending on how well designed they are.</li>
+</ul>
+<br>
+</body>
+</html>
