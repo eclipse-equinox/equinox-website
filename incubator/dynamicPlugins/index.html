@@ -20,21 +20,66 @@
 				<td WIDTH="40%">&nbsp; </td>
 			</tr>
 		</table>
+<p>
+The DynamicPlugin effort seeks to support a fully dynamic 
+registry. The envisioned dynamic changes are the following:
+loading or unloading a plugin, enable or disabling a loaded 
+plugin, and allowing a plugin to dynamically add or remove 
+extension points and extensions.
+The current plugin registry in Eclipse is static, see details 
+<a href="currentPluginModel.html">here</a>. 
+</p><p>
+It is static in the
+sense that the registry has a static set of plugins, each 
+declaring a static set of extension points and extensions.
+Upon start up, the platform loads all the known plugins by
+processing their manifest (plugin.xml). Through their manifest,
+the entire set of prerequisites of plugins can be statically
+built. All plugins that have their prerequisites satisfied,
+required plugins and necessary extension points, are kept.
+All the other plugins are removed from the registry. Once
+the boot sequence is over, the registry is mark read-only
+and cannot be changed further. Any change requires the 
+platform to be stopped and restarted.
+</p><p>
+A first step toward a dynamic registry is allowing
+plugin
+<a href="deactivatingPlugins.html">deactivation</a>. 
+Deactivating a plugin is mainly a 
+performance optimization. It is the corollary to lazzy 
+plugin activation. Plugins are lazzily activating to 
+avoid wasting ressources for plugins whose functionality
+are not used. However, once activated, plugins remain
+activated even through they are no longer used. Deactivation
+attempts to release resources associated to a plugin,
+returning it to the state it had before it was activated.
+</p><p>
+Deactivation is a transparent optimization to Eclipse
+users, as lazzy activation is. A dynamic registry goes 
+beyong, offering Eclipse users the ability to install
+new plugins or updates already installed ones. 
+There are currently two proposals for adding dynamic
+behavior to the plugin registry. One is based on delta 
+as for changes in the resource plugin, the details are 
+<a href="dynamicRegistry.html">here</a>.
+The other approach is based on extending <i>Plugin class</i>,
+the details can be found 
+<img src="http://www.eclipse.org/images/new.gif" width="31" height="14">
+<a href="olivier-design.html">here</a>.
+</p><p>
+<img src="http://www.eclipse.org/images/new.gif" width="31" height="14">
+There are several open questions on the table for 
+both approaches. They are discussed 
+<a href="open-questions.html">here</a>.
+</p><p>
 		
-		The <a href="currentPluginModel.html">current plugin model</a> is static and requires the platform to be stopped and restarted if plugins are installed, removed or updated. The DynamicPlugins effort seeks to allow the discovery of changes to the plugin registry on the fly. The main issues involved are: 
-		<ul>
-			<li><a href="deactivatingPlugins.html">Deactivating plugins</a></li>
-			<li><a href="dynamicRegistry.html">Making a dynamic registry structure</a></li>
-			<li>Designing a flexible <a href="registryLifeCycle.html">registry life cycle</a> model to inform plugins that the registry has changed. A <a href="registryDelta.html">delta</a> mechanism is proposed;</li>
-			<li>Managing <a href="classloadersAndInstances.html">classloaders and loaded classes</a> </li>
-			<li>Core.runtime <a href="api.html">api extension</a></li>
-		</ul>
-		
-		<img src="http://www.eclipse.org/images/new.gif" width="31" height="14"><br>
-		<a href="glossary.html">Glossary</a> of terms used in the dynamic plugin area is available.<br>
-		Here is a list of <a href="items.html">items</a> that needs to be addressed for dynamic plugins.
-		<p>Note that what appears in a grey background refers to the "old model".</p>
-		
-
-		</body>
+<img src="http://www.eclipse.org/images/new.gif" width="31" height="14"><br>
+<a href="glossary.html">Glossary</a> 
+of terms used in the dynamic plugin area is available.<br>
+Here is a list of <a href="items.html">items</a> that needs to 
+be addressed for dynamic plugins.
+</p><p>
+Note that what appears in a grey background refers to the "old model".
+</p>
+</body>
 </html>

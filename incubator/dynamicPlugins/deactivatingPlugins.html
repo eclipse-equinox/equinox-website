@@ -15,26 +15,83 @@
     <td WIDTH="40%">&nbsp; </td>
   </tr>
 </table>
-Deactivating plugins is the act of moving an activated plugin to deactivated state.  This does not remove it from the registry but runs the plugin's shutdown lifecycle and returns the plugin to the same state as it was before it was activated (i.e., when the platform started).  All extensions and extension-points remain in place.
-<p />
-There are two reasons for deactivating a plugin:
-<ol>
-<li> regain some space by removing any structures required by the plugin and recovering the space required for its classes.
-</li>
-<li> as a prelude to removing the plugin from the registry.
-</li>
-</ol>
-
-<p> 
-Chances are that the plugins are not very good about cleaning up after themselves.  A plugin that is being shutdown should clean up its internals to limit the number of external references it might have.  However, it is often the case that other plugins have references to instances of the deactivated plugin's classes.  This will prevent those classes and thus the plugin's classloader from being garbage collected.
-<br>
-One simple approach that can be implemented in the Eclipse runtime infrastructure is to manage instances created via createExecutableExtension().  This is the method used to create instances of classes provided via extensions to extension-points.  Since this code path goes through runtime code, the runtime could track instances created and at report on plugins which retain references after a plugin is deactivated.
-For more details on this issue, see <a href="classloadersAndInstances.html">managing classloaders and instances</a>.
 <p>
- In the end however, it is likely that additional lifecycle events will have 
-  to be added so that referencing plugins can be signalled that it is time to 
-  clean up. 
-<p>
+Deactivating plugins is the act of moving an activated plugin back to
+an deactivated state.  
+It is the corollary to lazzy plugin activation, and as such, is transparent
+to Eclipse end user. This is an internal
+optimization that aims at releasing unneeded JVM-level resources for activated
+plugins that no longer need to be activated.
+</p><p>
+<font color="#FF0000">
+*** Question:<br>
+Do we all agree that deactivation is an automated and transparent
+optimization... or do we want to allow the user to actually ask for a plugin
+to be deactivated? 
+</font> 
+</p><p>
+Today, a plugin is first loaded in a deactivated state. The registry has loaded
+its manifest and therefore knows about all its prerequisites. Prerequisites of a 
+plugin are the plugins it requires as well as the extension points its extensions
+requires. Beside this in-memory meta description, there is no other JVM-level
+resources associated with a deactivated plugin. 
+Activating a plugin is basically creating
+a class loader for its classes and resources, creating the plugin object, and
+calling the start method on the plugin object. 
+</p><p>
+The goal of deactivation is to return the plugin to its deactivated state,
+releasing all transient resources created on the plugin behalf during the 
+time the plugin was active. However, the registry remains untouched, its
+meta description of loaded plugins as well as their extension points and 
+their related extensions remains unchanged.
+</p><p>
+Essentially, deactivating a plugin P is a two-step process. First, the registry
+asks the plugin to shutdown and then it releases its class loader. The registry
+keeps a soft reference on the class loader in case the plugin would be 
+activated again before the class loader is actually garbage collected.
+The plugin shutdown is necessary for the plugin class loader to have 
+a chance to go away. Indeed, when shutdown, a plugin must cleanup
+after the cross-plugin object references that it leaked. See
+the detail 
+<a href="classloadersAndInstances.html">here</a>.
+</p><p>
+Below are the case study of both the resource and the UI plugins.
+We will use them to understand leaked references and what are the 
+requirements for plugin cleanup upon shutdown. Today, plugins are 
+not required to really cleanup at shutdown because plugins shutdown
+only when the platform shuts down&mdash;forcing a global cleanup through
+the JVM shutdown. Therefore, plugins may or may not cleanup after 
+themselves. For deactivation to make sense however, plugins have to 
+cleanup extremely well in order to allow for the class loader
+to go away. This gives raise to several questions.
+<ul>
+<li>What can be done for backward
+compatibility with with existing
+plugins that do not cleanup upon shutdown.</li>
+<li>What can be done in the case of plugins attempting but failing to cleanup properly?
+</li>
+<li> When is it correct to deactivate a plugin?</li>
+</ul>
+</p><p>
+This last question is related to the cleanup process, but is not about
+the cleaning process itself. Because of the cleanup, shutting down a 
+plugin may very well have visible side effects for end users.
+Indeed, if the plugin is still
+in use, it may provide open views, editors, toolbars,
+or menus. Hence, deactivating the plugin would force its views
+and editors to close down and its toolbars and menus to disappear.
+Therefore, deactivation has to answer the difficult question
+of when can a plugin be deactivated?
+</p><p>
+One simple approach that can be implemented in the Eclipse runtime 
+infrastructure is to manage instances created via createExecutableExtension().  
+This is the method used to create instances of classes provided via extensions 
+to extension-points.  Since this code path goes through runtime code, the runtime 
+could track instances created and at report on plugins which retain references 
+after a plugin is deactivated.
+For more details on this issue, see <a href="classloadersAndInstances.html">
+managing classloaders and instances</a>.
+</p>
 
 <table border=0 cellspacing=5 cellpadding=2 width="100%" >
   <tr> 

@@ -21,35 +21,33 @@
       Discussions</font></b></td>
   </tr>
 </table>
-<font color="#0000FF">*** Questions in red and comments in blue (Olivier)
-<p>
-Is deactivation automated or is it an user-initiated request? 
-If it is automated, should it be transparent or not to the 
-Eclipse user? In other words, can the plugin deactivation
-have visible effects from the user perspective (loosing 
-views, toolbars disappearing, loss of markers, or others)? 
-</p>
-<p>
-I would guess that we want deactivation to be automated, like activation is. 
-However, if we are stating it is an internal optimization to regain
-space, we are also stating indirectly that deactivation should 
-have no visible effects. This indirectly means that we need to know
-when a plugin is no longer used... and this is thorny issue.
-</p>
-<p>
-There is a clean approach but the question is around its true
-usefulness in practice.
-If we use soft references internally on plugin class loaders, the GC
-will be able to collect them if no longer needed. In other words,
-if no one is pointing to any class loaded by a plugin class loader
-or an instance of any of those classes, the GC will garbage collect
-that loader. Thereby, the class loader, the loaded
-classes, and their instances should get garbage collected. Of course,
-this is a bit simplistic because it assumes the plugin did not start a
-thread and that no one is referencing one of its objects or classes.
-<BR>
-So, how can we control cross-plugin references?
-Let's categorize them first. Between class loaders, 
+Essentially, deactivating a plugin P is a two-step process. First, the registry
+asks the plugin to shutdown and then it releases its class loader. The registry
+keeps a soft reference on the class loader in case the plugin would be 
+activated again before the class loader is actually garbage collected.
+The plugin shutdown is necessary for the plugin class loader to have 
+a chance to go away. 
+</p><p>
+When shutdown, a plugin must cleanup after object references that it leaked.
+Indeed, for the class loader to go away and effectively releasing JVM-level 
+resources, all leaked
+references must be cleaned up. A leak reference is a reference from an 
+outside object to an inside one. An inside object is a class loaded by 
+the class loader of plugin P or an instance of such a class. 
+An outside object is an instance of a class that is not loaded by
+the class loader of P.
+<br> 
+</b>Note:</b> if a plugin has started background threads, these threads
+are roots of persistence for the garbage collector and should 
+therefore be stopped. Otherwise, the class loader will not be
+garbage and will not be reclaimed, defeating the deactivation process.
+</p><p>
+So, what does it mean to be a good-citizen plugin?
+Plugins need to track cross-plugin references and be 
+able to clean them up. Let's discuss and categorize 
+cross-plugin references. 
+</p><p>
+Between class loaders, 
 we have two very different categories of Java reference:
 type reference and instance references. Both are a Java
 reference from an object to another, but the holder of 
@@ -65,21 +63,22 @@ P to a class loaded by plugin Q, the class loader of Q
 will not go away until the class loader of P does.
 This means that we cannot deactivate plugin Q
 until we deactivate plugin P. This is of course a transitive 
-process along the inversed "require" graph.<br>
-<font color="magenta">Pascal: This is not a problem because Q can not
-be deactivated if P is not.</font>
-<BR>
-So the core question of knowing when a plugin is no longer
-necessary can be discussed in terms of type versus object
-references. From a type reference perspective, as long as 
+process along the inversed "require" graph.
+<br>
+<font color="magenta">Pascal:<br>
+This is not a problem because Q can not
+be deactivated if P is not.<br>
+Olivier: Agreed, this is what the text says.
+</font>
+</p><p>
+From a type reference perspective, as long as 
 someone has such a reference, the plugin with the referenced
 class cannot be deactivated. So in other words, a plugin
 can only be deactivated once all plugins requiring him
-(transitively) are deactivated. This is something statically
-known... so the question becomes when can we deactivate a 
-plugin based on object references?
-</p>
-<p>
+(transitively) are deactivated. This is something the registry
+can do, once those plugins are shutdown and should have
+cleaned up their leaked object references.
+</p><p>
 One of the most common object reference between plugins is
 a reference on an extension object. Most extension objects
 are short lived... so automated garbage collection should 
@@ -88,10 +87,10 @@ such as a view or markers for example. But unfortunately,
 there is no life-cycle on extension objects, so
 in general, a plugin does not know if the extension objects
 it created are still used or not.
-<BR>
+<br>
 For a plugin to know if it can be deactivated, it would 
 have to keep track of those extension objects.
-<BR>
+</p><p>
 The next common object reference between plugins is leaked
 references directly to other plugins such as SWT toolbars 
 or menus. These references are leaked directly, not through
@@ -122,7 +121,7 @@ of plugins... and if no one has asked for the creation of any extension
 of a plugin in a given period of time, the registry could ask the plugin 
 to deactivate. If the plugin knows that it has no active extension objects, then
 it can cleanup its other leaked object references.
-<BR>
+</p><p>
 At that stage, as far as the plugin is concerned, it is deactivated.
 Its class loader will only go away when all class loaders holding type
 references to some of its classes will go away. This will only happen
@@ -130,8 +129,7 @@ if their plugin has been deactivated or not yet activated. Here we
 see that the plugin registry has to maintain this information and 
 not unnecessarily ask plugins to deactivate if other plugins 
 requiring it are not deactivated themselves.
-</p>
-<p>
+</p><p>
 This is a good start if we assume plugins designed properly and
 behave correctly. This correct behavior is required on both side
 of the extension mechanism... in order to track life extension 
@@ -139,22 +137,33 @@ points correctly. The most widely spread mechanism to keep track
 of such things is a dispose method. Second to an explicit dispose
 method is reference counting. Third is proxying. All have their
 pros and cons.
-</p>
-<p><font color="#FF0000"> 
+</p><p>
+<font color="#FF0000"> 
 Do we all agree so far? 
 What do we do in failure cases, where plugins do not cleanup well
 after themselves? Also, depending on which mechanism is used to 
 keep track of live extension objects, we may have more failure
 scenarii.
-in
 </font></p>
 <table border=0 cellspacing=5 cellpadding=2 width="100%" >
   <tr> 
     <td align=LEFT valign=TOP colspan="2" bgcolor="#0080C0"><b><font color="#FFFFFF"> 
-      Questions:</font></b></td>
+      How To Be A Good Plugin</font></b></td>
   </tr>
 </table>
+Before a plugin is being deactivated, it has a chance of running some codes to save its state and more importantly doing some cleanup!
+In order to help you doing the cleanup, here is checklist that can help you.
+
 <ul>
+<!-- UI -->
+<li>Did you deallocate all the graphics you allocated: fonts, images, colors</li>
+
+<!-- RUNTIME -->
+<li>Did you unregister the IAdapterFactory you created? See IAdapterManager.unregisterAdapters.</li>
+
+<!-- RESOURCES -->
+<li>Did you unregister the IResourceChangeListener you created? See IWorkspace.removeResourceChangeListener.</li>
+
   <li>Beside the instances created through createExecutableExtension(), who should 
     collect the other instances?</li>
   <li>As a matter of example, which plugin is supposed to close the views: the 
