@@ -25,6 +25,7 @@ plugin deactivation", later a third case is likely to be added to handle the cas
 <p>
 
 <b>Deactivation of a plugin:</b>
+Convention: PA always named the plugin being deactivated.
 <ul>
   <li>Markers: a plugin can define its own marker type and instantiate any marker type (without necessary referencing the plugin defining the marker). Markers can
   be persistent or not. The case of persistent markers does not cause problems because they are always stored. The case of non-persistent markers is more problematic.
@@ -60,6 +61,9 @@ plugin deactivation", later a third case is likely to be added to handle the cas
   </li>
 </ul>
 <b>Deactivating the resource plugin:</b>
+One important point to remember in the deactivation process, is that to instantiate classes from P1, P2 must requires P1. The consequence is that when P1 will be deactivated 
+P2 will also be deactivated, and before P1 (see : <a href="deactivatingPlugins.html">deactivating plugins</a>).
+
 <ul>
   <li>To come...</li>
 </ul>
