@@ -16,21 +16,27 @@
   </tr>
 </table>
 
-The following state diagram describes the various states a plugin can go through.
-Although all those states can be attributed to a plugin, some of those states are more
-related to a plugin into a given context, like for example the notion of enabled or disabled.
-<img src="states.gif"/>
-<p/>
-It is also clear that the events that triggers the state change can be partitionned into
-three sets relatively to their nature and the kind of processing that can be done in response
-to them. Indeed, it is really uncertain that all the plugin will care for the "installation" or "configuration" 
-events. Similarly the reaction to a "deactivation" event is unlikely to require the same 
-processing than a "disablement" event.</p>
-The resulting partitions are:
+<p>The following state diagram describes the various states plugins go through. 
+  While these states can be attributed to a given plugin, some states are relative 
+  to a given context. For example, a plugin may be enabled in one context and 
+  disabled in another.</p>
+<p>The red arrows indicate state transitions which are currently not possible 
+  or require the platform to be shutdown and restarted.<img src="states.gif"/></p>
+<p/> The events that triggers state changes can be partitioned into three sets 
+  relative to the action and the processing done in response to the events. For 
+  example, few plugins are interested in the "installation" or "configuration" 
+  events. And, the reaction to a "deactivation" event is likely different than 
+  the processing of an "unresolved" event. </p>
+<p/>These event are typically triggered from different roles within the system. 
+  For example, someone installing plugins causes install, configure, enable events 
+  while system startup triggers resolution and system execution kicks off activation 
+  events. </p>
+The resulting partitions are: 
 <ul>
-<li>Administration events: installed, uninstalled, configured, unconfigured</li>
-<li>Registry events: enabled, disabled</li>
-<li>Plugin events: actived, deactived</li>
+  <li>Administration events: installed, uninstalled, configured, unconfigured</li>
+  , enabled, disabled 
+  <li>Registry events: resolved, unresolved</li>
+  <li>Plugin events: actived, deactived</li>
 </ul>
 </body>
 </html>
