@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>The Equinox Project - Deactivating plugins</title>
+<link rel="stylesheet" title="default" href="http://eclipse.org/default_style.css" type="text/css">
+</head>
+<body>
+<table BORDER=0 CELLSPACING=5 CELLPADDING=2 WIDTH="100%" >
+  <tr> 
+    <td ALIGN=left width="60%">
+      <p><font class=indextop> equinox</font><br>
+        <font class=indexsub> dynamic plugins > state description</font> </p>
+    </td>
+    <td WIDTH="40%">&nbsp; </td>
+  </tr>
+</table>
+
+The following state diagram describes the various states a plugin can go through.
+Although all those states can be attributed to a plugin, some of those states are more
+related to a plugin into a given context, like for example the notion of enabled or disabled.
+<img src="states.gif"/>
+<p/>
+It is also clear that the events that triggers the state change can be partitionned into
+three sets relatively to their nature and the kind of processing that can be done in response
+to them. Indeed, it is really uncertain that all the plugin will care for the "installation" or "configuration" 
+events. Similarly the reaction to a "deactivation" event is unlikely to require the same 
+processing than a "disablement" event.</p>
+The resulting partitions are:
+<ul>
+<li>Administration events: installed, uninstalled, configured, unconfigured</li>
+<li>Registry events: enabled, disabled</li>
+<li>Plugin events: actived, deactived</li>
+</ul>
+</body>
+</html>

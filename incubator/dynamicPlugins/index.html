@@ -23,15 +23,21 @@
 <p> The <a href="currentPluginModel.html">current plugin model</a> is static and 
   requires the platform to be stopped and restarted if plugins are installed, 
   removed or updated. The DynamicPlugins effort seeks to allow the discovery of 
-  changes to the plugin registry on the fly. The main issues involved are: </p>
+  changes to the plugin registry on the fly. An overview of the new states is given
+  <a href="state_description.html">here</a>.The main issues involved are: </p>
 <ul>
-  <li><a href="deactivatingPlugins.html">deactivating plugins</a></li>
-  <li><a href="dynamicRegistry.html">making a dynamic registry structure</a></li>
-  <li>designing a flexible <a href="registryLifeCycle.html">registry life cycle</a> 
-    model to inform plugins that the registry has changed </li>
-  <li>managing <a href="classloadersAndInstances.html">classloaders and loaded 
-    classes</a> </li>
-  <li>core.runtime <a href="api.html">api extension</a></li>
+  <li><a href="deactivatingPlugins.html">Deactivating plugins</a> whose main problem is 
+  	<ul>
+  	<li>managing <a href="classloadersAndInstances.html">classloaders and loaded classes</a> </li>
+  	</ul>
+  </li>
+  <li>Enabling / disabling dynamically plugins, which requires 
+  	<ul>
+  	<li><a href="dynamicRegistry.html">making a dynamic registry structure</a> and</li>
+  	<li>designing a flexible <a href="registryLifeCycle.html">registry life cycle</a> model to inform plugins that the registry has changed </li>
+  	</ul>
+  </li>
+  <li>Enhancing core.runtime <a href="api.html">api</a></li>
 </ul>
 <p><img src="http://www.eclipse.org/images/new.gif" width="31" height="14"> <a href="glossary.html">Glossary</a> 
   of terms used in the dynamic plugin area is available.</p>

@@ -51,6 +51,36 @@
   extensions from the plugin being deactivated are responsible for the cleanup. 
 </p>
 <p>Pragmatically, both approaches should be supported.</p>
+
+<table BORDER=0 CELLSPACING=5 CELLPADDING=2 WIDTH="100%" >
+ <tr> 
+    <td ALIGN=LEFT VALIGN=TOP COLSPAN="2" BGCOLOR="#0080C0"><b><font color="#FFFFFF"> 
+      Notification mechanism</font></b></td>
+  </tr>
+</table>
+The notification mechanism will only broadcast "Plugins events". As a reminder the events are "activated"
+and "deactivated".</br>
+The notified plugins will at least be:
+<ul>
+	<li>all the plugins in the transitive closure of the deactivated plugin</li>
+	<li>plugins depeding on the deactivated plugin</li>
+	<li>plugins providing extensions to the deactivated plugin</li>
+	<li>plugins to which the deactivated plugin provide extensions</li>
+</ul>
+
+</p>
+
+The infrastructure for the following notification mechanism is:
+<ul>
+  - a PluginEvent class flagged with "actived" or "deactivated" as well as a collection of plugins;<br>
+  - a registration mechanism;<br>
+  - addition of a method in the Plugin class to receive the notification (the method will come from an interface);<br>
+  </ul>
+  
+Is there a necessity to have a notification before and after the actual state change?<br>
+Is there a necessity of registring to those events through extension points?<br>
+What about letting the plugin decide wheter or not it wants to be deactivated on the deactivation of a prerequisite deactivation?<br>
+
 <p>See also:</p>
 <ul>
   <li><a href="usecases.html">usecases</a></li>
