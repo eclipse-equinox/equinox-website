@@ -89,11 +89,47 @@ RCP. These changes can be broken down into manageable pieces as follows:</p>
   in a way that the OSGi framework implementation can interpret when bundles
   (plugins/fragments) are loaded?</p>
 <h3>Authentication and credential management</h3>
-<p>TBD</p>
+<p>A key part to achieving the vision of the Eclipse RCP as a secure client is
+  a well-defined, robust and extensible model for user identification and authentication.
+  This is an essential piece of the overall security architecture. It is proposed
+  that the Eclipse RCP adopt the <a href="http://java.sun.com/security/jaas/faq.html">Java
+  2 Authentication and Authorization Service (JAAS)</a> as the core identification and authorization model. JAAS is included
+in the core of Java 1.4.x, but is an extension to Java 1.3.x</p>
+<p>JAAS provides a
+    framework based on a pluggable architecture. An important aspect of JAAS
+  is that it can support a wide variety of authentication mechanisms. An application
+  wanting to provide this level of security will have to be &quot;JAAS
+  enabled&quot;. Typically a user &quot;logs into&quot; a JAAS enabled application
+  similar to how they would log into an operating system.</p>
+<p>JAAS represents an authenticated user with the <a href="http://java.sun.com/security/jaas/apidoc/javax/security/auth/Subject.html">Subject
+  class</a>. One or more
+        Principals (identities) can be associated with a Subject. In most typical
+        enterprise
+        environments a single user can have multiple identities (Principals)
+  that uniquely identify them. JAAS allows for the configuration of LoginModules;
+        methods in LoginModule classes are called during authentication and can
+        append Principals to the Subject. JAAS Subjects are used as input for
+  controlling
+        access to system resources (e.g., the file system or the network) configured
+        via JAAS Security Policies. In addition a Subject may contain other security
+        related attributes. These attributes are called credentials and may contain
+information to authenticate the Subject with other services.</p>
+<p>Issues:</p>
+<ul>
+  <li> Assuming some core plugins become security enabled, how will Eclipse be
+    packaged &quot;without&quot; security? From a security standpoint, the secure
+    version of the platform cannot have security easily disabled or it defeats
+    the idea of a secure platform.</li>
+  <li> Does the stackable LoginModule architecture of JAAS conflict with the
+    plugin nature of Eclipse? Can they be effectively meshed?</li>
+  <li> How well (does) this play with the OSGi security model ? Will there be
+    detrimental side effects in the that layer of Eclipse?</li>
+  <li> JAAS requires a fair amount of administration overhead.</li>
+  <li>Support for login dialogs and scoping of plugins based on the authenticated
+    user.</li>
+</ul>
 <h3>End to end security</h3>
 <p>TBD</p>
-<p><br>
-</p>
 <p><a href="SecurityConcerns.html">Security Concerns on a Pluggable
 Applications Platform</a><br>
 </p>
