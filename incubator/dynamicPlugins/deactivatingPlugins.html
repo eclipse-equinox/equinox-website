@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<title>The Equinox Project - Dynamic plugins</title>
+<title>The Equinox Project - Deactivating plugins</title>
 <link rel="stylesheet" title="default" href="http://eclipse.org/default_style.css" type="text/css">
 </head>
 <body>
@@ -15,209 +15,31 @@
     <td WIDTH="40%">&nbsp; </td>
   </tr>
 </table>
-<p>
-Deactivating plugins is the act of moving an activated plugin back to
-an deactivated state.  
-It is the corollary to lazzy plugin activation, and as such, is transparent
-to Eclipse end user. This is an internal
-optimization that aims at releasing unneeded JVM-level resources for activated
-plugins that no longer need to be activated.
-</p><p>
-<font color="#FF0000">
-*** Question:<br>
-Do we all agree that deactivation is an automated and transparent
-optimization... or do we want to allow the user to actually ask for a plugin
-to be deactivated? 
-</font> 
-</p><p>
-Today, a plugin is first loaded in a deactivated state. The registry has loaded
-its manifest and therefore knows about all its prerequisites. Prerequisites of a 
-plugin are the plugins it requires as well as the extension points its extensions
-requires. Beside this in-memory meta description, there is no other JVM-level
-resources associated with a deactivated plugin. 
-Activating a plugin is basically creating
-a class loader for its classes and resources, creating the plugin object, and
-calling the start method on the plugin object. 
-</p><p>
-The goal of deactivation is to return the plugin to its deactivated state,
-releasing all transient resources created on the plugin behalf during the 
-time the plugin was active. However, the registry remains untouched, its
-meta description of loaded plugins as well as their extension points and 
-their related extensions remains unchanged.
-</p><p>
-Essentially, deactivating a plugin P is a two-step process. First, the registry
-asks the plugin to shutdown and then it releases its class loader. The registry
-keeps a soft reference on the class loader in case the plugin would be 
-activated again before the class loader is actually garbage collected.
-The plugin shutdown is necessary for the plugin class loader to have 
-a chance to go away. Indeed, when shutdown, a plugin must cleanup
-after the cross-plugin object references that it leaked. See
-the detail 
-<a href="classloadersAndInstances.html">here</a>.
-</p><p>
-Below are the case study of both the resource and the UI plugins.
-We will use them to understand leaked references and what are the 
-requirements for plugin cleanup upon shutdown. Today, plugins are 
-not required to really cleanup at shutdown because plugins shutdown
-only when the platform shuts down&mdash;forcing a global cleanup through
-the JVM shutdown. Therefore, plugins may or may not cleanup after 
-themselves. For deactivation to make sense however, plugins have to 
-cleanup extremely well in order to allow for the class loader
-to go away. This gives raise to several questions.
-<ul>
-<li>What can be done for backward
-compatibility with with existing
-plugins that do not cleanup upon shutdown.</li>
-<li>What can be done in the case of plugins attempting but failing to cleanup properly?
-</li>
-<li> When is it correct to deactivate a plugin?</li>
-</ul>
-</p><p>
-This last question is related to the cleanup process, but is not about
-the cleaning process itself. Because of the cleanup, shutting down a 
-plugin may very well have visible side effects for end users.
-Indeed, if the plugin is still
-in use, it may provide open views, editors, toolbars,
-or menus. Hence, deactivating the plugin would force its views
-and editors to close down and its toolbars and menus to disappear.
-Therefore, deactivation has to answer the difficult question
-of when can a plugin be deactivated?
-</p><p>
-One simple approach that can be implemented in the Eclipse runtime 
-infrastructure is to manage instances created via createExecutableExtension().  
-This is the method used to create instances of classes provided via extensions 
-to extension-points.  Since this code path goes through runtime code, the runtime 
-could track instances created and at report on plugins which retain references 
-after a plugin is deactivated.
-For more details on this issue, see <a href="classloadersAndInstances.html">
-managing classloaders and instances</a>.
+<p> Deactivating plugins is the act of moving an activated plugin to deactivated 
+  state. This does not remove it from the registry but runs the plugin's shutdown 
+  lifecycle and returns the plugin to the same state as it was before it was activated 
+  (i.e., when the platform started). All extensions and extension-points remain 
+  in place in the registry. </p>
+<p /> There are two reasons for deactivating a plugin: 
+<ol>
+  <li> regain some space by removing any structures required by the plugin and 
+    recovering the space required for its classes. </li>
+  <li> as a prelude to removing the plugin from the registry. </li>
+</ol>
+<p> Deactivating a plugin does not itself require additional lifecycle events. 
+  However, in general, other plugins have references to newly deactivated classes/objects 
+  and the plugin being deactivated may not cleaned up after themselves. As a result, 
+  some notification will be required to tell plugins to clean up their structures. 
 </p>
-
-<table border=0 cellspacing=5 cellpadding=2 width="100%" >
-  <tr> 
-    <td align=LEFT valign=TOP colspan="2" bgcolor="#0080C0"><b><font color="#FFFFFF"> 
-      Usecase: The Resources Plugin</font></b></td>
-  </tr>
-</table>
-<p> The resources plugin is central to Eclipse as a tooling platform and is very 
-  likely to be referenced (classes or instances) from many plugins. Moreover the 
-  resources plugins is offering several important extension-points (markers, builders, 
-  natures). We will use it as the canonical case for plugin deactivation. That 
-  is, we will study the plugin mechanism through two points of view: "deactivation 
-  of a plugin based on the resources plugin" and "deactivation of the resource 
-  plugin itself". 
-<p> <b>Deactivation of a plugin based on the Resources plugin:</b>
-<p> Convention: PA always named the plugin being deactivated. 
+<p>Note that deactivating a plugin A which is required by plugin B does <b>not</b> 
+  imply the B <b>must</b> be deactivated -- just as activating B does not imply 
+  that A is activated.</p>
+<p>See also:</p>
 <ul>
-  <li><b>Markers</b>: 
-	<BR>
-    <font color="#0000FF">
-		Could we be more precise here, in regards of type versus object references
-		between the resource plugin (extension-point provider) and other plugins?
-		Also clearly separating cross-plugin references from side effects in the
-		abscence of cross-plugin references.
-		</font> 
-	<BR>
-	  a plugin can define its own marker type and instantiate 
-    any marker type (without necessary referencing the plugin defining the marker). 
-    Markers can be persistent or not. The case of persistent markers does not 
-    cause problems because they are always stored. The case of non-persistent 
-    markers is more problematic.
-    <ol>
-      <li>a plugin PA created non-persistent markers that it defines, PA is deactivated. 
-        Shall the markers be cleaned-up, if yes should it be the responsibility 
-        of the resources plugin or of PA?</li>
-      <li>plugins P1 and P2 created non-persistent markers that are defined by 
-        PA, PA is deactivated. Shall the markers be cleaned-up, by who?
-        <ul><font color="blue">JohnA:  I think when a plugin is deactivated, you should never get rid of markers
-         that are of types defined by that plugin.  So if PA defines a marker type, and P1 and P2 use 
-         markers of that type, then deactivation of PA should not affect those markers.  This is symetrical 
-         with the fact that defining a marker of a type defined by plugin 'P' does not require activation of
-         plugin 'P'.  I think markers should only be removed when the plugin that added the markers is deactivated.</font>
-       </li>
-        
-    </ol>
-    <font color="#FF0000">*** Questions:</font> 
-    <ul>
-      <li>Does a plugin being deactivated imply that its markers should be removed? 
-        Relate this to the possibility that the plugin was never activated. It's 
-        markers could still be shown since other plugins can create them. </li>
-	  <li><font color="#0000FF">What is the semantics of persistent/transient markers?</font>
-			<ul>
-				<font color="green">Persistent markers are saved by the platform when it is shutdown, whereas transient ones are dropped.</font>
-			</ul>
-			</li>
-    </ul>
-  </li>
-  <li><b>Session properties</b>: Session properties are key/value pairs that are 
-    associated with resources. By convention the key is qualified by the plugin 
-    id. The value can be any Object. Because session properties may hold on to 
-    any Object, it is important that they be removed thus enabling the plugin 
-    defining the value class to be collected. Because there is no way for the 
-    resource plugin to know who created a given property, the clean-up must be 
-    done by the plugin that created it.<br>
-    It may also be possible to have a brute force mechanism which simply removes 
-    any session properties whose value is an instance of a class from a particular 
-    classloader (i.e., plugin). This would ensure the references are removed but 
-    may damage some assumptions made by the declaring plugin. See the 
-    <a href="classloadersAndInstances.html">question </a> about when applying such a mechanism<br>
-  </li>
-  <li><b>Persistent properties</b>: nothing special.</li>
-  <li><b>Builders</b>: builders are contributed through extension-points and are 
-    instantiated by the resource plugin (using createExecutableExtension). Builders instances are always kept by 
-    the resources plugin. 
-    <ol>
-      <li>plugin PA contributes a builder, PA is deactivated. <br>
-	The resources plugin gets notified and can destroy the builder. PA has the opportunity to register 
-      as an ISaveParticipant and so can ensure that the builder's state is saved 
-      before being destroyed. Note that it is the workspace's responsibility 
-      to trigger the save.<br>
-			<font color="#0000FF"> 
-			I don't get that?
-			</font>
-      </li>
-    </ol>
-  </li>
-  <li> <b>Natures</b>: natures are contributed through extension-points and are 
-    instantiated by the resource plugin. Natures instances are always kept by 
-    the resources plugin. 
-    <ol>
-      <li>plugin PA contributes a nature, PA is deactivated. The resources plugin 
-        gets notified and frees the instance of the PA's natures.<br>
-      </li>
-    </ol>
-  </li>
-  <li> <b>Listeners</b>: the resources plugin offers a listener mechanism that 
-    allow plugins to get notification about modifications that occur in the workspace. 
-    Because there is no way for the resources plugin to know which plugin has 
-    created which listener, there is currently no way for the resources plugin 
-    do the clean-up itself. The removal of listeners is the resposibility of the 
-    plugin that added them.</li>
-  <li><b>Move/delete/validate hooks</b>: (org.eclipse.core.resources.fileModificationValidator, 
-    org.eclipse.core.resources.moveDeleteHook, org.eclipse.core.resources.teamHook) 
-    These extension-points are specials in that they can only have one extension. 
-    The instance of the extensions are handled by the resources plugin and will 
-    be collected by it. </li>
+  <li><a href="approaches.html">deactivation approaches</a></li>
+  <li><a href="usecases.html">usecases</a></li>
 </ul>
-<p><b>Deactivating the resource plugin itself</b></p>
-<p> One important point to remember in the deactivation process, is that to instantiate 
-  classes from P1, P2 must requires P1. The consequence is that when P1 will be 
-  deactivated P2 will also be deactivated, and before P1 (see : <a href="deactivatingPlugins.html">deactivating plugins</a>). <br>
-			<font color="#0000FF"> 
-More importantly, it means that we cannot deactivate P2 if P1 is not ok to be
-deactivated... 
-			</font>
-
-</p>
-<ul>
-  <li>To come...</li>
-</ul>
-<p> 
-
-
-<p /> Feel free to add any entry. If you can only read please post on the equinox 
-  newsgroup. 
-<p />
+<p>&nbsp;</p>
 <p />
 </body>
 </html>

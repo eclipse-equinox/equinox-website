@@ -27,7 +27,7 @@ keeps a soft reference on the class loader in case the plugin would be
 activated again before the class loader is actually garbage collected.
 The plugin shutdown is necessary for the plugin class loader to have 
 a chance to go away. 
-</p><p>
+<p></p><p>
 When shutdown, a plugin must cleanup after object references that it leaked.
 Indeed, for the class loader to go away and effectively releasing JVM-level 
 resources, all leaked
@@ -37,7 +37,7 @@ the class loader of plugin P or an instance of such a class.
 An outside object is an instance of a class that is not loaded by
 the class loader of P.
 <br> 
-</b>Note:</b> if a plugin has started background threads, these threads
+Note: if a plugin has started background threads, these threads
 are roots of persistence for the garbage collector and should 
 therefore be stopped. Otherwise, the class loader will not be
 garbage and will not be reclaimed, defeating the deactivation process.
@@ -145,32 +145,6 @@ after themselves? Also, depending on which mechanism is used to
 keep track of live extension objects, we may have more failure
 scenarii.
 </font></p>
-<table border=0 cellspacing=5 cellpadding=2 width="100%" >
-  <tr> 
-    <td align=LEFT valign=TOP colspan="2" bgcolor="#0080C0"><b><font color="#FFFFFF"> 
-      How To Be A Good Plugin</font></b></td>
-  </tr>
-</table>
-Before a plugin is being deactivated, it has a chance of running some codes to save its state and more importantly doing some cleanup!
-In order to help you doing the cleanup, here is checklist that can help you.
-
-<ul>
-<!-- UI -->
-<li>Did you deallocate all the graphics you allocated: fonts, images, colors</li>
-
-<!-- RUNTIME -->
-<li>Did you unregister the IAdapterFactory you created? See IAdapterManager.unregisterAdapters.</li>
-
-<!-- RESOURCES -->
-<li>Did you unregister the IResourceChangeListener you created? See IWorkspace.removeResourceChangeListener.</li>
-
-  <li>Beside the instances created through createExecutableExtension(), who should 
-    collect the other instances?</li>
-  <li>As a matter of example, which plugin is supposed to close the views: the 
-    UI plugin, or the plugin providing the view?</li>
-  <li>Does a generic scheme to collect the instance exists?</li>
-  <li>When can a brute force cleanup mechanism be applied?</li>
-</ul>
 <p>&nbsp;</p>
 </body>
 </html>

@@ -15,7 +15,7 @@
 	<tr> 
 		<td ALIGN=left width="60%">
 			<p><font class=indextop> equinox</font><br>
-			<font class=indexsub> dynamix plugins > glossary</font> </p>
+        <font class=indexsub> dynamic plugins > glossary</font> </p>
 		</td>
 		<td WIDTH="40%">&nbsp; </td>
 	</tr>
@@ -25,13 +25,35 @@
 <td align=left bgcolor="#0080C0"><b><font color="#FFFFFF" face="Arial,Helvetica">Dynamic plugin glossary</font></b></td>
 </table>
 <ul>
-<li><b>Activated</b>: indicate the state of a plugin that is under use. Note that in the 2.1 model a plugin is only activated when one of its class is loaded;</li>
-<li><b>Deactivated</b>: indicate the state of a plugin whose class have not been loaded yet;</li>
-<li><b>Deactivation</b>: process consisting in changing a plugin state from activated to deactivated;</li>
-<li><b>Enabled</b>: indicate the state of a plugin relatively to a given configuration. When a plugin is enabled its functionnalities are available. In 2.1, a plugin is enabled at startup if all its prerequisites are available (for more details see <a href="currentPluginModel.html">the current model page</a>);</li>
-<li><b>Disabled</b>: indicate the state of a plugin relatively to a given configuration. A plugin is disabled if its prerequisites are not satisfied. In 2.1 a plugin can only be disabled at startup time.</li>
-<li><b>Disablement</b>: action of changing a plugin state from enable to disable at runtime. The disablement can only be done is the plugin is deactivated.</li>
+  <li><b>Activated</b>: A plugin is in activated state when its startup() method 
+    has been called and its shutdown() method has not been called. In 2.1 plugin 
+    activation is triggered by the loading of a class from that plugin;</li>
+  <li><b>Configuration</b>: A configuration is a collection of plugins which are 
+    available to participate in plugin resolution and thus in forming the runtime 
+    registry. </li>
+  <li><b>Deactivated</b>: A plugin is in deactivated state if its shutdown() method 
+    has been called (or the platform has been started) and its startup() method 
+    has been subsequently called;</li>
+  <li><b>Deactivation</b>: The process of changing a plugin state from activated 
+    to deactivated;</li>
+  <li><b>Disabled</b>: A plugin is in disabled state if it is installed but either 
+    has been explicitly marked as disabled or has never been marked as enabled. 
+    A disabled plugin does not participate in registry resolution. In 2.1 a plugin 
+    can only be disabled at startup time.</li>
+  <li><b>Disablement</b>: The act of changing a plugin state from enable to disable 
+    at runtime. The disablement can only be done is the plugin is deactivated.</li>
+  <li><b>Enabled</b>: A plugin is enabled if it has been is installed and has 
+    been explicitly marked as enabled or has never been disabled.</li>
+  <li><b>Installed</b>: A plugin is installed if it is physically present and 
+    available for inclusion in a configuration.</li>
+  <li><b>Resolved</b>: A plugin is resolved relative to a given configuration. 
+    Resolved plugins are present in the runtime registry and their functionality 
+    is available for use. In 2.1, plugins are resolved at startup if all its prerequisites 
+    are available (for more details see <a href="currentPluginModel.html">the 
+    current model page</a>);</li>
+  <li><b>Unresolved</b>: A plugin is unresolved relative to a given configuration. 
+    Unresolved plugins are not present in the runtime registry and their functionality 
+    is not available for use.</li>
 </ul>
-
 </body>
 </html>
