@@ -25,7 +25,7 @@
 <td align=left bgcolor="#0080C0"><b><font color="#FFFFFF" face="Arial,Helvetica">Dynamic plugin glossary</font></b></td>
 </table>
 <ul>
-  <li><b>Activated</b>: A plugin is in activated state when its startup() method 
+  <li><b>Active</b>: A plugin is in active state when its startup() method 
     has been called and its shutdown() method has not been called. In 2.1 plugin 
     activation is triggered by the loading of a class from that plugin;</li>
   <li><b>Configuration</b>: A configuration is a collection of plugins which are 
@@ -33,8 +33,8 @@
     registry. </li>
   <li><b>Configured</b>: A plugin is configured when it is part of a configuration.
   A plugin can be configured in several configurations.</li>
-  <li><b>Deactivated</b>: A plugin is in deactivated state if its shutdown() method 
-    has been called (or the platform has been started) and its startup() method 
+  <li><b>Inactive</b>: A plugin is in the inactive state if its shutdown() method 
+    has been called, or the platform has been started and its startup() method 
     has not been subsequently called;</li>
   <li><b>Deactivation</b>: The process of changing a plugin state from activated 
     to deactivated;</li>
