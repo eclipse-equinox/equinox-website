@@ -24,19 +24,143 @@ There are two reasons for deactivating a plugin:
 <li> as a prelude to removing the plugin from the registry.
 </li>
 </ol>
+<font color="#0000FF">*** Questions in red and comments in blue (Olivier)
 <p>
-Deactivating does not itself require additional lifecycle but does require that any plugins dependent on the plugin being deactivated also be deactivated.  This transitive deactivation must be done in dependent order (i.e., dependents first).
+Is deactivation automated or is it an user-initiated request? 
+If it is automated, should it be transparent or not to the 
+Eclipse user? In other words, can the plugin deactivation
+have visible effects from the user perspective (loosing 
+views, toolbars disappearing, loss of markers, or others)? 
 </p>
 <p>
+I would guess that we want deactivation to be automated, like activation is. 
+However, if we are stating it is an internal optimization to regain
+space, we are also stating indirectly that deactivation should 
+have no visible effects. This indirectly means that we need to know
+when a plugin is no longer used... and this is thorny issue.
+</p>
+<p>
+There is a clean approach but the question is around its true
+usefulness in practice.
+If we use soft references internally on plugin class loaders, the GC
+will be able to collect them if no longer needed. In other words,
+if no one is pointing to any class loaded by a plugin class loader
+or an instance of any of those classes, the GC will garbage collect
+that loader. Thereby, the class loader, the loaded
+classes, and their instances should get garbage collected. Of course,
+this is a bit simplistic because it assumes the plugin did not start a
+thread and that no one is referencing one of its objects or classes.
+<BR>
+So, how can we control cross-plugin references?
+Let's categorize them first. Between class loaders, 
+we have two very different categories of Java reference:
+type reference and instance references. Both are a Java
+reference from an object to another, but the holder of 
+the reference is a Class object in the type reference 
+case where it is not a Class object in the instance 
+reference. 
+<BR>
+The reason we differentiate them is that 
+object references can be cut while type references 
+cannot---they represent dependencies between loaded classes. 
+So if we have at type reference from a class loaded by plugin
+P to a class loaded by plugin Q, the class loader of Q
+will not go away until the class loader of P does.
+This means that we cannot deactivate plugin Q
+until we deactivate plugin P. This is of course a transitive 
+process along the inversed "require" graph.
+<BR>
+So the core question of knowing when a plugin is no longer
+necessary can be discussed in terms of type versus object
+references. From a type reference perspective, as long as 
+someone has such a reference, the plugin with the referenced
+class cannot be deactivated. So in other words, a plugin
+can only be deactivated once all plugins requiring him
+(transitively) are deactivated. This is something statically
+known... so the question becomes when can we deactivate a 
+plugin based on object references?
+</p>
+<p>
+One of the most common object reference between plugins is
+a reference on an extension object. Most extension objects
+are short lived... so automated garbage collection should 
+still work. But not all extension objects are short-lived,
+such as a view or markers for example. But unfortunately,
+there is no life-cycle on extension objects, so
+in general, a plugin does not know if the extension objects
+it created are still used or not.
+<BR>
+For a plugin to know if it can be deactivated, it would 
+have to keep track of those extension objects.
+<BR>
+The next common object reference between plugins is leaked
+references directly to other plugins such as SWT toolbars 
+or menus. These references are leaked directly, not through
+the plugin registry. Here, we need plugins to maintain the knowledge
+of those leaked references and to be able to clean them up
+when no extension objects are still in use... 
+</p><p>
+<font color="#FF0000">
+So to summarize, we need to add a life-cycle management for 
+extension objects. When a plugin has no active extension objects,
+it could be asked to deactivate, that is, cleanup leaked 
+references... and stop all background threads.
+This is unfortunately not very transparent and will not work 
+well with existing plugins.
+<BR>
+It will work, that is, class loaders will get collected, for 
+plugins not leaking object references or doing a good job
+at scoping them to live extension objects. We may be fortunate.
+</font> 
+</p><p>
+So in the above scheme, plugins know when they are no
+longer used (actively speaking: no active extension
+objects). But we should probably not be too aggressive
+regarding deactivation... 
+Most plugins are probably without active extensions 
+most of the time. So we could monitor activities on the extensions 
+of plugins... and if no one has asked for the creation of any extension 
+of a plugin in a given period of time, the registry could ask the plugin 
+to deactivate. If the plugin knows that it has no active extension objects, then
+it can cleanup its other leaked object references.
+<BR>
+At that stage, as far as the plugin is concerned, it is deactivated.
+Its class loader will only go away when all class loaders holding type
+references to some of its classes will go away. This will only happen
+if their plugin has been deactivated or not yet activated. Here we
+see that the plugin registry has to maintain this information and 
+not unnecessarily ask plugins to deactivate if other plugins 
+requiring it are not deactivated themselves.
+</p>
+<p>
+This is a good start if we assume plugins designed properly and
+behave correctly. This correct behavior is required on both side
+of the extension mechanism... in order to track life extension 
+points correctly. The most widely spread mechanism to keep track
+of such things is a dispose method. Second to an explicit dispose
+method is reference counting. Third is proxying. All have their
+pros and cons.
+</p>
+<p><font color="#FF0000"> 
+Do we all agree so far? 
+What do we do in failure cases, where plugins do not cleanup well
+after themselves? Also, depending on which mechanism is used to 
+keep track of live extension objects, we may have more failure
+scenarii.
+in
+</font></p>
+</font> 
+<p><font color="#00FF00">
+OLD TEXT...
+<BR> 
 Chances are that the plugins are not very good about cleaning up after themselves.  A plugin that is being shutdown should clean up its internals to limit the number of external references it might have.  However, it is often the case that other plugins have references to instances of the deactivated plugin's classes.  This will prevent those classes and thus the plugin's classloader from being garbage collected.
-</p>
-<p>
+<BR>
 One simple approach that can be implemented in the Eclipse runtime infrastructure is to manage instances created via createExecutableExtension().  This is the method used to create instances of classes provided via extensions to extension-points.  Since this code path goes through runtime code, the runtime could track instances created and at report on plugins which retain references after a plugin is deactivated.
-</p>
-<p>
+<BR>
  In the end however, it is likely that additional lifecycle events will have 
   to be added so that referencing plugins can be signalled that it is time to 
   clean up. 
+</font>
 </p>
 
 <table border=0 cellspacing=5 cellpadding=2 width="100%" >
@@ -55,19 +179,28 @@ One simple approach that can be implemented in the Eclipse runtime infrastructur
 <p> <b>Deactivation of a plugin based on the Resources plugin:</b>
 <p> Convention: PA always named the plugin being deactivated. 
 <ul>
-  <li><b>Markers</b>: a plugin can define its own marker type and instantiate 
+  <li><b>Markers</b>: 
+	<BR>
+    <font color="#0000FF">
+		Could we be more precise here, in regards of type versus object references
+		between the resource plugin (extension-point provider) and other plugins?
+		Also clearly separating cross-plugin references from side effects in the
+		abscence of cross-plugin references.
+		</font> 
+	<BR>
+	  a plugin can define its own marker type and instantiate 
     any marker type (without necessary referencing the plugin defining the marker). 
     Markers can be persistent or not. The case of persistent markers does not 
     cause problems because they are always stored. The case of non-persistent 
-    markers is more problematic. 
+    markers is more problematic.
     <ol>
       <li>a plugin PA created non-persistent markers that it defines, PA is deactivated. 
         Shall the markers be cleaned-up, if yes should it be the responsibility 
         of the resources plugin or of PA?</li>
       <li>a plugin P1 created non-persistent markers that are defined by PA, PA 
         is deactivated. In this case, because all PA markers may have not been 
-        created by the P1, then it seems that collecting the markers is P1 responsibility, 
-        if they must be collected.</li>
+        created by the P1, then it seems that collecting the markers is P1 
+				responsibility, if they must be collected.</li>
       <li>plugins P1 and P2 created non-persistent markers that are defined by 
         PA, PA is deactivated. Shall the markers be cleaned-up, by who?</li>
     </ol>
@@ -77,6 +210,9 @@ One simple approach that can be implemented in the Eclipse runtime infrastructur
         Relate this to the possibility that the plugin was never activated. It's 
         markers could still be shown since other plugins can create them. </li>
       <li>What is the difference between #2 and #3 above?</li>
+			<li><font color="#0000FF">
+			What is the semantics of persistent/transient markers?
+			</font></li>
     </ul>
   </li>
   <li><b>Session properties</b>: Session properties are key/value pairs that are 
@@ -89,17 +225,34 @@ One simple approach that can be implemented in the Eclipse runtime infrastructur
     It may also be possible to have a brute force mechanism which simply removes 
     any session properties whose value is an instance of a class from a particular 
     classloader (i.e., plugin). This would ensure the references are removed but 
-    may damage some assumptions made by the declaring plugin.</li>
+    may damage some assumptions made by the declaring plugin.<br>
+		<font color="#0000FF">
+		Not really, we still need to know when is it ok to apply a brute force
+		mechanism...
+			</font>
+  </li>
   <li><b>Persistent properties</b>: nothing special.</li>
   <li><b>Builders</b>: builders are contributed through extension-points and are 
     instantiated by the resource plugin. Builders instances are always kept by 
     the resources plugin. 
+		<font color="#0000FF">
+		What do you mean they are instantiated by the resource plugin?
+		It calls createExtension or is it creating instances of its own classes? 
+		</font>
     <ol>
-      <li>plugin PA contributes a builder, PA is deactivated. The resources plugin 
-        gets notified and can destroy the builder. PA has the opportunity to register 
-        as an ISaveParticipant and so can ensure that the builder's state is saved 
-        before being destroyed. Note that it is the workspace's responsibility 
-        to trigger the save.</li>
+      <li>plugin PA contributes a builder, PA is deactivated. <br>
+			<font color="#0000FF"> 
+			   How do we know the plugin should be deactivated in the first place? 
+			</font>
+			The resources plugin 
+      gets notified and can destroy the builder. PA has the opportunity to register 
+      as an ISaveParticipant and so can ensure that the builder's state is saved 
+      before being destroyed. Note that it is the workspace's responsibility 
+      to trigger the save.<br>
+			<font color="#0000FF"> 
+			I don't get that?
+			</font>
+      </li>
     </ol>
   </li>
   <li> <b>Natures</b>: natures are contributed through extension-points and are 
@@ -107,7 +260,11 @@ One simple approach that can be implemented in the Eclipse runtime infrastructur
     the resources plugin. 
     <ol>
       <li>plugin PA contributes a nature, PA is deactivated. The resources plugin 
-        gets notified and frees the instance of the PA's natures.</li>
+        gets notified and frees the instance of the PA's natures.<br>
+			<font color="#0000FF"> 
+			Again, we have a problem of when can we deactivate then...
+			</font>
+      </li>
     </ol>
   </li>
   <li> <b>Listeners</b>: the resources plugin offers a listener mechanism that 
@@ -125,8 +282,13 @@ One simple approach that can be implemented in the Eclipse runtime infrastructur
 <p><b>Deactivating the resource plugin itself</b></p>
 <p> One important point to remember in the deactivation process, is that to instantiate 
   classes from P1, P2 must requires P1. The consequence is that when P1 will be 
-  deactivated P2 will also be deactivated, and before P1 (see : <a href="deactivatingPlugins.html">deactivating 
-  plugins</a>). </p>
+  deactivated P2 will also be deactivated, and before P1 (see : <a href="deactivatingPlugins.html">deactivating plugins</a>). <br>
+			<font color="#0000FF"> 
+More importantly, it means that we cannot deactivate P2 if P1 is not ok to be
+deactivated... 
+			</font>
+
+</p>
 <ul>
   <li>To come...</li>
 </ul>
