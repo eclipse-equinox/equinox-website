@@ -16,7 +16,10 @@ Change history:<br>
 2003/06/04 - MEM - added MEZ' concerns about priority of plugin
 signatures<br>
 2003/06/11 - MEM - converted to HTML, did various edits and committed
-to Equinox site<br style="font-weight: bold;">
+to Equinox site<br>
+2003/06/12 - MEM - broke out signatures requirement to distinguish
+signing/verifying a plugin contents versus code signatures uses for
+runtime checks.<br style="font-weight: bold;">
 <br style="font-weight: bold;">
 <span style="font-weight: bold;">Motives</span><br>
 <br>
@@ -96,7 +99,12 @@ Code - based security<br>
 <ul>
   <li>Need to be able to verify signatures of&nbsp; plugins at load
 time (not just download time) in order to authenticate source of the
-code. This will likely require manifest changes.</li>
+plugin and the integrity of the plugin's files. This will likely require
+manifest changes.</li>
+  <li>Need to be able to verify signatures and sources of runtime code
+contained by plugins. &nbsp;In other words, a jar file of code provided
+by a plugin may have a different signature than the plugin as a whole.<br>
+  </li>
   <li>Need to be able to protect plugins and local data from other,
 malicious or otherwise destructive plugins.&nbsp; This will likely
 require sandboxing.</li>
@@ -238,13 +246,13 @@ If there is a sufficiently expressive Permission object that could
 apply to this call stack in all scenarios, (i.e. no matter what the
 context, the permission defines whether "unknown.Code.otherMethod()" is
 allowed to do the critical operation) then we do not need a doPrivileged
-block.  An example of that might be using a FilePermission to protect a
+block. An example of that might be using a FilePermission to protect a
 specific file.  I.E. if critical method is going to access a specific
 File (or directory) and we know that in ALL circumstances we want
 unknown.Code.otherMethod() to only have 'read' permission on that file
-then we don't need a doPrivileged block inside criticalMethod. We
-would simply grant the permission to read the particular file.  Note
-that a Permission that granted permission to read ALL files would not be
+then we don't need a doPrivileged block inside criticalMethod. We would
+simply grant the permission to read the particular file.  Note that a
+Permission that granted permission to read ALL files would not be
 expressive enough here because it would be more permissive than we want.<br>
 If, on the other hand, whether we allow the "unknown.Code.otherMethod"
 to perform the operation is determined by contextual information
