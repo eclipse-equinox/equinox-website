@@ -72,11 +72,11 @@ For more details on this issue, see <a href="classloadersAndInstances.html">mana
         of the resources plugin or of PA?</li>
       <li>plugins P1 and P2 created non-persistent markers that are defined by 
         PA, PA is deactivated. Shall the markers be cleaned-up, by who?
-        <ul>JohnA:  I think when a plugin is deactivated, you should never get rid of markers
+        <ul><font color="blue">JohnA:  I think when a plugin is deactivated, you should never get rid of markers
          that are of types defined by that plugin.  So if PA defines a marker type, and P1 and P2 use 
          markers of that type, then deactivation of PA should not affect those markers.  This is symetrical 
          with the fact that defining a marker of a type defined by plugin 'P' does not require activation of
-         plugin 'P'.  I think markers should only be removed when the plugin that added the markers is deactivated.
+         plugin 'P'.  I think markers should only be removed when the plugin that added the markers is deactivated.</font>
        </li>
         
     </ol>
@@ -85,11 +85,11 @@ For more details on this issue, see <a href="classloadersAndInstances.html">mana
       <li>Does a plugin being deactivated imply that its markers should be removed? 
         Relate this to the possibility that the plugin was never activated. It's 
         markers could still be shown since other plugins can create them. </li>
-	  <li><font color="#0000FF">What is the semantics of persistent/transient markers?
+	  <li><font color="#0000FF">What is the semantics of persistent/transient markers?</font>
 			<ul>
-				Persistent markers are saved by the platform when it is shutdown, whereas transient ones are dropped.
+				<font color="green">Persistent markers are saved by the platform when it is shutdown, whereas transient ones are dropped.</font>
 			</ul>
-			</font></li>
+			</li>
     </ul>
   </li>
   <li><b>Session properties</b>: Session properties are key/value pairs that are 
@@ -102,27 +102,16 @@ For more details on this issue, see <a href="classloadersAndInstances.html">mana
     It may also be possible to have a brute force mechanism which simply removes 
     any session properties whose value is an instance of a class from a particular 
     classloader (i.e., plugin). This would ensure the references are removed but 
-    may damage some assumptions made by the declaring plugin.<br>
-		<font color="#0000FF">
-		Not really, we still need to know when is it ok to apply a brute force
-		mechanism...
-			</font>
+    may damage some assumptions made by the declaring plugin. See the 
+    <a href="classloadersAndInstances.html">question </a> about when applying such a mechanism<br>
   </li>
   <li><b>Persistent properties</b>: nothing special.</li>
   <li><b>Builders</b>: builders are contributed through extension-points and are 
-    instantiated by the resource plugin. Builders instances are always kept by 
+    instantiated by the resource plugin (using createExecutableExtension). Builders instances are always kept by 
     the resources plugin. 
-		<font color="#0000FF">
-		What do you mean they are instantiated by the resource plugin?
-		It calls createExtension or is it creating instances of its own classes? 
-		</font>
     <ol>
       <li>plugin PA contributes a builder, PA is deactivated. <br>
-			<font color="#0000FF"> 
-			   How do we know the plugin should be deactivated in the first place? 
-			</font>
-			The resources plugin 
-      gets notified and can destroy the builder. PA has the opportunity to register 
+	The resources plugin gets notified and can destroy the builder. PA has the opportunity to register 
       as an ISaveParticipant and so can ensure that the builder's state is saved 
       before being destroyed. Note that it is the workspace's responsibility 
       to trigger the save.<br>
@@ -138,9 +127,6 @@ For more details on this issue, see <a href="classloadersAndInstances.html">mana
     <ol>
       <li>plugin PA contributes a nature, PA is deactivated. The resources plugin 
         gets notified and frees the instance of the PA's natures.<br>
-			<font color="#0000FF"> 
-			Again, we have a problem of when can we deactivate then...
-			</font>
       </li>
     </ol>
   </li>
