@@ -19,7 +19,9 @@ signatures<br>
 to Equinox site<br>
 2003/06/12 - MEM - broke out signatures requirement to distinguish
 signing/verifying a plugin contents versus code signatures uses for
-runtime checks.<br style="font-weight: bold;">
+runtime checks.<br>
+2003/06/20 - MEM - added note about plugin fragments, modifications
+from feedback from Keith &amp; Chuck<br style="font-weight: bold;">
 <br style="font-weight: bold;">
 <span style="font-weight: bold;">Motives</span><br>
 <br>
@@ -116,6 +118,11 @@ precision versus ease-of-use.</li>
 user at install time) versus implicit (only ask user if a security
 exception is tripped).&nbsp;&nbsp; Have to catch the latter anyway, but
 might make nicer UI to get as much of it out of the way early.</li>
+  <li>Fragments - fragments currently run effectively 'merged' with the
+plugin they are augmenting. &nbsp;But a fragment potentially comes from
+a different source than the plugin. &nbsp;We need to make sure we run
+code from fragments with the appropriate permissions.<br>
+  </li>
 </ul>
 <br>
 <br>
@@ -266,16 +273,16 @@ a doPrivileged section in it to stop the security checks from going
 further down the stack and 2) we need to actually codify the logic to
 figure out programmatically whether the operation should be performed or
 not.</li>
-  <li>Need a new AccessController implementation. &nbsp;This is where
-we need to trap unpermitted actions and handle them in a user-friendly
-way such as by asking the user if he/she wants to allow the action once,
-or allow the action always or deny it, whatever. &nbsp;In a GUI
-application, this means putting up appropriate wizard panels to prompt
-the user. &nbsp;For a headless application, it may mean prompting at
-stdin.</li>
+  <li>Need a new SecurityManager implementation. &nbsp;The
+checkPermission() method is where we need to trap unpermitted actions
+and handle them in a user-friendly way such as by asking the user if
+he/she wants to allow the action once, or allow the action always or
+deny it, whatever. &nbsp;In a GUI application, this means putting up
+appropriate wizard panels to prompt the user. &nbsp;For a headless
+application, it may mean prompting at stdin or simpy logging/reporting
+failure if non-interactive mode.</li>
   <li>Need a keystore to protect each user's local data with
-encryption. &nbsp;We can probably use the default keystore provided with
-Java</li>
+encryption. &nbsp;Q: Can we use the default keystore provided with Java?</li>
   <li>Need mechanism for administrative provisioning of application
 configuration. &nbsp;This requires a secure 'remote control' feature for
 the client. &nbsp;This may be beyond the scope of the Eclipse platform
@@ -285,6 +292,17 @@ feature in specific applications developed on the platform.
 framework as platform runtime.&nbsp; However, useful GUI's will need to
 be developed appropriate for RCP and Eclipse use cases.&nbsp; Not
 certain yet if framework API's are sufficient for all use cases.</li>
+  <li>In all cases, we should try to design code such that it is
+possible to run without security features and in that case be as
+backward compatible as possible. &nbsp;This is not necessarily a matter
+of just turning the security model off. &nbsp;In addition to Java
+Security API-specific changes needed to make the platform secure, it may
+also be necessary to make API changes in the current code in order to
+secure code within Java Language Access Protection rules (otherwise you
+may be insecure even if you are running with a security manager). Such
+API changes may mean that even if you have the security manager
+disabled, &nbsp;that you may not be backward compatible for some code.<br>
+  </li>
 </ul>
 <br>
 <span style="font-weight: bold;"> Performance ramifications of adding
@@ -292,12 +310,13 @@ security to the platform:</span><br>
 <ul>
   <li> It is expected that running the platform with a security manager
 enabled will cause a performance hit during runtime.&nbsp; This impact
-can be avoided by code that does not directly or indirectly invoke a
-privileged action (thus triggering a security stack crawl), however that
-does not seem likely for the bulk of really useful code.</li>
+may be ameliaroated by code that does not directly or indirectly invoke
+a privileged action (thus triggering a security stack crawl), however
+that does not seem likely for the bulk of really useful code.</li>
   <li> the platform could run without a security manager enabled and
-this hit should go away.&nbsp; However, 'doPrivileged()' sections of
-code may still have an impact, depending on how well designed they are.</li>
+most of this hit should go away.&nbsp; However, 'doPrivileged()'
+sections of code may still have an impact, depending on how well
+designed they are.</li>
 </ul>
 <br>
 </body>
