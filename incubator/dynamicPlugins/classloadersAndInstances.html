@@ -15,62 +15,19 @@
     <td WIDTH="40%">&nbsp; </td>
   </tr>
 </table>
-<table><td align=left bgcolor="#0080C0"><b><font color="#FFFFFF" face="Arial,Helvetica">Instances sharing uses cases</font></b></td></table>
-<p />
-<h5>The resources plugin</h5><p>
-By its nature, the resources plugin is really central to platform, and it is very likely to be referenced (classes or instances) from many plugins.
-Moreover the resources plugins is offering several important extension-points (markers, builders, natures).
-We will look through the use cases of the mechanisms the plugin offers and study them through two points of view: "deactivation of a plugin" and "resource
-plugin deactivation", later a third case is likely to be added to handle the case of plugin disablement.
-<p>
-
-<b>Deactivation of a plugin:</b>
-Convention: PA always named the plugin being deactivated.
+<table border=0 cellspacing=5 cellpadding=2 width="100%" >
+  <tr> 
+    <td align=LEFT valign=TOP colspan="2" bgcolor="#0080C0"><b><font color="#FFFFFF"> 
+      Questions:</font></b></td>
+  </tr>
+</table>
 <ul>
-  <li>Markers: a plugin can define its own marker type and instantiate any marker type (without necessary referencing the plugin defining the marker). Markers can
-  be persistent or not. The case of persistent markers does not cause problems because they are always stored. The case of non-persistent markers is more problematic.
-  <ol>
-    <li>a plugin PA created non-persistent markers that it defines, PA is deactivated. Shall the markers be cleaned-up, if yes should it be the responsibility of the resources plugin, PA responsibility?</li>
-    <li>a plugin P1 created non-persistent markers that are defined by PA, PA is deactivated. In this case, because all PA markers may have not been created by the P1, then it seems that
-  collecting the markers is P1 responsibility, if they must be collected.</li>
-    <li>plugins P1 and P2 created non-persistent markers that are defined by PA, PA is deactivated. Shall the markers be cleaned-up, by who?</li>
-  </ol>
-  <li>Session properties: session properties (that can be any Object) are associated to resources by a key which value has not required format (there is a convention
-  that the key should be qualified by the plugin id). Because session properties may hold on to any Object, it is really important to collect them since they can 
-  prevent the plugin to be collected. 
-  Because there is no way for the resource plugin to know who created th property, the clean-up will have to be done by the plugin that created it.</li>
-  </li>
-  
-  <li>Persistent properties: nothing special.</li>
-  
-  <li>Builders: builders are contributed through extension-points and are instanciated by the resource plugin. Builders instances are always kept by the resources plugin.
-     <ol>
-      <li>a plugin PA is contributing a builder, PA is deactivated. The resources plugin is getting notified and, should save the state and free the instance of the PA's builders.</li>
-    </ol>
-  </li>
-
- <li> Natures: natures are contributed through extension-points and are instanciated by the resource plugin. Natures instances are always kept by the resources plugin.
-  <ol><li>a plugin PA is contributing a nature, PA is deactivated. The resources plugin is getting notified and, free the instance of the PA's natures.</li></ol></li>
-  
- <li> Listeners: the resources plugin offers a listener mechanism that allow plugins to get notification about modifications that occur in the workspace. 
-  Because there is no way for the resources plugin to know which plugin has created which listener, there is currently no way for the resources plugin do the clean-up itself.
-  The detachement of the listeners will be the resposibility of the plugin that created the listener.</li>
-  
-  <li>org.eclipse.core.resources.fileModificationValidator, org.eclipse.core.resources.moveDeleteHook, org.eclipse.core.resources.teamHook: These extension-points are specials
-  in that they can only have one extension. The instance of the extensions are handled by the resources plugin and will be collected by it.
-  </li>
+  <li>Beside the instances created through createExecutableExtension(), who should 
+    collect the other instances?</li>
+  <li>As a matter of example, which plugin is supposed to close the views: the 
+    UI plugin, or the plugin providing the view?</li>
+  <li>Does a generic scheme to collect the instance exists?</li>
 </ul>
-<b>Deactivating the resource plugin:</b>
-One important point to remember in the deactivation process, is that to instantiate classes from P1, P2 must requires P1. The consequence is that when P1 will be deactivated 
-P2 will also be deactivated, and before P1 (see : <a href="deactivatingPlugins.html">deactivating plugins</a>).
-
-<ul>
-  <li>To come...</li>
-</ul>
-
-<p>
-
-<p />
-Feel free to add any entry. If you can only read please post on the equinox newsgroup.
+<p>&nbsp;</p>
 </body>
 </html>

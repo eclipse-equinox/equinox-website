@@ -24,14 +24,115 @@ There are two reasons for deactivating a plugin:
 <li> as a prelude to removing the plugin from the registry.
 </li>
 </ol>
-<p />
+<p>
 Deactivating does not itself require additional lifecycle but does require that any plugins dependent on the plugin being deactivated also be deactivated.  This transitive deactivation must be done in dependent order (i.e., dependents first).
-<p />
+</p>
+<p>
 Chances are that the plugins are not very good about cleaning up after themselves.  A plugin that is being shutdown should clean up its internals to limit the number of external references it might have.  However, it is often the case that other plugins have references to instances of the deactivated plugin's classes.  This will prevent those classes and thus the plugin's classloader from being garbage collected.
-<p />
+</p>
+<p>
 One simple approach that can be implemented in the Eclipse runtime infrastructure is to manage instances created via createExecutableExtension().  This is the method used to create instances of classes provided via extensions to extension-points.  Since this code path goes through runtime code, the runtime could track instances created and at report on plugins which retain references after a plugin is deactivated.
-<p />
-In the end however, it is likely that additional lifecycle events will have to be added so that referencing plugins can be signalled that it is time to clean up.
+</p>
+<p>
+ In the end however, it is likely that additional lifecycle events will have 
+  to be added so that referencing plugins can be signalled that it is time to 
+  clean up. 
+</p>
+
+<table border=0 cellspacing=5 cellpadding=2 width="100%" >
+  <tr> 
+    <td align=LEFT valign=TOP colspan="2" bgcolor="#0080C0"><b><font color="#FFFFFF"> 
+      Usecase: The Resources Plugin</font></b></td>
+  </tr>
+</table>
+<p> The resources plugin is central to Eclipse as a tooling platform and is very 
+  likely to be referenced (classes or instances) from many plugins. Moreover the 
+  resources plugins is offering several important extension-points (markers, builders, 
+  natures). We will use it as the canonical case for plugin deactivation. That 
+  is, we will study the plugin mechanism through two points of view: "deactivation 
+  of a plugin based on the resources plugin" and "deactivation of the resource 
+  plugin itself". 
+<p> <b>Deactivation of a plugin based on the Resources plugin:</b>
+<p> Convention: PA always named the plugin being deactivated. 
+<ul>
+  <li><b>Markers</b>: a plugin can define its own marker type and instantiate 
+    any marker type (without necessary referencing the plugin defining the marker). 
+    Markers can be persistent or not. The case of persistent markers does not 
+    cause problems because they are always stored. The case of non-persistent 
+    markers is more problematic. 
+    <ol>
+      <li>a plugin PA created non-persistent markers that it defines, PA is deactivated. 
+        Shall the markers be cleaned-up, if yes should it be the responsibility 
+        of the resources plugin or of PA?</li>
+      <li>a plugin P1 created non-persistent markers that are defined by PA, PA 
+        is deactivated. In this case, because all PA markers may have not been 
+        created by the P1, then it seems that collecting the markers is P1 responsibility, 
+        if they must be collected.</li>
+      <li>plugins P1 and P2 created non-persistent markers that are defined by 
+        PA, PA is deactivated. Shall the markers be cleaned-up, by who?</li>
+    </ol>
+    <font color="#FF0000">*** Questions:</font> 
+    <ul>
+      <li>Does a plugin being deactivated imply that its markers should be removed? 
+        Relate this to the possibility that the plugin was never activated. It's 
+        markers could still be shown since other plugins can create them. </li>
+      <li>What is the difference between #2 and #3 above?</li>
+    </ul>
+  </li>
+  <li><b>Session properties</b>: Session properties are key/value pairs that are 
+    associated with resources. By convention the key is qualified by the plugin 
+    id. The value can be any Object. Because session properties may hold on to 
+    any Object, it is important that they be removed thus enabling the plugin 
+    defining the value class to be collected. Because there is no way for the 
+    resource plugin to know who created a given property, the clean-up must be 
+    done by the plugin that created it.<br>
+    It may also be possible to have a brute force mechanism which simply removes 
+    any session properties whose value is an instance of a class from a particular 
+    classloader (i.e., plugin). This would ensure the references are removed but 
+    may damage some assumptions made by the declaring plugin.</li>
+  <li><b>Persistent properties</b>: nothing special.</li>
+  <li><b>Builders</b>: builders are contributed through extension-points and are 
+    instantiated by the resource plugin. Builders instances are always kept by 
+    the resources plugin. 
+    <ol>
+      <li>plugin PA contributes a builder, PA is deactivated. The resources plugin 
+        gets notified and can destroy the builder. PA has the opportunity to register 
+        as an ISaveParticipant and so can ensure that the builder's state is saved 
+        before being destroyed. Note that it is the workspace's responsibility 
+        to trigger the save.</li>
+    </ol>
+  </li>
+  <li> <b>Natures</b>: natures are contributed through extension-points and are 
+    instantiated by the resource plugin. Natures instances are always kept by 
+    the resources plugin. 
+    <ol>
+      <li>plugin PA contributes a nature, PA is deactivated. The resources plugin 
+        gets notified and frees the instance of the PA's natures.</li>
+    </ol>
+  </li>
+  <li> <b>Listeners</b>: the resources plugin offers a listener mechanism that 
+    allow plugins to get notification about modifications that occur in the workspace. 
+    Because there is no way for the resources plugin to know which plugin has 
+    created which listener, there is currently no way for the resources plugin 
+    do the clean-up itself. The removal of listeners is the resposibility of the 
+    plugin that added them.</li>
+  <li><b>Move/delete/validate hooks</b>: (org.eclipse.core.resources.fileModificationValidator, 
+    org.eclipse.core.resources.moveDeleteHook, org.eclipse.core.resources.teamHook) 
+    These extension-points are specials in that they can only have one extension. 
+    The instance of the extensions are handled by the resources plugin and will 
+    be collected by it. </li>
+</ul>
+<p><b>Deactivating the resource plugin itself</b></p>
+<p> One important point to remember in the deactivation process, is that to instantiate 
+  classes from P1, P2 must requires P1. The consequence is that when P1 will be 
+  deactivated P2 will also be deactivated, and before P1 (see : <a href="deactivatingPlugins.html">deactivating 
+  plugins</a>). </p>
+<ul>
+  <li>To come...</li>
+</ul>
+<p> 
+<p /> Feel free to add any entry. If you can only read please post on the equinox 
+  newsgroup. 
 <p />
 <p />
 <table BORDER=0 CELLSPACING=5 CELLPADDING=2 WIDTH="100%" >
