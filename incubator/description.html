@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Equinox Description</title>
+<link rel="stylesheet" title="default" href="http://eclipse.org/default_style.css" type="text/css">
+</head>
+<body>
+<table BORDER=0 CELLSPACING=5 CELLPADDING=2 WIDTH="100%" >
+  <tr> 
+    <td ALIGN=left width="60%">
+      <p><font class=indextop> equinox</font><br>
+      <font class=indexsub> exploring eclipse runtime possibilities</font> </p>
+    </td>
+    <td WIDTH="40%">&nbsp; </td>
+  </tr>
+</table>
+
+<table BORDER=0 CELLSPACING=5 CELLPADDING=2 WIDTH="100%" >
+  <tr> 
+    <td ALIGN=LEFT VALIGN=TOP COLSPAN="2" BGCOLOR="#0080C0"><b><font color="#FFFFFF"> 
+      Mission Statement</font></b></td>
+  </tr>
+  <tr> 
+    <td> The goal of the Equinox project is to experiment with techniques for 
+      broadening the range of Eclipse platform runtime configurations. For example, 
+      the Eclipse plugin model is static; there is no discussion of practices 
+      and tools for managing/reducing interplugin dependencies; service discovery 
+      is not covered and the component distribution mechanism is non-standard. 
+      <p>These issues do not severely impact the usefulness of Eclipse as a development 
+        tool platform but they do affect the use of Eclipse in more constrained 
+        environments (e.g., handheld devices, IT managed environments, mass-appeal 
+        applications etc.). The Equinox project will investigate such issues and 
+        develop approaches which are practical and applicable to the main Eclipse 
+        code base. </p>
+      <p></p>
+      </td>
+  </tr>
+  <tr> 
+    <td ALIGN=LEFT VALIGN=TOP COLSPAN="2" BGCOLOR="#0080C0"><b><font color="#FFFFFF"> 
+      Scope</font></b></td>
+  </tr>
+  <tr> 
+    <td> 
+      <p>The Equinox work will focus on the following areas:</p>
+      <dl> 
+        <dt><b>Dynamic plug-ins</b></dt>
+        <dd>Currently Eclipse uses a static plug-in model. When Eclipse is started 
+          it discovers the set of installed plugins and builds a plugin registry. 
+          This registry is then resolved and locked down. As a result, plugins 
+          cannot be added, removed or updated without shutting down and restarting 
+          Eclipse. In addition to being inconvenient for users managing their 
+          installation, certain workflows and usecase do not allow for shutting 
+          down and restarting the platform. Further, since plugins cannot be deactivated, 
+          the memory footprint of a running Eclipse grows monotonically as the 
+          user touches more and more function (i.e., activates more and more plugins). 
+          Equinox will unlock the registry and enhance the plugin lifecycle to 
+          allow dynamic plugin installation and removal/activation and deactivation.</dd>
+        <dt><b>Component management</b></dt>
+        <dd>Eclipse manages plugins, fragments and features using a mechanism 
+          written specifically for Eclipse. While simple and reasonably powerful, 
+          issues in the area of security/access and centralized configuration 
+          management all need attention. Equinox will look at various mechanisms 
+          and standards in this area (e.g., OSGi, JNLP, ...) and look at their 
+          integration with Eclipse.</dd>
+        <dt><b>Dependency management</b></dt>
+        <dd>One of the key aspects of Eclipse is the factoring of function into 
+          plugins. These plugins are then composed to form the technology base 
+          for a given domain. The Eclipse team has done an excellent job of keeping 
+          the dependencies between plugins relatively clean but still there problems 
+          creating minimal installs in various scenarios. Equinox will look at 
+          this fundamentally hard problem by exploring alternative factorings 
+          of existing plug-ins (e.g., the UI plugins) as well as programming practices 
+          and tools which support and foster the reduction and management of plugin 
+          dependency chains.</dd>
+        <dt><b>Services model</b></dt>
+        <dd>The extensibility of Eclipse is based on plugins and their interconnection 
+          via extension<b></b>s and extension points. While powerful, this model 
+          can be constraining. For example, the UI plugins specify how people 
+          contribute menu entries but not how/if someone can replace the implementation 
+          of the UI itself. As a result, plugins are tied to the workbench UI 
+          or must have alternate implementations for differing UI bases. Note 
+          here that the UI domain is only one example, this problem surfaces in 
+          other places. Equinox will investigate alternate models of linking plugins 
+          together such as service discovery. It will not seek to replace the 
+          extension/extension point mechanism but rather to complement it.</dd>
+      </dl>
+      </td>
+  </tr>
+  <tr> 
+    <td ALIGN=LEFT VALIGN=TOP COLSPAN="2" BGCOLOR="#0080C0"><b><font color="#FFFFFF"> 
+      Methodology</font></b></td>
+  </tr>
+  <tr> 
+    <td> 
+      <p>The Equinox project is primarily meant as an incubator for the Eclipse 
+        platform project. While the platform team is under no obligation to accept 
+        changes proposed by Equinox, the intention is that members of the platform 
+        team be involved in Equinox and that the models, mechanisms and implementations 
+        developed be immediately and obviously beneficial to the platform. To 
+        that end, the Equinox project will:</p>
+      <ul>
+        <li>Track changes in the platform through frequent resynchronization.</li>
+        <li>Make available incremental and discrete changes so that the platform 
+          team can smoothly integrate new technology as it is developed.</li>
+        <li>Minimize API impact or propose migration paths where change cannot 
+          be avoided.</li>
+        <li>Produce largely working solutions.</li>
+        <li>Seek to use existing technologies and standards wherever possible/relevant.</li>
+        <li>Not support work items which have no hope of being integrated into 
+          the Eclipse platform.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr> 
+    <td ALIGN=LEFT VALIGN=TOP COLSPAN="2" BGCOLOR="#0080C0"><b><font color="#FFFFFF"> 
+      Timeline</font></b></td>
+  </tr>
+  <tr> 
+    <td>Equinox is starting just as Eclipse 2.1 development is ending. As such, 
+      the main focus will be on contributions to Eclipse 2.2 (4Q2003) with larger 
+      or breaking changes being directed towards subsequent/major releases. The 
+      expectation is that Equinox work be offered for integration into the platform 
+      as soon as possible.</td>
+  </tr>
+</table>
+
+</body>
+</html>
