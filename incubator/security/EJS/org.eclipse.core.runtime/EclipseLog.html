@@ -1,0 +1,426 @@
+<!-- tpl:insert page="/equinox.htpl" --><!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+<title>Equinox Security Home</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<style type="text/css">
+.input {background: "#ffffcc";color: "#000000" ;font-weight: normal;}
+a.nav:link { text-decoration: none; color: "#000000"; }
+a.nav:visited { text-decoration: none; color: "#000000"; }
+a.nav:hover { text-decoration: underline; color: "#000000"; }
+</style>
+<link rel="stylesheet" href="http://www.eclipse.org/nav_style.css" type="text/css">
+<link rel="stylesheet2" href="http://eclipse.org/default_style.css" type="text/css">
+</head>
+<body bgcolor="#ffffff" link="#0000ee" vlink="#551a8b" alink="#ff0000" leftmargin="0" marginheight="0" topmargin="0" rightmargin="0">
+<!--  start of banner  -->
+ <table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" >
+  <tr>
+   <td WIDTH="100%">
+    <table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" BGCOLOR="#006699" >
+
+     <tr>
+          <td BGCOLOR="#000000" width="116" ><a href="http://www.eclipse.org" target="_top"><img src="http://www.eclipse.org/images/EclipseBannerPic.jpg" width="115" height="50" border="0"></a></td>
+          <td WIDTH="637"><img SRC="http://www.eclipse.org/images/gradient.jpg" BORDER=0 height=50 width=282></td>
+          <td WIDTH="250" nowrap><font align="right" color="white" size="6" class=indextop>equinox security</font></td>
+     </tr>
+    </table>
+   </td>
+  </tr>
+ </table><!--  end of banner -->
+<!--  start of main frame table -->
+<table BORDER=0 CELLSPACING=0 CELLPADDING="4" WIDTH="100%" HEIGHT="100%" BGCOLOR="#90C8FF">
+<tr><td width="160" valign="top" bgcolor="#6699CC" nowrap>
+<!--  start of navigator -->
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%"  BGCOLOR="#90C8FF" >
+<tr><td>
+	<table BORDER=0 CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%"  BGCOLOR="#90C8FF" >
+	  <tr> 
+	    <td VALIGN=CENTER HEIGHT="21" BGCOLOR="#0080C0">&nbsp; <a href="http://www.eclipse.org/equinox" target="_top" class="navhead"> 
+	      equinox home</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER> 
+	    <td HEIGHT="21">&nbsp; <a name="overview" href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/index.html" class="nav" >overview</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/ejs.html" class="nav">rcp plug-in analysis</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/rcp/keystore.html" class="nav" >keystore/credentialstore</a></td>
+	  </tr>
+
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/rcp/end2end.html" class="nav" >end to end security</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/downloads.html" class="nav" >downloads</a></td>
+	  </tr>
+
+	</table>
+</td></tr>
+</table>
+<!--  end of navigator -->
+</td>
+<!--  start of main content  -->
+<td bgcolor="white" valign="top" >
+<!-- tpl:put name="bodyarea" -->
+<P></P><H1>EclipseLog.java changes</H1>
+<B>Detail</B><BR><BR>
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 287 void copyReader( java.io.Reader, java.io.Writer )
+   Permission: java.lang.RuntimePermission "getClassLoader"
+      Primordial/int java.io.InputStreamReader.read( char[], int, int )
+   Permission: java.util.PropertyPermission "java.vendor.url.bug", "read"
+      Primordial/int java.io.InputStreamReader.read( char[], int, int )
+   Permission: java.util.logging.LoggingPermission "control", ""
+      Primordial/int java.io.InputStreamReader.read( char[], int, int )
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+   284. 	private void copyReader(Reader reader, Writer writer) throws IOException {
+   285. 		char buffer[] = new char[1024];
+   286. 		int count;
+<FONT style="background-color:yellow;display:inline">   287. 		while ((count = reader.read(buffer, 0, buffer.length)) > 0) {</FONT>
+   288. 			writer.write(buffer, 0, count);
+   289. 		}
+   290. 	}
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B> The Plugin.getStateLocation() method is referenced by over 43 packages within eclipse.
+<PRE>
+org.eclipse.core.internal.resources - org.eclipse.core.resources - Eclipse
+org.eclipse.debug.internal.core - org.eclipse.debug.core.core - Eclipse
+org.eclipse.core.runtime - org.eclipse.core.runtime - Eclipse
+org.eclipse.help.internal.workingset - org.eclipse.help.base.src - Eclipse
+org.eclipse.help.internal.browser - org.eclipse.help.base.src - Eclipse
+org.eclipse.help.internal.base.util - org.eclipse.help.base.src - Eclipse
+org.eclipse.help.internal.base - org.eclipse.help.base.src - Eclipse
+org.eclipse.jdt.internal.corext.javadoc - org.eclipse.jdt.ui.core extension - Eclipse
+org.eclipse.debug.internal.ui.launchConfigurations - org.eclipse.debug.ui.ui - Eclipse
+org.eclipse.jdt.core - org.eclipse.jdt.core.model - Eclipse
+org.eclipse.jdt.internal.core.search.indexing - org.eclipse.jdt.core.search - Eclipse
+org.eclipse.jdt.internal.corext.template.java - org.eclipse.jdt.ui.core extension - Eclipse
+org.eclipse.jdt.internal.ui.preferences.formatter - org.eclipse.jdt.ui.ui - Eclipse
+org.eclipse.jdt.internal.launching - org.eclipse.jdt.launching.launching - Eclipse
+org.eclipse.jdt.launching - org.eclipse.jdt.launching.launching - Eclipse
+org.eclipse.pde.internal.core - org.eclipse.pde.core - Eclipse
+org.eclipse.team.core - org.eclipse.team.core.src - Eclipse
+org.eclipse.team.internal.core - org.eclipse.team.core.src - Eclipse
+org.eclipse.team.internal.ccvs.core - org.eclipse.team.cvs.core - Eclipse
+org.eclipse.team.internal.ui.synchronize - org.eclipse.team.ui - Eclipse
+org.eclipse.team.internal.ccvs.ui.repo - org.eclipse.team.cvs.ui - Eclipse
+org.eclipse.ui.internal - org.eclipse.ui.workbench.Eclipse UI - Eclipse
+org.eclipse.ui.internal.cheatsheets - org.eclipse.ui.cheatsheets - Eclipse
+org.eclipse.ui.internal.registry - org.eclipse.ui.workbench.Eclipse UI - Eclipse
+org.eclipse.update.internal.ui.model - org.eclipse.update.ui.src - Eclipse
+org.eclipse.ui.plugin - org.eclipse.ui.workbench.Eclipse UI - Eclipse
+</PRE>
+<BR>
+Additionally,  Each plugin must have read/write permission to their associated state folder (for DialogSettings etc.).  The framework must
+grant these permissions to bundles that require them at startup.   It is absurd to require each plugin to have getClassLoader privilege 
+so, wrap the call to EclipseLog.copyReader in EclipseLog.setOutput in a privileged action.   If the caller is not authorized to write 
+to the associated files it will throw a security exception. (It *should* be noted that the current implementation opens these files using
+the osgi SecureActions class, so it is *never* going to throw a security exception anyway.  The update is illustrated in the discussion of
+setOutput line#262 later in this document.
+
+<BR><BR>
+<TABLE border="2">
+<TR><TD bgcolor="silver">Access Modifier</TD><TD bgcolor="silver">Class/method</TD><TD bgcolor="silver">Package</TD><TD bgcolor="silver">Analysis</TD></TR>
+<TR><TD></TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>public</TD><TD><PRE>------DataArea.getStateLocation(String)</PRE></TD><TD>org.eclipse.core.internal.runtime</TD><TD></TD></TR>
+<TR><TD>public</TD><TD><PRE>----------Plugin.getStateLocation()</PRE></TD><TD>org.eclipse.core.runtime</TD><TD></TD></TR>
+<TR><TD>public</TD><TD><PRE>----------InternalPlatform.getStateLocation(Bundle)</PRE></TD><TD>org.eclipse.core.internal.runtime</TD><TD></TD></TR>
+<TR><TD>public</TD><TD><PRE>--------InternalPlatform.getStateLocation(Bundle,boolean)</PRE></TD><TD>org.eclipse.core.internal.runtime</TD><TD></TD></TR>
+<TR><TD>public</TD><TD><PRE>------DataArea.getStateLocation(Bundle)</PRE></TD><TD>org.eclipse.core.internal.runtime</TD><TD></TD></TR>
+<TR><TD>public</TD><TD><PRE>------DataArea.getPreferenceLocation(Bundle,boolean)</PRE></TD><TD>org.eclipse.core.internal.runtime</TD><TD>Dead code? No references to this method in the project.</TD></TR>
+<TR><TD>public</TD><TD><PRE>------DataArea.getMetadataLocation()</PRE></TD><TD>org.eclipse.core.internal.runtime</TD><TD>This method is called by getStateLocation(String)</TD></TR>
+<TR><TD>public</TD><TD><PRE>------DataArea.getInstanceDataLocation()</PRE></TD><TD>org.eclipse.core.internal.runtime</TD><TD>Dead code?  No references to this method in project.</TD></TR>
+<TR><TD>public</TD><TD><PRE>------DataArea.getBackupFilePathFor(IPath)</PRE></TD><TD>org.eclipse.core.internal.runtime</TD><TD>Dead code?  No references to this method in project.</TD></TR>
+<TR><TD>protected</TD><TD><PRE>----DataArea.assertLocationInitialized()</PRE></TD><TD>org.eclipse.core.internal.runtime</TD><TD></TD></TR>
+<TR><TD>private</TD><TD><PRE>----DataArea.initializeLocation()</PRE></TD><TD>org.eclipse.core.internal.runtime</TD><TD></TD></TR>
+<TR><TD>private</TD><TD><PRE>----DataArea.createLocation()</PRE></TD><TD>org.eclipse.core.internal.runtime</TD><TD></TD></TR>
+<TR><TD>public</TD><TD><PRE>--EclipseLog.setFile(File,Boolean)</PRE></TD><TD>org.eclipse.core.runtime.adaptor</TD><TD></TD></TR>
+<TR><TD>public</TD><TD><PRE>--EclipseLog.setWriter(Writer,Boolean)</PRE></TD><TD>org.eclipse.core.runtime.adaptor</TD><TD></TD></TR>
+<TR><TD>private</TD><TD><PRE>EclipseLog.setOutput(File,Writer,Boolean)</PRE></TD><TD>org.eclipse.core.runtime.adaptor</TD><TD></TD></TR>
+<TR><TD>private</TD><TD><PRE>EclipseLog.copyReader(Reader,Writer)</PRE></TD><TD>org.eclipse.core.runtime.adaptor</TD><TD> tainted or not..</TD></TR>
+</TABLE>
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.lang.RuntimePermission "getClassLoader";</LI>
+<LI>permission java.util.PropertyPermission "java.vendor.url.bug", "read";</LI>
+<LI>permission java.util.logging.LoggingPermission "control", "";</LI>
+</UL>
+<BR>
+<B>Conclusion:</B> Grant the required permissions to runtime.jar.   Wrap the code in setOutput to avoid requiring the callers to have these permissions.
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 258 void setOutput( java.io.File, java.io.Writer, boolean )
+   Permission: java.io.FilePermission "???file???", "read"
+      Primordial/boolean java.io.File.isFile(  )
+         THE RECEIVER OF THIS METHOD CALL IS TAINTED.
+DoPrivileged location: Line# 262 void setOutput( java.io.File, java.io.Writer, boolean )
+   Permission: java.lang.RuntimePermission "getClassLoader"
+      Primordial/void java.io.InputStreamReader.<init>( java.io.InputStream, java.lang.String )
+DoPrivileged location: Line# 276 void setOutput( java.io.File, java.io.Writer, boolean )
+   Permission: java.io.FilePermission "???file???", "delete"
+      Primordial/boolean java.io.File.delete(  )
+         THE RECEIVER OF THIS METHOD CALL IS TAINTED.
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+	private void setOutput(File newOutFile, Writer newWriter, boolean append) {
+		if (newOutFile == null || !newOutFile.equals(this.outFile)) {
+			if (this.writer != null) {
+				try {
+					this.writer.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				this.writer = null;
+			}
+			// Append old outFile to newWriter. We only attempt to do this
+			// if the current Writer is backed by a File and this is not
+			// a new session.
+			File oldOutFile = this.outFile;
+			this.outFile = newOutFile;
+			this.writer = newWriter;
+			boolean copyFailed = false;
+			if (append && oldOutFile != null && oldOutFile.isFile()) {
+				Reader fileIn = null;
+				try {
+					openFile();
+<FONT style="background-color:yellow;display:inline">					if (System.getSecurityManager()==null)
+					{</FONT>
+					   fileIn = new InputStreamReader(SecureAction.getFileInputStream(oldOutFile), "UTF-8"); //$NON-NLS-1$
+					   copyReader(fileIn, this.writer);
+<FONT style="background-color:yellow;display:inline">					} else { 
+					  final Writer aWriter = this.writer;
+					  final File theOldOutFile = oldOutFile;
+					  fileIn = (Reader)AccessController.doPrivileged(new PrivilegedExceptionAction() {
+					    public Object run() throws Exception
+					    {
+					      Reader fileIn = new InputStreamReader(SecureAction.getFileInputStream(theOldOutFile), "UTF-8"); //$NON-NLS-1$
+					      copyReader(fileIn, aWriter);
+					      return fileIn;
+					    }
+					   });
+					}</FONT>
+				} catch (IOException e) {
+					copyFailed = true;
+					e.printStackTrace();
+				} <FONT style="background-color:yellow;display:inline">catch (PrivilegedActionException pae)
+				{
+				  copyFailed = true;
+				  pae.printStackTrace();
+				} </FONT> finally {
+					if (fileIn != null) {
+						try {
+							fileIn.close();
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+						// delete the old file if copying didn't fail
+						if (!copyFailed)
+							oldOutFile.delete();
+					}
+					closeFile();
+				}
+			}
+		}
+	}
+
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B> See prior trace for copyReader.   Same rules apply.
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.io.FilePermission "&LT&LT ALL FILES &GT&GT","read,delete";</LI>
+<LI>permission java.lang.RuntimePermission "getClassLoader";</LI>
+</UL>
+<BR>
+<B>Conclusion:</B> Grant the required permissions to runtime.jar.   Wrap the creation of the InputStreamReader, and the call to copyReader in a privilged action as
+illustrated above.
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 323 java.io.Writer logForStream( java.io.OutputStream )
+   Permission: java.lang.RuntimePermission "getClassLoader"
+      Primordial/void java.io.OutputStreamWriter. &LT init &GT ( java.io.OutputStream, java.lang.String )
+Line# 325 java.io.Writer logForStream( java.io.OutputStream )
+   Permission: java.lang.RuntimePermission "getClassLoader"
+      Primordial/void java.io.OutputStreamWriter. &LT init &GT( java.io.OutputStream )
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+   321. 	protected Writer logForStream(OutputStream output) {
+   322. 		try {
+<FONT style="background-color:yellow;display:inline">   323. 			return new BufferedWriter(new OutputStreamWriter(output, "UTF-8")); //$NON-NLS-1$</FONT>
+   324. 		} catch (UnsupportedEncodingException e) {
+<FONT style="background-color:yellow;display:inline">   325. 			return new BufferedWriter(new OutputStreamWriter(output));</FONT>
+   326. 		}
+   327. 	}
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B> There are in excess of 82 references to EclipseLog.log() within the eclipse platform.  By wrapping call to logForStream
+in a privileged action in the method EclipseLog.openFile(), the requirement for excess privileges can be avoided.  The recommended code change is illustrated below:
+<BR><BR>
+<CODE>
+<PRE>
+<FONT style="background-color:yellow;display:inline">	private void PrivilegedLogForStream(final OutputStream outFile) 
+	{
+	  boolean result = false;
+	  if (System.getSecurityManager()==null)
+	  {
+	  	writer = logForStream(outFile);	 
+	  } else
+	  {
+	    writer = (Writer) AccessController.doPrivileged(new PrivilegedAction(){
+	    public Object run()  {
+	      return logForStream(outFile);
+	    }
+	    });
+	  }
+	}</FONT>
+	
+	protected void openFile() {
+		if (writer == null) {
+			if (outFile != null) 
+				try {
+<FONT style="background-color:yellow;display:inline">				  FileOutputStream outStream = SecureAction.getFileOutputStream(outFile, true);
+				  PrivilegedLogForStream(outStream);</FONT>
+				} catch (IOException e) {
+<FONT style="background-color:yellow;display:inline">				  PrivilegedLogForStream(System.err);</FONT>
+			} else {
+<FONT style="background-color:yellow;display:inline">			  PrivilegedLogForStream(System.err);</FONT>
+			}
+		}
+	}
+</PRE>
+</CODE>
+<TABLE border="2">
+<TR><TD bgcolor="silver">Access Modifier</TD><TD bgcolor="silver">Class/method</TD><TD bgcolor="silver">Package</TD><TD bgcolor="silver">Analysis</TD></TR>
+<TR><TD></TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>public</TD><TD><PRE>--EclipseLog.log(FrameworkLogEntry)</PRE></TD><TD>org.eclipse.core.runtime.adaptor</TD><TD></TD></TR>
+<TR><TD>public</TD><TD><PRE>--EclipseLog.EclipseLog(Writer)</PRE></TD><TD>org.eclipse.core.runtime.adaptor</TD><TD>called by EclipseLog.log(FrameworkLogEntry), and EclipseLog.setOutput(File,Writer,boolean)</TD></TR>
+<TR><TD>protected</TD><TD><PRE>--EclipseLog.openFile()</PRE></TD><TD>org.eclipse.core.runtime.adaptor</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD><PRE>EclipseLog.logForStream(OutputStream)</PRE></TD><TD>org.eclipse.core.runtime.adaptor</TD><TD>Parameter 1 of this method is tainted and passed to the privilged method.</TD></TR>
+</TABLE>
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.lang.RuntimePermission "getClassLoader";</LI>
+</UL>
+<BR>
+<B>Conclusion:</B>Grant the required permission to runtime.jar and wrap the call to logForStream in a privileged action.
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 230 void setFile( java.io.File, boolean )
+   Permission: java.io.FilePermission "???file???", "read"
+      Primordial/java.lang.String java.io.File.getAbsolutePath(  )
+   Permission: java.util.PropertyPermission "*", "read,write"
+      Primordial/java.util.Properties java.lang.System.getProperties(  )
+   Permission: java.util.PropertyPermission "user.dir", "read"
+      Primordial/java.lang.String java.io.File.getAbsolutePath(  )
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+   228. 	public synchronized void setFile(File newFile, boolean append) throws IOException {
+   229. 		setOutput(newFile, null, append);
+<FONT style="background-color:yellow;display:inline">   230. 		System.getProperties().put(EclipseStarter.PROP_LOGFILE, newFile.getAbsolutePath());</FONT>
+   231. 	}
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B> The issue here is: "Does the caller have write access to the file newFile?".  If so, then it's OK to wrap the 
+call to System.getSystemProperties().put(EclipseStarter.PROP_LOGFILE, newFile.getAbsolutePath()) in a privileged action.   The problem with the scenario is
+that setOutput swallows any exception generated by the request to log to the specified file. Consequently, a check for write permission to the supplied File 
+must be added in order to ensure it is appropriate to wrap the subsequent call in a privileged action.   The appropriate code update is illustrated below:
+<CODE>
+<PRE>
+	public synchronized void setFile(File newFile, boolean append) throws IOException {
+		setOutput(newFile, null, append);
+<FONT style="background-color:yellow;display:inline"> 		try
+		{
+			if (newFile!=null && newFile.canWrite())
+			{ // Now avoid all those pesky privileges...
+			  String absolutePath = null;
+			  final File theFile = newFile;
+			  if (System.getSecurityManager()==null)
+			    absolutePath = newFile.getAbsolutePath();
+			  else {
+			    absolutePath = (String) AccessController.doPrivileged(new PrivilegedAction(){
+			      public Object run()
+			      {
+			        return theFile.getAbsolutePath();
+			      }
+			    });
+			  }
+			  SecureAction.getProperties().put(EclipseStarter.PROP_LOGFILE, absolutePath);
+			}
+		} catch (SecurityException se)
+		{ // Ok, well no point trying to update the output stream...it's been set to System.err.
+		  // Assert: The caller does not have write access to the supplied file.
+		}</FONT>
+	}
+</PRE>
+</CODE>
+<BR><BR>
+<TABLE border="2">
+<TR><TD bgcolor="silver">Access Modifier</TD><TD bgcolor="silver">Class/method</TD><TD bgcolor="silver">Package</TD><TD bgcolor="silver">Analysis</TD></TR>
+<TR><TD></TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>public</TD><TD><PRE>------DataArea.getStateLocation(String)</PRE></TD><TD>org.eclipse.core.internal.runtime</TD><TD></TD></TR>
+<TR><TD>public</TD><TD><PRE>----------Plugin.getStateLocation()</PRE></TD><TD>org.eclipse.core.runtime</TD><TD></TD></TR>
+<TR><TD>public</TD><TD><PRE>----------InternalPlatform.getStateLocation(Bundle)</PRE></TD><TD>org.eclipse.core.internal.runtime</TD><TD></TD></TR>
+<TR><TD>public</TD><TD><PRE>--------InternalPlatform.getStateLocation(Bundle,boolean)</PRE></TD><TD>org.eclipse.core.internal.runtime</TD><TD></TD></TR>
+<TR><TD>public</TD><TD><PRE>------DataArea.getStateLocation(Bundle)</PRE></TD><TD>org.eclipse.core.internal.runtime</TD><TD></TD></TR>
+<TR><TD>public</TD><TD><PRE>------DataArea.getPreferenceLocation(Bundle,boolean)</PRE></TD><TD>org.eclipse.core.internal.runtime</TD><TD>Dead code? No references to this method in the project.</TD></TR>
+<TR><TD>public</TD><TD><PRE>------DataArea.getMetadataLocation()</PRE></TD><TD>org.eclipse.core.internal.runtime</TD><TD>This method is called by getStateLocation(String)</TD></TR>
+<TR><TD>public</TD><TD><PRE>------DataArea.getInstanceDataLocation()</PRE></TD><TD>org.eclipse.core.internal.runtime</TD><TD>Dead code?  No references to this method in project.</TD></TR>
+<TR><TD>public</TD><TD><PRE>------DataArea.getBackupFilePathFor(IPath)</PRE></TD><TD>org.eclipse.core.internal.runtime</TD><TD>Dead code?  No references to this method in project.</TD></TR>
+<TR><TD>protected</TD><TD><PRE>----DataArea.assertLocationInitialized()</PRE></TD><TD>org.eclipse.core.internal.runtime</TD><TD></TD></TR>
+<TR><TD>private</TD><TD><PRE>----DataArea.initializeLocation()</PRE></TD><TD>org.eclipse.core.internal.runtime</TD><TD></TD></TR>
+<TR><TD>private</TD><TD><PRE>----DataArea.createLocation()</PRE></TD><TD>org.eclipse.core.internal.runtime</TD><TD></TD></TR>
+<TR><TD>public</TD><TD><PRE>--EclipseLog.setFile(File,Boolean)</PRE></TD><TD>org.eclipse.core.runtime.adaptor</TD><TD></TD></TR>
+</TABLE>
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.io.FilePermission "&LT&LT ALL FILES &GT&GT","read"</LI>
+<LI>permission java.util.PropertyPermission "*", "read,write";</LI>
+</UL>
+<BR>
+<B>Conclusion:</B> Grant the required permissions to runtime.jar.  Wrap the code in setOutput as indicated in the tainted variable trace above.
+<!-- /tpl:put -->
+<!--  end of main content -->
+</td>
+</tr>
+</table>
+<!--  end of main frame table -->
+</body>
+</html>
+
+<!-- /tpl:insert -->

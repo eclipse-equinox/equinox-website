@@ -1,0 +1,506 @@
+<!-- tpl:insert page="/equinox________.htpl" --><!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+<title>Equinox Security Home</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<style type="text/css">
+.input {background: "#ffffcc";color: "#000000" ;font-weight: normal;}
+a.nav:link { text-decoration: none; color: "#000000"; }
+a.nav:visited { text-decoration: none; color: "#000000"; }
+a.nav:hover { text-decoration: underline; color: "#000000"; }
+</style>
+<link rel="stylesheet" href="http://www.eclipse.org/nav_style.css" type="text/css">
+<link rel="stylesheet2" href="http://eclipse.org/default_style.css" type="text/css">
+</head>
+<body bgcolor="#ffffff" link="#0000ee" vlink="#551a8b" alink="#ff0000" leftmargin="0" marginheight="0" topmargin="0" rightmargin="0">
+<!--  start of banner  -->
+ <table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" >
+  <tr>
+   <td WIDTH="100%">
+    <table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" BGCOLOR="#006699" >
+
+     <tr>
+          <td BGCOLOR="#000000" width="116" ><a href="http://www.eclipse.org" target="_top"><img src="http://www.eclipse.org/images/EclipseBannerPic.jpg" width="115" height="50" border="0"></a></td>
+          <td WIDTH="637"><img SRC="http://www.eclipse.org/images/gradient.jpg" BORDER=0 height=50 width=282></td>
+          <td WIDTH="250" nowrap><font align="right" color="white" size="6" class=indextop>equinox security</font></td>
+     </tr>
+    </table>
+   </td>
+  </tr>
+ </table><!--  end of banner -->
+<!--  start of main frame table -->
+<table BORDER=0 CELLSPACING=0 CELLPADDING="4" WIDTH="100%" HEIGHT="100%" BGCOLOR="#90C8FF">
+<tr><td width="160" valign="top" bgcolor="#6699CC" nowrap>
+<!--  start of navigator -->
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%"  BGCOLOR="#90C8FF" >
+<tr><td>
+	<table BORDER=0 CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%"  BGCOLOR="#90C8FF" >
+	  <tr> 
+	    <td VALIGN=CENTER HEIGHT="21" BGCOLOR="#0080C0">&nbsp; <a href="http://www.eclipse.org/equinox" target="_top" class="navhead"> 
+	      equinox home</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER> 
+	    <td HEIGHT="21">&nbsp; <a name="overview" href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/index.html" class="nav" >overview</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/ejs.html" class="nav">rcp plug-in analysis</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/rcp/keystore.html" class="nav" >keystore/credentialstore</a></td>
+	  </tr>
+
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/rcp/end2end.html" class="nav" >end to end security</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/downloads.html" class="nav" >downloads</a></td>
+	  </tr>
+
+	</table>
+</td></tr>
+</table>
+<!--  end of navigator -->
+</td>
+<!--  start of main content  -->
+<td bgcolor="white" valign="top" >
+<!-- tpl:put name="bodyarea" -->
+<P></P><H1>AuthorizationDatabase.java changes</H1>
+<B>Detail</B><BR><BR>
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 252 void load(  )
+   Permission: java.io.FilePermission ".keyring", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission "???file???", "read"
+      Primordial/boolean java.io.File.exists(  )
+         THE RECEIVER OF THIS METHOD CALL IS TAINTED.
+Line# 257 void load(  )
+   Permission: java.io.FilePermission ".keyring", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "???file???", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+         PARAMETER #1 OF THIS METHOD CALL IS TAINTED
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+   249. 	private void load() throws CoreException {
+   250. 		if (file == null)
+   251. 			return;
+   252. 		<FONT style="background-color:yellow;display;inline">if (!file.exists()) {</FONT>
+   253. 			save();
+   254. 			return;
+   255. 		}
+   256. 		try {
+   257. 			<FONT style="background-color:yellow;display;inline">InputStream input = new FileInputStream(file);</FONT>
+   258. 			try {
+   259. 				load(input);
+   260. 			} finally {
+   261. 				input.close();
+   262. 			}
+   263. 		} catch (IOException e) {
+   264. 			throw new CoreException(new Status(IStatus.ERROR, Platform.PI_RUNTIME, Platform.FAILED_READ_METADATA, Policy.bind("meta.unableToReadAuthorization", file.toString()), e)); //$NON-NLS-1$
+   265. 		} catch (ClassNotFoundException e) {
+   266. 			throw new CoreException(new Status(IStatus.ERROR, Platform.PI_RUNTIME, Platform.FAILED_READ_METADATA, Policy.bind("meta.unableToReadAuthorization", file.toString()), e)); //$NON-NLS-1$
+   267. 		}
+   268. 	}
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B>  N/A.   All callers must have the required permissions assigned.
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.io.FilePermission "&LT&LT ALL FILES &GT&GT","read"</LI>
+</UL>
+<BR>
+<B>Conclusion:</B> Grant the required permissions to runtime.jar.
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 276 void load( java.io.InputStream )
+   Permission: java.io.SerializablePermission "enableSubclassImplementation"
+      Primordial/void java.io.ObjectInputStream.&LT init &GT( java.io.InputStream )
+Line# 278 void load( java.io.InputStream )
+   Permission: java.lang.RuntimePermission "getClassLoader"
+      Primordial/java.lang.Object java.io.ObjectInputStream.readObject(  )
+Line# 279 void load( java.io.InputStream )
+   Permission: java.lang.RuntimePermission "getClassLoader"
+      Primordial/java.lang.Object java.io.ObjectInputStream.readObject(  )
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+   270. 	private void load(InputStream is) throws IOException, ClassNotFoundException, CoreException {
+   271. 		//try to read the file version number. Pre 2.0 versions had no number
+   272. 		int version = is.read();
+   273. 		if (version == KEYRING_FILE_VERSION) {
+   274. 			//read the authorization data
+   275. 			CipherInputStream cis = new CipherInputStream(is, password);
+   276. 			<FONT style="background-color:yellow;display;inline">ObjectInputStream ois = new ObjectInputStream(cis);</FONT>
+   277. 			try {
+   278. 				<FONT style="background-color:yellow;display;inline">authorizationInfo = (Hashtable) ois.readObject();</FONT>
+   279. 				<FONT style="background-color:yellow;display;inline">protectionSpace = (Hashtable) ois.readObject();</FONT>
+   280. 			} finally {
+   281. 				ois.close();
+   282. 			}
+   283. 		} else {
+   284. 			//the format has changed, just log a warning
+   285. 			InternalPlatform.getDefault().log(new Status(IStatus.WARNING, Platform.PI_RUNTIME, Platform.FAILED_READ_METADATA, Policy.bind("meta.authFormatChanged"), null)); //$NON-NLS-1$
+   286. 			//close the stream and save a new file in the correct format
+   287. 			try {
+   288. 				is.close();
+   289. 			} catch (IOException e) {
+   290. 				//ignore failure to close
+   291. 			}
+   292. 			needsSaving = true;
+   293. 			save();
+   294. 		}
+   295. 	}
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B>  Regardless of what is suppling the input stream to this method, 
+the caller must have read access to the specified file in order to instanciate the input stream object.   Consequently, it is recommended that
+the required permissions of "getClassLoader", and "enableSubclassImplementation" only be granted to runtime.jar, and that the associated operations 
+be wrapped in privileged actions.
+<BR><BR>
+The updated code is shown below:
+<CODE>
+<PRE>
+	private void load(InputStream is) throws IOException, ClassNotFoundException, CoreException {
+		//try to read the file version number. Pre 2.0 versions had no number
+		int version = is.read();
+		if (version == KEYRING_FILE_VERSION) {
+			//read the authorization data
+			CipherInputStream cis = new CipherInputStream(is, password);
+<FONT style="background-color:yellow;display;inline">			boolean securityDisabled = (System.getSecurityManager()==null);
+			ObjectInputStream ois = null;
+			if (securityDisabled)
+			  ois = new ObjectInputStream(cis);
+			try {
+				if (securityDisabled)
+				{
+					authorizationInfo = (Hashtable) ois.readObject();
+					protectionSpace = (Hashtable) ois.readObject();		      
+				} else {
+					ois = (ObjectInputStream) AccessController.doPrivileged(new CipheredObjectInputStreamAction(cis));
+					authorizationInfo = (Hashtable) AccessController.doPrivileged(new ObjectInputStreamReadAction(ois));
+					protectionSpace = (Hashtable) AccessController.doPrivileged(new ObjectInputStreamReadAction(ois));			      
+				}
+			} catch (PrivilegedActionException pae) {
+				Exception e = pae.getException();
+				if (e instanceof ClassNotFoundException)
+					throw (ClassNotFoundException) e;
+				else 
+					throw (IOException)e; </FONT>
+			} finally {
+				ois.close();
+			}
+		} else {
+			//the format has changed, just log a warning
+			InternalPlatform.getDefault().log(new Status(IStatus.WARNING, Platform.PI_RUNTIME, Platform.FAILED_READ_METADATA, Policy.bind("meta.authFormatChanged"), null)); //$NON-NLS-1$
+			//close the stream and save a new file in the correct format
+			try {
+				is.close();
+			} catch (IOException e) {
+				//ignore failure to close
+			}
+			needsSaving = true;
+			save();
+		}
+	}
+</PRE>
+</CODE>
+<B>Helper class: CipheredObjectInputStreamAction</B><BR>
+<CODE>
+<PRE>
+/*******************************************************************************
+ * Copyright (c) 2004 IBM Corporation and others.
+ * All rights reserved. This program and the accompanying materials 
+ * are made available under the terms of the Common Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/cpl-v10.html
+ * 
+ * Contributors:
+ *     IBM Corporation - initial API and implementation
+ *******************************************************************************/
+
+package org.eclipse.core.internal.security;
+
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.security.PrivilegedExceptionAction;
+
+import org.eclipse.core.internal.runtime.CipherInputStream;
+
+/**
+ * @author habeck
+ *
+ * Created: Dec 9, 2004 3:27:18 PM
+ * 
+ */
+public final class CipheredObjectInputStreamAction implements
+    PrivilegedExceptionAction
+{
+  CipherInputStream cis;
+
+  public CipheredObjectInputStreamAction(CipherInputStream cisIn)
+  {
+    cis = cisIn; 
+  }
+  /* (non-Javadoc)
+   * @see java.security.PrivilegedExceptionAction#run()
+   */
+  public Object run() throws IOException 
+  {
+    return new ObjectInputStream(cis);
+  }
+
+}
+</PRE>
+</CODE>
+<B>Helper class: ObjectInputStreamReadAction</B><BR>
+<CODE>
+<PRE>
+/*******************************************************************************
+ * Copyright (c) 2004 IBM Corporation and others.
+ * All rights reserved. This program and the accompanying materials 
+ * are made available under the terms of the Common Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/cpl-v10.html
+ * 
+ * Contributors:
+ *     IBM Corporation - initial API and implementation
+ *******************************************************************************/
+
+package org.eclipse.core.internal.security;
+
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.security.PrivilegedExceptionAction;
+
+/**
+ * @author habeck
+ *
+ * Created: Dec 9, 2004 3:54:49 PM
+ * 
+ */
+public final class ObjectInputStreamReadAction implements
+    PrivilegedExceptionAction
+{
+
+  private ObjectInputStream ois;
+  
+  public ObjectInputStreamReadAction(ObjectInputStream oisIn)
+  {
+     ois = oisIn;
+  }
+  /* (non-Javadoc)
+   * @see java.security.PrivilegedExceptionAction#run()
+   */
+  public Object run() throws IOException, ClassNotFoundException 
+  {
+    return ois.readObject();
+  }
+
+}
+
+</PRE>
+</CODE>
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.io.SerializablePermission "enableSubclassImplementation"</LI>
+<LI>permission java.lang.RuntimePermission "getClassLoader"</LI>
+</UL>
+<BR>
+<B>Conclusion:</B> Grant runtime.jar the required permissions, and wrap the privileged operations in a privileged action.  This will prevent 
+requiring the calling classes to have getClassLoader and enableSubclassImplementation permission.
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 304 void save(  )
+   Permission: java.io.FilePermission ".keyring", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "???file???", "delete"
+      Primordial/boolean java.io.File.delete(  )
+         THE RECEIVER OF THIS METHOD CALL IS TAINTED.
+DoPrivileged location: Line# 305 void save(  )
+   Permission: java.io.FilePermission ".keyring", "write"
+      Primordial/boolean java.io.File.createNewFile(  )
+   Permission: java.io.FilePermission "???file???", "write"
+      Primordial/boolean java.io.File.createNewFile(  )
+         THE RECEIVER OF THIS METHOD CALL IS TAINTED.
+DoPrivileged location: Line# 306 void save(  )
+   Permission: java.io.FilePermission ".keyring", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "???file???", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+         PARAMETER #1 OF THIS METHOD CALL IS TAINTED
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+   300. 	public void save() throws CoreException {
+   301. 		if (!needsSaving || file == null)
+   302. 			return;
+   303. 		try {
+   304. 			<FONT style="background-color:yellow;display;inline">file.delete();</FONT>
+   305. 			<FONT style="background-color:yellow;display;inline">file.createNewFile();</FONT>
+   306. 			<FONT style="background-color:yellow;display;inline">FileOutputStream out = new FileOutputStream(file);</FONT>
+   307. 			try {
+   308. 				save(out);
+   309. 			} finally {
+   310. 				out.close();
+   311. 			}
+   312. 		} catch (IOException e) {
+   313. 			throw new CoreException(new Status(IStatus.ERROR, Platform.PI_RUNTIME, Platform.FAILED_WRITE_METADATA, Policy.bind("meta.unableToWriteAuthorization", file.toString()), e)); //$NON-NLS-1$
+   314. 		}
+   315. 		needsSaving = false;
+   316. 	}
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B> N/A - All callers must have java.io.FilePermission "read,write,delete" to perform these operations.
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.io.FilePermission "&LT&LT ALL FILES &GT&GT","write,delete"</LI>
+</UL>
+<BR>
+<B>Conclusion:</B> Grant the required permission to runtime.jar.   All callers will require explicit permission to write/delete a file.
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 323 void save( java.io.OutputStream )
+   Permission: java.io.SerializablePermission "enableSubclassImplementation"
+      Primordial/void java.io.ObjectOutputStream.<init>( java.io.OutputStream )
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+   318. 	private void save(OutputStream os) throws IOException {
+   319. 		//write the version number
+   320. 		os.write(KEYRING_FILE_VERSION);
+   321. 
+   322. 		CipherOutputStream cos = new CipherOutputStream(os, password);
+   323. 		<FONT style="background-color:yellow;display;inline">ObjectOutputStream oos = new ObjectOutputStream(cos);</FONT>
+   324. 		//write the data
+   325. 		try {
+   326. 			oos.writeObject(authorizationInfo);
+   327. 			oos.writeObject(protectionSpace);
+   328. 		} finally {
+   329. 			oos.close();
+   330. 		}
+   331. 	}
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B> N/A - The caller must have write access to the file associated with the output stream in order to write to the file.
+<BR><BR>
+<B>Updated code:</B><BR>
+<CODE>
+<PRE>
+	private void save(OutputStream os) throws IOException {
+		//write the version number
+		<FONT style="background-color:yellow;display;inline">boolean securityDisabled = (System.getSecurityManager()==null);
+		ObjectOutputStream oos = null;</FONT>
+		os.write(KEYRING_FILE_VERSION);
+<FONT style="background-color:yellow;display;inline">    
+		CipherOutputStream cos = new CipherOutputStream(os, password);
+		if (securityDisabled)</FONT>
+			oos = new ObjectOutputStream(cos);
+<FONT style="background-color:yellow;display;inline">		else {
+			try {
+				oos = (ObjectOutputStream) AccessController.doPrivileged(new CipheredObjectOutputStreamAction(cos));
+			} catch (PrivilegedActionException e) {
+				throw (IOException) e.getException();
+			}
+		}</FONT>
+		//write the data
+		try {
+			oos.writeObject(authorizationInfo);
+			oos.writeObject(protectionSpace);
+		} finally {
+			oos.close();
+		}
+	}
+
+</PRE>
+</CODE>
+<B>Helper class: CipheredObjectOutputStreamAction</B><BR>
+<CODE>
+<PRE>
+/*******************************************************************************
+ * Copyright (c) 2004 IBM Corporation and others.
+ * All rights reserved. This program and the accompanying materials 
+ * are made available under the terms of the Common Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/cpl-v10.html
+ * 
+ * Contributors:
+ *     IBM Corporation - initial API and implementation
+ *******************************************************************************/
+
+package org.eclipse.core.internal.security;
+
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.security.PrivilegedExceptionAction;
+
+import org.eclipse.core.internal.runtime.CipherOutputStream;
+
+/**
+ * @author habeck
+ *
+ * Created: Dec 9, 2004 7:04:39 PM
+ * 
+ */
+public final class CipheredObjectOutputStreamAction implements
+    PrivilegedExceptionAction
+{
+  private CipherOutputStream cos;
+  
+  public CipheredObjectOutputStreamAction(CipherOutputStream cosIn)
+  {
+      cos = cosIn;
+  }
+  /* (non-Javadoc)
+   * @see java.security.PrivilegedExceptionAction#run()
+   */
+  public Object run() throws IOException
+  {
+    return new ObjectOutputStream(cos);
+  }
+}
+</PRE>
+</CODE>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.io.SerializablePermission "enableSubclassImplementation"</LI>
+</UL>
+<BR>
+<B>Conclusion:</B>Grant the required permission to runtime.jar.   All callers must have write permission to the file implied by the supplied output stream.
+<!-- /tpl:put -->
+<!--  end of main content -->
+</td>
+</tr>
+</table>
+<!--  end of main frame table -->
+</body>
+</html>
+
+<!-- /tpl:insert -->

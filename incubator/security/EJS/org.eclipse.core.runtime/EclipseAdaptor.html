@@ -1,0 +1,1452 @@
+<!-- tpl:insert page="/equinox.htpl" --><!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+<title>Equinox Security Home</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<style type="text/css">
+.input {background: "#ffffcc";color: "#000000" ;font-weight: normal;}
+a.nav:link { text-decoration: none; color: "#000000"; }
+a.nav:visited { text-decoration: none; color: "#000000"; }
+a.nav:hover { text-decoration: underline; color: "#000000"; }
+</style>
+<link rel="stylesheet" href="http://www.eclipse.org/nav_style.css" type="text/css">
+<link rel="stylesheet2" href="http://eclipse.org/default_style.css" type="text/css">
+</head>
+<body bgcolor="#ffffff" link="#0000ee" vlink="#551a8b" alink="#ff0000" leftmargin="0" marginheight="0" topmargin="0" rightmargin="0">
+<!--  start of banner  -->
+ <table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" >
+  <tr>
+   <td WIDTH="100%">
+    <table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" BGCOLOR="#006699" >
+
+     <tr>
+          <td BGCOLOR="#000000" width="116" ><a href="http://www.eclipse.org" target="_top"><img src="http://www.eclipse.org/images/EclipseBannerPic.jpg" width="115" height="50" border="0"></a></td>
+          <td WIDTH="637"><img SRC="http://www.eclipse.org/images/gradient.jpg" BORDER=0 height=50 width=282></td>
+          <td WIDTH="250" nowrap><font align="right" color="white" size="6" class=indextop>equinox security</font></td>
+     </tr>
+    </table>
+   </td>
+  </tr>
+ </table><!--  end of banner -->
+<!--  start of main frame table -->
+<table BORDER=0 CELLSPACING=0 CELLPADDING="4" WIDTH="100%" HEIGHT="100%" BGCOLOR="#90C8FF">
+<tr><td width="160" valign="top" bgcolor="#6699CC" nowrap>
+<!--  start of navigator -->
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%"  BGCOLOR="#90C8FF" >
+<tr><td>
+	<table BORDER=0 CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%"  BGCOLOR="#90C8FF" >
+	  <tr> 
+	    <td VALIGN=CENTER HEIGHT="21" BGCOLOR="#0080C0">&nbsp; <a href="http://www.eclipse.org/equinox" target="_top" class="navhead"> 
+	      equinox home</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER> 
+	    <td HEIGHT="21">&nbsp; <a name="overview" href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/index.html" class="nav" >overview</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/ejs.html" class="nav">rcp plug-in analysis</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/rcp/keystore.html" class="nav" >keystore/credentialstore</a></td>
+	  </tr>
+
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/rcp/end2end.html" class="nav" >end to end security</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/downloads.html" class="nav" >downloads</a></td>
+	  </tr>
+
+	</table>
+</td></tr>
+</table>
+<!--  end of navigator -->
+</td>
+<!--  start of main content  -->
+<td bgcolor="white" valign="top" >
+<!-- tpl:put name="bodyarea" -->
+<P></P><H1>EclipseAdaptor.java changes</H1>
+<B>Detail</B><BR><BR>
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 179 void checkLocationAndReinitialize(  )
+   Permission: java.io.FilePermission "", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "-1", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "-2", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "-2147483648", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "-3", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "-9223372036854775808", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "..", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission ".bundledata", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission ".log", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission ".metadata", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission ".options", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission ".plugins", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission ".registry", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission ".settings", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission ".state", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "/", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "0", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "1", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "1.3", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "10", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "13", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "2", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "3", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "3.0.0", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "4", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "5", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "6", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "7", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "8", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "9", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "???System Property Value???", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "???file???", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "Eclipse", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "GMT", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "bundles", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "carbon", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "charset", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "configuration", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "false", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "file-extensions", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "file-names", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "instance", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "manifests", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "motif", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "org.eclipse.core.runtime", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "org.eclipse.core.runtime.adaptor/resolver/timing/value", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "org.eclipse.osgi", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "org.eclipse.osgi/debug/packageadmin/timing/value", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "osgi.bundlestore", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "plugin_customization.ini", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "pref_store.ini", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "preferences", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "solaris", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "true", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "unknown", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "user", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "win32", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "workspace", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "x86", "delete"
+      Primordial/boolean java.io.File.delete(  )
+Line# 180 void checkLocationAndReinitialize(  )
+   Permission: java.io.FilePermission "", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "-1", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "-2", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "-2147483648", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "-3", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "-9223372036854775808", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "..", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission ".bundledata", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission ".log", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission ".metadata", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission ".options", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission ".plugins", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission ".registry", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission ".settings", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission ".state", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "/", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "0", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "1", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "1.3", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "10", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "13", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "2", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "3", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "3.0.0", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "4", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "5", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "6", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "7", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "8", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "9", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "???System Property Value???", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "???file???", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "Eclipse", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "GMT", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "bundles", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "carbon", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "charset", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "configuration", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "false", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "file-extensions", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "file-names", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "instance", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "manifests", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "motif", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "org.eclipse.core.runtime", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "org.eclipse.core.runtime.adaptor/resolver/timing/value", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "org.eclipse.osgi", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "org.eclipse.osgi/debug/packageadmin/timing/value", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "osgi.bundlestore", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "plugin_customization.ini", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "pref_store.ini", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "preferences", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "solaris", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "true", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "unknown", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "user", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "win32", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "workspace", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "x86", "delete"
+      Primordial/boolean java.io.File.delete(  )
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+   172. 	private void checkLocationAndReinitialize() {
+   173. 		if (installURL == null) {
+   174. 			installURL = EclipseStarter.getSysPath(); //TODO This reference to the starter should be avoided
+   175. 			return;
+   176. 		}
+   177. 		if (!EclipseStarter.getSysPath().equals(installURL)) {
+   178. 			//delete the metadata file and the framework file when the location of the basic bundles has changed 
+<FONT style="background-color:yellow;display;inline">   179. 			LocationManager.getConfigurationFile(LocationManager.BUNDLE_DATA_FILE).delete();
+   180. 			LocationManager.getConfigurationFile(LocationManager.STATE_FILE).delete();</FONT>
+   181. 			installURL = EclipseStarter.getSysPath();
+   182. 		}
+   183. 	}
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B> Ok, the moral of the story here is that these methods are called
+by the framework (OSGI bundle) and already have all permissions.  So, no wrappers or extra permissions will be required.
+<BR><BR>
+<TABLE border="2">
+<TR><TD bgcolor="silver">Access Modifier</TD><TD bgcolor="silver">Class/method</TD><TD bgcolor="silver">Package</TD><TD bgcolor="silver">Analysis</TD></TR>
+<TR><TD></TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>public</TD><TD>Launcher.main(String args[])</TD><TD>org.eclipse.osgi.framework.launcher</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD>Launcher.doIt(String[]</TD><TD>org.eclipse.osgi.framework.launcher</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD>Launcher.doOSGi(FrameworkAdaptor)</TD><TD>org.eclipse.osgi.framework.launcher</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>--EclipseStarter.startup(String[] args, Runnable endSplashHandler)</TD><TD></TD><TD></TD></TR>
+<TR><TD>public</TD><TD>OSGi.OSGi(FrameworkAdaptor adaptor)</TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD>OSGi.createFramework(FrameworkAdaptor adaptor)</TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>Framework.Framework(FrameworkAdaptor)</TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD>Framework.initialize(FrameworkAdaptor)</TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>EclipseAdaptor.initialize(EventPublisher)</TD><TD>org.eclipse.osgi.framework.internal.defaultadaptor</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>DefaultAdaptor.initialize(EventPublisher)</TD><TD>org.eclipse.osgi.framework.internal.defaultadaptor</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD>EclipseAdaptor.createStateManager()</TD><TD>org.eclipse.core.runtime.adaptor</TD><TD></TD></TR>
+<TR><TD>private</TD><TD>EclipseAdaptor.checkLocationAndReinitialize()</TD><TD>org.eclispe.core.runtime.adaptor (osgi bundle)</TD><TD></TD></TR>
+</TABLE>
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.io.FilePermission "&LT&LT ALL FILES &GT&GT","delete"</LI>
+</UL>
+<BR>
+<B>Conclusion:</B>Grant the required permission to runtime.jar.
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+ Line# 124 org.eclipse.osgi.internal.resolver.StateManager createStateManager(  )
+   Permission: java.io.FilePermission "", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "-1", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "-2", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "-2147483648", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "-3", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "-9223372036854775808", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "..", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission ".bundledata", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission ".log", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission ".metadata", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission ".options", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission ".plugins", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission ".registry", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission ".settings", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission ".state", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "/", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "0", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "1", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "1.3", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "10", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "13", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "2", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "3", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "3.0.0", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "4", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "5", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "6", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "7", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "8", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "9", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "???System Property Value???", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "???file???", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "Eclipse", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "GMT", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "bundles", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "carbon", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "charset", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "configuration", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "false", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "file-extensions", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "file-names", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "instance", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "manifests", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "motif", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "org.eclipse.core.runtime", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "org.eclipse.core.runtime.adaptor/resolver/timing/value", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "org.eclipse.osgi", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "org.eclipse.osgi/debug/packageadmin/timing/value", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "osgi.bundlestore", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "plugin_customization.ini", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "pref_store.ini", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "preferences", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "solaris", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "true", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "unknown", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "user", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "win32", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "workspace", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "x86", "read"
+      Primordial/boolean java.io.File.isFile(  )
+
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+   120. 	protected StateManager createStateManager() {
+   121. 		readHeaders();
+   122. 		checkLocationAndReinitialize();
+   123. 		File stateLocation = LocationManager.getConfigurationFile(LocationManager.STATE_FILE);
+<FONT style="background-color:yellow;display;inline">   124. 		if (!stateLocation.isFile()) { //NOTE this check is redundant since it is done in StateManager, however it is more convenient to have it here </FONT>
+   125. 			Location parentConfiguration = null;
+   126. 			if ((parentConfiguration = LocationManager.getConfigurationLocation().getParentLocation()) != null) {
+   127. 				stateLocation = new File(parentConfiguration.getURL().getFile(), FrameworkAdaptor.FRAMEWORK_SYMBOLICNAME + "/" + LocationManager.STATE_FILE);
+   128. 			}
+   129. 		}
+   130. 		stateManager = new StateManager(stateLocation, timeStamp);
+   131. 		stateManager.setInstaller(new EclipseBundleInstaller());
+   132. 		StateImpl systemState = stateManager.getSystemState();
+   133. 		if (systemState != null)
+   134. 			return stateManager;
+   135. 		systemState = stateManager.createSystemState();
+   136. 		BundleData[] installedBundles = getInstalledBundles();
+   137. 		if (installedBundles == null)
+   138. 			return stateManager;
+   139. 		StateObjectFactory factory = stateManager.getFactory();
+   140. 		for (int i = 0; i < installedBundles.length; i++) {
+   141. 			BundleData toAdd = (BundleData) installedBundles[i];
+   142. 			try {
+   143. 				Dictionary manifest = toAdd.getManifest();
+   144. 				BundleDescription newDescription = factory.createBundleDescription(manifest, toAdd.getLocation(), toAdd.getBundleID());
+   145. 				systemState.addBundle(newDescription);
+   146. 			} catch (BundleException be) {
+   147. 				// just ignore bundle datas with invalid manifests
+   148. 			}
+   149. 		}
+   150. 		// we need the state resolved
+   151. 		systemState.setTimeStamp(timeStamp);
+   152. 		systemState.resolve();
+   153. 		return stateManager;
+   154. 	}
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B>This method is attempting to open the file ".state" in the OSGI configuration folder. 
+This method is called by the OSGI framework which will be running with all permissions so it is not necessary to wrap this in a privileged action.
+<BR><BR>
+<TABLE border="2">
+<TR><TD bgcolor="silver">Access Modifier</TD><TD bgcolor="silver">Class/method</TD><TD bgcolor="silver">Package</TD><TD bgcolor="silver">Analysis</TD></TR>
+<TR><TD></TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>public</TD><TD>Launcher.main(String args[])</TD><TD>org.eclipse.osgi.framework.launcher</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD>Launcher.doIt(String[]</TD><TD>org.eclipse.osgi.framework.launcher</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD>Launcher.doOSGi(FrameworkAdaptor)</TD><TD>org.eclipse.osgi.framework.launcher</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>--EclipseStarter.startup(String[] args, Runnable endSplashHandler)</TD><TD></TD><TD></TD></TR>
+<TR><TD>public</TD><TD>OSGi.OSGi(FrameworkAdaptor adaptor)</TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD>OSGi.createFramework(FrameworkAdaptor adaptor)</TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>Framework.Framework(FrameworkAdaptor)</TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD>Framework.initialize(FrameworkAdaptor)</TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>EclipseAdaptor.initialize(EventPublisher)</TD><TD>org.eclipse.osgi.framework.internal.defaultadaptor</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>DefaultAdaptor.initialize(EventPublisher)</TD><TD>org.eclipse.osgi.framework.internal.defaultadaptor</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD>EclipseAdaptor.createStateManager()</TD><TD>org.eclipse.core.runtime.adaptor</TD><TD>Not tainted.</TD></TR>
+</TABLE>
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.io.FilePermission "&LT&LT ALL FILES &GT&GT","read"</LI>
+</UL>
+<BR>
+<B>Conclusion:</B>Grant the required privilege to runtime.jar, do not wrap this method in a privileged action.
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 328 java.io.InputStream findBundleDataFile(  )
+   Permission: java.io.FilePermission "", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "-1", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "-2", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "-2147483648", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "-3", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "-9223372036854775808", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "..", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission ".bundledata", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission ".log", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission ".metadata", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission ".options", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission ".plugins", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission ".registry", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission ".settings", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission ".state", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "/", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "0", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "1", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "1.3", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "10", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "13", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "2", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "3", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "3.0.0", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "4", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "5", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "6", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "7", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "8", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "9", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "???System Property Value???", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "???file???", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "Eclipse", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "GMT", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "bundles", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "carbon", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "charset", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "configuration", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "false", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "file-extensions", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "file-names", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "instance", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "manifests", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "motif", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "org.eclipse.core.runtime", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "org.eclipse.core.runtime.adaptor/resolver/timing/value", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "org.eclipse.osgi", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "org.eclipse.osgi/debug/packageadmin/timing/value", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "osgi.bundlestore", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "plugin_customization.ini", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "pref_store.ini", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "preferences", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "solaris", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "true", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "unknown", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "user", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "win32", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "workspace", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "x86", "read"
+      Primordial/boolean java.io.File.isFile(  )
+DoPrivileged location: Line# 330 java.io.InputStream findBundleDataFile(  )
+   Permission: java.io.FilePermission "", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "-1", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "-2", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "-2147483648", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "-3", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "-9223372036854775808", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "..", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission ".bundledata", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission ".log", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission ".metadata", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission ".options", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission ".plugins", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission ".registry", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission ".settings", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission ".state", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "/", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "0", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "1", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "1.3", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "10", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "13", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "2", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "3", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "3.0.0", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "4", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "5", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "6", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "7", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "8", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "9", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "???System Property Value???", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "???file???", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "Eclipse", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "GMT", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "bundles", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "carbon", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "charset", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "configuration", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "false", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "file-extensions", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "file-names", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "instance", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "manifests", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "motif", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "org.eclipse.core.runtime", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "org.eclipse.core.runtime.adaptor/resolver/timing/value", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "org.eclipse.osgi", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "org.eclipse.osgi/debug/packageadmin/timing/value", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "osgi.bundlestore", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "plugin_customization.ini", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "pref_store.ini", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "preferences", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "solaris", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "true", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "unknown", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "user", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "win32", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "workspace", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "x86", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+DoPrivileged location: Line# 338 java.io.InputStream findBundleDataFile(  )
+   Permission: java.lang.RuntimePermission "getClassLoader"
+      Primordial/void java.net.URL. &LT init &GT( java.net.URL, java.lang.String )
+   Permission: java.lang.RuntimePermission "modifyThread"
+      Primordial/void java.net.URL. &LT init &GT( java.net.URL, java.lang.String )
+   Permission: java.net.NetPermission "specifyStreamHandler"
+      Primordial/void java.net.URL. &LT init &GT( java.net.URL, java.lang.String )
+   Permission: java.net.SocketPermission "", "resolve"
+      Primordial/void java.net.URL. &LT init &GT( java.net.URL, java.lang.String )
+   Permission: java.net.SocketPermission ":???port???", "connect"
+      Primordial/void java.net.URL. &LT init &GT( java.net.URL, java.lang.String )
+   Permission: java.net.SocketPermission "???host???", "resolve"
+      Primordial/void java.net.URL. &LT init &GT( java.net.URL, java.lang.String )
+   Permission: java.net.SocketPermission "???host???:???port???", "connect"
+      Primordial/void java.net.URL. &LT init &GT( java.net.URL, java.lang.String )
+   Permission: java.net.SocketPermission "localhost", "resolve"
+      Primordial/void java.net.URL. &LT init &GT( java.net.URL, java.lang.String )
+   Permission: java.net.SocketPermission "localhost:1024-", "resolve"
+      Primordial/void java.net.URL. &LT init &GT( java.net.URL, java.lang.String )
+   Permission: java.net.SocketPermission "localhost:1024-:???port???", "connect"
+      Primordial/void java.net.URL. &LT init &GT( java.net.URL, java.lang.String )
+   Permission: java.net.SocketPermission "localhost:???port???", "connect"
+      Primordial/void java.net.URL. &LT init &GT( java.net.URL, java.lang.String )
+   Permission: java.util.PropertyPermission "*", "read,write"
+      Primordial/void java.net.URL. &LT init &GT( java.net.URL, java.lang.String )
+   Permission: java.util.PropertyPermission "java.protocol.handler.pkgs", "read"
+      Primordial/void java.net.URL. &LT init &GT( java.net.URL, java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "", ""
+      Primordial/void java.net.URL. &LT init &GT( java.net.URL, java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "", "get"
+      Primordial/void java.net.URL. &LT init &GT( java.net.URL, java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", ""
+      Primordial/void java.net.URL. &LT init &GT( java.net.URL, java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", "get"
+      Primordial/void java.net.URL. &LT init &GT( java.net.URL, java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", ""
+      Primordial/void java.net.URL. &LT init &GT( java.net.URL, java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get"
+      Primordial/void java.net.URL. &LT init &GT( java.net.URL, java.lang.String )
+
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+   325. 	private InputStream findBundleDataFile() {
+   326. 		File metadata = LocationManager.getConfigurationFile(LocationManager.BUNDLE_DATA_FILE);
+   327. 		InputStream bundleDataStream = null;
+<FONT style="background-color:yellow;display;inline">   328. 		if (metadata.isFile()) {</FONT>
+   329. 			try {
+<FONT style="background-color:yellow;display;inline">   330. 				bundleDataStream = new FileInputStream(metadata);</FONT>
+   331. 			} catch (FileNotFoundException e1) {
+   332. 				//this can not happen since it is tested before entering here.
+   333. 			}
+   334. 		} else {
+   335. 			Location parentConfiguration = null;
+   336. 			if ((parentConfiguration = LocationManager.getConfigurationLocation().getParentLocation()) != null) {
+   337. 				try {
+<FONT style="background-color:yellow;display;inline">   338. 					bundleDataStream = new URL(parentConfiguration.getURL(), FrameworkAdaptor.FRAMEWORK_SYMBOLICNAME + "/" + LocationManager.BUNDLE_DATA_FILE).openStream();</FONT>
+   339. 				} catch (MalformedURLException e1) {
+   340. 					//This will not happen since all the URLs are derived by us and we are GODS!
+   341. 				} catch (IOException e1) {
+   342. 					//That"s ok we will regenerate the .bundleData
+   343. 				}
+   344. 			}
+   345. 		}
+   346. 		return bundleDataStream;
+   347. 	}
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B> This method attempts to return an input stream handle to the ".bundledata" file in the
+osgi configuration folder (e.g. c:\eclipse\configuration\org.eclipse.osgi\.bundledata).
+<BR><BR>
+<TABLE border="2">
+<TR><TD bgcolor="silver">Access Modifier</TD><TD bgcolor="silver">Class/method</TD><TD bgcolor="silver">Package</TD><TD bgcolor="silver">Analysis</TD></TR>
+<TR><TD></TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>public</TD><TD>Launcher.main(String args[])</TD><TD>org.eclipse.osgi.framework.launcher</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD>Launcher.doIt(String[]</TD><TD>org.eclipse.osgi.framework.launcher</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD>Launcher.doOSGi(FrameworkAdaptor)</TD><TD>org.eclipse.osgi.framework.launcher</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>--EclipseStarter.startup(String[] args, Runnable endSplashHandler)</TD><TD></TD><TD></TD></TR>
+<TR><TD>public</TD><TD>OSGi.OSGi(FrameworkAdaptor adaptor)</TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD>OSGi.createFramework(FrameworkAdaptor adaptor)</TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>Framework.Framework(FrameworkAdaptor)</TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD>Framework.initialize(FrameworkAdaptor)</TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>EclipseAdaptor.initialize(EventPublisher)</TD><TD>org.eclipse.osgi.framework.internal.defaultadaptor</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>DefaultAdaptor.initialize(EventPublisher)</TD><TD>org.eclipse.osgi.framework.internal.defaultadaptor</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD>EclipseAdaptor.createStateManager()</TD><TD>org.eclipse.core.runtime.adaptor</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>EclipseAdaptor.getInstalledBundles()</TD><TD>org.eclipse.core.runtime.adaptor</TD><TD></TD></TR>
+<TR><TD>private</TD><TD>EclipseAdaptor.readHeaders()</TD><TD>org.eclipse.core.runtime.adaptor</TD><TD></TD></TR>
+<TR><TD>private</TD><TD>EclipseAdaptor.findBundleDataFile()</TD><TD>org.eclipse.core.runtime.adaptor</TD><TD>Not tainted.</TD></TR>
+</TABLE>
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.io.FilePermission "&LT&LT ALL FILES &GT&GT","read"</LI>
+<LI>permission java.lang.RuntimePermission "getClassLoader"</LI>
+<LI>permission java.lang.RuntimePermission "modifyThread"</LI>
+<LI>permission java.net.NetPermission "specifyStreamHandler"</LI>
+<LI>permission java.net.SocketPermission "*", "resolve,connect"</LI>
+<LI>permission java.util.PropertyPermission "*", "read,write"</LI>
+<LI>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", "get"</LI>
+<LI>permission org.osgi.framework.ServicePermission "", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "", "get"</LI>
+<LI>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get"</LI>
+</UL>
+<BR>
+<B>Conclusion:</B>Grant the required permissions to runtime.jar.   The only consumer of this class is the framework.
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 557 void handleRuntimeError( java.lang.Throwable )
+   Permission: java.util.PropertyPermission "eclipse.exitOnError", "read"
+      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String, java.lang.String )
+Line# 573 void handleRuntimeError( java.lang.Throwable )
+   Permission: java.lang.RuntimePermission "exitVM"
+      Primordial/void java.lang.System.exit( int )
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+   554. 	public void handleRuntimeError(Throwable error) {
+   555. 		try {
+   556. 			// check the prop each time this happens (should NEVER happen!)
+<FONT style="background-color:yellow;display;inline">    557. 			exitOnError = Boolean.valueOf(System.getProperty(PROP_EXITONERROR, "true")).booleanValue(); //$NON-NLS-1$</FONT>
+   558. 			String message = EclipseAdaptorMsg.formatter.getString("ECLIPSE_ADAPTOR_RUNTIME_ERROR"); //$NON-NLS-1$
+   559. 			FrameworkLogEntry logEntry = new FrameworkLogEntry(FrameworkAdaptor.FRAMEWORK_SYMBOLICNAME, message, 0, error, null);
+   560. 			frameworkLog.log(logEntry);
+   561. 		} catch (Throwable t) {
+   562. 			// we may be in a currupted state and must be able to handle any errors (ie OutOfMemoryError)
+   563. 			// that may occur when handling the first error; this is REALLY the last resort.
+   564. 			try {
+   565. 				error.printStackTrace();
+   566. 				t.printStackTrace();
+   567. 			} catch (Throwable t1) {
+   568. 				// if we fail that then we are beyond help.
+   569. 			}
+   570. 		} finally {
+   571. 			// do the exit outside the try block just incase another runtime error was thrown while logging
+   572. 			if (exitOnError)
+<FONT style="background-color:yellow;display;inline">    573. 				System.exit(13);</FONT>
+   574. 		}
+   575. 	}
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B> The reference trace indicates that this method is only called by the runtime.  Consequently, no wrapping of the
+associated privileged operations is warrented.   Grant the required permissions to runtime.jar.
+<BR><BR>
+<TABLE border="2">
+<TR><TD bgcolor="silver">Access Modifier</TD><TD bgcolor="silver">Class/method</TD><TD bgcolor="silver">Package</TD><TD bgcolor="silver">Analysis</TD></TR>
+<TR><TD>public</TD><TD>BundleContextImpl.dispatchEvent</TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>Framework.dispatchEvent(Object,Object,int,Object)</TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD>ServiceUse.getService()</TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>StartLevelManager.dispatchEvent(Object,Object,int,Object)</TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD></TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>public</TD><TD>------------OSGi.close()</TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD>Referencetrace dead ends here...</TD></TR>
+<TR><TD>public</TD><TD>----------Framwork.close()</TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>--------OSGi.shutdown()</TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>--------SystemBundle.stop()</TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>------------</TD><TD></TD><TD></TD></TR>
+<TR><TD>public</TD><TD>----------StateManager.commit(State)</TD><TD>org.eclipse.osgi.internal.resolver</TD><TD>Reference trace dead-ends here...</TD></TR>
+<TR><TD>public</TD><TD>--------EclipseBundleInstaller.updateBundle(BundleDescription)</TD><TD>org.eclipse.core.runtime.adaptor</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>--------SystemBundle.update()</TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>------Framework.shutdown()</TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>------EclipseAdaptor.frameworkStopping(Bundlecontext)</TD><TD>org.eclipse.core.runtime.adaptor</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>------BundleStopper.stopBundles()</TD><TD>org.eclipse.core.runtime.adaptor</TD><TD></TD></TR>
+<TR><TD>private</TD><TD>----BundleStopper.basicStopBundles()</TD><TD>org.eclipse.core.runtime.adaptor</TD><TD></TD></TR>
+<TR><TD>private</TD><TD>--EclipseStarter.stopSystemBundle()</TD><TD>org.eclipse.core.runtime.adaptor</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>SystemBundle.stop()</TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD></TD><TD></TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>EclipseAdaptor.handleRuntimeError(Throwable)</TD><TD>org.eclipse.core.runtime.adaptor</TD><TD>N/A</TD></TR>
+</TABLE>
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.util.PropertyPermission "eclipse.exitOnError", "read"</LI>
+<LI>permission java.lang.RuntimePermission "exitVM"</LI>
+</UL>
+<BR>
+<B>Conclusion:</B>Grant the required permissions to runtime.jar only.  The framework which
+calls this method already has all permissions.
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 103 void initBundleStoreRootDir(  )
+   Permission: java.io.FilePermission "???file???", "read"
+      Primordial/java.lang.String java.io.File.getAbsolutePath(  )
+   Permission: java.util.PropertyPermission "user.dir", "read"
+      Primordial/java.lang.String java.io.File.getAbsolutePath(  )
+         THE RECEIVER OF THIS METHOD CALL IS TAINTED.
+DoPrivileged location: Line# 111 void initBundleStoreRootDir(  )
+   Permission: java.io.FilePermission "???file???", "read"
+      Primordial/java.lang.String java.io.File.getAbsolutePath(  )
+   Permission: java.util.PropertyPermission "user.dir", "read"
+      Primordial/java.lang.String java.io.File.getAbsolutePath(  )
+         THE RECEIVER OF THIS METHOD CALL IS TAINTED.
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+    99. 	protected void initBundleStoreRootDir() {
+   100. 		File configurationLocation = LocationManager.getOSGiConfigurationDir();
+   101. 		if (configurationLocation != null) {
+   102. 			bundleStoreRootDir = new File(configurationLocation, LocationManager.BUNDLES_DIR);
+<FONT style="background-color:yellow;display;inline">   103. 			bundleStore = bundleStoreRootDir.getAbsolutePath();</FONT>
+   104. 		} else {
+   105. 			// last resort just default to "bundles"
+   106. 			bundleStore = LocationManager.BUNDLES_DIR;
+   107. 			bundleStoreRootDir = new File(bundleStore);
+   108. 		}
+   109. 
+   110. 		/* store bundleStore back into adaptor properties for others to see */
+<FONT style="background-color:yellow;display;inline">   111. 		properties.put(BUNDLE_STORE, bundleStoreRootDir.getAbsolutePath());</FONT>
+   112. 	}
+
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B> This method is only called by the framework (OSGI)
+<BR><BR>
+<TABLE border="2">
+<TR><TD bgcolor="silver">Access Modifier</TD><TD bgcolor="silver">Class/method</TD><TD bgcolor="silver">Package</TD><TD bgcolor="silver">Analysis</TD></TR>
+<TR><TD></TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>public</TD><TD>Launcher.main(String args[])</TD><TD>org.eclipse.osgi.framework.launcher</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD>Launcher.doIt(String[]</TD><TD>org.eclipse.osgi.framework.launcher</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD>Launcher.doOSGi(FrameworkAdaptor)</TD><TD>org.eclipse.osgi.framework.launcher</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>--EclipseStarter.startup(String[] args, Runnable endSplashHandler)</TD><TD></TD><TD></TD></TR>
+<TR><TD>public</TD><TD>OSGi.OSGi(FrameworkAdaptor adaptor)</TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD>OSGi.createFramework(FrameworkAdaptor adaptor)</TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>Framework.Framework(FrameworkAdaptor)</TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD>Framework.initialize(FrameworkAdaptor)</TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>EclipseAdaptor.initialize(EventPublisher)</TD><TD>org.eclipse.osgi.framework.internal.defaultadaptor</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>DefaultAdaptor.initialize(EventPublisher)</TD><TD>org.eclipse.osgi.framework.internal.defaultadaptor</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD>EclipseAdaptor.initBundleStoreRootDir()</TD><TD>org.eclipse.core.runtime.adaptor</TD><TD></TD></TR>
+</TABLE>
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.io.FilePermission "&LT&LT ALL FILES &GT&GT","read"</LI>
+<LI>permission java.util.PropertyPermission "user.dir", "read"</LI>
+</UL>
+<BR>
+<B>Conclusion:</B>Grant the required permissions to runtime.jar
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 90 void initialize( org.eclipse.osgi.framework.adaptor.EventPublisher )
+   Permission: java.util.PropertyPermission "osgi.clean", "read"
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+    89. 	public void initialize(EventPublisher eventPublisher) {
+<FONT style="background-color:yellow;display;inline">    90. 		if (Boolean.getBoolean(EclipseAdaptor.PROP_CLEAN))</FONT>
+    91. 			cleanOSGiCache();
+    92. 		super.initialize(eventPublisher);
+    93. 	}
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B>
+<BR><BR>
+<TABLE border="2">
+<TR><TD bgcolor="silver">Access Modifier</TD><TD bgcolor="silver">Class/method</TD><TD bgcolor="silver">Package</TD><TD bgcolor="silver">Analysis</TD></TR>
+<TR><TD></TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>public</TD><TD>Launcher.main(String args[])</TD><TD>org.eclipse.osgi.framework.launcher</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD>Launcher.doIt(String[]</TD><TD>org.eclipse.osgi.framework.launcher</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD>Launcher.doOSGi(FrameworkAdaptor)</TD><TD>org.eclipse.osgi.framework.launcher</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>--EclipseStarter.startup(String[] args, Runnable endSplashHandler)</TD><TD></TD><TD></TD></TR>
+<TR><TD>public</TD><TD>OSGi.OSGi(FrameworkAdaptor adaptor)</TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD>OSGi.createFramework(FrameworkAdaptor adaptor)</TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>Framework.Framework(FrameworkAdaptor)</TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD>Framework.initialize(FrameworkAdaptor)</TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>EclipseAdaptor.initialize(EventPublisher)</TD><TD>org.eclipse.osgi.framework.internal.defaultadaptor</TD><TD></TD></TR>
+</TABLE>
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.util.PropertyPermission "osgi.clean", "read"</LI>
+</UL>
+<BR>
+<B>Conclusion:</B>Grant the required permission to runtime.jar.  The framework (OSGI) already has all permissions.
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 515 void saveMetaData(  )
+   Permission: java.io.FilePermission "", "write"
+      Primordial/void java.io.FileOutputStream. &LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "-1", "write"
+      Primordial/void java.io.FileOutputStream. &LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "-2", "write"
+      Primordial/void java.io.FileOutputStream. &LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "-2147483648", "write"
+      Primordial/void java.io.FileOutputStream. &LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "-3", "write"
+      Primordial/void java.io.FileOutputStream. &LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "-9223372036854775808", "write"
+      Primordial/void java.io.FileOutputStream. &LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "..", "write"
+      Primordial/void java.io.FileOutputStream. &LT init &GT( java.io.File )
+   Permission: java.io.FilePermission ".bundledata", "write"
+      Primordial/void java.io.FileOutputStream. &LT init &GT( java.io.File )
+   Permission: java.io.FilePermission ".log", "write"
+      Primordial/void java.io.FileOutputStream. &LT init &GT( java.io.File )
+   Permission: java.io.FilePermission ".metadata", "write"
+      Primordial/void java.io.FileOutputStream. &LT init &GT( java.io.File )
+   Permission: java.io.FilePermission ".options", "write"
+      Primordial/void java.io.FileOutputStream. &LT init &GT( java.io.File )
+   Permission: java.io.FilePermission ".plugins", "write"
+      Primordial/void java.io.FileOutputStream. &LT init &GT( java.io.File )
+   Permission: java.io.FilePermission ".registry", "write"
+      Primordial/void java.io.FileOutputStream. &LT init &GT( java.io.File )
+   Permission: java.io.FilePermission ".settings", "write"
+      Primordial/void java.io.FileOutputStream. &LT init &GT( java.io.File )
+   Permission: java.io.FilePermission ".state", "write"
+      Primordial/void java.io.FileOutputStream. &LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "/", "write"
+      Primordial/void java.io.FileOutputStream. &LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "0", "write"
+      Primordial/void java.io.FileOutputStream. &LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "1", "write"
+      Primordial/void java.io.FileOutputStream. &LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "1.3", "write"
+      Primordial/void java.io.FileOutputStream. &LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "10", "write"
+      Primordial/void java.io.FileOutputStream. &LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "13", "write"
+      Primordial/void java.io.FileOutputStream. &LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "2", "write"
+      Primordial/void java.io.FileOutputStream. &LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "3", "write"
+      Primordial/void java.io.FileOutputStream. &LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "3.0.0", "write"
+      Primordial/void java.io.FileOutputStream. &LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "4", "write"
+      Primordial/void java.io.FileOutputStream. &LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "5", "write"
+      Primordial/void java.io.FileOutputStream. &LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "6", "write"
+      Primordial/void java.io.FileOutputStream. &LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "7", "write"
+      Primordial/void java.io.FileOutputStream. &LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "8", "write"
+      Primordial/void java.io.FileOutputStream. &LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "9", "write"
+      Primordial/void java.io.FileOutputStream. &LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "???System Property Value???", "write"
+      Primordial/void java.io.FileOutputStream. &LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "???file???", "write"
+      Primordial/void java.io.FileOutputStream. &LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "Eclipse", "write"
+      Primordial/void java.io.FileOutputStream. &LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "GMT", "write"
+      Primordial/void java.io.FileOutputStream. &LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "bundles", "write"
+      Primordial/void java.io.FileOutputStream. &LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "carbon", "write"
+      Primordial/void java.io.FileOutputStream. &LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "charset", "write"
+      Primordial/void java.io.FileOutputStream. &LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "configuration", "write"
+      Primordial/void java.io.FileOutputStream. &LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "false", "write"
+      Primordial/void java.io.FileOutputStream. &LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "file-extensions", "write"
+      Primordial/void java.io.FileOutputStream. &LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "file-names", "write"
+      Primordial/void java.io.FileOutputStream. &LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "instance", "write"
+      Primordial/void java.io.FileOutputStream. &LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "manifests", "write"
+      Primordial/void java.io.FileOutputStream. &LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "motif", "write"
+      Primordial/void java.io.FileOutputStream. &LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "org.eclipse.core.runtime", "write"
+      Primordial/void java.io.FileOutputStream. &LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "org.eclipse.core.runtime.adaptor/resolver/timing/value", "write"
+      Primordial/void java.io.FileOutputStream. &LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "org.eclipse.osgi", "write"
+      Primordial/void java.io.FileOutputStream. &LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "org.eclipse.osgi/debug/packageadmin/timing/value", "write"
+      Primordial/void java.io.FileOutputStream. &LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "osgi.bundlestore", "write"
+      Primordial/void java.io.FileOutputStream. &LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "plugin_customization.ini", "write"
+      Primordial/void java.io.FileOutputStream. &LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "pref_store.ini", "write"
+      Primordial/void java.io.FileOutputStream. &LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "preferences", "write"
+      Primordial/void java.io.FileOutputStream. &LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "solaris", "write"
+      Primordial/void java.io.FileOutputStream. &LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "true", "write"
+      Primordial/void java.io.FileOutputStream. &LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "unknown", "write"
+      Primordial/void java.io.FileOutputStream. &LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "user", "write"
+      Primordial/void java.io.FileOutputStream. &LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "win32", "write"
+      Primordial/void java.io.FileOutputStream. &LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "workspace", "write"
+      Primordial/void java.io.FileOutputStream. &LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "x86", "write"
+      Primordial/void java.io.FileOutputStream. &LT init &GT( java.io.File )
+
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+   509. 	public void saveMetaData() {
+   510. 		File metadata = LocationManager.getConfigurationFile(LocationManager.BUNDLE_DATA_FILE);
+   511. 		// the cache and the state match
+   512. 		if (timeStamp == stateManager.getSystemState().getTimeStamp())
+   513. 			return;
+   514. 		try {
+<FONT style="background-color:yellow;display;inline">   515. 			DataOutputStream out = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(metadata)));</FONT>
+   516. 			try {
+   517. 				out.writeByte(BUNDLEDATA_VERSION);
+   518. 				out.writeLong(stateManager.getSystemState().getTimeStamp());
+   519. 				out.writeUTF(installURL);
+   520. 				out.writeInt(initialBundleStartLevel);
+   521. 				out.writeLong(nextId);
+   522. 				Bundle[] bundles = context.getBundles();
+   523. 				out.writeInt(bundles.length);
+   524. 				for (int i = 0; i < bundles.length; i++) {
+   525. 					long id = bundles[i].getBundleId();
+   526. 					out.writeLong(id);
+   527. 					if (id != 0) {
+   528. 						BundleData data = ((org.eclipse.osgi.framework.internal.core.AbstractBundle) bundles[i]).getBundleData();
+   529. 						saveMetaDataFor(data, out);
+   530. 					}
+   531. 				}
+   532. 			} finally {
+   533. 				out.close();
+   534. 			}
+   535. 		} catch (IOException e) {
+   536. 			frameworkLog.log(new FrameworkEvent(FrameworkEvent.ERROR, context.getBundle(), e));
+   537. 		}
+   538. 	}
+
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B> The OSGI plug-in is the only user of this method, and it executes under a privileged action.
+<BR><BR>
+<TABLE border="2">
+<TR><TD bgcolor="silver">Access Modifier</TD><TD bgcolor="silver">Class/method</TD><TD bgcolor="silver">Package</TD><TD bgcolor="silver">Analysis</TD></TR>
+<TR><TD></TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>protected</TD><TD>BundleContextImpl.stop()</TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD>This method executes activator.stop as a privileged action under OSGI.</TD></TR>
+<TR><TD>public</TD><TD>SystemBundleActivator.stop(BundleContext)</TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>EclipseAdaptor.frameworkStop(BundleContext)</TD><TD>org.eclipse.core.runtime.adaptor</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>EclipseAdaptor.saveMetaData()</TD><TD>org.eclipse.core.runtime.adaptor</TD><TD>Not tainted.</TD></TR>
+</TABLE>
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.io.FilePermission "&LT&LT ALL FILES &GT&GT","read,write,delete"</LI>
+</UL>
+<BR>
+<B>Conclusion:</B>No need to grant these permissions.  This method is called under a privileged action by the OSGI framework.
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 295 java.lang.Object getService( org.osgi.framework.Bundle, org.osgi.framework.ServiceRegistration )
+   Permission: java.io.FilePermission "???file???", "read"
+      Primordial/javax.xml.parsers.DocumentBuilderFactory javax.xml.parsers.DocumentBuilderFactory.newInstance(  )
+   Permission: java.lang.RuntimePermission "getClassLoader"
+      Primordial/javax.xml.parsers.DocumentBuilderFactory javax.xml.parsers.DocumentBuilderFactory.newInstance(  )
+   Permission: java.lang.RuntimePermission "modifyThread"
+      Primordial/javax.xml.parsers.DocumentBuilderFactory javax.xml.parsers.DocumentBuilderFactory.newInstance(  )
+   Permission: java.net.NetPermission "specifyStreamHandler"
+      Primordial/javax.xml.parsers.DocumentBuilderFactory javax.xml.parsers.DocumentBuilderFactory.newInstance(  )
+   Permission: java.net.SocketPermission "", "resolve"
+      Primordial/javax.xml.parsers.DocumentBuilderFactory javax.xml.parsers.DocumentBuilderFactory.newInstance(  )
+   Permission: java.net.SocketPermission ":???port???", "connect"
+      Primordial/javax.xml.parsers.DocumentBuilderFactory javax.xml.parsers.DocumentBuilderFactory.newInstance(  )
+   Permission: java.net.SocketPermission "???host???", "resolve"
+      Primordial/javax.xml.parsers.DocumentBuilderFactory javax.xml.parsers.DocumentBuilderFactory.newInstance(  )
+   Permission: java.net.SocketPermission "???host???:???port???", "connect"
+      Primordial/javax.xml.parsers.DocumentBuilderFactory javax.xml.parsers.DocumentBuilderFactory.newInstance(  )
+   Permission: java.net.SocketPermission "localhost", "resolve"
+      Primordial/javax.xml.parsers.DocumentBuilderFactory javax.xml.parsers.DocumentBuilderFactory.newInstance(  )
+   Permission: java.net.SocketPermission "localhost:1024-", "resolve"
+      Primordial/javax.xml.parsers.DocumentBuilderFactory javax.xml.parsers.DocumentBuilderFactory.newInstance(  )
+   Permission: java.net.SocketPermission "localhost:1024-:???port???", "connect"
+      Primordial/javax.xml.parsers.DocumentBuilderFactory javax.xml.parsers.DocumentBuilderFactory.newInstance(  )
+   Permission: java.net.SocketPermission "localhost:???port???", "connect"
+      Primordial/javax.xml.parsers.DocumentBuilderFactory javax.xml.parsers.DocumentBuilderFactory.newInstance(  )
+   Permission: java.util.PropertyPermission "*", "read,write"
+      Primordial/javax.xml.parsers.DocumentBuilderFactory javax.xml.parsers.DocumentBuilderFactory.newInstance(  )
+   Permission: java.util.PropertyPermission "java.home", "read"
+      Primordial/javax.xml.parsers.DocumentBuilderFactory javax.xml.parsers.DocumentBuilderFactory.newInstance(  )
+   Permission: java.util.PropertyPermission "java.protocol.handler.pkgs", "read"
+      Primordial/javax.xml.parsers.DocumentBuilderFactory javax.xml.parsers.DocumentBuilderFactory.newInstance(  )
+   Permission: java.util.PropertyPermission "java.vendor.url.bug", "read"
+      Primordial/javax.xml.parsers.DocumentBuilderFactory javax.xml.parsers.DocumentBuilderFactory.newInstance(  )
+   Permission: java.util.PropertyPermission "javax.xml.parsers.DocumentBuilderFactory", "read"
+      Primordial/javax.xml.parsers.DocumentBuilderFactory javax.xml.parsers.DocumentBuilderFactory.newInstance(  )
+   Permission: java.util.logging.LoggingPermission "control", ""
+      Primordial/javax.xml.parsers.DocumentBuilderFactory javax.xml.parsers.DocumentBuilderFactory.newInstance(  )
+   Permission: org.osgi.framework.ServicePermission "", ""
+      Primordial/javax.xml.parsers.DocumentBuilderFactory javax.xml.parsers.DocumentBuilderFactory.newInstance(  )
+   Permission: org.osgi.framework.ServicePermission "", "get"
+      Primordial/javax.xml.parsers.DocumentBuilderFactory javax.xml.parsers.DocumentBuilderFactory.newInstance(  )
+   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", ""
+      Primordial/javax.xml.parsers.DocumentBuilderFactory javax.xml.parsers.DocumentBuilderFactory.newInstance(  )
+   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", "get"
+      Primordial/javax.xml.parsers.DocumentBuilderFactory javax.xml.parsers.DocumentBuilderFactory.newInstance(  )
+   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", ""
+      Primordial/javax.xml.parsers.DocumentBuilderFactory javax.xml.parsers.DocumentBuilderFactory.newInstance(  )
+   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get"
+      Primordial/javax.xml.parsers.DocumentBuilderFactory javax.xml.parsers.DocumentBuilderFactory.newInstance(  )
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+   293. 	private class DomParsingService implements ServiceFactory {
+   294. 		public Object getService(Bundle bundle, ServiceRegistration registration) {
+<FONT style="background-color:yellow;display;inline">   295. 			return DocumentBuilderFactory.newInstance();</FONT>
+   296. 		}
+   297. 
+   298. 		public void ungetService(Bundle bundle, ServiceRegistration registration, Object service) {
+   299. 			//Do nothing.
+   300. 		}
+   301. 	}
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B>
+<BR><BR>
+<TABLE border="2">
+<TR><TD bgcolor="silver">Access Modifier</TD><TD bgcolor="silver">Class/method</TD><TD bgcolor="silver">Package</TD><TD bgcolor="silver">Analysis</TD></TR>
+<TR><TD></TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>protected</TD><TD>ServiceUse.getService()</TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD>This method wrapps the call to EclipseAdaptor$DomParsingService.getService() in a privileged action.</TD></TR>
+<TR><TD>private</TD><TD>EclipseAdaptor$DomParsingService.getService(Bundle,ServiceRegistration)</TD><TD>org.eclipse.core.runtime.adaptor</TD><TD>Not tainted.</TD></TR>
+</TABLE>
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.io.FilePermission "&LT&LT ALL FILES &GT&GT","read"</LI>
+<LI>permission java.lang.RuntimePermission "getClassLoader"</LI>
+<LI>permission java.lang.RuntimePermission "modifyThread"</LI>
+<LI>permission java.net.NetPermission "specifyStreamHandler"</LI>
+<LI>permission java.net.SocketPermission "*", "resolve,connect"</LI>
+<LI>permission java.util.PropertyPermission "*", "read,write"</LI>
+<LI>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", "get"</LI>
+<LI>permission org.osgi.framework.ServicePermission "", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "", "get"</LI>
+<LI>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get"</LI>
+</UL>
+<BR>
+<B>Conclusion:</B>No need to grant these permissions, or wrap the code.  The OSGI plug-in calls this method under a privileged action.
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 285 java.lang.Object getService( org.osgi.framework.Bundle, org.osgi.framework.ServiceRegistration )
+   Permission: java.io.FilePermission "???file???", "read"
+      Primordial/javax.xml.parsers.SAXParserFactory javax.xml.parsers.SAXParserFactory.newInstance(  )
+   Permission: java.lang.RuntimePermission "getClassLoader"
+      Primordial/javax.xml.parsers.SAXParserFactory javax.xml.parsers.SAXParserFactory.newInstance(  )
+   Permission: java.lang.RuntimePermission "modifyThread"
+      Primordial/javax.xml.parsers.SAXParserFactory javax.xml.parsers.SAXParserFactory.newInstance(  )
+   Permission: java.net.NetPermission "specifyStreamHandler"
+      Primordial/javax.xml.parsers.SAXParserFactory javax.xml.parsers.SAXParserFactory.newInstance(  )
+   Permission: java.net.SocketPermission "", "resolve"
+      Primordial/javax.xml.parsers.SAXParserFactory javax.xml.parsers.SAXParserFactory.newInstance(  )
+   Permission: java.net.SocketPermission ":???port???", "connect"
+      Primordial/javax.xml.parsers.SAXParserFactory javax.xml.parsers.SAXParserFactory.newInstance(  )
+   Permission: java.net.SocketPermission "???host???", "resolve"
+      Primordial/javax.xml.parsers.SAXParserFactory javax.xml.parsers.SAXParserFactory.newInstance(  )
+   Permission: java.net.SocketPermission "???host???:???port???", "connect"
+      Primordial/javax.xml.parsers.SAXParserFactory javax.xml.parsers.SAXParserFactory.newInstance(  )
+   Permission: java.net.SocketPermission "localhost", "resolve"
+      Primordial/javax.xml.parsers.SAXParserFactory javax.xml.parsers.SAXParserFactory.newInstance(  )
+   Permission: java.net.SocketPermission "localhost:1024-", "resolve"
+      Primordial/javax.xml.parsers.SAXParserFactory javax.xml.parsers.SAXParserFactory.newInstance(  )
+   Permission: java.net.SocketPermission "localhost:1024-:???port???", "connect"
+      Primordial/javax.xml.parsers.SAXParserFactory javax.xml.parsers.SAXParserFactory.newInstance(  )
+   Permission: java.net.SocketPermission "localhost:???port???", "connect"
+      Primordial/javax.xml.parsers.SAXParserFactory javax.xml.parsers.SAXParserFactory.newInstance(  )
+   Permission: java.util.PropertyPermission "*", "read,write"
+      Primordial/javax.xml.parsers.SAXParserFactory javax.xml.parsers.SAXParserFactory.newInstance(  )
+   Permission: java.util.PropertyPermission "java.home", "read"
+      Primordial/javax.xml.parsers.SAXParserFactory javax.xml.parsers.SAXParserFactory.newInstance(  )
+   Permission: java.util.PropertyPermission "java.protocol.handler.pkgs", "read"
+      Primordial/javax.xml.parsers.SAXParserFactory javax.xml.parsers.SAXParserFactory.newInstance(  )
+   Permission: java.util.PropertyPermission "java.vendor.url.bug", "read"
+      Primordial/javax.xml.parsers.SAXParserFactory javax.xml.parsers.SAXParserFactory.newInstance(  )
+   Permission: java.util.PropertyPermission "javax.xml.parsers.SAXParserFactory", "read"
+      Primordial/javax.xml.parsers.SAXParserFactory javax.xml.parsers.SAXParserFactory.newInstance(  )
+   Permission: java.util.logging.LoggingPermission "control", ""
+      Primordial/javax.xml.parsers.SAXParserFactory javax.xml.parsers.SAXParserFactory.newInstance(  )
+   Permission: org.osgi.framework.ServicePermission "", ""
+      Primordial/javax.xml.parsers.SAXParserFactory javax.xml.parsers.SAXParserFactory.newInstance(  )
+   Permission: org.osgi.framework.ServicePermission "", "get"
+      Primordial/javax.xml.parsers.SAXParserFactory javax.xml.parsers.SAXParserFactory.newInstance(  )
+   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", ""
+      Primordial/javax.xml.parsers.SAXParserFactory javax.xml.parsers.SAXParserFactory.newInstance(  )
+   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", "get"
+      Primordial/javax.xml.parsers.SAXParserFactory javax.xml.parsers.SAXParserFactory.newInstance(  )
+   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", ""
+      Primordial/javax.xml.parsers.SAXParserFactory javax.xml.parsers.SAXParserFactory.newInstance(  )
+   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get"
+      Primordial/javax.xml.parsers.SAXParserFactory javax.xml.parsers.SAXParserFactory.newInstance(  )
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+   283. 	private class SaxParsingService implements ServiceFactory {
+   284. 		public Object getService(Bundle bundle, ServiceRegistration registration) {
+   285. 			return SAXParserFactory.newInstance();
+   286. 		}
+   287. 
+   288. 		public void ungetService(Bundle bundle, ServiceRegistration registration, Object service) {
+   289. 			//Do nothing.
+   290. 		}
+   291. 	}
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B>
+<BR><BR>
+<TABLE border="2">
+<TR><TD bgcolor="silver">Access Modifier</TD><TD bgcolor="silver">Class/method</TD><TD bgcolor="silver">Package</TD><TD bgcolor="silver">Analysis</TD></TR>
+<TR><TD></TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>protected</TD><TD>ServiceUse.getService()</TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD>This method wrapps the call to EclipseAdaptor$SaxParsingService.getService() in a privileged action.</TD></TR>
+<TR><TD>private</TD><TD>EclipseAdaptor$SaxParsingService.getService(Bundle,ServiceRegistration)</TD><TD>org.eclipse.core.runtime.adaptor</TD><TD>Not tainted.</TD></TR>
+</TABLE>
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.io.FilePermission "&LT&LT ALL FILES &GT&GT","read"</LI>
+<LI>permission java.lang.RuntimePermission "getClassLoader"</LI>
+<LI>permission java.lang.RuntimePermission "modifyThread"</LI>
+<LI>permission java.net.NetPermission "specifyStreamHandler"</LI>
+<LI>permission java.net.SocketPermission "*", "resolve,connect"</LI>
+<LI>permission java.util.PropertyPermission "*", "read,write"</LI>
+<LI>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", "get"</LI>
+<LI>permission org.osgi.framework.ServicePermission "", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "", "get"</LI>
+<LI>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get"</LI>
+</UL>
+<BR>
+<B>Conclusion:</B>No need to grant these permissions, or wrap the code.  The OSGI plug-in calls this method under a privileged action.
+
+<!-- /tpl:put -->
+<!--  end of main content -->
+</td>
+</tr>
+</table>
+<!--  end of main frame table -->
+</body>
+</html>
+
+<!-- /tpl:insert -->

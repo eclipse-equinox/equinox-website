@@ -1,0 +1,138 @@
+<!-- tpl:insert page="/equinox.htpl" --><!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+<title>Equinox Security Home</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<style type="text/css">
+.input {background: "#ffffcc";color: "#000000" ;font-weight: normal;}
+a.nav:link { text-decoration: none; color: "#000000"; }
+a.nav:visited { text-decoration: none; color: "#000000"; }
+a.nav:hover { text-decoration: underline; color: "#000000"; }
+</style>
+<link rel="stylesheet" href="http://www.eclipse.org/nav_style.css" type="text/css">
+<link rel="stylesheet2" href="http://eclipse.org/default_style.css" type="text/css">
+</head>
+<body bgcolor="#ffffff" link="#0000ee" vlink="#551a8b" alink="#ff0000" leftmargin="0" marginheight="0" topmargin="0" rightmargin="0">
+<!--  start of banner  -->
+ <table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" >
+  <tr>
+   <td WIDTH="100%">
+    <table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" BGCOLOR="#006699" >
+
+     <tr>
+          <td BGCOLOR="#000000" width="116" ><a href="http://www.eclipse.org" target="_top"><img src="http://www.eclipse.org/images/EclipseBannerPic.jpg" width="115" height="50" border="0"></a></td>
+          <td WIDTH="637"><img SRC="http://www.eclipse.org/images/gradient.jpg" BORDER=0 height=50 width=282></td>
+          <td WIDTH="250" nowrap><font align="right" color="white" size="6" class=indextop>equinox security</font></td>
+     </tr>
+    </table>
+   </td>
+  </tr>
+ </table><!--  end of banner -->
+<!--  start of main frame table -->
+<table BORDER=0 CELLSPACING=0 CELLPADDING="4" WIDTH="100%" HEIGHT="100%" BGCOLOR="#90C8FF">
+<tr><td width="160" valign="top" bgcolor="#6699CC" nowrap>
+<!--  start of navigator -->
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%"  BGCOLOR="#90C8FF" >
+<tr><td>
+	<table BORDER=0 CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%"  BGCOLOR="#90C8FF" >
+	  <tr> 
+	    <td VALIGN=CENTER HEIGHT="21" BGCOLOR="#0080C0">&nbsp; <a href="http://www.eclipse.org/equinox" target="_top" class="navhead"> 
+	      equinox home</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER> 
+	    <td HEIGHT="21">&nbsp; <a name="overview" href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/index.html" class="nav" >overview</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/ejs.html" class="nav">rcp plug-in analysis</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/rcp/keystore.html" class="nav" >keystore/credentialstore</a></td>
+	  </tr>
+
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/rcp/end2end.html" class="nav" >end to end security</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/downloads.html" class="nav" >downloads</a></td>
+	  </tr>
+
+	</table>
+</td></tr>
+</table>
+<!--  end of navigator -->
+</td>
+<!--  start of main content  -->
+<td bgcolor="white" valign="top" >
+<!-- tpl:put name="bodyarea" -->
+<P></P><H1>ExtensionsParser.java changes</H1>
+<B>Detail</B><BR><BR>
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 584 org.eclipse.core.internal.registry.Extension[] fixRenamedExtensionPoints( org.eclipse.core.internal.registry.Extension[] )
+   Permission: java.util.PropertyPermission "*", "read,write"
+      Primordial/java.util.Properties java.lang.System.getProperties(  )
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+   579. 	/**
+   580. 	 * Fixes up the extension declarations in the given pre-3.0 plug-in or fragment to compensate
+   581. 	 * for extension points that were renamed between release 2.1 and 3.0.
+   582. 	 */
+   583. 	private Extension[] fixRenamedExtensionPoints(Extension[] extensions) {
+<FONT style="background-color:yellow;display;inline">   000.			Object extensionMunging = null;
+   000.			if (System.getSecurityManager()==null)
+   000.				extensionMunging = System.getProperty(NO_EXTENSION_MUNGING); //$NON-NLS-1$
+   000.			else
+   000.				extensionMunging = AccessController.doPrivileged(new GetSystemPropertyAction(NO_EXTENSION_MUNGING)); //$NON-NLS-1$
+   584. 		if (extensions == null || (schemaVersion != null && schemaVersion.equals("3.0")) || extensionMunging != null) //$NON-NLS-1$</FONT>
+   585. 			return extensions;
+   586. 		for (int i = 0; i < extensions.length; i++) {
+   587. 			Extension extension = extensions[i];
+   588. 			String oldPointId = extension.getExtensionPointIdentifier();
+   589. 			String newPointId = (String) extensionPointMap.get(oldPointId);
+   590. 			if (newPointId != null) {
+   591. 				extension.setExtensionPointIdentifier(newPointId);
+   592. 			}
+   593. 		}
+   594. 		return extensions;
+   595. 	}
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B> Not applicable.  This method is retrieving a system property with a hard-coded string.   Simply wrap this
+instruction in a privileged action.
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>java.util.PropertyPermission "eclipse.noExtensionMunging", "read,write"</LI>
+</UL>
+<BR>
+<B>Conclusion:</B> Wrap the retrieval of the system property in a privileged action, and grant
+the required permission to runtime.jar.   Also (use System.getProperty() instead of System.getProperties().get().
+This limits the scope requirement for the retrieved key.
+<!-- /tpl:put -->
+<!--  end of main content -->
+</td>
+</tr>
+</table>
+<!--  end of main frame table -->
+</body>
+</html>
+
+<!-- /tpl:insert -->

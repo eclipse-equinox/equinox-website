@@ -1,0 +1,349 @@
+<!-- tpl:insert page="/equinox.htpl" --><!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+<title>Equinox Security Home</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<style type="text/css">
+.input {background: "#ffffcc";color: "#000000" ;font-weight: normal;}
+a.nav:link { text-decoration: none; color: "#000000"; }
+a.nav:visited { text-decoration: none; color: "#000000"; }
+a.nav:hover { text-decoration: underline; color: "#000000"; }
+</style>
+<link rel="stylesheet" href="http://www.eclipse.org/nav_style.css" type="text/css">
+<link rel="stylesheet2" href="http://eclipse.org/default_style.css" type="text/css">
+</head>
+<body bgcolor="#ffffff" link="#0000ee" vlink="#551a8b" alink="#ff0000" leftmargin="0" marginheight="0" topmargin="0" rightmargin="0">
+<!--  start of banner  -->
+ <table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" >
+  <tr>
+   <td WIDTH="100%">
+    <table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" BGCOLOR="#006699" >
+
+     <tr>
+          <td BGCOLOR="#000000" width="116" ><a href="http://www.eclipse.org" target="_top"><img src="http://www.eclipse.org/images/EclipseBannerPic.jpg" width="115" height="50" border="0"></a></td>
+          <td WIDTH="637"><img SRC="http://www.eclipse.org/images/gradient.jpg" BORDER=0 height=50 width=282></td>
+          <td WIDTH="250" nowrap><font align="right" color="white" size="6" class=indextop>equinox security</font></td>
+     </tr>
+    </table>
+   </td>
+  </tr>
+ </table><!--  end of banner -->
+<!--  start of main frame table -->
+<table BORDER=0 CELLSPACING=0 CELLPADDING="4" WIDTH="100%" HEIGHT="100%" BGCOLOR="#90C8FF">
+<tr><td width="160" valign="top" bgcolor="#6699CC" nowrap>
+<!--  start of navigator -->
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%"  BGCOLOR="#90C8FF" >
+<tr><td>
+	<table BORDER=0 CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%"  BGCOLOR="#90C8FF" >
+	  <tr> 
+	    <td VALIGN=CENTER HEIGHT="21" BGCOLOR="#0080C0">&nbsp; <a href="http://www.eclipse.org/equinox" target="_top" class="navhead"> 
+	      equinox home</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER> 
+	    <td HEIGHT="21">&nbsp; <a name="overview" href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/index.html" class="nav" >overview</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/ejs.html" class="nav">rcp plug-in analysis</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/rcp/keystore.html" class="nav" >keystore/credentialstore</a></td>
+	  </tr>
+
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/rcp/end2end.html" class="nav" >end to end security</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/downloads.html" class="nav" >downloads</a></td>
+	  </tr>
+
+	</table>
+</td></tr>
+</table>
+<!--  end of navigator -->
+</td>
+<!--  start of main content  -->
+<td bgcolor="white" valign="top" >
+<!-- tpl:put name="bodyarea" -->
+<P></P><H1>Preferences.java changes</H1>
+<B>Detail</B><BR><BR>
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 312 void exportPreferences( org.eclipse.core.runtime.IPath )
+   Permission: java.io.FilePermission "???file???", "write"
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+   304. 	public static void exportPreferences(IPath path) throws CoreException {
+   305. 		File file = path.toFile();
+   306. 		if (file.exists())
+   307. 			file.delete();
+   308. 		file.getParentFile().mkdirs();
+   309. 		IPreferencesService service = Platform.getPreferencesService();
+   310. 		OutputStream output = null;
+   311. 		try {
+   312. 			output = new BufferedOutputStream(new <FONT style="background-color:yellow;display;inline">FileOutputStream(file)</FONT>);
+   313. 			IEclipsePreferences node = (IEclipsePreferences) service.getRootNode().node(Plugin.PLUGIN_PREFERENCE_SCOPE);
+   314. 			service.exportPreferences(node, output, null);
+   315. 		} catch (FileNotFoundException e) {
+   316. 			String message = Policy.bind("preferences.errorWriting", file.toString(), e.getMessage()); //$NON-NLS-1$
+   317. 			IStatus status = new Status(IStatus.ERROR, Platform.PI_RUNTIME, IStatus.ERROR, message, e);
+   318. 			throw new CoreException(status);
+   319. 		} finally {
+   320. 			if (output != null)
+   321. 				try {
+   322. 					output.close();
+   323. 				} catch (IOException e) {
+   324. 					// ignore
+   325. 				}
+   326. 		}
+   327. 	}
+
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B> N/A All callers must have the required permissions to read/write/delete objects in the filesystem.
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.io.FilePermission "&LT&LT ALL FILES &GT&GT","write"</LI>
+</UL>
+<BR>
+<B>Conclusion:</B>Grant the required permissions to runtime.jar.  Any caller write to a file in the
+filesystem must have permission explicitly granted. - Fine grained access control.
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 359 void importPreferences( org.eclipse.core.runtime.IPath )
+   Permission: java.io.FilePermission "???file???", "read"
+      Primordial/void java.io.FileInputStream.<init>( java.io.File )
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+   351. 	public static void importPreferences(IPath path) throws CoreException {
+   352. 		if (!path.toFile().exists()) {
+   353. 			String msg = Policy.bind("preferences.fileNotFound", path.toOSString()); //$NON-NLS-1$
+   354. 			throw new CoreException(new Status(IStatus.ERROR, Platform.PI_RUNTIME, 1, msg, null));
+   355. 		}
+   356. 		IPreferencesService service = Platform.getPreferencesService();
+   357. 		InputStream input = null;
+   358. 		try {
+   359. 			input = new BufferedInputStream(new <FONT style="background-color:yellow;display;inline">FileInputStream(path.toFile())</FONT>);
+   360. 			service.importPreferences(input);
+   361. 		} catch (FileNotFoundException e) {
+   362. 			String msg = Policy.bind("preferences.fileNotFound", path.toOSString()); //$NON-NLS-1$
+   363. 			throw new CoreException(new Status(IStatus.ERROR, Platform.PI_RUNTIME, 1, msg, e));
+   364. 		} finally {
+   365. 			if (input != null)
+   366. 				try {
+   367. 					input.close();
+   368. 				} catch (IOException e) {
+   369. 					// ignore
+   370. 				}
+   371. 		}
+   372. 	}
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B> N/A all callers must have explicit permission to read from the filesystem.
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.io.FilePermission "&LT&LT ALL FILES &GT&GT","read"</LI>
+</UL>
+<BR>
+<B>Conclusion:</B>Grant the required permission to runtime.jar.   Any plugin wishing to read from the 
+filesystem at a given location must be given explicit permission to do so via permission.perm in it's metadata folder.
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 1237 void load( java.io.InputStream )
+   Permission: java.lang.RuntimePermission "getClassLoader"
+      Primordial/void java.util.Properties.load( java.io.InputStream )
+   Permission: java.util.PropertyPermission "java.vendor.url.bug", "read"
+      Primordial/void java.util.Properties.load( java.io.InputStream )
+   Permission: java.util.logging.LoggingPermission "control", ""
+      Primordial/void java.util.Properties.load( java.io.InputStream )
+         THE RECEIVER OF THIS METHOD CALL IS TAINTED.
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+  1236. 	public void load(InputStream in) throws IOException {
+  1237. 		<FONT style="background-color:yellow;display;inline">properties.load(in);</FONT>
+  1238. 		dirty = false;
+  1239. 	}
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B> There is only one reference to Preferences.load(InputStream) in
+the eclipse framework.  It comes from the Java Development Tool component (jdt).  The call to this
+method should be wrapped in a privileged action within the JDT plug-in just after the input stream
+is opened.  See code update below for JavaProject.java:
+<BR><BR>
+<CODE>
+<PRE>
+	/*
+	 * load preferences from a shareable format (VCM-wise)
+	 */
+	 public Preferences loadPreferences() {
+	 	
+	 	Preferences preferences = new Preferences();
+	 	
+//		File prefFile = this.project.getLocation().append(PREF_FILENAME).toFile();
+		IPath projectMetaLocation = getPluginWorkingLocation();
+		if (projectMetaLocation != null) {
+			File prefFile = projectMetaLocation.append(PREF_FILENAME).toFile();
+			if (prefFile.exists()) { // load preferences from file
+				InputStream in = null;
+				try {
+					in = new BufferedInputStream(new FileInputStream(prefFile));
+					// Assert the caller has explicit read access to the above file.
+					<FONT style="background-color:yellow;display;inline">if (System.getSecurityManager()==null)</FONT>
+					   preferences.load(in);
+					<FONT style="background-color:yellow;display;inline">else
+					   AccessController.doPrivileged(new PreferencesLoadAction(in,preferences));</FONT>
+					return preferences;
+				} catch (IOException e) { // problems loading preference store - quietly ignore
+				} <FONT style="background-color:yellow;display;inline">catch (PrivilegedActionException e) { // problems loading preference store - quietly ignore
+        }</FONT> finally {
+					if (in != null) {
+						try {
+							in.close();
+						} catch (IOException e) { // ignore problems with close
+						}
+					}
+				}
+			}
+		}
+		return null;
+	 }
+
+</PRE>
+</CODE>
+<BR><BR>
+<TABLE border="2">
+<TR><TD bgcolor="silver">Access Modifier</TD><TD bgcolor="silver">Class/method</TD><TD bgcolor="silver">Package</TD><TD bgcolor="silver">Analysis</TD></TR>
+<TR><TD></TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>public</TD><TD>JavaProject.loadPreferences()</TD><TD>org.eclipse.jdt.internal.core</TD><TD>not tainted</TD></TR>
+<TR><TD>public</TD><TD>Preferences.load(InputStream in)</TD><TD>org.eclipse.core.runtime</TD><TD>Parameter 1 to this method is tainted.</TD></TR>
+</TABLE>
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.lang.RuntimePermission "getClassLoader"</LI>
+<LI>permission java.util.PropertyPermission "java.vendor.url.bug", "read"</LI>
+<LI>permission java.util.logging.LoggingPermission "control", ""</LI>
+</UL>
+<BR>
+<B>Conclusion:</B> Grant the required permissions to runtime.jar, and jdt.jar   Any caller wishing to read preferences will require the associated filepermission,
+ but not the permissions listed above.
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 1221 void store( java.io.OutputStream, java.lang.String )
+   Permission: java.lang.RuntimePermission "getClassLoader"
+      Primordial/void java.util.Properties.store( java.io.OutputStream, java.lang.String )
+         THE RECEIVER OF THIS METHOD CALL IS TAINTED.
+         PARAMETER #2 OF THIS METHOD CALL IS TAINTED
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+  1220. 	public void store(OutputStream out, String header) throws IOException {
+  1221. 		properties.store(out, header);
+  1222. 		dirty = false;
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B> There are several locations that reference Preferences.store().  
+<OL>
+<LI>Plugin.savePluginPreferences()- Calls EclipsePreferences.save(IPath) which already has a privileged wrapper to circumvent the
+"getClassLoader" requirement.
+</LI>
+<LI>The other comes from the Java Development Tool component (jdt).  The call to this method should be wrapped in a privileged 
+action within the JDT plug-in just after the input stream is opened.  See code update below for JavaProject.java:
+<BR><BR>
+<CODE>
+<PRE>
+	/**
+	 * Save project custom preferences to shareable file (.jprefs)
+	 */
+	private void savePreferences(Preferences preferences) {
+		
+		if (!JavaProject.hasJavaNature(this.project)) return; // ignore
+		
+		if (preferences == null || (!preferences.needsSaving() && preferences.propertyNames().length != 0)) {
+			// nothing to save
+			return;
+		}
+	
+		// preferences need to be saved
+		// the preferences file is located in the plug-in's state area
+		// at a well-known name (.jprefs)
+//		File prefFile = this.project.getLocation().append(PREF_FILENAME).toFile();
+		File prefFile = getPluginWorkingLocation().append(PREF_FILENAME).toFile();
+		if (preferences.propertyNames().length == 0) {
+			// there are no preference settings
+			// rather than write an empty file, just delete any existing file
+			if (prefFile.exists()) {
+				prefFile.delete(); // don't worry if delete unsuccessful
+			}
+			return;
+		}
+		
+		// write file, overwriting an existing one
+		OutputStream out = null;
+		try {
+			// do it as carefully as we know how so that we don't lose/mangle
+			// the setting in times of stress
+			out = new BufferedOutputStream(new FileOutputStream(prefFile));
+			<FONT style="background-color:yellow;display;inline">if (System.getSecurityManager()==null)</FONT>
+			  preferences.store(out, null);
+			<FONT style="background-color:yellow;display;inline">else
+			  AccessController.doPrivileged(new PreferencesStoreAction(preferences,out,null));</FONT>
+		} catch (IOException e) { // problems saving preference store - quietly ignore
+		<FONT style="background-color:yellow;display;inline">} catch (PrivilegedActionException e) { // problems saving preference store - quietly ignore
+    }</FONT> finally {
+			if (out != null) {
+				try {
+					out.close();
+				} catch (IOException e) { // ignore problems with close
+				}
+			}
+		}
+	}
+
+</PRE>
+</CODE>
+</LI>
+</OL>
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.lang.RuntimePermission "getClassLoader"</LI>
+</UL>
+<BR>
+<B>Conclusion:</B>Grant the required permission to runtime.jar, and jdt.jar.  Wrap references with jdt in a privileged action.
+<!-- /tpl:put -->
+<!--  end of main content -->
+</td>
+</tr>
+</table>
+<!--  end of main frame table -->
+</body>
+</html>
+
+<!-- /tpl:insert -->

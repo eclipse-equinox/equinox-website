@@ -1,0 +1,450 @@
+<!-- tpl:insert page="/equinox.htpl" --><!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+<title>Equinox Security Home</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<style type="text/css">
+.input {background: "#ffffcc";color: "#000000" ;font-weight: normal;}
+a.nav:link { text-decoration: none; color: "#000000"; }
+a.nav:visited { text-decoration: none; color: "#000000"; }
+a.nav:hover { text-decoration: underline; color: "#000000"; }
+</style>
+<link rel="stylesheet" href="http://www.eclipse.org/nav_style.css" type="text/css">
+<link rel="stylesheet2" href="http://eclipse.org/default_style.css" type="text/css">
+</head>
+<body bgcolor="#ffffff" link="#0000ee" vlink="#551a8b" alink="#ff0000" leftmargin="0" marginheight="0" topmargin="0" rightmargin="0">
+<!--  start of banner  -->
+ <table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" >
+  <tr>
+   <td WIDTH="100%">
+    <table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" BGCOLOR="#006699" >
+
+     <tr>
+          <td BGCOLOR="#000000" width="116" ><a href="http://www.eclipse.org" target="_top"><img src="http://www.eclipse.org/images/EclipseBannerPic.jpg" width="115" height="50" border="0"></a></td>
+          <td WIDTH="637"><img SRC="http://www.eclipse.org/images/gradient.jpg" BORDER=0 height=50 width=282></td>
+          <td WIDTH="250" nowrap><font align="right" color="white" size="6" class=indextop>equinox security</font></td>
+     </tr>
+    </table>
+   </td>
+  </tr>
+ </table><!--  end of banner -->
+<!--  start of main frame table -->
+<table BORDER=0 CELLSPACING=0 CELLPADDING="4" WIDTH="100%" HEIGHT="100%" BGCOLOR="#90C8FF">
+<tr><td width="160" valign="top" bgcolor="#6699CC" nowrap>
+<!--  start of navigator -->
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%"  BGCOLOR="#90C8FF" >
+<tr><td>
+	<table BORDER=0 CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%"  BGCOLOR="#90C8FF" >
+	  <tr> 
+	    <td VALIGN=CENTER HEIGHT="21" BGCOLOR="#0080C0">&nbsp; <a href="http://www.eclipse.org/equinox" target="_top" class="navhead"> 
+	      equinox home</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER> 
+	    <td HEIGHT="21">&nbsp; <a name="overview" href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/index.html" class="nav" >overview</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/ejs.html" class="nav">rcp plug-in analysis</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/rcp/keystore.html" class="nav" >keystore/credentialstore</a></td>
+	  </tr>
+
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/rcp/end2end.html" class="nav" >end to end security</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/downloads.html" class="nav" >downloads</a></td>
+	  </tr>
+
+	</table>
+</td></tr>
+</table>
+<!--  end of navigator -->
+</td>
+<!--  start of main content  -->
+<td bgcolor="white" valign="top" >
+<!-- tpl:put name="bodyarea" -->
+<P></P><H1>PlatformActivator.java changes</H1>
+<B>Detail</B><BR><BR>
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 160 long computeRegistryStamp(  )
+   Permission: java.util.PropertyPermission "osgi.checkConfiguration", "read"
+      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+   158. 	private long computeRegistryStamp() {
+   159. 		// If the check config prop is false or not set then exit
+   160. 		if (!"true".equalsIgnoreCase(<FONT style="background-color:yellow;display;inline">System.getProperty(InternalPlatform.PROP_CHECK_CONFIG)</FONT>)) //$NON-NLS-1$  
+   161. 			return 0;
+   162. 		Bundle[] allBundles = context.getBundles();
+   163. 		long result = 0;
+   164. 		for (int i = 0; i < allBundles.length; i++) {
+   165. 			URL pluginManifest = allBundles[i].getEntry("plugin.xml"); //$NON-NLS-1$
+   166. 			if (pluginManifest == null)
+   167. 				pluginManifest = allBundles[i].getEntry("fragment.xml"); //$NON-NLS-1$
+   168. 			if (pluginManifest == null)
+   169. 				continue;
+   170. 			try {
+   171. 				URLConnection connection = pluginManifest.openConnection();
+   172. 				result ^= connection.getLastModified() + allBundles[i].getBundleId();
+   173. 			} catch (IOException e) {
+   174. 				return 0;
+   175. 			}
+   176. 		}
+   177. 		return result;
+   178. 	}
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B>This method is called by the OSGI framework wich executes the
+bundle activation process under a privileged action.  Since the framework already has all permissions,
+it will not be necessary to wrap this method in a privileged action.<BR>
+<BR><BR>
+<TABLE border="2">
+<TR><TD bgcolor="silver">Access Modifier</TD><TD bgcolor="silver">Class/method</TD><TD bgcolor="silver">Package</TD><TD bgcolor="silver">Analysis</TD></TR>
+<TR><TD></TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>private</TD><TD>--PlatformActivator.stopRegistry(BundleContext)</TD><TD></TD><TD></TD></TR>
+<TR><TD>public</TD><TD>--------PluginAtivator.start(BundleContext)</TD><TD>org.eclipse.core.internal.compatability</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD>--------BundleContextImpl.startActivator(BundleActivator)</TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>------PlatformActivator.start(BundleContext)</TD><TD></TD><TD></TD></TR>
+<TR><TD>private</TD><TD>----PlatformActivator.start(BundleContext)</TD><TD></TD><TD></TD></TR>
+<TR><TD>private</TD><TD>--PlatformActivator.startRegistry(BundleContext)</TD><TD></TD><TD></TD></TR>
+<TR><TD>protected</TD><TD>----------BundleContextImp.stop()</TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>--------PluginActivator.stop(BundleContext)</TD><TD>org.eclipse.core.internal.compatability</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD>--------BundleContextImp.stop()</TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>------PlatformActivator.stop(BundleContext)</TD><TD></TD><TD></TD></TR>
+<TR><TD>private</TD><TD>----PlatformActivator.stop(BundleContext)</TD><TD></TD><TD></TD></TR>
+<TR><TD>private</TD><TD>--PlatformActivator.stopRegistry(BundleContext)</TD><TD></TD><TD></TD></TR>
+<TR><TD>private</TD><TD>PlatformActivator.computeRegistryStamp</TD><TD>org.eclipse.core.internal.runtime</TD><TD>Not tainted, hard-coded string.</TD></TR>
+</TABLE>
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>java.util.PropertyPermission "osgi.checkConfiguration", "read"</LI>
+</UL>
+<BR>
+<B>Conclusion:</B>The framework (osgi plug-in) already has all permission and since it launches
+this method under a privileged action, it is not necessary to grant additional permissions.
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 89 void startRegistry( org.osgi.framework.BundleContext )
+   Permission: java.util.PropertyPermission "eclipse.noRegistryCache", "read"
+      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )
+Line# 97 void startRegistry( org.osgi.framework.BundleContext )
+   Permission: java.util.PropertyPermission "eclipse.noLazyRegistryCacheLoading", "read"
+      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )
+Line# 104 void startRegistry( org.osgi.framework.BundleContext )
+   Permission: java.io.FilePermission ".registry", "read"
+      Primordial/boolean java.io.File.isFile(  )
+Line# 117 void startRegistry( org.osgi.framework.BundleContext )
+   Permission: java.io.FilePermission ".registry", "read"
+      Primordial/boolean java.io.File.isFile(  )
+Line# 119 void startRegistry( org.osgi.framework.BundleContext )
+   Permission: java.util.PropertyPermission "eclipse.noRegistryFlushing", "read"
+      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+    86. 	private void startRegistry(BundleContext runtimeContext) {
+    87. 		boolean fromCache = true;
+    88. 		ExtensionRegistry registry = null;
+    89. 		if (!"true".equals(<FONT style="background-color:yellow;display;inline">System.getProperty(InternalPlatform.PROP_NO_REGISTRY_CACHE)</FONT>)) { //$NON-NLS-1$
+    90. 			// Try to read the registry from the cache first. If that fails, create a new registry
+    91. 			MultiStatus problems = new MultiStatus(Platform.PI_RUNTIME, ExtensionsParser.PARSE_PROBLEM, "Registry cache problems", null); //$NON-NLS-1$
+    92. 
+    93. 			long start = 0;
+    94. 			if (InternalPlatform.DEBUG)
+    95. 				start = System.currentTimeMillis();
+    96. 
+    97. 			boolean lazyLoading = !"true".equals(<FONT style="background-color:yellow;display;inline">System.getProperty(InternalPlatform.PROP_NO_LAZY_CACHE_LOADING)</FONT>); //$NON-NLS-1$
+    98. 			File cacheFile = null;
+    99. 			try {
+   100. 				cacheFile = InternalPlatform.getDefault().getRuntimeFileManager().lookup(".registry", false); //$NON-NLS-1$
+   101. 			} catch (IOException e) {
+   102. 				//Ignore the exception. The registry will be rebuilt from the xml files.
+   103. 			}
+   104. 			if (cacheFile == null || !<FONT style="background-color:yellow;display;inline">cacheFile.isFile()</FONT>) {
+   105. 				Location currentLocation = Platform.getConfigurationLocation();
+   106. 				Location parentLocation = null;
+   107. 				if (currentLocation != null && (parentLocation = currentLocation.getParentLocation()) != null) {
+   108. 					try {
+   109. 						FileManager fileManagerShared = new FileManager(new File(parentLocation.getURL().getFile() + "/" + Platform.PI_RUNTIME), "none"); //$NON-NLS-1$
+   110. 						fileManagerShared.open(false);
+   111. 						cacheFile = fileManagerShared.lookup(".registry", false);
+   112. 					} catch (IOException e) {
+   113. 						//Ignore the exception. The registry will be rebuilt from the xml files.
+   114. 					}
+   115. 				}
+   116. 			}
+   117. 			if (cacheFile != null && <FONT style="background-color:yellow;display;inline">cacheFile.isFile()</FONT>) {
+   118. 				registryStamp = computeRegistryStamp(); //$NON-NLS-1$
+   119. 				boolean flushable = !"true".equals(<FONT style="background-color:yellow;display;inline">System.getProperty(InternalPlatform.PROP_NO_REGISTRY_FLUSHING)</FONT>); //$NON-NLS-1$
+   120. 				registry = new RegistryCacheReader(cacheFile, problems, lazyLoading, flushable).loadCache(registryStamp);
+   121. 			}
+   122. 			if (InternalPlatform.DEBUG && registry != null)
+   123. 				System.out.println("Reading registry cache: " + (System.currentTimeMillis() - start)); //$NON-NLS-1$
+   124. 
+   125. 			if (InternalPlatform.DEBUG_REGISTRY) {
+   126. 				if (registry == null)
+   127. 					System.out.println("Reloading registry from manifest files..."); //$NON-NLS-1$
+   128. 				else
+   129. 					System.out.println("Using registry cache " + (lazyLoading ? "with" : "without") + " lazy element loading..."); //$NON-NLS-1$//$NON-NLS-2$//$NON-NLS-3$//$NON-NLS-4$
+   130. 			}
+   131. 			// TODO log any problems that occurred in loading the cache.
+   132. 			if (!problems.isOK())
+   133. 				System.out.println(problems);
+   134. 		}
+   135. 		if (registry == null) {
+   136. 			fromCache = false;
+   137. 			registry = new ExtensionRegistry();
+   138. 		}
+   139. 		// need to set the registry in InternalPlatform before calling any code that may rely on it
+   140. 		InternalPlatform.getDefault().setExtensionRegistry(registry);
+   141. 
+   142. 		// register a listener to catch new bundle installations/resolutions.
+   143. 		pluginBundleListener = new EclipseBundleListener(registry);
+   144. 		runtimeContext.addBundleListener(pluginBundleListener);
+   145. 
+   146. 		// populate the registry with all the currently installed bundles.
+   147. 		// There is a small window here while processBundles is being
+   148. 		// called where the pluginBundleListener may receive a BundleEvent 
+   149. 		// to add/remove a bundle from the registry.  This is ok since
+   150. 		// the registry is a synchronized object and will not add the
+   151. 		// same bundle twice.
+   152. 		if (!fromCache)
+   153. 			pluginBundleListener.processBundles(runtimeContext.getBundles());
+   154. 
+   155. 		runtimeContext.registerService(IExtensionRegistry.class.getName(), registry, new Hashtable()); //$NON-NLS-1$
+   156. 	}
+
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B>
+<BR><BR>
+<TABLE border="2">
+<TR><TD bgcolor="silver">Access Modifier</TD><TD bgcolor="silver">Class/method</TD><TD bgcolor="silver">Package</TD><TD bgcolor="silver">Analysis</TD></TR>
+<TR><TD></TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>private</TD><TD>--PlatformActivator.stopRegistry(BundleContext)</TD><TD></TD><TD></TD></TR>
+<TR><TD>public</TD><TD>--------PluginAtivator.start(BundleContext)</TD><TD>org.eclipse.core.internal.compatability</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD>--------BundleContextImpl.startActivator(BundleActivator)</TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>------PlatformActivator.start(BundleContext)</TD><TD></TD><TD></TD></TR>
+<TR><TD>public</TD><TD>PlatformActivator.startRegistry(BundleContext)</TD><TD>org.eclipse.core.internal.runtime</TD><TD>Not tainted.  Hard-coded strings passed to System.getProperty().</TD></TR>
+</TABLE>
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.util.PropertyPermission "eclipse.noRegistryCache", "read"</LI>
+<LI>permission java.util.PropertyPermission "eclipse.noLazyRegistryCacheLoading", "read"</LI>
+<LI>permission java.io.FilePermission ".registry", "read"</LI>
+<LI>permission java.util.PropertyPermission "eclipse.noRegistryFlushing", "read"</LI>
+<LI>permission java.io.FilePermission "&LT&LT ALL FILES &GT&GT","read"</LI>
+</UL>
+<BR>
+<B>Conclusion:</B>No need to wrap any of these operations since they are only called by the framework during a start operation, and the start operation for
+a bundle is wrapped in a privileged action.
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 207 void stopRegistry( org.osgi.framework.BundleContext )
+   Permission: java.io.FilePermission "", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission "-1", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission "-2", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission "-2147483648", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission "-3", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission "-9223372036854775808", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission "..", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission ".bundledata", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission ".log", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission ".manager", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission ".metadata", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission ".options", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission ".plugins", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission ".registry", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission ".settings", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission ".state", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission "/", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission "0", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission "1", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission "1.3", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission "10", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission "13", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission "2", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission "3", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission "3.0.0", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission "4", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission "5", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission "6", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission "7", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission "8", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission "9", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission "???System Property Value???", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission "???file???", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission "Eclipse", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission "GMT", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission "bundles", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission "carbon", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission "charset", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission "configuration", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission "false", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission "file-extensions", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission "file-names", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission "instance", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission "manifests", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission "motif", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission "org.eclipse.core.runtime", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission "org.eclipse.core.runtime.adaptor/resolver/timing/value", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission "org.eclipse.osgi", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission "org.eclipse.osgi/debug/packageadmin/timing/value", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission "osgi.bundlestore", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission "plugin_customization.ini", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission "pref_store.ini", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission "preferences", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission "solaris", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission "true", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission "unknown", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission "user", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission "win32", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission "workspace", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission "x86", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File 
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+   195. 	private void stopRegistry(BundleContext runtimeContext) {
+   196. 		runtimeContext.removeBundleListener(this.pluginBundleListener);
+   197. 		ExtensionRegistry registry = (ExtensionRegistry) InternalPlatform.getDefault().getRegistry();
+   198. 		if (registry == null)
+   199. 			return;
+   200. 		try {
+   201. 			if (!registry.isDirty())
+   202. 				return;
+   203. 			FileManager manager = InternalPlatform.getDefault().getRuntimeFileManager();
+   204. 			File cacheFile = null;
+   205. 			try {
+   206. 				manager.lookup(".registry", true); //$NON-NLS-1$
+   207. 				cacheFile = <FONT style="background-color:yellow;display;inline">File.createTempFile("registry", ".new", manager.getBase()</FONT>); //$NON-NLS-1$ //$NON-NLS-2$
+   208. 			} catch (IOException e) {
+   209. 				return; //Ignore the exception since we can recompute the cache
+   210. 			}
+   211. 			new RegistryCacheWriter(cacheFile).saveCache(registry, computeRegistryStamp());
+   212. 			try {
+   213. 				manager.update(new String[] {".registry"}, new String[] {cacheFile.getName()}); //$NON-NLS-1$
+   214. 			} catch (IOException e) {
+   215. 				//Ignore the exception since we can recompute the cache
+   216. 			}
+   217. 		} finally {
+   218. 			InternalPlatform.getDefault().setExtensionRegistry(null);
+   219. 		}
+   220. 	}
+
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B>The reference trace indicates that these methods are only called by the OSGI BundleContextImpl, and it is run under a privileged action.  Consequently,
+no privileges, or privilege action wrappers are needed since the OSGI framework runs with all permissions.
+<BR><BR>
+<TABLE border="2">
+<TR><TD bgcolor="silver">Access Modifier</TD><TD bgcolor="silver">Class/method</TD><TD bgcolor="silver">Package</TD><TD bgcolor="silver">Analysis</TD></TR>
+<TR><TD></TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>protected</TD><TD>----------BundleContextImp.stop()</TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>--------PluginActivator.stop(BundleContext)</TD><TD>org.eclipse.core.internal.compatability</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD>--------BundleContextImp.stop()</TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>------PlatformActivator.stop(BundleContext)</TD><TD>org.eclipse.core.internal.runtime</TD><TD></TD></TR>
+<TR><TD>private</TD><TD><PRE>PlatformActivator.stopRegistry(BundleContext)</PRE></TD><TD>org.eclipse.core.internal.runtime</TD><TD>manager.getBase() is tainted.</TD></TR>
+</TABLE>
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.io.FilePermission "&LT&LT ALL FILES &GT&GT","read,write"</LI>
+</UL>
+<BR>
+<B>Conclusion:</B>No need to grant permissions, or wrap with a privileged action since these methods are called by the OSGI framework under a privileged action.
+<!-- /tpl:put -->
+<!--  end of main content -->
+</td>
+</tr>
+</table>
+<!--  end of main frame table -->
+</body>
+</html>
+
+<!-- /tpl:insert -->

@@ -1,0 +1,284 @@
+<!-- tpl:insert page="/equinox.htpl" --><!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+<title>Equinox Security Home</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<style type="text/css">
+.input {background: "#ffffcc";color: "#000000" ;font-weight: normal;}
+a.nav:link { text-decoration: none; color: "#000000"; }
+a.nav:visited { text-decoration: none; color: "#000000"; }
+a.nav:hover { text-decoration: underline; color: "#000000"; }
+</style>
+<link rel="stylesheet" href="http://www.eclipse.org/nav_style.css" type="text/css">
+<link rel="stylesheet2" href="http://eclipse.org/default_style.css" type="text/css">
+</head>
+<body bgcolor="#ffffff" link="#0000ee" vlink="#551a8b" alink="#ff0000" leftmargin="0" marginheight="0" topmargin="0" rightmargin="0">
+<!--  start of banner  -->
+ <table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" >
+  <tr>
+   <td WIDTH="100%">
+    <table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" BGCOLOR="#006699" >
+
+     <tr>
+          <td BGCOLOR="#000000" width="116" ><a href="http://www.eclipse.org" target="_top"><img src="http://www.eclipse.org/images/EclipseBannerPic.jpg" width="115" height="50" border="0"></a></td>
+          <td WIDTH="637"><img SRC="http://www.eclipse.org/images/gradient.jpg" BORDER=0 height=50 width=282></td>
+          <td WIDTH="250" nowrap><font align="right" color="white" size="6" class=indextop>equinox security</font></td>
+     </tr>
+    </table>
+   </td>
+  </tr>
+ </table><!--  end of banner -->
+<!--  start of main frame table -->
+<table BORDER=0 CELLSPACING=0 CELLPADDING="4" WIDTH="100%" HEIGHT="100%" BGCOLOR="#90C8FF">
+<tr><td width="160" valign="top" bgcolor="#6699CC" nowrap>
+<!--  start of navigator -->
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%"  BGCOLOR="#90C8FF" >
+<tr><td>
+	<table BORDER=0 CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%"  BGCOLOR="#90C8FF" >
+	  <tr> 
+	    <td VALIGN=CENTER HEIGHT="21" BGCOLOR="#0080C0">&nbsp; <a href="http://www.eclipse.org/equinox" target="_top" class="navhead"> 
+	      equinox home</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER> 
+	    <td HEIGHT="21">&nbsp; <a name="overview" href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/index.html" class="nav" >overview</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/ejs.html" class="nav">rcp plug-in analysis</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/rcp/keystore.html" class="nav" >keystore/credentialstore</a></td>
+	  </tr>
+
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/rcp/end2end.html" class="nav" >end to end security</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/downloads.html" class="nav" >downloads</a></td>
+	  </tr>
+
+	</table>
+</td></tr>
+</table>
+<!--  end of navigator -->
+</td>
+<!--  start of main content  -->
+<td bgcolor="white" valign="top" >
+<!-- tpl:put name="bodyarea" -->
+<P></P><H1>DevClassPathHelper.java changes</H1>
+<B>Detail</B><BR><BR>
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 26 void <clinit>(  )
+   Permission: java.util.PropertyPermission "osgi.dev", "read"
+      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )
+Line# 30 void &LT clinit &GT(  )
+   Permission: java.lang.RuntimePermission "getClassLoader"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.lang.RuntimePermission "modifyThread"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.NetPermission "specifyStreamHandler"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission "", "resolve"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission ":???port???", "connect"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission "???host???", "resolve"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission "???host???:???port???", "connect"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission "localhost", "resolve"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission "localhost:1024-", "resolve"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission "localhost:1024-:???port???", "connect"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission "localhost:???port???", "connect"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.util.PropertyPermission "*", "read,write"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.util.PropertyPermission "java.protocol.handler.pkgs", "read"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "", ""
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "", "get"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", ""
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", "get"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", ""
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+         PARAMETER #1 OF THIS METHOD CALL IS TAINTED
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+    24. 	static {
+    25. 		// Check the osgi.dev property to see if dev classpath entries have been defined.
+    26. 		<FONT style="background-color:yellow;display;inline">String osgiDev = System.getProperty(InternalPlatform.PROP_DEV);</FONT>
+    27. 		if (osgiDev != null) {
+    28. 			try {
+    29. 				inDevelopmentMode = true;
+    30. 				<FONT style="background-color:yellow;display;inline">URL location = new URL(osgiDev);</FONT>
+    31. 				devProperties = load(location);
+    32. 				if (devProperties != null)
+    33. 					devDefaultClasspath = getArrayFromList(devProperties.getProperty("*")); //$NON-NLS-1$
+    34. 			} catch (MalformedURLException e) {
+    35. 				devDefaultClasspath = getArrayFromList(osgiDev);
+    36. 			}
+    37. 		}
+    38. 	}
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B>
+<BR><BR>
+<TABLE border="2">
+<TR><TD bgcolor="silver">Access Modifier</TD><TD bgcolor="silver">Class/method</TD><TD bgcolor="silver">Package</TD><TD bgcolor="silver">Analysis</TD></TR>
+<TR><TD></TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>public static</TD><TD>ResourceTranslator.addDevEntries</TD><TD>org.eclipse.core.internal.runtime</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>DevClassPathHelper &LT init &GT</TD><TD>org.eclipse.core.internal.runtime</TD>
+<TD> GetProperty call uses hard-coded string, not tainted.</TD></TR>
+</TABLE>
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.util.PropertyPermission "osgi.dev", "read"</LI>
+<LI>permission java.lang.RuntimePermission "getClassLoader"</LI>
+<LI>permission java.lang.RuntimePermission "modifyThread"</LI>
+<LI>permission java.net.NetPermission "specifyStreamHandler"</LI>
+<LI>permission java.net.SocketPermission "*", "resolve,connect"</LI>
+<LI>permission java.util.PropertyPermission "*", "read,write"</LI>
+<LI>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", "get"</LI>
+<LI>permission org.osgi.framework.ServicePermission "", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "", "get"</LI>
+<LI>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get"</LI>
+</UL>
+<BR>
+<B>Conclusion:</B> Do not wrap this call.  Grant the required permissions to runtime.jar.
+<BR>
+<B>Note:</B>While using URL objects simplifies things from a development perspective, it complicates things from a security perspective.  Specifically,
+it requires getClassLoader to load the protocol associated with the URL.   What would be *very* helpful is wrapping the URL class object's call to
+ClassLoader.getSystemClassLoader() in a doPrivileged() wrapper.
+
+There has been a discussion of this thread in <A href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=42871">Bug 42871</A> (appended below)
+However, that bug was left "RESOLVED FIXED".
+<HR>
+<PRE>Some Eclipse plugins are doing strong assumption on the shape of URLs and on 
+the ability to derive URLs from URL they receive.
+One typical pattern is:
+  URL u = getInstallURL();
+  URL u2 = new URL(u,&quot;icons/refresh.gif&quot;);
+
+In the tooling world this is fine, however in a RCP use case, this is the 
+source of security problems.
+
+Basically this indicates that is a secure mode we should use bundle URLs, 
+otherwise use file urls offering more flexibility.</PRE>
+  <BR>
+    <I>------- Additional Comment
+      <A name="c1" href="#c1">#1</A> From 
+      <A href="mailto:tjwatson@us.ibm.com">Thomas Watson</A>
+      2003-10-28 14:27 -------
+    </I>
+    
+
+<PRE>I have updated the code to check if security is enabled.  If security is 
+enabled bundle:// urls will be used for bundle resource lookups otherwise 
+file:// and jar:// urls will be used.
+
+If eclipse needs to run with security enabled then a protocal handler needs to 
+be developed to replace the jar:// and file:// url handlers and that gives you 
+the flexiblity you need.  Unless it is determined that in a secure environment 
+you do not need the flexibility that is required in the tools environment.</PRE>
+  <BR>
+    <I>------- Additional Comment
+      <A name="c2" href="#c2">#2</A> From 
+      <A href="mailto:pascal_rapicault@ca.ibm.com">Pascal Rapicault</A>
+      2003-12-12 19:21 -------
+    </I>
+    
+
+<PRE>There are plan for enabling the creation of derivative URL even in secure mode.
+This is captured in RFC 70.</PRE>
+  
+<HR>
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+    75. 	/*
+    76. 	 * Load the given properties file
+    77. 	 */
+    78. 	private static Properties load(URL url) {
+    79. 		Properties props = new Properties();
+    80. 		try {
+    81. 			InputStream is = null;
+    82. 			try {
+    83. 				is = url.openStream();
+<FONT style="background-color:yellow;display;inline">    00.					if (System.getSecurityManager()==null)</FONT>
+    84. 					props.load(is);<FONT></FONT>
+<FONT style="background-color:yellow;display;inline">    00.					else
+    00.						AccessController.doPrivileged(new PropertyLoadAction(is,props));
+    00.				} catch (PrivilegedActionException pae)
+    00.				{ // TODO consider logging here </FONT>
+    85. 			} finally {
+    86. 				is.close();
+    87. 			}
+    88. 		} catch (IOException e) {
+    89. 			// TODO consider logging here
+    90. 		}
+    91. 		return props;
+    92. 	}
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B>
+<BR><BR>
+<TABLE border="2">
+<TR><TD bgcolor="silver">Access Modifier</TD><TD bgcolor="silver">Class/method</TD><TD bgcolor="silver">Package</TD><TD bgcolor="silver">Analysis</TD></TR>
+<TR><TD></TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>private</TD><TD><PRE>DevClassPathHelper.load(URL url)</PRE></TD><TD>org.eclipse.core.internal.runtime</TD>
+<TD>Parameter 1 of this method is tainted.  However, since the call to url.openStream will throw a security exception
+if the caller does not have the apppriate FilePermission, it's ok to wrap the subsequent call to
+Properties.load in a doPrivileged action.</TD></TR>
+</TABLE>
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.io.FilePermission "&LT&LT ALL FILES &GT&GT","read"</LI>
+</UL>
+<BR>
+<B>Conclusion:</B>
+
+<!-- /tpl:put -->
+<!--  end of main content -->
+</td>
+</tr>
+</table>
+<!--  end of main frame table -->
+</body>
+</html>
+
+<!-- /tpl:insert -->

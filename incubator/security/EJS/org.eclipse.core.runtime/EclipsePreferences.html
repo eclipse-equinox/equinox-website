@@ -1,0 +1,580 @@
+<!-- tpl:insert page="/equinox.htpl" --><!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+<title>Equinox Security Home</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<style type="text/css">
+.input {background: "#ffffcc";color: "#000000" ;font-weight: normal;}
+a.nav:link { text-decoration: none; color: "#000000"; }
+a.nav:visited { text-decoration: none; color: "#000000"; }
+a.nav:hover { text-decoration: underline; color: "#000000"; }
+</style>
+<link rel="stylesheet" href="http://www.eclipse.org/nav_style.css" type="text/css">
+<link rel="stylesheet2" href="http://eclipse.org/default_style.css" type="text/css">
+</head>
+<body bgcolor="#ffffff" link="#0000ee" vlink="#551a8b" alink="#ff0000" leftmargin="0" marginheight="0" topmargin="0" rightmargin="0">
+<!--  start of banner  -->
+ <table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" >
+  <tr>
+   <td WIDTH="100%">
+    <table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" BGCOLOR="#006699" >
+
+     <tr>
+          <td BGCOLOR="#000000" width="116" ><a href="http://www.eclipse.org" target="_top"><img src="http://www.eclipse.org/images/EclipseBannerPic.jpg" width="115" height="50" border="0"></a></td>
+          <td WIDTH="637"><img SRC="http://www.eclipse.org/images/gradient.jpg" BORDER=0 height=50 width=282></td>
+          <td WIDTH="250" nowrap><font align="right" color="white" size="6" class=indextop>equinox security</font></td>
+     </tr>
+    </table>
+   </td>
+  </tr>
+ </table><!--  end of banner -->
+<!--  start of main frame table -->
+<table BORDER=0 CELLSPACING=0 CELLPADDING="4" WIDTH="100%" HEIGHT="100%" BGCOLOR="#90C8FF">
+<tr><td width="160" valign="top" bgcolor="#6699CC" nowrap>
+<!--  start of navigator -->
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%"  BGCOLOR="#90C8FF" >
+<tr><td>
+	<table BORDER=0 CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%"  BGCOLOR="#90C8FF" >
+	  <tr> 
+	    <td VALIGN=CENTER HEIGHT="21" BGCOLOR="#0080C0">&nbsp; <a href="http://www.eclipse.org/equinox" target="_top" class="navhead"> 
+	      equinox home</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER> 
+	    <td HEIGHT="21">&nbsp; <a name="overview" href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/index.html" class="nav" >overview</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/ejs.html" class="nav">rcp plug-in analysis</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/rcp/keystore.html" class="nav" >keystore/credentialstore</a></td>
+	  </tr>
+
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/rcp/end2end.html" class="nav" >end to end security</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/downloads.html" class="nav" >downloads</a></td>
+	  </tr>
+
+	</table>
+</td></tr>
+</table>
+<!--  end of navigator -->
+</td>
+<!--  start of main content  -->
+<td bgcolor="white" valign="top" >
+<!-- tpl:put name="bodyarea" -->
+<P></P><H1>EclipsePreference.java changes</H1>
+<B>Detail</B><BR><BR>
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 192 boolean accept( java.io.File, java.lang.String )
+   Permission: java.io.FilePermission "", "read"
+      Primordial/boolean java.io.File.isDirectory(  )
+   Permission: java.io.FilePermission "???file???", "read"
+      Primordial/boolean java.io.File.isDirectory(  )
+
+Line# 201 java.lang.String[] computeChildren( org.eclipse.core.runtime.IPath )
+   Permission: java.io.FilePermission "", "read"
+      Primordial/java.lang.String[] java.io.File.list( java.io.FilenameFilter )
+   Permission: java.io.FilePermission "???file???", "read"
+      Primordial/java.lang.String[] java.io.File.list( java.io.FilenameFilter )
+
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+   183. 	protected String[] computeChildren(IPath root) {
+   184. 		if (root == null)
+   185. 			return EMPTY_STRING_ARRAY;
+   186. 		IPath dir = root.append(DEFAULT_PREFERENCES_DIRNAME);
+   187. 		final ArrayList result = new ArrayList();
+   188. 		final String extension = "." + PREFS_FILE_EXTENSION;
+   189. 		File file = dir.toFile();
+   190. 		FilenameFilter filter = new FilenameFilter() {
+   191. 			public boolean accept(File directory, String child) {
+   192. 				<FONT style="background-color:yellow;display;inline">if (new File(directory, child).isDirectory())</FONT>
+   193. 					return false;
+   194. 				if (child.endsWith(extension)) {
+   195. 					String shortName = child.substring(0, child.length() - extension.length());
+   196. 					result.add(shortName);
+   197. 				}
+   198. 				return false;
+   199. 			}
+   200. 		};
+   201. 		<FONT style="background-color:yellow;display;inline">file.list(filter);</FONT>
+   202. 		return (String[]) result.toArray(EMPTY_STRING_ARRAY);
+   203. 	}
+
+</PRE>
+<TABLE border="2">
+<TR><TD bgcolor="silver">Class/method</TD><TD bgcolor="silver">Package</TD><TD bgcolor="silver">Analysis</TD></TR>
+<TR><TD><PRE>EclipsePreferences.computeChildren(IPath root)</PRE></TD><TD>org.eclipse.core.internal.preferences</TD><TD>The root parameter is tainted.</TD></TR>
+</TABLE>
+</CODE>
+<B>Tainted variable reference trace:</B> The <FONT style="italic">root</FONT> parameter is supplied by a subclass/extension of EclipseProperties, and therefore
+ is also implementation dependant.  Consequently, no privileged wrapper is appropriate. <BR><BR>
+<B>Permission requirements:</B> (To be assigned to runtime.jar only, individual plug-ins will need read access to the specific workspace areas they are assigned to).
+<UL>
+<LI>permission java.io.FilePermission "&LT&LT ALL FILES &GT&GT","read"</LI>
+</UL>
+<BR>
+<B>Conclusion:</B> The runtime.jar will be granted read permission to all files, while the associated plugins that make use of runtime will be granted only the
+rights they require as specified in permissions.perm.
+
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 597 void load( org.eclipse.core.runtime.IPath )
+   Permission: java.io.FilePermission "???file???", "read"
+      Primordial/void java.io.FileInputStream.<init>( java.io.File )
+</PRE>
+<BR>
+<B>CODE:</B>
+<CODE>
+<PRE>
+597. input = new BufferedInputStream(new FileInputStream(location.toFile()));
+</PRE>
+<TABLE border="2">
+<TR><TD bgcolor="silver">Class/method</TD><TD bgcolor="silver">Package</TD><TD bgcolor="silver">Analysis</TD></TR>
+<TR><TD><PRE>EclipsePreferences.load()</PRE></TD><TD>org.eclipse.core.internal.preferences</TD><TD>The location parameter is tainted.</TD></TR>
+</TABLE>
+</CODE>
+<B>Tainted variable reference trace:</B> The variable <FONT style="font-style:italic;">location</FONT> is tainted and is specified by
+all extenders of class EclipsePreferences.   Consequently, each implementer should have explicit permission to access the files/directories
+specified by implementations of the EclipsePreferences class.  The default location for these files seems to be:<BR><BR>
+<FONT style="font-style:italic">&LT eclipse_workspace_dir&GT/.metadata/.plugins/&LT plugin_id&GT/.settings</FONT><BR>
+<BR>
+<P>The problem with this scenario is that it is not yet clear how a plugin's settings folder is being instantiated.  Does the framework do it? (i.e. OSGI).<BR>
+</P><UL>
+<LI>org.eclipse.ui.internal.ide.IDEApplication creates the .metadata folder if it does not exist (See getVersionFile() method).</LI>
+<LI>org.eclipse.core.runtime.adaptor.BasicLocation.java - The setURL method expects a .lock file to be in the .metadata folder.</LI>
+<LI>org.eclispe.ui.internal.cheatsheets.data.CheatSheetSaveHelper.java - The Platform.getPluginStateLocation method returns a writeable folder
+under the .metatdata folder.</LI>
+<TABLE border="2">
+<TR><TD>IPath org.eclipse.core.runtime.Platform.getPluginStateLocation(Plugin plugin)
+
+Returns the location in the local file system of the plug-in state area for the given plug-in. The 
+ platform must be running. 
+The plug-in state area is a file directory within the platform's metadata area where a plug-in is free 
+ to create files. The content and structure of this area is defined by the plug-in, and the particular 
+ plug-in is solely responsible for any files it puts there. It is recommended for plug-in preference 
+ settings. 
+Parameters:
+	plugin the plug-in whose state location is returned
+Returns:
+	a local file system path</TD></TR>
+</TABLE>
+<LI>org.eclipse.help.base.src - org.eclipse.help.internal.base.HelpApplication.java - Retrieves the workspace in the same fashion as the cheetsheethelper.   It uses Platform.getLocation().</LI>
+<LI>org.eclipse.help.base.src - org.eclipse.help.internal.standalone.Options.java - The workspace is either supplied with a -data parameter, or defaults to &LT eclipse_install_area&GT/workspace.  The metadata folder is always .metadata under the workspace folder.
+</LI>
+</UL>
+<BR><BR>
+<B>Permission assignments: (Thomas Watson)</B> "If a security manager is present then the OSGi framework will setup one protection domain for each bundle (plugin) installed in the framework.  By default each protection domain is assigned a PermissionCollection that includes AllPermission.  So by default a bundle can do anything within the framework."
+<BR><BR>
+<B>Permission requirements:</B>
+<UL>
+<LI>permission java.io.FilePermission "${osgi.instance.area}/.metadata/&LT plugin_id&GT/", "read"</LI>
+</UL>
+<BR>
+<B>Conclusion:</B> Do not wrap with doPrivileged(), explicitly grant plugins read access to the appropriate 
+metadata folder as detailed in the permission requirements section above.
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 598 void load( org.eclipse.core.runtime.IPath )
+   Permission: java.lang.RuntimePermission "charsetProvider"
+      Primordial/void java.util.Properties.load( java.io.InputStream )
+   Permission: java.lang.RuntimePermission "getClassLoader"
+      Primordial/void java.util.Properties.load( java.io.InputStream )
+   Permission: java.util.PropertyPermission "JAVABIDI", "read"
+      Primordial/void java.util.Properties.load( java.io.InputStream )
+   Permission: java.util.PropertyPermission "java.vendor.url.bug", "read"
+      Primordial/void java.util.Properties.load( java.io.InputStream )
+   Permission: java.util.logging.LoggingPermission "control", ""
+      Primordial/void java.util.Properties.load( java.io.InputStream )
+</PRE>
+<BR>
+<B>CODE:</B>
+<CODE>
+<PRE>
+598. 			fromDisk.load(input);
+</PRE>
+</CODE><BR>
+<B>Tainted variable reference trace</B> The variable <FONT style="font-style:italic;">location</FONT> is tainted and is specified by
+all extenders of class EclipsePreferences.  Ultimately, the <FONT style="font-style:italic;">input</FONT> variable is set using the 
+tainted <FONT style="font-style:italic;">location</FONT> variable.   However, since the former permission (namely read access to the
+associated metadata folder) will be challenged, we can allow the rest of permissions (e.g. getClassLoader, and control) to be wrapped
+in a doPrivileged action.  This will make the permission assignments more intuitive (i.e. Grant reader access to read a file, instead
+of the additional counter-intuitive "charsetProvider, getClassLoader, JAVABIDI, etc." permissions). <BR>
+<BR>
+<TABLE border="2">
+<TR><TD bgcolor="silver">Class/method</TD><TD bgcolor="silver">Package</TD><TD bgcolor="silver">Analysis</TD></TR>
+</TABLE>
+<B>Permission requirements:</B>
+<UL>
+<LI>permission java.io.FilePermission "${osgi.instance.area}/.metadata/&LT plugin_id&GT/", "read"</LI>
+<LI>permission java.lang.RuntimePermission "charsetProvider"</LI>
+<LI>permission java.lang.RuntimePermission "getClassLoader"</LI>
+<LI>permission java.util.PropertyPermission "JAVABIDI", "read"</LI>
+<LI>permission java.util.PropertyPermission "java.vendor.url.bug", "read"</LI>
+<LI>permission java.util.logging.LoggingPermission "control", ""</LI>
+</UL>
+<BR>
+<B>Conclusion:</B> Wrap the call to "fromDisk.load(input)" in a doPrivileged action as illustrated below:
+<BR><BR>
+<CODE><PRE>
+final class PropertyLoaderAction implements PrivilegedExceptionAction
+	{
+	   private InputStream input;
+	   private Properties fromDisk;
+	   
+	   PropertyLoaderAction(InputStream is,Properties props)
+	   {
+	     input = is;
+	     fromDisk = props;
+	   }
+	   public Object run() throws IOException
+	   {
+	     fromDisk.load(input);
+	     return null;
+	   }
+	}</PRE>
+<BR>
+<BR>
+AccessController.doPrivileged(new PropertyLoaderAction(input,fromDisk));	
+</CODE>
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 1050 void save( org.eclipse.core.runtime.IPath )
+   Permission: java.io.FilePermission "", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+   Permission: java.io.FilePermission "-1", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+   Permission: java.io.FilePermission "-2", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+   Permission: java.io.FilePermission "-2147483648", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+   Permission: java.io.FilePermission "-3", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+   Permission: java.io.FilePermission "-9223372036854775808", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+   Permission: java.io.FilePermission "..", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+   Permission: java.io.FilePermission ".bundledata", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+   Permission: java.io.FilePermission ".log", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+   Permission: java.io.FilePermission ".metadata", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+   Permission: java.io.FilePermission ".options", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+   Permission: java.io.FilePermission ".plugins", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+   Permission: java.io.FilePermission ".registry", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+   Permission: java.io.FilePermission ".settings", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+   Permission: java.io.FilePermission ".state", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+   Permission: java.io.FilePermission "/", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+   Permission: java.io.FilePermission "0", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+   Permission: java.io.FilePermission "1", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+   Permission: java.io.FilePermission "1.3", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+   Permission: java.io.FilePermission "10", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+   Permission: java.io.FilePermission "13", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+   Permission: java.io.FilePermission "2", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+   Permission: java.io.FilePermission "3", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+   Permission: java.io.FilePermission "3.0.0", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+   Permission: java.io.FilePermission "4", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+   Permission: java.io.FilePermission "5", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+   Permission: java.io.FilePermission "6", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+   Permission: java.io.FilePermission "7", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+   Permission: java.io.FilePermission "8", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+   Permission: java.io.FilePermission "9", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+   Permission: java.io.FilePermission "???System Property Value???", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+   Permission: java.io.FilePermission "???file???", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+   Permission: java.io.FilePermission "Eclipse", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+   Permission: java.io.FilePermission "GMT", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+   Permission: java.io.FilePermission "bundles", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+   Permission: java.io.FilePermission "carbon", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+   Permission: java.io.FilePermission "charset", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+   Permission: java.io.FilePermission "configuration", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+   Permission: java.io.FilePermission "false", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+   Permission: java.io.FilePermission "file-extensions", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+   Permission: java.io.FilePermission "file-names", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+   Permission: java.io.FilePermission "instance", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+   Permission: java.io.FilePermission "manifests", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+   Permission: java.io.FilePermission "motif", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+   Permission: java.io.FilePermission "org.eclipse.core.runtime", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+   Permission: java.io.FilePermission "org.eclipse.core.runtime.adaptor/resolver/timing/value", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+   Permission: java.io.FilePermission "org.eclipse.osgi", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+   Permission: java.io.FilePermission "org.eclipse.osgi/debug/packageadmin/timing/value", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+   Permission: java.io.FilePermission "osgi.bundlestore", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+   Permission: java.io.FilePermission "plugin_customization.ini", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+   Permission: java.io.FilePermission "pref_store.ini", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+   Permission: java.io.FilePermission "preferences", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+   Permission: java.io.FilePermission "runtime.traces", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+   Permission: java.io.FilePermission "solaris", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+   Permission: java.io.FilePermission "true", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+   Permission: java.io.FilePermission "unknown", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+   Permission: java.io.FilePermission "user", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+   Permission: java.io.FilePermission "win32", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+   Permission: java.io.FilePermission "workspace", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+   Permission: java.io.FilePermission "x86", "write"
+      Primordial/void java.io.FileOutputStream.&LT init&GT( java.lang.String, boolean )
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+  1020. 	protected void save() throws BackingStoreException {
+  1021. 		save(getLocation());
+  1022. 	}
+  1023. 
+  1024. 	protected void save(IPath location) throws BackingStoreException {
+  1025. 		if (location == null) {
+  1026. 			if (InternalPlatform.DEBUG_PREFERENCES)
+  1027. 				Policy.debug("Unable to determine location of preference file for node: " + absolutePath()); //$NON-NLS-1$
+  1028. 			return;
+  1029. 		}
+  1030. 		if (InternalPlatform.DEBUG_PREFERENCES)
+  1031. 			Policy.debug("Saving preferences to file: " + location); //$NON-NLS-1$
+  1032. 		Properties table = convertToProperties(new Properties(), EMPTY_STRING);
+  1033. 		if (table.isEmpty()) {
+  1034. 			// nothing to save. delete existing file if one exists.
+  1035. 			if (location.toFile().exists() && !location.toFile().delete()) {
+  1036. 				String message = Policy.bind("preferences.failedDelete", location.toString()); //$NON-NLS-1$
+  1037. 				log(new Status(IStatus.WARNING, Platform.PI_RUNTIME, IStatus.WARNING, message, null));
+  1038. 			}
+  1039. 			return;
+  1040. 		}
+  1041. 		table.put(VERSION_KEY, VERSION_VALUE);
+  1042. 		OutputStream output = null;
+  1043. 		try {
+  1044. 			// create the parent dirs if they don"t exist
+  1045. 			File parentFile = location.toFile().getParentFile();
+  1046. 			if (parentFile == null)
+  1047. 				return;
+  1048. 			parentFile.mkdirs();
+  1049. 			// set append to be false so we overwrite current settings.
+  1050. 			<FONT style="background-color:yellow;display;inline">output = new BufferedOutputStream(new FileOutputStream(location.toOSString(), false));</FONT>
+  1051. 			<FONT style="background-color:cyan;display;inline">table.store(output, null);</FONT>
+  1052. 		} catch (IOException e) {
+  1053. 			String message = Policy.bind("preferences.saveException", location.toString()); //$NON-NLS-1$
+  1054. 			log(new Status(IStatus.ERROR, Platform.PI_RUNTIME, IStatus.ERROR, message, e));
+  1055. 			throw new BackingStoreException(message);
+  1056. 		} finally {
+  1057. 			if (output != null)
+  1058. 				try {
+  1059. 					output.close();
+  1060. 				} catch (IOException e) {
+  1061. 					// ignore
+  1062. 				}
+  1063. 		}
+  1064. 	}
+</PRE>
+</CODE>
+<BR>
+<B>Tainted variable reference trace</B>   The subclasses/extensions of EclipsePreferences implement the location of the preferences file 
+(ConfigurationPerferences, and InstancePreferences) which is ultimately used to save the settings.   Presently this location is only provided by 
+the <FONT style="italic">internal</FONT> runtime.    
+<BR>
+<TABLE border="2">
+<TR><TD bgcolor="silver">Class/method</TD><TD bgcolor="silver">Package</TD><TD bgcolor="silver">Analysis</TD></TR>
+</TABLE>
+<B>Permission requirements: (for runtime.jar only.   Plugins making use of this library call indirectly, or directly must have specific access to the plugin settings directories)</B>
+<UL>
+<LI>permission java.io.FilePermission "&LT&LT ALL FILES &GT&GT","read,write,delete"</LI>
+</UL>
+<BR>
+<B>Conclusion:</B>  Grant read/write/delete permission to runtime.jar, do not wrap in a privileged operation.
+<BR>
+<BR>
+<B>DoPrivileged location:</B><BR><BR>
+<PRE>
+ Line# 1051 void save( org.eclipse.core.runtime.IPath )
+   Permission: java.lang.RuntimePermission "getClassLoader"
+      Primordial/void java.util.Properties.store( java.io.OutputStream, java.lang.String )
+</PRE>
+<B>CODE:</B>
+<CODE>
+SEE PREVIOUS CODE SECTION, <FONT style="background-color:cyan;display;inline">BLUE HIGHLIGHT</FONT><BR>
+</CODE>
+<BR><BR>
+<B>Tainted variable reference trace</B> Same as above.   <BR><BR>
+<B>Conclusion</B> Since the permission required is getClassLoader and all that's being done is a file save, this instruction will be wrapped, so that plug-ins
+will only require the java.io.FilePermission, rather than getClassLoader which would be dangerous to grant to a plug-in.
+<BR>
+<B>CODE: (updated December 8 - Moved common code to seperate internal class)</B>
+<CODE>
+<PRE>
+/*******************************************************************************
+ * Copyright (c) 2004 IBM Corporation and others.
+ * All rights reserved. This program and the accompanying materials 
+ * are made available under the terms of the Common Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/cpl-v10.html
+ * 
+ * Contributors:
+ *     IBM Corporation - initial API and implementation
+ *******************************************************************************/
+
+package org.eclipse.core.internal.security;
+
+import java.io.IOException;
+import java.io.OutputStream;
+import java.security.PrivilegedExceptionAction;
+import java.util.Properties;
+
+/**
+ * @author habeck
+ *
+ * Created: Dec 8, 2004 6:36:33 PM
+ * 
+ */
+public final class PropertyStoreAction implements PrivilegedExceptionAction
+{
+  private Properties toDisk;
+  private OutputStream os;
+  private String header;
+  public PropertyStoreAction(Properties props, OutputStream out, String propertyHeader)
+  {
+    toDisk = props;
+    os = out;
+    header = propertyHeader;
+  }
+  public Object run() throws IOException
+  {
+    toDisk.store(os,header);
+    return null;
+  }
+}
+</PRE>
+</CODE>
+<BR>
+<B> Modified save() method with doPrivileged action</B>
+<CODE>
+<PRE>
+	protected void save(IPath location) throws BackingStoreException {
+		if (location == null) {
+			if (InternalPlatform.DEBUG_PREFERENCES)
+				Policy.debug("Unable to determine location of preference file for node: " + absolutePath()); //$NON-NLS-1$
+			return;
+		}
+		if (InternalPlatform.DEBUG_PREFERENCES)
+			Policy.debug("Saving preferences to file: " + location); //$NON-NLS-1$
+		Properties table = convertToProperties(new Properties(), EMPTY_STRING);
+		if (table.isEmpty()) {
+			// nothing to save. delete existing file if one exists.
+			if (location.toFile().exists() && !location.toFile().delete()) {
+				String message = Policy.bind("preferences.failedDelete", location.toString()); //$NON-NLS-1$
+				log(new Status(IStatus.WARNING, Platform.PI_RUNTIME, IStatus.WARNING, message, null));
+			}
+			return;
+		}
+		table.put(VERSION_KEY, VERSION_VALUE);
+		OutputStream output = null;
+		try {
+			// create the parent dirs if they don't exist
+			File parentFile = location.toFile().getParentFile();
+			if (parentFile == null)
+				return;
+			parentFile.mkdirs();
+			// set append to be false so we overwrite current settings.
+			output = new BufferedOutputStream(new FileOutputStream(location.toOSString(), false));
+			<FONT style="background-color:yellow;display;inline">if (System.getSecurityManager()==null)
+			  table.store(output, null);
+			else
+			  AccessController.doPrivileged(new PropertyStoreAction(table,output,null));</FONT>
+		} catch (IOException e) {
+			String message = Policy.bind("preferences.saveException", location.toString()); //$NON-NLS-1$
+			log(new Status(IStatus.ERROR, Platform.PI_RUNTIME, IStatus.ERROR, message, e));
+			throw new BackingStoreException(message);
+		} <FONT style="background-color:yellow;display;inline">catch (PrivilegedActionException pae)
+		{
+			String message = Policy.bind("preferences.saveException", location.toString()); //$NON-NLS-1$
+			log(new Status(IStatus.ERROR, Platform.PI_RUNTIME, IStatus.ERROR, message, pae.getException()));
+			throw new BackingStoreException(message);
+		}</FONT> finally {
+			if (output != null)
+				try {
+					output.close();
+				} catch (IOException e) {
+					// ignore
+				}
+		}
+	}
+
+</PRE>
+</CODE>
+<!-- /tpl:put -->
+<!--  end of main content -->
+</td>
+</tr>
+</table>
+<!--  end of main frame table -->
+</body>
+</html>
+
+<!-- /tpl:insert -->

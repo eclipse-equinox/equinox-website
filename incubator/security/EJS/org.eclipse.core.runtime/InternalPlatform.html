@@ -1,0 +1,994 @@
+<!-- tpl:insert page="/equinox.htpl" --><!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+<title>Equinox Security Home</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<style type="text/css">
+.input {background: "#ffffcc";color: "#000000" ;font-weight: normal;}
+a.nav:link { text-decoration: none; color: "#000000"; }
+a.nav:visited { text-decoration: none; color: "#000000"; }
+a.nav:hover { text-decoration: underline; color: "#000000"; }
+</style>
+<link rel="stylesheet" href="http://www.eclipse.org/nav_style.css" type="text/css">
+<link rel="stylesheet2" href="http://eclipse.org/default_style.css" type="text/css">
+</head>
+<body bgcolor="#ffffff" link="#0000ee" vlink="#551a8b" alink="#ff0000" leftmargin="0" marginheight="0" topmargin="0" rightmargin="0">
+<!--  start of banner  -->
+ <table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" >
+  <tr>
+   <td WIDTH="100%">
+    <table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" BGCOLOR="#006699" >
+
+     <tr>
+          <td BGCOLOR="#000000" width="116" ><a href="http://www.eclipse.org" target="_top"><img src="http://www.eclipse.org/images/EclipseBannerPic.jpg" width="115" height="50" border="0"></a></td>
+          <td WIDTH="637"><img SRC="http://www.eclipse.org/images/gradient.jpg" BORDER=0 height=50 width=282></td>
+          <td WIDTH="250" nowrap><font align="right" color="white" size="6" class=indextop>equinox security</font></td>
+     </tr>
+    </table>
+   </td>
+  </tr>
+ </table><!--  end of banner -->
+<!--  start of main frame table -->
+<table BORDER=0 CELLSPACING=0 CELLPADDING="4" WIDTH="100%" HEIGHT="100%" BGCOLOR="#90C8FF">
+<tr><td width="160" valign="top" bgcolor="#6699CC" nowrap>
+<!--  start of navigator -->
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%"  BGCOLOR="#90C8FF" >
+<tr><td>
+	<table BORDER=0 CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%"  BGCOLOR="#90C8FF" >
+	  <tr> 
+	    <td VALIGN=CENTER HEIGHT="21" BGCOLOR="#0080C0">&nbsp; <a href="http://www.eclipse.org/equinox" target="_top" class="navhead"> 
+	      equinox home</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER> 
+	    <td HEIGHT="21">&nbsp; <a name="overview" href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/index.html" class="nav" >overview</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/ejs.html" class="nav">rcp plug-in analysis</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/rcp/keystore.html" class="nav" >keystore/credentialstore</a></td>
+	  </tr>
+
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/rcp/end2end.html" class="nav" >end to end security</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/downloads.html" class="nav" >downloads</a></td>
+	  </tr>
+
+	</table>
+</td></tr>
+</table>
+<!--  end of navigator -->
+</td>
+<!--  start of main content  -->
+<td bgcolor="white" valign="top" >
+<!-- tpl:put name="bodyarea" -->
+<P></P><H1>InternalPlatform.java changes</H1>
+<B>Detail</B><BR><BR>
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 749 void applyCommandLinePluginDefaultOverrides( java.lang.String, org.eclipse.core.runtime.Preferences )
+   Permission: java.io.FilePermission "???file???", "read"
+      Primordial/java.net.URL java.io.File.toURL(  )
+   Permission: java.lang.RuntimePermission "getClassLoader"
+      Primordial/java.net.URL java.io.File.toURL(  )
+   Permission: java.lang.RuntimePermission "modifyThread"
+      Primordial/java.net.URL java.io.File.toURL(  )
+   Permission: java.net.NetPermission "specifyStreamHandler"
+      Primordial/java.net.URL java.io.File.toURL(  )
+   Permission: java.net.SocketPermission "", "resolve"
+      Primordial/java.net.URL java.io.File.toURL(  )
+   Permission: java.net.SocketPermission ":???port???", "connect"
+      Primordial/java.net.URL java.io.File.toURL(  )
+   Permission: java.net.SocketPermission "???host???", "resolve"
+      Primordial/java.net.URL java.io.File.toURL(  )
+   Permission: java.net.SocketPermission "???host???:???port???", "connect"
+      Primordial/java.net.URL java.io.File.toURL(  )
+   Permission: java.net.SocketPermission "localhost", "resolve"
+      Primordial/java.net.URL java.io.File.toURL(  )
+   Permission: java.net.SocketPermission "localhost:1024-", "resolve"
+      Primordial/java.net.URL java.io.File.toURL(  )
+   Permission: java.net.SocketPermission "localhost:1024-:???port???", "connect"
+      Primordial/java.net.URL java.io.File.toURL(  )
+   Permission: java.net.SocketPermission "localhost:???port???", "connect"
+      Primordial/java.net.URL java.io.File.toURL(  )
+   Permission: java.util.PropertyPermission "*", "read,write"
+      Primordial/java.net.URL java.io.File.toURL(  )
+   Permission: java.util.PropertyPermission "java.protocol.handler.pkgs", "read"
+      Primordial/java.net.URL java.io.File.toURL(  )
+   Permission: java.util.PropertyPermission "user.dir", "read"
+      Primordial/java.net.URL java.io.File.toURL(  )
+   Permission: org.osgi.framework.ServicePermission "", ""
+      Primordial/java.net.URL java.io.File.toURL(  )
+   Permission: org.osgi.framework.ServicePermission "", "get"
+      Primordial/java.net.URL java.io.File.toURL(  )
+   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", ""
+      Primordial/java.net.URL java.io.File.toURL(  )
+   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", "get"
+      Primordial/java.net.URL java.io.File.toURL(  )
+   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", ""
+      Primordial/java.net.URL java.io.File.toURL(  )
+   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get"
+      Primordial/java.net.URL java.io.File.toURL(  )
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+   725. 	/**
+   726. 	 * Applies command line-supplied overrides to default preferences for the
+   727. 	 * plug-in with the given id.
+   728. 	 * <P>
+   729. 	 * Note that by the time this method is called, the default settings
+   730. 	 * for the plug-in itself should have already have been filled in, along
+   731. 	 * with any default overrides supplied by the primary feature.
+   732. 	 * </P>
+   733. 	 * 
+   734. 	 * @param id the unique identifier of the plug-in
+   735. 	 * @param preferences the preference store for the specified plug-in
+   736. 	 * 
+   737. 	 * @since 2.0
+   738. 	 */
+   739. 	public void applyCommandLinePluginDefaultOverrides(String id, Preferences preferences) {
+   740. 
+   741. 		if (pluginCustomizationFile == null) {
+   742. 			// no command line overrides to process
+   743. 			if (DEBUG_PREFERENCES)
+   744. 				Policy.debug("Command line argument -pluginCustomization not used."); //$NON-NLS-1$
+   745. 			return;
+   746. 		}
+   747. 
+   748. 		try {
+   749. 			<FONT style="background-color:yellow;display;inline">URL pluginCustomizationURL = new File(pluginCustomizationFile).toURL();</FONT>
+   750. 			if (DEBUG_PREFERENCES)
+   751. 				Policy.debug("Loading preferences from " + pluginCustomizationURL); //$NON-NLS-1$
+   752. 			applyPluginDefaultOverrides(pluginCustomizationURL, id, preferences, null);
+   753. 		} catch (MalformedURLException e) {
+   754. 			// fail silently
+   755. 			if (DEBUG_PREFERENCES) {
+   756. 				Policy.debug("MalformedURLException creating URL for plugin customization file " + pluginCustomizationFile); //$NON-NLS-1$
+   757. 				e.printStackTrace();
+   758. 			}
+   759. 			return;
+   760. 		}
+   761. 	}
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B>
+<BR><BR>
+<TABLE border="2">
+<TR><TD bgcolor="silver">Access Modifier</TD><TD bgcolor="silver">Class/method</TD><TD bgcolor="silver">Package</TD><TD bgcolor="silver">Analysis</TD></TR>
+<TR><TD></TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>public</TD><TD>applyCommandLinePluginDefaultOverrides(String id, Preferences preferences)</TD><TD>org.eclipse.core.internal.runtime</TD>
+<TD>The plug-in customization file is set as a command line parameter at startup.  By checking for read access to the specified file before constructing
+the URL, the URL construction can be wrapped in a privileged action exception.</TD></TR>
+</TABLE>
+<BR><BR>
+<CODE>
+<PRE>
+	/**
+	 * Applies command line-supplied overrides to default preferences for the
+	 * plug-in with the given id.
+	 * <P>
+	 * Note that by the time this method is called, the default settings
+	 * for the plug-in itself should have already have been filled in, along
+	 * with any default overrides supplied by the primary feature.
+	 * </P>
+	 * 
+	 * @param id the unique identifier of the plug-in
+	 * @param preferences the preference store for the specified plug-in
+	 * 
+	 * @since 2.0
+	 */
+	public void applyCommandLinePluginDefaultOverrides(String id, Preferences preferences) {
+
+		if (pluginCustomizationFile == null) {
+			// no command line overrides to process
+			if (DEBUG_PREFERENCES)
+				Policy.debug("Command line argument -pluginCustomization not used."); //$NON-NLS-1$
+			return;
+		}
+
+		try {
+		  File pluginFile = new File(pluginCustomizationFile);
+<FONT style="background-color:yellow;display;inline">		  if (pluginFile.canRead())
+		  {
+		    URL pluginCustomizationURL = null;
+		    if (System.getSecurityManager()==null)</FONT>
+			    pluginCustomizationURL = pluginFile.toURL();
+<FONT style="background-color:yellow;display;inline">		    else
+		      pluginCustomizationURL = (URL) AccessController.doPrivileged(new URLFromFileAction(pluginFile));</FONT>
+			  if (DEBUG_PREFERENCES)
+				  Policy.debug("Loading preferences from " + pluginCustomizationURL); //$NON-NLS-1$
+			  applyPluginDefaultOverrides(pluginCustomizationURL, id, preferences, null);
+		  }
+		} catch (MalformedURLException e) {
+			// fail silently
+			if (DEBUG_PREFERENCES) {
+				Policy.debug("MalformedURLException creating URL for plugin customization file " + pluginCustomizationFile); //$NON-NLS-1$
+				e.printStackTrace();
+			}
+			return;
+		} <FONT style="background-color:yellow;display;inline">catch (PrivilegedActionException pae)
+		{
+			if (DEBUG_PREFERENCES) {
+				Policy.debug("MalformedURLException creating URL for plugin customization file " + pluginCustomizationFile); //$NON-NLS-1$
+				pae.printStackTrace();
+			}		  
+		}</FONT>
+	}
+
+</PRE>
+</CODE>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.io.FilePermission "&LT&LT ALL FILES &GT&GT","read"</LI>
+<LI>permission java.lang.RuntimePermission "getClassLoader"</LI>
+<LI>permission java.lang.RuntimePermission "modifyThread"</LI>
+<LI>permission java.net.NetPermission "specifyStreamHandler"</LI>
+<LI>permission java.net.SocketPermission "*", "resolve,connect"</LI>
+<LI>permission java.util.PropertyPermission "*", "read,write"</LI>
+<LI>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", "get"</LI>
+<LI>permission org.osgi.framework.ServicePermission "", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "", "get"</LI>
+<LI>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get"</LI>
+</UL>
+<BR>
+<B>Conclusion:</B> Grant the required permissions to runtime.jar.  Wrap the URL constructor in a doPrivileged
+action so that only the file permissions are required to read from the file.
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 790 void applyPluginDefaultOverrides( java.net.URL, java.lang.String, org.eclipse.core.runtime.Preferences, java.util.Properties )
+   Permission: java.io.FilePermission "", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "-1", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "-2", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "-2147483648", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "-3", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "-9223372036854775808", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "..", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission ".bundledata", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission ".log", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission ".metadata", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission ".options", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission ".plugins", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission ".registry", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission ".settings", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission ".state", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "/", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "0", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "1", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "1.3", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "10", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "13", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "2", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "3", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "3.0.0", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "4", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "5", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "6", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "7", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "8", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "9", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "???System Property Value???", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "???file???", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "Eclipse", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "GMT", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "bundles", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "carbon", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "charset", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "configuration", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "false", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "file-extensions", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "file-names", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "instance", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "manifests", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "motif", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "org.eclipse.core.runtime", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "org.eclipse.core.runtime.adaptor/resolver/timing/value", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "org.eclipse.osgi", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "org.eclipse.osgi/debug/packageadmin/timing/value", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "osgi.bundlestore", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "plugin_customization.ini", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "pref_store.ini", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "preferences", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "solaris", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "true", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "unknown", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "user", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "win32", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "workspace", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+   Permission: java.io.FilePermission "x86", "read"
+      Primordial/void java.io.FileInputStream.&LT init &GT( java.io.File )
+Line# 797 void applyPluginDefaultOverrides( java.net.URL, java.lang.String, org.eclipse.core.runtime.Preferences, java.util.Properties )
+   Permission: java.lang.RuntimePermission "getClassLoader"
+      Primordial/void java.util.Properties.load( java.io.InputStream )
+   Permission: java.util.PropertyPermission "java.vendor.url.bug", "read"
+      Primordial/void java.util.Properties.load( java.io.InputStream )
+   Permission: java.util.logging.LoggingPermission "control", ""
+      Primordial/void java.util.Properties.load( java.io.InputStream )
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+   763. 	/**
+   764. 	 * Applies overrides to default preferences for the plug-in with the given id.
+   765. 	 * The data is contained in the <CODE>java.io.Properties</CODE> style file at 
+   766. 	 * the given URL. The property names consist of "/"-separated plug-in id and
+   767. 	 * name of preference; e.g., "com.example.myplugin/mypref".
+   768. 	 * 
+   769. 	 * @param propertiesURL the URL of a <CODE>java.io.Properties</CODE> style file
+   770. 	 * @param id the unique identifier of the plug-in
+   771. 	 * @param preferences the preference store for the specified plug-in
+   772. 	 * 
+   773. 	 * @since 2.0
+   774. 	 */
+   775. 	private void applyPluginDefaultOverrides(URL propertiesURL, String id, Preferences preferences, Properties props) {
+   776. 
+   777. 		// read the java.io.Properties file at the given URL
+   778. 		Properties overrides = new Properties();
+   779. 		InputStream in = null;
+   780. 
+   781. 		try {
+   782. 			File inFile = new File(propertiesURL.getFile());
+   783. 			if (!inFile.exists()) {
+   784. 				// We don"t have a preferences file to worry about
+   785. 				if (DEBUG_PREFERENCES)
+   786. 					Policy.debug("Preference file " + propertiesURL + " not found."); //$NON-NLS-1$ //$NON-NLS-2$
+   787. 				return;
+   788. 			}
+   789. 
+   790. 			<FONT style="background-color:yellow;display;inline">in = new BufferedInputStream(new FileInputStream(inFile));</FONT>
+   791. 			if (in == null) {
+   792. 				// fail quietly
+   793. 				if (DEBUG_PREFERENCES)
+   794. 					Policy.debug("Failed to open " + propertiesURL); //$NON-NLS-1$
+   795. 				return;
+   796. 			}
+   000.				<FONT style="background-color:yellow;display;inline">if (System.getSecurityManager()==null)</FONT>
+   797. 				overrides.load(in);
+   000.				<FONT style="background-color:yellow;display;inline">else
+   000.					AccessController.doPrivileged(new PropertyLoadAction(in,overrides));</FONT>
+   798. 		} catch (IOException e) {
+   799. 			// cannot read ini file - fail silently
+   800. 			if (DEBUG_PREFERENCES) {
+   801. 				Policy.debug("IOException reading preference file " + propertiesURL); //$NON-NLS-1$
+   802. 				e.printStackTrace();
+   803. 			}
+   804. 			return;
+   000. 		} <FONT style="background-color:yellow;display;inline">catch (PrivilegedActionException pae)
+   000.			{
+   000.				if (DEBUG_PREFERENCES) {
+   000.					Policy.debug("IOException reading preference file " + propertiesURL); //$NON-NLS-1$
+   000.					pae.printStackTrace();
+   000.				}
+   000.				return;</FONT>
+   805.			} finally {
+   806. 			try {
+   807. 				if (in != null) {
+   808. 					in.close();
+   809. 				}
+   810. 			} catch (IOException e) {
+   811. 				// ignore problems closing file
+   812. 				if (DEBUG_PREFERENCES) {
+   813. 					Policy.debug("IOException closing preference file " + propertiesURL); //$NON-NLS-1$
+   814. 					e.printStackTrace();
+   815. 				}
+   816. 			}
+   817. 		}
+   818. 
+   819. 		for (Iterator it = overrides.entrySet().iterator(); it.hasNext();) {
+   820. 			Map.Entry entry = (Map.Entry) it.next();
+   821. 			String qualifiedKey = (String) entry.getKey();
+   822. 			// Keys consist of "/"-separated plug-in id and name of preference
+   823. 			// e.g., "com.example.myplugin/mypref"
+   824. 			int s = qualifiedKey.indexOf("/");
+   825. 			if (s < 0 || s == 0 || s == qualifiedKey.length() - 1) {
+   826. 				// skip mangled entry
+   827. 				continue;
+   828. 			}
+   829. 			// plug-in id is non-empty string before "/" 
+   830. 			String pluginId = qualifiedKey.substring(0, s);
+   831. 			if (pluginId.equals(id)) {
+   832. 				// override property in the given plug-in
+   833. 				// plig-in-specified property name is non-empty string after "/" 
+   834. 				String propertyName = qualifiedKey.substring(s + 1);
+   835. 				String value = (String) entry.getValue();
+   836. 				value = translatePreference(value, props);
+   837. 				preferences.setDefault(propertyName, value);
+   838. 			}
+   839. 		}
+   840. 		if (DEBUG_PREFERENCES) {
+   841. 			Policy.debug("Preferences now set as follows:"); //$NON-NLS-1$
+   842. 			String[] prefNames = preferences.propertyNames();
+   843. 			for (int i = 0; i < prefNames.length; i++) {
+   844. 				String value = preferences.getString(prefNames[i]);
+   845. 				Policy.debug("\t" + prefNames[i] + " = " + value); //$NON-NLS-1$ //$NON-NLS-2$
+   846. 			}
+   847. 			prefNames = preferences.defaultPropertyNames();
+   848. 			for (int i = 0; i < prefNames.length; i++) {
+   849. 				String value = preferences.getDefaultString(prefNames[i]);
+   850. 				Policy.debug("\tDefault values: " + prefNames[i] + " = " + value); //$NON-NLS-1$ //$NON-NLS-2$
+   851. 			}
+   852. 		}
+   853. 	}
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B>
+<BR><BR>
+<TABLE border="2">
+<TR><TD bgcolor="silver">Access Modifier</TD><TD bgcolor="silver">Class/method</TD><TD bgcolor="silver">Package</TD><TD bgcolor="silver">Analysis</TD></TR>
+<TR><TD></TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>private</TD><TD>InternalPlatform.applyPluginDefaultOverrides(URL propertiesURL, String id, Preferences preferences, Properties props)</TD><TD>org.eclipse.core.internal.runtime</TD><TD>The propertiesURL supplied as input to this method is tainted.</TD></TR>
+</TABLE>
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.io.FilePermission "&LT&LT ALL FILES &GT&GT","read"</LI>
+<LI>permission java.lang.RuntimePermission "getClassLoader"</LI>
+<LI>permission java.util.logging.LoggingPermission "control", ""</LI>
+<LI>permission java.util.PropertyPermission "java.vendor.url.bug", "read"</LI>
+</UL>
+<BR>
+<B>Conclusion:</B> Grant the required permissions to runtime.jar.   Wrap the call to the ini loader in a privileged operation to avoid requiring 
+getClassLoader to read the associated file into a properties object.
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 228 void endSplash(  )
+   Permission: java.util.PropertyPermission "eclipse.startTime", "read"
+      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+   225. 	public void endSplash() {
+   226. 		if (DEBUG) {
+   227. 			//This value is only relevant if the workspace chooser is not used.
+<FONT style="background-color:yellow;display;inline">   000.				String startString = null;
+   000.				if (System.getSecurityManager()==null)
+   228. 				startString = System.getProperty("eclipse.startTime"); //$NON-NLS-1$
+   000.				else
+   000.					startString = (String) AccessController.doPrivileged(new GetSystemPropertyAction("eclipse.startTime")); //$NON-NLS-1$ </FONT>
+   229. 			if (startString != null)
+   230. 				try {
+   231. 					long start = Long.parseLong(startString);
+   232. 					long end = System.currentTimeMillis();
+   233. 					System.out.println("Startup complete: " + (end - start) + "ms"); //$NON-NLS-1$ //$NON-NLS-2$
+   234. 				} catch (NumberFormatException e) {
+   235. 					//this is just debugging code -- ok to swallow exception
+   236. 				}
+   237. 		}
+   238. 		if (splashDown)
+   239. 			return;
+   240. 		splashDown = true;
+   241. 		run(endOfInitializationHandler);
+   242. 	}
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B> N/A
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.util.PropertyPermission "eclipse.startTime", "read"</LI>
+</UL>
+<BR>
+<B>Conclusion:</B> Grant the required permission to runtime.jar.   The endSplash() method is called by the IDE & the workbench UI.  Wrap the call
+in a doPrivileged action.   No privileged data is returned.
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 1127 java.lang.String getNL(  )
+   Permission: java.util.PropertyPermission "osgi.nl", "read"
+      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )
+Line# 1138 java.lang.String getOS(  )
+   Permission: java.util.PropertyPermission "osgi.os", "read"
+      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )
+Line# 1116 java.lang.String getOSArch(  )
+   Permission: java.util.PropertyPermission "osgi.arch", "read"
+      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )
+Line# 1149 java.lang.String getWS(  )
+   Permission: java.util.PropertyPermission "osgi.ws", "read"
+      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+  1114. 	public String getOSArch() {
+  1115. 		<FONT style="background-color:yellow;display;inline">if (System.getSecurityManager() == null)</FONT>
+  1116.     	return System.getProperty(PROP_ARCH);
+  1117.     <FONT style="background-color:yellow;display;inline">else
+  0000.				return (String) AccessController.doPrivileged(new GetSystemPropertyAction(PROP_ARCH));</FONT>
+  1123. 	}
+  1124. 
+  1125. 	public String getNL() {
+  1126. 		<FONT style="background-color:yellow;display;inline">if (System.getSecurityManager() == null)</FONT>
+  1127.     		return System.getProperty(PROP_NL);
+  1128.     <FONT style="background-color:yellow;display;inline">else
+  0000.				return (String) AccessController.doPrivileged(new GetSystemPropertyAction(PROP_NL));</FONT>
+  1134. 	}
+  1135. 
+  1136. 	public String getOS() {
+  1137. 		<FONT style="background-color:yellow;display;inline">if (System.getSecurityManager() == null)</FONT>
+  1138.     		return System.getProperty(PROP_OS);
+  1139.     <FONT style="background-color:yellow;display;inline">else
+  0000.				return (String) AccessController.doPrivileged(new GetSystemPropertyAction(PROP_OS));</FONT>
+  1145. 	}
+  1146. 
+  1147. 	public String getWS() {
+  1148. 		<FONT style="background-color:yellow;display;inline">if (System.getSecurityManager() == null)</FONT>
+  1149.     		return System.getProperty(PROP_WS);
+  1150.     	<FONT style="background-color:yellow;display;inline">else
+  0000.				return (String) AccessController.doPrivileged(new GetSystemPropertyAction(PROP_WS));</FONT>
+  1156. 	}
+
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B> N/A These core methods are required for proper eclipse startup and must succeed.
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.util.PropertyPermission "osgi.ws", "read"</LI>
+<LI>permission java.util.PropertyPermission "osgi.nl", "read"</LI>
+<LI>permission java.util.PropertyPermission "osgi.os", "read"</LI>
+<LI>permission java.util.PropertyPermission "osgi.arch", "read"</LI>
+</UL>
+<BR>
+<B>Conclusion:</B> Grant the required permissions to runtime.jar and wrap the associated operations in privileged actions.
+
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 966 java.net.URL[] getPluginPath( java.net.URL )
+   Permission: java.lang.RuntimePermission "getClassLoader"
+      Primordial/void java.net.URL.<init>( java.lang.String )
+   Permission: java.lang.RuntimePermission "modifyThread"
+      Primordial/void java.net.URL.<init>( java.lang.String )
+   Permission: java.net.NetPermission "specifyStreamHandler"
+      Primordial/void java.net.URL.<init>( java.lang.String )
+   Permission: java.net.SocketPermission "", "resolve"
+      Primordial/void java.net.URL.<init>( java.lang.String )
+   Permission: java.net.SocketPermission ":???port???", "connect"
+      Primordial/void java.net.URL.<init>( java.lang.String )
+   Permission: java.net.SocketPermission "???host???", "resolve"
+      Primordial/void java.net.URL.<init>( java.lang.String )
+   Permission: java.net.SocketPermission "???host???:???port???", "connect"
+      Primordial/void java.net.URL.<init>( java.lang.String )
+   Permission: java.net.SocketPermission "localhost", "resolve"
+      Primordial/void java.net.URL.<init>( java.lang.String )
+   Permission: java.net.SocketPermission "localhost:1024-", "resolve"
+      Primordial/void java.net.URL.<init>( java.lang.String )
+   Permission: java.net.SocketPermission "localhost:1024-:???port???", "connect"
+      Primordial/void java.net.URL.<init>( java.lang.String )
+   Permission: java.net.SocketPermission "localhost:???port???", "connect"
+      Primordial/void java.net.URL.<init>( java.lang.String )
+   Permission: java.util.PropertyPermission "*", "read,write"
+      Primordial/void java.net.URL.<init>( java.lang.String )
+   Permission: java.util.PropertyPermission "java.protocol.handler.pkgs", "read"
+      Primordial/void java.net.URL.<init>( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "", ""
+      Primordial/void java.net.URL.<init>( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "", "get"
+      Primordial/void java.net.URL.<init>( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", ""
+      Primordial/void java.net.URL.<init>( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", "get"
+      Primordial/void java.net.URL.<init>( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", ""
+      Primordial/void java.net.URL.<init>( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get"
+      Primordial/void java.net.URL.<init>( java.lang.String )
+
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+	/*
+	 * This method is retained for R1.0 compatibility because it is defined as API.
+	 * It's function matches the API description (returns <CODE>null</CODE> when
+	 * argument URL is <CODE>null</CODE> or cannot be read).
+	 */
+	public URL[] getPluginPath(URL pluginPathLocation /*R1.0 compatibility*/
+	) {
+		InputStream input = null;
+		// first try and see if the given plugin path location exists.
+		if (pluginPathLocation == null)
+			return null;
+		try {
+			input = pluginPathLocation.openStream();
+		} catch (IOException e) {
+			//fall through
+		}
+
+		// if the given path was null or did not exist, look for a plugin path
+		// definition in the install location.
+		if (input == null)
+			try {
+			 <FONT style="background-color:yellow;display;inline"> URL url =null;
+				if (System.getSecurityManager()==null)</FONT>
+				  url = new URL(PlatformURLBaseConnection.PLATFORM_URL_STRING + PLUGIN_PATH);
+			  <FONT style="background-color:yellow;display;inline">else
+			      url = (URL) AccessController.doPrivileged( new URLFromStringAction(PlatformURLBaseConnection.PLATFORM_URL_STRING + PLUGIN_PATH));</FONT>
+				input = url.openStream();
+			} catch (MalformedURLException e) {
+				//fall through
+			} catch (IOException e) {
+				//fall through
+			} <FONT style="background-color:yellow;display;inline">catch (PrivilegedActionException pae) {
+				//fall through
+			}</FONT>
+
+		// nothing was found at the supplied location or in the install location
+		if (input == null)
+			return null;
+		// if we found a plugin path definition somewhere so read it and close the location.
+		URL[] result = null;
+		try {
+			try {
+				result = readPluginPath(input);
+			} finally {
+				input.close();
+			}
+		} catch (IOException e) {
+			//let it return null on failure to read
+		}
+		return result;
+	}
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B> N/A - Hard-coded parameters are supplied to the URL constructor.<BR><BR>
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.lang.RuntimePermission "getClassLoader"</LI>
+<LI>permission java.lang.RuntimePermission "modifyThread"</LI>
+<LI>permission java.net.NetPermission "specifyStreamHandler"</LI>
+<LI>permission java.net.SocketPermission "*", "resolve,connect"</LI>
+<LI>permission java.util.PropertyPermission "*", "read,write"</LI>
+<LI>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", "get"</LI>
+<LI>permission org.osgi.framework.ServicePermission "", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "", "get"</LI>
+<LI>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get"</LI>
+</UL>
+<BR>
+<B>Conclusion:</B> Wrap the code in a doPrivileged action if the security manager is enabled, and Grant the required
+permissions to runtime.jar
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 1223 org.eclipse.core.runtime.IProduct getProduct(  )
+   Permission: java.util.PropertyPermission "eclipse.product", "read"
+      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+  1220. 	public IProduct getProduct() {
+  1221. 		if (product != null)
+  1222. 			return product;
+<FONT style="background-color:yellow;display;inline">  0000.			String productId = null;
+  0000.			if (System.getSecurityManager()==null)
+  1223. 			productId = System.getProperty(PROP_PRODUCT);
+  0000.			else
+  0000.				productId = (String) AccessController.doPrivileged(new GetSystemPropertyAction(PROP_PRODUCT));</FONT>
+  1224. 		if (productId == null)
+  1225. 			return null;
+  1226. 		IConfigurationElement[] entries = getRegistry().getConfigurationElementsFor(Platform.PI_RUNTIME, Platform.PT_PRODUCT, productId);
+  1227. 		if (entries.length > 0) {
+  1228. 			// There should only be one product with the given id so just take the first element
+  1229. 			product = new Product(productId, entries[0]);
+  1230. 			return product;
+  1231. 		}
+  1232. 		IConfigurationElement[] elements = getRegistry().getConfigurationElementsFor(Platform.PI_RUNTIME, Platform.PT_PRODUCT);
+  1233. 		List logEntries = null;
+  1234. 		for (int i = 0; i < elements.length; i++) {
+  1235. 			IConfigurationElement element = elements[i];
+  1236. 			if (element.getName().equalsIgnoreCase("provider")) { //$NON-NLS-1$
+  1237. 				try {
+  1238. 					IProductProvider provider = (IProductProvider) element.createExecutableExtension("run"); //$NON-NLS-1$
+  1239. 					IProduct[] products = provider.getProducts();
+  1240. 					for (int j = 0; j < products.length; j++) {
+  1241. 						IProduct provided = products[j];
+  1242. 						if (provided.getId().equalsIgnoreCase(productId)) {
+  1243. 							product = provided;
+  1244. 							return product;
+  1245. 						}
+  1246. 					}
+  1247. 				} catch (CoreException e) {
+  1248. 					if (logEntries == null)
+  1249. 						logEntries = new ArrayList(3);
+  1250. 					logEntries.add(new FrameworkLogEntry(Platform.PI_RUNTIME, Policy.bind("provider.invalid", element.getParent().toString()), 0, e, null)); //$NON-NLS-1$
+  1251. 				}
+  1252. 			}
+  1253. 		}
+  1254. 		if (logEntries != null)
+  1255. 			getFrameworkLog().log(new FrameworkLogEntry(Platform.PI_RUNTIME, Policy.bind("provider.invalid.general"), 0, null, (FrameworkLogEntry[]) logEntries.toArray())); //$NON-NLS-1$
+  1256. 
+  1257. 		return null;
+  1258. 	}
+  1259. 
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B> N/A.
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.util.PropertyPermission "eclipse.product", "read"</LI>
+</UL>
+<BR>
+<B>Conclusion:</B> Grant the required permission to runtime.jar and wrap the associated 
+operation in a privileged action if the security manager is enabled.
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+  1082. 	public IPath getStateLocation(Bundle bundle, boolean create) throws IllegalStateException {
+  1083. 		assertInitialized();
+  1084. 		IPath result = getMetaArea().getStateLocation(bundle);
+  1085. 		if (create)
+  1086. 			<FONT style="background-color:yellow;display;inline">result.toFile().mkdirs();</FONT>
+  1087. 		return result;
+  1088. 	}
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B> N/A - All classes on the class path must have the required read permissions.
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.io.FilePermission "&LT&LT ALL FILES &GT&GT","read,write"</LI>
+<LI>java.util.PropertyPermission "user.dir", "read"</LI>
+</UL>
+<BR>
+<B>Conclusion:</B>Grant the required permission to runtime.jar.  Do not wrap the operation in a privileged action.
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 489 java.lang.String[] processCommandLine( java.lang.String[] )
+   Permission: java.util.PropertyPermission "eclipse.application", "write"
+      Primordial/java.lang.String java.lang.System.setProperty( java.lang.String, java.lang.String )
+   Permission: java.util.PropertyPermission "eclipse.exitcode", "write"
+      Primordial/java.lang.String java.lang.System.setProperty( java.lang.String, java.lang.String )
+   Permission: java.util.PropertyPermission "eclipse.noLazyRegistryCacheLoading", "write"
+      Primordial/java.lang.String java.lang.System.setProperty( java.lang.String, java.lang.String )
+   Permission: java.util.PropertyPermission "eclipse.noRegistryCache", "write"
+      Primordial/java.lang.String java.lang.System.setProperty( java.lang.String, java.lang.String )
+   Permission: java.util.PropertyPermission "eclipse.product", "write"
+      Primordial/java.lang.String java.lang.System.setProperty( java.lang.String, java.lang.String )
+   Permission: java.util.PropertyPermission "user.timezone", "write"
+      Primordial/java.lang.String java.lang.System.setProperty( java.lang.String, java.lang.String )
+Line# 496 java.lang.String[] processCommandLine( java.lang.String[] )
+   Permission: java.util.PropertyPermission "eclipse.application", "write"
+      Primordial/java.lang.String java.lang.System.setProperty( java.lang.String, java.lang.String )
+   Permission: java.util.PropertyPermission "eclipse.exitcode", "write"
+      Primordial/java.lang.String java.lang.System.setProperty( java.lang.String, java.lang.String )
+   Permission: java.util.PropertyPermission "eclipse.noLazyRegistryCacheLoading", "write"
+      Primordial/java.lang.String java.lang.System.setProperty( java.lang.String, java.lang.String )
+   Permission: java.util.PropertyPermission "eclipse.noRegistryCache", "write"
+      Primordial/java.lang.String java.lang.System.setProperty( java.lang.String, java.lang.String )
+   Permission: java.util.PropertyPermission "eclipse.product", "write"
+      Primordial/java.lang.String java.lang.System.setProperty( java.lang.String, java.lang.String )
+   Permission: java.util.PropertyPermission "user.timezone", "write"
+      Primordial/java.lang.String java.lang.System.setProperty( java.lang.String, java.lang.String )
+Line# 541 java.lang.String[] processCommandLine( java.lang.String[] )
+   Permission: java.util.PropertyPermission "eclipse.application", "write"
+      Primordial/java.lang.String java.lang.System.setProperty( java.lang.String, java.lang.String )
+   Permission: java.util.PropertyPermission "eclipse.exitcode", "write"
+      Primordial/java.lang.String java.lang.System.setProperty( java.lang.String, java.lang.String )
+   Permission: java.util.PropertyPermission "eclipse.noLazyRegistryCacheLoading", "write"
+      Primordial/java.lang.String java.lang.System.setProperty( java.lang.String, java.lang.String )
+   Permission: java.util.PropertyPermission "eclipse.noRegistryCache", "write"
+      Primordial/java.lang.String java.lang.System.setProperty( java.lang.String, java.lang.String )
+   Permission: java.util.PropertyPermission "eclipse.product", "write"
+      Primordial/java.lang.String java.lang.System.setProperty( java.lang.String, java.lang.String )
+   Permission: java.util.PropertyPermission "user.timezone", "write"
+      Primordial/java.lang.String java.lang.System.setProperty( java.lang.String, java.lang.String )
+Line# 547 java.lang.String[] processCommandLine( java.lang.String[] )
+   Permission: java.util.PropertyPermission "eclipse.application", "write"
+      Primordial/java.lang.String java.lang.System.setProperty( java.lang.String, java.lang.String )
+   Permission: java.util.PropertyPermission "eclipse.exitcode", "write"
+      Primordial/java.lang.String java.lang.System.setProperty( java.lang.String, java.lang.String )
+   Permission: java.util.PropertyPermission "eclipse.noLazyRegistryCacheLoading", "write"
+      Primordial/java.lang.String java.lang.System.setProperty( java.lang.String, java.lang.String )
+   Permission: java.util.PropertyPermission "eclipse.noRegistryCache", "write"
+      Primordial/java.lang.String java.lang.System.setProperty( java.lang.String, java.lang.String )
+   Permission: java.util.PropertyPermission "eclipse.product", "write"
+      Primordial/java.lang.String java.lang.System.setProperty( java.lang.String, java.lang.String )
+   Permission: java.util.PropertyPermission "user.timezone", "write"
+      Primordial/java.lang.String java.lang.System.setProperty( java.lang.String, java.lang.String )
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B>
+<BR><BR>
+<TABLE border="2">
+<TR><TD bgcolor="silver">Access Modifier</TD><TD bgcolor="silver">Class/method</TD><TD bgcolor="silver">Package</TD><TD bgcolor="silver">Analysis</TD></TR>
+<TR><TD></TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>protected</TD><TD>--BundleContextImpl.startActivator(BundleActivator bundleActivator)</TD><TD>org.eclipse.osgi.framework.internal.core</TD>
+<TD>This method executes under a do privileged action, so it would be acting as a trusted library (OSGI bundle).</TD>
+</TR>
+<TR><TD>public</TD><TD>--PluginActivator.start(BundleContext context)</TD><TD>org.eclipse.core.internal.compatibility</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>InternalPlatform.start(BundleContext runtimeContext)</TD><TD>org.eclipse.core.internal.runtime</TD><TD></TD></TR>
+<TR><TD>private</TD><TD>processCommandLine(String[] args)</TD><TD>org.eclipse.core.internal.runtime</TD><TD></TD></TR>
+</TABLE>
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.util.PropertyPermission "eclipse.application", "write"</LI>
+<LI>permission java.util.PropertyPermission "eclipse.exitcode", "write"</LI>
+<LI>permission java.util.PropertyPermission "eclipse.noLazyRegistryCacheLoading", "write"</LI>
+<LI>permission java.util.PropertyPermission "eclipse.noRegistryCache", "write"</LI>
+<LI>permission java.util.PropertyPermission "eclipse.product", "write"</LI>
+<LI>permission java.util.PropertyPermission "user.timezone", "write"</LI>
+</UL>
+<BR>
+<B>Conclusion:</B> Grant the required permissions to runtime.jar.  Note: The only caller to this method is the OSGI bundle, and it's call is already wrapped in a privileged action.
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 987 java.net.URL[] readPluginPath( java.io.InputStream )
+   Permission: java.lang.RuntimePermission "getClassLoader"
+      Primordial/void java.util.Properties.load( java.io.InputStream )
+   Permission: java.util.PropertyPermission "java.vendor.url.bug", "read"
+      Primordial/void java.util.Properties.load( java.io.InputStream )
+   Permission: java.util.logging.LoggingPermission "control", ""
+      Primordial/void java.util.Properties.load( java.io.InputStream )
+
+Line# 998 java.net.URL[] readPluginPath( java.io.InputStream )
+   Permission: java.lang.RuntimePermission "getClassLoader"
+      Primordial/void java.net.URL.<init>( java.lang.String )
+   Permission: java.net.NetPermission "specifyStreamHandler"
+      Primordial/void java.net.URL.<init>( java.lang.String )
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+  1008. 	private URL[] readPluginPath(InputStream input) {
+  1009. 		Properties ini = new Properties();
+  1010. 		try {
+  1011. 			<FONT style="background-color:yellow;display;inline">ini.load(input);</FONT>
+  1012. 		} catch (IOException e) {
+  1013. 			return null;
+  1014. 		}
+  1015. 		Vector result = new Vector(5);
+  1016. 		for (Enumeration groups = ini.propertyNames(); groups.hasMoreElements();) {
+  1017. 			String group = (String) groups.nextElement();
+  1018. 			for (StringTokenizer entries = new StringTokenizer(ini.getProperty(group), ";"); entries.hasMoreElements();) { //$NON-NLS-1$
+  1019. 				String entry = (String) entries.nextElement();
+  1020. 				if (!entry.equals("")) //$NON-NLS-1$
+  1021. 					try {
+  1022. 						<FONT style="background-color:yellow;display;inline">result.addElement(new URL(entry));</FONT>
+  1023. 					} catch (MalformedURLException e) {
+  1024. 						//intentionally ignore bad URLs
+  1025. 						System.err.println(Policy.bind("ignore.plugin", entry)); //$NON-NLS-1$
+  1026. 					}
+  1027. 			}
+  1028. 		}
+  1029. 		return (URL[]) result.toArray(new URL[result.size()]);
+  1030. 	}
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B> The parameter <FONT style="italic">input</FONT> is tainted.  If the call to getPluginPath receives a parameter which does not
+exist, then it will use the hard-coded install location.  If not, then it could be anywhere in the filesystem.  It is therefore inappropriate to wrap the
+property loading call in a doPrivileged action.
+
+The only reference to this method within eclispe comes from InternalPlatform.getPluginPath().
+Upon review of getPluginPath, it is clear that the caller must have read privilege to the 
+supplied stream in order to open it.   The subsequent call to readPluginPath from InternalPlatform.getPluginPath() can be wrapped in a privileged action.
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>java.net.NetPermission "specifyStreamHandler"</LI>
+<LI>permission java.util.PropertyPermission "java.vendor.url.bug", "read"</LI>
+<LI>java.util.logging.LoggingPermission "control", ""</LI>
+<LI>permission java.lang.RuntimePermission "getClassLoader"</LI>
+<LI>permission java.lang.RuntimePermission "modifyThread"</LI>
+<LI>permission java.net.NetPermission "specifyStreamHandler"</LI>
+<LI>permission java.net.SocketPermission "*", "resolve,connect"</LI>
+<LI>permission java.util.PropertyPermission "*", "read,write"</LI>
+<LI>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", "get"</LI>
+<LI>permission org.osgi.framework.ServicePermission "", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "", "get"</LI>
+<LI>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get"</LI>
+
+<LI>
+</LI></UL>
+<B>Conclusion:</B> Wrap the call to readPluginPath from InternalPlatform.getPluginPath() in a privileged action.  Grant the required permissions to the compatibility.jar,runtime.jar and any valid users.
+
+<!-- /tpl:put -->
+<!--  end of main content -->
+</td>
+</tr>
+</table>
+<!--  end of main frame table -->
+</body>
+</html>
+
+<!-- /tpl:insert -->

@@ -1,0 +1,306 @@
+<!-- tpl:insert page="/equinox.htpl" --><!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+<title>Equinox Security Home</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<style type="text/css">
+.input {background: "#ffffcc";color: "#000000" ;font-weight: normal;}
+a.nav:link { text-decoration: none; color: "#000000"; }
+a.nav:visited { text-decoration: none; color: "#000000"; }
+a.nav:hover { text-decoration: underline; color: "#000000"; }
+</style>
+<link rel="stylesheet" href="http://www.eclipse.org/nav_style.css" type="text/css">
+<link rel="stylesheet2" href="http://eclipse.org/default_style.css" type="text/css">
+</head>
+<body bgcolor="#ffffff" link="#0000ee" vlink="#551a8b" alink="#ff0000" leftmargin="0" marginheight="0" topmargin="0" rightmargin="0">
+<!--  start of banner  -->
+ <table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" >
+  <tr>
+   <td WIDTH="100%">
+    <table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" BGCOLOR="#006699" >
+
+     <tr>
+          <td BGCOLOR="#000000" width="116" ><a href="http://www.eclipse.org" target="_top"><img src="http://www.eclipse.org/images/EclipseBannerPic.jpg" width="115" height="50" border="0"></a></td>
+          <td WIDTH="637"><img SRC="http://www.eclipse.org/images/gradient.jpg" BORDER=0 height=50 width=282></td>
+          <td WIDTH="250" nowrap><font align="right" color="white" size="6" class=indextop>equinox security</font></td>
+     </tr>
+    </table>
+   </td>
+  </tr>
+ </table><!--  end of banner -->
+<!--  start of main frame table -->
+<table BORDER=0 CELLSPACING=0 CELLPADDING="4" WIDTH="100%" HEIGHT="100%" BGCOLOR="#90C8FF">
+<tr><td width="160" valign="top" bgcolor="#6699CC" nowrap>
+<!--  start of navigator -->
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%"  BGCOLOR="#90C8FF" >
+<tr><td>
+	<table BORDER=0 CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%"  BGCOLOR="#90C8FF" >
+	  <tr> 
+	    <td VALIGN=CENTER HEIGHT="21" BGCOLOR="#0080C0">&nbsp; <a href="http://www.eclipse.org/equinox" target="_top" class="navhead"> 
+	      equinox home</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER> 
+	    <td HEIGHT="21">&nbsp; <a name="overview" href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/index.html" class="nav" >overview</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/ejs.html" class="nav">rcp plug-in analysis</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/rcp/keystore.html" class="nav" >keystore/credentialstore</a></td>
+	  </tr>
+
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/rcp/end2end.html" class="nav" >end to end security</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/downloads.html" class="nav" >downloads</a></td>
+	  </tr>
+
+	</table>
+</td></tr>
+</table>
+<!--  end of navigator -->
+</td>
+<!--  start of main content  -->
+<td bgcolor="white" valign="top" >
+<!-- tpl:put name="bodyarea" -->
+<P></P><H1>PreferencesService.java changes</H1>
+<B>Detail</B><BR><BR>
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 374 org.eclipse.core.runtime.IStatus exportPreferences( org.eclipse.core.runtime.preferences.IEclipsePreferences, java.io.OutputStream, java.lang.String[] )
+   Permission: java.lang.RuntimePermission "getClassLoader"
+      Primordial/void java.util.Properties.store( java.io.OutputStream, java.lang.String )
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+   355. 	/*
+   356. 	 * @see org.eclipse.core.runtime.preferences.IPreferencesService#exportPreferences(org.eclipse.core.runtime.preferences.IEclipsePreferences, java.io.OutputStream, java.lang.String[])
+   357. 	 */
+   358. 	public IStatus exportPreferences(IEclipsePreferences node, OutputStream output, String[] excludesList) throws CoreException {
+   359. 		if (node == null || output == null)
+   360. 			throw new IllegalArgumentException();
+   361. 		Properties properties = null;
+   362. 		if (excludesList == null)
+   363. 			excludesList = new String[0];
+   364. 		try {
+   365. 			properties = convertToProperties(node, excludesList);
+   366. 			if (properties.isEmpty())
+   367. 				return Status.OK_STATUS;
+   368. 			properties.put(VERSION_KEY, Float.toString(EXPORT_VERSION));
+   369. 			properties.put(EXPORT_ROOT_PREFIX + node.absolutePath(), EMPTY_STRING);
+   370. 		} catch (BackingStoreException e) {
+   371. 			throw new CoreException(createStatusError(e.getMessage(), e));
+   372. 		}
+   373. 		try {
+<FONT style="background-color:yellow;display;inline">   000.				if (System.getSecurityManager()==null)
+   374. 				properties.store(output, null);
+   000.				else <FONT color="green">// Assert: The caller must have had write privilige to the supplied output stream.  Go ahead and store the preferences.</FONT>
+   000.					AccessController.doPrivileged(new PropertyStoreAction(properties,output,null));</FONT>
+   375. 		} catch (IOException e) {
+   376. 			String message = Policy.bind("preferences.exportProblems"); //$NON-NLS-1$
+   377. 			throw new CoreException(createStatusError(message, e));
+   378. 		}<FONT style="background-color:yellow;display;inline">catch (PrivilegedActionException pae)
+   000.			{
+   000.				String message = Policy.bind("preferences.exportProblems"); //$NON-NLS-1$
+   000.				throw new CoreException(createStatusError(message, pae.getException()));
+   000.			}</FONT>
+   379. 		return Status.OK_STATUS;
+   380. 	}
+
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B><BR><BR>
+<TABLE border="2">
+<TR><TD bgcolor="silver">Access Modifier</TD><TD bgcolor="silver">Class/method</TD><TD bgcolor="silver">Package</TD><TD bgcolor="silver">Analysis</TD></TR>
+<TR><TD></TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>public</TD><TD><PRE>PreferencesService.exportPreferences</PRE></TD><TD>org.eclispe.core.internal.perferences</TD>
+<TD>Although the output stream parameter is tainted, the caller must have had java.io.FilePermission to open it in write mode.  Consequently, it is OK to
+wrap the call to Properties.store() in a privileged action.</TD></TR>
+</TABLE>
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.lang.RuntimePermission "getClassLoader"</LI>
+</UL>
+<BR>
+<B>Conclusion:</B>  Grant the required permissions to runtime.jar only.  The properties can only be written to the supplied output stream if the
+caller was authorized to open the output stream in write mode.
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 612 org.eclipse.core.runtime.preferences.IExportedPreferences readPreferences( java.io.InputStream )
+   Permission: java.lang.RuntimePermission "getClassLoader"
+      Primordial/void java.util.Properties.load( java.io.InputStream )
+   Permission: java.util.PropertyPermission "java.vendor.url.bug", "read"
+      Primordial/void java.util.Properties.load( java.io.InputStream )
+   Permission: java.util.logging.LoggingPermission "control", ""
+      Primordial/void java.util.Properties.load( java.io.InputStream )
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+   599. 	/*
+   600. 	 * @see org.eclipse.core.runtime.preferences.IPreferencesService#readPreferences(java.io.InputStream)
+   601. 	 */
+   602. 	public IExportedPreferences readPreferences(InputStream input) throws CoreException {
+   603. 		if (input == null)
+   604. 			throw new IllegalArgumentException();
+   605. 
+   606. 		if (InternalPlatform.DEBUG_PREFERENCES)
+   607. 			Policy.debug("Reading preferences from stream..."); //$NON-NLS-1$
+   608. 
+   609. 		// read the file into a properties object
+   610. 		Properties properties = new Properties();
+   611. 		try {
+<FONT style="background-color:yellow;display;inline">   000.             if (System.getSecurityManager()==null)
+   612. 				properties.load(input);
+   000.				else
+   000.					AccessController.doPrivileged(new PropertyLoadAction(input,properties));</FONT>
+   613. 		} catch (IOException e) {
+   614. 			String message = Policy.bind("preferences.importProblems"); //$NON-NLS-1$
+   615. 			throw new CoreException(createStatusError(message, e));
+   616. 		} <FONT style="background-color:yellow;display;inline">catch (PrivilegedActionException pae)
+   000.			{
+   000.				String message = Policy.bind("preferences.importProblems"); //$NON-NLS-1$
+   000.				throw new CoreException(createStatusError(message, pae.getException()));
+   000.			}</FONT> finally {
+   617. 			try {
+   618. 				input.close();
+   619. 			} catch (IOException e) {
+   620. 				// ignore
+   621. 			}
+   622. 		}
+   623. 
+   624. 		// manipulate the file if it from a legacy preference export
+   625. 		if (isLegacy(properties)) {
+   626. 			if (InternalPlatform.DEBUG_PREFERENCES)
+   627. 				Policy.debug("Read legacy preferences file, converting to 3.0 format..."); //$NON-NLS-1$
+   628. 			properties = convertFromLegacy(properties);
+   629. 		} else {
+   630. 			if (InternalPlatform.DEBUG_PREFERENCES)
+   631. 				Policy.debug("Read preferences file."); //$NON-NLS-1$
+   632. 			properties.remove(VERSION_KEY);
+   633. 		}
+   634. 
+   635. 		// convert the Properties object into an object to return
+   636. 		return convertFromProperties(properties);
+   637. 	}
+
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B><BR><BR>
+<TABLE border="2">
+<TR><TD bgcolor="silver">Access Modifier</TD><TD bgcolor="silver">Class/method</TD><TD bgcolor="silver">Package</TD><TD bgcolor="silver">Analysis</TD></TR>
+<TR><TD></TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>public</TD><TD>Preferences.readPreferences</TD><TD>org.eclipse.core.internal.preferences</TD><TD>Although the supplied input parameter is tainted, the
+caller must have had java.io.FilePermission "read" to open the input stream.  Consequently, it is OK to wrap the preferences load call in a  privileged 
+action.</TD></TR>
+</TABLE>
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.lang.RuntimePermission "getClassLoader"</LI>
+<LI>java.util.PropertyPermission "java.vendor.url.bug", "read"</LI>
+<LI>java.util.PropertyPermission "java.vendor.url.bug", "read"</LI>
+<LI>java.util.logging.LoggingPermission "control", ""</LI>
+</UL>
+<BR>
+<B>Conclusion:</B> Since the caller must have had java.io.FilePermission "read" for the supplied input stream parameter, it is OK, to load the content
+into a properties object using a privileged action.   This has the added benefit, of simplifying the permission requirements to the caller. (i.e.
+If you can open the file in R/O mode, then you can load it's into a properties object without requiring getClassLoader, and LoggingPermission.
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+   671. 	public IStatus validateVersions(IPath path) {
+   672. 		String message = Policy.bind("preferences.validate"); //$NON-NLS-1$
+   673. 		final MultiStatus result = new MultiStatus(Platform.PI_RUNTIME, IStatus.INFO, message, null);
+   674. 		IPreferenceNodeVisitor visitor = new IPreferenceNodeVisitor() {
+   675. 			public boolean visit(IEclipsePreferences node) {
+   676. 				if (!(node instanceof ExportedPreferences))
+   677. 					return false;
+   678. 
+   679. 				// calculate the version in the file
+   680. 				ExportedPreferences realNode = (ExportedPreferences) node;
+   681. 				String version = realNode.getVersion();
+   682. 				if (version == null || !PluginVersionIdentifier.validateVersion(version).isOK())
+   683. 					return true;
+   684. 				PluginVersionIdentifier versionInFile = new PluginVersionIdentifier(version);
+   685. 
+   686. 				// calculate the version of the installed bundle
+   687. 				String bundleName = getBundleName(node.absolutePath());
+   688. 				if (bundleName == null)
+   689. 					return true;
+   690. 				String stringVersion = getBundleVersion(bundleName);
+   691. 				if (stringVersion == null || !PluginVersionIdentifier.validateVersion(stringVersion).isOK())
+   692. 					return true;
+   693. 				PluginVersionIdentifier versionInMemory = new PluginVersionIdentifier(stringVersion);
+   694. 
+   695. 				// verify the versions based on the matching rules
+   696. 				IStatus verification = validatePluginVersions(bundleName, versionInFile, versionInMemory);
+   697. 				if (verification != null)
+   698. 					result.add(verification);
+   699. 
+   700. 				return true;
+   701. 			}
+   702. 		};
+   703. 
+   704. 		InputStream input = null;
+   705. 		try {
+   706. 			<FONT style="background-color:yellow;display;inline">input = new BufferedInputStream(new FileInputStream(path.toFile()));</FONT>
+   707. 			IExportedPreferences prefs = readPreferences(input);
+   708. 			prefs.accept(visitor);
+   709. 		} catch (FileNotFoundException e) {
+   710. 			// ignore...if the file does not exist then all is OK
+   711. 		} catch (CoreException e) {
+   712. 			message = Policy.bind("preferences.validationException"); //$NON-NLS-1$
+   713. 			result.add(createStatusError(message, e));
+   714. 		} catch (BackingStoreException e) {
+   715. 			message = Policy.bind("preferences.validationException"); //$NON-NLS-1$
+   716. 			result.add(createStatusError(message, e));
+   717. 		}
+   718. 		return result;
+   719. 	}
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B> Regardless of the origin of the file that is being read, the caller should *ALWAYS* have java.io.FilePermission to 
+read the file.  
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.io.FilePermission "&LT&LT ALL FILES &GT&GT","read"</LI>
+</UL>
+<BR>
+<B>Conclusion:</B>Grant the required permission to runtime.jar only.  Do not wrap this operation in a privileged action.
+  All users of this public method must have the associated read permission for the speciifed file.
+<!-- /tpl:put -->
+<!--  end of main content -->
+</td>
+</tr>
+</table>
+<!--  end of main frame table -->
+</body>
+</html>
+
+<!-- /tpl:insert -->

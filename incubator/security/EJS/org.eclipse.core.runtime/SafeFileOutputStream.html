@@ -1,0 +1,900 @@
+<!-- tpl:insert page="/equinox.htpl" --><!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+<title>Equinox Security Home</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<style type="text/css">
+.input {background: "#ffffcc";color: "#000000" ;font-weight: normal;}
+a.nav:link { text-decoration: none; color: "#000000"; }
+a.nav:visited { text-decoration: none; color: "#000000"; }
+a.nav:hover { text-decoration: underline; color: "#000000"; }
+</style>
+<link rel="stylesheet" href="http://www.eclipse.org/nav_style.css" type="text/css">
+<link rel="stylesheet2" href="http://eclipse.org/default_style.css" type="text/css">
+</head>
+<body bgcolor="#ffffff" link="#0000ee" vlink="#551a8b" alink="#ff0000" leftmargin="0" marginheight="0" topmargin="0" rightmargin="0">
+<!--  start of banner  -->
+ <table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" >
+  <tr>
+   <td WIDTH="100%">
+    <table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" BGCOLOR="#006699" >
+
+     <tr>
+          <td BGCOLOR="#000000" width="116" ><a href="http://www.eclipse.org" target="_top"><img src="http://www.eclipse.org/images/EclipseBannerPic.jpg" width="115" height="50" border="0"></a></td>
+          <td WIDTH="637"><img SRC="http://www.eclipse.org/images/gradient.jpg" BORDER=0 height=50 width=282></td>
+          <td WIDTH="250" nowrap><font align="right" color="white" size="6" class=indextop>equinox security</font></td>
+     </tr>
+    </table>
+   </td>
+  </tr>
+ </table><!--  end of banner -->
+<!--  start of main frame table -->
+<table BORDER=0 CELLSPACING=0 CELLPADDING="4" WIDTH="100%" HEIGHT="100%" BGCOLOR="#90C8FF">
+<tr><td width="160" valign="top" bgcolor="#6699CC" nowrap>
+<!--  start of navigator -->
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%"  BGCOLOR="#90C8FF" >
+<tr><td>
+	<table BORDER=0 CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%"  BGCOLOR="#90C8FF" >
+	  <tr> 
+	    <td VALIGN=CENTER HEIGHT="21" BGCOLOR="#0080C0">&nbsp; <a href="http://www.eclipse.org/equinox" target="_top" class="navhead"> 
+	      equinox home</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER> 
+	    <td HEIGHT="21">&nbsp; <a name="overview" href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/index.html" class="nav" >overview</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/ejs.html" class="nav">rcp plug-in analysis</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/rcp/keystore.html" class="nav" >keystore/credentialstore</a></td>
+	  </tr>
+
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/rcp/end2end.html" class="nav" >end to end security</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/downloads.html" class="nav" >downloads</a></td>
+	  </tr>
+
+	</table>
+</td></tr>
+</table>
+<!--  end of navigator -->
+</td>
+<!--  start of main content  -->
+<td bgcolor="white" valign="top" >
+<!-- tpl:put name="bodyarea" -->
+<P></P><H1>SafeFileOutputStream.java changes</H1>
+<B>Detail</B><BR><BR>
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 33 void <init>( java.io.File )
+   Permission: java.io.FilePermission "???file???", "read"
+      Primordial/java.lang.String java.io.File.getAbsolutePath(  )
+   Permission: java.util.PropertyPermission "user.dir", "read"
+      Primordial/java.lang.String java.io.File.getAbsolutePath(  )
+         THE RECEIVER OF THIS METHOD CALL IS TAINTED.
+Line# 50 void <init>( java.lang.String, java.lang.String )
+   Permission: java.io.FilePermission "", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission "-1", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission "-2", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission "-2147483648", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission "-3", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission "-9223372036854775808", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission "..", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission ".bundledata", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission ".log", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission ".manager", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission ".metadata", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission ".options", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission ".plugins", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission ".registry", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission ".settings", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission ".state", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission "/", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission "0", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission "1", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission "1.3", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission "10", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission "13", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission "2", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission "3", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission "3.0.0", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission "4", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission "5", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission "6", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission "7", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission "8", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission "9", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission "???System Property Value???", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission "???file???", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission "Eclipse", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission "GMT", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission "bundles", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission "carbon", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission "charset", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission "configuration", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission "false", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission "file-extensions", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission "file-names", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission "instance", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission "manifests", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission "motif", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission "org.eclipse.core.runtime", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission "org.eclipse.core.runtime.adaptor/resolver/timing/value", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission "org.eclipse.osgi", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission "org.eclipse.osgi/debug/packageadmin/timing/value", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission "osgi.bundlestore", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission "plugin_customization.ini", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission "pref_store.ini", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission "preferences", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission "solaris", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission "true", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission "unknown", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission "user", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission "win32", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission "workspace", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission "x86", "read"
+      Primordial/boolean java.io.File.exists(  )
+         THE RECEIVER OF THIS METHOD CALL IS TAINTED.
+Line# 51 void <init>( java.lang.String, java.lang.String )
+   Permission: java.io.FilePermission "", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "-1", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "-2", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "-2147483648", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "-3", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "-9223372036854775808", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "..", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission ".bundledata", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission ".log", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission ".manager", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission ".metadata", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission ".options", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission ".plugins", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission ".registry", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission ".settings", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission ".state", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "/", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "0", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "1", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "1.3", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "10", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "13", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "2", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "3", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "3.0.0", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "4", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "5", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "6", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "7", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "8", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "9", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "???System Property Value???", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "???file???", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "Eclipse", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "GMT", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "bundles", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "carbon", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "charset", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "configuration", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "false", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "file-extensions", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "file-names", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "instance", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "manifests", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "motif", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "org.eclipse.core.runtime", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "org.eclipse.core.runtime.adaptor/resolver/timing/value", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "org.eclipse.osgi", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "org.eclipse.osgi/debug/packageadmin/timing/value", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "osgi.bundlestore", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "plugin_customization.ini", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "pref_store.ini", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "preferences", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "solaris", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "true", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "unknown", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "user", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "win32", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "workspace", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "x86", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+         PARAMETER #1 OF THIS METHOD CALL IS TAINTED
+Line# 55 void <init>( java.lang.String, java.lang.String )
+   Permission: java.io.FilePermission "???file???", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+         PARAMETER #1 OF THIS METHOD CALL IS TAINTED
+Line# 70 void close( boolean )
+   Permission: java.io.FilePermission "???file???", "delete"
+      Primordial/boolean java.io.File.delete(  )
+         THE RECEIVER OF THIS METHOD CALL IS TAINTED.
+Line# 76 void commit(  )
+   Permission: java.io.FilePermission "???file???", "read"
+      Primordial/boolean java.io.File.exists(  )
+         THE RECEIVER OF THIS METHOD CALL IS TAINTED.
+Line# 78 void commit(  )
+   Permission: java.io.FilePermission "", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "-1", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "-2", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "-2147483648", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "-3", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "-9223372036854775808", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "..", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission ".bundledata", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission ".log", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission ".manager", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission ".metadata", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission ".options", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission ".plugins", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission ".registry", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission ".settings", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission ".state", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "/", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "0", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "1", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "1.3", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "10", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "13", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "2", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "3", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "3.0.0", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "4", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "5", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "6", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "7", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "8", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "9", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "???System Property Value???", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "???file???", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "Eclipse", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "GMT", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "bundles", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "carbon", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "charset", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "configuration", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "false", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "file-extensions", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "file-names", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "instance", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "manifests", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "motif", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "org.eclipse.core.runtime", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "org.eclipse.core.runtime.adaptor/resolver/timing/value", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "org.eclipse.osgi", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "org.eclipse.osgi/debug/packageadmin/timing/value", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "osgi.bundlestore", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "plugin_customization.ini", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "pref_store.ini", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "preferences", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "solaris", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "true", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "unknown", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "user", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "win32", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "workspace", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "x86", "delete"
+      Primordial/boolean java.io.File.delete(  )
+         THE RECEIVER OF THIS METHOD CALL IS TAINTED.
+Line# 80 void commit(  )
+   Permission: java.io.FilePermission "???file???", "delete"
+      Primordial/boolean java.io.File.delete(  )
+         THE RECEIVER OF THIS METHOD CALL IS TAINTED.
+Line# 84 void copy( java.io.File, java.io.File )
+   Permission: java.io.FilePermission "???file???", "read"
+      Primordial/boolean java.io.File.exists(  )
+         THE RECEIVER OF THIS METHOD CALL IS TAINTED.
+Line# 86 void copy( java.io.File, java.io.File )
+   Permission: java.io.FilePermission "", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+   Permission: java.io.FilePermission "-1", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+   Permission: java.io.FilePermission "-2", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+   Permission: java.io.FilePermission "-2147483648", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+   Permission: java.io.FilePermission "-3", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+   Permission: java.io.FilePermission "-9223372036854775808", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+   Permission: java.io.FilePermission "..", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+   Permission: java.io.FilePermission ".bundledata", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+   Permission: java.io.FilePermission ".log", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+   Permission: java.io.FilePermission ".manager", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+   Permission: java.io.FilePermission ".metadata", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+   Permission: java.io.FilePermission ".options", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+   Permission: java.io.FilePermission ".plugins", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+   Permission: java.io.FilePermission ".registry", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+   Permission: java.io.FilePermission ".settings", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+   Permission: java.io.FilePermission ".state", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+   Permission: java.io.FilePermission "/", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+   Permission: java.io.FilePermission "0", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+   Permission: java.io.FilePermission "1", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+   Permission: java.io.FilePermission "1.3", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+   Permission: java.io.FilePermission "10", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+   Permission: java.io.FilePermission "13", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+   Permission: java.io.FilePermission "2", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+   Permission: java.io.FilePermission "3", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+   Permission: java.io.FilePermission "3.0.0", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+   Permission: java.io.FilePermission "4", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+   Permission: java.io.FilePermission "5", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+   Permission: java.io.FilePermission "6", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+   Permission: java.io.FilePermission "7", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+   Permission: java.io.FilePermission "8", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+   Permission: java.io.FilePermission "9", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+   Permission: java.io.FilePermission "???System Property Value???", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+   Permission: java.io.FilePermission "???file???", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+   Permission: java.io.FilePermission "Eclipse", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+   Permission: java.io.FilePermission "GMT", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+   Permission: java.io.FilePermission "bundles", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+   Permission: java.io.FilePermission "carbon", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+   Permission: java.io.FilePermission "charset", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+   Permission: java.io.FilePermission "configuration", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+   Permission: java.io.FilePermission "false", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+   Permission: java.io.FilePermission "file-extensions", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+   Permission: java.io.FilePermission "file-names", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+   Permission: java.io.FilePermission "instance", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+   Permission: java.io.FilePermission "manifests", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+   Permission: java.io.FilePermission "motif", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+   Permission: java.io.FilePermission "org.eclipse.core.runtime", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+   Permission: java.io.FilePermission "org.eclipse.core.runtime.adaptor/resolver/timing/value", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+   Permission: java.io.FilePermission "org.eclipse.osgi", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+   Permission: java.io.FilePermission "org.eclipse.osgi/debug/packageadmin/timing/value", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+   Permission: java.io.FilePermission "osgi.bundlestore", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+   Permission: java.io.FilePermission "plugin_customization.ini", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+   Permission: java.io.FilePermission "pref_store.ini", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+   Permission: java.io.FilePermission "preferences", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+   Permission: java.io.FilePermission "solaris", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+   Permission: java.io.FilePermission "true", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+   Permission: java.io.FilePermission "unknown", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+   Permission: java.io.FilePermission "user", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+   Permission: java.io.FilePermission "win32", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+   Permission: java.io.FilePermission "workspace", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+   Permission: java.io.FilePermission "x86", "write"
+      Primordial/boolean java.io.File.renameTo( java.io.File )
+         THE RECEIVER OF THIS METHOD CALL IS TAINTED.
+         PARAMETER #1 OF THIS METHOD CALL IS TAINTED
+Line# 88 void copy( java.io.File, java.io.File )
+   Permission: java.io.FilePermission "???file???", "read"
+      Primordial/void java.io.FileInputStream.<init>( java.io.File )
+         PARAMETER #1 OF THIS METHOD CALL IS TAINTED
+Line# 89 void copy( java.io.File, java.io.File )
+   Permission: java.io.FilePermission "", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "-1", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "-2", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "-2147483648", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "-3", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "-9223372036854775808", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "..", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission ".bundledata", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission ".log", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission ".manager", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission ".metadata", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission ".options", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission ".plugins", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission ".registry", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission ".settings", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission ".state", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "/", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "0", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "1", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "1.3", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "10", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "13", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "2", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "3", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "3.0.0", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "4", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "5", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "6", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "7", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "8", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "9", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "???System Property Value???", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "???file???", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "Eclipse", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "GMT", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "bundles", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "carbon", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "charset", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "configuration", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "false", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "file-extensions", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "file-names", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "instance", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "manifests", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "motif", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "org.eclipse.core.runtime", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "org.eclipse.core.runtime.adaptor/resolver/timing/value", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "org.eclipse.osgi", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "org.eclipse.osgi/debug/packageadmin/timing/value", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "osgi.bundlestore", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "plugin_customization.ini", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "pref_store.ini", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "preferences", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "solaris", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "true", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "unknown", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "user", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "win32", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "workspace", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "x86", "write"
+      Primordial/void java.io.FileOutputStream.<init>( java.io.File )
+         PARAMETER #1 OF THIS METHOD CALL IS TAINTED
+Line# 95 void createTempFile( java.lang.String )
+   Permission: java.io.FilePermission "???file???", "read"
+      Primordial/java.lang.String java.io.File.getAbsolutePath(  )
+   Permission: java.util.PropertyPermission "user.dir", "read"
+      Primordial/java.lang.String java.io.File.getAbsolutePath(  )
+         THE RECEIVER OF THIS METHOD CALL IS TAINTED.
+Line# 109 java.lang.String getTempFilePath(  )
+   Permission: java.io.FilePermission "???file???", "read"
+      Primordial/java.lang.String java.io.File.getAbsolutePath(  )
+   Permission: java.util.PropertyPermission "user.dir", "read"
+      Primordial/java.lang.String java.io.File.getAbsolutePath(  )
+         THE RECEIVER OF THIS METHOD CALL IS TAINTED.
+
+
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+    25. public class SafeFileOutputStream extends OutputStream {
+    26. 	protected File temp;
+    27. 	protected File target;
+    28. 	protected OutputStream output;
+    29. 	protected boolean failed;
+    30. 	protected static final String EXTENSION = ".bak"; //$NON-NLS-1$
+    31. 
+    32. 	public SafeFileOutputStream(File file) throws IOException {
+    33. 		this(<FONT style="background-color:yellow;display;inline">file.getAbsolutePath()</FONT>, null);
+    34. 	}
+    35. 
+    36. 	public SafeFileOutputStream(String targetName) throws IOException {
+    37. 		this(targetName, null);
+    38. 	}
+    39. 
+    40. 	/**
+    41. 	 * If targetPath is null, the file will be created in the default-temporary directory.
+    42. 	 */
+    43. 	public SafeFileOutputStream(String targetPath, String tempPath) throws IOException {
+    44. 		failed = false;
+    45. 		target = new File(targetPath);
+    46. 		createTempFile(tempPath);
+    47. 		// If we do not have a file at target location, but we do have at temp location,
+    48. 		// it probably means something wrong happened the last time we tried to write it.
+    49. 		// So, try to recover the backup file. And, if successful, write the new one.
+    50. 		if (<FONT style="background-color:yellow;display;inline">!target.exists() && !temp.exists()</FONT>) {
+    51. 			output = new BufferedOutputStream(new <FONT style="background-color:yellow;display;inline">FileOutputStream(target)</FONT>);
+    52. 			return;
+    53. 		}
+    54. 		copy(temp, target);
+    55. 		output = new BufferedOutputStream(new <FONT style="background-color:yellow;display;inline">FileOutputStream(temp)</FONT>);
+    56. 	}
+    57. 
+    58. 	public void close() throws IOException {
+    59. 		close(false);
+    60. 	}
+    61. 	
+    62. 	public void close(boolean discard) throws IOException {
+    63. 		try {
+    64. 			output.close();
+    65. 		} catch (IOException e) {
+    66. 			failed = true;
+    67. 			throw e; // rethrow
+    68. 		}
+    69. 		if (discard || failed)
+    70. 			<FONT style="background-color:yellow;display;inline">temp.delete();</FONT>
+    71. 		else
+    72. 			commit();
+    73. 	}
+    74. 
+    75. 	protected void commit() throws IOException {
+    76. 		if (<FONT style="background-color:yellow;display;inline">!temp.exists()</FONT>)
+    77. 			return;
+    78. 		<FONT style="background-color:yellow;display;inline">target.delete();</FONT>
+    79. 		copy(temp, target);
+    80. 		<FONT style="background-color:yellow;display;inline">temp.delete();</FONT>
+    81. 	}
+    82. 
+    83. 	protected void copy(File sourceFile, File destinationFile) throws IOException {
+    84. 		if (<FONT style="background-color:yellow;display;inline">!sourceFile.exists()</FONT>)
+    85. 			return;
+    86. 		if (<FONT style="background-color:yellow;display;inline">sourceFile.renameTo(destinationFile)</FONT>)
+    87. 			return;
+    88. 		InputStream source = new BufferedInputStream(new <FONT style="background-color:yellow;display;inline">FileInputStream(sourceFile)</FONT>);
+    89. 		OutputStream destination = new BufferedOutputStream(new <FONT style="background-color:yellow;display;inline">FileOutputStream(destinationFile)</FONT>);
+    90. 		transferStreams(source, destination);
+    91. 	}
+    92. 
+    93. 	protected void createTempFile(String tempPath) {
+    94. 		if (tempPath == null)
+    95. 			tempPath =<FONT style="background-color:yellow;display;inline"> target.getAbsolutePath() </FONT>+ EXTENSION;
+    96. 		temp = new File(tempPath);
+    97. 	}
+    98. 	
+    99. 	public void flush() throws IOException {
+   100. 		try {
+   101. 			output.flush();
+   102. 		} catch (IOException e) {
+   103. 			failed = true;
+   104. 			throw e; // rethrow
+   105. 		}
+   106. 	}
+   107. 
+   108. 	public String getTempFilePath() {
+   109. 		return <FONT style="background-color:yellow;display;inline">temp.getAbsolutePath()</FONT>;
+   110. 	}
+   111. 
+   112. 	protected void transferStreams(InputStream source, OutputStream destination) throws IOException {
+   113. 		try {
+   114. 			byte[] buffer = new byte[8192];
+   115. 			while (true) {
+   116. 				int bytesRead = source.read(buffer);
+   117. 				if (bytesRead == -1)
+   118. 					break;
+   119. 				destination.write(buffer, 0, bytesRead);
+   120. 			}
+   121. 		} finally {
+   122. 			try {
+   123. 				source.close();
+   124. 			} catch (IOException e) {
+   125. 				// do nothing
+   126. 			}
+   127. 			try {
+   128. 				destination.close();
+   129. 			} catch (IOException e) {
+   130. 				// do nothing
+   131. 			}
+   132. 		}
+   133. 	}
+   134. 
+   135. 	public void write(int b) throws IOException {
+   136. 		try {
+   137. 			output.write(b);
+   138. 		} catch (IOException e) {
+   139. 			failed = true;
+   140. 			throw e; // rethrow
+   141. 		}
+   142. 	}
+   143. }
+
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B>
+<BR><BR>
+<TABLE border="2">
+<TR><TD bgcolor="silver">Access Modifier</TD><TD bgcolor="silver">Class/method</TD><TD bgcolor="silver">Package</TD><TD bgcolor="silver">Analysis</TD></TR>
+<TR><TD></TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD></TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>protected</TD><TD>----------BundleContextImp.stop()</TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>--------PluginActivator.stop(BundleContext)</TD><TD>org.eclipse.core.internal.compatability</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD>--------BundleContextImp.stop()</TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>PlatformActivator.stop(BundleContext)</TD><TD>org.eclipse.core.internal.runtime</TD><TD></TD></TR>
+<TR><TD>private</TD><TD>PlatformActivator.stopRegistry(BundleContext)</TD><TD>org.eclipse.core.internal.runtime</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>RegistryCacheWriter.saveCache(ExtensionREgistry,long)</TD><TD>org.eclipse.core.internal.registry</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>SafeFileOutputStream</TD><TD>org.eclipse.core.internal.runtime</TD><TD></TD></TR>
+</TABLE>
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.io.FilePermission "&LT&LT ALL FILES &GT&GT","read,write,delete"</LI>
+<LI>java.util.PropertyPermission "user.dir", "read"</LI>
+</UL>
+<BR>
+<B>Conclusion:</B>This method is only called by the OSGI framework, and is done under a privileged action.   Since the framework already has allpermissions, 
+it is not necessary to grant additional permissions, or wrap this classes methods.
+<!-- /tpl:put -->
+<!--  end of main content -->
+</td>
+</tr>
+</table>
+<!--  end of main frame table -->
+</body>
+</html>
+
+<!-- /tpl:insert -->

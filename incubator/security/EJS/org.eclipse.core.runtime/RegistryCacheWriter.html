@@ -1,0 +1,382 @@
+<!-- tpl:insert page="/equinox.htpl" --><!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+<title>Equinox Security Home</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<style type="text/css">
+.input {background: "#ffffcc";color: "#000000" ;font-weight: normal;}
+a.nav:link { text-decoration: none; color: "#000000"; }
+a.nav:visited { text-decoration: none; color: "#000000"; }
+a.nav:hover { text-decoration: underline; color: "#000000"; }
+</style>
+<link rel="stylesheet" href="http://www.eclipse.org/nav_style.css" type="text/css">
+<link rel="stylesheet2" href="http://eclipse.org/default_style.css" type="text/css">
+</head>
+<body bgcolor="#ffffff" link="#0000ee" vlink="#551a8b" alink="#ff0000" leftmargin="0" marginheight="0" topmargin="0" rightmargin="0">
+<!--  start of banner  -->
+ <table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" >
+  <tr>
+   <td WIDTH="100%">
+    <table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" BGCOLOR="#006699" >
+
+     <tr>
+          <td BGCOLOR="#000000" width="116" ><a href="http://www.eclipse.org" target="_top"><img src="http://www.eclipse.org/images/EclipseBannerPic.jpg" width="115" height="50" border="0"></a></td>
+          <td WIDTH="637"><img SRC="http://www.eclipse.org/images/gradient.jpg" BORDER=0 height=50 width=282></td>
+          <td WIDTH="250" nowrap><font align="right" color="white" size="6" class=indextop>equinox security</font></td>
+     </tr>
+    </table>
+   </td>
+  </tr>
+ </table><!--  end of banner -->
+<!--  start of main frame table -->
+<table BORDER=0 CELLSPACING=0 CELLPADDING="4" WIDTH="100%" HEIGHT="100%" BGCOLOR="#90C8FF">
+<tr><td width="160" valign="top" bgcolor="#6699CC" nowrap>
+<!--  start of navigator -->
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%"  BGCOLOR="#90C8FF" >
+<tr><td>
+	<table BORDER=0 CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%"  BGCOLOR="#90C8FF" >
+	  <tr> 
+	    <td VALIGN=CENTER HEIGHT="21" BGCOLOR="#0080C0">&nbsp; <a href="http://www.eclipse.org/equinox" target="_top" class="navhead"> 
+	      equinox home</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER> 
+	    <td HEIGHT="21">&nbsp; <a name="overview" href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/index.html" class="nav" >overview</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/ejs.html" class="nav">rcp plug-in analysis</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/rcp/keystore.html" class="nav" >keystore/credentialstore</a></td>
+	  </tr>
+
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/rcp/end2end.html" class="nav" >end to end security</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/downloads.html" class="nav" >downloads</a></td>
+	  </tr>
+
+	</table>
+</td></tr>
+</table>
+<!--  end of navigator -->
+</td>
+<!--  start of main content  -->
+<td bgcolor="white" valign="top" >
+<!-- tpl:put name="bodyarea" -->
+<P></P><H1>RegistryCacheWriter.java changes</H1>
+<B>Detail</B><BR><BR>
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 263 void saveCache( org.eclipse.core.internal.registry.ExtensionRegistry, long )
+   Permission: java.io.FilePermission "", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "-1", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "-1", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "-2", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "-2", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "-2147483648", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "-2147483648", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "-3", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "-3", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "-9223372036854775808", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "-9223372036854775808", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "..", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "..", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission ".bundledata", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission ".bundledata", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission ".log", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission ".log", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission ".manager", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission ".manager", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission ".metadata", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission ".metadata", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission ".options", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission ".options", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission ".plugins", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission ".plugins", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission ".registry", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission ".registry", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission ".settings", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission ".settings", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission ".state", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission ".state", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "/", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "/", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "0", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "0", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "1", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "1", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "1.3", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "1.3", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "10", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "10", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "13", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "13", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "2", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "2", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "3", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "3", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "3.0.0", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "3.0.0", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "4", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "4", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "5", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "5", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "6", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "6", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "7", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "7", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "8", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "8", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "9", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "9", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "???System Property Value???", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "???System Property Value???", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "???file???", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "???file???", "read"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "???file???", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "Eclipse", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "Eclipse", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "GMT", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "GMT", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "bundles", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "bundles", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "carbon", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "carbon", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "charset", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "charset", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "configuration", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "configuration", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "false", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "false", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "file-extensions", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "file-extensions", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "file-names", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "file-names", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "instance", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "instance", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "manifests", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "manifests", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "motif", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "motif", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "org.eclipse.core.runtime", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "org.eclipse.core.runtime", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "org.eclipse.core.runtime.adaptor/resolver/timing/value", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "org.eclipse.core.runtime.adaptor/resolver/timing/value", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "org.eclipse.osgi", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "org.eclipse.osgi", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "org.eclipse.osgi/debug/packageadmin/timing/value", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "org.eclipse.osgi/debug/packageadmin/timing/value", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "osgi.bundlestore", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "osgi.bundlestore", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "plugin_customization.ini", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "plugin_customization.ini", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "pref_store.ini", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "pref_store.ini", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "preferences", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "preferences", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "solaris", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "solaris", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "true", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "true", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "unknown", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "unknown", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "user", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "user", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "win32", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "win32", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "workspace", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "workspace", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "x86", "delete"
+      Primordial/void java.io.FilterOutputStream.close(  )
+   Permission: java.io.FilePermission "x86", "write"
+      Primordial/void java.io.FilterOutputStream.close(  )
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+   245. 	public void saveCache(ExtensionRegistry registry, long registryStamp) {
+   246. 		registry.enterRead();
+   247. 		SafeFileOutputStream safeOut = null;
+   248. 		try {
+   249. 			safeOut = new SafeFileOutputStream(cacheFile);
+   250. 			DataOutputStream out = new DataOutputStream(safeOut);
+   251. 			try {
+   252. 				writeCache(registry, registryStamp, out);
+   253. 			} finally {
+   254. 				// at this point we have traversed the whole registry.
+   255. 				// if we failed lazily loading configuration elements, 
+   256. 				// just discard the temporary file we have created
+   257. 				// to avoid overwriting the existing one with bogus data
+   258. 				RegistryCacheReader reader = registry.getCacheReader();
+   259. 				if (reader != null && reader.hasFailed())
+   260. 					safeOut.close(true);
+   261. 				else
+   262. 					// close the DataOutputStream normally
+   263. 					<FONT style="background-color:yellow;display;inline">out.close();</FONT>
+   264. 			}
+   265. 		} catch (IOException e) {
+   266. 			// an I/O failure would keep the extension elements unloaded
+   267. 			//TODO: log this exception?
+   268. 			if (InternalPlatform.DEBUG_REGISTRY)
+   269. 				e.printStackTrace();
+   270. 		} finally {
+   271. 			registry.exitRead();
+   272. 		}
+   273. 	}
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B> N/A - All callers must have read/write/delete access to the files indiciated by the associated output streams.
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.io.FilePermission "&LT&LT ALL FILES &GT&GT","read,write,delete"</LI>
+</UL>
+<BR>
+<B>Conclusion:</B> Grant the required permissions to runtime.jar.
+<!-- /tpl:put -->
+<!--  end of main content -->
+</td>
+</tr>
+</table>
+<!--  end of main frame table -->
+</body>
+</html>
+
+<!-- /tpl:insert -->

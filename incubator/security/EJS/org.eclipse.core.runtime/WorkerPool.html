@@ -1,0 +1,232 @@
+<!-- tpl:insert page="/equinox.htpl" --><!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+<title>Equinox Security Home</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<style type="text/css">
+.input {background: "#ffffcc";color: "#000000" ;font-weight: normal;}
+a.nav:link { text-decoration: none; color: "#000000"; }
+a.nav:visited { text-decoration: none; color: "#000000"; }
+a.nav:hover { text-decoration: underline; color: "#000000"; }
+</style>
+<link rel="stylesheet" href="http://www.eclipse.org/nav_style.css" type="text/css">
+<link rel="stylesheet2" href="http://eclipse.org/default_style.css" type="text/css">
+</head>
+<body bgcolor="#ffffff" link="#0000ee" vlink="#551a8b" alink="#ff0000" leftmargin="0" marginheight="0" topmargin="0" rightmargin="0">
+<!--  start of banner  -->
+ <table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" >
+  <tr>
+   <td WIDTH="100%">
+    <table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" BGCOLOR="#006699" >
+
+     <tr>
+          <td BGCOLOR="#000000" width="116" ><a href="http://www.eclipse.org" target="_top"><img src="http://www.eclipse.org/images/EclipseBannerPic.jpg" width="115" height="50" border="0"></a></td>
+          <td WIDTH="637"><img SRC="http://www.eclipse.org/images/gradient.jpg" BORDER=0 height=50 width=282></td>
+          <td WIDTH="250" nowrap><font align="right" color="white" size="6" class=indextop>equinox security</font></td>
+     </tr>
+    </table>
+   </td>
+  </tr>
+ </table><!--  end of banner -->
+<!--  start of main frame table -->
+<table BORDER=0 CELLSPACING=0 CELLPADDING="4" WIDTH="100%" HEIGHT="100%" BGCOLOR="#90C8FF">
+<tr><td width="160" valign="top" bgcolor="#6699CC" nowrap>
+<!--  start of navigator -->
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%"  BGCOLOR="#90C8FF" >
+<tr><td>
+	<table BORDER=0 CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%"  BGCOLOR="#90C8FF" >
+	  <tr> 
+	    <td VALIGN=CENTER HEIGHT="21" BGCOLOR="#0080C0">&nbsp; <a href="http://www.eclipse.org/equinox" target="_top" class="navhead"> 
+	      equinox home</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER> 
+	    <td HEIGHT="21">&nbsp; <a name="overview" href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/index.html" class="nav" >overview</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/ejs.html" class="nav">rcp plug-in analysis</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/rcp/keystore.html" class="nav" >keystore/credentialstore</a></td>
+	  </tr>
+
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/rcp/end2end.html" class="nav" >end to end security</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/downloads.html" class="nav" >downloads</a></td>
+	  </tr>
+
+	</table>
+</td></tr>
+</table>
+<!--  end of navigator -->
+</td>
+<!--  start of main content  -->
+<td bgcolor="white" valign="top" >
+<!-- tpl:put name="bodyarea" -->
+<P></P><H1>WorkerPool.java changes</H1>
+<B>Detail</B><BR><BR>
+Privileged Operation location: <BR><BR>
+Class: org.eclipse.core.internal.jobs.Worker (Application)<BR>
+DoPrivileged location: Line# 29 void&LTinit&GT<PRE>( org.eclipse.core.internal.jobs.WorkerPool )</PRE><BR>
+   Permission: java.lang.RuntimePermission "modifyThread"<BR>
+      Primordial/void java.lang.Thread.&LTinit&GT( java.lang.String )
+<CODE><PRE>
+    28. 	public Worker(WorkerPool pool) {
+    29. 		super("Worker-" + nextWorkerNumber++); //$NON-NLS-1$
+    30. 		this.pool = pool;
+    31. 	}
+</PRE>
+</CODE>
+<B>Tainted Variable trace:</B>  N/A - The privileged operation is in the constructor of this class. When invoked, 
+a new thread is being instantiated.  There are no tainted variables to consider here.  The choice is merely a
+question of what classes utilize a Worker (thread) object, and should all classes on the class path require this
+privilege, or is this something that the platform should do as a trusted library.<BR>
+<UL>
+<LI>Since this class extends a privileged class (Thread), the instanciators must have permission to create this object, and the correct
+place to wrap this call with a <FONT style="font-style:italic"> doPrivileged wrapper</FONT> is <FONT style="font-variant: small-caps">around whatever allocates a Worker</FONT> object.<BR>
+</LI>
+<LI>Since the WorkerPool class is an <FONT style="font-style:italic">internal</FONT> class, other plug-ins can not access the WorkerPool object which is 
+responsible for instanciating the Worker object.  It is therefore OK to wrap the Worker object instanciations in a call to doPrivileged.
+</LI></UL>
+<B>Note:</B> Since the constructor call (super()) has to be the first statement in the constructor, it can not 
+be wrapped within the constructor.  When this signature is detected, the analysis tool <B>should</B> point out the 
+instanciations of the associated object, rather than the constructor of the object.   At a minimum, this should be 
+a technote for the analysis tool.
+<BR><BR>
+<B>Code changes:</B><BR>
+<UL>
+<LI> Added two new private classes to WorkerPool.java:
+<OL>
+<LI>
+<CODE><PRE><FONT color="blue">
+	/**
+	 * WorkerArrayAction - A PrivilegedAction implementation which will
+	 * return an array of Worker objects of size dimension.
+	 * @author habeck
+	 *
+	 * Created: Nov 23, 2004 2:33:09 PM
+	 *
+	 */</FONT>
+	private final class WorkerArrayAction implements PrivilegedAction
+	{
+	  private int      dimension;
+	  private Worker[] threads;
+      <FONT color="blue">
+	  /**
+	   * 
+	   * @param dimension - The number of elements to allocate in the returned array.
+	   */</FONT>
+	  WorkerArrayAction(int dimension)
+	  {
+	    this.dimension = dimension; 
+	  }
+      <FONT color="green">
+	  /* (non-Javadoc)
+	   * @see java.security.PrivilegedAction#run()
+	   */ </FONT>
+	   public Object run()
+	   {
+	     threads = new Worker[dimension];
+	     return threads;
+	   }
+	}
+    </PRE>
+</CODE>
+</LI>
+<LI>
+<CODE>
+<PRE><FONT color="blue">
+	/**
+	 * WorkerAction - A PrivilegedAction implementation which returns a 
+	 * new Worker object.
+	 * 
+	 * @author habeck
+	 *
+	 * Created: Nov 23, 2004 2:38:50 PM
+	 *
+	 */</FONT>
+	private final class WorkerAction implements PrivilegedAction
+	{
+	   private WorkerPool workerPool;
+       <FONT color="blue"><BR>
+	   /**
+	    * 
+	    * @param wp - a WorkerPool object which will own the 
+	    * instantiated worker.
+	    */</FONT>
+	   WorkerAction(WorkerPool wp)
+	   {
+	     workerPool = wp;
+	   } <FONT color="green">
+	   /* (non-Javadoc)
+	    * @see java.security.PrivilegedAction#run()
+	    */</FONT>
+	   public Object run()
+	   {
+	     return new Worker(workerPool);
+	   }
+	}
+</PRE>
+</CODE>
+</LI>
+</OL>
+</LI>
+<LI>Replaced:
+<UL>
+<LI>private Worker[] threads = new Worker[10];</LI><BR>
+with<BR>
+<LI>private Worker[] threads = (Worker[]) AccessController.doPrivileged(new WorkerArrayAction(10));</LI>
+<BR>
+<BR>
+<LI>Worker worker = new Worker(this);</LI><BR>
+with<BR>
+<LI>Worker worker = (Worker) AccessController.doPrivileged(new WorkerAction(this));</LI>
+</UL>
+</LI></UL>
+<BR><BR>
+<B>Updated class diagram:</B><BR>
+<IMG src="https://dcentral.watson.ibm.com/EJS/org.eclipse.core.runtime/WorkerPool.png"><BR>
+<B>Supporting documentation</B><BR>
+<B>Reference trace 1:</B>
+<BR>
+<TABLE border="2">
+<TR><TD bgcolor="silver">Class/method</TD><TD bgcolor="silver">Package</TD><TD bgcolor="silver">Analysis</TD></TR>
+<TR><TD><PRE>-WorkerPool.add(Worker)</PRE></TD><TD>org.eclipse.core.internal.jobs</TD><TD>A private method, only called by WorkerPool.jobQueued().</TD></TR>
+<TR><TD><PRE>-WorkerPool.endWorker(Worker)</PRE></TD><TD>org.eclipse.core.internal.jobs</TD><TD>Does nothing.</TD></TR>
+<TR><TD><PRE>        -AutoBuildJob.build(boolean)</PRE></TD> <TD>org.eclipse.core.internal.events</TD><TD>A typical extension of the job class.</TD></TR>
+<TR><TD><PRE>       -IternalJob.schedule(long)</PRE></TD><TD>org.eclipse.core.internal.jobs</TD><TD>Scheduleds a job using JobManager.schedule().</TD></TR>
+<TR><TD> <PRE>  -JobManager.schedule(InternalJob,long,boolean)</PRE></TD><TD>org.eclipse.core.internal.jobs</TD><TD>See ref trace.</TD></TR>
+<TR><TD><PRE>-WorkerPool.jobQueued(Worker)</PRE></TD><TD>org.eclipse.core.internal.jobs</TD><TD>See references...Caller causes new Worker to be created.</TD></TR>
+<TR><TD><PRE>-WorkerPool.remove(Worker)</PRE></TD><TD>org.eclipse.core.internal.jobs</TD><TD>No priv req'd to access previously instantiated thread.</TD></TR>
+<TR><TD><PRE>-WorkerPool.startJob(Worker)</PRE></TD><TD>org.eclipse.core.internal.jobs</TD><TD>No priv req'd to access previously instantiated thread.</TD></TR>
+<TR><TD><PRE>-LockManager.isLockOwner()</PRE></TD><TD>org.eclipse.core.internal.jobs</TD><TD>No priv req'd to access previously instantiated thread.</TD></TR>
+<TR><TD><PRE>-JobManager.currentJob()</PRE></TD><TD>org.eclipse.core.internal.jobs</TD><TD>No priv req'd to access previously instantiated thread.</TD></TR>
+<TR><TD><PRE>Worker.Worker()</PRE></TD><TD>org.eclipse.core.internal.jobs</TD></TR>
+</TABLE>
+<BR><BR>
+<!-- /tpl:put -->
+<!--  end of main content -->
+</td>
+</tr>
+</table>
+<!--  end of main frame table -->
+</body>
+</html>
+
+<!-- /tpl:insert -->

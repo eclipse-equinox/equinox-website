@@ -1,0 +1,217 @@
+<!-- tpl:insert page="/equinox_________.htpl" --><!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+<title>Equinox Security Home</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<style type="text/css">
+.input {background: "#ffffcc";color: "#000000" ;font-weight: normal;}
+a.nav:link { text-decoration: none; color: "#000000"; }
+a.nav:visited { text-decoration: none; color: "#000000"; }
+a.nav:hover { text-decoration: underline; color: "#000000"; }
+</style>
+<link rel="stylesheet" href="http://www.eclipse.org/nav_style.css" type="text/css">
+<link rel="stylesheet2" href="http://eclipse.org/default_style.css" type="text/css">
+</head>
+<body bgcolor="#ffffff" link="#0000ee" vlink="#551a8b" alink="#ff0000" leftmargin="0" marginheight="0" topmargin="0" rightmargin="0">
+<!--  start of banner  -->
+ <table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" >
+  <tr>
+   <td WIDTH="100%">
+    <table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" BGCOLOR="#006699" >
+
+     <tr>
+          <td BGCOLOR="#000000" width="116" ><a href="http://www.eclipse.org" target="_top"><img src="http://www.eclipse.org/images/EclipseBannerPic.jpg" width="115" height="50" border="0"></a></td>
+          <td WIDTH="637"><img SRC="http://www.eclipse.org/images/gradient.jpg" BORDER=0 height=50 width=282></td>
+          <td WIDTH="250" nowrap><font align="right" color="white" size="6" class=indextop>equinox security</font></td>
+     </tr>
+    </table>
+   </td>
+  </tr>
+ </table><!--  end of banner -->
+<!--  start of main frame table -->
+<table BORDER=0 CELLSPACING=0 CELLPADDING="4" WIDTH="100%" HEIGHT="100%" BGCOLOR="#90C8FF">
+<tr><td width="160" valign="top" bgcolor="#6699CC" nowrap>
+<!--  start of navigator -->
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%"  BGCOLOR="#90C8FF" >
+<tr><td>
+	<table BORDER=0 CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%"  BGCOLOR="#90C8FF" >
+	  <tr> 
+	    <td VALIGN=CENTER HEIGHT="21" BGCOLOR="#0080C0">&nbsp; <a href="http://www.eclipse.org/equinox" target="_top" class="navhead"> 
+	      equinox home</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER> 
+	    <td HEIGHT="21">&nbsp; <a name="overview" href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/index.html" class="nav" >overview</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/ejs.html" class="nav">rcp plug-in analysis</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/rcp/keystore.html" class="nav" >keystore/credentialstore</a></td>
+	  </tr>
+
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/rcp/end2end.html" class="nav" >end to end security</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/downloads.html" class="nav" >downloads</a></td>
+	  </tr>
+
+	</table>
+</td></tr>
+</table>
+<!--  end of navigator -->
+</td>
+<!--  start of main content  -->
+<td bgcolor="white" valign="top" >
+<!-- tpl:put name="bodyarea" -->
+<P></P><H1>AuthorizationHandler.java changes</H1>
+<B>Detail</B><BR><BR>
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 34 void loadKeyring(  )
+   Permission: java.io.FilePermission ".keyring", "read"
+      Primordial/long java.io.File.lastModified(  )
+   Permission: java.io.FilePermission "???file???", "read"
+      Primordial/long java.io.File.lastModified(  )
+Line# 39 void loadKeyring(  )
+   Permission: java.io.FilePermission "???file???", "read"
+      Primordial/java.lang.String java.io.File.getAbsolutePath(  )
+   Permission: java.util.PropertyPermission "user.dir", "read"
+      Primordial/java.lang.String java.io.File.getAbsolutePath(  )
+Line# 48 void loadKeyring(  )
+   Permission: java.io.FilePermission ".keyring", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "???file???", "delete"
+      Primordial/boolean java.io.File.delete(  )
+Line# 55 void loadKeyring(  )
+   Permission: java.io.FilePermission ".keyring", "read"
+      Primordial/long java.io.File.lastModified(  )
+   Permission: java.io.FilePermission "???file???", "read"
+      Primordial/long java.io.File.lastModified(  )
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+    30. 	/**
+    31. 	 * Opens the password database (if any) initally provided to the platform at startup.
+    32. 	 */
+    33. 	private static void loadKeyring() {
+    34. 		<FONT style="background-color:yellow;display;inline">if (keyring != null && new File(keyringFile).lastModified() == keyringTimeStamp)</FONT>
+    35. 			return;
+    36. 		if (keyringFile == null) {
+    37. 			File file = new File(InternalPlatform.getDefault().getConfigurationLocation().getURL().getPath() + "/" + Platform.PI_RUNTIME);
+    38. 			file = new File(file, F_KEYRING);
+    00.				<FONT style="background-color:cyan;display;inline">if (System.getSecurityManager()==null)</FONT>
+    39. 				<FONT style="background-color:yellow;display;inline">keyringFile = file.getAbsolutePath();</FONT>
+    00.				<FONT style="background-color:cyan;display;inline">else </FONT>
+    00.				<FONT style="background-color:cyan;display;inline">	keyringFile = (String) AccessController.doPrivileged(new GetAbsoluteFilePathAction(file));</FONT>
+    40. 		}
+    41. 		try {
+    42. 			keyring = new AuthorizationDatabase(keyringFile, password);
+    43. 		} catch (CoreException e) {
+    44. 			InternalPlatform.getDefault().log(e.getStatus());
+    45. 		}
+    46. 		if (keyring == null) {
+    47. 			//try deleting the file and loading again - format may have changed
+    48. 			<FONT style="background-color:yellow;display;inline">new java.io.File(keyringFile).delete();</FONT>
+    49. 			try {
+    50. 				keyring = new AuthorizationDatabase(keyringFile, password);
+    51. 			} catch (CoreException e) {
+    52. 				//don"t bother logging a second failure
+    53. 			}
+    54. 		}
+    55. 		<FONT style="background-color:yellow;display;inline">keyringTimeStamp = new File(keyringFile).lastModified();</FONT>
+    56. 	}
+
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B> 
+<BR><BR>
+<TABLE border="2">
+<TR><TD bgcolor="silver">Access Modifier</TD><TD bgcolor="silver">Class/method</TD><TD bgcolor="silver">Package</TD><TD bgcolor="silver">Analysis</TD></TR>
+<TR><TD></TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>private</TD><TD><PRE>AuthorizationHandler.loadKeyring</PRE></TD><TD>org.eclipse.core.internal.runtime</TD>
+<TD>The file ".keyring" is hard-coded.  However, the folder is determined by the current configuration folder:<BR>
+e.g. C:\ejs\eclipse_test\eclipse\configuration\org.eclipse.core.runtime\.keyring <BR>
+</TD></TR>
+</TABLE>
+<BR><BR>
+<B>Privileged Action support class:</B><BR>
+<CODE>
+<PRE>
+/*******************************************************************************
+ * Copyright (c) 2004 IBM Corporation and others.
+ * All rights reserved. This program and the accompanying materials 
+ * are made available under the terms of the Common Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/cpl-v10.html
+ * 
+ * Contributors:
+ *     IBM Corporation - initial API and implementation
+ *******************************************************************************/
+package org.eclipse.core.internal.security;
+
+import java.io.File;
+import java.security.PrivilegedAction;
+
+/**
+ * GetAbsoluteFilePathAction - Obviates the need for java.util.PropertyPermission "user.dir"
+ * 
+ * @author habeck
+ *
+ * Created: Dec 10, 2004 7:20:44 PM
+ * 
+ */
+public final class GetAbsoluteFilePathAction implements PrivilegedAction
+{
+  private File file;
+  
+  public GetAbsoluteFilePathAction(File aFile)
+  {
+    file = aFile;
+  }
+  /* (non-Javadoc)
+   * @see java.security.PrivilegedAction#run()
+   */
+  public Object run()
+  {
+    // TODO Auto-generated method stub
+    return file.getAbsolutePath();
+  }
+}
+</PRE>
+</CODE>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.io.FilePermission "&LT&LT ALL FILES &GT&GT","read,write,delete"</LI>
+<LI>java.util.PropertyPermission "user.dir", "read"</LI>
+</UL>
+<BR>
+<B>Conclusion:</B>Grant the required permissions to runtime.jar.  Wrap the call to file.getAbsolutePath() in a doPrivilegedAction() to simplify 
+caller access.  The resulting information is never returned or accessable to the caller, and this will simplify the permission requirement.
+<!-- /tpl:put -->
+<!--  end of main content -->
+</td>
+</tr>
+</table>
+<!--  end of main frame table -->
+</body>
+</html>
+
+<!-- /tpl:insert -->

@@ -1,0 +1,281 @@
+<!-- tpl:insert page="/equinox.htpl" --><!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+<title>Equinox Security Home</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<style type="text/css">
+.input {background: "#ffffcc";color: "#000000" ;font-weight: normal;}
+a.nav:link { text-decoration: none; color: "#000000"; }
+a.nav:visited { text-decoration: none; color: "#000000"; }
+a.nav:hover { text-decoration: underline; color: "#000000"; }
+</style>
+<link rel="stylesheet" href="http://www.eclipse.org/nav_style.css" type="text/css">
+<link rel="stylesheet2" href="http://eclipse.org/default_style.css" type="text/css">
+</head>
+<body bgcolor="#ffffff" link="#0000ee" vlink="#551a8b" alink="#ff0000" leftmargin="0" marginheight="0" topmargin="0" rightmargin="0">
+<!--  start of banner  -->
+ <table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" >
+  <tr>
+   <td WIDTH="100%">
+    <table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" BGCOLOR="#006699" >
+
+     <tr>
+          <td BGCOLOR="#000000" width="116" ><a href="http://www.eclipse.org" target="_top"><img src="http://www.eclipse.org/images/EclipseBannerPic.jpg" width="115" height="50" border="0"></a></td>
+          <td WIDTH="637"><img SRC="http://www.eclipse.org/images/gradient.jpg" BORDER=0 height=50 width=282></td>
+          <td WIDTH="250" nowrap><font align="right" color="white" size="6" class=indextop>equinox security</font></td>
+     </tr>
+    </table>
+   </td>
+  </tr>
+ </table><!--  end of banner -->
+<!--  start of main frame table -->
+<table BORDER=0 CELLSPACING=0 CELLPADDING="4" WIDTH="100%" HEIGHT="100%" BGCOLOR="#90C8FF">
+<tr><td width="160" valign="top" bgcolor="#6699CC" nowrap>
+<!--  start of navigator -->
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%"  BGCOLOR="#90C8FF" >
+<tr><td>
+	<table BORDER=0 CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%"  BGCOLOR="#90C8FF" >
+	  <tr> 
+	    <td VALIGN=CENTER HEIGHT="21" BGCOLOR="#0080C0">&nbsp; <a href="http://www.eclipse.org/equinox" target="_top" class="navhead"> 
+	      equinox home</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER> 
+	    <td HEIGHT="21">&nbsp; <a name="overview" href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/index.html" class="nav" >overview</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/ejs.html" class="nav">rcp plug-in analysis</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/rcp/keystore.html" class="nav" >keystore/credentialstore</a></td>
+	  </tr>
+
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/rcp/end2end.html" class="nav" >end to end security</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/downloads.html" class="nav" >downloads</a></td>
+	  </tr>
+
+	</table>
+</td></tr>
+</table>
+<!--  end of navigator -->
+</td>
+<!--  start of main content  -->
+<td bgcolor="white" valign="top" >
+<!-- tpl:put name="bodyarea" -->
+<P></P><H1>BasicLocation.java changes</H1>
+<B>Detail</B><BR><BR>
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 56 org.eclipse.core.runtime.adaptor.Locker createLocker( java.io.File, java.lang.String )
+   Permission: java.util.PropertyPermission "*", "read,write"
+      Primordial/java.util.Properties java.lang.System.getProperties(  )
+
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+    54. 	public static Locker createLocker(File lock, String lockMode) {
+    55. 		if (lockMode == null)
+    00.			<FONT style="background-color:yellow;display;inline">{
+    00.			if (System.getSecurityManager()==null)</FONT>
+    56. 			lockMode = System.getProperties().getProperty(PROP_OSGI_LOCKING);
+    00.			<FONT style="background-color:yellow;display;inline">else
+    00.				lockMode = (String) AccessController.doPrivileged(new GetSystemPropertyAction(PROP_OSGI_LOCKING));</FONT>
+    57. 		
+    58. 		if ("none".equals(lockMode)) //$NON-NLS-1$
+    59. 			return new MockLocker();
+    60. 		
+    61. 		if ("java.io".equals(lockMode)) //$NON-NLS-1$
+    62. 			return new Locker_JavaIo(lock);
+    63. 		
+    64. 		if ("java.nio".equals(lockMode)) { //$NON-NLS-1$
+    65. 			if (isRunningWithNio()) {
+    66. 				return new Locker_JavaNio(lock);
+    67. 			} else {
+    68. 				// TODO should we return null here.  NIO was requested but we could not do it...
+    69. 				return new Locker_JavaIo(lock);
+    70. 			}
+    71. 		} 
+    72. 		
+    73. 		//	Backup case if an invalid value has been specified
+    74. 		if (isRunningWithNio()) {
+    75. 			return new Locker_JavaNio(lock);
+    76. 		} else {
+    77. 			return new Locker_JavaIo(lock);
+    78. 		}
+    79. 	}
+
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B> N/A The call to getProperty retrieves a hard-coded string.
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.util.PropertyPermission ""osgi.locking"", "read"</LI>
+</UL>
+<BR>
+<B>Conclusion:</B> Wrap the call in a privileged operation, and grant the required permission to runtime.jar.
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 151 boolean lock( java.io.File )
+   Permission: java.io.FilePermission "???file???", "read"
+      Primordial/boolean java.io.File.exists(  )
+DoPrivileged location: Line# 152 boolean lock( java.io.File )
+   Permission: java.io.FilePermission "???file???", "read"
+      Primordial/boolean java.io.File.mkdirs(  )
+   Permission: java.io.FilePermission "???file???", "write"
+      Primordial/boolean java.io.File.mkdirs(  )
+   Permission: java.util.PropertyPermission "user.dir", "read"
+      Primordial/boolean java.io.File.mkdirs(  )
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+   146. 	private boolean lock(File lock) throws IOException {
+   147. 		if (lock == null || isReadOnly)
+   148. 			return false;
+   149. 
+   150. 		File parentFile = new File(lock.getParent());
+   151. 		if (!<FONT style="background-color:yellow;display;inline">parentFile.exists()</FONT>)
+   152. 			if (!<FONT style="background-color:yellow;display;inline">parentFile.mkdirs()</FONT>)
+   153. 				return false;
+   154. 
+   155. 		setLocker(lock);
+   156. 		if (locker == null)
+   157. 			return true;
+   158. 		boolean locked = false; 
+   159. 		try {
+   160. 			locked = locker.lock();
+   161. 			return locked;
+   162. 		} finally {
+   163. 			if (!locked)
+   164. 				locker = null;
+   165. 		}
+   166. 	}
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B> N/A All callers must have the required permissions to read or write to files in the filesystem.
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.io.FilePermission "&LT&LT ALL FILES &GT&GT","read"</LI>
+<LI>permission java.util.PropertyPermission "user.dir", "read"</LI>
+</UL>
+<BR>
+<B>Conclusion:</B> Grant the required permissions to runtime.jar.   All callers must have the
+required read access to the supplied file object.
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 171 void setLocker( java.io.File )
+   Permission: java.util.PropertyPermission "*", "read,write"
+      Primordial/java.util.Properties java.lang.System.getProperties(  )
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+	private void setLocker(File lock) {
+		if (locker != null)
+			return;
+		String lockMode = null;
+		<FONT style="background-color:yellow;display;inline">if (System.getSecurityManager()==null)
+		  lockMode = System.getProperties().getProperty(PROP_OSGI_LOCKING);
+		else
+		  lockMode = (String) AccessController.doPrivileged(new GetSystemPropertyAction(PROP_OSGI_LOCKING));</FONT>
+		locker = createLocker(lock, lockMode);
+	}
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B> N/A - Hard coded string passed to property retrieval request.
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.util.PropertyPermission "osgi.locking", "read"</LI>
+</UL>
+<BR>
+<B>Conclusion:</B>Wrap the call in a privileged action if the security manager is enabled, and grant
+the associated required permissions to runtime.jar.
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 132 boolean setURL( java.net.URL, boolean )
+   Permission: java.util.PropertyPermission "*", "read,write"
+      Primordial/java.util.Properties java.lang.System.getProperties(  )
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+   114. 	public synchronized boolean setURL(URL value, boolean lock) throws IllegalStateException {
+   115. 		if (location != null)
+   116. 			throw new IllegalStateException(EclipseAdaptorMsg.formatter.getString("ECLIPSE_CANNOT_CHANGE_LOCATION")); //$NON-NLS-1$
+   117. 		File file = null;
+   118. 		if (value.getProtocol().equalsIgnoreCase("file")) //$NON-NLS-1$
+   119. 			file = new File(value.getFile(), LOCK_FILENAME);
+   120. 		lock = lock && !isReadOnly;
+   121. 		if (lock) {
+   122. 			try {
+   123. 				if (!lock(file))
+   124. 					return false;
+   125. 			} catch (IOException e) {
+   126. 				return false;
+   127. 			}
+   128. 		}
+   129. 		lockFile = file;
+   130. 		location = LocationManager.buildURL(value.toExternalForm(), true);
+   131. 		if (property != null)
+   132. 			System.getProperties().put(property, location.toExternalForm());
+   133. 		return lock;
+   134. 	}
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B> N/A all callers should have the required update permission to change the system property indicated by the "property"
+ parameter supplied to System.getProperties().put().   In all likelyhood, the initial reference will be executed under startup.jar
+<BR><BR>
+<TABLE border="2">
+<TR><TD bgcolor="silver">Access Modifier</TD><TD bgcolor="silver">Class/method</TD><TD bgcolor="silver">Package</TD><TD bgcolor="silver">Analysis</TD></TR>
+<TR><TD></TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>public</TD><TD>EclipseStarter.run(String[],Runnable)</TD><TD>org.eclipse.core.runtime.adaptor(osgi bundle)</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>EclipseStarter.startup(String[],Runnable)</TD><TD>org.eclipse.core.runtime.adaptor(osgi bundle)</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>LocationManager.initializeLocations()</TD><TD>org.eclipse.core.runtime.adaptor</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>BasicLocation.BasicLocation(String,URL,boolean)</TD><TD>org.eclipse.core.runtime.adaptor (osgi bundle)</TD><TD>All three parameters are tainted.</TD></TR>
+<TR><TD>public</TD><TD>BasicLocation.getURL()</TD><TD>org.eclipse.core.runtime.adaptor (osgi bundle)</TD><TD>The default value supplied to setURL is tainted.</TD></TR>
+<TR><TD>private</TD><TD>IDEApplication.checkInstanceLocation(URL)</TD><TD>org.eclipse.ui.internal.ide</TD><TD>The URL supplied to setURL comes from a user dialog prompt. </TD></TR>
+<TR><TD>public</TD><TD>BasicLocation.setURL(URL,boolean)</TD><TD>org.eclipse.core.runtime.adaptor (osgi bundle)</TD><TD>The URL supplied to this method is tainted.</TD></TR>
+</TABLE>
+
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.util.PropertyPermission "*", "read,write"</LI>
+</UL>
+<BR>
+<B>Conclusion:</B>Do not wrap the operation in a privileged action.  In order to be able to specify an alternate startup URL, all callers must have permission to change the associated environment setting.
+<!-- /tpl:put -->
+<!--  end of main content -->
+</td>
+</tr>
+</table>
+<!--  end of main frame table -->
+</body>
+</html>
+
+<!-- /tpl:insert -->

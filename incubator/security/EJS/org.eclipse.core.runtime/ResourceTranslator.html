@@ -1,0 +1,183 @@
+<!-- tpl:insert page="/equinox.htpl" --><!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+<title>Equinox Security Home</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<style type="text/css">
+.input {background: "#ffffcc";color: "#000000" ;font-weight: normal;}
+a.nav:link { text-decoration: none; color: "#000000"; }
+a.nav:visited { text-decoration: none; color: "#000000"; }
+a.nav:hover { text-decoration: underline; color: "#000000"; }
+</style>
+<link rel="stylesheet" href="http://www.eclipse.org/nav_style.css" type="text/css">
+<link rel="stylesheet2" href="http://eclipse.org/default_style.css" type="text/css">
+</head>
+<body bgcolor="#ffffff" link="#0000ee" vlink="#551a8b" alink="#ff0000" leftmargin="0" marginheight="0" topmargin="0" rightmargin="0">
+<!--  start of banner  -->
+ <table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" >
+  <tr>
+   <td WIDTH="100%">
+    <table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" BGCOLOR="#006699" >
+
+     <tr>
+          <td BGCOLOR="#000000" width="116" ><a href="http://www.eclipse.org" target="_top"><img src="http://www.eclipse.org/images/EclipseBannerPic.jpg" width="115" height="50" border="0"></a></td>
+          <td WIDTH="637"><img SRC="http://www.eclipse.org/images/gradient.jpg" BORDER=0 height=50 width=282></td>
+          <td WIDTH="250" nowrap><font align="right" color="white" size="6" class=indextop>equinox security</font></td>
+     </tr>
+    </table>
+   </td>
+  </tr>
+ </table><!--  end of banner -->
+<!--  start of main frame table -->
+<table BORDER=0 CELLSPACING=0 CELLPADDING="4" WIDTH="100%" HEIGHT="100%" BGCOLOR="#90C8FF">
+<tr><td width="160" valign="top" bgcolor="#6699CC" nowrap>
+<!--  start of navigator -->
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%"  BGCOLOR="#90C8FF" >
+<tr><td>
+	<table BORDER=0 CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%"  BGCOLOR="#90C8FF" >
+	  <tr> 
+	    <td VALIGN=CENTER HEIGHT="21" BGCOLOR="#0080C0">&nbsp; <a href="http://www.eclipse.org/equinox" target="_top" class="navhead"> 
+	      equinox home</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER> 
+	    <td HEIGHT="21">&nbsp; <a name="overview" href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/index.html" class="nav" >overview</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/ejs.html" class="nav">rcp plug-in analysis</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/rcp/keystore.html" class="nav" >keystore/credentialstore</a></td>
+	  </tr>
+
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/rcp/end2end.html" class="nav" >end to end security</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/downloads.html" class="nav" >downloads</a></td>
+	  </tr>
+
+	</table>
+</td></tr>
+</table>
+<!--  end of navigator -->
+</td>
+<!--  start of main content  -->
+<td bgcolor="white" valign="top" >
+<!-- tpl:put name="bodyarea" -->
+<P></P><H1>ResourceTranslator.java changes</H1>
+<B>Detail</B><BR><BR>
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+ Line# 105 java.lang.ClassLoader createTempClassloader( org.osgi.framework.Bundle )
+   Permission: java.lang.RuntimePermission "createClassLoader"
+      Primordial/void java.net.URLClassLoader.<init>( java.net.URL[] )
+   Permission: java.lang.RuntimePermission "getClassLoader"
+      Primordial/void java.net.URLClassLoader.<init>( java.net.URL[] )
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+    98. 	private static ClassLoader createTempClassloader(Bundle b) {
+    99. 		ArrayList classpath = new ArrayList();
+   100. 		addClasspathEntries(b, classpath);
+   101. 		addBundleRoot(b, classpath);
+   102. 		addDevEntries(b, classpath);
+   103. 		addFragments(b, classpath);
+   104. 		URL[] urls = new URL[classpath.size()];
+   105. 		return new <FONT style="background-color:yellow;display;inline">URLClassLoader((URL[]) classpath.toArray(urls))</FONT>;
+   106. 	}
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B>  The key requirement for getClassLoader, and createClassLoader comes
+from support for the 2.1 codestream.  Specifically the call to createTempClassLoader() in ResouceTranslator.getResourceBundle(Bundle) 
+requires these permissions.  It would be best to document that running a 2.1 bundle is not supported with 
+security enabled.   I have reservations about wrapping the call to createTempClassLoader in a privileged
+action since the method getResourceBundle is public and used by virtually all plug-ins.
+<BR><BR>
+<TABLE border="2">
+<TR><TD bgcolor="silver">Access Modifier</TD><TD bgcolor="silver">Class/method</TD><TD bgcolor="silver">Package</TD><TD bgcolor="silver">Analysis</TD></TR>
+<TR><TD></TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>public</TD><TD>--Namespace.getResourceString()</TD><TD>org.eclipse.core.internal.registry</TD><TD></TD></TR>
+<TR><TD>private</TD><TD>--EclipseBundleListener.getBundleModel(Bundle)</TD><TD>org.eclipse.core.internal.registry</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>--PluginDescriptor.getResourceBundle()</TD><TD>org.eclipse.core.internal.plugins</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>--InternalPlatform.getResourceBundle(Bundle)</TD><TD>org.eclipse.core.internal.runtime</TD><TD></TD></TR>
+<TR><TD></TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD></TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>private</TD><TD>----ExtensionsParser.translate(String key)</TD><TD>org.eclipse.core.internal.registry</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>----Namespace.getResourceString(String)</TD><TD>org.eclipse.core.internal.registry</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>----InternalPlatform.getResourceString(Bundle,String,ResourceBundle)</TD><TD>org.eclipse.core.internal.runtime</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>----ResourceTranslator.getResourceString(Bundle,String)</TD><TD>org.eclipse.core.internal.runtime</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>--ResourceTranslator.getResourceString(Bundle,String,ResourceBundle)</TD><TD></TD><TD></TD></TR>
+<TR><TD>public</TD><TD>ResourceTranslator.getResourceBundle</TD><TD>org.eclipse.core.internal.runtime</TD><TD></TD></TR>
+<TR><TD>private</TD><TD>ResourceTranslator.createTempClassLoader(Bundle)</TD><TD>org.eclipse.core.internal.runtime</TD><TD>The supplied bunde is tainted. </TD></TR>
+</TABLE>
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.lang.RuntimePermission "createClassLoader"</LI>
+<LI>permission java.lang.RuntimePermission "getClassLoader"</LI>
+</UL>
+<BR>
+<B>Conclusion:</B>Do NOT wrap, and do not grant these permissions.
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 78 java.util.ResourceBundle getResourceBundle( org.osgi.framework.Bundle )
+   Permission: java.lang.RuntimePermission "getClassLoader"
+      Primordial/java.util.ResourceBundle java.util.ResourceBundle.getBundle( java.lang.String, java.util.Locale, java.lang.ClassLoader )
+   Permission: java.util.PropertyPermission "java.vendor.url.bug", "read"
+      Primordial/java.util.ResourceBundle java.util.ResourceBundle.getBundle( java.lang.String, java.util.Locale, java.lang.ClassLoader )
+   Permission: java.util.logging.LoggingPermission "control", ""
+      Primordial/java.util.ResourceBundle java.util.ResourceBundle.getBundle( java.lang.String, java.util.Locale, java.lang.ClassLoader )
+         PARAMETER #2 OF THIS METHOD CALL IS TAINTED
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+    76. 	public static ResourceBundle getResourceBundle(Bundle bundle) throws MissingResourceException {
+    77. 		if (hasRuntime21(bundle))
+    78. 			return ResourceBundle.getBundle("plugin", Locale.getDefault(), <FONT style="background-color:yellow;display;inline">createTempClassloader(bundle)</FONT>); //$NON-NLS-1$
+    79. 		return localizationService.getLocalization(bundle, null);
+    80. 	}
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B>  The key requirement for getClassLoader, and createClassLoader comes
+from support for the 2.1 codestream.  Specifically the call to createTempClassLoader() in ResouceTranslator.getResourceBundle(Bundle) 
+requires these permissions.  It would be best to document that running a 2.1 bundle is not supported with 
+security enabled.   I have reservations about wrapping the call to createTempClassLoader in a privileged
+action since the method getResourceBundle is public and used by virtually all plug-ins.
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.lang.RuntimePermission "getClassLoader"</LI>
+<LI>permission java.util.PropertyPermission "java.vendor.url.bug", "read"</LI>
+<LI>permission java.util.logging.LoggingPermission "control", ""</LI>
+</UL>
+<BR>
+<B>Conclusion:</B>Do NOT wrap, and do not grant these permissions.
+<!-- /tpl:put -->
+<!--  end of main content -->
+</td>
+</tr>
+</table>
+<!--  end of main frame table -->
+</body>
+</html>
+
+<!-- /tpl:insert -->

@@ -1,0 +1,1051 @@
+<!-- tpl:insert page="/equinox.htpl" --><!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+<title>Equinox Security Home</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<style type="text/css">
+.input {background: "#ffffcc";color: "#000000" ;font-weight: normal;}
+a.nav:link { text-decoration: none; color: "#000000"; }
+a.nav:visited { text-decoration: none; color: "#000000"; }
+a.nav:hover { text-decoration: underline; color: "#000000"; }
+</style>
+<link rel="stylesheet" href="http://www.eclipse.org/nav_style.css" type="text/css">
+<link rel="stylesheet2" href="http://eclipse.org/default_style.css" type="text/css">
+</head>
+<body bgcolor="#ffffff" link="#0000ee" vlink="#551a8b" alink="#ff0000" leftmargin="0" marginheight="0" topmargin="0" rightmargin="0">
+<!--  start of banner  -->
+ <table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" >
+  <tr>
+   <td WIDTH="100%">
+    <table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" BGCOLOR="#006699" >
+
+     <tr>
+          <td BGCOLOR="#000000" width="116" ><a href="http://www.eclipse.org" target="_top"><img src="http://www.eclipse.org/images/EclipseBannerPic.jpg" width="115" height="50" border="0"></a></td>
+          <td WIDTH="637"><img SRC="http://www.eclipse.org/images/gradient.jpg" BORDER=0 height=50 width=282></td>
+          <td WIDTH="250" nowrap><font align="right" color="white" size="6" class=indextop>equinox security</font></td>
+     </tr>
+    </table>
+   </td>
+  </tr>
+ </table><!--  end of banner -->
+<!--  start of main frame table -->
+<table BORDER=0 CELLSPACING=0 CELLPADDING="4" WIDTH="100%" HEIGHT="100%" BGCOLOR="#90C8FF">
+<tr><td width="160" valign="top" bgcolor="#6699CC" nowrap>
+<!--  start of navigator -->
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%"  BGCOLOR="#90C8FF" >
+<tr><td>
+	<table BORDER=0 CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%"  BGCOLOR="#90C8FF" >
+	  <tr> 
+	    <td VALIGN=CENTER HEIGHT="21" BGCOLOR="#0080C0">&nbsp; <a href="http://www.eclipse.org/equinox" target="_top" class="navhead"> 
+	      equinox home</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER> 
+	    <td HEIGHT="21">&nbsp; <a name="overview" href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/index.html" class="nav" >overview</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/ejs.html" class="nav">rcp plug-in analysis</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/rcp/keystore.html" class="nav" >keystore/credentialstore</a></td>
+	  </tr>
+
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/rcp/end2end.html" class="nav" >end to end security</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/downloads.html" class="nav" >downloads</a></td>
+	  </tr>
+
+	</table>
+</td></tr>
+</table>
+<!--  end of navigator -->
+</td>
+<!--  start of main content  -->
+<td bgcolor="white" valign="top" >
+<!-- tpl:put name="bodyarea" -->
+<P></P><H1>URLTool.java changes</H1>
+<B>Detail</B><BR><BR>
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 42 java.net.URL appendTrailingSlash( java.lang.String )
+   Permission: java.lang.RuntimePermission "getClassLoader"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.lang.RuntimePermission "modifyThread"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.NetPermission "specifyStreamHandler"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission "", "resolve"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission ":???port???", "connect"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission "???host???", "resolve"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission "???host???:???port???", "connect"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission "localhost", "resolve"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission "localhost:1024-", "resolve"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission "localhost:1024-:???port???", "connect"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission "localhost:???port???", "connect"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.util.PropertyPermission "*", "read,write"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.util.PropertyPermission "java.protocol.handler.pkgs", "read"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "", ""
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "", "get"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", ""
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", "get"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", ""
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+         PARAMETER #1 OF THIS METHOD CALL IS TAINTED
+
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+    41. 	public static URL appendTrailingSlash(String url) throws MalformedURLException {
+    42. 		return appendTrailingSlash(new <FONT style="background-color:yellow;display;inline">URL(url)</FONT>);
+    43. 	}
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B>  There are NO references to this method in the Eclipse framework.
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.lang.RuntimePermission "getClassLoader"</LI>
+<LI>permission java.lang.RuntimePermission "modifyThread"</LI>
+<LI>permission java.net.NetPermission "specifyStreamHandler"</LI>
+<LI>permission java.net.SocketPermission "*", "resolve,connect"</LI>
+<LI>permission java.util.PropertyPermission "*", "read,write"</LI>
+<LI>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", "get"</LI>
+<LI>permission org.osgi.framework.ServicePermission "", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "", "get"</LI>
+<LI>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get"</LI>
+</UL>
+<BR>
+<B>Conclusion:</B>No changes, or permissions required.  This seems to be dead code.
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 70 java.net.URL appendTrailingSlash( java.net.URL )
+   Permission: java.lang.RuntimePermission "getClassLoader"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.lang.RuntimePermission "modifyThread"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.net.NetPermission "specifyStreamHandler"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.net.SocketPermission "", "resolve"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.net.SocketPermission ":???port???", "connect"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.net.SocketPermission "???host???", "resolve"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.net.SocketPermission "???host???:???port???", "connect"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.net.SocketPermission "localhost", "resolve"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.net.SocketPermission "localhost:1024-", "resolve"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.net.SocketPermission "localhost:1024-:???port???", "connect"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.net.SocketPermission "localhost:???port???", "connect"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.util.PropertyPermission "*", "read,write"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.util.PropertyPermission "java.protocol.handler.pkgs", "read"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "", ""
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "", "get"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", ""
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", "get"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", ""
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+         PARAMETER #1 OF THIS METHOD CALL IS TAINTED
+         PARAMETER #2 OF THIS METHOD CALL IS TAINTED
+
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+    65. 	public static URL appendTrailingSlash(URL url) {
+    66. 		String file = url.getFile();
+    67. 		if (file.endsWith("/")) //$NON-NLS-1$
+    68. 			return url;
+    69. 		try {
+    70. 			return new <FONT style="background-color:yellow;display;inline">URL(url.getProtocol(), url.getHost(), url.getPort(), file + "/")</FONT>; //$NON-NLS-1$
+    71. 		} catch (MalformedURLException e) {
+    72. 			Assert.isTrue(false, "internal error"); //$NON-NLS-1$
+    73. 		}
+    74. 		return null;
+    75. 	}
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B>  There are NO references to this method in the Eclipse framework.
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.lang.RuntimePermission "getClassLoader"</LI>
+<LI>permission java.lang.RuntimePermission "modifyThread"</LI>
+<LI>permission java.net.NetPermission "specifyStreamHandler"</LI>
+<LI>permission java.net.SocketPermission "*", "resolve,connect"</LI>
+<LI>permission java.util.PropertyPermission "*", "read,write"</LI>
+<LI>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", "get"</LI>
+<LI>permission org.osgi.framework.ServicePermission "", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "", "get"</LI>
+<LI>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get"</LI>
+</UL>
+<BR>
+<B>Conclusion:</B>No changes, or permissions required.  This seems to be dead code.
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+    84. 	public static URL getChild(String parent, String member) throws MalformedURLException {
+    85. 		return getChild(new <FONT style="background-color:yellow;display;inline">URL(parent)</FONT>, member);
+    86. 	}
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+    84. 	public static URL getChild(String parent, String member) throws MalformedURLException {
+    85. 		return getChild(new URL(parent), member);
+    86. 	}
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B>  There are NO references to this method in the Eclipse framework.
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.lang.RuntimePermission "getClassLoader"</LI>
+<LI>permission java.lang.RuntimePermission "modifyThread"</LI>
+<LI>permission java.net.NetPermission "specifyStreamHandler"</LI>
+<LI>permission java.net.SocketPermission "*", "resolve,connect"</LI>
+<LI>permission java.util.PropertyPermission "*", "read,write"</LI>
+<LI>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", "get"</LI>
+<LI>permission org.osgi.framework.ServicePermission "", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "", "get"</LI>
+<LI>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get"</LI>
+</UL>
+<BR>
+<B>Conclusion:</B>No changes, or permissions required.  This seems to be dead code.
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+ Line# 99 java.net.URL getChild( java.net.URL, java.lang.String )
+   Permission: java.lang.RuntimePermission "getClassLoader"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.lang.RuntimePermission "modifyThread"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.net.NetPermission "specifyStreamHandler"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.net.SocketPermission "", "resolve"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.net.SocketPermission ":???port???", "connect"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.net.SocketPermission "???host???", "resolve"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.net.SocketPermission "???host???:???port???", "connect"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.net.SocketPermission "localhost", "resolve"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.net.SocketPermission "localhost:1024-", "resolve"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.net.SocketPermission "localhost:1024-:???port???", "connect"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.net.SocketPermission "localhost:???port???", "connect"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.util.PropertyPermission "*", "read,write"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.util.PropertyPermission "java.protocol.handler.pkgs", "read"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "", ""
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "", "get"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", ""
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", "get"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", ""
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+         PARAMETER #1 OF THIS METHOD CALL IS TAINTED
+         PARAMETER #2 OF THIS METHOD CALL IS TAINTED
+
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+    94. 	public static URL getChild(URL parent, String member) {
+    95. 		String file = parent.getFile();
+    96. 		if (!file.endsWith("/")) //$NON-NLS-1$
+    97. 			file = file + "/"; //$NON-NLS-1$
+    98. 		try {
+    99. 			return new <FONT style="background-color:yellow;display;inline">URL(parent.getProtocol(), parent.getHost(), parent.getPort(), file + member)</FONT>;
+   100. 		} catch (MalformedURLException e) {
+   101. 			Assert.isTrue(false, "internal error"); //$NON-NLS-1$
+   102. 		}
+   103. 		return null;
+   104. 	}
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B>  There are NO references to this method in the Eclipse framework.
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.lang.RuntimePermission "getClassLoader"</LI>
+<LI>permission java.lang.RuntimePermission "modifyThread"</LI>
+<LI>permission java.net.NetPermission "specifyStreamHandler"</LI>
+<LI>permission java.net.SocketPermission "*", "resolve,connect"</LI>
+<LI>permission java.util.PropertyPermission "*", "read,write"</LI>
+<LI>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", "get"</LI>
+<LI>permission org.osgi.framework.ServicePermission "", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "", "get"</LI>
+<LI>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get"</LI>
+</UL>
+<BR>
+<B>Conclusion:</B>No changes, or permissions required.  This seems to be dead code.
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 128 java.util.Vector getElements( java.lang.String )
+   Permission: java.lang.RuntimePermission "getClassLoader"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.lang.RuntimePermission "modifyThread"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.NetPermission "specifyStreamHandler"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission "", "resolve"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission ":???port???", "connect"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission "???host???", "resolve"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission "???host???:???port???", "connect"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission "localhost", "resolve"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission "localhost:1024-", "resolve"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission "localhost:1024-:???port???", "connect"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission "localhost:???port???", "connect"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.util.PropertyPermission "*", "read,write"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.util.PropertyPermission "java.protocol.handler.pkgs", "read"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "", ""
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "", "get"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", ""
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", "get"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", ""
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+         PARAMETER #1 OF THIS METHOD CALL IS TAINTED
+
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+   127. 	public static Vector getElements(String url) throws MalformedURLException {
+   128. 		return getElements(new <FONT style="background-color:yellow;display;inline">URL(url)</FONT>);
+   129. 	}
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B>  There are NO references to this method in the Eclipse framework.
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.lang.RuntimePermission "getClassLoader"</LI>
+<LI>permission java.lang.RuntimePermission "modifyThread"</LI>
+<LI>permission java.net.NetPermission "specifyStreamHandler"</LI>
+<LI>permission java.net.SocketPermission "*", "resolve,connect"</LI>
+<LI>permission java.util.PropertyPermission "*", "read,write"</LI>
+<LI>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", "get"</LI>
+<LI>permission org.osgi.framework.ServicePermission "", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "", "get"</LI>
+<LI>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get"</LI>
+</UL>
+<BR>
+<B>Conclusion:</B>No changes, or permissions required.  This seems to be dead code.
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 185 java.lang.String getLastElement( java.lang.String )
+   Permission: java.lang.RuntimePermission "getClassLoader"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.lang.RuntimePermission "modifyThread"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.NetPermission "specifyStreamHandler"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission "", "resolve"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission ":???port???", "connect"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission "???host???", "resolve"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission "???host???:???port???", "connect"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission "localhost", "resolve"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission "localhost:1024-", "resolve"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission "localhost:1024-:???port???", "connect"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission "localhost:???port???", "connect"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.util.PropertyPermission "*", "read,write"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.util.PropertyPermission "java.protocol.handler.pkgs", "read"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "", ""
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "", "get"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", ""
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", "get"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", ""
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+         PARAMETER #1 OF THIS METHOD CALL IS TAINTED
+
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+   184. 	public static String getLastElement(String url) throws MalformedURLException {
+   185. 		return getLastElement(new <FONT style="background-color:yellow;display;inline">URL(url)</FONT>);
+   186. 	}
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B>  There are NO references to this method in the Eclipse framework.
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.lang.RuntimePermission "getClassLoader"</LI>
+<LI>permission java.lang.RuntimePermission "modifyThread"</LI>
+<LI>permission java.net.NetPermission "specifyStreamHandler"</LI>
+<LI>permission java.net.SocketPermission "*", "resolve,connect"</LI>
+<LI>permission java.util.PropertyPermission "*", "read,write"</LI>
+<LI>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", "get"</LI>
+<LI>permission org.osgi.framework.ServicePermission "", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "", "get"</LI>
+<LI>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get"</LI>
+</UL>
+<BR>
+<B>Conclusion:</B>No changes, or permissions required.  This seems to be dead code.
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 258 java.net.URL getParent( java.lang.String )
+   Permission: java.lang.RuntimePermission "getClassLoader"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.lang.RuntimePermission "modifyThread"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.NetPermission "specifyStreamHandler"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission "", "resolve"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission ":???port???", "connect"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission "???host???", "resolve"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission "???host???:???port???", "connect"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission "localhost", "resolve"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission "localhost:1024-", "resolve"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission "localhost:1024-:???port???", "connect"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission "localhost:???port???", "connect"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.util.PropertyPermission "*", "read,write"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.util.PropertyPermission "java.protocol.handler.pkgs", "read"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "", ""
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "", "get"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", ""
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", "get"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", ""
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+         PARAMETER #1 OF THIS METHOD CALL IS TAINTED
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+   257. 	public static URL getParent(String url) throws MalformedURLException {
+   258. 		return getParent(new <FONT style="background-color:yellow;display;inline">URL(url)</FONT>);
+   259. 	}
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B>  There are NO references to this method in the Eclipse framework.
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.lang.RuntimePermission "getClassLoader"</LI>
+<LI>permission java.lang.RuntimePermission "modifyThread"</LI>
+<LI>permission java.net.NetPermission "specifyStreamHandler"</LI>
+<LI>permission java.net.SocketPermission "*", "resolve,connect"</LI>
+<LI>permission java.util.PropertyPermission "*", "read,write"</LI>
+<LI>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", "get"</LI>
+<LI>permission org.osgi.framework.ServicePermission "", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "", "get"</LI>
+<LI>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get"</LI>
+</UL>
+<BR>
+<B>Conclusion:</B>No changes, or permissions required.  This seems to be dead code.
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 296 java.net.URL getParent( java.net.URL )
+   Permission: java.lang.RuntimePermission "getClassLoader"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.lang.RuntimePermission "modifyThread"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.net.NetPermission "specifyStreamHandler"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.net.SocketPermission "", "resolve"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.net.SocketPermission ":???port???", "connect"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.net.SocketPermission "???host???", "resolve"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.net.SocketPermission "???host???:???port???", "connect"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.net.SocketPermission "localhost", "resolve"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.net.SocketPermission "localhost:1024-", "resolve"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.net.SocketPermission "localhost:1024-:???port???", "connect"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.net.SocketPermission "localhost:???port???", "connect"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.util.PropertyPermission "*", "read,write"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.util.PropertyPermission "java.protocol.handler.pkgs", "read"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "", ""
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "", "get"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", ""
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", "get"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", ""
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+         PARAMETER #1 OF THIS METHOD CALL IS TAINTED
+         PARAMETER #2 OF THIS METHOD CALL IS TAINTED
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+   280. 	public static URL getParent(URL url) {
+   281. 		String file = url.getFile();
+   282. 		int len = file.length();
+   283. 		if (len == 0 || len == 1 && file.charAt(0) == "/")
+   284. 			return null;
+   285. 		int lastSlashIndex = -1;
+   286. 		for (int i = len - 2; lastSlashIndex == -1 && i >= 0; --i) {
+   287. 			if (file.charAt(i) == "/")
+   288. 				lastSlashIndex = i;
+   289. 		}
+   290. 		if (lastSlashIndex == -1)
+   291. 			file = ""; //$NON-NLS-1$
+   292. 		else
+   293. 			file = file.substring(0, lastSlashIndex + 1);
+   294. 
+   295. 		try {
+   296. 			url = new <FONT style="background-color:yellow;display;inline">URL(url.getProtocol(), url.getHost(), url.getPort(), file)</FONT>;
+   297. 		} catch (MalformedURLException e) {
+   298. 			Assert.isTrue(false, e.getMessage());
+   299. 		}
+   300. 		return url;
+   301. 	}
+
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B> The reference trace for addProtectionSpace, and getProtectionSpace dead end @ Platform.addProtectionSpace, and 
+Platform.getProtectionSpace() respectively.
+<BR><BR>
+<TABLE border="2">
+<TR><TD bgcolor="silver">Access Modifier</TD><TD bgcolor="silver">Class/method</TD><TD bgcolor="silver">Package</TD><TD bgcolor="silver">Analysis</TD></TR>
+<TR><TD></TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>public</TD><TD>------Platform.getProtectionSpace(URL)</TD><TD>org.eclipse.core.runtime</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>----InternalPlatform.getProtectionSpace(URL)</TD><TD>org.eclipse.core.internal.runtime</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>--AuthorizationHandler.getProtectionSpace(URL)</TD><TD>org.eclipse.core.internal.runtime</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>AuthorizationDatabase.getProtectionSpace(URL)</TD><TD>org.eclipse.core.internal.runtime</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>------Platform.addProtectionSpace</TD><TD>org.eclipse.core.runtime</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>----InternalPlatform.addProtectionSpace(URL,String)</TD><TD>org.eclipse.core.internal.runtime</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>--AuthorizationHandler.addProtectionSpace(URL,String)</TD><TD>org.eclipse.core.internal.runtime</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>AuthorizationDatabase.addProtectionSpace(URL,String)</TD><TD>org.eclipse.core.internal.runtime</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>URLTool.getParent(URL)</TD><TD>org.eclipse.core.internal.runtime</TD><TD></TD></TR>
+</TABLE>
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.lang.RuntimePermission "getClassLoader"</LI>
+<LI>permission java.lang.RuntimePermission "modifyThread"</LI>
+<LI>permission java.net.NetPermission "specifyStreamHandler"</LI>
+<LI>permission java.net.SocketPermission "*", "resolve,connect"</LI>
+<LI>permission java.util.PropertyPermission "*", "read,write"</LI>
+<LI>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", "get"</LI>
+<LI>permission org.osgi.framework.ServicePermission "", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "", "get"</LI>
+<LI>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get"</LI>
+</UL>
+<BR>
+<B>Conclusion:</B>No changes, or permissions required.  This seems to be dead code.
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 323 java.net.URL getRoot( java.lang.String )
+   Permission: java.lang.RuntimePermission "getClassLoader"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.lang.RuntimePermission "modifyThread"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.NetPermission "specifyStreamHandler"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission "", "resolve"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission ":???port???", "connect"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission "???host???", "resolve"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission "???host???:???port???", "connect"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission "localhost", "resolve"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission "localhost:1024-", "resolve"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission "localhost:1024-:???port???", "connect"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission "localhost:???port???", "connect"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.util.PropertyPermission "*", "read,write"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.util.PropertyPermission "java.protocol.handler.pkgs", "read"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "", ""
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "", "get"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", ""
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", "get"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", ""
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+         PARAMETER #1 OF THIS METHOD CALL IS TAINTED
+
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+   322. 	public static URL getRoot(String urlString) throws MalformedURLException {
+   323. 		return getRoot(new <FONT style="background-color:yellow;display;inline">URL(urlString)</FONT>);
+   324. 	}
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B>  There are NO references to this method in the Eclipse framework.
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.lang.RuntimePermission "getClassLoader"</LI>
+<LI>permission java.lang.RuntimePermission "modifyThread"</LI>
+<LI>permission java.net.NetPermission "specifyStreamHandler"</LI>
+<LI>permission java.net.SocketPermission "*", "resolve,connect"</LI>
+<LI>permission java.util.PropertyPermission "*", "read,write"</LI>
+<LI>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", "get"</LI>
+<LI>permission org.osgi.framework.ServicePermission "", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "", "get"</LI>
+<LI>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get"</LI>
+</UL>
+<BR>
+<B>Conclusion:</B>No changes, or permissions required.  This seems to be dead code.
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 346 java.net.URL getRoot( java.net.URL )
+   Permission: java.lang.RuntimePermission "getClassLoader"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.lang.RuntimePermission "modifyThread"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.net.NetPermission "specifyStreamHandler"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.net.SocketPermission "", "resolve"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.net.SocketPermission ":???port???", "connect"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.net.SocketPermission "???host???", "resolve"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.net.SocketPermission "???host???:???port???", "connect"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.net.SocketPermission "localhost", "resolve"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.net.SocketPermission "localhost:1024-", "resolve"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.net.SocketPermission "localhost:1024-:???port???", "connect"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.net.SocketPermission "localhost:???port???", "connect"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.util.PropertyPermission "*", "read,write"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.util.PropertyPermission "java.protocol.handler.pkgs", "read"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "", ""
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "", "get"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", ""
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", "get"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", ""
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+         PARAMETER #1 OF THIS METHOD CALL IS TAINTED
+         PARAMETER #2 OF THIS METHOD CALL IS TAINTED
+
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+   344. 	public static URL getRoot(URL url) {
+   345. 		try {
+   346. 			return new <FONT style="background-color:yellow;display;inline">URL(url.getProtocol(), url.getHost(), url.getPort(), "/")</FONT>; //$NON-NLS-1$
+   347. 		} catch (MalformedURLException e) {
+   348. 			Assert.isTrue(false, "internal error"); //$NON-NLS-1$
+   349. 		}
+   350. 
+   351. 		return null;
+   352. 	}
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B>  There are NO references to this method in the Eclipse framework.
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.lang.RuntimePermission "getClassLoader"</LI>
+<LI>permission java.lang.RuntimePermission "modifyThread"</LI>
+<LI>permission java.net.NetPermission "specifyStreamHandler"</LI>
+<LI>permission java.net.SocketPermission "*", "resolve,connect"</LI>
+<LI>permission java.util.PropertyPermission "*", "read,write"</LI>
+<LI>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", "get"</LI>
+<LI>permission org.osgi.framework.ServicePermission "", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "", "get"</LI>
+<LI>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get"</LI>
+</UL>
+<BR>
+<B>Conclusion:</B>No changes, or permissions required.  This seems to be dead code.
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 375 java.net.URL removeTrailingSlash( java.lang.String )
+   Permission: java.lang.RuntimePermission "getClassLoader"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.lang.RuntimePermission "modifyThread"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.NetPermission "specifyStreamHandler"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission "", "resolve"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission ":???port???", "connect"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission "???host???", "resolve"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission "???host???:???port???", "connect"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission "localhost", "resolve"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission "localhost:1024-", "resolve"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission "localhost:1024-:???port???", "connect"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission "localhost:???port???", "connect"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.util.PropertyPermission "*", "read,write"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.util.PropertyPermission "java.protocol.handler.pkgs", "read"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "", ""
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "", "get"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", ""
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", "get"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", ""
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+         PARAMETER #1 OF THIS METHOD CALL IS TAINTED
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+   374. 	public static URL removeTrailingSlash(String url) throws MalformedURLException {
+   375. 		return removeTrailingSlash(new <FONT style="background-color:yellow;display;inline">URL(url)</FONT>);
+   376. 	}
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B>  There are NO references to this method in the Eclipse framework.
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.lang.RuntimePermission "getClassLoader"</LI>
+<LI>permission java.lang.RuntimePermission "modifyThread"</LI>
+<LI>permission java.net.NetPermission "specifyStreamHandler"</LI>
+<LI>permission java.net.SocketPermission "*", "resolve,connect"</LI>
+<LI>permission java.util.PropertyPermission "*", "read,write"</LI>
+<LI>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", "get"</LI>
+<LI>permission org.osgi.framework.ServicePermission "", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "", "get"</LI>
+<LI>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get"</LI>
+</UL>
+<BR>
+<B>Conclusion:</B>No changes, or permissions required.  This seems to be dead code.
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 403 java.net.URL removeTrailingSlash( java.net.URL )
+   Permission: java.lang.RuntimePermission "getClassLoader"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.lang.RuntimePermission "modifyThread"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.net.NetPermission "specifyStreamHandler"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.net.SocketPermission "", "resolve"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.net.SocketPermission ":???port???", "connect"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.net.SocketPermission "???host???", "resolve"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.net.SocketPermission "???host???:???port???", "connect"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.net.SocketPermission "localhost", "resolve"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.net.SocketPermission "localhost:1024-", "resolve"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.net.SocketPermission "localhost:1024-:???port???", "connect"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.net.SocketPermission "localhost:???port???", "connect"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.util.PropertyPermission "*", "read,write"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.util.PropertyPermission "java.protocol.handler.pkgs", "read"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "", ""
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "", "get"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", ""
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", "get"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", ""
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String, java.lang.String, int, java.lang.String )
+         PARAMETER #1 OF THIS METHOD CALL IS TAINTED
+         PARAMETER #2 OF THIS METHOD CALL IS TAINTED
+
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+   397. 	public static URL removeTrailingSlash(URL url) {
+   398. 		String file = url.getFile();
+   399. 
+   400. 		if (file.endsWith("/")) { //$NON-NLS-1$
+   401. 			file = file.substring(0, file.length() - 1);
+   402. 			try {
+   403. 				return new <FONT style="background-color:yellow;display;inline">URL(url.getProtocol(), url.getHost(), url.getPort(), file)</FONT>;
+   404. 			} catch (MalformedURLException e) {
+   405. 				Assert.isTrue(false, e.getMessage());
+   406. 			}
+   407. 		} else {
+   408. 			return url;
+   409. 		}
+   410. 
+   411. 		return null;
+   412. 	}
+
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B>  There are NO references to this method in the Eclipse framework.
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.lang.RuntimePermission "getClassLoader"</LI>
+<LI>permission java.lang.RuntimePermission "modifyThread"</LI>
+<LI>permission java.net.NetPermission "specifyStreamHandler"</LI>
+<LI>permission java.net.SocketPermission "*", "resolve,connect"</LI>
+<LI>permission java.util.PropertyPermission "*", "read,write"</LI>
+<LI>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", "get"</LI>
+<LI>permission org.osgi.framework.ServicePermission "", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "", "get"</LI>
+<LI>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get"</LI>
+</UL>
+<BR>
+<B>Conclusion:</B>No changes, or permissions required.  This seems to be dead code.
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 444 boolean urlsOverlap( java.lang.String, java.lang.String )
+   Permission: java.lang.RuntimePermission "getClassLoader"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.lang.RuntimePermission "modifyThread"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.NetPermission "specifyStreamHandler"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission "", "resolve"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission ":???port???", "connect"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission "???host???", "resolve"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission "???host???:???port???", "connect"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission "localhost", "resolve"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission "localhost:1024-", "resolve"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission "localhost:1024-:???port???", "connect"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.net.SocketPermission "localhost:???port???", "connect"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.util.PropertyPermission "*", "read,write"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: java.util.PropertyPermission "java.protocol.handler.pkgs", "read"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "", ""
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "", "get"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", ""
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", "get"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", ""
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get"
+      Primordial/void java.net.URL.&LT init &GT( java.lang.String )
+         PARAMETER #1 OF THIS METHOD CALL IS TAINTED
+
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+   443. 	public static boolean urlsOverlap(String url1, String url2) throws MalformedURLException {
+   444. 		return urlsOverlap(new <FONT style="background-color:yellow;display;inline">URL(url1), new URL(url2)</FONT>);
+   445. 	}
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B>  There are NO references to this method in the Eclipse framework.
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.lang.RuntimePermission "getClassLoader"</LI>
+<LI>permission java.lang.RuntimePermission "modifyThread"</LI>
+<LI>permission java.net.NetPermission "specifyStreamHandler"</LI>
+<LI>permission java.net.SocketPermission "*", "resolve,connect"</LI>
+<LI>permission java.util.PropertyPermission "*", "read,write"</LI>
+<LI>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", "get"</LI>
+<LI>permission org.osgi.framework.ServicePermission "", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "", "get"</LI>
+<LI>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", ""</LI>
+<LI>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get"</LI>
+</UL>
+<BR>
+<B>Conclusion:</B>No changes, or permissions required.  This seems to be dead code.
+<!-- /tpl:put -->
+<!--  end of main content -->
+</td>
+</tr>
+</table>
+<!--  end of main frame table -->
+</body>
+</html>
+
+<!-- /tpl:insert -->

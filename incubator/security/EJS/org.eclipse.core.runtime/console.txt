@@ -1,0 +1,168 @@
+JaBA Version: 01/19/2004
+Copyright (c) 2000-2004 IBM Corp. Licensed Program Material. All Rights Reserved.
+JCSLog: Creating file: ./config/log.txt
+Switches file: ./config/RootDetector.switches
+Main: calling 'visitPostConfigFile'
+TraceMain.visitPostConfigFile: writing config/switches values to the log file.
+TraceMain: Loading runtime and application files
+AnalysisScopeDetector: org.eclipse.core.runtime converted to C:/ejs/eclipse_test/eclipse/plugins/org.eclipse.core.runtime_3.0.0
+AnalysisScopeDetector: C:/ejs/eclipse_test/eclipse/plugins/org.eclipse.core.runtime_3.0.0/plugin.xml does not specify any required plugin.
+AnalysisScopeDetector: C:/ejs/eclipse_test/eclipse/plugins/org.eclipse.core.runtime_3.0.0/plugin.xml does not specify any required plugin.
+Checking for fragment or OSGI Bundle manifest.
+found 1 required bundles.
+AnalysisScopeDetector: Unable to access file C:/ejs/eclipse_test/eclipse/plugins/org.eclipse.osgi_3.0.0/plugin.xml: java.io.FileNotFoundException: C:\ejs\eclipse_test\eclipse\plugins\org.eclipse.osgi_3.0.0\plugin.xml (The system cannot find the file specified)
+AnalysisScopeDetector: C:/ejs/eclipse_test/eclipse/plugins/org.eclipse.osgi_3.0.0/plugin.xml was not found.
+Checking for fragment or OSGI Bundle manifest.
+found 0 required bundles.
+CONFIGURATION INFORMATION
+Eclipse.considerInternals = true
+InstancesPrefix.2 = java.lang.StringBuffer
+InstancesPrefix.1 = java.util.
+SecurityManager.Setter = C:/ejs/tools/SecurityManagerSetter.jar
+loader.source.3 = C:/ejs/eclipse_test/eclipse/plugins/org.eclipse.core.runtime_3.0.0/runtime.jar,C:/ejs/eclipse_test/eclipse/plugins/org.eclipse.osgi_3.0.0/console.jar,C:/ejs/eclipse_test/eclipse/plugins/org.eclipse.osgi_3.0.0/core.jar,C:/ejs/eclipse_test/eclipse/plugins/org.eclipse.osgi_3.0.0/defaultAdaptor.jar,C:/ejs/eclipse_test/eclipse/plugins/org.eclipse.osgi_3.0.0/eclipseAdaptor.jar,C:/ejs/eclipse_test/eclipse/plugins/org.eclipse.osgi_3.0.0/osgi.jar,C:/ejs/eclipse_test/eclipse/plugins/org.eclipse.osgi_3.0.0/resolver.jar
+loader.source.2 = C:/Sun/jdk1.4.2_05/jre/lib/ext/dnsns.jar,C:/Sun/jdk1.4.2_05/jre/lib/ext/ldapsec.jar,C:/Sun/jdk1.4.2_05/jre/lib/ext/localedata.jar,C:/Sun/jdk1.4.2_05/jre/lib/ext/sunjce_provider.jar,C:/Sun/jdk1.4.2_05/jre/lib/ext/xercesImpl.jar,C:/Sun/jdk1.4.2_05/jre/lib/ext/xmlParserAPIs.jar
+loader.source.1 = C:/Sun/jdk1.4.2_05/jre/lib/charsets.jar,C:/Sun/jdk1.4.2_05/jre/lib/jce.jar,C:/Sun/jdk1.4.2_05/jre/lib/jsse.jar,C:/Sun/jdk1.4.2_05/jre/lib/plugin.jar,C:/Sun/jdk1.4.2_05/jre/lib/plugin_g.jar,C:/Sun/jdk1.4.2_05/jre/lib/rt.jar,C:/Sun/jdk1.4.2_05/jre/lib/sunrsasign.jar,C:/ejs/tools/SecurityManagerSetter.jar
+IgnorePrefix.7 = java.lang.NullPointerException.
+IgnorePrefix.6 = sun.io.CharacterEncoding.
+IgnorePrefix.5 = java.util.SimpleTimeZone.
+IgnorePrefix.4 = java.lang.TimeZoneData.
+jre.dir = C:/Sun/jdk1.4.2_05/jre
+IgnorePrefix.3 = java.lang.StringBuffer.
+IgnorePrefix.2 = java.lang.String.
+IgnorePrefix.1 = java.lang.Object.
+CgCsMax = 2000000
+loader.name.3 = Application
+loader.name.2 = Extension
+RootPrefix.12 = SecurityManagerSetter.main
+AnalysisObservers = [com.ibm.etools.saber.engine.cg.NewInstanceMS@4cbb1d70, com.ibm.etools.saber.engine.cg.InitialContextLookup@4ad45d70, com.ibm.etools.saber.engine.main.TraceMain@19e51d70, com.ibm.etools.spade.java.rootdetector.AnalysisScopeDetector@63b1d70, com.ibm.etools.saber.engine.roots.SimpleRoots@1fc8dd70, com.ibm.etools.saber.engine.cg.OldCallGraph@2a771d70, com.ibm.etools.spade.java.permissions.ReqPerms@31c05d70]
+loader.name.1 = Primordial
+RootPrefix.11 = org.osgi.service.prefs.
+SwitchesConfig = ./config/RootDetector.switches
+RootPrefix.10 = org.eclipse.core.runtime.preferences.
+Eclipse.plugin.1 = org.eclipse.core.runtime
+RootPrefix.9 = org.eclipse.core.runtime.jobs.
+RootPrefix.8 = org.eclipse.core.runtime.content.
+RootPrefix.7 = org.eclipse.core.runtime.
+loader.open.3 = false
+BaseDirectory = ./config
+RootPrefix.6 = org.eclipse.core.internal.runtime.
+loader.open.2 = false
+RootPrefix.5 = org.eclipse.core.internal.registry.
+loader.open.1 = false
+RootPrefix.4 = org.eclipse.core.internal.preferences.
+RootPrefix.3 = org.eclipse.core.internal.jobs.
+LogFile = log.txt
+RootPrefix.2 = org.eclipse.core.internal.content.
+RootPrefix.1 = org.eclipse.core.internal.boot.
+CgPopMax = 2000000
+loader.parent.3 = Extension
+loader.parent.2 = Primordial
+RootMods.11 = public,protected
+Eclipse.directory = C:/ejs/eclipse_test/eclipse/plugins
+RootMods.10 = public,protected
+RootMods.9 = public,protected
+RootMods.8 = public,protected
+RootMods.7 = public,protected
+RootMods.6 = public,protected
+RootMods.5 = public,protected
+RootMods.4 = public,protected
+RootMods.3 = public,protected
+RootMods.2 = public,protected
+RootMods.1 = public,protected
+
+
+
+C.H. CRC values do not match:  Jars: 1342480260 c.h. file: 2708645649
+Rebuilding the C.H. cache file C:\ejs\secure_workspace\EclipsePluginRootDetector\config\Application.ch
+Processed 100 classes.
+Processed 200 classes.
+Processed 300 classes.
+Processed 400 classes.
+Processed 500 classes.
+Processed 552 classes.
+JCSLog: Creating file: ./config/Application.ch
+Main: calling 'visitPostClassLoadersBuild'
+TraceMain.visitPostClassLoadersBuild: Completed loading runtime and application files
+Main: calling 'visitRootNodeGenerator'
+TraceMain.visitRootNodeGenerator: Finding root nodes.
+Main: calling 'visitPostRootsGeneration'
+TraceMain.visitPostRootsGeneration: Completed root node(s) generation.
+TraceMain: 1424 methods.  1424 methods/receivers.  215 static methods.  1209 instance methods.
+Main: calling 'visitPreCallGraph'
+Main: calling 'visitCallGraphAlgorithm'
+Processing work Q item 2 Remaining work Q items: 1430
+Processing work Q item 10000 Remaining work Q items: 6114
+Processing work Q item 20000 Remaining work Q items: 7752
+Processing work Q item 30000 Remaining work Q items: 9106
+Processing work Q item 40000 Remaining work Q items: 8560
+Processing work Q item 50000 Remaining work Q items: 6822
+Processing work Q item 60000 Remaining work Q items: 4653
+Processing work Q item 70000 Remaining work Q items: 5113
+Processing work Q item 80000 Remaining work Q items: 3798
+Processing work Q item 90000 Remaining work Q items: 3912
+Processing work Q item 100000 Remaining work Q items: 2799
+Processing work Q item 110000 Remaining work Q items: 2862
+Processing work Q item 120000 Remaining work Q items: 2433
+Processing work Q item 130000 Remaining work Q items: 2592
+Processing work Q item 140000 Remaining work Q items: 2327
+Processing work Q item 150000 Remaining work Q items: 1680
+Processing work Q item 160000 Remaining work Q items: 1381
+Processing work Q item 170000 Remaining work Q items: 1374
+Processing work Q item 180000 Remaining work Q items: 1789
+Processing work Q item 190000 Remaining work Q items: 1176
+Processing work Q item 200000 Remaining work Q items: 1472
+Processing work Q item 210000 Remaining work Q items: 1156
+Processing work Q item 220000 Remaining work Q items: 1687
+Processing work Q item 230000 Remaining work Q items: 1615
+Processing work Q item 240000 Remaining work Q items: 1319
+Processing work Q item 250000 Remaining work Q items: 1515
+Processing work Q item 260000 Remaining work Q items: 1225
+Processing work Q item 270000 Remaining work Q items: 941
+Processing work Q item 280000 Remaining work Q items: 806
+Total number of steps: 286167
+OldCallGraph: max CGCallSite counter: 198126
+OldCallGraph: max TF/TFS counters: 50826 / 80681
+Call graph construction successfully completed? true
+Starting postprocess
+  Releasing unused memory.
+  GC finished.
+    Used memory: 166099192
+    Free memory : 1444774152
+    Total memory: 1610873344
+Ending postprocess
+  Releasing unused memory.
+  GC finished.
+    Used memory: 249139224
+    Free memory : 1361734120
+    Total memory: 1610873344
+CallGraph: actual nodes: 59771
+CallGraph: actual edges: 134191
+CallGraph: intuitive nodes: 68632
+CallGraph: intuitive edges: 163225
+Main: calling 'visitCallGraphAnalysis'
+TraceMain.visitCallGraphAnalysis: Callgraph algorithm: com.ibm.etools.saber.engine.cg.OldCallGraph
+TraceMain: Total elapsed time: 1020953ms.  Interval time: 1016562ms.
+TraceMain: classes processed: 1265
+TraceMain: classes in scope: 12735
+TraceMain: methods processed: 7233
+TraceMain: instructions count: 421094
+TraceMain: total method processing time (ms): 97284
+TraceMain: method source code lines: 111342
+TraceMain: methods missing source code: 158
+TraceMain: classes source code lines: 493566
+TraceMain: classes missing source code: 3
+ReqPerms: doing Permission analysis. Total elapsed time: 1021047ms.  Interval time: 94ms.
+Creating file .\config\security\perms.txt
+Creating file .\config\security\java.policy
+Creating file .\config\security\doPriv.txt
+JCSLog: Creating file: ./config/security/UselessDoPrivReport.txt
+ReqPerms: Permission analysis completed. Total elapsed time: 1149703ms.  Interval time: 128656ms.
+Main: calling 'visitPreExit'
+TraceMain.visitPreExit: processing finished. Total elapsed time: 1149703ms.  Interval time: 0ms.
+  Releasing unused memory.
+  GC finished.
+    Used memory: 174881544
+    Free memory : 1435991800
+    Total memory: 1610873344
+TraceMain: Exiting. Total elapsed time: 1379859ms.  Interval time: 230156ms.
+ANALYSIS THREAD EXITING

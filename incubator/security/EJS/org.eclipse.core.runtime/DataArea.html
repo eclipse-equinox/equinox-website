@@ -1,0 +1,274 @@
+<!-- tpl:insert page="/equinox.htpl" --><!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+<title>Equinox Security Home</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<style type="text/css">
+.input {background: "#ffffcc";color: "#000000" ;font-weight: normal;}
+a.nav:link { text-decoration: none; color: "#000000"; }
+a.nav:visited { text-decoration: none; color: "#000000"; }
+a.nav:hover { text-decoration: underline; color: "#000000"; }
+</style>
+<link rel="stylesheet" href="http://www.eclipse.org/nav_style.css" type="text/css">
+<link rel="stylesheet2" href="http://eclipse.org/default_style.css" type="text/css">
+</head>
+<body bgcolor="#ffffff" link="#0000ee" vlink="#551a8b" alink="#ff0000" leftmargin="0" marginheight="0" topmargin="0" rightmargin="0">
+<!--  start of banner  -->
+ <table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" >
+  <tr>
+   <td WIDTH="100%">
+    <table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" BGCOLOR="#006699" >
+
+     <tr>
+          <td BGCOLOR="#000000" width="116" ><a href="http://www.eclipse.org" target="_top"><img src="http://www.eclipse.org/images/EclipseBannerPic.jpg" width="115" height="50" border="0"></a></td>
+          <td WIDTH="637"><img SRC="http://www.eclipse.org/images/gradient.jpg" BORDER=0 height=50 width=282></td>
+          <td WIDTH="250" nowrap><font align="right" color="white" size="6" class=indextop>equinox security</font></td>
+     </tr>
+    </table>
+   </td>
+  </tr>
+ </table><!--  end of banner -->
+<!--  start of main frame table -->
+<table BORDER=0 CELLSPACING=0 CELLPADDING="4" WIDTH="100%" HEIGHT="100%" BGCOLOR="#90C8FF">
+<tr><td width="160" valign="top" bgcolor="#6699CC" nowrap>
+<!--  start of navigator -->
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%"  BGCOLOR="#90C8FF" >
+<tr><td>
+	<table BORDER=0 CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%"  BGCOLOR="#90C8FF" >
+	  <tr> 
+	    <td VALIGN=CENTER HEIGHT="21" BGCOLOR="#0080C0">&nbsp; <a href="http://www.eclipse.org/equinox" target="_top" class="navhead"> 
+	      equinox home</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER> 
+	    <td HEIGHT="21">&nbsp; <a name="overview" href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/index.html" class="nav" >overview</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/ejs.html" class="nav">rcp plug-in analysis</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/rcp/keystore.html" class="nav" >keystore/credentialstore</a></td>
+	  </tr>
+
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/rcp/end2end.html" class="nav" >end to end security</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/downloads.html" class="nav" >downloads</a></td>
+	  </tr>
+
+	</table>
+</td></tr>
+</table>
+<!--  end of navigator -->
+</td>
+<!--  start of main content  -->
+<td bgcolor="white" valign="top" >
+<!-- tpl:put name="bodyarea" -->
+<P></P><H1>DataArea.java changes</H1>
+<B>Detail</B><BR><BR>
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 119 void createLocation(  )
+   Permission: java.io.FilePermission "", "read"
+      Primordial/boolean java.io.File.mkdirs(  )
+   Permission: java.io.FilePermission "", "write"
+      Primordial/boolean java.io.File.mkdirs(  )
+   Permission: java.io.FilePermission "???file???", "read"
+      Primordial/boolean java.io.File.mkdirs(  )
+   Permission: java.io.FilePermission "???file???", "write"
+      Primordial/boolean java.io.File.mkdirs(  )
+   Permission: java.util.PropertyPermission "user.dir", "read"
+      Primordial/boolean java.io.File.mkdirs(  )
+Line# 121 void createLocation(  )
+   Permission: java.io.FilePermission "???file???", "read"
+      Primordial/java.lang.String java.io.File.getAbsolutePath(  )
+   Permission: java.util.PropertyPermission "user.dir", "read"
+      Primordial/java.lang.String java.io.File.getAbsolutePath(  )
+Line# 124 void createLocation(  )
+   Permission: java.io.FilePermission "", "write"
+      Primordial/boolean java.io.File.canWrite(  )
+   Permission: java.io.FilePermission "???file???", "write"
+      Primordial/boolean java.io.File.canWrite(  )
+Line# 125 void createLocation(  )
+   Permission: java.io.FilePermission "???file???", "read"
+      Primordial/java.lang.String java.io.File.getAbsolutePath(  )
+   Permission: java.util.PropertyPermission "user.dir", "read"
+      Primordial/java.lang.String java.io.File.getAbsolutePath(  )
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+   115. 	private void createLocation() throws CoreException {
+   116. 		// append on the metadata location so that the whole structure is created.  
+   117. 		File file = location.append(F_META_AREA).toFile();
+   118. 		try {
+   119. 			<FONT style="background-color:yellow;display;inline">file.mkdirs();</FONT>
+   120. 		} catch (Exception e) {
+   121. 			String message = Policy.bind("meta.couldNotCreate",<FONT style="background-color:yellow;display;inline"> file.getAbsolutePath()</FONT>); //$NON-NLS-1$
+   122. 			throw new CoreException(new Status(IStatus.ERROR, Platform.PI_RUNTIME, Platform.FAILED_WRITE_METADATA, message, e));
+   123. 		}
+   124. 		<FONT style="background-color:yellow;display;inline">if (!file.canWrite()) {</FONT>
+   125. 			String message = Policy.bind("meta.readonly",<FONT style="background-color:yellow;display;inline"> file.getAbsolutePath()</FONT>); //$NON-NLS-1$
+   126. 			throw new CoreException(new Status(IStatus.ERROR, Platform.PI_RUNTIME, Platform.FAILED_WRITE_METADATA, message, null));
+   127. 		}
+   128. 		// set the log file location now that we created the data area
+   129. 		IPath path = location.append(F_META_AREA).append(F_LOG);
+   130. 		try {
+   131. 			InternalPlatform.getDefault().getFrameworkLog().setFile(path.toFile(), true);
+   132. 		} catch (IOException e) {
+   133. 			e.printStackTrace();
+   134. 		}
+   135. 	}
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B>
+<BR><BR>
+<TABLE border="2">
+<TR><TD bgcolor="silver">Access Modifier</TD><TD bgcolor="silver">Class/method</TD><TD bgcolor="silver">Package</TD><TD bgcolor="silver">Analysis</TD></TR>
+<TR><TD></TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>private</TD><TD>DataArea.initializeLocation()</TD><TD>org.eclipse.core.internal.runtime</TD><TD>N/A</TD></TR>
+<TR><TD>private</TD><TD>DataArea.createLocation</TD><TD>org.eclipse.core.internal.runtime</TD>
+<TD>This method creates the .metadata folder under the ${osgi.instance.area} folder.  If the folder is writable by the caller, then it also
+creates a .log file in the .metadata folder.  This file is then set as the default framework log file.</TD></TR>
+</TABLE>
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.io.FilePermission "&LT&LT ALL FILES &GT&GT","read"</LI>
+<LI>java.util.PropertyPermission "user.dir", "read"</LI>
+</UL>
+<BR>
+<B>Conclusion:</B>All classes on the stack must have the required permissions for folder ${org.instance.area}/.metadata and ${org.instance.area}/.metadata/.log.
+Grant the permissions listed in the permission requirements section to runtime.jar.
+
+This may be an area where a re-design would help.   The runtime should be responsible for creating the .metadata folder, not the callers.  Furthermore, 
+the callers should be assigned the required permissions by the OSGI plugin during bundle permission setup.
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 96 org.eclipse.core.runtime.IPath getPreferenceLocation( java.lang.String, boolean )
+   Permission: java.io.FilePermission "", "read"
+      Primordial/boolean java.io.File.mkdirs(  )
+   Permission: java.io.FilePermission "", "write"
+      Primordial/boolean java.io.File.mkdirs(  )
+   Permission: java.io.FilePermission "???file???", "read"
+      Primordial/boolean java.io.File.mkdirs(  )
+   Permission: java.io.FilePermission "???file???", "write"
+      Primordial/boolean java.io.File.mkdirs(  )
+   Permission: java.util.PropertyPermission "user.dir", "read"
+      Primordial/boolean java.io.File.mkdirs(  )
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+    93. 	public IPath getPreferenceLocation(String bundleName, boolean create) throws IllegalStateException {
+    94. 		IPath result = getStateLocation(bundleName);
+    95. 		if (create)
+    96. 			<FONT style="background-color:yellow;display;inline">result.toFile().mkdirs();</FONT>
+    97. 		return result.append(PREFERENCES_FILE_NAME);
+    98. 	}
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B>
+<BR><BR>
+<TABLE border="2">
+<TR><TD bgcolor="silver">Access Modifier</TD><TD bgcolor="silver">Class/method</TD><TD bgcolor="silver">Package</TD><TD bgcolor="silver">Analysis</TD></TR>
+<TR><TD></TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>protected</TD><TD>--InstancePreferences.loadLegacy()</TD><TD>org.eclipse.core.internal.preferences</TD><TD>The bundle name supplied to getPreferenceLocation comes from the plugin's parent
+path plus the plugin id as defined in EclipsePreferences.absolutePath().</TD></TR>
+<TR><TD>public</TD><TD>--DataArea.getPreferenceLocation(Bundle bundle, boolean create)</TD><TD>org.eclipse.core.internal.runtime</TD>
+<TD>The bundle parameter supplied to this method is tainted.  
+</TD></TR>
+<TR><TD>public</TD><TD>DataArea.getPreferenceLocation(String bundleName, boolean create)</TD><TD>org.eclipse.core.internal.runtime</TD><TD>Parameter 1 is tainted.</TD></TR>
+</TABLE>
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.io.FilePermission "&LT&LT ALL FILES &GT&GT","read,write"</LI>
+<LI>java.util.PropertyPermission "user.dir", "read"</LI>
+</UL>
+<BR>
+<B>Conclusion:</B> Grant runtime.jar the required permissions.   All callers must have the required permissions for the specific files they wish to read/write/update or delete..
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+location: Line# 102 void initializeLocation(  )
+   Permission: java.io.FilePermission "", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission "???file???", "read"
+      Primordial/boolean java.io.File.exists(  )
+Line# 103 void initializeLocation(  )
+   Permission: java.io.FilePermission "", "read"
+      Primordial/boolean java.io.File.isDirectory(  )
+   Permission: java.io.FilePermission "???file???", "read"
+      Primordial/boolean java.io.File.isDirectory(  )
+Line# 110 void initializeLocation(  )
+   Permission: java.io.FilePermission "???file???", "read"
+      Primordial/java.lang.String java.io.File.getAbsolutePath(  )
+   Permission: java.util.PropertyPermission "user.dir", "read"
+      Primordial/java.lang.String java.io.File.getAbsolutePath(  )
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+   100. 	private void initializeLocation() throws CoreException {
+   101. 		// check if the location can be created
+   102. 		<FONT style="background-color:yellow;display;inline">if (location.toFile().exists()) {</FONT>
+   103. 			<FONT style="background-color:yellow;display;inline">if (!location.toFile().isDirectory()) {</FONT>
+   104. 				String message = Policy.bind("meta.notDir", location.toString()); //$NON-NLS-1$
+   105. 				throw new CoreException(new Status(IStatus.ERROR, Platform.PI_RUNTIME, Platform.FAILED_WRITE_METADATA, message, null));
+   106. 			}
+   107. 		}
+   108. 		//try infer the device if there isn"t one (windows)
+   109. 		if (location.getDevice() == null)
+   110. 			<FONT style="background-color:yellow;display;inline">location = new Path(location.toFile().getAbsolutePath());</FONT>
+   111. 		createLocation();
+   112. 		initialized = true;
+   113. 	}
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B> N/A All callers must have the required file permission to read the associated files.
+<BR><BR>
+<TABLE border="2">
+<TR><TD bgcolor="silver">Access Modifier</TD><TD bgcolor="silver">Class/method</TD><TD bgcolor="silver">Package</TD><TD bgcolor="silver">Analysis</TD></TR>
+<TR><TD></TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>private</TD><TD><PRE>DataArea.initializeLocation()</PRE></TD><TD>org.eclipse.core.internal.runtime</TD>
+<TD>The location parameter referenced in this method is initialized within the assertLocationInitialized() method.  It is created by retrieving the 
+cached location service object (a.k.a. Workspace location).
+</TD></TR>
+</TABLE>
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.io.FilePermission "&LT&LT ALL FILES &GT&GT","read"</LI>
+<LI>java.util.PropertyPermission "user.dir", "read"</LI>
+</UL>
+<BR>
+<B>Conclusion:</B> Grant runtime.jar the required permissions.   Any caller wishing to read, write, update, or delete a file within the associated workspace
+folder must have permission to do so.
+<!-- /tpl:put -->
+<!--  end of main content -->
+</td>
+</tr>
+</table>
+<!--  end of main frame table -->
+</body>
+</html>
+
+<!-- /tpl:insert -->

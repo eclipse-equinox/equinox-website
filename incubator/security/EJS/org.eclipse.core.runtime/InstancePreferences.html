@@ -1,0 +1,278 @@
+<!-- tpl:insert page="/equinox.htpl" --><!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+<title>Equinox Security Home</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<style type="text/css">
+.input {background: "#ffffcc";color: "#000000" ;font-weight: normal;}
+a.nav:link { text-decoration: none; color: "#000000"; }
+a.nav:visited { text-decoration: none; color: "#000000"; }
+a.nav:hover { text-decoration: underline; color: "#000000"; }
+</style>
+<link rel="stylesheet" href="http://www.eclipse.org/nav_style.css" type="text/css">
+<link rel="stylesheet2" href="http://eclipse.org/default_style.css" type="text/css">
+</head>
+<body bgcolor="#ffffff" link="#0000ee" vlink="#551a8b" alink="#ff0000" leftmargin="0" marginheight="0" topmargin="0" rightmargin="0">
+<!--  start of banner  -->
+ <table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" >
+  <tr>
+   <td WIDTH="100%">
+    <table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" BGCOLOR="#006699" >
+
+     <tr>
+          <td BGCOLOR="#000000" width="116" ><a href="http://www.eclipse.org" target="_top"><img src="http://www.eclipse.org/images/EclipseBannerPic.jpg" width="115" height="50" border="0"></a></td>
+          <td WIDTH="637"><img SRC="http://www.eclipse.org/images/gradient.jpg" BORDER=0 height=50 width=282></td>
+          <td WIDTH="250" nowrap><font align="right" color="white" size="6" class=indextop>equinox security</font></td>
+     </tr>
+    </table>
+   </td>
+  </tr>
+ </table><!--  end of banner -->
+<!--  start of main frame table -->
+<table BORDER=0 CELLSPACING=0 CELLPADDING="4" WIDTH="100%" HEIGHT="100%" BGCOLOR="#90C8FF">
+<tr><td width="160" valign="top" bgcolor="#6699CC" nowrap>
+<!--  start of navigator -->
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%"  BGCOLOR="#90C8FF" >
+<tr><td>
+	<table BORDER=0 CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%"  BGCOLOR="#90C8FF" >
+	  <tr> 
+	    <td VALIGN=CENTER HEIGHT="21" BGCOLOR="#0080C0">&nbsp; <a href="http://www.eclipse.org/equinox" target="_top" class="navhead"> 
+	      equinox home</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER> 
+	    <td HEIGHT="21">&nbsp; <a name="overview" href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/index.html" class="nav" >overview</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/ejs.html" class="nav">rcp plug-in analysis</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/rcp/keystore.html" class="nav" >keystore/credentialstore</a></td>
+	  </tr>
+
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/rcp/end2end.html" class="nav" >end to end security</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/downloads.html" class="nav" >downloads</a></td>
+	  </tr>
+
+	</table>
+</td></tr>
+</table>
+<!--  end of navigator -->
+</td>
+<!--  start of main content  -->
+<td bgcolor="white" valign="top" >
+<!-- tpl:put name="bodyarea" -->
+<P></P><H1>InstancePreferences.java changes</H1>
+<B>Detail</B><BR><BR>
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 88 void loadLegacy(  )
+   Permission: java.io.FilePermission "", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission "???file???", "read"
+      Primordial/boolean java.io.File.exists(  )
+Line# 102 void loadLegacy(  )
+   Permission: java.io.FilePermission "", "read"
+      Primordial/void java.io.FileInputStream.<init>( java.io.File )
+   Permission: java.io.FilePermission "???file???", "read"
+      Primordial/void java.io.FileInputStream.<init>( java.io.File )
+Line# 103 void loadLegacy(  )
+   Permission: java.lang.RuntimePermission "getClassLoader"
+      Primordial/void java.util.Properties.load( java.io.InputStream )
+   Permission: java.util.PropertyPermission "java.vendor.url.bug", "read"
+      Primordial/void java.util.Properties.load( java.io.InputStream )
+   Permission: java.util.logging.LoggingPermission "control", ""
+      Primordial/void java.util.Properties.load( java.io.InputStream )
+Line# 139 void loadLegacy(  )
+   Permission: java.io.FilePermission "", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "???file???", "delete"
+      Primordial/boolean java.io.File.delete(  )
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+    75. 	/**
+    76. 	 * Load the Eclipse 2.1 preferences for the given bundle. If a file
+    77. 	 * doesn"t exist then assume that conversion has already occurred
+    78. 	 * and do nothing.
+    79. 	 */
+    80. 	protected void loadLegacy() {
+    81. 		IPath path = new Path(absolutePath());
+    82. 		if (path.segmentCount() != 2)
+    83. 			return;
+    84. 		String bundleName = path.segment(1);
+    85. 		// the preferences file is located in the plug-in"s state area at a well-known name
+    86. 		// don"t need to create the directory if there are no preferences to load
+    87. 		File prefFile = InternalPlatform.getDefault().getMetaArea().getPreferenceLocation(bundleName, false).toFile();
+    88. 		<FONT style="background-color:yellow;display;inline">if (!prefFile.exists()) {</FONT>
+    89. 			// no preference file - that"s fine
+    90. 			if (InternalPlatform.DEBUG_PREFERENCES)
+    91. 				Policy.debug("Legacy plug-in preference file not found: " + prefFile); //$NON-NLS-1$ //$NON-NLS-2$
+    92. 			return;
+    93. 		}
+    94. 
+    95. 		if (InternalPlatform.DEBUG_PREFERENCES)
+    96. 			Policy.debug("Loading legacy preferences from " + prefFile); //$NON-NLS-1$
+    97. 
+    98. 		// load preferences from file
+    99. 		InputStream input = null;
+   100. 		Properties values = new Properties();
+   101. 		try {
+   102. 			<FONT style="background-color:yellow;display;inline">input = new BufferedInputStream(new FileInputStream(prefFile));</FONT>
+   000. 			<FONT style="background-color:yellow;display;inline">if (System.getSecurityManager()==null)</FONT>
+   103. 			  <FONT style="background-color:pink;display;inline">values.load(input);</FONT><FONT style="background-color:yellow;display;inline">
+   000. 			else
+   000. 			{
+   000. 			  AccessController.doPrivileged(new PropertyLoadAction(input,values));
+   000. 			}
+   000. 		} catch (PrivilegedActionException pae)
+   000. 		{
+   000. 			if (InternalPlatform.DEBUG_PREFERENCES)
+   000. 				Policy.debug("IOException encountered loading legacy preference file " + prefFile); //$NON-NLS-1$
+   000. 			return;	</FONT>
+   104. 		} catch (IOException e) {
+   105. 			// problems loading preference store - quietly ignore
+   106. 			if (InternalPlatform.DEBUG_PREFERENCES)
+   107. 				Policy.debug("IOException encountered loading legacy preference file " + prefFile); //$NON-NLS-1$
+   108. 			return;
+   109. 		} finally {
+   110. 			if (input != null) {
+   111. 				try {
+   112. 					input.close();
+   113. 				} catch (IOException e) {
+   114. 					// ignore problems with close
+   115. 					if (InternalPlatform.DEBUG_PREFERENCES) {
+   116. 						Policy.debug("IOException encountered closing legacy preference file " + prefFile); //$NON-NLS-1$
+   117. 						e.printStackTrace();
+   118. 					}
+   119. 				}
+   120. 			}
+   121. 		}
+   122. 
+   123. 		// Store values in the preferences object
+   124. 		for (Iterator i = values.keySet().iterator(); i.hasNext();) {
+   125. 			String key = (String) i.next();
+   126. 			String value = values.getProperty(key);
+   127. 			// value shouldn"t be null but check just in case...
+   128. 			if (value != null) {
+   129. 				if (InternalPlatform.DEBUG_PREFERENCES)
+   130. 					Policy.debug("Loaded legacy preference: " + key + " -> " + value); //$NON-NLS-1$ //$NON-NLS-2$
+   131. 				// call these 2 methods rather than #put() so we don"t send out unnecessary notification
+   132. 				Object oldValue = internalPut(key, value);
+   133. 				if (!value.equals(oldValue))
+   134. 					makeDirty();
+   135. 			}
+   136. 		}
+   137. 
+   138. 		// Delete the old file so we don"t try and load it next time. 
+   139. 		if (!prefFile.delete())
+   140. 			//Only print out message in failure case if we are debugging.
+   141. 			if (InternalPlatform.DEBUG_PREFERENCES)
+   142. 				Policy.debug("Unable to delete legacy preferences file: " + prefFile); //$NON-NLS-1$
+   143. 	}
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B><BR><BR>
+<TABLE border="2">
+<TR><TD bgcolor="silver">Access Modifier</TD><TD bgcolor="silver">Class/method</TD><TD bgcolor="silver">Package</TD><TD bgcolor="silver">Analysis</TD></TR>
+<TR><TD></TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>public</TD><TD>EclipsePreferences.create(IEclipsePreferences nodeParent, String nodeName, Plugin context)</TD><TD>org.eclipse.core.internal.preferences</TD>
+<TD>The <FONT style="italic">nodeParent, nodeName, and context</FONT> parameters supplied to this method are tainted, and subsequently are used to 
+specify the paths returned by the absolutePath() method called in loadLegacy().  The returned path is subsequently used as the bundleName, so if this routine
+were wrapped in a doPrivileged operation, one plugin could potentially read another plugin's preference settings. </TD>
+</TR>
+<TR><TD>protected</TD><TD>InstancePreferences.loadLegacy()</TD><TD>package_name</TD><TD>org.eclipse.core.internal.preferences</TD>
+<TD>This method is self contained and checks for the existance of a file in the ".metadata/.plugins/&LT bundle_name &GT/pref_store.ini" folder.</TD>
+</TR>
+</TABLE>
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.io.FilePermission "&LT&LT ALL FILES &GT&GT","read,delete" (Required by all callers)</LI>
+<LI>permission java.lang.RuntimePermission "getClassLoader" (only required by runtime.jar)</LI>
+<LI>java.util.PropertyPermission "java.vendor.url.bug", "read" (only required by runtime.jar)</LI>
+<LI>java.util.logging.LoggingPermission "control", "" (only required by runtime.jar)</LI>
+</UL>
+<BR>
+<B>Conclusion:</B> Grant the required permissions to runtime.jar.  However, add a doPrivileged wrapper around line 103 to avoid the requirement for getClassLoader. (The
+security manager will ensure that the user has Read access to the specified file before this privileged code is executed.  This will make permission assignment cleaner.
+<BR><BR>
+<BR>
+<B>New PrivilegedActionException class added for wrapper @ line 103:</B>
+<BR>
+<CODE>
+<PRE>
+/*
+ * Created on Dec 8, 2004 by habeck
+ *
+ * (c) IBM Corporation 2004.  All Rights Reserved.
+ */
+package org.eclipse.core.internal.security;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.security.PrivilegedExceptionAction;
+import java.util.Properties;
+
+/**
+ * @author habeck
+ *
+ * Created: Dec 8, 2004 6:53:22 PM
+ * 
+ */
+public final class PropertyLoadAction implements PrivilegedExceptionAction
+{
+  private InputStream is;
+  private Properties props;
+    
+  /**
+   * 
+   * @param input The input stream to load the properties from.
+   * @param store The propreties object to load the values into.
+   */
+  public PropertyLoadAction(InputStream input, Properties store)
+  {
+    is = input;
+    props = store;
+  }
+
+  /* (non-Javadoc)
+   * @see java.security.PrivilegedExceptionAction#run()
+   */
+  public Object run() throws IOException
+  {
+    props.load(is);
+    return null;
+  }
+}
+</PRE>
+</CODE>
+<!-- /tpl:put -->
+<!--  end of main content -->
+</td>
+</tr>
+</table>
+<!--  end of main frame table -->
+</body>
+</html>
+
+<!-- /tpl:insert -->

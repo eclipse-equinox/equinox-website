@@ -1,0 +1,265 @@
+<!-- tpl:insert page="/equinox.htpl" --><!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+<title>Equinox Security Home</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<style type="text/css">
+.input {background: "#ffffcc";color: "#000000" ;font-weight: normal;}
+a.nav:link { text-decoration: none; color: "#000000"; }
+a.nav:visited { text-decoration: none; color: "#000000"; }
+a.nav:hover { text-decoration: underline; color: "#000000"; }
+</style>
+<link rel="stylesheet" href="http://www.eclipse.org/nav_style.css" type="text/css">
+<link rel="stylesheet2" href="http://eclipse.org/default_style.css" type="text/css">
+</head>
+<body bgcolor="#ffffff" link="#0000ee" vlink="#551a8b" alink="#ff0000" leftmargin="0" marginheight="0" topmargin="0" rightmargin="0">
+<!--  start of banner  -->
+ <table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" >
+  <tr>
+   <td WIDTH="100%">
+    <table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" BGCOLOR="#006699" >
+
+     <tr>
+          <td BGCOLOR="#000000" width="116" ><a href="http://www.eclipse.org" target="_top"><img src="http://www.eclipse.org/images/EclipseBannerPic.jpg" width="115" height="50" border="0"></a></td>
+          <td WIDTH="637"><img SRC="http://www.eclipse.org/images/gradient.jpg" BORDER=0 height=50 width=282></td>
+          <td WIDTH="250" nowrap><font align="right" color="white" size="6" class=indextop>equinox security</font></td>
+     </tr>
+    </table>
+   </td>
+  </tr>
+ </table><!--  end of banner -->
+<!--  start of main frame table -->
+<table BORDER=0 CELLSPACING=0 CELLPADDING="4" WIDTH="100%" HEIGHT="100%" BGCOLOR="#90C8FF">
+<tr><td width="160" valign="top" bgcolor="#6699CC" nowrap>
+<!--  start of navigator -->
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%"  BGCOLOR="#90C8FF" >
+<tr><td>
+	<table BORDER=0 CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%"  BGCOLOR="#90C8FF" >
+	  <tr> 
+	    <td VALIGN=CENTER HEIGHT="21" BGCOLOR="#0080C0">&nbsp; <a href="http://www.eclipse.org/equinox" target="_top" class="navhead"> 
+	      equinox home</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER> 
+	    <td HEIGHT="21">&nbsp; <a name="overview" href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/index.html" class="nav" >overview</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/ejs.html" class="nav">rcp plug-in analysis</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/rcp/keystore.html" class="nav" >keystore/credentialstore</a></td>
+	  </tr>
+
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/rcp/end2end.html" class="nav" >end to end security</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/downloads.html" class="nav" >downloads</a></td>
+	  </tr>
+
+	</table>
+</td></tr>
+</table>
+<!--  end of navigator -->
+</td>
+<!--  start of main content  -->
+<td bgcolor="white" valign="top" >
+<!-- tpl:put name="bodyarea" -->
+<P></P><H1>EnvironmentInfo.java changes</H1>
+<B>Detail</B><BR><BR>
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 119 void setupSystemContext(  )
+   Permission: java.util.PropertyPermission "user.language", "write"
+      Primordial/void java.util.Locale.setDefault( java.util.Locale )
+         PARAMETER #1 OF THIS METHOD CALL IS TAINTED
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+    93. 	private void setupSystemContext() {
+    94. 		// if the user didn"t set the locale with a command line argument then
+    95. 		// use the default.
+    96. 		nl = SecureAction.getProperty("osgi.nl"); //$NON-NLS-1$
+    97. 		if (nl != null) {
+    98. 			StringTokenizer tokenizer = new StringTokenizer(nl, "_"); //$NON-NLS-1$
+    99. 			int segments = tokenizer.countTokens();
+   100. 			try {
+   101. 				Locale userLocale = null;
+   102. 				switch (segments) {
+   103. 					case 1:
+   104. 						// use the 2 arg constructor to maintain compatibility with 1.3.1
+   105. 						userLocale = new Locale(tokenizer.nextToken(), ""); //$NON-NLS-1$
+   106. 						break;
+   107. 					case 2:
+   108. 						userLocale = new Locale(tokenizer.nextToken(), tokenizer.nextToken());
+   109. 						break;
+   110. 					case 3:
+   111. 						userLocale = new Locale(tokenizer.nextToken(), tokenizer.nextToken(), tokenizer.nextToken());
+   112. 						break;
+   113. 					default:
+   114. 						// if the user passed us in a bogus value then log a message and use the default
+   115. 						System.err.println(EclipseAdaptorMsg.formatter.getString("error.badNL", nl)); //$NON-NLS-1$
+   116. 						userLocale = Locale.getDefault();
+   117. 						break;
+   118. 				}
+<FONT style="background-color:yellow;display:inline">   119. 				Locale.setDefault(userLocale);</FONT>
+   120. 			} catch (NoSuchElementException e) {
+   121. 				// fall through and use the default
+   122. 			}
+   123. 		}
+   124. 		nl = Locale.getDefault().toString();
+   125. 		SecureAction.getProperties().put("osgi.nl", nl); //$NON-NLS-1$
+   126. 
+   127. 		// if the user didn"t set the operating system with a command line 
+   128. 		// argument then use the default.
+   129. 		os = SecureAction.getProperty("osgi.os"); //$NON-NLS-1$
+   130. 		if (os == null) {
+   131. 			String name = SecureAction.getProperty("os.name");//$NON-NLS-1$
+   132. 			// check to see if the VM returned "Windows 98" or some other
+   133. 			// flavour which should be converted to win32.
+   134. 			if (name.regionMatches(true, 0, Constants.OS_WIN32, 0, 3))
+   135. 				os = Constants.OS_WIN32;
+   136. 			// EXCEPTION: All mappings of SunOS convert to Solaris
+   137. 			if (os == null)
+   138. 				os = name.equalsIgnoreCase(INTERNAL_OS_SUNOS) ? Constants.OS_SOLARIS : Constants.OS_UNKNOWN;
+   139. 		}
+   140. 		//System.getProperties().put("osgi.os", os); //$NON-NLS-1$
+   141.     SecureAction.getProperties().put("osgi.os", os);
+   142. 		// if the user didn"t set the window system with a command line 
+   143. 		// argument then use the default.
+   144. 		ws = SecureAction.getProperty("osgi.ws"); //$NON-NLS-1$
+   145. 		if (ws == null) {
+   146. 			// setup default values for known OSes if nothing was specified
+   147. 			if (os.equals(Constants.OS_WIN32))
+   148. 				ws = Constants.WS_WIN32;
+   149. 			else if (os.equals(Constants.OS_LINUX))
+   150. 				ws = Constants.WS_MOTIF;
+   151. 			else if (os.equals(Constants.OS_MACOSX))
+   152. 				ws = Constants.WS_CARBON;
+   153. 			else if (os.equals(Constants.OS_HPUX))
+   154. 				ws = Constants.WS_MOTIF;
+   155. 			else if (os.equals(Constants.OS_AIX))
+   156. 				ws = Constants.WS_MOTIF;
+   157. 			else if (os.equals(Constants.OS_SOLARIS))
+   158. 				ws = Constants.WS_MOTIF;
+   159. 			else
+   160. 				ws = Constants.WS_UNKNOWN;
+   161. 		}
+   162. 		SecureAction.getProperties().put("osgi.ws", ws); //$NON-NLS-1$
+   163. 
+   164. 		// if the user didn"t set the system architecture with a command line 
+   165. 		// argument then use the default.
+   166. 		arch = SecureAction.getProperty("osgi.arch"); //$NON-NLS-1$
+   167. 		if (arch == null) {
+   168. 			String name = SecureAction.getProperty("os.arch");//$NON-NLS-1$
+   169. 			// Map i386 architecture to x86
+   170. 			arch = name.equalsIgnoreCase(INTERNAL_ARCH_I386) ? Constants.ARCH_X86 : name;
+   171. 		}
+   172. 		SecureAction.getProperties().put("osgi.arch", arch); //$NON-NLS-1$
+   173. 	}
+
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B>
+<BR><BR>
+<TABLE border="2">
+<TR><TD bgcolor="silver">Access Modifier</TD><TD bgcolor="silver">Class/method</TD><TD bgcolor="silver">Package</TD><TD bgcolor="silver">Analysis</TD></TR>
+<TR><TD></TD><TD><PRE></PRE></TD><TD></TD><TD></TD></TR>
+<TR><TD>protected</TD><TD><PRE>--EclipseLog.writeSession()</PRE></TD><TD>org.eclipse.core.runtime.adaptor</TD><TD></TD></TR>
+<TR><TD>private</TD><TD><PRE>--EclipseClassLoader.NL_JAR_VARIANTS</PRE></TD><TD>org.eclipse.core.runtime.adaptor</TD><TD>Private variable.</TD></TR>
+<TR><TD>private</TD><TD><PRE>------------BundleLoader.createBCLPrevileged(ProtectionDomain, String[])</PRE></TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD>This method executes under a privileged action.</TD></TR>
+<TR><TD>private</TD><TD><PRE>----------BundleLoader.createBCL(ProtectionDomain,String[])</PRE></TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>private</TD><TD><PRE>--------------PackageAdminImpl.processDelta(Vector)</PRE></TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD><PRE>--------------PackageAdminImpl.resolveBundles()</PRE></TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>public</TD><TD><PRE>--------------------StartLevelManager.dispatchEvent(Object, Object, int, Object)</PRE></TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD><PRE>--------------------StartLevelManager.launch(int)</PRE></TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>public</TD><TD><PRE>----------------------------OSGi.close()</PRE></TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD>No references to this method in workspace.</TD></TR>
+<TR><TD>public</TD><TD><PRE>--------------------------Framework.close()</PRE></TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>public</TD><TD><PRE>--------------------------OSGi.shutdown()</PRE></TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD>No references to this method in workspace.</TD></TR>
+<TR><TD>public</TD><TD><PRE>--------------------------SystemBundle.stop()</PRE></TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD>This method executes under a privileged action.</TD></TR>
+<TR><TD>public</TD><TD><PRE>--------------------------SystemBundle.update()</PRE></TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD>This method executes under a privileged action.</TD></TR>
+<TR><TD>public</TD><TD><PRE>------------------------Framework.shutdown()</PRE></TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD><PRE>----------------------SystemBundle.suspend()</PRE></TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD><PRE>--------------------StartLevelManager.shutdown()</PRE></TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>private</TD><TD><PRE>------------------StartLevelManager.doSetStartLevel(int, AbstractBundle)</PRE></TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD><PRE>----------------StartLevelManager.incFWSL(int, AbstractBundle)</PRE></TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD><PRE>--------------PackageAdminImpl.setResolvedBundles()</PRE></TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD><PRE>------------BundleFragment.setHost(BundleHost)</PRE></TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD><PRE>----------BundleHost.attachFragment(BundleFragment)</PRE></TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD><PRE>--------DefaultClassLoader.attachFragment(BundleFragment, Properties)</PRE></TD><TD>org.eclipse.osgi.framework.internal.defaultadaptor</TD><TD></TD></TR>
+<TR><TD>public</TD><TD><PRE>------DefaultClassLoader.attachFragment(BundleData, ProtectionDomain, String[])</PRE></TD><TD>org.eclipse.osgi.framework.internal.defaultadaptor</TD><TD></TD></TR>
+<TR><TD>private</TD><TD><PRE>----------BundleLoader.createBCLPrevileged(ProtectionDomain, String[])</PRE></TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD>This method executes under a privileged action.</TD></TR>
+<TR><TD>private</TD><TD><PRE>--------BundleLoader.createBCL(ProtectionDomain,String[])</PRE></TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>public</TD><TD><PRE>------DefaultClassLoader.initialize()</PRE></TD><TD>org.eclipse.osgi.framework.internal.defaultadaptor</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD><PRE>----DefaultClassLoader.buildClasspath(String[], AbstractBundleData, ProtectionDomain)</PRE></TD><TD>org.eclipse.osgi.framework.internal.defaultadaptor</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD><PRE>----DefaultClassLoader.addDefaultDevEntries(ArrayList,AbstractBundleData,ProtectionDomain)</PRE></TD><TD>org.eclipse.osgi.framework.internal.defaultadaptor</TD><TD></TD></TR>
+<TR><TD>private</TD><TD><PRE>------------BundleLoader.createBCLPrevileged(ProtectionDomain, String[])</PRE></TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD>This method executes under a privileged action.</TD></TR>
+<TR><TD>private</TD><TD><PRE>----------BundleLoader.createBCL(ProtectionDomain,String[])</PRE></TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>private</TD><TD><PRE>--------------PackageAdminImpl.processDelta(Vector)</PRE></TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD><PRE>--------------PackageAdminImpl.resolveBundles()</PRE></TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>public</TD><TD><PRE>--------------------StartLevelManager.dispatchEvent(Object, Object, int, Object)</PRE></TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD><PRE>--------------------StartLevelManager.launch(int)</PRE></TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>public</TD><TD><PRE>----------------------------OSGi.close()</PRE></TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD>No references to this method in workspace.</TD></TR>
+<TR><TD>public</TD><TD><PRE>--------------------------Framework.close()</PRE></TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>public</TD><TD><PRE>--------------------------OSGi.shutdown()</PRE></TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD>No references to this method in workspace.</TD></TR>
+<TR><TD>public</TD><TD><PRE>--------------------------SystemBundle.stop()</PRE></TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD>This method executes under a privileged action.</TD></TR>
+<TR><TD>public</TD><TD><PRE>--------------------------SystemBundle.update()</PRE></TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD>This method executes under a privileged action.</TD></TR>
+<TR><TD>public</TD><TD><PRE>------------------------Framework.shutdown()</PRE></TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD><PRE>----------------------SystemBundle.suspend()</PRE></TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD><PRE>--------------------StartLevelManager.shutdown()</PRE></TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>private</TD><TD><PRE>------------------StartLevelManager.doSetStartLevel(int, AbstractBundle)</PRE></TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD><PRE>----------------StartLevelManager.incFWSL(int, AbstractBundle)</PRE></TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD><PRE>--------------PackageAdminImpl.setResolvedBundles()</PRE></TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD><PRE>------------BundleFragment.setHost(BundleHost)</PRE></TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD><PRE>----------BundleHost.attachFragment(BundleFragment)</PRE></TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD><PRE>--------DefaultClassLoader.attachFragment(BundleFragment, Properties)</PRE></TD><TD>org.eclipse.osgi.framework.internal.defaultadaptor</TD><TD></TD></TR>
+<TR><TD>public</TD><TD><PRE>------DefaultClassLoader.attachFragment(BundleData, ProtectionDomain, String[])</PRE></TD><TD>org.eclipse.osgi.framework.internal.defaultadaptor</TD><TD></TD></TR>
+<TR><TD>private</TD><TD><PRE>----------BundleLoader.createBCLPrevileged(ProtectionDomain, String[])</PRE></TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD>This method executes under a privileged action.</TD></TR>
+<TR><TD>private</TD><TD><PRE>--------BundleLoader.createBCL(ProtectionDomain,String[])</PRE></TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>public</TD><TD><PRE>------DefaultClassLoader.initialize()</PRE></TD><TD>org.eclipse.osgi.framework.internal.defaultadaptor</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD><PRE>----DefaultClassLoader.buildClasspath(String[], AbstractBundleData, ProtectionDomain)</PRE></TD><TD>org.eclipse.osgi.framework.internal.defaultadaptor</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD><PRE>--EclipseClassLoader.findClassPathEntry(ArrayList,String,AbstractBundleData,ProtectionDomain)</PRE></TD><TD>org.eclipse.core.runtime.adaptor</TD><TD></TD></TR>
+<TR><TD>public</TD><TD><PRE>--------BundleLoader.findLibrary(String)</PRE></TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD>This method executes under a privileged action.</TD></TR>
+<TR><TD>protected</TD><TD><PRE>------BundleLoader.findLocalLibrary(String)</PRE></TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>private</TD><TD><PRE>----EclipseBundleData.findLibrary(String)</PRE></TD><TD>org.eclipse.core.runtime.adaptor</TD><TD></TD></TR>
+<TR><TD>private</TD><TD><PRE>--EclipseBundleData.buildLibraryVariants()</PRE></TD><TD>org.eclipse.core.runtime.adaptor</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD><PRE>-----BundleContextImpl.startActivator(BundleActivator)</PRE></TD><TD>org.eclipse.osgi.core.framework</TD><TD>This method executes under a privileged action.</TD></TR>
+<TR><TD>public</TD><TD><PRE>----SystemBundleActivator.start(BundleContext)</PRE></TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>public</TD><TD><PRE>--EclipseAdaptor.frameworkStart(BundleContext)</PRE></TD><TD>org.eclipse.core.runtime.adaptor</TD><TD></TD></TR>
+<TR><TD>public</TD><TD><PRE>EnvironmentInfo.getDefault()</PRE></TD><TD>org.eclipse.core.runtime.adaptor</TD><TD></TD></TR>
+<TR><TD>private</TD><TD><PRE>EnvironmentInfo.EnvironmentInfo()</PRE></TD><TD>org.eclipse.core.runtime.adaptor</TD><TD></TD></TR>
+<TR><TD>private</TD><TD><PRE>EnvironmentInfo.setupSystemContext()</PRE></TD><TD>org.eclipse.core.runtime.adaptor</TD><TD>Not tainted.</TD></TR>
+</TABLE>
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.util.PropertyPermission "user.language", "write";</LI>
+</UL>
+<BR>
+<B>Conclusion:</B> Grant the required permissions to runtime.jar.  This method is called under a privileged action by the OSGI plug-in.
+<!-- /tpl:put -->
+<!--  end of main content -->
+</td>
+</tr>
+</table>
+<!--  end of main frame table -->
+</body>
+</html>
+
+<!-- /tpl:insert -->

@@ -1,0 +1,94 @@
+	USELESS CALLS TO java.security.AccessController.doPrivileged()
+
+
+Site # 30978
+Method invoked: java.security.AccessController.doPrivileged(Ljava.security.PrivilegedExceptionAction;)Ljava.lang.Object;
+Invoked by:
+	Site # 28445
+		org.eclipse.osgi.framework.util.SecurePermissionStorage.getPermissionData(Ljava.lang.String;)[Ljava.lang.String;
+		Class loader: Application
+		Line number: 54
+Site # 33190
+Method invoked: java.security.AccessController.doPrivileged(Ljava.security.PrivilegedAction;)Ljava.lang.Object;
+Invoked by:
+	Site # 89250
+		org.eclipse.osgi.framework.internal.core.Framework.getDataFile(Lorg.eclipse.osgi.framework.internal.core.AbstractBundle;Ljava.lang.String;)Ljava.io.File;
+		Class loader: Application
+		Line number: 1203
+	Site # 30975
+		org.eclipse.osgi.framework.internal.core.Framework.getDataFile(Lorg.eclipse.osgi.framework.internal.core.AbstractBundle;Ljava.lang.String;)Ljava.io.File;
+		Class loader: Application
+		Line number: 1203
+	Site # 89221
+		org.eclipse.osgi.framework.internal.core.Framework.getDataFile(Lorg.eclipse.osgi.framework.internal.core.AbstractBundle;Ljava.lang.String;)Ljava.io.File;
+		Class loader: Application
+		Line number: 1203
+Site # 64531
+Method invoked: java.security.AccessController.doPrivileged(Ljava.security.PrivilegedAction;)Ljava.lang.Object;
+Invoked by:
+	Site # 64502
+		org.eclipse.osgi.framework.internal.core.AbstractBundle.getEntry(Ljava.lang.String;)Ljava.net.URL;
+		Class loader: Application
+		Line number: 1364
+	Site # 143998
+		org.eclipse.osgi.framework.internal.core.AbstractBundle.getEntry(Ljava.lang.String;)Ljava.net.URL;
+		Class loader: Application
+		Line number: 1364
+Site # 88949
+Method invoked: java.security.AccessController.doPrivileged(Ljava.security.PrivilegedExceptionAction;)Ljava.lang.Object;
+Invoked by:
+	Site # 88896
+		org.eclipse.osgi.framework.internal.core.BundleContextImpl.stop()V
+		Class loader: Application
+		Line number: 990
+Site # 88965
+Method invoked: java.security.AccessController.doPrivileged(Ljava.security.PrivilegedExceptionAction;)Ljava.lang.Object;
+Invoked by:
+	Site # 88916
+		org.eclipse.osgi.framework.internal.core.BundleContextImpl.startActivator(Lorg.osgi.framework.BundleActivator;)V
+		Class loader: Application
+		Line number: 954
+Site # 89275
+Method invoked: java.security.AccessController.doPrivileged(Ljava.security.PrivilegedExceptionAction;)Ljava.lang.Object;
+Invoked by:
+	Site # 89229
+		org.eclipse.osgi.framework.util.SecurePermissionStorage.getPermissionData(Ljava.lang.String;)[Ljava.lang.String;
+		Class loader: Application
+		Line number: 54
+Site # 89344
+Method invoked: java.security.AccessController.doPrivileged(Ljava.security.PrivilegedExceptionAction;)Ljava.lang.Object;
+Invoked by:
+	Site # 89331
+		org.eclipse.osgi.framework.internal.core.AbstractBundle.setStatus(IZ)V
+		Class loader: Application
+		Line number: 461
+	Site # 89511
+		org.eclipse.osgi.framework.internal.core.AbstractBundle.setStatus(IZ)V
+		Class loader: Application
+		Line number: 461
+	Site # 89326
+		org.eclipse.osgi.framework.internal.core.AbstractBundle.setStatus(IZ)V
+		Class loader: Application
+		Line number: 461
+Site # 144829
+Method invoked: java.security.AccessController.doPrivileged(Ljava.security.PrivilegedAction;)Ljava.lang.Object;
+Invoked by:
+	Site # 144806
+		org.eclipse.osgi.framework.internal.core.ServiceUse.getService()Ljava.lang.Object;
+		Class loader: Application
+		Line number: 105
+Site # 145429
+Method invoked: java.security.AccessController.doPrivileged(Ljava.security.PrivilegedAction;)Ljava.lang.Object;
+Invoked by:
+	Site # 145426
+		org.eclipse.osgi.framework.internal.core.ServiceUse.ungetService()Z
+		Class loader: Application
+		Line number: 203
+Site # 163721
+Method invoked: java.security.AccessController.doPrivileged(Ljava.security.PrivilegedAction;)Ljava.lang.Object;
+Invoked by:
+	Site # 163715
+		org.eclipse.osgi.framework.internal.core.ServiceUse.releaseService()V
+		Class loader: Application
+		Line number: 242
+

@@ -1,0 +1,173 @@
+<!-- tpl:insert page="/equinox.htpl" --><!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+<title>Equinox Security Home</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<style type="text/css">
+.input {background: "#ffffcc";color: "#000000" ;font-weight: normal;}
+a.nav:link { text-decoration: none; color: "#000000"; }
+a.nav:visited { text-decoration: none; color: "#000000"; }
+a.nav:hover { text-decoration: underline; color: "#000000"; }
+</style>
+<link rel="stylesheet" href="http://www.eclipse.org/nav_style.css" type="text/css">
+<link rel="stylesheet2" href="http://eclipse.org/default_style.css" type="text/css">
+</head>
+<body bgcolor="#ffffff" link="#0000ee" vlink="#551a8b" alink="#ff0000" leftmargin="0" marginheight="0" topmargin="0" rightmargin="0">
+<!--  start of banner  -->
+ <table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" >
+  <tr>
+   <td WIDTH="100%">
+    <table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" BGCOLOR="#006699" >
+
+     <tr>
+          <td BGCOLOR="#000000" width="116" ><a href="http://www.eclipse.org" target="_top"><img src="http://www.eclipse.org/images/EclipseBannerPic.jpg" width="115" height="50" border="0"></a></td>
+          <td WIDTH="637"><img SRC="http://www.eclipse.org/images/gradient.jpg" BORDER=0 height=50 width=282></td>
+          <td WIDTH="250" nowrap><font align="right" color="white" size="6" class=indextop>equinox security</font></td>
+     </tr>
+    </table>
+   </td>
+  </tr>
+ </table><!--  end of banner -->
+<!--  start of main frame table -->
+<table BORDER=0 CELLSPACING=0 CELLPADDING="4" WIDTH="100%" HEIGHT="100%" BGCOLOR="#90C8FF">
+<tr><td width="160" valign="top" bgcolor="#6699CC" nowrap>
+<!--  start of navigator -->
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%"  BGCOLOR="#90C8FF" >
+<tr><td>
+	<table BORDER=0 CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%"  BGCOLOR="#90C8FF" >
+	  <tr> 
+	    <td VALIGN=CENTER HEIGHT="21" BGCOLOR="#0080C0">&nbsp; <a href="http://www.eclipse.org/equinox" target="_top" class="navhead"> 
+	      equinox home</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER> 
+	    <td HEIGHT="21">&nbsp; <a name="overview" href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/index.html" class="nav" >overview</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/ejs.html" class="nav">rcp plug-in analysis</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/rcp/keystore.html" class="nav" >keystore/credentialstore</a></td>
+	  </tr>
+
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/rcp/end2end.html" class="nav" >end to end security</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/downloads.html" class="nav" >downloads</a></td>
+	  </tr>
+
+	</table>
+</td></tr>
+</table>
+<!--  end of navigator -->
+</td>
+<!--  start of main content  -->
+<td bgcolor="white" valign="top" >
+<!-- tpl:put name="bodyarea" -->
+<TABLE border="0" cellspacing="0" cellpadding="2" width="100%">
+  <TR> 
+    <TD align="LEFT" valign="TOP" colspan="2" bgcolor="#0080C0"><B><FONT color="#FFFFFF"> 
+      Analysis of plug-in: org.eclipse.core.runtime</FONT></B></TD>
+  </TR>
+</TABLE>
+<BR>
+<B>Source File analysis:</B>
+<TABLE>
+<TR><TD bgcolor="silver">Type</TD><TD bgcolor="silver">Location</TD></TR>
+<TR><TD>Package:</TD><TD></TD></TR>
+<TR><TD>Class:</TD><TD><A href="https://dcentral.watson.ibm.com/EJS/org.eclipse.core.runtime/PlatformURLHandler.html">org.eclipse.core.internal.boot.PlatformULRHandler.java</A></TD></TR>
+<TR><TD>Class:</TD><TD><A href="https://dcentral.watson.ibm.com/EJS/org.eclipse.core.runtime/PlatformURLBaseConnection.html">org.eclipse.core.internal.boot.PlatformULRBaseConnection.java</A></TD></TR>
+<TR><TD>Class:</TD><TD><A href="https://dcentral.watson.ibm.com/EJS/org.eclipse.core.runtime/WorkerPool.html">org.eclipse.core.internal.jobs.WorkerPool.java</A></TD></TR>
+<TR><TD>Class:</TD><TD><A href="https://dcentral.watson.ibm.com/EJS/org.eclipse.core.runtime/Worker.html">org.eclipse.core.internal.jobs.Worker.java</A></TD></TR>
+<TR><TD>Class:</TD><TD><A href="https://dcentral.watson.ibm.com/EJS/org.eclipse.core.runtime/DefaultPreferences.html">org.eclipse.core.internal.preferences.DefaultPreferences.java</A></TD></TR>
+<TR><TD>Class:</TD><TD><A href="https://dcentral.watson.ibm.com/EJS/org.eclipse.core.runtime/EclipsePreferences.html">org.eclipse.core.internal.preferences.EclipsePreferences.java</A></TD></TR>
+<TR><TD>Class:</TD><TD><A href="https://dcentral.watson.ibm.com/EJS/org.eclipse.core.runtime/InstancePreferences.html">org.eclipse.core.internal.preferences.InstancePreferences.java</A></TD></TR>
+<TR><TD>Class:</TD><TD><A href="https://dcentral.watson.ibm.com/EJS/org.eclipse.core.runtime/PreferenceForwarder.html">org.eclipse.core.internal.preferences.PreferenceForwarder.java</A></TD></TR>
+<TR><TD>Class:</TD><TD><A href="https://dcentral.watson.ibm.com/EJS/org.eclipse.core.runtime/PreferencesService.html">org.eclipse.core.internal.preferences.PreferencesService.java</A></TD></TR>
+<TR><TD>Class:</TD><TD><A href="https://dcentral.watson.ibm.com/EJS/org.eclipse.core.runtime/ExtensionsParser.html">org.eclipse.core.internal.registry.ExtensionsParser.java</A></TD></TR>
+<TR><TD>Class:</TD><TD><A href="https://dcentral.watson.ibm.com/EJS/org.eclipse.core.runtime/RegistryCacheReader.html">org.eclipse.core.internal.registry.RegistryCacheReader.java</A></TD></TR>
+<TR><TD>Class:</TD><TD><A href="https://dcentral.watson.ibm.com/EJS/org.eclipse.core.runtime/RegistryCacheWriter.html">org.eclipse.core.internal.registry.RegistryCacheWriter.java</A></TD></TR>
+<TR><TD>Class:</TD><TD><A href="https://dcentral.watson.ibm.com/EJS/org.eclipse.core.runtime/AuthorizationDatabase.html">org.eclipse.core.internal.runtime.AuthorizationDatabase.java</A></TD></TR>
+<TR><TD>Class:</TD><TD><A href="https://dcentral.watson.ibm.com/EJS/org.eclipse.core.runtime/AuthorizationHandler.html">org.eclipse.core.internal.runtime.AuthorizationHandler.java</A></TD></TR>
+<TR><TD>Class:</TD><TD><A href="https://dcentral.watson.ibm.com/EJS/org.eclipse.core.runtime/DataArea.html">org.eclipse.core.internal.runtime.DataArea.java</A></TD></TR>
+<TR><TD>Class:</TD><TD><A href="https://dcentral.watson.ibm.com/EJS/org.eclipse.core.runtime/DevClassPathHelper.html">org.eclipse.core.internal.runtime.DevClassPathHelper.java</A></TD></TR>
+<TR><TD>Class:</TD><TD><A href="https://dcentral.watson.ibm.com/EJS/org.eclipse.core.runtime/InternalPlatform.html">org.eclipse.core.internal.runtime.InternalPlatform.java</A></TD></TR>
+<TR><TD>Class:</TD><TD><A href="https://dcentral.watson.ibm.com/EJS/org.eclipse.core.runtime/PlatformActivator.html">org.eclipse.core.internal.runtime.PlatformActivator.java</A></TD></TR>
+<TR><TD>Class:</TD><TD><A href="https://dcentral.watson.ibm.com/EJS/org.eclipse.core.runtime/PlatformURLFragmentConnection.html">org.eclipse.core.internal.runtime.PlatformURLFragmentConnection.java</A></TD></TR>
+<TR><TD>Class:</TD><TD><A href="https://dcentral.watson.ibm.com/EJS/org.eclipse.core.runtime/PlatformURLPluginConnection.html">org.eclipse.core.internal.runtime.PlatformURLPluginConnection.java</A></TD></TR>
+<TR><TD>Class:</TD><TD><A href="https://dcentral.watson.ibm.com/EJS/org.eclipse.core.runtime/Policy.html">org.eclipse.core.internal.runtime.Policy.java</A></TD></TR>
+<TR><TD>Class:</TD><TD><A href="https://dcentral.watson.ibm.com/EJS/org.eclipse.core.runtime/ResourceTranslator.html">org.eclipse.core.internal.runtime.ResourceTranslator.java</A></TD></TR>
+<TR><TD>Class:</TD><TD><A href="https://dcentral.watson.ibm.com/EJS/org.eclipse.core.runtime/SafeFileInputStream.html">org.eclipse.core.internal.runtime.SafeFileInputStream.java</A></TD></TR>
+<TR><TD>Class:</TD><TD><A href="https://dcentral.watson.ibm.com/EJS/org.eclipse.core.runtime/SafeFileOutputStream.html">org.eclipse.core.internal.runtime.SafeFileOutputStream.java</A></TD></TR>
+<TR><TD>Class:</TD><TD><A href="https://dcentral.watson.ibm.com/EJS/org.eclipse.core.runtime/URLTool.html">org.eclipse.core.internal.runtime.URLTool.java</A></TD></TR>
+<TR><TD>Class:</TD><TD><A href="https://dcentral.watson.ibm.com/EJS/org.eclipse.core.runtime/Platform.html">org.eclipse.core.runtime.Platform.java</A></TD></TR>
+<TR><TD>Class:</TD><TD><A href="https://dcentral.watson.ibm.com/EJS/org.eclipse.core.runtime/Preferences.html">org.eclipse.core.runtime.Preferences.java</A></TD></TR>
+<TR><TD>Class:</TD><TD><A href="https://dcentral.watson.ibm.com/EJS/org.eclipse.core.runtime/BasicLocation.html">org.eclipse.core.runtime.adaptor.BasicLocation.java</A></TD></TR>
+<TR><TD>Class:</TD><TD><A href="https://dcentral.watson.ibm.com/EJS/org.eclipse.core.runtime/EclipseAdaptor.html">org.eclipse.core.runtime.adaptor.EclipseAdaptor.java</A></TD></TR>
+<TR><TD>Class:</TD><TD><A href="https://dcentral.watson.ibm.com/EJS/org.eclipse.core.runtime/EclipseAdaptorMsg.html">org.eclipse.core.runtime.adaptor.EclipseAdaptorMsg.java</A></TD></TR>
+<TR><TD>Class:</TD><TD><A href="https://dcentral.watson.ibm.com/EJS/org.eclipse.core.runtime/EclipseBundleData.html">org.eclipse.core.runtime.adaptor.EclipseBundleData.java</A></TD></TR>
+<TR><TD>Class:</TD><TD><A href="https://dcentral.watson.ibm.com/EJS/org.eclipse.core.runtime/EclipseClassLoader.html">org.eclipse.core.runtime.adaptor.EclipseClassLoader.java</A></TD></TR>
+<TR><TD>Class:</TD><TD><A href="https://dcentral.watson.ibm.com/EJS/org.eclipse.core.runtime/EclipseLog.html">org.eclipse.core.runtime.adaptor.EclipseLog.java</A></TD></TR>
+<TR><TD>Class:</TD><TD><A href="https://dcentral.watson.ibm.com/EJS/org.eclipse.core.runtime/EclipseStarter.html">org.eclipse.core.runtime.adaptor.EclipseStarter.java</A></TD></TR>
+<TR><TD>Class:</TD><TD><A href="https://dcentral.watson.ibm.com/EJS/org.eclipse.core.runtime/EnvironmentInfo.html">org.eclipse.core.runtime.adaptor.EnvironmentInfo.java</A></TD></TR>
+<TR><TD>Class:</TD><TD>org.eclipse.core.runtime.adaptor.LocationManager</TD></TR>
+<TR><TD>Class:</TD><TD>org.eclipse.core.runtime.adaptor.Locker_JavaIo</TD></TR>
+<TR><TD>Class:</TD><TD>org.eclipse.core.runtime.adaptor.Locker_JavaNio</TD></TR>
+<TR><TD>Class:</TD><TD>org.eclipse.core.runtime.adaptor.PluginConverterImpl</TD></TR>
+<TR><TD>Class:</TD><TD>org.eclipse.osgi.framework.adaptor.core.AbstractBundleData</TD></TR>
+<TR><TD>Class:</TD><TD>org.eclipse.osgi.framework.adaptor.core.AbstractClassLoader</TD></TR>
+<TR><TD>Class:</TD><TD>org.eclipse.osgi.framework.adaptor.core.AbstractFrameworkAdaptor</TD></TR>
+<TR><TD>Class:</TD><TD>org.eclipse.osgi.framework.adaptor.core.AbstractFrameworkAdaptor$ParentClassLoader</TD></TR>
+<TR><TD>Class:</TD><TD>org.eclipse.osgi.framework.adaptor.core.BundleEntry$FileBundleEntry</TD></TR>
+<TR><TD>Class:</TD><TD>org.eclipse.osgi.framework.adaptor.core.BundleFile$DirBundleFile</TD></TR>
+<TR><TD>Class:</TD><TD>org.eclipse.osgi.framework.adaptor.core.BundleFile$ZipBundleFile</TD></TR>
+<TR><TD>Class:</TD><TD>org.eclipse.osgi.framework.adaptor.core.BundleResourceHandler</TD></TR>
+<TR><TD>Class:</TD><TD>org.eclipse.osgi.framework.debug.DebugOptions</TD></TR>
+<TR><TD>Class:</TD><TD>org.eclipse.osgi.framework.eventmgr.EventThread</TD></TR>
+<TR><TD>Class:</TD><TD>org.eclipse.osgi.framework.internal.core.AbstractBundle</TD></TR>
+<TR><TD>Class:</TD><TD>org.eclipse.osgi.framework.internal.core.AliasMapper</TD></TR>
+<TR><TD>Class:</TD><TD>org.eclipse.osgi.framework.internal.core.BundleContextImpl</TD></TR>
+<TR><TD>Class:</TD><TD>org.eclipse.osgi.framework.internal.core.BundleNativeCode</TD></TR>
+<TR><TD>Class:</TD><TD>org.eclipse.osgi.framework.internal.core.Framework</TD></TR>
+<TR><TD>Class:</TD><TD>org.eclipse.osgi.framework.internal.core.ManifestLocalization$LocalizationResourceBundle</TD></TR>
+<TR><TD>Class:</TD><TD>org.eclipse.osgi.framework.internal.core.PackageAdminImpl</TD></TR>
+<TR><TD>Class:</TD><TD>org.eclipse.osgi.framework.internal.core.PermissionAdminImpl</TD></TR>
+<TR><TD>Class:</TD><TD>org.eclipse.osgi.framework.internal.defaultadaptor.DefaultAdaptor</TD></TR>
+<TR><TD>Class:</TD><TD>org.eclipse.osgi.framework.internal.defaultadaptor.DefaultBundleData</TD></TR>
+<TR><TD>Class:</TD><TD>org.eclipse.osgi.framework.internal.defaultadaptor.DefaultClassLoader</TD></TR>
+<TR><TD>Class:</TD><TD>org.eclipse.osgi.framework.internal.defaultadaptor.DevClassPathHelper</TD></TR>
+<TR><TD>Class:</TD><TD>org.eclipse.osgi.framework.internal.protocol.StreamHandlerFactory</TD></TR>
+<TR><TD>Class:</TD><TD>org.eclipse.osgi.framework.stats.ClassloaderStats</TD></TR>
+<TR><TD>Class:</TD><TD>org.eclipse.osgi.framework.stats.ResourceBundleStats</TD></TR>
+<TR><TD>Class:</TD><TD>org.eclipse.osgi.framework.util.FrameworkMessageFormat</TD></TR>
+<TR><TD>Class:</TD><TD>org.eclipse.osgi.framework.util.Headers</TD></TR>
+<TR><TD>Class:</TD><TD>org.eclipse.osgi.framework.util.SecureAction </TD></TR>
+<TR><TD>Class:</TD><TD>org.eclipse.osgi.internal.resolver.StateManager</TD></TR>
+</TABLE>
+<BR>
+<BR>
+<!-- /tpl:put -->
+<!--  end of main content -->
+</td>
+</tr>
+</table>
+<!--  end of main frame table -->
+</body>
+</html>
+
+<!-- /tpl:insert -->

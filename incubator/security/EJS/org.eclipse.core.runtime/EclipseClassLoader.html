@@ -1,0 +1,190 @@
+<!-- tpl:insert page="/equinox.htpl" --><!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+<title>Equinox Security Home</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<style type="text/css">
+.input {background: "#ffffcc";color: "#000000" ;font-weight: normal;}
+a.nav:link { text-decoration: none; color: "#000000"; }
+a.nav:visited { text-decoration: none; color: "#000000"; }
+a.nav:hover { text-decoration: underline; color: "#000000"; }
+</style>
+<link rel="stylesheet" href="http://www.eclipse.org/nav_style.css" type="text/css">
+<link rel="stylesheet2" href="http://eclipse.org/default_style.css" type="text/css">
+</head>
+<body bgcolor="#ffffff" link="#0000ee" vlink="#551a8b" alink="#ff0000" leftmargin="0" marginheight="0" topmargin="0" rightmargin="0">
+<!--  start of banner  -->
+ <table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" >
+  <tr>
+   <td WIDTH="100%">
+    <table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" BGCOLOR="#006699" >
+
+     <tr>
+          <td BGCOLOR="#000000" width="116" ><a href="http://www.eclipse.org" target="_top"><img src="http://www.eclipse.org/images/EclipseBannerPic.jpg" width="115" height="50" border="0"></a></td>
+          <td WIDTH="637"><img SRC="http://www.eclipse.org/images/gradient.jpg" BORDER=0 height=50 width=282></td>
+          <td WIDTH="250" nowrap><font align="right" color="white" size="6" class=indextop>equinox security</font></td>
+     </tr>
+    </table>
+   </td>
+  </tr>
+ </table><!--  end of banner -->
+<!--  start of main frame table -->
+<table BORDER=0 CELLSPACING=0 CELLPADDING="4" WIDTH="100%" HEIGHT="100%" BGCOLOR="#90C8FF">
+<tr><td width="160" valign="top" bgcolor="#6699CC" nowrap>
+<!--  start of navigator -->
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%"  BGCOLOR="#90C8FF" >
+<tr><td>
+	<table BORDER=0 CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%"  BGCOLOR="#90C8FF" >
+	  <tr> 
+	    <td VALIGN=CENTER HEIGHT="21" BGCOLOR="#0080C0">&nbsp; <a href="http://www.eclipse.org/equinox" target="_top" class="navhead"> 
+	      equinox home</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER> 
+	    <td HEIGHT="21">&nbsp; <a name="overview" href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/index.html" class="nav" >overview</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/ejs.html" class="nav">rcp plug-in analysis</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/rcp/keystore.html" class="nav" >keystore/credentialstore</a></td>
+	  </tr>
+
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/rcp/end2end.html" class="nav" >end to end security</a></td>
+	  </tr>
+	  <tr> 
+	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
+	  </tr>
+	  <tr VALIGN=CENTER WIDTH="40"> 
+	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/downloads.html" class="nav" >downloads</a></td>
+	  </tr>
+
+	</table>
+</td></tr>
+</table>
+<!--  end of navigator -->
+</td>
+<!--  start of main content  -->
+<td bgcolor="white" valign="top" >
+<!-- tpl:put name="bodyarea" -->
+<P></P><H1>EclipseClassLaoder.java changes</H1>
+<B>Detail</B><BR><BR>
+<BR><BR>
+<B>DoPrivilegedLocation:</B>
+<PRE>
+Line# 318 java.util.jar.Manifest getManifest(  )
+   Permission: java.lang.RuntimePermission "getClassLoader"
+      Primordial/void java.util.jar.Manifest. &LT init &GT( java.io.InputStream )
+   Permission: java.util.PropertyPermission "java.vendor.url.bug", "read"
+      Primordial/void java.util.jar.Manifest. &LT init &GT( java.io.InputStream )
+   Permission: java.util.logging.LoggingPermission "control", ""
+      Primordial/void java.util.jar.Manifest. &LT init &GT ( java.io.InputStream )
+</PRE>
+<B>CODE:</B>
+<CODE>
+<PRE>
+   302. 	protected class EclipseClasspathEntry extends ClasspathEntry {
+   303. 		Manifest mf;
+   304. 		boolean initMF = false;
+   305. 
+   306. 		protected EclipseClasspathEntry(BundleFile bundlefile, ProtectionDomain domain) {
+   307. 			super(bundlefile, domain);
+   308. 		}
+   309. 
+   310. 		public Manifest getManifest() {
+   311. 			if (initMF)
+   312. 				return mf;
+   313. 
+   314. 			BundleEntry mfEntry = getBundleFile().getEntry(org.eclipse.osgi.framework.internal.core.Constants.OSGI_BUNDLE_MANIFEST);
+   315. 			if (mfEntry != null)
+   316. 				try {
+   317. 					InputStream manIn = mfEntry.getInputStream();
+<FONT style="background-color:yellow;display:inline">   318. 					mf = new Manifest(manIn);</FONT>
+   319. 					manIn.close();
+   320. 				} catch (IOException e) {
+   321. 					// do nothing
+   322. 				}
+   323. 			initMF = true;
+   324. 			return mf;
+   325. 		}
+   326. 	}
+   327. }
+</PRE>
+</CODE>
+<B>Tainted variable reference trace:</B>  The BundleEntry returned by getBundleFile() is of type  BundleFile. 
+There are three implementations of BundleFile: DirZipBundleEntry, ZipBundleEntry, and FileBundleEntry.  The
+FileBundleEntry object's getInputStream method executes under SecureAction.getFileInputStream(file)... and will
+therefore always succeed since it is being called from the OSGi plug-in which has all permissions.
+<BR>
+In all cases, the callpaths originate from the OSGI layer.   In most cases, these are being executed under a trusted library (osgi plug-in) privileged action.  
+
+<BR><BR>
+<TABLE border="2">
+<TR><TD bgcolor="silver">Access Modifier</TD><TD bgcolor="silver">Class/method</TD><TD bgcolor="silver">Package</TD><TD bgcolor="silver">Analysis</TD></TR>
+<TR><TD></TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>public</TD><TD>----BundleLoader.findClass(String)</TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD>----BundleLoader.findImportedClass(String,String)</TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD>----BundleLoader.requreClass(String,String)</TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD>------ServiceUse.getService()</TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>private</TD><TD>------BundlePermissions.resolvePermissions(Permission)</TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD>------------BundleContextImpl.startActivator(BundleActivator)</TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD>This method executes BundleActivator.start(BundleContext) as a privileged action under OSGI.</TD></TR>
+<TR><TD>public</TD><TD>------------SystemBundleActivator.start(BundleContext)</TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>private</TD><TD>----------EclipseAdaptor.registerEndorsedXMLParser()</TD><TD>org.eclipse.core.runtime.adaptor</TD><TD></TD></TR>
+<TR><TD>private</TD><TD>------------EclipseAdaptor.run(String[],Runnable)</TD><TD>org.eclipse.core.runtime.adaptor</TD><TD></TD></TR>
+<TR><TD>private</TD><TD>------------EclipseAdaptor.startup(String[],Runnable)</TD><TD>org.eclipse.core.runtime.adaptor</TD><TD></TD></TR>
+<TR><TD>private</TD><TD>----------EclipseAdaptor.publishSplashScreen(Runnable)</TD><TD>org.eclipse.core.runtime.adaptor</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>----------EclipseAdaptor.frameworkStart(BundleContext)</TD><TD>org.eclipse.core.runtime.adaptor</TD><TD></TD></TR>
+<TR><TD>private</TD><TD>----------PlatformActivator.startRegistry(BundleContext)</TD><TD>org.eclipse.core.internal.runtime</TD><TD></TD></TR>
+<TR><TD>private</TD><TD>----------PlatformActivator.registerEntryLocator()</TD><TD>org.eclipse.core.internal.runtime</TD><TD></TD></TR>
+<TR><TD>private</TD><TD>----------PlatformActivator.registerApplicationService()</TD><TD>org.eclipse.core.internal.runtime</TD><TD></TD></TR>
+<TR><TD>private</TD><TD>----------PlatformActivator.installPlatformURLSupport()</TD><TD>org.eclipse.core.internal.runtime</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD>----------SystemBundleActivator.register(String,Object)</TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD><TD></TD></TR>
+<TR><TD>public</TD><TD>------------ConfigurationActivator.start(BundleContext)</TD><TD>org.eclipse.update.internal.configurator</TD><TD>This method is called by BundleContextImpl.startActivator() which is privileged under the OSGI plug-in.</TD></TR>
+<TR><TD>private</TD><TD>----------ConfigurationActivator.initialize()</TD><TD>org.eclipse.update.internal.configurator</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>------------XMLParserActivator.start(BundleContext)</TD><TD>org.osgi.util.xml</TD><TD>This method is called by BundleContextImpl.startActivator() which is privileged under the OSGI plug-in.</TD></TR>
+<TR><TD>private</TD><TD>----------XMLParserActivator.registerDOMParsers(Vector)</TD><TD>org.osgi.util.xml</TD><TD></TD></TR>
+<TR><TD>private</TD><TD>----------XMLParserActivator.registerSAXParsers(Vector)</TD><TD>org.osgi.util.xml</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD>----------DefaultAdaptor.register(String,Object,Bundle)</TD><TD>org.eclipse.osgi.framework.internal.defaultadaptor</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>--------BundleContextImpl.registerService(String,Object,Dictionary)</TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>------BundleContextImpl.registerService(String[],Object,Dictionary)</TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD>----PackageAdminImpl.loadServiceClass(String,AbstractBundle)</TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD>--BundleLoader.findLocalClass(String)</TD><TD>org.eclipse.osgi.framework.internal.core</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>----EclipseClassLoader.findLocalClass(String)</TD><TD>org.eclipse.core.runtime.adaptor</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD>--EclipseClassLoader.basicFindLocalClass(String)</TD><TD>org.eclipse.core.runtime.adaptor</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>AbstractClassLoader.findLocalClass(String)</TD><TD>org.eclipse.osgi.framework.adaptor.core</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD>DefaultClassLoader.findClass(String)</TD><TD>org.eclipse.osgi.framework.internal.defaultadaptor</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD>DefaultClassLoader.findClassImpl(String,ClasspathEntry)</TD><TD>org.eclipse.osgi.framework.internal.defaultadaptor</TD><TD></TD></TR>
+<TR><TD>protected</TD><TD>EclipseClassLoader.defineClass(String,byte[],int,int,ClasspathEntry</TD><TD>org.eclipse.core.runtime.adaptor</TD><TD></TD></TR>
+<TR><TD>public</TD><TD>EclipseClassLoader$EclipseClassPathEntry.getManifest()</TD><TD>org.eclipse.core.runtime.adaptor</TD><TD>Not tainted.  This method retrieves the MANFIEST.MF file relative to the plug-in's home folder.</TD></TR>
+</TABLE>
+<BR><BR>
+<B>Permission requirements:</B><BR>
+<UL>
+<LI>permission java.lang.RuntimePermission "getClassLoader"</LI>
+<LI>permission java.util.PropertyPermission "java.vendor.url.bug", "read"</LI>
+<LI>permission java.util.logging.LoggingPermission "control", ""</LI>
+</UL>
+<BR>
+<B>Conclusion:</B>Grant the required permissions to runtime.jar.   
+<!-- /tpl:put -->
+<!--  end of main content -->
+</td>
+</tr>
+</table>
+<!--  end of main frame table -->
+</body>
+</html>
+
+<!-- /tpl:insert -->
