@@ -3,30 +3,31 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 <title>The Equinox Project</title>
-<link rel="stylesheet" title="default" href="http://eclipse.org/default_style.css" type="text/css">
+<link rel="stylesheet" href="http://dev.eclipse.org/default_style.css" type="text/css">
 </head>
 <body>
-<table BORDER=0 CELLSPACING=5 CELLPADDING=2 WIDTH="100%" >
-  <tr> 
-    <td ALIGN=left width="60%">
-      <p><font class=indextop> equinox</font><br>
-      <font class=indexsub> eclipse runtime exploration</font> </p>
-    </td>
-    <td WIDTH="40%">&nbsp; </td>
-  </tr>
-</table>
-
-<table BORDER=0 CELLSPACING=5 CELLPADDING=2 WIDTH="100%" >
+<center>
+	<font class=indextop>equinox</font><br>
+	<font class=indexsub> eclipse runtime exploration</font><p></p>
+	<a href="index.html">[home]</a>
+	<a href="documents.html">[documents]</a>
+	<a href="downloads.html">[downloads]</a>
+	<a href="areas.html">[work areas]</a>
+	<a href="resources.html">[resources]</a>
+	<a href="faq.html">[faq]</a>
+</center>
+<br>
+<table BORDER=0 CELLSPACING=0 CELLPADDING=2 WIDTH="100%" >
   <tr> 
     <td ALIGN=LEFT VALIGN=TOP COLSPAN="2" BGCOLOR="#0080C0"><b><font color="#FFFFFF"> 
       Mission Statement</font></b></td>
   </tr>
-  <tr> 
-    <td> The goal of the Equinox project is to experiment with techniques for 
+</table>
+<p>The goal of the Equinox project is to experiment with techniques for 
       broadening the range of Eclipse platform runtime configurations. For example, 
       the Eclipse plugin model is static; there is no discussion of practices 
       and tools for managing/reducing interplugin dependencies; service discovery 
-      is not covered and the component distribution mechanism is non-standard. 
+      is not covered and the component distribution mechanism is non-standard. </p>
       <p>These issues do not severely impact the usefulness of Eclipse as a development 
         tool platform but they do affect the use of Eclipse in more constrained 
         environments (e.g., handheld devices, IT managed environments, mass-appeal 
@@ -34,130 +35,27 @@
         develop approaches which are practical and applicable to the main Eclipse 
         code base. <a href="description.html">more info...</a></p>
       <p><img src="http://www.eclipse.org/images/new.gif" width="31" height="14"> 
-        The orientation of the Equinox project is changing somewhat with the emergence 
-        of the Eclipse 3.0 work. When Equinox was founded, Eclipse 3.0 was a faint 
-        thought for sometime in the future. As 3.0 solidified it became apparent 
-        that Equinox could have a much more timely impact. Accordingly, you will 
-        find the work here to be more closely tied to the Eclipse work in general 
-        and the 3.0 Rich Client Platform runtime work in particular.</p>
-    </td>
-  </tr>
+        Now that Eclipse 3.0 has shipped (including significant output from the
+          Equinox project!) we are moving onto <em>Phase 2</em> of Equinox. The
+          mission and mode of operation remain unchanged but the set of workitems
+          will evolve to address new areas.</p>
+<table BORDER=0 CELLSPACING=0 CELLPADDING=2 WIDTH="100%" >
   <tr> 
     <td ALIGN=LEFT VALIGN=TOP COLSPAN="2" BGCOLOR="#0080C0"><b><font color="#FFFFFF"> 
       What's New</font></b></td>
   </tr>
-  <tr> 
-    <td> <b>Sep 30th</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14"> 
-      <a href="alternateRuntimes/index.html">Equinox runtime</a> available<br>
-    </td>
-  </tr>
 </table>
-<table BORDER=0 CELLSPACING=5 CELLPADDING=2 WIDTH="100%" >
-  <tr> 
-    <td ALIGN=LEFT VALIGN=TOP COLSPAN="2" BGCOLOR="#0080C0"><b><font color="#FFFFFF"> 
-      Work Areas</font></b></td>
-  </tr>
-  <tr> 
-    <td align=RIGHT width="16" valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-    <td><a href="dynamicPlugins/index.html" target="_top"><b>Dynamic Plug-ins</b></a><br>
-      Issues around changing plug-in configurations without restarting the runtime. 
-      This is further broken down into classloader management, dynamic registry 
-      and registry lifecycle events.</td>
-  </tr>
-  <tr> 
-    <td align=RIGHT width="16" valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-    <td><a href="alternateRuntimes/index.html" target="_top"><b>Alternate Runtimes</b></a><br>
-      Separating the Java component runtime model (e.g., classloaders etc) from 
-      notions of plug-in dependency, extensions and extension-points, etc. This 
-      work area breaks down into separation of the models and the mapping of plug-in 
-      essentials to existing Java component runtimes (e.g., OSGi, Avalon, JMX, 
-      ...).</td>
-  </tr>
-  <tr> 
-    <td align=RIGHT width="16" valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-    <td><a href="services/index.html" target="_top"><b>Services</b></a><br>
-      Adding a services model to Eclipse.</td>
-  </tr>
-  <tr> 
-    <td align=RIGHT width="16" valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-    <td><a href="tnt/index.html" target="_top"><b>Tools and Techniques</b></a><br>
-      Tools and techniques for developing plug-ins which take advantage of the new 
-	  function proposed in Equinox and behave well in dynamic situations.</td>
-  </tr>
-  <tr> 
-    <td align=RIGHT width="16" valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-    <td><a href="security/index.html" target="_top"><b>Security, roles, profiles</b></a><br>
-      Study how enable a security model.</td>
-  </tr>
-</table>
-<table BORDER=0 CELLSPACING=5 CELLPADDING=2 WIDTH="100%" >
-  <tr> 
-    <td ALIGN=LEFT VALIGN=TOP COLSPAN="2" BGCOLOR="#0080C0"><b><font color="#FFFFFF">Developer 
-      Resources</font></b></td>
-  </tr>
-  <tr> 
-    <td align=RIGHT width="16" valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-    <td><a href="documents/index.html" target="_top"><b>Documents</b></a><br>
-      Equinox design documents.</td>
-  </tr>
-  <tr> 
-    <td align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-    <td><a href="downloads.html" target="_top"><b>Downloads</b></a><br>
-      Download parts of the Equinox experiment.</td>
-  </tr>
-  <tr> 
-    <td align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-    <td><a href="plans/index.html" target="_top"><b>Plans</b></a><br>
-      See what is happening in Equinox.</td>
-  </tr>
-  <tr> 
-    <td align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-    <td><a href="faq.html" target="_top"><b>FAQ</b></a><br>
-      What are people asking about Equinox.</td>
-  </tr>
-  <tr> 
-    <td align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-    <td><a href="news://news.eclipse.org/eclipse.technology.equinox" target="_top"><b>Newsgroup</b></a><br>
-      Talk to the people using Equinox.</td>
-  </tr>
-  <tr> 
-    <td align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-    <td><a href="http://dev.eclipse.org/mailman/listinfo/equinox-dev" target="_top"><b>Mailing 
-      list </b></a><br>
-      Talk to the people working on Equinox.</td>
-  </tr>
-<!--
-  <tr> 
-    <td align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-    <td><a href="documents.html" target="_top"><b>Documents</b></a><br>
-      Documents related to Equinox or its problem set.</td>
-  </tr>
--->
-  <tr> 
-    <td align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-    <td><a href=http://dev.eclipse.org/bugs/buglist.cgi?product=equinox&cmdtype=doit&order=Reuse+same+sort+as+last+time" target="_top"><b>Bugs/Issues</b></a><br>
-      Discover the current bugs and issues in Equinox.</td>
-  </tr>
-  <tr> 
-    <td align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-    <td> 
-      <p><a href="http://dev.eclipse.org/viewcvs/indextech.cgi/org.eclipse.equinox" target="_top"><b>CVS</b></a><br>
-        The Equinox code repository is available via <a href="http://dev.eclipse.org/viewcvs/indextech.cgi/org.eclipse.equinox">web 
-        access</a> or direct CVS access. For direct access, use anonymous login 
-        to the CVS repo</p>
-      <blockquote>
-        <p>:pserver:anonymous@dev.eclipse.org/home/technology</p>
-      </blockquote>
-      <p>The Equinox work goes on in the org.eclipse.equinox directory/module. 
-        Note that most work is done in various branches rather than HEAD.</p>
-    </td>
-  </tr>
-  <tr> 
-    <td align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-    <td><a href="committers.html" target="_top"><b>Committers</b></a><br>
-      The people working on Equinox.</td>
-  </tr>  
-</table>
+<p><b>July 21</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14"> Equinox
+        website refreshed and the repository populated with Eclipse 3.0 code.
+  The <a href="old.html">old content</a> has been removed but is archived.<br>
+      <b>July 15</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14"> <em>Phase
+      2</em> of Equinox begins. A new work area on <a href="layering/">Framework Layering</a> is
+      added and Glyn Normington, Steve Poole and Simon Burns join as committers
+      to
+      work in that area.<br>
+          <b>June 25</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14"> <a href="http://download.eclipse.org/downloads/drops/R-3.0-200406251208/eclipse-news-R3.html">Eclipse
+              3.0 ships</a> including the new OSGi based runtime from the Equinox
+project!</p>
 
 </body>
 </html>
