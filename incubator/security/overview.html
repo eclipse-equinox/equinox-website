@@ -1,59 +1,47 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-	<title>The Equinox Project - Security</title>
-	<link rel="stylesheet" href="http://eclipse.org/default_style.css" type="text/css">
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 </head>
+
 <body>
-<center>
-	<font class=indextop>equinox</font><br>
-	<font class=indexsub> eclipse runtime exploration</font><p></p>
-	<a href="../index.html">[home]</a>
-	<a href="../documents.html">[documents]</a>
-	<a href="../downloads.html">[downloads]</a>
-	<a href="../areas.html">[work areas]</a>
-	<a href="../resources.html">[resources]</a>
-	<a href="../faq.html">[faq]</a>
-</center>
-<br>
-<table BORDER=0 CELLSPACING=0 CELLPADDING=2 WIDTH="100%" >
-  <tr> 
-    <td ALIGN=LEFT VALIGN=TOP COLSPAN="2" BGCOLOR="#0080C0"><b><font color="#FFFFFF"> 
-      Security</font></b></td>
-  </tr>
-</table>
-		 		
+<h2>Securing the Eclipse Rich Client Platform
+</h2>
 <p>There is interest in industry to use Eclipse as a general purpose rich client
   platform. Eclipse was originally conceived as, and was built to be, a framework
   for software development tools. It has evolved to include a generalized Rich
-  Client Platform (RCP) suitable for use in a wide range of scenarios. Unfortunately,
+  Client Platform (RCP) suitable for use in a wide range of scenarios.
+  Unfortunately,
   Eclipse includes relatively little support for security and many popular scenarios
-  include security requirements. To enable Eclipse as a secure client, we must
-  ensure that the infrastructure on which an RCP application is built is secure.
-  To that end, there are changes that need to be made to core parts of the Eclipse
-RCP. These changes can be broken down into manageable pieces as follows:</p>
+  include security requirements. To enable Eclipse as a secure
+  client, we must ensure that the infrastructure on which an RCP application
+  is built is secure. To that end, there are changes that need to be made
+  to
+  core
+  parts of the Eclipse RCP. These changes can be broken down into manageable
+  pieces as follows:</p>
 <ul>
   <li> Java 2 Security</li>
   <li> Signing plugins</li>
   <li> Authentication, key/credential stores</li>
   <li> End to end (i.e., complete) securing of an Eclipse-based product (install,
-    configuration, update, ...)</li>
+          configuration, update, ...)</li>
 </ul>
 <p>The OSGI framework implementation underlying Eclipse is already security-enabled
   and the OSGi platform specificiation includes various security related services
   such as PermissionsAdmin and UserAdmin. Work on a secure platform will utilize
-  existing services and facilities as much as possible.</p>
+existing services and facilities as much as possible.</p>
 <h3>Java 2 Security</h3>
 <p>The first part is to enable basic Java 2 (J2SE) security sandboxing. This
   requires enabling code-source-based authentication and authorization as implemented
   by a J2SE SecurityManager. From practical experience we know that Eclipse will
-  not run if the J2SE SecurityManager is turned on. Also, simply defining a security
-  policy that enables Eclipse to run with a SecurityManager is insufficient to
-  enable the security sandbox. Modifications to the base platform code are needed
-  (e.g., adding calls to AccessController.doPrivileged()) as appropriate in the
-  code base. This must be done very carefully to avoid opening security holes
-  and affecting performance.</p>
+  not run if the J2SE SecurityManager is turned on. Also, simply
+  defining a security policy that enables Eclipse to run with a SecurityManager
+  is insufficient to enable the security sandbox. Modifications to the base platform
+  code are needed (e.g., adding calls to AccessController.doPrivileged()) as
+  appropriate in the code base. This must be done very carefully to avoid opening
+  security holes and affecting performance.</p>
 <p>Enabling the security sandbox and defining appropriate security policies can
   be a daunting process if the code base was not designed for security from the
   beginning. We have had some experience with porting applications from JDK 1.1
@@ -78,7 +66,8 @@ RCP. These changes can be broken down into manageable pieces as follows:</p>
   modified to enable launching Eclipse with a Java security sandbox enabled (the
   default JVM SecurityManager). </p>
 <p>In addition to code modifications, we must help educate the Eclipse community
-  about security and secure coding practices. We have proposed a tutorial, talk,
+  about security and secure coding practices. We have proposed a tutorial,
+  talk,
   demo and BoF at EclipseCon in 2005. We also have both a half day and a one
   day Java 2 security tutorials. We can present these to the Eclipse development
   community.</p>
@@ -87,24 +76,10 @@ RCP. These changes can be broken down into manageable pieces as follows:</p>
   However, how should PDE be extended to sign plugins? Similarly, what kind of
   interface should be in PDE to define the Java 2 Permissions that a plugin requires
   in a way that the OSGi framework implementation can interpret when bundles
-  (plugins/fragments) are loaded?</p>
+(plugins/fragments) are loaded?</p>
 <h3>Authentication and credential management</h3>
 <p>TBD</p>
 <h3>End to end security</h3>
 <p>TBD</p>
-<p><br>
-</p>
-<p><a href="SecurityConcerns.html">Security Concerns on a Pluggable
-Applications Platform</a><br>
-</p>
-<table BORDER=0 CELLSPACING=0 CELLPADDING=2 WIDTH="100%" >
-  <tr> 
-    <td ALIGN=LEFT VALIGN=TOP COLSPAN="2" BGCOLOR="#0080C0"><b><font color="#FFFFFF"> 
-      Contributors</font></b></td>
-  </tr>
-</table>
-<ul>
-</ul>		
-
 </body>
 </html>
