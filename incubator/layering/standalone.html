@@ -39,7 +39,9 @@ in the local filesystem.
 </p>
 <p>
 For example, suppose you would have a program comprising two jars, main.jar and util.jar, which
-you want to wrap in OSGi bundles. For whatever reason, you prefer not to package these jars
+you want to wrap in OSGi bundles with a package org.foo.util exported from the 'util'
+bundle and imported into the 'main' bundle.
+For whatever reason, you prefer not to package these jars
 into bundles, but want to create (runtime) bundles that simply refer to them.
 For example, you may wish to refresh the jars during development and not have to
 recreate bundle packaging.
