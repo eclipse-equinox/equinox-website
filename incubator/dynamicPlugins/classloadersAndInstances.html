@@ -55,6 +55,9 @@ plugin deactivation", later a third case is likely to be added to handle the cas
   Because there is no way for the resources plugin to know which plugin has created which listener, there is currently no way for the resources plugin do the clean-up itself.
   The detachement of the listeners will be the resposibility of the plugin that created the listener.</li>
   
+  <li>org.eclipse.core.resources.fileModificationValidator, org.eclipse.core.resources.moveDeleteHook, org.eclipse.core.resources.teamHook: These extension-points are specials
+  in that they can only have one extension. The instance of the extensions are handled by the resources plugin and will be collected by it.
+  </li>
 </ul>
 <b>Deactivating the resource plugin:</b>
 <ul>
