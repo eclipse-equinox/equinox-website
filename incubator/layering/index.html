@@ -23,14 +23,47 @@
       Framework Layering</font></b></td>
   </tr>
 </table>
-<p>The aim of this work is to separate a fairly general purpose module layer
-out of the OSGi framework which supports interface sharing by specification
-version, as defined in OSGi R3, as well as class sharing by implementation
-version, as supported in Eclipse 3.0. This separation allows for more flexibility
-in the use scenarios for OSGi framework implementations.
-This layering is being discussed in the OSGi Core Platform Expert Group and the
-intention is to feed the practical experience gained in Equinox into the CPEG
+<p>
+Eclipse 3.0 re-based its plugin support on an Eclipse implementation of the
+<a href="http://www.osgi.org">OSGi</a> framework and thereby improved its ability
+to make changes dynamically.
+The framework implements the framework specification in OSGi Release 3 with some
+non-standard extensions in the area of class loading.
+These extensions were proposed to the Core Platform Expert Group (CPEG) of the
+OSGi.
+Since then the CPEG has taken these extensions and investigated a more unified
+proposal that fits in better with the OSGi Release 3 specification.
+They are targetting the unified proposal for OSGi Release 4 which is likely
+to be published in 2005.
+</p>
+<p>
+The aim of the Equinox "layering" work is to prototype the unified proposal.
+Practical experience gained in Equinox is being fed into the CPEG specification
 work.</p>
+<p>
+The background to the unified proposal is as follows.
+The only standard Java mechanism for
+constructing large scale modular software is the class loader.
+A class loader defines a namespace which maps class names to classes.
+A class loader controls the extent to which its namespace overlaps that
+of other class loaders by delegating class load requests to other class loaders.
+Unfortunately, class loaders are difficult to program and error prone.
+
+The proposal provides a simpler way of constructing modular software.
+Each module is defined by metadata which specifies:
+<ul>
+<li>a class path which determines the classes and packages provided by the
+module,</li>
+<li>the packages that the module exports, and</li>
+<li>packages that the module imports from other modules or modules from which
+all exported packages should be imported.</li>
+</ul>
+
+The framework automatically constructs a class loader for each module that
+needs to run.
+The framework also delegates class load requests between class loaders
+according to their import/export metadata.
+</p>
 <p>
 So far work has concentrated on extending the resolver interfaces, implementing
 a new resolver capable of supporting an extended import/export syntax, and
