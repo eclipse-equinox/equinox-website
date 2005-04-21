@@ -1,0 +1,495 @@
+<html><head><title>Permission Analysis Report</title><script language='javaScript' src='linkUtil.js'></script></head><body>
+<h1>Permission Analysis Report</h1>
+<BR/><H2>Analysis of: org.eclipse.core.runtime</H2>
+<B>Detail</B><BR/><BR/>
+<pre>
+
+Class: <a href="foo" onClick="return openURLinSrc( 'Application/org/eclipse/core/internal/runtime/ResourceTranslator.html' )">org.eclipse.core.internal.runtime.ResourceTranslator</a> (Application)
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/ResourceTranslator.html#L100" , parent.fbot ); return false'>Line# 105</a> java.lang.ClassLoader createTempClassloader( org.osgi.framework.Bundle )
+   Permission: java.lang.RuntimePermission "createClassLoader"
+      Primordial/void java.net.URLClassLoader.URLClassLoader( java.net.URL[] )
+   Permission: java.lang.RuntimePermission "getClassLoader"
+      Primordial/void java.net.URLClassLoader.URLClassLoader( java.net.URL[] )
+<BR/><BR/><B>CODE</B><BR/><BR/>
+private static ClassLoader createTempClassloader(Bundle b) {
+		ArrayList classpath = new ArrayList();
+		addClasspathEntries(b, classpath);
+		addBundleRoot(b, classpath);
+		addDevEntries(b, classpath);
+		addFragments(b, classpath);
+		URL[] urls = new URL[classpath.size()];
+		return <font style="background-color:yellow;display;inline">new URLClassLoader((URL[]) classpath.toArray(urls));</font>
+	}
+
+<B>Tainted variable reference trace:</B><BR/><BR/>
+createTempClassloader(Bundle) - org.eclipse.core.internal.runtime.ResourceTranslator
+	getResourceBundle(Bundle) - org.eclipse.core.internal.runtime.ResourceTranslator
+		getResourceString(Bundle, String, ResourceBundle) - org.eclipse.core.internal.runtime.ResourceTranslator
+			getResourceString(Bundle, String) - org.eclipse.core.internal.runtime.ResourceTranslator
+				getResourceString(Bundle, String) - org.eclipse.core.internal.runtime.InternalPlatform
+					getResourceString(Bundle, String) - org.eclipse.core.runtime.Platform
+						getResourceString(Bundle, String) - org.eclipse.ui.internal.about.AboutBundleData
+							AboutBundleData(Bundle) - org.eclipse.ui.internal.about.AboutBundleData (3 matches)
+								appendRegistry(PrintWriter) - org.eclipse.ui.internal.about.ConfigurationLogDefaultSection
+									write(PrintWriter) - org.eclipse.ui.internal.about.ConfigurationLogDefaultSection
+										appendExtensions(PrintWriter) - org.eclipse.ui.internal.dialogs.AboutSystemDialog
+								AboutPluginsDialog(Shell, String, Bundle[], String, String, String) - org.eclipse.ui.internal.dialogs.AboutPluginsDialog
+									handlePluginInfoPressed() - org.eclipse.ui.internal.dialogs.AboutFeaturesDialog
+										buttonPressed(int) - org.eclipse.ui.internal.dialogs.AboutFeaturesDialog
+									AboutPluginsDialog(Shell, String) - org.eclipse.ui.internal.dialogs.AboutPluginsDialog
+										buttonPressed(int) - org.eclipse.ui.internal.dialogs.AboutDialog
+			getResourceString(Bundle, String, ResourceBundle) - org.eclipse.core.internal.runtime.InternalPlatform
+				getResourceString(Bundle, String, ResourceBundle) - org.eclipse.core.runtime.Platform
+			translate(String) - org.eclipse.core.internal.registry.ExtensionsParser
+				parseExtensionAttributes(Attributes) - org.eclipse.core.internal.registry.ExtensionsParser
+					handleBundleState(String, Attributes) - org.eclipse.core.internal.registry.ExtensionsParser
+						startElement(String, String, String, Attributes) - org.eclipse.core.internal.registry.ExtensionsParser
+							startElement(String, String, String, Attributes) - com.sun.org.apache.xml.internal.dtm.ref.IncrementalSAXSource_Filter
+								startElement(String, String, String, Attributes) - com.sun.org.apache.xml.internal.dtm.ref.IncrementalSAXSource_Filter
+								startNode(Node) - com.sun.org.apache.xml.internal.utils.TreeWalker
+									traverse(Node) - com.sun.org.apache.xml.internal.utils.TreeWalker
+										serialize(Node) - com.sun.org.apache.xml.internal.serializer.ToStream
+										dispatchToEvents(int, ContentHandler) - com.sun.org.apache.xml.internal.dtm.ref.dom2dtm.DOM2DTM
+									traverse(Node, Node) - com.sun.org.apache.xml.internal.utils.TreeWalker
+								startNode(int) - com.sun.org.apache.xml.internal.dtm.ref.DTMTreeWalker
+									traverse(int, int) - com.sun.org.apache.xml.internal.dtm.ref.DTMTreeWalker
+									traverse(int) - com.sun.org.apache.xml.internal.dtm.ref.DTMTreeWalker
+										dispatchToEvents(int, ContentHandler) - com.sun.org.apache.xml.internal.dtm.ref.sax2dtm.SAX2DTM
+								startElement(String, String, String, Attributes) - com.sun.org.apache.xml.internal.serializer.ToHTMLSAXHandler
+									startElement(String, String, String, Attributes) - com.sun.org.apache.xml.internal.dtm.ref.IncrementalSAXSource_Filter
+									startNode(Node) - com.sun.org.apache.xml.internal.utils.TreeWalker
+										traverse(Node) - com.sun.org.apache.xml.internal.utils.TreeWalker
+										traverse(Node, Node) - com.sun.org.apache.xml.internal.utils.TreeWalker
+									startElement(String, String, String, Attributes) - com.sun.org.apache.xml.internal.serializer.ToHTMLSAXHandler
+									startNode(int) - com.sun.org.apache.xml.internal.dtm.ref.DTMTreeWalker
+										traverse(int, int) - com.sun.org.apache.xml.internal.dtm.ref.DTMTreeWalker
+										traverse(int) - com.sun.org.apache.xml.internal.dtm.ref.DTMTreeWalker
+									startElement(String, String, String, Attributes) - org.xml.sax.helpers.XMLFilterImpl
+										startElement(String, String, String, Attributes) - com.sun.org.apache.xml.internal.dtm.ref.IncrementalSAXSource_Filter
+										startNode(Node) - com.sun.org.apache.xml.internal.utils.TreeWalker
+										startElement(String, String, String, Attributes) - org.xml.sax.helpers.XMLFilterImpl
+										startElement(String, String, String, Attributes) - com.sun.org.apache.xml.internal.serializer.ToHTMLSAXHandler
+										startNode(int) - com.sun.org.apache.xml.internal.dtm.ref.DTMTreeWalker
+										startElement(String, String, String, Attributes) - org.xml.sax.helpers.XMLFilterImpl
+										startElement(String, String, String, Attributes) - com.sun.org.apache.xml.internal.serializer.ToUnknownStream (2 matches)
+										emitFirstTag() - com.sun.org.apache.xml.internal.serializer.ToUnknownStream
+										startElement(String, String, String, Attributes) - com.sun.org.apache.xalan.internal.xsltc.trax.TransformerHandlerImpl
+										startElement(QName, XMLAttributes, Augmentations) - com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser
+										closeStartTag() - com.sun.org.apache.xml.internal.serializer.ToXMLSAXHandler
+										startElement(QName, XMLAttributes, Augmentations) - com.sun.org.apache.xerces.internal.jaxp.XNI2SAX
+										parse(Node) - com.sun.org.apache.xalan.internal.xsltc.trax.DOM2SAX
+										startElement(String, AttributeList) - org.xml.sax.helpers.ParserAdapter (2 matches)
+										closeStartTag() - com.sun.org.apache.xml.internal.serializer.ToHTMLSAXHandler
+									startElement(String, String, String, Attributes) - com.sun.org.apache.xml.internal.serializer.ToUnknownStream (2 matches)
+										startElement(String, String, String) - com.sun.org.apache.xml.internal.serializer.ToUnknownStream
+										startElement(String, String, String, Attributes) - com.sun.org.apache.xml.internal.dtm.ref.IncrementalSAXSource_Filter
+										startNode(Node) - com.sun.org.apache.xml.internal.utils.TreeWalker
+										startElement(String, String, String, Attributes) - com.sun.org.apache.xml.internal.serializer.ToHTMLSAXHandler
+										startNode(int) - com.sun.org.apache.xml.internal.dtm.ref.DTMTreeWalker
+										startElement(String, String, String, Attributes) - org.xml.sax.helpers.XMLFilterImpl
+										startElement(String, String, String, Attributes) - com.sun.org.apache.xml.internal.serializer.ToUnknownStream (2 matches)
+										emitFirstTag() - com.sun.org.apache.xml.internal.serializer.ToUnknownStream
+										startElement(String, String, String, Attributes) - com.sun.org.apache.xalan.internal.xsltc.trax.TransformerHandlerImpl
+										startElement(QName, XMLAttributes, Augmentations) - com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser
+										closeStartTag() - com.sun.org.apache.xml.internal.serializer.ToXMLSAXHandler
+										startElement(QName, XMLAttributes, Augmentations) - com.sun.org.apache.xerces.internal.jaxp.XNI2SAX
+										parse(Node) - com.sun.org.apache.xalan.internal.xsltc.trax.DOM2SAX
+										startElement(String) - com.sun.org.apache.xml.internal.serializer.ToUnknownStream
+										startElement(String, AttributeList) - org.xml.sax.helpers.ParserAdapter (2 matches)
+										closeStartTag() - com.sun.org.apache.xml.internal.serializer.ToHTMLSAXHandler
+									emitFirstTag() - com.sun.org.apache.xml.internal.serializer.ToUnknownStream
+										flush() - com.sun.org.apache.xml.internal.serializer.ToUnknownStream
+										endEntity(String) - com.sun.org.apache.xml.internal.serializer.ToUnknownStream
+										comment(String) - com.sun.org.apache.xml.internal.serializer.ToUnknownStream
+										elementDecl(String, String) - com.sun.org.apache.xml.internal.serializer.ToUnknownStream
+									startElement(String, String, String, Attributes) - com.sun.org.apache.xalan.internal.xsltc.trax.TransformerHandlerImpl
+										startElement(String, String, String, Attributes) - com.sun.org.apache.xml.internal.dtm.ref.IncrementalSAXSource_Filter
+										startNode(Node) - com.sun.org.apache.xml.internal.utils.TreeWalker
+										startElement(String, String, String, Attributes) - com.sun.org.apache.xml.internal.serializer.ToHTMLSAXHandler
+										startNode(int) - com.sun.org.apache.xml.internal.dtm.ref.DTMTreeWalker
+										startElement(String, String, String, Attributes) - org.xml.sax.helpers.XMLFilterImpl
+										startElement(String, String, String, Attributes) - com.sun.org.apache.xml.internal.serializer.ToUnknownStream (2 matches)
+										emitFirstTag() - com.sun.org.apache.xml.internal.serializer.ToUnknownStream
+										startElement(String, String, String, Attributes) - com.sun.org.apache.xalan.internal.xsltc.trax.TransformerHandlerImpl
+										startElement(QName, XMLAttributes, Augmentations) - com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser
+										closeStartTag() - com.sun.org.apache.xml.internal.serializer.ToXMLSAXHandler
+										startElement(QName, XMLAttributes, Augmentations) - com.sun.org.apache.xerces.internal.jaxp.XNI2SAX
+										parse(Node) - com.sun.org.apache.xalan.internal.xsltc.trax.DOM2SAX
+										startElement(String, AttributeList) - org.xml.sax.helpers.ParserAdapter (2 matches)
+										closeStartTag() - com.sun.org.apache.xml.internal.serializer.ToHTMLSAXHandler
+									startElement(QName, XMLAttributes, Augmentations) - com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser
+									closeStartTag() - com.sun.org.apache.xml.internal.serializer.ToXMLSAXHandler
+									startElement(QName, XMLAttributes, Augmentations) - com.sun.org.apache.xerces.internal.jaxp.XNI2SAX
+									parse(Node) - com.sun.org.apache.xalan.internal.xsltc.trax.DOM2SAX
+									startElement(String, AttributeList) - org.xml.sax.helpers.ParserAdapter (2 matches)
+									closeStartTag() - com.sun.org.apache.xml.internal.serializer.ToHTMLSAXHandler
+								startElement(String, String, String, Attributes) - org.xml.sax.helpers.XMLFilterImpl
+									startElement(String, String, String, Attributes) - com.sun.org.apache.xml.internal.dtm.ref.IncrementalSAXSource_Filter
+									startNode(Node) - com.sun.org.apache.xml.internal.utils.TreeWalker
+									startElement(String, String, String, Attributes) - org.xml.sax.helpers.XMLFilterImpl
+									startElement(String, String, String, Attributes) - com.sun.org.apache.xml.internal.serializer.ToHTMLSAXHandler
+									startNode(int) - com.sun.org.apache.xml.internal.dtm.ref.DTMTreeWalker
+									startElement(String, String, String, Attributes) - org.xml.sax.helpers.XMLFilterImpl
+									startElement(String, String, String, Attributes) - com.sun.org.apache.xml.internal.serializer.ToUnknownStream (2 matches)
+									emitFirstTag() - com.sun.org.apache.xml.internal.serializer.ToUnknownStream
+									startElement(String, String, String, Attributes) - com.sun.org.apache.xalan.internal.xsltc.trax.TransformerHandlerImpl
+									startElement(QName, XMLAttributes, Augmentations) - com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser
+									closeStartTag() - com.sun.org.apache.xml.internal.serializer.ToXMLSAXHandler
+									startElement(QName, XMLAttributes, Augmentations) - com.sun.org.apache.xerces.internal.jaxp.XNI2SAX
+									parse(Node) - com.sun.org.apache.xalan.internal.xsltc.trax.DOM2SAX
+									startElement(String, AttributeList) - org.xml.sax.helpers.ParserAdapter (2 matches)
+									closeStartTag() - com.sun.org.apache.xml.internal.serializer.ToHTMLSAXHandler
+								startElement(String, String, String, Attributes) - com.sun.org.apache.xml.internal.serializer.ToUnknownStream (2 matches)
+								startElement(String, String, String, Attributes) - com.sun.org.apache.xalan.internal.xsltc.trax.TransformerHandlerImpl
+								emitFirstTag() - com.sun.org.apache.xml.internal.serializer.ToUnknownStream
+								startElement(QName, XMLAttributes, Augmentations) - com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser
+								closeStartTag() - com.sun.org.apache.xml.internal.serializer.ToXMLSAXHandler
+								startElement(QName, XMLAttributes, Augmentations) - com.sun.org.apache.xerces.internal.jaxp.XNI2SAX
+								parse(Node) - com.sun.org.apache.xalan.internal.xsltc.trax.DOM2SAX
+								startElement(String, AttributeList) - org.xml.sax.helpers.ParserAdapter (2 matches)
+								closeStartTag() - com.sun.org.apache.xml.internal.serializer.ToHTMLSAXHandler
+							startNode(Node) - com.sun.org.apache.xml.internal.utils.TreeWalker
+								traverse(Node) - com.sun.org.apache.xml.internal.utils.TreeWalker
+								traverse(Node, Node) - com.sun.org.apache.xml.internal.utils.TreeWalker
+							startNode(int) - com.sun.org.apache.xml.internal.dtm.ref.DTMTreeWalker
+								traverse(int, int) - com.sun.org.apache.xml.internal.dtm.ref.DTMTreeWalker
+								traverse(int) - com.sun.org.apache.xml.internal.dtm.ref.DTMTreeWalker
+							startElement(String, String, String, Attributes) - com.sun.org.apache.xml.internal.serializer.ToHTMLSAXHandler
+								startElement(String, String, String, Attributes) - com.sun.org.apache.xml.internal.dtm.ref.IncrementalSAXSource_Filter
+								startNode(Node) - com.sun.org.apache.xml.internal.utils.TreeWalker
+								startNode(int) - com.sun.org.apache.xml.internal.dtm.ref.DTMTreeWalker
+								startElement(String, String, String, Attributes) - com.sun.org.apache.xml.internal.serializer.ToHTMLSAXHandler
+								startElement(String, String, String, Attributes) - org.xml.sax.helpers.XMLFilterImpl
+								startElement(String, String, String, Attributes) - com.sun.org.apache.xml.internal.serializer.ToUnknownStream (2 matches)
+								startElement(String, String, String, Attributes) - com.sun.org.apache.xalan.internal.xsltc.trax.TransformerHandlerImpl
+								emitFirstTag() - com.sun.org.apache.xml.internal.serializer.ToUnknownStream
+								startElement(QName, XMLAttributes, Augmentations) - com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser
+								closeStartTag() - com.sun.org.apache.xml.internal.serializer.ToXMLSAXHandler
+								startElement(QName, XMLAttributes, Augmentations) - com.sun.org.apache.xerces.internal.jaxp.XNI2SAX
+								parse(Node) - com.sun.org.apache.xalan.internal.xsltc.trax.DOM2SAX
+								startElement(String, AttributeList) - org.xml.sax.helpers.ParserAdapter (2 matches)
+								closeStartTag() - com.sun.org.apache.xml.internal.serializer.ToHTMLSAXHandler
+							startElement(String, String, String, Attributes) - org.xml.sax.helpers.XMLFilterImpl
+								startElement(String, String, String, Attributes) - com.sun.org.apache.xml.internal.dtm.ref.IncrementalSAXSource_Filter
+								startElement(String, String, String, Attributes) - org.xml.sax.helpers.XMLFilterImpl
+								startNode(Node) - com.sun.org.apache.xml.internal.utils.TreeWalker
+								startNode(int) - com.sun.org.apache.xml.internal.dtm.ref.DTMTreeWalker
+								startElement(String, String, String, Attributes) - com.sun.org.apache.xml.internal.serializer.ToHTMLSAXHandler
+								startElement(String, String, String, Attributes) - org.xml.sax.helpers.XMLFilterImpl
+								startElement(String, String, String, Attributes) - com.sun.org.apache.xml.internal.serializer.ToUnknownStream (2 matches)
+								startElement(String, String, String, Attributes) - com.sun.org.apache.xalan.internal.xsltc.trax.TransformerHandlerImpl
+								emitFirstTag() - com.sun.org.apache.xml.internal.serializer.ToUnknownStream
+								startElement(QName, XMLAttributes, Augmentations) - com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser
+								closeStartTag() - com.sun.org.apache.xml.internal.serializer.ToXMLSAXHandler
+								startElement(QName, XMLAttributes, Augmentations) - com.sun.org.apache.xerces.internal.jaxp.XNI2SAX
+								parse(Node) - com.sun.org.apache.xalan.internal.xsltc.trax.DOM2SAX
+								startElement(String, AttributeList) - org.xml.sax.helpers.ParserAdapter (2 matches)
+								closeStartTag() - com.sun.org.apache.xml.internal.serializer.ToHTMLSAXHandler
+							startElement(String, String, String, Attributes) - com.sun.org.apache.xml.internal.serializer.ToUnknownStream (2 matches)
+								startElement(String, String, String) - com.sun.org.apache.xml.internal.serializer.ToUnknownStream
+								startElement(String, String, String, Attributes) - com.sun.org.apache.xml.internal.dtm.ref.IncrementalSAXSource_Filter
+								startNode(Node) - com.sun.org.apache.xml.internal.utils.TreeWalker
+								startNode(int) - com.sun.org.apache.xml.internal.dtm.ref.DTMTreeWalker
+								startElement(String, String, String, Attributes) - com.sun.org.apache.xml.internal.serializer.ToHTMLSAXHandler
+								startElement(String, String, String, Attributes) - org.xml.sax.helpers.XMLFilterImpl
+								startElement(String, String, String, Attributes) - com.sun.org.apache.xml.internal.serializer.ToUnknownStream (2 matches)
+								startElement(String, String, String, Attributes) - com.sun.org.apache.xalan.internal.xsltc.trax.TransformerHandlerImpl
+								emitFirstTag() - com.sun.org.apache.xml.internal.serializer.ToUnknownStream
+								startElement(QName, XMLAttributes, Augmentations) - com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser
+								closeStartTag() - com.sun.org.apache.xml.internal.serializer.ToXMLSAXHandler
+								startElement(QName, XMLAttributes, Augmentations) - com.sun.org.apache.xerces.internal.jaxp.XNI2SAX
+								parse(Node) - com.sun.org.apache.xalan.internal.xsltc.trax.DOM2SAX
+								startElement(String) - com.sun.org.apache.xml.internal.serializer.ToUnknownStream
+								startElement(String, AttributeList) - org.xml.sax.helpers.ParserAdapter (2 matches)
+								closeStartTag() - com.sun.org.apache.xml.internal.serializer.ToHTMLSAXHandler
+							startElement(String, String, String, Attributes) - com.sun.org.apache.xalan.internal.xsltc.trax.TransformerHandlerImpl
+								startElement(String, String, String, Attributes) - com.sun.org.apache.xml.internal.dtm.ref.IncrementalSAXSource_Filter
+								startNode(Node) - com.sun.org.apache.xml.internal.utils.TreeWalker
+								startNode(int) - com.sun.org.apache.xml.internal.dtm.ref.DTMTreeWalker
+								startElement(String, String, String, Attributes) - com.sun.org.apache.xml.internal.serializer.ToHTMLSAXHandler
+								startElement(String, String, String, Attributes) - org.xml.sax.helpers.XMLFilterImpl
+								startElement(String, String, String, Attributes) - com.sun.org.apache.xml.internal.serializer.ToUnknownStream (2 matches)
+								startElement(String, String, String, Attributes) - com.sun.org.apache.xalan.internal.xsltc.trax.TransformerHandlerImpl
+								emitFirstTag() - com.sun.org.apache.xml.internal.serializer.ToUnknownStream
+								startElement(QName, XMLAttributes, Augmentations) - com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser
+								closeStartTag() - com.sun.org.apache.xml.internal.serializer.ToXMLSAXHandler
+								startElement(QName, XMLAttributes, Augmentations) - com.sun.org.apache.xerces.internal.jaxp.XNI2SAX
+								parse(Node) - com.sun.org.apache.xalan.internal.xsltc.trax.DOM2SAX
+								startElement(String, AttributeList) - org.xml.sax.helpers.ParserAdapter (2 matches)
+								closeStartTag() - com.sun.org.apache.xml.internal.serializer.ToHTMLSAXHandler
+							emitFirstTag() - com.sun.org.apache.xml.internal.serializer.ToUnknownStream
+								flush() - com.sun.org.apache.xml.internal.serializer.ToUnknownStream
+								endEntity(String) - com.sun.org.apache.xml.internal.serializer.ToUnknownStream
+								comment(String) - com.sun.org.apache.xml.internal.serializer.ToUnknownStream
+								elementDecl(String, String) - com.sun.org.apache.xml.internal.serializer.ToUnknownStream
+							startElement(QName, XMLAttributes, Augmentations) - com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser
+								startElement(QName, XMLAttributes, Augmentations) - com.sun.org.apache.xerces.internal.xinclude.XIncludeHandler
+								scanStartElement() - com.sun.org.apache.xerces.internal.impl.XML11NSDocumentScannerImpl
+								emptyElement(QName, XMLAttributes, Augmentations) - com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator
+								scanStartElementAfterName() - com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl
+								emptyElement(QName, XMLAttributes, Augmentations) - com.sun.org.apache.xerces.internal.parsers.AbstractXMLDocumentParser
+								scanStartElementAfterName() - com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl
+								startElement(String, String, String, Attributes) - com.sun.org.apache.xerces.internal.util.SAX2XNI
+								scanStartElementAfterName() - com.sun.org.apache.xerces.internal.impl.XML11NSDocumentScannerImpl
+								startElement(QName, XMLAttributes, Augmentations) - com.sun.org.apache.xerces.internal.xinclude.XPointerElementHandler
+								startElement(QName, XMLAttributes, Augmentations) - com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator
+								normalizeNode(Node) - com.sun.org.apache.xerces.internal.dom.DOMNormalizer
+								startElement(QName, XMLAttributes, Augmentations) - com.sun.org.apache.xerces.internal.impl.dtd.XMLDTDValidator
+								startElement(String, String, String, Attributes) - com.sun.org.apache.xerces.internal.jaxp.JAXPValidatorComponent.SAX2XNI
+								scanStartElement() - com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl
+								startElement(QName, XMLAttributes, Augmentations) - com.sun.org.apache.xerces.internal.impl.XMLNamespaceBinder
+								startElement(QName, XMLAttributes, Augmentations) - com.sun.org.apache.xerces.internal.util.XMLDocumentFilterImpl
+								startElement(QName, XMLAttributes, Augmentations) - com.sun.org.apache.xerces.internal.util.TeeXMLDocumentFilterImpl (2 matches)
+								handleStartElement(QName, XMLAttributes, Augmentations, boolean) - com.sun.org.apache.xerces.internal.impl.XMLNamespaceBinder
+								startElement(String, String, String, Attributes) - com.sun.org.apache.xerces.internal.jaxp.validation.ValidatorHandlerImpl
+								scanStartElement() - com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl
+							closeStartTag() - com.sun.org.apache.xml.internal.serializer.ToXMLSAXHandler
+								flushPending() - com.sun.org.apache.xml.internal.serializer.ToSAXHandler
+								characters(char[], int, int) - com.sun.org.apache.xml.internal.serializer.ToXMLSAXHandler
+								comment(String) - com.sun.org.apache.xml.internal.serializer.ToSAXHandler
+							startElement(QName, XMLAttributes, Augmentations) - com.sun.org.apache.xerces.internal.jaxp.XNI2SAX
+								startElement(QName, XMLAttributes, Augmentations) - com.sun.org.apache.xerces.internal.xinclude.XIncludeHandler
+								emptyElement(QName, XMLAttributes, Augmentations) - com.sun.org.apache.xerces.internal.jaxp.XNI2SAX
+								scanStartElement() - com.sun.org.apache.xerces.internal.impl.XML11NSDocumentScannerImpl
+								emptyElement(QName, XMLAttributes, Augmentations) - com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator
+								emptyElement(QName, XMLAttributes, Augmentations) - com.sun.org.apache.xerces.internal.jaxp.validation.XNI2SAXEx
+								scanStartElementAfterName() - com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl
+								startElement(QName, XMLAttributes, Augmentations) - com.sun.org.apache.xerces.internal.jaxp.validation.XNI2SAXEx
+								scanStartElementAfterName() - com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl
+								startElement(String, String, String, Attributes) - com.sun.org.apache.xerces.internal.util.SAX2XNI
+								scanStartElementAfterName() - com.sun.org.apache.xerces.internal.impl.XML11NSDocumentScannerImpl
+								startElement(QName, XMLAttributes, Augmentations) - com.sun.org.apache.xerces.internal.xinclude.XPointerElementHandler
+								startElement(QName, XMLAttributes, Augmentations) - com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator
+								normalizeNode(Node) - com.sun.org.apache.xerces.internal.dom.DOMNormalizer
+								startElement(String, String, String, Attributes) - com.sun.org.apache.xerces.internal.jaxp.JAXPValidatorComponent.SAX2XNI
+								startElement(QName, XMLAttributes, Augmentations) - com.sun.org.apache.xerces.internal.impl.dtd.XMLDTDValidator
+								scanStartElement() - com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl
+								startElement(QName, XMLAttributes, Augmentations) - com.sun.org.apache.xerces.internal.jaxp.JAXPValidatorComponent
+								startElement(QName, XMLAttributes, Augmentations) - com.sun.org.apache.xerces.internal.impl.XMLNamespaceBinder
+								startElement(QName, XMLAttributes, Augmentations) - com.sun.org.apache.xerces.internal.util.XMLDocumentFilterImpl
+								startElement(QName, XMLAttributes, Augmentations) - com.sun.org.apache.xerces.internal.util.TeeXMLDocumentFilterImpl (2 matches)
+								handleStartElement(QName, XMLAttributes, Augmentations, boolean) - com.sun.org.apache.xerces.internal.impl.XMLNamespaceBinder
+								startElement(String, String, String, Attributes) - com.sun.org.apache.xerces.internal.jaxp.validation.ValidatorHandlerImpl
+								scanStartElement() - com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl
+							parse(Node) - com.sun.org.apache.xalan.internal.xsltc.trax.DOM2SAX
+								parse(InputSource) - com.sun.org.apache.xalan.internal.xsltc.trax.DOM2SAX
+								parse(Node) - com.sun.org.apache.xalan.internal.xsltc.trax.DOM2SAX (2 matches)
+								parse() - com.sun.org.apache.xalan.internal.xsltc.trax.DOM2SAX (2 matches)
+							startElement(String, AttributeList) - org.xml.sax.helpers.ParserAdapter (2 matches)
+								startElement(QName, XMLAttributes, Augmentations) - com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser
+								startElement(String, String, String, Attributes) - org.xml.sax.helpers.XMLReaderAdapter
+							closeStartTag() - com.sun.org.apache.xml.internal.serializer.ToHTMLSAXHandler
+								flushPending() - com.sun.org.apache.xml.internal.serializer.ToHTMLSAXHandler
+								flushPending() - com.sun.org.apache.xml.internal.serializer.ToSAXHandler
+								comment(String) - com.sun.org.apache.xml.internal.serializer.ToSAXHandler
+				parseExtensionPointAttributes(Attributes) - org.eclipse.core.internal.registry.ExtensionsParser
+				characters(char[], int, int) - org.eclipse.core.internal.registry.ExtensionsParser
+				parseConfigurationElementAttributes(Attributes) - org.eclipse.core.internal.registry.ExtensionsParser
+		getBundleModel(Bundle) - org.eclipse.core.internal.registry.EclipseBundleListener
+			addBundle(Bundle) - org.eclipse.core.internal.registry.EclipseBundleListener
+				processBundles(Bundle[]) - org.eclipse.core.internal.registry.EclipseBundleListener
+					ExtensionRegistry() - org.eclipse.core.internal.registry.ExtensionRegistry
+						startRegistry(BundleContext) - org.eclipse.core.internal.runtime.PlatformActivator
+							start(BundleContext) - org.eclipse.core.internal.runtime.PlatformActivator
+								run() - org.eclipse.osgi.framework.internal.core.BundleContextImpl.startActivator(...).new PrivilegedExceptionAction() {...}
+									call() - java.util.concurrent.Executors.PrivilegedExceptionActionAdapter
+				bundleChanged(BundleEvent) - org.eclipse.core.internal.registry.EclipseBundleListener
+					dispatchEvent(Object, Object, int, Object) - org.eclipse.osgi.framework.internal.core.BundleContextImpl
+						dispatchEvent(ListElement[], EventDispatcher, int, Object) - org.eclipse.osgi.framework.eventmgr.EventManager
+							run() - org.eclipse.osgi.framework.eventmgr.EventThread
+								dowait(boolean, long) - java.util.concurrent.CyclicBarrier
+									await(long, TimeUnit) - java.util.concurrent.CyclicBarrier
+									await() - java.util.concurrent.CyclicBarrier
+								bundleChanged(BundleEvent) - org.eclipse.ui.internal.registry.InstanceTracker.listener.new BundleListener() {...}
+									dispatchEvent(Object, Object, int, Object) - org.eclipse.osgi.framework.internal.core.BundleContextImpl
+								preservingSelection(Runnable) - org.eclipse.jface.viewers.StructuredViewer
+									refresh(Object, boolean) - org.eclipse.jface.viewers.StructuredViewer
+										refresh(Object[]) - org.eclipse.ui.internal.progress.ProgressViewerContentProvider
+										refresh(Object[]) - org.eclipse.ui.internal.progress.ProgressTreeContentProvider
+										refresh(boolean) - org.eclipse.jface.viewers.StructuredViewer
+									preservingSelection(Runnable) - org.eclipse.jface.viewers.CheckboxTableViewer
+										refresh(Object, boolean) - org.eclipse.jface.viewers.StructuredViewer
+										remove(Object[]) - org.eclipse.jface.viewers.AbstractListViewer
+										remove(Object[]) - org.eclipse.jface.viewers.AbstractTreeViewer
+										inputChanged(Object, Object) - org.eclipse.jface.viewers.AbstractTreeViewer
+										refresh(Object) - org.eclipse.jface.viewers.StructuredViewer
+										remove(Object[]) - org.eclipse.jface.viewers.TableViewer
+									remove(Object[]) - org.eclipse.jface.viewers.AbstractListViewer
+										remove(Object) - org.eclipse.jface.viewers.AbstractListViewer
+									remove(Object[]) - org.eclipse.jface.viewers.AbstractTreeViewer
+										remove(Object[]) - org.eclipse.ui.internal.progress.ProgressTreeContentProvider
+										remove(Object) - org.eclipse.jface.viewers.AbstractTreeViewer
+									inputChanged(Object, Object) - org.eclipse.jface.viewers.AbstractTreeViewer
+										setInput(Object) - org.eclipse.jface.viewers.ContentViewer
+									refresh(Object) - org.eclipse.jface.viewers.StructuredViewer
+										refresh() - org.eclipse.jface.viewers.StructuredViewer
+										createAddedElement(Widget, Object) - org.eclipse.jface.viewers.AbstractTreeViewer (2 matches)
+									preservingSelection(Runnable) - org.eclipse.jface.viewers.CheckboxTreeViewer
+										refresh(Object, boolean) - org.eclipse.jface.viewers.StructuredViewer
+										remove(Object[]) - org.eclipse.jface.viewers.AbstractListViewer
+										remove(Object[]) - org.eclipse.jface.viewers.AbstractTreeViewer
+										inputChanged(Object, Object) - org.eclipse.jface.viewers.AbstractTreeViewer
+										refresh(Object) - org.eclipse.jface.viewers.StructuredViewer
+										remove(Object[]) - org.eclipse.jface.viewers.TableViewer
+									remove(Object[]) - org.eclipse.jface.viewers.TableViewer
+										removeSelectedWorkingSets() - org.eclipse.ui.internal.dialogs.WorkingSetSelectionDialog
+										remove(Object) - org.eclipse.jface.viewers.TableViewer
+								newThread(Runnable) - java.util.concurrent.Executors.PrivilegedThreadFactory
+								processRunnableEvent(RunnableEvent) - javax.swing.SystemEventQueueUtilities (2 matches)
+								render(Runnable) - javax.swing.text.AbstractDocument
+								run() - java.lang.Thread
+								runTest(Runnable) - org.eclipse.ui.testing.TestableObject
+								doPendingWork() - org.eclipse.ui.internal.UILockListener
+								run(String[], Runnable) - org.eclipse.core.runtime.adaptor.EclipseStarter
+								runTask(Runnable) - java.util.concurrent.ThreadPoolExecutor.Worker
+								doPrivileged(Runnable) - javax.swing.colorchooser.SyntheticImageGenerator
+								run() - javax.swing.text.LayoutQueue.LayoutThread
+								run() - org.eclipse.swt.widgets.RunnableLock
+								runTimer(int) - org.eclipse.swt.widgets.Display
+								show() - java.awt.Dialog
+								startLWModal() - java.awt.Container
+								release() - org.eclipse.swt.widgets.Display
+								dispose() - org.eclipse.jface.resource.ResourceManager
+								call() - java.util.concurrent.Executors.RunnableAdapter
+								run() - org.eclipse.core.runtime.adaptor.EclipseStarter.publishSplashScreen(...).new Runnable() {...}
+								getDevice() - org.eclipse.swt.graphics.Device
+								rejectedExecution(Runnable, ThreadPoolExecutor) - java.util.concurrent.ThreadPoolExecutor.CallerRunsPolicy
+								run() - com.sun.jmx.snmp.tasks.ThreadService.ExecutorThread
+								dispatch() - java.awt.event.InvocationEvent (2 matches)
+								syncExec(Runnable) - org.eclipse.swt.widgets.Synchronizer
+								run() - org.eclipse.core.internal.runtime.InternalPlatform.run(...).new ISafeRunnable() {...}
+								windowProc(int, int, int, int) - org.eclipse.swt.internal.BidiUtil
+								showWhile(Display, Runnable) - org.eclipse.swt.custom.BusyIndicator (2 matches)
+									initializePluggableHelpUI() - org.eclipse.ui.internal.help.WorkbenchHelpSystem
+									buttonPressed(int) - org.eclipse.ui.internal.dialogs.AboutDialog
+									openPage(String, IAdaptable) - org.eclipse.ui.internal.WorkbenchWindow
+									getWizard() - org.eclipse.ui.internal.dialogs.WorkbenchWizardNode
+									run(boolean, boolean, IRunnableWithProgress) - org.eclipse.jface.window.ApplicationWindow
+									openExternalEditor(EditorDescriptor, IEditorInput) - org.eclipse.ui.internal.EditorManager
+									openWorkbenchWindow(String, IAdaptable) - org.eclipse.ui.internal.Workbench
+									resetPerspective() - org.eclipse.ui.internal.WorkbenchPage
+									close() - org.eclipse.ui.internal.WorkbenchWindow
+									create() - org.eclipse.ui.dialogs.CheckedTreeSelectionDialog
+									run() - org.eclipse.ui.internal.actions.HelpContentsAction
+									openEditor(IEditorInput, String, boolean, boolean) - org.eclipse.ui.internal.WorkbenchPage
+									setPerspective(IPerspectiveDescriptor) - org.eclipse.ui.internal.WorkbenchPage
+									setActivePage(IWorkbenchPage) - org.eclipse.ui.internal.WorkbenchWindow
+									showPage(IWizardPage) - org.eclipse.jface.wizard.WizardDialog
+									restoreView(IViewReference) - org.eclipse.ui.internal.ViewFactory
+									restoreEditor(Editor) - org.eclipse.ui.internal.EditorManager
+									close(int, boolean) - org.eclipse.ui.internal.Workbench
+									runInUI(IRunnableContext, IRunnableWithProgress, ISchedulingRule) - org.eclipse.ui.internal.progress.ProgressManager
+									createContents(Composite) - org.eclipse.jface.preference.PreferenceDialog
+									setStandby(boolean) - org.eclipse.ui.internal.ViewIntroAdapterPart
+									show(Job) - org.eclipse.ui.internal.progress.ProgressMonitorFocusJobDialog
+									run() - org.eclipse.ui.internal.activities.ws.WorkbenchActivitySupport.WorkbenchActivitySupport().new IActivityManagerListener() {...}.activityManagerChanged(...).new Runnable() {...}
+									create() - org.eclipse.ui.dialogs.AbstractElementListSelectionDialog
+									createChildren(Widget) - org.eclipse.jface.viewers.AbstractTreeViewer
+									run() - org.eclipse.ui.internal.actions.HelpSearchAction
+									showView(String, String, int) - org.eclipse.ui.internal.WorkbenchPage
+									create() - org.eclipse.ui.dialogs.ElementTreeSelectionDialog
+									close() - org.eclipse.ui.internal.WorkbenchPage
+									createExtension(IConfigurationElement, String) - org.eclipse.ui.internal.WorkbenchPlugin
+									run() - org.eclipse.ui.internal.actions.DynamicHelpAction
+									widgetSelected(SelectionEvent) - org.eclipse.ui.internal.themes.ColorsAndFontsPreferencePage.hookListeners().new SelectionAdapter() {...}
+									createEditorTab(Editor) - org.eclipse.ui.internal.EditorManager
+									busyCursorWhile(Runnable, ProgressMonitorJobsDialog) - org.eclipse.ui.internal.progress.ProgressManager
+									openSystemExternalEditor(IPath) - org.eclipse.ui.internal.EditorManager
+									loadActiveSupport() - org.eclipse.ui.internal.browser.WorkbenchBrowserSupport
+							dispatchEventSynchronous(int, Object) - org.eclipse.osgi.framework.eventmgr.ListenerQueue
+								publishFrameworkEventPrivileged(FrameworkEvent) - org.eclipse.osgi.framework.internal.core.Framework
+									run() - org.eclipse.osgi.framework.internal.core.Framework.publishFrameworkEvent(...).new PrivilegedAction() {...}
+										call() - java.util.concurrent.Executors.PrivilegedActionAdapter
+									publishFrameworkEvent(int, Bundle, Throwable) - org.eclipse.osgi.framework.internal.core.Framework
+										setBundleStartLevel(Bundle, int) - org.eclipse.osgi.framework.internal.core.StartLevelManager
+										addHost(BundleLoaderProxy) - org.eclipse.osgi.framework.internal.core.BundleFragment
+										uninstallWorker(PrivilegedExceptionAction) - org.eclipse.osgi.framework.internal.core.AbstractBundle (2 matches)
+										getDefaultPermissions() - org.eclipse.osgi.framework.internal.core.PermissionAdminImpl
+										getService() - org.eclipse.osgi.framework.internal.core.ServiceUse (2 matches)
+										processDelta(BundleDelta[], boolean) - org.eclipse.osgi.framework.internal.core.PackageAdminImpl (3 matches)
+										commit(boolean) - org.eclipse.osgi.framework.adaptor.core.AbstractFrameworkAdaptor.updateBundle(...).new BundleOperation() {...}
+										installWorkerPrivileged(String, URLConnection, AccessControlContext) - org.eclipse.osgi.framework.internal.core.Framework
+										getPermissions(String) - org.eclipse.osgi.framework.internal.core.PermissionAdminImpl
+										findClassPathEntry(ArrayList, String, AbstractBundleData, ProtectionDomain) - org.eclipse.core.runtime.adaptor.EclipseClassLoader
+										checkConditionalPermissionInfo(ConditionalPermissionInfoImpl) - org.eclipse.osgi.framework.internal.core.ConditionalPermissions
+										getBundleLoader() - org.eclipse.osgi.framework.internal.core.BundleLoaderProxy
+										setStatus(int, boolean) - org.eclipse.osgi.framework.internal.core.AbstractBundle
+										suspendAllBundles(BundleRepository) - org.eclipse.osgi.framework.internal.core.StartLevelManager
+										updateWorker(PrivilegedExceptionAction) - org.eclipse.osgi.framework.internal.core.AbstractBundle (2 matches)
+										checkedOpen() - org.eclipse.osgi.framework.adaptor.core.BundleFile.ZipBundleFile
+										ConditionalPermissionAdminImpl(Framework, PermissionStorage) - org.eclipse.osgi.framework.internal.core.ConditionalPermissionAdminImpl
+										releaseService() - org.eclipse.osgi.framework.internal.core.ServiceUse
+										resumeBundles(AbstractBundle[], boolean) - org.eclipse.osgi.framework.internal.core.StartLevelManager
+										setResolved(BundleDescription) - org.eclipse.osgi.framework.internal.core.PackageAdminImpl
+										doSetStartLevel(int, AbstractBundle) - org.eclipse.osgi.framework.internal.core.StartLevelManager
+										createProtectionDomain(AbstractBundle) - org.eclipse.osgi.framework.internal.core.PermissionAdminImpl (2 matches)
+										getPermissionInfos(String) - org.eclipse.osgi.framework.internal.core.PermissionAdminImpl
+										doResolveBundles(AbstractBundle[], boolean) - org.eclipse.osgi.framework.internal.core.PackageAdminImpl
+										getLocations() - org.eclipse.osgi.framework.internal.core.PermissionAdminImpl
+										addConditionalPermissionInfo(ConditionInfo[], PermissionInfo[]) - org.eclipse.osgi.framework.internal.core.ConditionalPermissionAdminImpl
+										matchFilter() - org.eclipse.osgi.framework.internal.core.BundleNativeCode
+										DefaultClassLoader(ClassLoaderDelegate, ProtectionDomain, String[], ClassLoader, AbstractBundleData) - org.eclipse.osgi.framework.internal.defaultadaptor.DefaultClassLoader
+										createBCL(BundleProtectionDomain, String[]) - org.eclipse.osgi.framework.internal.core.BundleLoader
+										ungetService() - org.eclipse.osgi.framework.internal.core.ServiceUse
+										close() - org.eclipse.osgi.framework.internal.defaultadaptor.DefaultClassLoader.FragmentClasspath
+										shutdown() - org.eclipse.osgi.framework.internal.core.Framework (2 matches)
+										processFrameworkExtension(BundleData, byte) - org.eclipse.osgi.framework.adaptor.core.AbstractFrameworkAdaptor
+										getDevEntries(String, AbstractBundleData) - org.eclipse.osgi.framework.internal.defaultadaptor.DefaultClassLoader
+										initialize(FrameworkAdaptor) - org.eclipse.osgi.framework.internal.core.Framework
+										uninstallWorkerPrivileged() - org.eclipse.osgi.framework.internal.core.AbstractBundle
+										setDefaultPermissions(PermissionInfo[]) - org.eclipse.osgi.framework.internal.core.PermissionAdminImpl
+										suspendBundle(AbstractBundle, boolean) - org.eclipse.osgi.framework.internal.core.Framework
+										attachFragment(BundleData, ProtectionDomain, String[]) - org.eclipse.osgi.framework.internal.defaultadaptor.DefaultClassLoader
+										getExtensionFiles(BundleData) - org.eclipse.osgi.framework.adaptor.core.AbstractFrameworkAdaptor
+										setInitialBundleStartLevel(int) - org.eclipse.osgi.framework.internal.defaultadaptor.DefaultAdaptor
+										getHeaders(String) - org.eclipse.osgi.framework.internal.core.AbstractBundle
+										getClasspath(String, AbstractBundleData, ProtectionDomain) - org.eclipse.osgi.framework.internal.defaultadaptor.DefaultClassLoader (2 matches)
+										resumeBundle(AbstractBundle) - org.eclipse.osgi.framework.internal.core.Framework
+										close() - org.eclipse.osgi.framework.internal.defaultadaptor.DefaultClassLoader
+										updateWorkerPrivileged(URLConnection, AccessControlContext) - org.eclipse.osgi.framework.internal.core.AbstractBundle
+										incFWSL(int, AbstractBundle) - org.eclipse.osgi.framework.internal.core.StartLevelManager
+										createClassLoader() - org.eclipse.osgi.framework.internal.core.BundleLoader (2 matches)
+										dispatchEvent(Object, Object, int, Object) - org.eclipse.osgi.framework.internal.core.Framework
+										dispatchEvent(Object, Object, int, Object) - org.eclipse.osgi.framework.internal.core.BundleContextImpl
+										setPermissions(String, PermissionInfo[]) - org.eclipse.osgi.framework.internal.core.PermissionAdminImpl
+								publishServiceEventPrivileged(ServiceEvent) - org.eclipse.osgi.framework.internal.core.Framework (2 matches)
+									publishServiceEvent(int, ServiceReference) - org.eclipse.osgi.framework.internal.core.Framework
+										ServiceRegistrationImpl(BundleContextImpl, String[], Object, Dictionary) - org.eclipse.osgi.framework.internal.core.ServiceRegistrationImpl
+										setProperties(Dictionary) - org.eclipse.osgi.framework.internal.core.ServiceRegistrationImpl
+										unregister() - org.eclipse.osgi.framework.internal.core.ServiceRegistrationImpl
+									run() - org.eclipse.osgi.framework.internal.core.Framework.publishServiceEvent(...).new PrivilegedAction() {...}
+										call() - java.util.concurrent.Executors.PrivilegedActionAdapter
+								publishBundleEventPrivileged(BundleEvent) - org.eclipse.osgi.framework.internal.core.Framework (3 matches)
+									publishBundleEvent(int, Bundle) - org.eclipse.osgi.framework.internal.core.Framework
+										processDelta(BundleDelta[], boolean) - org.eclipse.osgi.framework.internal.core.PackageAdminImpl (2 matches)
+										updateWorker(PrivilegedExceptionAction) - org.eclipse.osgi.framework.internal.core.AbstractBundle
+										uninstallWorker(PrivilegedExceptionAction) - org.eclipse.osgi.framework.internal.core.AbstractBundle
+										doResolveBundles(AbstractBundle[], boolean) - org.eclipse.osgi.framework.internal.core.PackageAdminImpl (2 matches)
+										stopWorker(boolean) - org.eclipse.osgi.framework.internal.core.BundleHost
+										startWorker(boolean) - org.eclipse.osgi.framework.internal.core.BundleHost
+										installWorker(String, PrivilegedExceptionAction) - org.eclipse.osgi.framework.internal.core.Framework
+										uninstallWorkerPrivileged() - org.eclipse.osgi.framework.internal.core.AbstractBundle
+										updateWorkerPrivileged(URLConnection, AccessControlContext) - org.eclipse.osgi.framework.internal.core.AbstractBundle
+									run() - org.eclipse.osgi.framework.internal.core.Framework.publishBundleEvent(...).new PrivilegedAction() {...}
+										call() - java.util.concurrent.Executors.PrivilegedActionAdapter
+		getResourceBundle(Bundle) - org.eclipse.core.internal.runtime.InternalPlatform
+			getResourceBundle(Bundle) - org.eclipse.core.runtime.Platform
+
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.lang.RuntimePermission "createClassLoader";</LI>
+<LI>permission java.lang.RuntimePermission "getClassLoader";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/>
+As the code clip below illustrates, these permissions will only be required for the 2.1
+eclipse runtime environment.  Consequently, this can be ignored.
+
+	public static ResourceBundle getResourceBundle(Bundle bundle) throws MissingResourceException {
+		if (hasRuntime21(bundle))
+			return <font style="background-color:yellow;display;inline">ResourceBundle.getBundle("plugin", Locale.getDefault(), createTempClassloader(bundle)); //$NON-NLS-1$</font>
+		return localizationService.getLocalization(bundle, null);
+	}
+
+
+<HR/>
+</pre>
+</body></html>

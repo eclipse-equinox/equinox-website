@@ -1,0 +1,44 @@
+<html><head><title>Permission Analysis Report</title><script language='javaScript' src='linkUtil.js'></script></head><body>
+<h1>Permission Analysis Report</h1>
+<BR/><H2>Analysis of: org.eclipse.core.runtime</H2>
+<B>Detail</B><BR/><BR/>
+<pre>
+
+Class: <a href="foo" onClick="return openURLinSrc( 'Application/org/eclipse/core/runtime/Platform.html' )">org.eclipse.core.runtime.Platform</a> (Application)
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/runtime/Platform.html#L1301" , parent.fbot ); return false'>Line# 1306</a> boolean inDebugMode(  )
+   Permission: java.util.PropertyPermission "osgi.debug", "read"
+      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )
+<BR/><BR/><B>CODE</B><BR/><BR/>
+	public static boolean inDebugMode() {
+		return System.getProperty("osgi.debug") != null; //$NON-NLS-1$
+	}
+<B>Tainted variable reference trace:</B><BR/><BR/>
+N/A (Top level entry point) - No callers in workspace.
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "osgi.debug", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/>
+This seems a pretty standard requirement for most plug-in applications to make use of.   Add the permission
+to retrieve this permission to the default permissions assigned to bundles.
+e.g. org/eclipse/osgi/framework/internal/core/implied.permissions as:
+ "(permission java.util.PropertyPermission "osgi.debug", "read")"
+<HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/runtime/Platform.html#L1314" , parent.fbot ); return false'>Line# 1319</a> boolean inDevelopmentMode(  )
+   Permission: java.util.PropertyPermission "osgi.dev", "read"
+      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )
+<BR/><BR/><B>CODE</B><BR/><BR/>
+	public static boolean inDevelopmentMode() {
+		return System.getProperty("osgi.dev") != null; //$NON-NLS-1$
+	}
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "osgi.dev", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/>
+Again, this is a typical setting that any plug-in should be able to retrieve.  
+Add the permission to retrieve this permission to the default permissions assigned to bundles.
+e.g. org/eclipse/osgi/framework/internal/core/implied.permissions as:
+ "(permission java.util.PropertyPermission "osgi.dev", "read")"
+<HR/>
+</pre>
+</body></html>

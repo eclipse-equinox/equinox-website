@@ -1,0 +1,66 @@
+<html><head><title>Permission Analysis Report</title><script language='javaScript' src='linkUtil.js'></script></head><body>
+<h1>Permission Analysis Report</h1>
+<BR/><H2>Analysis of: org.eclipse.core.runtime</H2>
+<B>Detail</B><BR/><BR/>
+<pre>
+
+Class: <a href="foo" onClick="return openURLinSrc( 'Application/org/eclipse/core/internal/runtime/URLTool.html' )">org.eclipse.core.internal.runtime.URLTool</a> (Application)
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/URLTool.html#L181" , parent.fbot ); return false'>Line# 186</a> java.net.URL getParent( java.net.URL )
+   Permission: java.lang.RuntimePermission "getClassLoader"
+      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )
+   Permission: java.net.NetPermission "specifyStreamHandler"
+      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )
+<BR/><BR/><B>CODE</B><BR/><BR/>
+	public static URL getParent(URL url) {
+		String file = url.getFile();
+		int len = file.length();
+		if (len == 0 || len == 1 && file.charAt(0) == '/')
+			return null;
+		int lastSlashIndex = -1;
+		for (int i = len - 2; lastSlashIndex == -1 && i >= 0; --i) {
+			if (file.charAt(i) == '/')
+				lastSlashIndex = i;
+		}
+		if (lastSlashIndex == -1)
+			file = ""; //$NON-NLS-1$
+		else
+			file = file.substring(0, lastSlashIndex + 1);
+
+		try {
+			url = <font style="background-color:yellow;display;inline">new URL(url.getProtocol(), url.getHost(), url.getPort(), file);</font>
+		} catch (MalformedURLException e) {
+			Assert.isTrue(false, e.getMessage());
+		}
+		return url;
+	}
+
+<B>Tainted variable reference trace:</B><BR/><BR/>
+getParent(URL) - org.eclipse.core.internal.runtime.URLTool
+	getProtectionSpace(URL) - org.eclipse.core.internal.runtime.AuthorizationDatabase
+		getProtectionSpace(URL) - org.eclipse.core.internal.runtime.AuthorizationHandler
+			getProtectionSpace(URL) - org.eclipse.core.internal.runtime.InternalPlatform
+				getProtectionSpace(URL) - org.eclipse.core.runtime.Platform
+		addProtectionSpace(URL, String) - org.eclipse.core.internal.runtime.AuthorizationDatabase
+			addProtectionSpace(URL, String) - org.eclipse.core.internal.runtime.AuthorizationHandler
+				addProtectionSpace(URL, String) - org.eclipse.core.internal.runtime.InternalPlatform
+					addProtectionSpace(URL, String) - org.eclipse.core.runtime.Platform
+	addProtectionSpace(URL, String) - org.eclipse.core.internal.runtime.AuthorizationDatabase
+		addProtectionSpace(URL, String) - org.eclipse.core.internal.runtime.AuthorizationHandler
+			addProtectionSpace(URL, String) - org.eclipse.core.internal.runtime.InternalPlatform
+				addProtectionSpace(URL, String) - org.eclipse.core.runtime.Platform
+	getElements(URL) - org.eclipse.core.internal.runtime.URLTool
+		urlsOverlap(URL, URL) - org.eclipse.core.internal.runtime.URLTool (2 matches)
+
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.lang.RuntimePermission "getClassLoader";</LI>
+<LI>permission java.net.NetPermission "specifyStreamHandler";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/>
+The references to this method are all via add/getProtectionSpace(), and pass in a parent URL.
+The question is more one of should the construction of a new URL be allowed? 
+Additionally, this is a published public method.   Regardless, this resurects the
+issue of requiring "getClassLoader" just to create a URL.   Something *HAS* to be done
+to mitigate this problem.
+<HR/>
+</pre>
+</body></html>

@@ -1,0 +1,336 @@
+<html><head><title>Permission Analysis Report</title><script language='javaScript' src='linkUtil.js'></script></head><body>
+<h1>Permission Analysis Report</h1>
+<BR/><H2>Analysis of: org.eclipse.core.runtime</H2>
+<B>Detail</B><BR/><BR/>
+<pre>
+
+Class: <a href="foo" onClick="return openURLinSrc( 'Application/org/eclipse/core/internal/preferences/PreferencesService.html' )">org.eclipse.core.internal.preferences.PreferencesService</a> (Application)
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/internal/preferences/PreferencesService.html#L423" , parent.fbot ); return false'>Line# 428</a> org.eclipse.core.runtime.IStatus exportPreferences( org.eclipse.core.runtime.preferences.IEclipsePreferences, java.io.OutputStream, java.lang.String[] )
+   Permission: java.lang.RuntimePermission "getClassLoader"
+      Primordial/void java.util.Properties.store( java.io.OutputStream, java.lang.String )
+<BR/><BR/><B>CODE</B><BR/><BR/>
+	public IStatus exportPreferences(IEclipsePreferences node, OutputStream output, String[] excludesList) throws CoreException {
+		// TODO investigate refactoring to merge with new #export(IEclipsePreferences, IPreferenceFilter[]) APIs
+		if (node == null || output == null)
+			throw new IllegalArgumentException();
+		Properties properties = null;
+		if (excludesList == null)
+			excludesList = new String[0];
+		try {
+			properties = convertToProperties(node, excludesList);
+			if (properties.isEmpty())
+				return Status.OK_STATUS;
+			properties.put(VERSION_KEY, Float.toString(EXPORT_VERSION));
+			properties.put(EXPORT_ROOT_PREFIX + node.absolutePath(), EMPTY_STRING);
+		} catch (BackingStoreException e) {
+			throw new CoreException(createStatusError(e.getMessage(), e));
+		}
+		try {
+			<FONT style="background-color:yellow;display;inline">properties.store(output, null);</FONT>
+		} catch (IOException e) {
+			throw new CoreException(createStatusError(Messages.preferences_exportProblems, e));
+		}
+		return Status.OK_STATUS;
+	}
+
+<B>Tainted variable reference trace:</B><BR/><BR/>
+exportPreferences(IEclipsePreferences, OutputStream, String[]) - org.eclipse.core.internal.preferences.PreferencesService
+	appendUserPreferences(PrintWriter) - org.eclipse.ui.internal.about.ConfigurationLogDefaultSection
+		write(PrintWriter) - org.eclipse.ui.internal.about.ConfigurationLogDefaultSection
+			appendExtensions(PrintWriter) - org.eclipse.ui.internal.dialogs.AboutSystemDialog
+				getSystemSummary() - org.eclipse.ui.internal.dialogs.AboutSystemDialog
+					createDialogArea(Composite) - org.eclipse.ui.internal.dialogs.AboutSystemDialog
+						createContents(Composite) - org.eclipse.jface.dialogs.Dialog
+							run() - org.eclipse.jface.preference.PreferenceDialog.createContents(...).new Runnable() {...}
+								startLWModal() - java.awt.Container
+								run() - com.sun.jmx.snmp.tasks.ThreadService.ExecutorThread
+								preservingSelection(Runnable) - org.eclipse.jface.viewers.StructuredViewer
+								bundleChanged(BundleEvent) - org.eclipse.ui.internal.registry.InstanceTracker.listener.new BundleListener() {...}
+								runTask(Runnable) - java.util.concurrent.ThreadPoolExecutor.Worker
+								render(Runnable) - javax.swing.text.AbstractDocument
+								runTest(Runnable) - org.eclipse.ui.testing.TestableObject
+								show() - java.awt.Dialog
+								run() - javax.swing.text.LayoutQueue.LayoutThread
+								doPendingWork() - org.eclipse.ui.internal.UILockListener
+								run(String[], Runnable) - org.eclipse.core.runtime.adaptor.EclipseStarter
+								getDevice() - org.eclipse.swt.graphics.Device
+								run() - org.eclipse.swt.widgets.RunnableLock
+								runTimer(int) - org.eclipse.swt.widgets.Display
+								release() - org.eclipse.swt.widgets.Display
+								dispose() - org.eclipse.jface.resource.ResourceManager
+								showWhile(Display, Runnable) - org.eclipse.swt.custom.BusyIndicator (2 matches)
+								release() - org.eclipse.swt.widgets.Display
+								run() - org.eclipse.core.runtime.adaptor.EclipseStarter.publishSplashScreen(...).new Runnable() {...}
+								rejectedExecution(Runnable, ThreadPoolExecutor) - java.util.concurrent.ThreadPoolExecutor.CallerRunsPolicy
+								windowProc(int, int, int, int) - org.eclipse.swt.internal.BidiUtil
+								getDevice() - org.eclipse.swt.graphics.Device
+								run() - java.lang.Thread
+								processRunnableEvent(RunnableEvent) - javax.swing.SystemEventQueueUtilities (2 matches)
+								dispatch() - java.awt.event.InvocationEvent (2 matches)
+								newThread(Runnable) - java.util.concurrent.Executors.PrivilegedThreadFactory
+								run() - org.eclipse.swt.widgets.RunnableLock
+								runTimer(int) - org.eclipse.swt.widgets.Display
+								dowait(boolean, long) - java.util.concurrent.CyclicBarrier
+								syncExec(Runnable) - org.eclipse.swt.widgets.Synchronizer
+								run() - org.eclipse.core.internal.runtime.InternalPlatform.run(...).new ISafeRunnable() {...}
+								windowProc(int, int, int, int) - org.eclipse.swt.internal.BidiUtil
+								showWhile(Display, Runnable) - org.eclipse.swt.custom.BusyIndicator (2 matches)
+								syncExec(Runnable) - org.eclipse.swt.widgets.Synchronizer
+								doPrivileged(Runnable) - javax.swing.colorchooser.SyntheticImageGenerator
+								call() - java.util.concurrent.Executors.RunnableAdapter
+							createContents(Composite) - org.eclipse.ui.internal.dialogs.WorkingSetSelectionDialog
+								create() - org.eclipse.jface.window.Window
+							create() - org.eclipse.jface.window.Window
+								busyOpenWorkbenchWindow(String, IAdaptable) - org.eclipse.ui.internal.Workbench
+								create() - org.eclipse.jface.dialogs.Dialog
+								run() - org.eclipse.ui.internal.actions.EditWorkingSetAction
+								createDialogOn(Shell, String, IAdaptable) - org.eclipse.ui.internal.dialogs.PropertyDialog
+								aboutToRun() - org.eclipse.jface.dialogs.ProgressMonitorDialog
+								run() - org.eclipse.ui.actions.ExportResourcesAction
+								run() - org.eclipse.ui.actions.ImportResourcesAction
+								createWorkingSet() - org.eclipse.ui.internal.dialogs.WorkingSetSelectionDialog
+								open() - org.eclipse.ui.internal.keys.KeyAssistDialog
+								restoreState(IMemento) - org.eclipse.ui.internal.Workbench
+								open() - org.eclipse.jface.window.Window
+								editSelectedWorkingSet() - org.eclipse.ui.internal.dialogs.WorkingSetSelectionDialog
+								run() - org.eclipse.ui.internal.actions.NewWizardShortcutAction
+								run() - org.eclipse.ui.actions.NewWizardAction
+								restoreWorkbenchWindow(IMemento) - org.eclipse.ui.internal.Workbench
+								createDialogOn(Shell, String) - org.eclipse.ui.internal.dialogs.WorkbenchPreferenceDialog
+						createDialogAndButtonArea(Composite) - org.eclipse.jface.dialogs.IconAndMessageDialog
+							createContents(Composite) - org.eclipse.jface.dialogs.IconAndMessageDialog
+								create() - org.eclipse.jface.window.Window
+									busyOpenWorkbenchWindow(String, IAdaptable) - org.eclipse.ui.internal.Workbench
+									run() - org.eclipse.ui.internal.actions.EditWorkingSetAction
+									create() - org.eclipse.jface.dialogs.Dialog
+									createDialogOn(Shell, String, IAdaptable) - org.eclipse.ui.internal.dialogs.PropertyDialog
+									aboutToRun() - org.eclipse.jface.dialogs.ProgressMonitorDialog
+									run() - org.eclipse.ui.actions.ExportResourcesAction
+									run() - org.eclipse.ui.actions.ImportResourcesAction
+									createWorkingSet() - org.eclipse.ui.internal.dialogs.WorkingSetSelectionDialog
+									restoreState(IMemento) - org.eclipse.ui.internal.Workbench
+									open() - org.eclipse.ui.internal.keys.KeyAssistDialog
+									open() - org.eclipse.jface.window.Window
+									run() - org.eclipse.ui.internal.actions.NewWizardShortcutAction
+									editSelectedWorkingSet() - org.eclipse.ui.internal.dialogs.WorkingSetSelectionDialog
+									run() - org.eclipse.ui.actions.NewWizardAction
+									restoreWorkbenchWindow(IMemento) - org.eclipse.ui.internal.Workbench
+									createDialogOn(Shell, String) - org.eclipse.ui.internal.dialogs.WorkbenchPreferenceDialog
+							createDialogAndButtonArea(Composite) - org.eclipse.jface.dialogs.ErrorDialog
+								createContents(Composite) - org.eclipse.jface.dialogs.IconAndMessageDialog
+									create() - org.eclipse.jface.window.Window
+										busyOpenWorkbenchWindow(String, IAdaptable) - org.eclipse.ui.internal.Workbench
+										run() - org.eclipse.ui.internal.actions.EditWorkingSetAction
+										create() - org.eclipse.jface.dialogs.Dialog
+										createDialogOn(Shell, String, IAdaptable) - org.eclipse.ui.internal.dialogs.PropertyDialog
+										aboutToRun() - org.eclipse.jface.dialogs.ProgressMonitorDialog
+										run() - org.eclipse.ui.actions.ExportResourcesAction
+										run() - org.eclipse.ui.actions.ImportResourcesAction
+										createWorkingSet() - org.eclipse.ui.internal.dialogs.WorkingSetSelectionDialog
+										restoreState(IMemento) - org.eclipse.ui.internal.Workbench
+										open() - org.eclipse.ui.internal.keys.KeyAssistDialog
+										open() - org.eclipse.jface.window.Window
+										run() - org.eclipse.ui.internal.actions.NewWizardShortcutAction
+										editSelectedWorkingSet() - org.eclipse.ui.internal.dialogs.WorkingSetSelectionDialog
+										run() - org.eclipse.ui.actions.NewWizardAction
+										restoreWorkbenchWindow(IMemento) - org.eclipse.ui.internal.Workbench
+										createDialogOn(Shell, String) - org.eclipse.ui.internal.dialogs.WorkbenchPreferenceDialog
+	internalExport(IEclipsePreferences, IPreferenceFilter[], OutputStream) - org.eclipse.core.internal.preferences.PreferencesService
+		exportPreferences(IEclipsePreferences, IPreferenceFilter[], OutputStream) - org.eclipse.core.internal.preferences.PreferencesService
+	exportPreferences(IPath) - org.eclipse.core.runtime.Preferences
+
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.lang.RuntimePermission "getClassLoader";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/>
+Wrap this in a privileged action.  The properties can only be written to the supplied output stream if the caller was authorized to open 
+the output stream in write mode. See illustration below:
+<BR/>
+public IStatus exportPreferences(IEclipsePreferences node, OutputStream output, String[] excludesList) throws CoreException {
+		// TODO investigate refactoring to merge with new #export(IEclipsePreferences, IPreferenceFilter[]) APIs
+		if (node == null || output == null)
+			throw new IllegalArgumentException();
+		Properties properties = null;
+		if (excludesList == null)
+			excludesList = new String[0];
+		try {
+			properties = convertToProperties(node, excludesList);
+			if (properties.isEmpty())
+				return Status.OK_STATUS;
+			properties.put(VERSION_KEY, Float.toString(EXPORT_VERSION));
+			properties.put(EXPORT_ROOT_PREFIX + node.absolutePath(), EMPTY_STRING);
+		} catch (BackingStoreException e) {
+			throw new CoreException(createStatusError(e.getMessage(), e));
+		}
+		try {
+			<FONT style="background-color:yellow;display;inline">if (System.getSecurityManager()==null)
+			{</FONT>
+			  properties.store(output, null);
+			<FONT style="background-color:yellow;display;inline">} else
+			{
+				AccessController.doPrivileged(new PropertyStoreAction(properties,output,null));
+			}</FONT>
+		} catch (IOException e) {
+			throw new CoreException(createStatusError(Messages.preferences_exportProblems, e));
+		}<FONT style="background-color:yellow;display;inline"> catch (PrivilegedActionException pae)
+		{
+			throw new CoreException(createStatusError(Messages.preferences_exportProblems, pae.getException()));
+		}</FONT>
+		return Status.OK_STATUS;
+	}
+<BR/>
+Add the following helper class to support the above code change:
+<BR/>
+<FONT style="color:blue;display;inline">/*******************************************************************************
+ * Copyright (c) 2004 IBM Corporation and others.
+ * All rights reserved. This program and the accompanying materials 
+ * are made available under the terms of the Common Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/cpl-v10.html
+ * 
+ * Contributors:
+ *     IBM Corporation - initial API and implementation
+ *******************************************************************************/</FONT>
+
+package org.eclipse.core.internal.security;
+
+import java.io.IOException;
+import java.io.OutputStream;
+import java.security.PrivilegedExceptionAction;
+import java.util.Properties;
+<FONT style="color:blue;display;inline">
+/**
+ * @author habeck
+ *
+ * Created: Dec 8, 2004 6:36:33 PM
+ * 
+ */</FONT>
+public final class PropertyStoreAction implements PrivilegedExceptionAction
+{
+  private Properties toDisk;
+  private OutputStream os;
+  private String header;
+  public PropertyStoreAction(Properties props, OutputStream out, String propertyHeader)
+  {
+    toDisk = props;
+    os = out;
+    header = propertyHeader;
+  }
+  public Object run() throws IOException
+  {
+    toDisk.store(os,header);
+    return null;
+  }
+}
+
+<HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/internal/preferences/PreferencesService.html#L660" , parent.fbot ); return false'>Line# 665</a> org.eclipse.core.runtime.preferences.IExportedPreferences readPreferences( java.io.InputStream )
+   Permission: java.lang.RuntimePermission "getClassLoader"
+      Primordial/void java.util.Properties.load( java.io.InputStream )
+   Permission: java.util.PropertyPermission "java.vendor.url.bug", "read"
+      Primordial/void java.util.Properties.load( java.io.InputStream )
+<BR/><BR/><B>CODE</B><BR/><BR/>
+public IExportedPreferences readPreferences(InputStream input) throws CoreException {
+		if (input == null)
+			throw new IllegalArgumentException();
+
+		if (InternalPlatform.DEBUG_PREFERENCE_GENERAL)
+			Policy.debug("Reading preferences from stream..."); //$NON-NLS-1$
+
+		// read the file into a properties object
+		Properties properties = new Properties();
+		try {
+			<FONT style="background-color:yellow;display;inline">properties.load(input);</FONT>
+		} catch (IOException e) {
+			throw new CoreException(createStatusError(Messages.preferences_importProblems, e));
+		} finally {
+			try {
+				input.close();
+			} catch (IOException e) {
+				// ignore
+			}
+		}
+
+		// manipulate the file if it from a legacy preference export
+		if (isLegacy(properties)) {
+			if (InternalPlatform.DEBUG_PREFERENCE_GENERAL)
+				Policy.debug("Read legacy preferences file, converting to 3.0 format..."); //$NON-NLS-1$
+			properties = convertFromLegacy(properties);
+		} else {
+			if (InternalPlatform.DEBUG_PREFERENCE_GENERAL)
+				Policy.debug("Read preferences file."); //$NON-NLS-1$
+			properties.remove(VERSION_KEY);
+		}
+
+		// convert the Properties object into an object to return
+		return convertFromProperties(properties);
+	}
+<B>Tainted variable reference trace:</B><BR/><BR/>
+readPreferences(InputStream) - org.eclipse.core.internal.preferences.PreferencesService
+	validateVersions(IPath) - org.eclipse.core.internal.preferences.PreferencesService
+		validatePreferenceVersions(IPath) - org.eclipse.core.runtime.Preferences
+	importPreferences(InputStream) - org.eclipse.core.internal.preferences.PreferencesService
+		importPreferences(IPath) - org.eclipse.core.runtime.Preferences
+
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.lang.RuntimePermission "getClassLoader";</LI>
+<LI>permission java.util.PropertyPermission "java.vendor.url.bug", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/>
+The caller must have had R/O access to the specified input file to construct and open the input stream object.  Wrap the property loading call as illustrated below
+and grant the required permissions to the org.eclipse.core.runtime plug-in via it's META-INF/permissions.perm file.
+<BR/>
+	public IExportedPreferences readPreferences(InputStream input) throws CoreException {
+		if (input == null)
+			throw new IllegalArgumentException();
+
+		if (InternalPlatform.DEBUG_PREFERENCE_GENERAL)
+			Policy.debug("Reading preferences from stream..."); //$NON-NLS-1$
+
+		// read the file into a properties object
+		Properties properties = new Properties();
+		try {
+			<FONT style="background-color:yellow;display;inline">if (System.getSecurityManager()==null)</FONT>
+			   properties.load(input);
+			<FONT style="background-color:yellow;display;inline">else
+			   AccessController.doPrivileged(new PropertyLoadAction(input,properties));</FONT>
+		} catch (IOException e) {
+			throw new CoreException(createStatusError(Messages.preferences_importProblems, e));
+		} <FONT style="background-color:yellow;display;inline">catch (PrivilegedActionException pae) {
+			throw new CoreException(createStatusError(Messages.preferences_importProblems, pae.getException()));
+		}</FONT> finally {
+			try {
+				input.close();
+			} catch (IOException e) {
+				// ignore
+			}
+		}
+
+		// manipulate the file if it from a legacy preference export
+		if (isLegacy(properties)) {
+			if (InternalPlatform.DEBUG_PREFERENCE_GENERAL)
+				Policy.debug("Read legacy preferences file, converting to 3.0 format..."); //$NON-NLS-1$
+			properties = convertFromLegacy(properties);
+		} else {
+			if (InternalPlatform.DEBUG_PREFERENCE_GENERAL)
+				Policy.debug("Read preferences file."); //$NON-NLS-1$
+			properties.remove(VERSION_KEY);
+		}
+
+		// convert the Properties object into an object to return
+		return convertFromProperties(properties);
+	}
+<HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/internal/preferences/PreferencesService.html#L771" , parent.fbot ); return false'>Line# 776</a> org.eclipse.core.runtime.IStatus validateVersions( org.eclipse.core.runtime.IPath )
+<BR/><BR/><B>CODE</B><BR/><BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+validateVersions(IPath) - org.eclipse.core.internal.preferences.PreferencesService
+	validatePreferenceVersions(IPath) - org.eclipse.core.runtime.Preferences
+<BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/>
+Grant the required permission to the org.eclipse.core.runtime plug-in only. Do not wrap this operation in a privileged action. All users of this public method must have the associated read permission for the specified file.
+<HR/>
+</pre>
+</body></html>

@@ -1,0 +1,873 @@
+<html><head><title>Permission Analysis Report</title><script language='javaScript' src='linkUtil.js'></script></head><body>
+<h1>Permission Analysis Report</h1>
+<BR/><H2>Analysis of: org.eclipse.core.runtime</H2>
+<B>Detail</B><BR/><BR/>
+<pre>
+
+Class: <a href="foo" onClick="return openURLinSrc( 'Application/org/eclipse/core/internal/runtime/InternalPlatform.html' )">org.eclipse.core.internal.runtime.InternalPlatform</a> (Application)
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/InternalPlatform.html#L227" , parent.fbot ); return false'>Line# 232</a> void endSplash(  )
+   Permission: java.util.PropertyPermission "eclipse.startTime", "read"
+      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )
+<BR/><BR/><B>CODE</B><BR/><BR/>
+	public void endSplash() {
+		if (DEBUG) {
+			//This value is only relevant if the workspace chooser is not used.
+			<font style="background-color:yellow;display;inline">String startString = System.getProperty("eclipse.startTime"); //$NON-NLS-1$</font>
+			if (startString != null)
+				try {
+					long start = Long.parseLong(startString);
+					long end = System.currentTimeMillis();
+					System.out.println("Startup complete: " + (end - start) + "ms"); //$NON-NLS-1$ //$NON-NLS-2$
+				} catch (NumberFormatException e) {
+					//this is just debugging code -- ok to swallow exception
+				}
+		}
+		if (splashDown)
+			return;
+		splashDown = true;
+		run(endOfInitializationHandler);
+	}
+
+<B>Tainted variable reference trace:</B><BR/><BR/>
+endSplash() - org.eclipse.core.internal.runtime.InternalPlatform
+	endSplash() - org.eclipse.core.runtime.Platform
+		runUI() - org.eclipse.ui.internal.Workbench
+			createAndRunWorkbench(Display, WorkbenchAdvisor) - org.eclipse.ui.internal.Workbench
+				createAndRunWorkbench(Display, WorkbenchAdvisor) - org.eclipse.ui.PlatformUI
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "eclipse.startTime", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/>
+This seems a pretty standard requirement for most plug-in applications to make use of.   Add the permission
+to retrieve this permission to the default permissions assigned to bundles.
+e.g. org/eclipse/osgi/framework/internal/core/implied.permissions as:
+ "(permission java.util.PropertyPermission "eclipse.startTime", "read")"
+
+<HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/InternalPlatform.html#L445" , parent.fbot ); return false'>Line# 450</a> java.lang.String getNL(  )
+   Permission: java.util.PropertyPermission "osgi.nl", "read"
+      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )
+<BR/><BR/><B>CODE</B><BR/><BR/>
+	public String getNL() {
+		return <font style="background-color:yellow;display;inline">System.getProperty(PROP_NL);</font>
+	}
+<B>Tainted variable reference trace:</B><BR/><BR/>
+getNL() - org.eclipse.core.internal.runtime.InternalPlatform
+	NL_JAR_VARIANTS - org.eclipse.core.internal.runtime.FindSupport
+	checkCacheValidity(DataInputStream, long) - org.eclipse.core.internal.registry.TableReader
+		loadTables(long) - org.eclipse.core.internal.registry.TableReader
+			init(long) - org.eclipse.core.internal.registry.RegistryObjectManager
+				ExtensionRegistry() - org.eclipse.core.internal.registry.ExtensionRegistry
+					startRegistry(BundleContext) - org.eclipse.core.internal.runtime.PlatformActivator
+						start(BundleContext) - org.eclipse.core.internal.runtime.PlatformActivator
+							run() - org.eclipse.osgi.framework.internal.core.BundleContextImpl.startActivator(...).new PrivilegedExceptionAction() {...}
+	getNL() - org.eclipse.core.runtime.Platform
+		getInputStream() - org.eclipse.help.internal.context.ContextsFile
+			parse(ContextsFile) - org.eclipse.help.internal.context.ContextsFileParser
+				build(ContextsFile) - org.eclipse.help.internal.context.ContextsBuilder
+					build(ContextsBuilder) - org.eclipse.help.internal.context.ContextsFile
+						build(List) - org.eclipse.help.internal.context.ContextsBuilder
+							loadPluginContexts(String) - org.eclipse.help.internal.context.ContextManager
+								getContext(String) - org.eclipse.help.internal.context.ContextManager
+									getContext(String) - org.eclipse.help.HelpSystem
+										helpRequested(HelpEvent) - org.eclipse.ui.internal.help.WorkbenchHelpSystem.setHelp(...).new HelpListener() {...}
+										displayHelp(String) - org.eclipse.ui.internal.help.WorkbenchHelpSystem
+										displayContext(String, int, int) - org.eclipse.ui.internal.help.WorkbenchHelpSystem.CompatibilityIHelpImplementation
+										helpRequested(HelpEvent) - org.eclipse.ui.internal.help.WorkbenchHelpSystem.WorkbenchHelpListener (3 matches)
+										helpRequested(HelpEvent) - org.eclipse.ui.internal.help.WorkbenchHelpSystem.setHelp(...).new HelpListener() {...}
+										helpRequested(HelpEvent) - org.eclipse.ui.internal.help.WorkbenchHelpSystem.setHelp(...).new HelpListener() {...}
+										helpRequested(HelpEvent) - org.eclipse.ui.internal.help.WorkbenchHelpSystem.createHelpListener(...).new HelpListener() {...}
+										getContext(String) - org.eclipse.ui.internal.help.WorkbenchHelpSystem.CompatibilityIHelpImplementation
+								addContext(IContext) - org.eclipse.help.internal.context.ContextManager
+		getTocs() - org.eclipse.help.HelpSystem
+			getTocs() - org.eclipse.ui.internal.help.WorkbenchHelpSystem.CompatibilityIHelpImplementation
+		getDefaultLocale() - org.eclipse.help.internal.HelpResources
+		getLocale() - org.eclipse.help.internal.protocols.HelpURLConnection
+			getInputStream() - org.eclipse.help.internal.protocols.HelpURLConnection (3 matches)
+				getResponseCode() - java.net.HttpURLConnection
+					getResponseMessage() - java.net.HttpURLConnection
+					getStream(URL) - javax.swing.JEditorPane
+						setPage(URL) - javax.swing.JEditorPane
+							JEditorPane(URL) - javax.swing.JEditorPane
+							actionPerformed(ActionEvent) - javax.swing.text.html.IsindexView
+								selectWord(MouseEvent) - javax.swing.text.DefaultCaret
+									mouseClicked(MouseEvent) - javax.swing.text.DefaultCaret
+										processMouseEvent(MouseEvent) - java.awt.Component
+										mouseClicked(MouseEvent) - java.awt.AWTEventMulticaster (2 matches)
+									mousePressed(MouseEvent) - javax.swing.text.DefaultCaret
+										processMouseEvent(MouseEvent) - java.awt.Component
+										mousePressed(MouseEvent) - java.awt.AWTEventMulticaster (2 matches)
+								actionPerformed(ActionEvent) - javax.swing.JComponent.ActionStandin
+									selectWord(MouseEvent) - javax.swing.text.DefaultCaret
+									actionPerformed(ActionEvent) - javax.swing.JComponent.ActionStandin
+									processActionEvent(ActionEvent) - java.awt.MenuItem
+									print(PrintMode, MessageFormat, MessageFormat, boolean, PrintRequestAttributeSet, boolean) - javax.swing.JTable
+									actionPerformed(ActionEvent) - javax.swing.plaf.basic.BasicTextUI.TextActionWrapper
+									fireActionPerformed(ActionEvent) - javax.swing.DefaultButtonModel
+									fireActionPerformed(ActionEvent) - javax.swing.Timer
+									processActionEvent(ActionEvent) - java.awt.TextField
+									actionPerformed(ActionEvent) - java.awt.AWTEventMulticaster (2 matches)
+									actionPerformed(ActionEvent) - javax.swing.plaf.basic.BasicComboBoxUI.Actions
+									playSound(Action) - javax.swing.plaf.basic.BasicLookAndFeel
+									invokeAction(String, Action) - javax.swing.text.JTextComponent
+									fireActionEvent() - javax.swing.JComboBox
+									assembleSystemMenu() - com.sun.java.swing.plaf.motif.MotifInternalFrameTitlePane
+									mapCommittedTextToAction(String) - javax.swing.text.JTextComponent
+									processActionEvent(ActionEvent) - java.awt.Button
+									fireActionPerformed() - javax.swing.JTextField
+									actionPerformed(ActionEvent) - javax.swing.text.DefaultEditorKit.SelectLineAction (2 matches)
+									processActionEvent(ActionEvent) - java.awt.List
+									notifyAction(Action, KeyStroke, KeyEvent, Object, int) - javax.swing.SwingUtilities
+									actionPerformed(ActionEvent) - javax.swing.text.DefaultEditorKit.SelectWordAction (2 matches)
+									fireActionPerformed(ActionEvent) - javax.swing.AbstractButton
+									fireActionPerformed(String) - javax.swing.JFileChooser
+									actionPerformed(ActionEvent) - javax.swing.plaf.basic.BasicComboBoxUI.Handler
+									mouseClicked(MouseEvent) - javax.swing.text.DefaultCaret
+									actionPerformed(ActionEvent) - javax.swing.text.DefaultEditorKit.SelectParagraphAction (2 matches)
+									doAccessibleAction(int) - javax.swing.text.JTextComponent.AccessibleJTextComponent
+									actionPerformed(ActionEvent) - javax.swing.plaf.basic.BasicTabbedPaneUI.ScrollableTabSupport
+								processActionEvent(ActionEvent) - java.awt.MenuItem
+								print(PrintMode, MessageFormat, MessageFormat, boolean, PrintRequestAttributeSet, boolean) - javax.swing.JTable
+								actionPerformed(ActionEvent) - javax.swing.plaf.basic.BasicTextUI.TextActionWrapper
+								fireActionPerformed(ActionEvent) - javax.swing.DefaultButtonModel
+								fireActionPerformed(ActionEvent) - javax.swing.Timer
+								processActionEvent(ActionEvent) - java.awt.TextField
+								actionPerformed(ActionEvent) - java.awt.AWTEventMulticaster (2 matches)
+								actionPerformed(ActionEvent) - javax.swing.plaf.basic.BasicComboBoxUI.Actions
+								playSound(Action) - javax.swing.plaf.basic.BasicLookAndFeel
+								invokeAction(String, Action) - javax.swing.text.JTextComponent
+								fireActionEvent() - javax.swing.JComboBox
+								assembleSystemMenu() - com.sun.java.swing.plaf.motif.MotifInternalFrameTitlePane
+								mapCommittedTextToAction(String) - javax.swing.text.JTextComponent
+								processActionEvent(ActionEvent) - java.awt.Button
+								fireActionPerformed() - javax.swing.JTextField
+								actionPerformed(ActionEvent) - javax.swing.text.DefaultEditorKit.SelectLineAction (2 matches)
+								processActionEvent(ActionEvent) - java.awt.List
+								notifyAction(Action, KeyStroke, KeyEvent, Object, int) - javax.swing.SwingUtilities
+								actionPerformed(ActionEvent) - javax.swing.text.DefaultEditorKit.SelectWordAction (2 matches)
+								fireActionPerformed(ActionEvent) - javax.swing.AbstractButton
+								fireActionPerformed(String) - javax.swing.JFileChooser
+								actionPerformed(ActionEvent) - javax.swing.plaf.basic.BasicComboBoxUI.Handler
+								mouseClicked(MouseEvent) - javax.swing.text.DefaultCaret
+								actionPerformed(ActionEvent) - javax.swing.text.DefaultEditorKit.SelectParagraphAction (2 matches)
+								doAccessibleAction(int) - javax.swing.text.JTextComponent.AccessibleJTextComponent
+								actionPerformed(ActionEvent) - javax.swing.plaf.basic.BasicTabbedPaneUI.ScrollableTabSupport
+							createComponent() - javax.swing.text.html.FrameView
+							run() - javax.swing.text.html.FormView.SubmitThread
+							changedUpdate(DocumentEvent, Shape, ViewFactory) - javax.swing.text.html.FrameView
+							setPage(String) - javax.swing.JEditorPane
+							hyperlinkUpdate(HyperlinkEvent) - javax.swing.text.html.FrameView (2 matches)
+						getStream(URL) - javax.swing.JEditorPane
+				openStream() - java.net.URL
+				getContent(URLConnection) - org.eclipse.osgi.framework.internal.protocol.ContentHandlerProxy.DefaultContentHandler
+				begin() - org.eclipse.osgi.framework.adaptor.core.AbstractFrameworkAdaptor.updateBundle(...).new BundleOperation() {...}
+				getSourceLine(String, int) - com.sun.org.apache.xml.internal.utils.ListingErrorHandler
+				getStream(URL) - javax.swing.JEditorPane
+				openFromZip(Bundle, String, String, String) - org.eclipse.help.internal.util.ResourceLocator
+				getContent(Class[]) - java.net.URLConnection
+				getInputStream() - org.eclipse.core.internal.boot.PlatformURLConnection
+				parse(URL) - javax.management.loading.MLetParser
+				getContent(URLConnection) - java.net.UnknownContentHandler
+				getReader(XMLInputSource) - com.sun.org.apache.xerces.internal.xinclude.XIncludeTextReader
+				begin() - org.eclipse.osgi.framework.adaptor.core.AbstractFrameworkAdaptor.installBundle(...).new BundleOperation() {...}
+				read(InputStream, Document) - javax.swing.JEditorPane
+				setupCurrentEntity(String, XMLInputSource, boolean, boolean) - com.sun.org.apache.xerces.internal.impl.XMLEntityManager
+				getContent() - java.net.URLConnection
+		getPathPrefix(String) - org.eclipse.help.internal.util.ResourceLocator
+		openFromProducer(Bundle, String, String) - org.eclipse.help.internal.util.ResourceLocator
+		TocManager() - org.eclipse.help.internal.toc.TocManager
+	writeCacheHeader(DataOutputStream, long) - org.eclipse.core.internal.registry.TableWriter
+		saveTables(RegistryObjectManager, long) - org.eclipse.core.internal.registry.TableWriter
+			saveExtensionRegistry(RegistryObjectManager, long) - org.eclipse.core.internal.registry.TableWriter
+				saveCache(RegistryObjectManager, long) - org.eclipse.core.internal.registry.TableWriter
+					stop() - org.eclipse.core.internal.registry.ExtensionRegistry
+						stopRegistry(BundleContext) - org.eclipse.core.internal.runtime.PlatformActivator
+							stop(BundleContext) - org.eclipse.core.internal.runtime.PlatformActivator
+								run() - org.eclipse.osgi.framework.internal.core.BundleContextImpl.stop().new PrivilegedExceptionAction() {...}
+									call() - java.util.concurrent.Executors.PrivilegedExceptionActionAdapter
+
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "osgi.nl", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/>
+This seems a pretty standard requirement for most plug-in applications to make use of.   Add the permission
+to retrieve this permission to the default permissions assigned to bundles.
+e.g. org/eclipse/osgi/framework/internal/core/implied.permissions as:
+ "(permission java.util.PropertyPermission "osgi.nl", "read")"
+
+<HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/InternalPlatform.html#L458" , parent.fbot ); return false'>Line# 463</a> java.lang.String getOS(  )
+   Permission: java.util.PropertyPermission "osgi.os", "read"
+      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )
+<BR/><BR/><B>CODE</B><BR/><BR/>
+	public String getOS() {
+		return System.getProperty(PROP_OS);
+	}
+<B>Tainted variable reference trace:</B><BR/><BR/>
+getOS() - org.eclipse.core.internal.runtime.InternalPlatform
+	getOS() - org.eclipse.core.runtime.Platform
+		getPathPrefix(String) - org.eclipse.help.internal.util.ResourceLocator
+		getBestPlatformMatch(IConfigurationElement[]) - org.eclipse.ui.internal.themes.ThemeRegistryReader
+	checkCacheValidity(DataInputStream, long) - org.eclipse.core.internal.registry.TableReader
+		loadTables(long) - org.eclipse.core.internal.registry.TableReader
+	writeCacheHeader(DataOutputStream, long) - org.eclipse.core.internal.registry.TableWriter
+		saveTables(RegistryObjectManager, long) - org.eclipse.core.internal.registry.TableWriter
+	findOS(Bundle, IPath, Map) - org.eclipse.core.internal.runtime.FindSupport
+		find(Bundle, IPath, Map) - org.eclipse.core.internal.runtime.FindSupport
+			find(IPath, Map) - org.eclipse.core.runtime.Plugin
+			find(Bundle, IPath, Map) - org.eclipse.core.internal.runtime.InternalPlatform
+			find(Bundle, IPath) - org.eclipse.core.internal.runtime.FindSupport
+				openStream(Bundle, IPath, boolean) - org.eclipse.core.internal.runtime.FindSupport
+				find(Bundle, IPath) - org.eclipse.core.internal.runtime.InternalPlatform
+			find(Bundle, IPath, Map) - org.eclipse.core.runtime.Platform
+				getMoreInfoURL(AboutBundleData, boolean) - org.eclipse.ui.internal.dialogs.AboutPluginsDialog
+				createExtraTopics() - org.eclipse.help.internal.toc.DirectoryToc (2 matches)
+			find(IPath) - org.eclipse.core.runtime.Plugin
+			find(Bundle, IPath) - org.eclipse.core.runtime.Platform
+				getUrl(String, Bundle) - org.eclipse.ui.internal.BrandingProperties
+				find(Bundle, IPath, ArrayList) - org.eclipse.help.internal.util.ResourceLocator
+				getPluginURL(String) - org.eclipse.ui.internal.part.services.PluginResources
+				applyProductDefaults() - org.eclipse.core.internal.preferences.DefaultPreferences (4 matches)
+				find(Bundle, String) - org.eclipse.ui.internal.util.BundleUtility
+				openFromZip(Bundle, String, String, String) - org.eclipse.help.internal.util.ResourceLocator
+				applyBundleDefaults() - org.eclipse.core.internal.preferences.DefaultPreferences (2 matches)
+					loadDefaults() - org.eclipse.core.internal.preferences.DefaultPreferences
+						load() - org.eclipse.core.internal.preferences.DefaultPreferences
+							sync() - org.eclipse.core.internal.preferences.EclipsePreferences
+								sync() - org.eclipse.core.internal.preferences.RootPreferences
+									sync() - org.eclipse.core.internal.preferences.RootPreferences
+									sync() - org.eclipse.ui.internal.preferences.WorkingCopyPreferences
+										sync() - org.eclipse.core.internal.preferences.RootPreferences
+										sync() - org.eclipse.ui.internal.preferences.WorkingCopyPreferences
+								sync() - org.eclipse.ui.internal.preferences.WorkingCopyPreferences
+									sync() - org.eclipse.core.internal.preferences.RootPreferences
+										sync() - org.eclipse.core.internal.preferences.RootPreferences
+										sync() - org.eclipse.ui.internal.preferences.WorkingCopyPreferences
+									sync() - org.eclipse.ui.internal.preferences.WorkingCopyPreferences
+							create(EclipsePreferences, String, Plugin) - org.eclipse.core.internal.preferences.EclipsePreferences
+								internalNode(String, boolean, Plugin) - org.eclipse.core.internal.preferences.EclipsePreferences
+									convertFromProperties(Properties, boolean) - org.eclipse.core.internal.preferences.EclipsePreferences
+										load(IPath) - org.eclipse.core.internal.preferences.EclipsePreferences
+									node(String) - org.eclipse.core.internal.preferences.EclipsePreferences
+										sync() - org.eclipse.core.internal.preferences.RootPreferences
+										getPluginPreferences(boolean) - org.eclipse.core.internal.preferences.PreferenceForwarder
+										trimTree(IEclipsePreferences, IPreferenceFilter) - org.eclipse.core.internal.preferences.PreferencesService (5 matches)
+										pluginRoot - org.eclipse.core.internal.preferences.PreferenceForwarder
+										internalMatches(IEclipsePreferences, IPreferenceFilter) - org.eclipse.core.internal.preferences.PreferencesService (2 matches)
+										node(String) - org.eclipse.core.internal.preferences.RootPreferences
+										internalNode(String, boolean, Plugin) - org.eclipse.core.internal.preferences.EclipsePreferences (2 matches)
+										visit(IEclipsePreferences) - org.eclipse.core.internal.preferences.PreferencesService.mergeTrees(...).new IPreferenceNodeVisitor() {...}
+										visit(IEclipsePreferences) - org.eclipse.core.internal.preferences.PreferencesService.internalApply(...).new IPreferenceNodeVisitor() {...}
+										processPreferences(ContentTypeCatalog) - org.eclipse.core.internal.content.ContentType
+										setDefaultCharset(String) - org.eclipse.core.internal.content.ContentType
+										exportPreferences(IPath) - org.eclipse.core.runtime.Preferences
+										applyPreferences(IExportedPreferences) - org.eclipse.core.internal.preferences.PreferencesService
+										getChildren(Object) - org.eclipse.ui.internal.dialogs.PreferencesContentProvider (2 matches)
+										scopeRemoved(String) - org.eclipse.core.internal.preferences.PreferencesService
+										flush() - org.eclipse.core.internal.preferences.EclipsePreferences
+										flush() - org.eclipse.core.internal.preferences.RootPreferences
+										addFileSpec(ContentTypeCatalog, String, int) - org.eclipse.core.internal.content.ContentType
+										visit(IEclipsePreferences) - org.eclipse.core.internal.preferences.PreferencesService.applyPreferences(...).new IPreferenceNodeVisitor() {...} (2 matches)
+										copyFromTo(Preferences, Preferences, String[], int) - org.eclipse.core.internal.preferences.PreferencesService (2 matches)
+										defaultsRoot - org.eclipse.core.internal.preferences.PreferenceForwarder
+										getNodes(String, String, IScopeContext[]) - org.eclipse.core.internal.preferences.PreferencesService (4 matches)
+										initializeDefaultPreferences() - org.eclipse.ui.internal.UIPreferenceInitializer (2 matches)
+										node(String) - org.eclipse.ui.internal.preferences.WorkingCopyPreferences
+										hasKeys(Preferences) - org.eclipse.ui.internal.dialogs.PreferencesContentProvider
+										initializeDefaultPreferences() - org.eclipse.ui.internal.WorkbenchPreferenceInitializer (2 matches)
+										convertFromProperties(Properties) - org.eclipse.core.internal.preferences.PreferencesService (4 matches)
+										getNode(String) - org.eclipse.core.internal.preferences.AbstractScope (2 matches)
+										removeFileSpec(ContentTypeCatalog, String, int) - org.eclipse.core.internal.content.ContentType
+									applyDefaults(String, Properties, Properties) - org.eclipse.core.internal.preferences.DefaultPreferences
+										applyCommandLineDefaults() - org.eclipse.core.internal.preferences.DefaultPreferences
+										applyProductDefaults() - org.eclipse.core.internal.preferences.DefaultPreferences
+										applyBundleDefaults() - org.eclipse.core.internal.preferences.DefaultPreferences
+									node(String, Plugin) - org.eclipse.core.internal.preferences.DefaultPreferences
+										getDefaultPreferences() - org.eclipse.core.internal.preferences.PreferenceForwarder
+								create(IEclipsePreferences, String) - org.eclipse.core.internal.preferences.EclipsePreferences
+									createNode(String) - org.eclipse.core.internal.preferences.PreferencesService
+										getChild(String, Plugin) - org.eclipse.core.internal.preferences.RootPreferences
+								getChild(String, Plugin, boolean) - org.eclipse.core.internal.preferences.EclipsePreferences
+									internalNode(String, boolean, Plugin) - org.eclipse.core.internal.preferences.EclipsePreferences
+										convertFromProperties(Properties, boolean) - org.eclipse.core.internal.preferences.EclipsePreferences
+										node(String) - org.eclipse.core.internal.preferences.EclipsePreferences
+										applyDefaults(String, Properties, Properties) - org.eclipse.core.internal.preferences.DefaultPreferences
+										node(String, Plugin) - org.eclipse.core.internal.preferences.DefaultPreferences
+									getChildren(boolean) - org.eclipse.core.internal.preferences.EclipsePreferences
+										shareStrings(StringPool) - org.eclipse.core.internal.preferences.EclipsePreferences
+										removeNode() - org.eclipse.core.internal.preferences.EclipsePreferences
+										convertToProperties(Properties, String) - org.eclipse.core.internal.preferences.EclipsePreferences
+										accept(IPreferenceNodeVisitor) - org.eclipse.core.internal.preferences.EclipsePreferences
+									nodeExists(String) - org.eclipse.core.internal.preferences.EclipsePreferences
+										getPluginPreferences(boolean) - org.eclipse.core.internal.preferences.PreferenceForwarder
+										nodeExists(String) - org.eclipse.ui.internal.preferences.WorkingCopyPreferences (2 matches)
+										initializeDefaultPreferences() - org.eclipse.ui.internal.WorkbenchPreferenceInitializer
+										trimTree(IEclipsePreferences, IPreferenceFilter) - org.eclipse.core.internal.preferences.PreferencesService (2 matches)
+										nodeExists(String) - org.eclipse.core.internal.preferences.EclipsePreferences (2 matches)
+										internalMatches(IEclipsePreferences, IPreferenceFilter) - org.eclipse.core.internal.preferences.PreferencesService (2 matches)
+										initializeDefaultPreferences() - org.eclipse.ui.internal.UIPreferenceInitializer
+				createExtraTopics() - org.eclipse.help.internal.toc.DirectoryToc (2 matches)
+					getExtraTopics() - org.eclipse.help.internal.toc.DirectoryToc
+						getExtraTopics() - org.eclipse.help.internal.toc.Toc
+							getExtraTopics() - org.eclipse.help.internal.toc.Toc
+						getOwnedExtraTopic(String) - org.eclipse.help.internal.toc.Toc
+				loadMappings() - org.eclipse.ui.internal.ProductProperties
+					mappings - org.eclipse.ui.internal.ProductProperties
+				getProperties(String, Locale) - org.eclipse.core.internal.runtime.PlatformActivator.registerEntryLocator().new EntryLocator() {...} (2 matches)
+
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "osgi.os", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/>
+This seems a pretty standard requirement for most plug-in applications to make use of.   Add the permission
+to retrieve this permission to the default permissions assigned to bundles.
+e.g. org/eclipse/osgi/framework/internal/core/implied.permissions as:
+ "(permission java.util.PropertyPermission "osgi.os", "read")"
+
+<HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/InternalPlatform.html#L462" , parent.fbot ); return false'>Line# 467</a> java.lang.String getOSArch(  )
+   Permission: java.util.PropertyPermission "osgi.arch", "read"
+      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )
+<BR/><BR/><B>CODE</B><BR/><BR/>
+	public String getOSArch() {
+		return <font style="background-color:yellow;display;inline">System.getProperty(PROP_ARCH);</font>
+	}
+<B>Tainted variable reference trace:</B><BR/><BR/>
+getOSArch() - org.eclipse.core.internal.runtime.InternalPlatform
+	getOSArch() - org.eclipse.core.runtime.Platform
+	findOS(Bundle, IPath, Map) - org.eclipse.core.internal.runtime.FindSupport
+		find(Bundle, IPath, Map) - org.eclipse.core.internal.runtime.FindSupport
+			find(IPath, Map) - org.eclipse.core.runtime.Plugin
+			find(Bundle, IPath, Map) - org.eclipse.core.internal.runtime.InternalPlatform
+			find(Bundle, IPath) - org.eclipse.core.internal.runtime.FindSupport
+				openStream(Bundle, IPath, boolean) - org.eclipse.core.internal.runtime.FindSupport
+					openStream(IPath, boolean) - org.eclipse.core.runtime.Plugin
+					openStream(IPath) - org.eclipse.core.runtime.Plugin
+				find(Bundle, IPath) - org.eclipse.core.internal.runtime.InternalPlatform
+			find(Bundle, IPath, Map) - org.eclipse.core.runtime.Platform
+				getMoreInfoURL(AboutBundleData, boolean) - org.eclipse.ui.internal.dialogs.AboutPluginsDialog
+					handleMoreInfoPressed() - org.eclipse.ui.internal.dialogs.AboutPluginsDialog
+						buttonPressed(int) - org.eclipse.ui.internal.dialogs.AboutPluginsDialog
+							handleDefaultSelected() - org.eclipse.ui.dialogs.AbstractElementListSelectionDialog
+								handleEvent(Event) - org.eclipse.ui.dialogs.TwoPaneElementSelector.createLowerList(...).new Listener() {...}
+									sendEvent(Event) - org.eclipse.swt.widgets.EventTable
+									handleMouseMove(Event) - org.eclipse.ui.presentations.PresentationUtil
+									sendEvent(Event) - org.eclipse.swt.widgets.EventTable
+								widgetDefaultSelected(SelectionEvent) - org.eclipse.ui.dialogs.AbstractElementListSelectionDialog.createFilteredList(...).new SelectionListener() {...}
+									handleEvent(Event) - org.eclipse.swt.widgets.TypedListener
+									fireDefaultSelectionEvent(SelectionEvent) - org.eclipse.jface.util.OpenStrategy
+									handleEvent(Event) - org.eclipse.swt.widgets.TypedListener
+							widgetSelected(SelectionEvent) - org.eclipse.jface.dialogs.Dialog.createButton(...).new SelectionAdapter() {...}
+							handleDefaultSelected() - org.eclipse.ui.dialogs.TwoPaneElementSelector
+					selectionHasInfo() - org.eclipse.ui.internal.dialogs.AboutPluginsDialog
+						refreshTable(int) - org.eclipse.ui.internal.dialogs.AboutPluginsDialog
+							sort(int) - org.eclipse.ui.internal.dialogs.AboutPluginsDialog
+						widgetSelected(SelectionEvent) - org.eclipse.ui.internal.dialogs.AboutPluginsDialog.createTable(...).new SelectionAdapter() {...}
+						createButtonsForButtonBar(Composite) - org.eclipse.ui.internal.dialogs.AboutPluginsDialog
+							createButtonBar(Composite) - org.eclipse.jface.dialogs.IconAndMessageDialog
+							createButtonBar(Composite) - org.eclipse.jface.dialogs.Dialog
+				createExtraTopics() - org.eclipse.help.internal.toc.DirectoryToc (2 matches)
+					getExtraTopics() - org.eclipse.help.internal.toc.DirectoryToc
+						getExtraTopics() - org.eclipse.help.internal.toc.Toc
+						getOwnedExtraTopic(String) - org.eclipse.help.internal.toc.Toc
+			find(IPath) - org.eclipse.core.runtime.Plugin
+			find(Bundle, IPath) - org.eclipse.core.runtime.Platform
+				getUrl(String, Bundle) - org.eclipse.ui.internal.BrandingProperties
+					getWelcomePageUrl(IProduct) - org.eclipse.ui.internal.ProductProperties
+					getWelcomePageUrl(IBundleGroup) - org.eclipse.ui.internal.BundleGroupProperties
+					getURLs(String, Bundle) - org.eclipse.ui.internal.BrandingProperties
+					getLicenseUrl(IBundleGroup) - org.eclipse.ui.internal.BundleGroupProperties
+					getImage(String, Bundle) - org.eclipse.ui.internal.BrandingProperties
+					getFeatureImageUrl(IBundleGroup) - org.eclipse.ui.internal.BundleGroupProperties
+				find(Bundle, IPath, ArrayList) - org.eclipse.help.internal.util.ResourceLocator
+					openFromPlugin(Bundle, String, String) - org.eclipse.help.internal.util.ResourceLocator
+				getPluginURL(String) - org.eclipse.ui.internal.part.services.PluginResources
+				applyProductDefaults() - org.eclipse.core.internal.preferences.DefaultPreferences (4 matches)
+				find(Bundle, String) - org.eclipse.ui.internal.util.BundleUtility
+				openFromZip(Bundle, String, String, String) - org.eclipse.help.internal.util.ResourceLocator
+					getInputStream() - org.eclipse.help.internal.protocols.HelpURLConnection
+						getResponseCode() - java.net.HttpURLConnection
+						openStream() - java.net.URL
+						getContent(URLConnection) - org.eclipse.osgi.framework.internal.protocol.ContentHandlerProxy.DefaultContentHandler
+						begin() - org.eclipse.osgi.framework.adaptor.core.AbstractFrameworkAdaptor.updateBundle(...).new BundleOperation() {...}
+						getSourceLine(String, int) - com.sun.org.apache.xml.internal.utils.ListingErrorHandler
+						getStream(URL) - javax.swing.JEditorPane
+						openFromZip(Bundle, String, String, String) - org.eclipse.help.internal.util.ResourceLocator
+						getContent(Class[]) - java.net.URLConnection
+						getInputStream() - org.eclipse.core.internal.boot.PlatformURLConnection
+						parse(URL) - javax.management.loading.MLetParser
+						getContent(URLConnection) - java.net.UnknownContentHandler
+						getReader(XMLInputSource) - com.sun.org.apache.xerces.internal.xinclude.XIncludeTextReader
+						begin() - org.eclipse.osgi.framework.adaptor.core.AbstractFrameworkAdaptor.installBundle(...).new BundleOperation() {...}
+						read(InputStream, Document) - javax.swing.JEditorPane
+						setupCurrentEntity(String, XMLInputSource, boolean, boolean) - com.sun.org.apache.xerces.internal.impl.XMLEntityManager
+						getContent() - java.net.URLConnection
+				applyBundleDefaults() - org.eclipse.core.internal.preferences.DefaultPreferences (2 matches)
+					loadDefaults() - org.eclipse.core.internal.preferences.DefaultPreferences
+						load() - org.eclipse.core.internal.preferences.DefaultPreferences
+							sync() - org.eclipse.core.internal.preferences.EclipsePreferences
+							create(EclipsePreferences, String, Plugin) - org.eclipse.core.internal.preferences.EclipsePreferences
+				createExtraTopics() - org.eclipse.help.internal.toc.DirectoryToc (2 matches)
+					getExtraTopics() - org.eclipse.help.internal.toc.DirectoryToc
+						getExtraTopics() - org.eclipse.help.internal.toc.Toc
+							getExtraTopics() - org.eclipse.help.internal.toc.Toc
+						getOwnedExtraTopic(String) - org.eclipse.help.internal.toc.Toc
+				loadMappings() - org.eclipse.ui.internal.ProductProperties
+					mappings - org.eclipse.ui.internal.ProductProperties
+				getProperties(String, Locale) - org.eclipse.core.internal.runtime.PlatformActivator.registerEntryLocator().new EntryLocator() {...} (2 matches)
+
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "osgi.arch", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/>
+This seems a pretty standard requirement for most plug-in applications to make use of.   Add the permission
+to retrieve this permission to the default permissions assigned to bundles.
+e.g. org/eclipse/osgi/framework/internal/core/implied.permissions as:
+ "(permission java.util.PropertyPermission "osgi.arch", "read")"
+
+<HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/InternalPlatform.html#L556" , parent.fbot ); return false'>Line# 561</a> org.eclipse.core.runtime.IProduct getProduct(  )
+   Permission: java.util.PropertyPermission "eclipse.product", "read"
+      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )
+<BR/><BR/><B>CODE</B><BR/><BR/>
+	public IProduct getProduct() {
+		if (product != null)
+			return product;
+		String productId = <font style="background-color:yellow;display;inline">System.getProperty(PROP_PRODUCT);</font>
+		if (productId == null)
+			return null;
+       ...
+    }
+<B>Tainted variable reference trace:</B><BR/><BR/>
+getProduct() - org.eclipse.core.internal.runtime.InternalPlatform
+	run(Object) - org.eclipse.core.internal.runtime.PlatformActivator.registerApplicationService().new ParameterizedRunnable() {...}
+		run(Object) - org.eclipse.core.runtime.adaptor.EclipseStarter
+			run(String[], Runnable) - org.eclipse.core.runtime.adaptor.EclipseStarter
+				main(String[]) - org.eclipse.core.runtime.adaptor.EclipseStarter
+	getProduct() - org.eclipse.core.runtime.Platform
+		getProductInfo() - org.eclipse.ui.internal.WorkbenchPlugin
+			getAppName() - org.eclipse.ui.internal.WorkbenchPlugin
+				createDisplay() - org.eclipse.ui.internal.Workbench
+					createDisplay() - org.eclipse.ui.PlatformUI
+			getWindowImages() - org.eclipse.ui.internal.WorkbenchPlugin
+				initializeImages() - org.eclipse.ui.internal.Workbench
+					init(Display) - org.eclipse.ui.internal.Workbench
+			getProductName() - org.eclipse.ui.internal.WorkbenchPlugin
+				WorkbenchWindowConfigurer(WorkbenchWindow) - org.eclipse.ui.internal.WorkbenchWindowConfigurer
+					getWindowConfigurer() - org.eclipse.ui.internal.WorkbenchWindow
+						createProgressIndicator(Shell) - org.eclipse.ui.internal.WorkbenchWindow
+						getShowFastViewBars() - org.eclipse.ui.internal.WorkbenchWindow
+						showView(Composite, ViewPane, int, float) - org.eclipse.ui.internal.FastViewPane
+						createStatusLine(Shell) - org.eclipse.ui.internal.WorkbenchWindow
+						configureShell(Shell) - org.eclipse.ui.internal.WorkbenchWindow
+						createStatusLineManager() - org.eclipse.ui.internal.WorkbenchWindow
+						getWindowConfigurer(IWorkbenchWindow) - org.eclipse.ui.internal.WorkbenchConfigurer
+						getFactory() - org.eclipse.ui.internal.PartStack
+						createDefaultContents(Shell) - org.eclipse.ui.internal.WorkbenchWindow (3 matches)
+						getActionBarAdvisor() - org.eclipse.ui.internal.WorkbenchWindow
+						fillActionBars(IActionBarConfigurer, int) - org.eclipse.ui.internal.WorkbenchWindow
+						updateLayoutDataForContents() - org.eclipse.ui.internal.WorkbenchWindow (4 matches)
+						getWindowConfigurer() - org.eclipse.ui.internal.WorkbenchWindowConfigurer.WindowActionBarConfigurer
+						addToTrim(Control, int) - org.eclipse.ui.internal.WorkbenchWindow
+						getInitialSize() - org.eclipse.ui.internal.WorkbenchWindow
+						createCustomizePerspectiveDialog(Perspective) - org.eclipse.ui.internal.WorkbenchWindow
+						setLayoutDataForContents() - org.eclipse.ui.internal.WorkbenchWindow
+						addDropSupport() - org.eclipse.ui.internal.EditorSashContainer
+						WorkbenchWindow(int) - org.eclipse.ui.internal.WorkbenchWindow
+						getWindowAdvisor() - org.eclipse.ui.internal.WorkbenchWindow
+						update(boolean) - org.eclipse.ui.internal.WorkbenchWindow.setLayoutDataForContents().new IChangeListener() {...}
+				restoreState(IMemento, IPerspectiveDescriptor) - org.eclipse.ui.internal.WorkbenchWindow
+					restoreState(IMemento) - org.eclipse.ui.internal.Workbench
+					restoreWorkbenchWindow(IMemento) - org.eclipse.ui.internal.Workbench
+		getTriggerPointAdvisor() - org.eclipse.ui.internal.activities.ws.WorkbenchActivitySupport
+			allow(ITriggerPoint, IIdentifier) - org.eclipse.ui.activities.WorkbenchActivityHelper
+				allowUseOf(ITriggerPoint, Object) - org.eclipse.ui.activities.WorkbenchActivityHelper
+					okPressed() - org.eclipse.ui.internal.dialogs.SelectPerspectiveDialog
+					getNextPage() - org.eclipse.ui.internal.dialogs.WorkbenchWizardSelectionPage
+					allowUseOf(Object) - org.eclipse.ui.activities.WorkbenchActivityHelper
+		create(IWorkbenchWindow) - org.eclipse.ui.actions.ActionFactory.ABOUT.new ActionFactory() {...}
+			BaseNewWizardMenu(IWorkbenchWindow, String) - org.eclipse.ui.actions.BaseNewWizardMenu
+			NewWizardDropDownAction(IWorkbenchWindow) - org.eclipse.ui.actions.NewWizardDropDownAction
+		getPlugin() - org.eclipse.help.internal.protocols.HelpURLConnection
+			getInputStream() - org.eclipse.help.internal.protocols.HelpURLConnection
+		AboutDialog(Shell) - org.eclipse.ui.internal.dialogs.AboutDialog
+			run() - org.eclipse.ui.internal.about.AboutAction
+		applyProductDefaults() - org.eclipse.core.internal.preferences.DefaultPreferences
+			loadDefaults() - org.eclipse.core.internal.preferences.DefaultPreferences
+				load() - org.eclipse.core.internal.preferences.DefaultPreferences
+					sync() - org.eclipse.core.internal.preferences.EclipsePreferences
+						sync() - org.eclipse.core.internal.preferences.RootPreferences
+							sync() - org.eclipse.core.internal.preferences.RootPreferences
+							sync() - org.eclipse.ui.internal.preferences.WorkingCopyPreferences
+								sync() - org.eclipse.core.internal.preferences.RootPreferences
+								sync() - org.eclipse.ui.internal.preferences.WorkingCopyPreferences
+						sync() - org.eclipse.ui.internal.preferences.WorkingCopyPreferences
+							sync() - org.eclipse.core.internal.preferences.RootPreferences
+								sync() - org.eclipse.core.internal.preferences.RootPreferences
+								sync() - org.eclipse.ui.internal.preferences.WorkingCopyPreferences
+							sync() - org.eclipse.ui.internal.preferences.WorkingCopyPreferences
+					create(EclipsePreferences, String, Plugin) - org.eclipse.core.internal.preferences.EclipsePreferences
+						internalNode(String, boolean, Plugin) - org.eclipse.core.internal.preferences.EclipsePreferences
+							convertFromProperties(Properties, boolean) - org.eclipse.core.internal.preferences.EclipsePreferences
+								load(IPath) - org.eclipse.core.internal.preferences.EclipsePreferences
+									load() - org.eclipse.core.internal.preferences.EclipsePreferences
+										sync() - org.eclipse.core.internal.preferences.EclipsePreferences
+										create(EclipsePreferences, String, Plugin) - org.eclipse.core.internal.preferences.EclipsePreferences
+							node(String) - org.eclipse.core.internal.preferences.EclipsePreferences
+								sync() - org.eclipse.core.internal.preferences.RootPreferences
+								getPluginPreferences(boolean) - org.eclipse.core.internal.preferences.PreferenceForwarder
+								trimTree(IEclipsePreferences, IPreferenceFilter) - org.eclipse.core.internal.preferences.PreferencesService (5 matches)
+								pluginRoot - org.eclipse.core.internal.preferences.PreferenceForwarder
+								internalMatches(IEclipsePreferences, IPreferenceFilter) - org.eclipse.core.internal.preferences.PreferencesService (2 matches)
+								node(String) - org.eclipse.core.internal.preferences.RootPreferences
+								internalNode(String, boolean, Plugin) - org.eclipse.core.internal.preferences.EclipsePreferences (2 matches)
+								visit(IEclipsePreferences) - org.eclipse.core.internal.preferences.PreferencesService.mergeTrees(...).new IPreferenceNodeVisitor() {...}
+								visit(IEclipsePreferences) - org.eclipse.core.internal.preferences.PreferencesService.internalApply(...).new IPreferenceNodeVisitor() {...}
+								processPreferences(ContentTypeCatalog) - org.eclipse.core.internal.content.ContentType
+								setDefaultCharset(String) - org.eclipse.core.internal.content.ContentType
+								exportPreferences(IPath) - org.eclipse.core.runtime.Preferences
+								applyPreferences(IExportedPreferences) - org.eclipse.core.internal.preferences.PreferencesService
+								getChildren(Object) - org.eclipse.ui.internal.dialogs.PreferencesContentProvider (2 matches)
+								scopeRemoved(String) - org.eclipse.core.internal.preferences.PreferencesService
+								flush() - org.eclipse.core.internal.preferences.EclipsePreferences
+								flush() - org.eclipse.core.internal.preferences.RootPreferences
+								addFileSpec(ContentTypeCatalog, String, int) - org.eclipse.core.internal.content.ContentType
+								visit(IEclipsePreferences) - org.eclipse.core.internal.preferences.PreferencesService.applyPreferences(...).new IPreferenceNodeVisitor() {...} (2 matches)
+								copyFromTo(Preferences, Preferences, String[], int) - org.eclipse.core.internal.preferences.PreferencesService (2 matches)
+								defaultsRoot - org.eclipse.core.internal.preferences.PreferenceForwarder
+								getNodes(String, String, IScopeContext[]) - org.eclipse.core.internal.preferences.PreferencesService (4 matches)
+								initializeDefaultPreferences() - org.eclipse.ui.internal.UIPreferenceInitializer (2 matches)
+								node(String) - org.eclipse.ui.internal.preferences.WorkingCopyPreferences
+								hasKeys(Preferences) - org.eclipse.ui.internal.dialogs.PreferencesContentProvider
+								initializeDefaultPreferences() - org.eclipse.ui.internal.WorkbenchPreferenceInitializer (2 matches)
+								convertFromProperties(Properties) - org.eclipse.core.internal.preferences.PreferencesService (4 matches)
+								getNode(String) - org.eclipse.core.internal.preferences.AbstractScope (2 matches)
+								removeFileSpec(ContentTypeCatalog, String, int) - org.eclipse.core.internal.content.ContentType
+							applyDefaults(String, Properties, Properties) - org.eclipse.core.internal.preferences.DefaultPreferences
+								applyCommandLineDefaults() - org.eclipse.core.internal.preferences.DefaultPreferences
+								applyProductDefaults() - org.eclipse.core.internal.preferences.DefaultPreferences
+								applyBundleDefaults() - org.eclipse.core.internal.preferences.DefaultPreferences
+							node(String, Plugin) - org.eclipse.core.internal.preferences.DefaultPreferences
+								getDefaultPreferences() - org.eclipse.core.internal.preferences.PreferenceForwarder
+						create(IEclipsePreferences, String) - org.eclipse.core.internal.preferences.EclipsePreferences
+							createNode(String) - org.eclipse.core.internal.preferences.PreferencesService
+						getChild(String, Plugin, boolean) - org.eclipse.core.internal.preferences.EclipsePreferences
+							internalNode(String, boolean, Plugin) - org.eclipse.core.internal.preferences.EclipsePreferences
+								convertFromProperties(Properties, boolean) - org.eclipse.core.internal.preferences.EclipsePreferences
+								node(String) - org.eclipse.core.internal.preferences.EclipsePreferences
+								applyDefaults(String, Properties, Properties) - org.eclipse.core.internal.preferences.DefaultPreferences
+								node(String, Plugin) - org.eclipse.core.internal.preferences.DefaultPreferences
+							getChildren(boolean) - org.eclipse.core.internal.preferences.EclipsePreferences
+								shareStrings(StringPool) - org.eclipse.core.internal.preferences.EclipsePreferences
+								removeNode() - org.eclipse.core.internal.preferences.EclipsePreferences
+								convertToProperties(Properties, String) - org.eclipse.core.internal.preferences.EclipsePreferences
+								accept(IPreferenceNodeVisitor) - org.eclipse.core.internal.preferences.EclipsePreferences
+							nodeExists(String) - org.eclipse.core.internal.preferences.EclipsePreferences
+								getPluginPreferences(boolean) - org.eclipse.core.internal.preferences.PreferenceForwarder
+								nodeExists(String) - org.eclipse.ui.internal.preferences.WorkingCopyPreferences (2 matches)
+								initializeDefaultPreferences() - org.eclipse.ui.internal.WorkbenchPreferenceInitializer
+								trimTree(IEclipsePreferences, IPreferenceFilter) - org.eclipse.core.internal.preferences.PreferencesService (2 matches)
+								nodeExists(String) - org.eclipse.core.internal.preferences.EclipsePreferences (2 matches)
+								internalMatches(IEclipsePreferences, IPreferenceFilter) - org.eclipse.core.internal.preferences.PreferencesService (2 matches)
+								initializeDefaultPreferences() - org.eclipse.ui.internal.UIPreferenceInitializer
+		init(Display) - org.eclipse.ui.internal.Workbench
+		AboutAction(IWorkbenchWindow) - org.eclipse.ui.internal.about.AboutAction
+			create(IWorkbenchWindow) - org.eclipse.ui.actions.ActionFactory.ABOUT.new ActionFactory() {...}
+				BaseNewWizardMenu(IWorkbenchWindow, String) - org.eclipse.ui.actions.BaseNewWizardMenu
+				NewWizardDropDownAction(IWorkbenchWindow) - org.eclipse.ui.actions.NewWizardDropDownAction
+		loadMappings() - org.eclipse.ui.internal.ProductProperties
+			mappings - org.eclipse.ui.internal.ProductProperties
+
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "eclipse.product", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/>
+This seems a pretty standard requirement for most plug-in applications to make use of.   Add the permission
+to retrieve this permission to the default permissions assigned to bundles.
+e.g. org/eclipse/osgi/framework/internal/core/implied.permissions as:
+ "(permission java.util.PropertyPermission "eclipse.product", "read")"
+
+<HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/InternalPlatform.html#L653" , parent.fbot ); return false'>Line# 658</a> org.eclipse.core.runtime.IPath getStateLocation( org.osgi.framework.Bundle, boolean )
+   Permission: java.io.FilePermission "", "read"
+      Primordial/boolean java.io.File.mkdirs(  )
+   Permission: java.io.FilePermission "", "write"
+      Primordial/boolean java.io.File.mkdirs(  )
+   Permission: java.io.FilePermission "???file???", "read"
+      Primordial/boolean java.io.File.mkdirs(  )
+   Permission: java.io.FilePermission "???file???", "write"
+      Primordial/boolean java.io.File.mkdirs(  )
+   Permission: java.util.PropertyPermission "user.dir", "read"
+      Primordial/boolean java.io.File.mkdirs(  )
+<BR/><BR/><B>CODE</B><BR/><BR/>
+	public IPath getStateLocation(Bundle bundle, boolean create) throws IllegalStateException {
+		assertInitialized();
+		IPath result = getMetaArea().getStateLocation(bundle);
+		if (create)
+			result.toFile().mkdirs();
+		return result;
+	}
+<B>Tainted variable reference trace:</B><BR/><BR/>
+getStateLocation(Bundle, boolean) - org.eclipse.core.internal.runtime.InternalPlatform
+	getStateLocation(Bundle) - org.eclipse.core.internal.runtime.InternalPlatform
+		getStateLocation(Bundle) - org.eclipse.core.runtime.Platform
+			getStateFile(String) - org.eclipse.ui.internal.part.services.PluginResources
+			resolve() - org.eclipse.core.internal.runtime.PlatformURLMetaConnection
+				openConnection(URL) - org.eclipse.core.internal.boot.PlatformURLHandler
+					openConnection() - java.net.URL
+					openConnection(URL) - org.eclipse.osgi.framework.internal.protocol.URLStreamHandlerProxy
+						openConnection() - java.net.URL
+							openStream() - java.net.URL
+							getContent() - java.net.URL
+								getAudioClip(URL) - java.beans.BeansAppletContext
+									getAudioClip(URL) - java.applet.Applet
+								loadImage(String) - java.beans.SimpleBeanInfo
+								getImage(URL) - java.beans.BeansAppletContext
+									getImage(URL) - java.applet.Applet
+							convertToLocalURL(URL) - org.eclipse.core.runtime.adaptor.URLConverterImpl
+								resolve(URL) - org.eclipse.core.internal.runtime.InternalPlatform
+							getSourceLine(String, int) - com.sun.org.apache.xml.internal.utils.ListingErrorHandler
+							run() - javax.swing.text.html.FormView.SubmitThread
+							getStream(URL) - javax.swing.JEditorPane
+							getLastModified(String) - com.sun.org.apache.xalan.internal.xsltc.dom.DocumentCache
+							openFromZip(Bundle, String, String, String) - org.eclipse.help.internal.util.ResourceLocator
+							getContent(Class[]) - java.net.URL
+							asActualURL(URL) - org.eclipse.core.internal.runtime.InternalPlatform
+							convertToFileURL(URL) - org.eclipse.core.runtime.adaptor.URLConverterImpl
+							computeRegistryStamp() - org.eclipse.core.internal.registry.ExtensionRegistry
+							writeToURI(Node, String) - com.sun.org.apache.xml.internal.serialize.DOMSerializerImpl
+							searchForBundle(String, String) - org.eclipse.core.runtime.adaptor.EclipseStarter
+							mapLocationToURLConnection(String) - org.eclipse.osgi.framework.adaptor.core.AbstractFrameworkAdaptor
+							parse(URL) - javax.management.loading.MLetParser
+							write(Node, LSOutput) - com.sun.org.apache.xml.internal.serialize.DOMSerializerImpl
+							connect(boolean) - org.eclipse.core.internal.boot.PlatformURLConnection (2 matches)
+							getPermissions(CodeSource) - java.net.URLClassLoader
+							getReader(XMLInputSource) - com.sun.org.apache.xerces.internal.xinclude.XIncludeTextReader
+							read(InputStream, Document) - javax.swing.JEditorPane
+							getOutputHandler(Result) - com.sun.org.apache.xalan.internal.xsltc.trax.TransformerImpl
+							setupCurrentEntity(String, XMLInputSource, boolean, boolean) - com.sun.org.apache.xerces.internal.impl.XMLEntityManager
+	getStateLocation() - org.eclipse.core.runtime.Plugin
+		getDataLocation() - org.eclipse.ui.internal.WorkbenchPlugin
+			getWorkbenchStateFile() - org.eclipse.ui.internal.Workbench
+				saveMementoToFile(XMLMemento) - org.eclipse.ui.internal.Workbench
+					run() - org.eclipse.ui.internal.Workbench.busyClose(...).new SafeRunnable() {...}
+						run(ISafeRunnable) - org.eclipse.core.internal.runtime.InternalPlatform
+							run(Runnable) - org.eclipse.core.internal.runtime.InternalPlatform
+								endSplash() - org.eclipse.core.internal.runtime.InternalPlatform
+							log(IStatus) - org.eclipse.core.internal.runtime.Log
+								log(IStatus) - org.eclipse.ui.internal.WorkbenchPlugin
+									busyRestoreView(IViewReference) - org.eclipse.ui.internal.ViewFactory (2 matches)
+										run() - org.eclipse.ui.internal.ViewFactory.restoreView(...).new Runnable() {...}
+									busyRestoreEditor(Editor) - org.eclipse.ui.internal.EditorManager (2 matches)
+										run() - org.eclipse.ui.internal.EditorManager.restoreEditor(...).new Runnable() {...}
+								createExecutableExtension(Bundle, String, Object, ConfigurationElement, String) - org.eclipse.core.internal.registry.ConfigurationElement
+									createExecutableExtension(String, String, Object, ConfigurationElement, String) - org.eclipse.core.internal.registry.ConfigurationElement (2 matches)
+										createExecutableExtension(String) - org.eclipse.core.internal.registry.ConfigurationElement
+								loadTesters(Class) - org.eclipse.core.internal.expressions.TypeExtensionManager
+									findTypeExtender(TypeExtensionManager, String, String, boolean) - org.eclipse.core.internal.expressions.TypeExtension
+										findTypeExtender(TypeExtensionManager, String, String, boolean) - org.eclipse.core.internal.expressions.TypeExtension (2 matches)
+										getProperty(Object, String, String) - org.eclipse.core.internal.expressions.TypeExtensionManager
+								log(IStatus) - org.eclipse.ui.internal.JFaceUtil.initializeJFace().new ILogger() {...}
+									handleException(Throwable) - org.eclipse.jface.preference.PreferenceDialog.okPressed().new SafeRunnable() {...}
+										run() - org.eclipse.jface.preference.PreferenceDialog.okPressed().new SafeRunnable() {...}
+										handleException(ISafeRunnable, Throwable) - org.eclipse.core.internal.runtime.InternalPlatform
+										handleException(ISafeRunnable, Throwable) - org.eclipse.jface.util.SafeRunnable.createDefaultRunner().new ISafeRunnableRunner() {...}
+									isActive(String) - org.eclipse.jface.action.ExternalActionManager.CommandCallback
+									Dialog(Shell) - org.eclipse.jface.dialogs.Dialog
+								createExecutableExtension(String) - org.eclipse.core.internal.registry.ConfigurationElementHandle
+								log(Throwable) - org.eclipse.ui.internal.WorkbenchPlugin
+								logError(IStatus) - org.eclipse.help.internal.HelpPlugin
+								getAdapter(Class) - org.eclipse.ui.internal.PartSite
+								throwException(String, Throwable) - org.eclipse.core.internal.registry.ConfigurationElement
+								log(IStatus) - org.eclipse.ui.internal.part.services.SystemLog
+								handleCoreException(CoreException) - org.eclipse.ui.internal.decorators.DecoratorDefinition
+								logWarning(String) - org.eclipse.help.internal.HelpPlugin
+								log(String, IStatus) - org.eclipse.ui.internal.WorkbenchPlugin (2 matches)
+								initializeDefaultPreferences() - org.eclipse.ui.internal.UIPreferenceInitializer
+								setEnablementTest(IConfigurationElement) - org.eclipse.ui.internal.ObjectActionContributor.ObjectContribution
+								createPartControl(Composite) - org.eclipse.ui.internal.part.NewPartToOldWrapper
+								initializeDefaultPreferences() - org.eclipse.ui.internal.WorkbenchPreferenceInitializer
+								createExecutableExtension(String) - org.eclipse.core.internal.registry.ConfigurationElement (2 matches)
+								isApplicableTo(Object) - org.eclipse.ui.internal.ObjectActionContributor.ObjectContribution
+								getInitialSide() - org.eclipse.ui.internal.FastViewBar
+								log(String) - org.eclipse.ui.internal.WorkbenchPlugin
+								log(String, Throwable) - org.eclipse.ui.internal.util.BundleUtility
+							log(IStatus) - org.eclipse.core.internal.runtime.InternalPlatform
+								closeInputFile() - org.eclipse.core.internal.registry.TableReader
+								loadConfigurationElement(int) - org.eclipse.core.internal.registry.TableReader (2 matches)
+								saveCache(RegistryObjectManager, long) - org.eclipse.core.internal.registry.TableWriter
+								endJob(InternalJob) - org.eclipse.core.internal.jobs.ImplicitJobs
+								getBundleModel(Bundle) - org.eclipse.core.internal.registry.EclipseBundleListener
+								illegalPop(ISchedulingRule) - org.eclipse.core.internal.jobs.ThreadJob
+								openInputFile() - org.eclipse.core.internal.registry.TableReader
+								log(IStatus) - org.eclipse.core.internal.runtime.Log
+								logError(String, Exception) - org.eclipse.core.internal.preferences.PreferenceForwarder
+								isCanceled(IProgressMonitor) - org.eclipse.core.internal.jobs.ThreadJob
+								loadExtensionPoint(int) - org.eclipse.core.internal.registry.TableReader (2 matches)
+								logParsingError(Bundle, Exception) - org.eclipse.core.internal.registry.EclipseBundleListener
+								create(EclipsePreferences, String, Plugin) - org.eclipse.core.internal.preferences.EclipsePreferences
+								clearRegistryCache() - org.eclipse.core.internal.registry.ExtensionRegistry
+								loadProperties(String) - org.eclipse.core.internal.preferences.DefaultPreferences
+								log(IStatus) - org.eclipse.core.internal.preferences.PreferencesService
+								handleException(Throwable) - org.eclipse.core.internal.jobs.LockManager
+								handleException(Object, Throwable) - org.eclipse.core.internal.jobs.JobListeners
+								illegalPush(ISchedulingRule, ISchedulingRule) - org.eclipse.core.internal.jobs.ThreadJob
+								savePluginPreferences() - org.eclipse.core.runtime.Plugin
+								log(IStatus) - org.eclipse.core.internal.preferences.EclipsePreferences
+								loadKeyring() - org.eclipse.core.internal.runtime.AuthorizationHandler
+								loadExtensionPointExtraData(int) - org.eclipse.core.internal.registry.TableReader (2 matches)
+								openExtraFile() - org.eclipse.core.internal.registry.TableReader
+								PerformanceStatsProcessor() - org.eclipse.core.internal.runtime.PerformanceStatsProcessor
+								log(String, Throwable) - org.eclipse.core.internal.content.ContentType
+								checkCriteria(InputSource) - org.eclipse.core.runtime.content.XMLRootElementContentDescriber
+								monitorFor(IProgressMonitor) - org.eclipse.core.internal.jobs.JobManager
+								registerContentType(IConfigurationElement) - org.eclipse.core.internal.content.ContentTypeBuilder
+								handleException(ISafeRunnable, Throwable) - org.eclipse.core.internal.runtime.InternalPlatform
+								log(IStatus) - org.eclipse.core.internal.jobs.Worker
+								reportDeadlock(Deadlock) - org.eclipse.core.internal.jobs.DeadlockDetector
+								closeExtraFile() - org.eclipse.core.internal.registry.TableReader
+								loadExtensionExtraData(int) - org.eclipse.core.internal.registry.TableReader (2 matches)
+								checkCacheValidity(DataInputStream, long) - org.eclipse.core.internal.registry.TableReader
+								readAllCache(RegistryObjectManager) - org.eclipse.core.internal.registry.TableReader
+								load(InputStream) - org.eclipse.core.internal.runtime.AuthorizationDatabase
+								loadFactory(boolean) - org.eclipse.core.internal.runtime.AdapterFactoryProxy
+								loadExtensionPointTree(int, RegistryObjectManager) - org.eclipse.core.internal.registry.TableReader (2 matches)
+								loadThirdLevelConfigurationElements(int, RegistryObjectManager) - org.eclipse.core.internal.registry.TableReader (2 matches)
+								Plugin(IPluginDescriptor) - org.eclipse.core.runtime.Plugin
+								getPluginDescriptor(String) - org.eclipse.core.internal.runtime.CompatibilityHelper
+								loadExtension(int) - org.eclipse.core.internal.registry.TableReader (2 matches)
+								logError() - org.eclipse.core.internal.runtime.AdapterFactoryProxy
+								shutdown() - org.eclipse.core.runtime.Plugin
+								loadTables(long) - org.eclipse.core.internal.registry.TableReader
+								closeFiles() - org.eclipse.core.internal.registry.TableWriter
+								loadNamespaces() - org.eclipse.core.internal.registry.TableReader
+								openFiles() - org.eclipse.core.internal.registry.TableWriter
+							run(ISafeRunnable) - org.eclipse.core.runtime.Platform
+								firePreApplyEvent(IEclipsePreferences) - org.eclipse.core.internal.preferences.PreferencesService
+								firePropertyChangeEvent(String, Object, Object) - org.eclipse.core.runtime.Preferences
+								safeDecorateImage(Object, Image, FullDecoratorDefinition) - org.eclipse.ui.internal.decorators.DecoratorManager
+								firePostSelection(IWorkbenchPart, ISelection) - org.eclipse.ui.internal.AbstractSelectionService
+								fill(Menu, int) - org.eclipse.ui.internal.ReopenEditorMenu
+								getMenu(Menu) - org.eclipse.ui.internal.WWinPluginPulldown.MenuProxy
+								disposePart(IWorkbenchPart) - org.eclipse.ui.part.MultiPageEditorPart
+								safeDecorateText(Object, String, FullDecoratorDefinition) - org.eclipse.ui.internal.decorators.DecoratorManager
+								firePropertyChange(int) - org.eclipse.ui.internal.part.PartPropertyProvider
+								applyPolicy(ISelectionPolicy, IContentType[], boolean, boolean) - org.eclipse.core.internal.content.ContentTypeCatalog
+								dispose() - org.eclipse.ui.internal.WorkbenchPage
+								fireWindowOpened(IWorkbenchWindow) - org.eclipse.ui.internal.Workbench
+								fireListeners(LabelProviderChangedEvent) - org.eclipse.ui.internal.decorators.DecoratorManager
+								fireWindowActivated(IWorkbenchWindow) - org.eclipse.ui.internal.Workbench
+								fireEvent(SafeRunnable, IPageListener, IWorkbenchPage, String) - org.eclipse.ui.internal.PageListenerList
+								fireSelection(IWorkbenchPart, ISelection) - org.eclipse.ui.internal.AbstractPartSelectionTracker
+								fireSelection(IWorkbenchPart, ISelection) - org.eclipse.ui.internal.AbstractSelectionService
+								run() - org.eclipse.ui.internal.dialogs.WorkbenchWizardNode.getWizard().new Runnable() {...}
+								firePropertyChange(int) - org.eclipse.ui.part.WorkbenchPart
+								fireEvent(SafeRunnable, IPartListener2, IWorkbenchPartReference, String) - org.eclipse.ui.internal.PartListenerList2
+								firePropertyChangeEvent(String, Object, Object) - org.eclipse.ui.preferences.ScopedPreferenceStore
+								firePropertyChange(int) - org.eclipse.ui.internal.EditorSite
+								selectedButtonExport() - org.eclipse.ui.internal.keys.KeysPreferencePage
+								fireEvent(SafeRunnable, IPartListener, IWorkbenchPart, String) - org.eclipse.ui.internal.PartListenerList
+								getMenu(Control) - org.eclipse.ui.internal.WWinPluginPulldown.MenuProxy
+								fireSelectionChanged(SelectionChangedEvent) - org.eclipse.ui.part.MultiPageSelectionProvider
+								firePropertyChange(int) - org.eclipse.ui.internal.registry.EditorRegistry
+								saveViewState(IMemento, IViewReference, MultiStatus) - org.eclipse.ui.internal.ViewFactory
+								firePropertyChange(int) - org.eclipse.ui.part.IntroPart
+								decorate(Object, DecorationBuilder, LightweightDecoratorDefinition) - org.eclipse.ui.internal.decorators.LightweightDecoratorManager
+								fireContentTypeChangeEvent(ContentType) - org.eclipse.core.internal.content.ContentTypeManager
+								restoreState() - org.eclipse.ui.internal.Workbench
+								internalGetDecorator() - org.eclipse.ui.internal.decorators.LightweightDecoratorDefinition
+								restoreState(IMemento) - org.eclipse.ui.internal.EditorManager
+								busyClose(boolean) - org.eclipse.ui.internal.Workbench (3 matches)
+								activatePart(IWorkbenchPart) - org.eclipse.ui.internal.WorkbenchPage
+								disposePart(IWorkbenchPartReference) - org.eclipse.ui.internal.WorkbenchPage
+								notifyCheckStateChangeListeners(CheckStateChangedEvent) - org.eclipse.ui.internal.misc.CheckboxDoubleListGroup
+								run(ISafeRunnable) - org.eclipse.ui.internal.JFaceUtil.initializeJFace().new ISafeRunnableRunner() {...}
+								selectionChanged(SelectionChangedEvent) - org.eclipse.ui.part.PageBookView.SelectionProvider
+								run() - org.eclipse.ui.internal.Workbench.startPlugins().new Runnable() {...}
+								firePreferenceEvent(String, Object, Object) - org.eclipse.core.internal.preferences.EclipsePreferences
+								firePostSelection(IWorkbenchPart, ISelection) - org.eclipse.ui.internal.AbstractPartSelectionTracker
+								fireWindowDeactivated(IWorkbenchWindow) - org.eclipse.ui.internal.Workbench
+								run() - org.eclipse.ui.internal.Workbench.startupRegistryListener.new IRegistryChangeListener() {...}.registryChanged(...).new Runnable() {...}
+								internalGetDecorator() - org.eclipse.ui.internal.decorators.FullDecoratorDefinition
+								fireWindowClosed(IWorkbenchWindow) - org.eclipse.ui.internal.Workbench
+								saveEditorState(IMemento, IEditorReference, MultiStatus) - org.eclipse.ui.internal.EditorManager
+								setSelection(ISelection) - org.eclipse.ui.internal.part.SelectionProviderAdapter
+								fireNodeEvent(NodeChangeEvent, boolean) - org.eclipse.core.internal.preferences.EclipsePreferences
+								fireEvent(SafeRunnable, IPerspectiveListener, IPerspectiveDescriptor, String) - org.eclipse.ui.internal.PerspectiveListenerList
+								saveAllEditors(boolean) - org.eclipse.ui.internal.Workbench
+						run(ISafeRunnable) - org.eclipse.jface.util.SafeRunnable.createDefaultRunner().new ISafeRunnableRunner() {...}
+							run(ISafeRunnable) - org.eclipse.jface.util.SafeRunnable
+				restoreState() - org.eclipse.ui.internal.Workbench
+					restoreState() - org.eclipse.ui.internal.WorkbenchConfigurer
+						openWindows() - org.eclipse.ui.application.WorkbenchAdvisor
+			getWorkingSetStateFile() - org.eclipse.ui.internal.WorkingSetManager
+				saveState() - org.eclipse.ui.internal.WorkingSetManager
+					workingSetChanged(IWorkingSet, String, Object) - org.eclipse.ui.internal.WorkingSetManager
+					addRecentWorkingSet(IWorkingSet) - org.eclipse.ui.internal.WorkingSetManager
+					addWorkingSet(IWorkingSet) - org.eclipse.ui.internal.WorkingSetManager
+					removeWorkingSet(IWorkingSet) - org.eclipse.ui.internal.WorkingSetManager
+				restoreState() - org.eclipse.ui.internal.WorkingSetManager
+			readResources(Map) - org.eclipse.ui.internal.registry.EditorRegistry
+				loadAssociations() - org.eclipse.ui.internal.registry.EditorRegistry
+			readEditors(Map) - org.eclipse.ui.internal.registry.EditorRegistry
+				loadAssociations() - org.eclipse.ui.internal.registry.EditorRegistry
+			loadCustom() - org.eclipse.ui.internal.registry.PerspectiveRegistry
+				load() - org.eclipse.ui.internal.registry.PerspectiveRegistry
+		getStateLocationOrNull() - org.eclipse.ui.plugin.AbstractUIPlugin
+			loadDialogSettings() - org.eclipse.ui.plugin.AbstractUIPlugin
+				getDialogSettings() - org.eclipse.ui.plugin.AbstractUIPlugin
+					run() - org.eclipse.ui.actions.ImportResourcesAction
+						run() - org.eclipse.ui.actions.NewWizardDropDownAction
+						run() - org.eclipse.ui.actions.RetargetAction
+						buttonPressed(int) - org.eclipse.ui.internal.progress.JobErrorDialog
+						runWithEvent(Event) - org.eclipse.ui.actions.BaseSelectionListenerAction
+						doAction() - org.eclipse.ui.internal.progress.ProgressAnimationItem
+						runWithEvent(Event) - org.eclipse.jface.action.Action
+						handleActivate() - org.eclipse.ui.internal.progress.NewProgressViewer.Hyperlink
+					load() - org.eclipse.ui.internal.registry.PerspectiveRegistry
+					getDialogSettings() - org.eclipse.ui.internal.dialogs.EditorSelectionDialog
+					doSearch(String, boolean) - org.eclipse.ui.internal.actions.HelpSearchContributionItem
+					getDialogSettings() - org.eclipse.ui.internal.dialogs.ShowViewDialog
+					getDialogSettings() - org.eclipse.ui.internal.dialogs.WorkbenchEditorsDialog
+					createControl(Composite) - org.eclipse.ui.internal.actions.HelpSearchContributionItem
+					run() - org.eclipse.ui.actions.NewWizardAction
+					run() - org.eclipse.ui.actions.ExportResourcesAction
+			saveDialogSettings() - org.eclipse.ui.plugin.AbstractUIPlugin
+		getPluginStateLocation(Plugin) - org.eclipse.core.runtime.Platform
+
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.io.FilePermission "", "read";</LI>
+<LI>permission java.io.FilePermission "", "write";</LI>
+<LI>permission java.io.FilePermission "???file???", "read";</LI>
+<LI>permission java.io.FilePermission "???file???", "write";</LI>
+<LI>permission java.util.PropertyPermission "user.dir", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/>
+A bundle should be assigned the permission to write to it's state location by the OSGI framework.  It would
+be inappropriate to grant all plug-ins permission to create the state location path.
+
+Note: This may already be in the implied or default permission set.  It is merely mentioned here for
+completeness.
+Add the permission to retrieve this permission to the default permissions assigned to bundles.
+e.g. org/eclipse/osgi/framework/internal/core/implied.permissions as:
+ "(permission java.util.PropertyPermission "user.dir", "read")
+<HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/InternalPlatform.html#L674" , parent.fbot ); return false'>Line# 679</a> java.lang.String getWS(  )
+   Permission: java.util.PropertyPermission "osgi.ws", "read"
+      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )
+<BR/><BR/><B>CODE</B><BR/><BR/>
+	public String getWS() {
+		return <font style="background-color:yellow;display;inline">System.getProperty(PROP_WS);</font>
+	}
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "osgi.ws", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+This seems a pretty standard requirement for most plug-in applications to make use of.   Add the permission
+to retrieve this permission to the default permissions assigned to bundles.
+e.g. org/eclipse/osgi/framework/internal/core/implied.permissions as:
+ "(permission java.util.PropertyPermission "osgi.ws", "read")"
+
+</pre>
+</body></html>

@@ -1,0 +1,1705 @@
+<html><head><title>Permission Analysis Report</title><script language='javaScript' src='linkUtil.js'></script></head><body>
+<h1>Permission Analysis Report</h1>
+<BR/><H2>Analysis of: org.eclipse.core.runtime</H2>
+<B>Detail</B><BR/><BR/>
+<pre>
+<BR/><BR/>
+
+Class: <a href="foo" onClick="return openURLinSrc( 'Application/org/eclipse/core/internal/preferences/EclipsePreferences.html' )">org.eclipse.core.internal.preferences.EclipsePreferences</a> (Application)
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/internal/preferences/EclipsePreferences.html#L609" , parent.fbot ); return false'>Line# 614</a> void load( org.eclipse.core.runtime.IPath )
+<BR/><BR/><B>CODE</B><BR/><BR/>
+protected void load(IPath location) throws BackingStoreException {
+		if (location == null) {
+			if (InternalPlatform.DEBUG_PREFERENCE_GENERAL)
+				Policy.debug("Unable to determine location of preference file for node: " + absolutePath()); //$NON-NLS-1$
+			return;
+		}
+		if (InternalPlatform.DEBUG_PREFERENCE_GENERAL)
+			Policy.debug("Loading preferences from file: " + location); //$NON-NLS-1$
+		InputStream input = null;
+		Properties fromDisk = new Properties();
+		try {
+			<FONT style="background-color:yellow;display;inline">input = new BufferedInputStream(new FileInputStream(location.toFile()));</FONT>
+			fromDisk.load(input);
+		} catch (FileNotFoundException e) {
+			// file doesn't exist but that's ok.
+			if (InternalPlatform.DEBUG_PREFERENCE_GENERAL)
+				Policy.debug("Preference file does not exist: " + location); //$NON-NLS-1$
+			return;
+		} catch (IOException e) {
+			String message = NLS.bind(Messages.preferences_loadException, location);
+			log(new Status(IStatus.INFO, Platform.PI_RUNTIME, IStatus.INFO, message, e));
+			throw new BackingStoreException(message);
+		} finally {
+			if (input != null)
+				try {
+					input.close();
+				} catch (IOException e) {
+					// ignore
+				}
+		}
+		convertFromProperties(fromDisk, false);
+	}
+<B>Tainted variable reference trace:</B><BR/><BR/>
+load(IPath) - org.eclipse.core.internal.preferences.EclipsePreferences
+	load() - org.eclipse.core.internal.preferences.EclipsePreferences
+		sync() - org.eclipse.core.internal.preferences.EclipsePreferences
+			sync() - org.eclipse.core.internal.preferences.RootPreferences
+				sync() - org.eclipse.core.internal.preferences.RootPreferences
+				sync() - org.eclipse.ui.internal.preferences.WorkingCopyPreferences
+					sync() - org.eclipse.core.internal.preferences.RootPreferences
+					sync() - org.eclipse.ui.internal.preferences.WorkingCopyPreferences
+			sync() - org.eclipse.ui.internal.preferences.WorkingCopyPreferences
+				sync() - org.eclipse.core.internal.preferences.RootPreferences
+					sync() - org.eclipse.core.internal.preferences.RootPreferences
+					sync() - org.eclipse.ui.internal.preferences.WorkingCopyPreferences
+				sync() - org.eclipse.ui.internal.preferences.WorkingCopyPreferences
+		create(EclipsePreferences, String, Plugin) - org.eclipse.core.internal.preferences.EclipsePreferences
+			internalNode(String, boolean, Plugin) - org.eclipse.core.internal.preferences.EclipsePreferences
+				convertFromProperties(Properties, boolean) - org.eclipse.core.internal.preferences.EclipsePreferences
+					load(IPath) - org.eclipse.core.internal.preferences.EclipsePreferences
+				node(String) - org.eclipse.core.internal.preferences.EclipsePreferences
+					sync() - org.eclipse.core.internal.preferences.RootPreferences
+						sync() - org.eclipse.core.internal.preferences.RootPreferences
+						sync() - org.eclipse.ui.internal.preferences.WorkingCopyPreferences
+							sync() - org.eclipse.core.internal.preferences.RootPreferences
+							sync() - org.eclipse.ui.internal.preferences.WorkingCopyPreferences
+					getPluginPreferences(boolean) - org.eclipse.core.internal.preferences.PreferenceForwarder
+						addPropertyChangeListener(IPropertyChangeListener) - org.eclipse.core.internal.preferences.PreferenceForwarder
+							attachListener() - org.eclipse.ui.internal.preferences.PreferencesAdapter
+								addListener(IPropertyMapListener) - org.eclipse.ui.internal.preferences.PropertyMapAdapter
+									createEditorPresentation(Composite, IStackPresentationSite) - org.eclipse.ui.presentations.WorkbenchPresentationFactory
+										createPresentation(AbstractPresentationFactory, int, Composite, IStackPresentationSite, IPresentationSerializer, IMemento) - org.eclipse.ui.internal.presentations.PresentationFactoryUtil
+									createViewPresentation(Composite, IStackPresentationSite) - org.eclipse.ui.presentations.WorkbenchPresentationFactory
+										createPresentation(AbstractPresentationFactory, int, Composite, IStackPresentationSite, IPresentationSerializer, IMemento) - org.eclipse.ui.internal.presentations.PresentationFactoryUtil
+										showView(Composite, ViewPane, int, float) - org.eclipse.ui.internal.FastViewPane
+										createStandaloneViewPresentation(Composite, IStackPresentationSite, boolean) - org.eclipse.ui.presentations.WorkbenchPresentationFactory
+									attachListener() - org.eclipse.ui.internal.preferences.DelegatingPropertyMap
+										addListener(IPropertyMapListener) - org.eclipse.ui.internal.preferences.PropertyMapAdapter
+										addListener(String[], IPropertyMapListener) - org.eclipse.ui.internal.preferences.PropertyMapAdapter
+								addListener(String[], IPropertyMapListener) - org.eclipse.ui.internal.preferences.PropertyMapAdapter
+									attach(IDynamicPropertyMap, String, int) - org.eclipse.ui.internal.preferences.AbstractIntegerListener
+										DefaultTabPositionListener(IDynamicPropertyMap, String, DefaultTabFolder) - org.eclipse.ui.internal.presentations.defaultpresentation.DefaultTabPositionListener
+									attach(IDynamicPropertyMap, String, boolean) - org.eclipse.ui.internal.preferences.AbstractBooleanListener
+										DefaultMultiTabListener(IDynamicPropertyMap, String, DefaultTabFolder) - org.eclipse.ui.internal.presentations.defaultpresentation.DefaultMultiTabListener
+										DefaultSimpleTabListener(IDynamicPropertyMap, String, DefaultTabFolder) - org.eclipse.ui.internal.presentations.defaultpresentation.DefaultSimpleTabListener
+									DefaultPropertyListener(DefaultTabFolder, IDynamicPropertyMap) - org.eclipse.ui.internal.presentations.defaultpresentation.DefaultPropertyListener
+						convertFromProperties(Properties) - org.eclipse.core.internal.preferences.PreferenceForwarder
+							load(InputStream) - org.eclipse.core.internal.preferences.PreferenceForwarder
+						getInt(String) - org.eclipse.core.internal.preferences.PreferenceForwarder
+							setValue(String, int) - org.eclipse.core.runtime.Preferences
+								setValue(String, Object) - org.eclipse.ui.internal.preferences.PreferencesAdapter (2 matches)
+									copy(IPropertyMap, IPropertyMap) - org.eclipse.ui.internal.preferences.PropertyUtil
+									setValue(String, Object) - org.eclipse.ui.internal.preferences.DelegatingPropertyMap
+										copy(IPropertyMap, IPropertyMap) - org.eclipse.ui.internal.preferences.PropertyUtil
+										setValue(String, Object) - org.eclipse.ui.internal.preferences.DelegatingPropertyMap
+							getValue(String, Class) - org.eclipse.ui.internal.preferences.PreferencesAdapter
+								getInt(String, int) - org.eclipse.ui.internal.presentations.defaultpresentation.DefaultThemeListener
+									update() - org.eclipse.ui.internal.presentations.defaultpresentation.DefaultThemeListener (3 matches)
+										propertyChanged(String[]) - org.eclipse.ui.internal.preferences.AbstractPropertyListener
+										listenerAttached() - org.eclipse.ui.internal.preferences.AbstractPropertyListener
+								addMap(IPropertyMap) - org.eclipse.ui.internal.preferences.PropertyMapUnion (3 matches)
+									union(IPropertyMap[]) - org.eclipse.ui.internal.preferences.PropertyUtil
+								isEqual(IPropertyMap, IPropertyMap) - org.eclipse.ui.internal.preferences.PropertyUtil (2 matches)
+									equals(Object) - org.eclipse.ui.internal.preferences.PropertyMapAdapter
+										isForeignORB(ORB) - com.sun.corba.se.impl.orbutil.ORBUtility
+										isDuplicateOf(XSSimpleType, String, String) - com.sun.org.apache.xerces.internal.impl.xs.identity.IDValue
+										visitGETSTATIC(GETSTATIC) - com.sun.org.apache.bcel.internal.verifier.structurals.ExecutionVisitor (4 matches)
+										equals(Object) - org.eclipse.core.internal.registry.ReferenceHashSet.HashableSoftReference
+										equals(Object[], Object[]) - java.util.Arrays
+										firePropertyChange(String, Object, Object) - java.beans.PropertyChangeSupport
+										removeByKey(Object) - org.eclipse.core.internal.registry.KeyedHashSet (2 matches)
+										getObject(Map) - javax.sql.rowset.serial.SerialRef
+										containsAttribute(Object, Object) - javax.swing.text.html.MuxingAttributeSet
+										equals(Object) - com.sun.corba.se.impl.ior.ObjectKeyImpl (2 matches)
+										visitINVOKEINTERFACE(INVOKEINTERFACE) - com.sun.org.apache.bcel.internal.verifier.structurals.ExecutionVisitor (4 matches)
+										isAssignmentCompatibleWith(Type) - com.sun.org.apache.bcel.internal.generic.ReferenceType (7 matches)
+										equals(Object) - javax.imageio.ImageTypeSpecifier
+										addDropTargetListener(DropTargetListener) - java.awt.dnd.DropTarget
+										isCastableTo(Type) - com.sun.org.apache.bcel.internal.generic.ReferenceType
+										getAdapter(Class) - org.eclipse.ui.internal.dialogs.RegistryPageContributor
+										create(Element) - javax.swing.plaf.basic.BasicTextFieldUI
+										normalizeSites(List) - org.eclipse.ui.internal.KeyBindingService (2 matches)
+										attrDiff(MutableAttributeSet, AttributeSet, Object, Object) - javax.swing.text.rtf.RTFGenerator
+										firePropertyChange(PropertyChangeEvent) - java.beans.PropertyChangeSupport
+										revokeAllDelegatedServicesNow() - java.beans.beancontext.BeanContextServicesSupport.BCSSChild
+										setSelectedItem(Object) - javax.swing.DefaultComboBoxModel
+										getChildren() - com.sun.corba.se.impl.presentation.rmi.PresentationManagerImpl.NodeImpl
+										isParent(Object, Object) - org.eclipse.ui.progress.DeferredTreeContentManager.startFetchingDeferredChildren(...).new Job() {...}
+										setSelection(Object[]) - org.eclipse.ui.dialogs.FilteredList
+										readResolve() - java.awt.AWTKeyStroke
+										contentEquals(CharSequence) - java.lang.String
+										getTransferData(DataFlavor) - javax.swing.plaf.basic.BasicTransferable (6 matches)
+										containsValue(Object) - java.util.EnumMap
+										visitCASTORE(CASTORE) - com.sun.org.apache.bcel.internal.verifier.structurals.InstConstraintVisitor
+										isEquivalent(IORFactory) - com.sun.corba.se.impl.ior.IORTemplateImpl
+										equals(Object) - org.eclipse.jface.resource.ImageDataImageDescriptor
+										evaluate(IEvaluationContext) - org.eclipse.ui.ActiveShellExpression (2 matches)
+										equals(Object) - com.sun.org.apache.bcel.internal.generic.ArrayType
+										containsAttribute(Object, Object) - javax.swing.text.StyleContext.SmallAttributeSet
+										isIntroStandby(IIntroPart) - org.eclipse.ui.internal.WorkbenchIntroManager
+										isIs(Method) - javax.management.MBeanAttributeInfo (2 matches)
+										equals(Object[], Object[]) - org.eclipse.jface.util.Util
+										removeDropTargetListener(DropTargetListener) - java.awt.dnd.DropTarget
+										decodeLineStyle(Object) - javax.swing.plaf.metal.MetalTreeUI (3 matches)
+										setProperty(QualifiedName, Object) - org.eclipse.core.internal.content.ContentDescription
+										setCursorImpl(Cursor) - java.awt.dnd.DragSourceContext
+										partClosed(IWorkbenchPart) - org.eclipse.ui.operations.OperationHistoryActionHandler.PartListener
+										eq(Object, Object) - java.util.Collections
+										restoreState(IMemento, IPerspectiveDescriptor) - org.eclipse.ui.internal.WorkbenchWindow
+										equals(Object) - javax.rmi.ssl.SslRMIServerSocketFactory
+										setStart(Comparable) - javax.swing.SpinnerDateModel
+										equals(Object) - javax.management.openmbean.CompositeDataSupport
+										initialize(Class, Object, Object, Encoder) - java.beans.java_awt_Component_PersistenceDelegate
+										doProperty(Class, PropertyDescriptor, Object, Object, Encoder) - java.beans.DefaultPersistenceDelegate
+										equals(Object) - com.sun.corba.se.impl.ior.IORTemplateImpl
+										isDispatching(EventQueue) - java.awt.EventDispatchThread
+										isEqual(IPropertyMap, IPropertyMap) - org.eclipse.ui.internal.preferences.PropertyUtil
+										visitINVOKEVIRTUAL(INVOKEVIRTUAL) - com.sun.org.apache.bcel.internal.verifier.structurals.InstConstraintVisitor
+										equals(GraphicsConfiguration, int, int, Object[]) - javax.swing.plaf.metal.CachedPainter.Cache.Entry (2 matches)
+										eq(Object, Object) - java.util.WeakHashMap
+										equals(Object, Object) - org.eclipse.jface.util.Util
+										equalArraysOK(Object, Object) - javax.swing.text.rtf.RTFGenerator
+										showIntro(IWorkbenchWindow, boolean) - org.eclipse.ui.internal.WorkbenchIntroManager
+										createModifyTab(TabFolder) - org.eclipse.ui.internal.keys.KeysPreferencePage
+										createTypeCodeForNull(ORB) - com.sun.corba.se.impl.javax.rmi.CORBA.Util
+										readData(InputStreamHook) - com.sun.corba.se.impl.io.InputStreamHook.InReadObjectDefaultsSentState
+										getComponent(Object, ServiceFactory, IServiceProvider) - org.eclipse.ui.internal.components.framework.Container
+										removeListener(IJobProgressManagerListener) - org.eclipse.ui.internal.progress.ProgressManager
+										isEqual(Object, Object) - org.eclipse.ui.internal.RadioMenu
+										revokeService(Class, BeanContextServiceProvider, boolean) - java.beans.beancontext.BeanContextServicesSupport
+										getCachedMBeanInfo(Class) - javax.management.StandardMBean.StandardMBeanMeta
+										isCanceled() - javax.swing.ProgressMonitor
+										setStepSize(Number) - javax.swing.SpinnerNumberModel
+										firstCommonSuperclass(ReferenceType) - com.sun.org.apache.bcel.internal.generic.ReferenceType (4 matches)
+										equals(XObject) - com.sun.org.apache.xpath.internal.objects.XStringForFSB (2 matches)
+										stringToIndex(String) - com.sun.org.apache.xml.internal.dtm.ref.DTMStringPool
+										equals(Object) - javax.rmi.ssl.SslRMIClientSocketFactory
+										endElement(String, String, String) - org.eclipse.help.internal.context.ContextsFileParser
+										equals(Object) - com.sun.corba.se.impl.orbutil.RepIdDelegator
+										setSelectedItem(Object) - javax.swing.JComboBox (2 matches)
+										setModel(SpinnerModel) - javax.swing.JSpinner
+										removeKeyBindingService(IWorkbenchSite) - org.eclipse.ui.internal.KeyBindingService
+										insertChar(AttributedCharacterIterator, char[], int, StyledParagraph) - java.awt.font.StyledParagraph (2 matches)
+										equals(Object) - javax.naming.directory.BasicAttributes
+										getAdapter(Class) - org.eclipse.ui.internal.ObjectActionContributor
+										equals(symbol_part) - com.sun.java_cup.internal.symbol_part
+										addValue(HashedReference) - org.eclipse.core.internal.registry.ReferenceHashSet
+										add(Object, int) - org.eclipse.core.internal.registry.ReferenceHashSet
+										cache(Object) - com.sun.jmx.remote.util.CacheMap
+										visitINVOKESTATIC(INVOKESTATIC) - com.sun.org.apache.bcel.internal.verifier.structurals.ExecutionVisitor (4 matches)
+										contains(StringToStringTable) - com.sun.org.apache.xml.internal.utils.StringToStringTableVector
+										preservingSelection(Runnable) - org.eclipse.jface.viewers.StructuredViewer
+										areEqual(Object, Object) - org.eclipse.ui.internal.Model
+										setPropertiesFromAttributes() - javax.swing.text.ParagraphView
+										setCellRenderer(ListCellRenderer) - javax.swing.JList
+										equals(Object) - org.eclipse.ui.internal.dialogs.PreferenceHistoryEntry
+										getCommonClass(Class, Class) - org.eclipse.ui.internal.ObjectActionContributorManager
+										showPerspective(String, IWorkbenchWindow, IAdaptable) - org.eclipse.ui.internal.Workbench (2 matches)
+										evaluate(IEvaluationContext) - org.eclipse.core.internal.expressions.TestExpression
+										firePropertyChange(String, Object, Object) - java.awt.Component
+										endElement(QName, Augmentations) - com.sun.org.apache.xerces.internal.parsers.AbstractDOMParser
+										fromStyleConstants(StyleConstants, Object) - javax.swing.text.html.CSS.FontWeight
+										equals(Object, Object) - java.beans.DefaultPersistenceDelegate
+										packageEquals(Class, Class) - com.sun.corba.se.impl.io.ObjectStreamClass
+										remove(Object) - org.eclipse.core.internal.runtime.ObjectMap
+										isSubstituteFor(IContributionItem) - org.eclipse.jface.action.MenuManager
+										setAction(Action) - javax.swing.JComboBox
+										removeAll(Collection) - javax.security.auth.Subject.SecureSet
+										setPropertiesFromAttributes() - javax.swing.text.html.InlineView
+										{...} - javax.swing.JPopupMenu
+										equals(Object) - org.eclipse.jface.viewers.StructuredSelection
+										equals(Object) - javax.naming.ldap.Rdn
+										restoreState(IMemento, IPerspectiveDescriptor) - org.eclipse.ui.internal.WorkbenchPage (2 matches)
+										search(Object, int) - com.sun.org.apache.xerces.internal.util.SymbolHash
+										createValueHandler(ORB) - com.sun.corba.se.impl.orbutil.ORBUtility (2 matches)
+										put(Object, Object) - org.eclipse.core.internal.runtime.ObjectMap
+										testWorkbenchPart(IWorkbenchPart) - org.eclipse.ui.internal.PartTester (2 matches)
+										isPartVisible(IWorkbenchPartReference) - org.eclipse.ui.internal.PerspectiveHelper
+										equals(Object) - javax.naming.Reference
+										equals(Object) - com.sun.corba.se.impl.ior.ObjectKeyTemplateBase (2 matches)
+										visitINVOKEINTERFACE(INVOKEINTERFACE) - com.sun.org.apache.bcel.internal.verifier.structurals.InstConstraintVisitor
+										isIntroInWindow(IWorkbenchWindow) - org.eclipse.ui.internal.WorkbenchIntroManager
+										invoke(Object, Method, Object[]) - javax.management.MBeanServerInvocationHandler (6 matches)
+										writeNestingLevel() - com.sun.corba.se.impl.encoding.CDROutputStream_1_0
+										mouseMove(MouseEvent) - org.eclipse.ui.internal.presentations.AbstractTableInformationControl.AbstractTableInformationControl(...).new MouseMoveListener() {...} (2 matches)
+										isAnyClass(Class) - com.sun.corba.se.impl.presentation.rmi.DynamicMethodMarshallerImpl (3 matches)
+										setEnd(Comparable) - javax.swing.SpinnerDateModel
+										equals(Object) - com.sun.corba.se.impl.ior.iiop.AlternateIIOPAddressComponentImpl
+										equals(Object) - org.eclipse.core.internal.runtime.ObjectMap
+										equals(Object) - org.eclipse.core.internal.expressions.Property
+										equals(ImageGraphicAttribute) - java.awt.font.ImageGraphicAttribute
+										doFindItem(Object) - org.eclipse.ui.internal.progress.FullProgressViewer
+										visitINVOKEINTERFACE(INVOKEINTERFACE) - com.sun.org.apache.bcel.internal.verifier.statics.Pass3aVerifier.InstOperandConstraintVisitor
+										equals(Object) - com.sun.org.apache.xalan.internal.xsltc.compiler.FunctionCall.JavaType
+										getCachedMBeanInterface(Class) - javax.management.StandardMBean.StandardMBeanMeta
+										addRequestor(Object, BeanContextServiceRevokedListener) - java.beans.beancontext.BeanContextServicesSupport.BCSSChild.BCSSCServiceClassRef
+										canSetParameter(String, Object) - com.sun.org.apache.xerces.internal.dom.DOMConfigurationImpl (3 matches)
+										equals(Object) - javax.naming.RefAddr
+										isNonStandardICC(ColorSpace) - com.sun.imageio.plugins.jpeg.JPEG (4 matches)
+										equals(Object) - javax.print.MimeType.ParameterMapEntry (2 matches)
+										showPerspective(String, IWorkbenchWindow) - org.eclipse.ui.internal.Workbench
+										contentsChanged(ListDataEvent) - javax.swing.JComboBox
+										getBoundsForIconOf(JInternalFrame) - javax.swing.DefaultDesktopManager
+										DynamicMethodMarshallerImpl(Method) - com.sun.corba.se.impl.presentation.rmi.DynamicMethodMarshallerImpl
+										split(CharSequence, int) - java.util.regex.Pattern
+										visitINVOKEVIRTUAL(INVOKEVIRTUAL) - com.sun.org.apache.bcel.internal.verifier.structurals.ExecutionVisitor (4 matches)
+										getParent(Object) - org.eclipse.ui.internal.dialogs.WizardContentProvider
+										revokeService(Class, boolean, boolean) - java.beans.beancontext.BeanContextServicesSupport.BCSSChild
+										setMinimum(Comparable) - javax.swing.SpinnerNumberModel
+										initializeIORTemplateList() - com.sun.corba.se.impl.ior.IORImpl
+										equals(Object) - javax.management.openmbean.CompositeType
+										getElement(Element, Object, Object, boolean) - javax.swing.text.html.HTMLDocument (2 matches)
+										equals(Object) - com.sun.corba.se.impl.ior.iiop.IIOPProfileImpl (2 matches)
+										equals(Object) - com.sun.corba.se.impl.orbutil.RepIdDelegator_1_3_1
+										getEnclosingMethod() - java.lang.Class
+										addHistoryEntry(PreferenceHistoryEntry) - org.eclipse.ui.internal.dialogs.PreferencePageHistory
+										getAccessibleIndexInParent() - java.awt.Component
+										equals(Object) - org.eclipse.ui.internal.activities.ws.CategorizedActivity (2 matches)
+										getLocalAttribute(Object) - javax.swing.text.StyleContext.SmallAttributeSet
+										visitReturnInstruction(ReturnInstruction) - com.sun.org.apache.bcel.internal.verifier.structurals.InstConstraintVisitor
+										indexOf(Object) - java.util.Arrays.ArrayList
+										removeSelectedWorkingSets() - org.eclipse.ui.internal.dialogs.WorkingSetSelectionDialog
+										canSetParameter(String, Object) - com.sun.org.apache.xerces.internal.parsers.DOMParserImpl (2 matches)
+										writeValue(Object, RTFGenerator, boolean) - javax.swing.text.rtf.RTFAttributes.AssertiveAttribute
+										getItem(Object) - com.sun.org.apache.xerces.internal.util.AugmentationsImpl.SmallContainer
+										traverse(Node) - com.sun.org.apache.xml.internal.utils.TreeWalker (2 matches)
+										identityEquals(Identity) - java.security.Identity
+										isLegacyORB(ORB) - com.sun.corba.se.impl.orbutil.ORBUtility
+										isDelegated() - java.beans.beancontext.BeanContextChildSupport
+										containsAllPDs(AccessControlContext) - java.security.AccessControlContext
+										fromStyleConstants(StyleConstants, Object) - javax.swing.text.html.CSS.StringValue (5 matches)
+										visitINVOKEVIRTUAL(INVOKEVIRTUAL) - com.sun.org.apache.bcel.internal.verifier.statics.Pass3aVerifier.InstOperandConstraintVisitor
+										ParagraphView(Element) - javax.swing.text.ParagraphView
+										visitANEWARRAY(ANEWARRAY) - com.sun.org.apache.bcel.internal.verifier.structurals.InstConstraintVisitor
+										equals(Object, Object) - org.eclipse.core.internal.commands.util.Util
+										equals(Object) - java.rmi.activation.ActivationID
+										verifyAndMaybeSetProvider(BeanContextServiceProvider, boolean) - java.beans.beancontext.BeanContextServicesSupport.BCSSChild.BCSSCServiceClassRef
+										compareTo(Object) - javax.naming.ldap.Rdn.RdnEntry
+										remove(Object) - org.eclipse.core.internal.registry.ReferenceHashSet
+										get(Object) - com.sun.org.apache.xalan.internal.xsltc.runtime.Hashtable
+										equals(Object) - com.sun.corba.se.impl.ior.iiop.IIOPProfileTemplateImpl
+										indexOf(Node, int) - com.sun.org.apache.xpath.internal.NodeSet
+										equals(Object) - org.eclipse.ui.internal.commands.CommandListenerWrapper (2 matches)
+										contains() - com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.ValueStoreBase
+										get(Object) - javax.swing.ArrayTable
+										dispatchEventImpl(AWTEvent) - java.awt.Component
+										update(boolean) - org.eclipse.jface.action.ToolBarManager
+										containsAttribute(Object, Object) - javax.swing.text.SimpleAttributeSet
+										checkFacets(ValidatedInfo) - com.sun.org.apache.xerces.internal.impl.dv.xs.XSSimpleTypeDecl
+										indexOfComponent(Component) - javax.swing.JTabbedPane
+										equals(Object) - org.eclipse.jface.resource.FileImageDescriptor
+										paramString() - java.awt.datatransfer.DataFlavor
+										writeClassBody(Class) - com.sun.corba.se.impl.encoding.CDROutputStream_1_0
+										logoutInternal() - com.sun.security.auth.module.KeyStoreLoginModule
+										removeElement(Node) - com.sun.org.apache.xpath.internal.NodeSet
+										equals(Object) - com.sun.corba.se.impl.orbutil.RepIdDelegator_1_3
+										firePropertyChangeEvent(String, Object, Object) - org.eclipse.jface.preference.PreferenceStore
+										cloneAttribute(Attribute) - com.sun.jmx.mbeanserver.JmxMBeanServer
+										indexOf(Object, Object[], int) - java.util.concurrent.CopyOnWriteArrayList
+										visitBASTORE(BASTORE) - com.sun.org.apache.bcel.internal.verifier.structurals.InstConstraintVisitor (2 matches)
+										bases(String) - com.sun.corba.se.impl.io.FVDCodeBaseImpl
+										removeItem(Object) - com.sun.org.apache.xerces.internal.util.AugmentationsImpl.SmallContainer
+										getCommonClass(List) - org.eclipse.ui.internal.ObjectActionContributorManager
+										removeByKey(Object) - org.eclipse.osgi.framework.internal.core.KeyedHashSet (2 matches)
+										mutatesTo(Object, Object) - java.beans.DefaultPersistenceDelegate
+										equals(Object) - javax.management.openmbean.OpenMBeanParameterInfoSupport (3 matches)
+										classEquals(Class, Class) - java.beans.beancontext.BeanContextSupport
+										mouseUp(MouseEvent) - org.eclipse.ui.internal.presentations.AbstractTableInformationControl.AbstractTableInformationControl(...).new MouseAdapter() {...} (2 matches)
+										isEmptyValue(Object) - javax.naming.ldap.Rdn
+										visitATHROW(ATHROW) - com.sun.org.apache.bcel.internal.verifier.structurals.ExecutionVisitor
+										setValue(Object) - javax.swing.SpinnerDateModel
+										update(boolean, boolean) - org.eclipse.jface.action.MenuManager
+										isPublicStaticVoid(Method) - com.sun.corba.se.impl.activation.ServerMain
+										containsAttributes(AttributeSet) - javax.swing.text.StyleContext.SmallAttributeSet
+										equals(ShapeGraphicAttribute) - java.awt.font.ShapeGraphicAttribute
+										getByKey(Object) - org.eclipse.osgi.framework.internal.core.KeyedHashSet (2 matches)
+										makeGetBulkResponsePdu(SnmpPduBulk, Object) - com.sun.jmx.snmp.daemon.SnmpRequestHandler
+										lastIndexOf(Object, int) - java.util.Vector
+										firePropertyChange(String, Object, Object) - javax.swing.AbstractAction
+										merge(OperandStack) - com.sun.org.apache.bcel.internal.verifier.structurals.OperandStack (2 matches)
+										equals(Object) - java.util.HashMap.Entry (2 matches)
+										update(boolean) - org.eclipse.jface.action.CoolBarManager
+										equals(Object) - java.net.Proxy
+										checkType(Type) - com.sun.org.apache.bcel.internal.generic.FieldGen
+										getEditorKitForContentType(String) - javax.swing.text.html.FrameView.FrameEditorPane
+										equals(Object) - org.eclipse.core.internal.registry.ReferenceHashSet.HashableWeakReference
+										readObject(ObjectInputStream) - java.beans.beancontext.BeanContextSupport
+										findCoolItem(IContributionItem) - org.eclipse.jface.action.CoolBarManager
+										postRemoveUpdate(DefaultDocumentEvent) - javax.swing.text.AbstractDocument
+										hashCode() - java.awt.datatransfer.DataFlavor (2 matches)
+										busyShowView(IViewPart, int) - org.eclipse.ui.internal.WorkbenchPage
+										equals(Object) - javax.management.Attribute
+										isValueSupported(Object) - javax.sound.sampled.EnumControl
+										hasSameConfiguration(GraphicsConfiguration, Color, Color, Color) - javax.swing.plaf.metal.BumpBuffer
+										equal(Any) - com.sun.corba.se.impl.corba.AnyImpl (3 matches)
+										setAction(Action) - javax.swing.AbstractButton
+										equals(Object) - com.sun.org.apache.xml.internal.utils.synthetic.reflection.Field (2 matches)
+										select(Viewer, Object, Object) - org.eclipse.ui.internal.dialogs.NewWizardActivityFilter
+										getInstance(ObjectName) - javax.management.ObjectName
+										isDefined(Object) - javax.swing.text.StyleContext.SmallAttributeSet
+										handleWidgetSelected() - org.eclipse.ui.dialogs.AbstractElementListSelectionDialog
+										setIntroStandby(IIntroPart, boolean) - org.eclipse.ui.internal.WorkbenchIntroManager
+										createEntry(IWorkbenchPage, IEditorPart, INavigationLocation) - org.eclipse.ui.internal.NavigationHistory
+										getItem() - javax.swing.plaf.synth.SynthComboBoxUI.SynthComboBoxEditor
+										addExtension(IExtensionTracker, IExtension) - org.eclipse.ui.internal.activities.ws.WorkbenchActivitySupport
+										addNodeInDocOrder(Node, boolean, XPathContext) - com.sun.org.apache.xpath.internal.NodeSet
+										matchSubjectAlternativeNames(X509Certificate) - java.security.cert.X509CertSelector
+										evaluate(IEvaluationContext) - org.eclipse.core.internal.expressions.EqualsExpression
+										objarrayequals(Object[], Object[]) - com.sun.org.apache.bcel.internal.verifier.statics.Pass3aVerifier.InstOperandConstraintVisitor
+										equalsHelper(Map, Set, Object, Object) - com.sun.corba.se.impl.orbutil.ObjectUtility
+										readEndTag() - com.sun.corba.se.impl.encoding.CDRInputStream_1_0
+										eq(Object, Object) - java.util.concurrent.ConcurrentHashMap.SimpleEntry
+										merge(LocalVariables, int) - com.sun.org.apache.bcel.internal.verifier.structurals.LocalVariables (3 matches)
+										setDropTarget(DropTarget) - java.awt.Component
+										equals(XObject) - com.sun.org.apache.xpath.internal.objects.XString (2 matches)
+										equals(Object) - com.sun.org.apache.xerces.internal.impl.dv.xs.ListDV.ListData
+										cloneAttributeList(AttributeList) - com.sun.jmx.mbeanserver.JmxMBeanServer (2 matches)
+										makeReaderWriter(Class) - com.sun.corba.se.impl.presentation.rmi.DynamicMethodMarshallerImpl (9 matches)
+										noMatchForTagInAttributes(AttributeSet, Tag, Object) - javax.swing.text.html.HTMLWriter
+										closeIntro(IIntroPart) - org.eclipse.ui.internal.WorkbenchIntroManager
+										writeObject(ObjectOutputStream) - java.beans.beancontext.BeanContextSupport
+										mutatesTo(Object, Object) - java.beans.PrimitivePersistenceDelegate
+										addToVector(Object, int, Vector, int[]) - java.awt.font.StyledParagraph
+										equals(Object[], Object[]) - org.eclipse.core.internal.commands.util.Util
+										mergePerspectives(PropertyChangeEvent) - org.eclipse.ui.internal.registry.PerspectiveRegistry.PerspectiveRegistry().new IPropertyChangeListener() {...}
+										setValue(Object) - javax.swing.SpinnerNumberModel
+										setEditorInput(IEditorInput) - org.eclipse.ui.internal.part.PartPropertyProvider
+										initFromMap(Map) - java.awt.Font (2 matches)
+										fill(CoolBar, int) - org.eclipse.jface.action.ToolBarContributionItem
+										getInitialValueIndex() - javax.swing.plaf.basic.BasicOptionPaneUI
+										visitINVOKESTATIC(INVOKESTATIC) - com.sun.org.apache.bcel.internal.verifier.statics.Pass3aVerifier.InstOperandConstraintVisitor
+										getChange(Element) - javax.swing.text.AbstractDocument.DefaultDocumentEvent
+										checkSystemBundle(SystemBundle) - org.eclipse.osgi.framework.internal.core.PackageAdminImpl
+										setComponent(Component) - java.awt.dnd.DropTarget
+										insertString(int, String, AttributeSet) - javax.swing.text.PlainDocument
+										fireVetoableChange(PropertyChangeEvent) - java.beans.VetoableChangeSupport
+										remove(Object) - java.util.EnumMap.Values
+										get(Object) - org.eclipse.core.internal.jobs.Queue
+										propertyChange(PropertyChangeEvent) - org.eclipse.ui.internal.WorkbenchPage.propertyChangeListener.new IPropertyChangeListener() {...}
+										toPattern() - java.text.MessageFormat (14 matches)
+										equals(Object) - javax.imageio.ImageTypeSpecifier.Banded
+										updateInsets() - javax.swing.text.html.TableView
+										containsKey(Object) - org.eclipse.core.internal.runtime.ObjectMap
+										removeMapping(Object, Object) - java.util.EnumMap
+										equals(Object) - org.eclipse.core.internal.registry.ReferenceHashSet.StrongReference
+										reorder(IPerspectiveDescriptor, int) - org.eclipse.ui.internal.WorkbenchPage.PerspectiveList
+										add(int, String, Type) - com.sun.org.apache.bcel.internal.verifier.statics.LocalVariableInfo
+										equals(Object) - java.rmi.activation.ActivationGroupID
+										handleText(char[], int) - javax.swing.text.html.HTMLDocument.HTMLReader (2 matches)
+										equals(Object) - com.sun.corba.se.impl.orb.ParserActionBase
+										remove(Object) - javax.swing.ArrayTable
+										serializeNode(Node) - com.sun.org.apache.xml.internal.serialize.BaseMarkupSerializer (2 matches)
+										visitBALOAD(BALOAD) - com.sun.org.apache.bcel.internal.verifier.structurals.InstConstraintVisitor (2 matches)
+										containsValue(Object) - org.eclipse.core.internal.runtime.ObjectMap
+										equals(Object) - com.sun.security.auth.X500Principal
+										equals(Object) - javax.swing.tree.TreePath
+										doesListMatch(int, int, List) - javax.naming.ldap.LdapName
+										getColumnIndex(Object) - javax.swing.table.DefaultTableColumnModel
+										equals(Object) - org.eclipse.ui.part.DrillFrame
+										validRestrictionOf(String, XSAttributeGroupDecl) - com.sun.org.apache.xerces.internal.impl.xs.XSAttributeGroupDecl
+										concatenateArrays(Object, Object) - com.sun.corba.se.impl.orbutil.ObjectUtility
+										getExistingComponent(Object, ServiceFactory) - org.eclipse.ui.internal.components.framework.Container
+										widgetSelected(SelectionEvent) - org.eclipse.ui.internal.PerspectiveSwitcher.addDockOnSubMenu(...).new SelectionAdapter() {...} (2 matches)
+										isLeftToRight(int, int) - javax.swing.text.AbstractDocument
+										equals(Object) - org.osgi.framework.AdminPermission
+										containsAttributes(AttributeSet) - javax.swing.text.SimpleAttributeSet
+										getItem() - javax.swing.plaf.basic.BasicComboBoxEditor
+										applyPattern(String) - java.text.ChoiceFormat
+										toString() - com.sun.org.apache.bcel.internal.generic.Type
+										valuesMatch(Object, Object) - java.text.AttributedString
+										checkStateChanged(CheckStateChangedEvent) - org.eclipse.ui.internal.misc.CheckboxDoubleListGroup
+										equals(Object) - com.sun.corba.se.impl.presentation.rmi.PresentationManagerImpl.NodeImpl
+										equalMember(TypeCode, InputStream, InputStream) - com.sun.corba.se.impl.corba.AnyImpl (3 matches)
+										handleInsertString(int, String, AttributeSet) - javax.swing.text.AbstractDocument (2 matches)
+										removeDragGestureListener(DragGestureListener) - java.awt.dnd.DragGestureRecognizer
+										findEditor(IEditorInput) - org.eclipse.ui.internal.EditorManager
+										valEquals(Object, Object) - java.util.TreeMap
+										isServiceClass(Class) - java.beans.beancontext.BeanContextServiceRevokedEvent
+										isRequested(QualifiedName) - org.eclipse.core.internal.content.ContentDescription
+										equals(Object) - java.util.EnumMap
+										retainAll(Collection) - javax.security.auth.Subject.SecureSet
+										UndoRedoDocumentEvent(AbstractDocument, DefaultDocumentEvent, boolean) - javax.swing.text.AbstractDocument.UndoRedoDocumentEvent (2 matches)
+										equalsObject(Map, Set, Class, Object, Object) - com.sun.corba.se.impl.orbutil.ObjectUtility
+										build_machine(production) - com.sun.java_cup.internal.lalr_state
+										getRootSet(Class, NodeImpl, Graph) - com.sun.corba.se.impl.presentation.rmi.PresentationManagerImpl
+										writeObject(ObjectOutputStream) - javax.swing.JFileChooser
+										fill(Menu, int) - org.eclipse.ui.internal.WorkingSetMenuContributionItem
+										addFont(Object, int) - java.awt.font.StyledParagraph
+										removeStats(String, Object) - org.eclipse.core.runtime.PerformanceStats
+										setEditor(JComponent) - javax.swing.JSpinner
+										equals(Object) - java.text.DateFormat
+										contains(Object) - com.sun.org.apache.xalan.internal.xsltc.runtime.Hashtable
+										setMaximum(Comparable) - javax.swing.SpinnerNumberModel
+										evaluate(IEvaluationContext) - org.eclipse.ui.LegacyHandlerSubmissionExpression (3 matches)
+										add(Attribute) - javax.print.attribute.HashAttributeSet
+										equals(Object) - org.eclipse.jface.action.ActionContributionItem
+										equals(XObject) - com.sun.org.apache.xpath.internal.objects.XObject
+										checkNameAndTypeOK(XSElementDecl, int, int, XSElementDecl, int, int) - com.sun.org.apache.xerces.internal.impl.xs.XSConstraints
+										equals(Object) - java.lang.reflect.Method
+										updateNavigationHistory(IWorkbenchPartReference, boolean) - org.eclipse.ui.internal.NavigationHistory.NavigationHistory(...).new IPartListener2() {...}
+										isEquivalent(TaggedProfile) - com.sun.corba.se.impl.ior.iiop.IIOPProfileImpl (2 matches)
+										sameShell() - org.eclipse.ui.internal.PerspectiveSwitcher.hookDragSupport().new IDragOverListener() {...}.PerspectiveDropTarget
+										visitINVOKESPECIAL(INVOKESPECIAL) - com.sun.org.apache.bcel.internal.verifier.structurals.ExecutionVisitor (4 matches)
+										equals(XMLGrammarDescription, XMLGrammarDescription) - com.sun.org.apache.xerces.internal.util.XMLGrammarPoolImpl
+										equals(TextLayout) - java.awt.font.TextLayout
+										create(Element) - javax.swing.plaf.basic.BasicTextAreaUI
+										equals(Object, Object) - org.eclipse.ui.internal.util.Util
+										equals(Object) - java.text.RuleBasedBreakIterator
+										startElement(String, String, String, Attributes) - org.eclipse.help.internal.context.ContextsFileParser
+										setLowerSelectedElement(Object) - org.eclipse.ui.dialogs.TwoPaneElementSelector
+										partOpened(IWorkbenchPart) - org.eclipse.ui.internal.PagePartSelectionTracker
+										isPrimary(IWizardDescriptor) - org.eclipse.ui.internal.dialogs.NewWizardNewPage
+										getAdapter(Class) - org.eclipse.ui.operations.OperationHistoryActionHandler (3 matches)
+										match(CRL) - java.security.cert.X509CRLSelector
+										get(Object) - org.eclipse.core.internal.runtime.ObjectMap
+										installWorker(String, PrivilegedExceptionAction) - org.eclipse.osgi.framework.internal.core.Framework
+										indexOf(Object, int) - java.util.Vector
+										mergeInto(NavigationHistoryEntry) - org.eclipse.ui.internal.NavigationHistoryEntry
+										valueOfInt(Instruction, Type) - com.sun.org.apache.bcel.internal.verifier.structurals.InstConstraintVisitor
+										readObject(ObjectInputStream) - javax.swing.tree.DefaultTreeSelectionModel
+										compare_Unknown(int, Object, Object) - org.eclipse.osgi.framework.internal.core.FilterImpl (4 matches)
+										isUpdateJob(Job) - org.eclipse.ui.internal.progress.ProgressViewUpdater
+										compareList(List, List) - org.eclipse.ui.internal.registry.FileEditorMapping
+										actionPerformed(ActionEvent) - javax.swing.plaf.basic.BasicComboBoxUI.Handler
+										put(Object, Object) - javax.swing.ArrayTable
+										coalesceEvents(AWTEvent, AWTEvent) - java.awt.Component
+										maps(Object, Object) - com.sun.org.apache.xalan.internal.xsltc.compiler.util.MultiHashtable
+										equals(Object) - javax.swing.KeyboardManager.ComponentKeyStrokePair (2 matches)
+										contains(Object) - javax.security.auth.Subject.SecureSet
+										visitATHROW(ATHROW) - com.sun.org.apache.bcel.internal.verifier.structurals.InstConstraintVisitor (2 matches)
+										equals(Object) - java.security.AccessControlContext
+										equals(Object) - com.sun.org.apache.xml.internal.utils.synthetic.reflection.EntryPoint
+										eq(Object, Object) - java.util.AbstractMap.SimpleEntry
+										create(Element) - javax.swing.JEditorPane.PlainEditorKit
+										setParameter(String, Object) - com.sun.org.apache.xerces.internal.parsers.DOMParserImpl (2 matches)
+										remove(Object) - org.eclipse.core.internal.jobs.Queue
+										getDescribedProperty(QualifiedName) - org.eclipse.core.internal.content.ContentDescription
+										visitINVOKESPECIAL(INVOKESPECIAL) - com.sun.org.apache.bcel.internal.verifier.structurals.InstConstraintVisitor
+										getByKey(Object) - org.eclipse.core.internal.registry.KeyedHashSet (2 matches)
+										isEqual(Object, Object) - com.sun.org.apache.xerces.internal.impl.dv.xs.XSSimpleTypeDecl
+										visitINVOKESPECIAL(INVOKESPECIAL) - com.sun.org.apache.bcel.internal.verifier.statics.Pass3aVerifier.InstOperandConstraintVisitor (3 matches)
+										traverseLocal(Element, XSDocumentInfo, SchemaGrammar, XSComplexTypeDecl) - com.sun.org.apache.xerces.internal.impl.xs.traversers.XSDAttributeTraverser
+										setSearchContexts(IScopeContext[]) - org.eclipse.ui.preferences.ScopedPreferenceStore
+										addDecoration(Decoration, int) - java.awt.font.StyledParagraph
+										indexOf(Node) - com.sun.org.apache.xpath.internal.NodeSet
+										isDefault(ColorDefinition) - org.eclipse.ui.internal.themes.ColorsAndFontsPreferencePage (2 matches)
+										addAll(AttributeSet) - javax.print.attribute.HashAttributeSet
+										writeObject(ObjectOutputStream) - java.beans.beancontext.BeanContextChildSupport
+										equals(Object, Object) - org.eclipse.ui.internal.misc.OverlayComposite
+										partClosed(IWorkbenchPart) - org.eclipse.ui.internal.PagePartSelectionTracker
+										processOneAttribute(QName, XMLAttributes, int, XSAttributeDecl, XSAttributeUseImpl, AttributePSVImpl) - com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator (2 matches)
+										setPrototypeCellValue(Object) - javax.swing.JList
+										containsKey(Object) - com.sun.org.apache.xalan.internal.xsltc.runtime.Hashtable
+										traverse(Node, Node) - com.sun.org.apache.xml.internal.utils.TreeWalker (2 matches)
+										DefaultCellEditor(JCheckBox) - javax.swing.DefaultCellEditor
+										processElementContent(QName) - com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator (2 matches)
+										deepEquals(Object[], Object[]) - java.util.Arrays
+										showOptionDialog(Component, Object, String, int, int, Icon, Object[], Object) - javax.swing.JOptionPane
+										subParseZoneString(String, int) - java.text.SimpleDateFormat
+										put(Object, Object) - com.sun.org.apache.xalan.internal.xsltc.runtime.Hashtable
+										eq(Object, Object) - java.lang.StackTraceElement
+										start(Tag, MutableAttributeSet) - javax.swing.text.html.HTMLDocument.HTMLReader.MetaAction (2 matches)
+										performStateTransition(FSM, Input, StateImpl, Action, boolean) - com.sun.corba.se.impl.orbutil.fsm.StateEngineImpl
+										hasSameConfiguration(GraphicsConfiguration) - javax.swing.plaf.metal.MetalIconFactory.ImageCacher.ImageGcPair
+										JPEGMetadata(ImageTypeSpecifier, ImageWriteParam, JPEGImageWriter) - com.sun.imageio.plugins.jpeg.JPEGMetadata
+										contains(Node) - com.sun.org.apache.xpath.internal.NodeSet
+										readObject(ObjectInputStream) - javax.swing.tree.DefaultMutableTreeNode
+										write(IIOMetadata, IIOImage, ImageWriteParam) - com.sun.imageio.plugins.wbmp.WBMPImageWriter
+										cancelLatestCommittedText(Attribute[]) - javax.swing.text.JTextComponent.InputMethodRequestsHandler
+										arrayrefOfArrayType(Instruction, Type) - com.sun.org.apache.bcel.internal.verifier.structurals.InstConstraintVisitor
+										keyEquals(Object, Object) - org.eclipse.jface.viewers.CustomHashtable
+										visitConstantValue(ConstantValue) - com.sun.org.apache.bcel.internal.verifier.statics.Pass2Verifier.CPESSC_Visitor (9 matches)
+										eq(Object, Object) - java.util.concurrent.ConcurrentHashMap.EntryIterator
+										resetGlobFilter() - javax.swing.plaf.basic.BasicFileChooserUI
+										equals(Object) - javax.imageio.ImageTypeSpecifier.Interleaved
+										translateHTMLToCSS(AttributeSet) - javax.swing.text.html.CSS (2 matches)
+										implies(Permission) - org.osgi.framework.AdminPermission
+										focusLost(FocusEvent) - javax.swing.plaf.basic.BasicComboBoxUI.Handler
+										putItem(Object, Object) - com.sun.org.apache.xerces.internal.util.AugmentationsImpl.SmallContainer
+										equals(Object) - org.eclipse.ui.internal.contexts.ContextListenerWrapper (2 matches)
+										setAction(Action) - javax.swing.JTextField
+										checkProp(Object, Object) - org.eclipse.osgi.internal.resolver.StateImpl
+										arrayEquals(Object, Object) - javax.naming.directory.BasicAttribute
+										equals(Object) - org.eclipse.ui.internal.keys.SchemeListenerWrapper (2 matches)
+										selectedPerspectiveIsActive(Object) - org.eclipse.ui.internal.PerspectiveSwitcher
+										layoutRow(FlowView, int, int) - javax.swing.text.TextLayoutStrategy
+										removeAttributes(AttributeSet) - javax.swing.text.SimpleAttributeSet
+										containsMapping(Object, Object) - java.util.EnumMap
+										removeDragSourceListener(DragSourceListener) - java.awt.dnd.DragSourceContext
+										introspect(Class, Class) - com.sun.jmx.mbeanserver.Introspector (3 matches)
+										getRicherData(DataFlavor) - javax.swing.plaf.basic.BasicTextUI.TextTransferHandler.TextTransferable (3 matches)
+										equals(Object) - com.sun.org.apache.bcel.internal.verifier.structurals.LocalVariables
+										updateAllUIs() - com.sun.java.swing.plaf.windows.DesktopProperty
+										removeCollector(IProgressUpdateCollector) - org.eclipse.ui.internal.progress.ProgressViewUpdater
+										equals(Object) - java.text.AttributeEntry
+										lastIndexOf(Object, Object[], int) - java.util.concurrent.CopyOnWriteArrayList
+										find(ObjectAdapterId) - com.sun.corba.se.impl.oa.toa.TOAFactory
+										getAdapter(Class) - org.eclipse.ui.internal.registry.ViewDescriptor
+										matches(IEditorInput) - org.eclipse.ui.internal.EditorHistoryItem
+										get(Object) - org.eclipse.core.internal.registry.ReferenceHashSet
+										containsKey(Object) - javax.swing.ArrayTable
+										getSelectedIndex() - javax.swing.JComboBox
+										verifyRequestor(Object, BeanContextServiceRevokedListener) - java.beans.beancontext.BeanContextServicesSupport.BCSSChild.BCSSCServiceClassRef
+										setEndOffset() - javax.swing.text.html.HTMLDocument.LeafIterator
+										addDragSourceListener(DragSourceListener) - java.awt.dnd.DragSourceContext
+										equals(Object) - java.rmi.server.RemoteObject
+										equals(Object) - org.eclipse.core.runtime.dynamichelpers.ExtensionTracker.HandlerWrapper
+										equals(Object) - java.util.WeakHashMap.Entry (2 matches)
+										equals(Object) - com.sun.org.apache.bcel.internal.generic.ReturnaddressType
+										checkDuplicates(NavigationHistoryEditorInfo) - org.eclipse.ui.internal.NavigationHistory
+										isEquivalent(TaggedProfileTemplate) - com.sun.corba.se.impl.ior.iiop.IIOPProfileTemplateImpl
+										closeEditors(IEditorReference[], boolean) - org.eclipse.ui.internal.WorkbenchPage
+										indexOfTab(Icon) - javax.swing.JTabbedPane
+										containsAttributes(AttributeSet) - javax.swing.text.html.MuxingAttributeSet
+										equals(Object, Object) - org.eclipse.jface.viewers.StructuredViewer
+										equals(DataFlavor) - java.awt.datatransfer.DataFlavor (2 matches)
+										readObject(ObjectInputStream) - javax.swing.JMenuBar
+										remove(Object) - javax.security.auth.Subject.SecureSet
+										insertUpdate(DefaultDocumentEvent, AttributeSet) - javax.swing.text.AbstractDocument
+										chooseRequestVersion(ORB, IOR) - com.sun.corba.se.spi.ior.iiop.GIOPVersion
+										equals(Object) - org.eclipse.osgi.framework.internal.core.BundleNativeCode.Attribute
+										same(Object, Object) - org.eclipse.core.internal.runtime.ListenerList
+										eq(Object, Object) - java.util.HashMap
+										createAddedElement(Widget, Object) - org.eclipse.jface.viewers.AbstractTreeViewer (2 matches)
+										setParameter(String, Object) - com.sun.org.apache.xerces.internal.dom.DOMConfigurationImpl (2 matches)
+										showInternalOptionDialog(Component, Object, String, int, int, Icon, Object[], Object) - javax.swing.JOptionPane
+										visitGETFIELD(GETFIELD) - com.sun.org.apache.bcel.internal.verifier.structurals.ExecutionVisitor (4 matches)
+										equals(Object) - javax.management.openmbean.OpenMBeanAttributeInfoSupport (3 matches)
+										addImpl(Component, Object, int) - javax.swing.JSplitPane (5 matches)
+										_is_equivalent(Object) - org.omg.CORBA.LocalObject
+										equals(Object) - java.security.spec.EllipticCurve
+										valueEquals(Object, Object) - javax.naming.directory.BasicAttribute
+										getIndex(Object) - org.eclipse.osgi.framework.util.Headers
+										readClass() - com.sun.corba.se.impl.encoding.CDRInputStream_1_0
+										remove(Object) - com.sun.org.apache.xalan.internal.xsltc.runtime.Hashtable
+										equals(Object) - java.text.CollationKey
+										setSelectedValue(Object, boolean) - javax.swing.JList (2 matches)
+										visitINVOKESTATIC(INVOKESTATIC) - com.sun.org.apache.bcel.internal.verifier.structurals.InstConstraintVisitor
+										equals(Object) - java.util.Calendar
+										equals(Object, Object) - java.beans.MetaData
+										equals(Object) - com.sun.corba.se.spi.orb.ParserImplTableBase.MapEntry (2 matches)
+										indexOfInt(Instruction, Type) - com.sun.org.apache.bcel.internal.verifier.structurals.InstConstraintVisitor
+										checkActiveWindow(IWorkbenchWindow) - org.eclipse.ui.internal.keys.WorkbenchKeyboard
+									equals(Object) - org.eclipse.ui.internal.preferences.PropertyMap
+										isForeignORB(ORB) - com.sun.corba.se.impl.orbutil.ORBUtility
+										isDuplicateOf(XSSimpleType, String, String) - com.sun.org.apache.xerces.internal.impl.xs.identity.IDValue
+										visitGETSTATIC(GETSTATIC) - com.sun.org.apache.bcel.internal.verifier.structurals.ExecutionVisitor (4 matches)
+										equals(Object) - org.eclipse.core.internal.registry.ReferenceHashSet.HashableSoftReference
+										equals(Object[], Object[]) - java.util.Arrays
+										firePropertyChange(String, Object, Object) - java.beans.PropertyChangeSupport
+										removeByKey(Object) - org.eclipse.core.internal.registry.KeyedHashSet (2 matches)
+										getObject(Map) - javax.sql.rowset.serial.SerialRef
+										containsAttribute(Object, Object) - javax.swing.text.html.MuxingAttributeSet
+										equals(Object) - com.sun.corba.se.impl.ior.ObjectKeyImpl (2 matches)
+										visitINVOKEINTERFACE(INVOKEINTERFACE) - com.sun.org.apache.bcel.internal.verifier.structurals.ExecutionVisitor (4 matches)
+										isAssignmentCompatibleWith(Type) - com.sun.org.apache.bcel.internal.generic.ReferenceType (7 matches)
+										equals(Object) - javax.imageio.ImageTypeSpecifier
+										addDropTargetListener(DropTargetListener) - java.awt.dnd.DropTarget
+										isCastableTo(Type) - com.sun.org.apache.bcel.internal.generic.ReferenceType
+										getAdapter(Class) - org.eclipse.ui.internal.dialogs.RegistryPageContributor
+										create(Element) - javax.swing.plaf.basic.BasicTextFieldUI
+										normalizeSites(List) - org.eclipse.ui.internal.KeyBindingService (2 matches)
+										attrDiff(MutableAttributeSet, AttributeSet, Object, Object) - javax.swing.text.rtf.RTFGenerator
+										firePropertyChange(PropertyChangeEvent) - java.beans.PropertyChangeSupport
+										revokeAllDelegatedServicesNow() - java.beans.beancontext.BeanContextServicesSupport.BCSSChild
+										setSelectedItem(Object) - javax.swing.DefaultComboBoxModel
+										getChildren() - com.sun.corba.se.impl.presentation.rmi.PresentationManagerImpl.NodeImpl
+										isParent(Object, Object) - org.eclipse.ui.progress.DeferredTreeContentManager.startFetchingDeferredChildren(...).new Job() {...}
+										setSelection(Object[]) - org.eclipse.ui.dialogs.FilteredList
+										readResolve() - java.awt.AWTKeyStroke
+										contentEquals(CharSequence) - java.lang.String
+										getTransferData(DataFlavor) - javax.swing.plaf.basic.BasicTransferable (6 matches)
+										containsValue(Object) - java.util.EnumMap
+										visitCASTORE(CASTORE) - com.sun.org.apache.bcel.internal.verifier.structurals.InstConstraintVisitor
+										isEquivalent(IORFactory) - com.sun.corba.se.impl.ior.IORTemplateImpl
+										equals(Object) - org.eclipse.jface.resource.ImageDataImageDescriptor
+										evaluate(IEvaluationContext) - org.eclipse.ui.ActiveShellExpression (2 matches)
+										equals(Object) - com.sun.org.apache.bcel.internal.generic.ArrayType
+										containsAttribute(Object, Object) - javax.swing.text.StyleContext.SmallAttributeSet
+										isIntroStandby(IIntroPart) - org.eclipse.ui.internal.WorkbenchIntroManager
+										isIs(Method) - javax.management.MBeanAttributeInfo (2 matches)
+										equals(Object[], Object[]) - org.eclipse.jface.util.Util
+										removeDropTargetListener(DropTargetListener) - java.awt.dnd.DropTarget
+										decodeLineStyle(Object) - javax.swing.plaf.metal.MetalTreeUI (3 matches)
+										setProperty(QualifiedName, Object) - org.eclipse.core.internal.content.ContentDescription
+										setCursorImpl(Cursor) - java.awt.dnd.DragSourceContext
+										partClosed(IWorkbenchPart) - org.eclipse.ui.operations.OperationHistoryActionHandler.PartListener
+										eq(Object, Object) - java.util.Collections
+										restoreState(IMemento, IPerspectiveDescriptor) - org.eclipse.ui.internal.WorkbenchWindow
+										equals(Object) - javax.rmi.ssl.SslRMIServerSocketFactory
+										setStart(Comparable) - javax.swing.SpinnerDateModel
+										equals(Object) - javax.management.openmbean.CompositeDataSupport
+										initialize(Class, Object, Object, Encoder) - java.beans.java_awt_Component_PersistenceDelegate
+										doProperty(Class, PropertyDescriptor, Object, Object, Encoder) - java.beans.DefaultPersistenceDelegate
+										equals(Object) - com.sun.corba.se.impl.ior.IORTemplateImpl
+										isDispatching(EventQueue) - java.awt.EventDispatchThread
+										isEqual(IPropertyMap, IPropertyMap) - org.eclipse.ui.internal.preferences.PropertyUtil
+										visitINVOKEVIRTUAL(INVOKEVIRTUAL) - com.sun.org.apache.bcel.internal.verifier.structurals.InstConstraintVisitor
+										equals(GraphicsConfiguration, int, int, Object[]) - javax.swing.plaf.metal.CachedPainter.Cache.Entry (2 matches)
+										eq(Object, Object) - java.util.WeakHashMap
+										equals(Object, Object) - org.eclipse.jface.util.Util
+										equalArraysOK(Object, Object) - javax.swing.text.rtf.RTFGenerator
+										showIntro(IWorkbenchWindow, boolean) - org.eclipse.ui.internal.WorkbenchIntroManager
+										createModifyTab(TabFolder) - org.eclipse.ui.internal.keys.KeysPreferencePage
+										createTypeCodeForNull(ORB) - com.sun.corba.se.impl.javax.rmi.CORBA.Util
+										readData(InputStreamHook) - com.sun.corba.se.impl.io.InputStreamHook.InReadObjectDefaultsSentState
+										getComponent(Object, ServiceFactory, IServiceProvider) - org.eclipse.ui.internal.components.framework.Container
+										removeListener(IJobProgressManagerListener) - org.eclipse.ui.internal.progress.ProgressManager
+										isEqual(Object, Object) - org.eclipse.ui.internal.RadioMenu
+										revokeService(Class, BeanContextServiceProvider, boolean) - java.beans.beancontext.BeanContextServicesSupport
+										getCachedMBeanInfo(Class) - javax.management.StandardMBean.StandardMBeanMeta
+										isCanceled() - javax.swing.ProgressMonitor
+										setStepSize(Number) - javax.swing.SpinnerNumberModel
+										firstCommonSuperclass(ReferenceType) - com.sun.org.apache.bcel.internal.generic.ReferenceType (4 matches)
+										equals(XObject) - com.sun.org.apache.xpath.internal.objects.XStringForFSB (2 matches)
+										stringToIndex(String) - com.sun.org.apache.xml.internal.dtm.ref.DTMStringPool
+										equals(Object) - javax.rmi.ssl.SslRMIClientSocketFactory
+										endElement(String, String, String) - org.eclipse.help.internal.context.ContextsFileParser
+										equals(Object) - com.sun.corba.se.impl.orbutil.RepIdDelegator
+										setSelectedItem(Object) - javax.swing.JComboBox (2 matches)
+										setModel(SpinnerModel) - javax.swing.JSpinner
+										removeKeyBindingService(IWorkbenchSite) - org.eclipse.ui.internal.KeyBindingService
+										insertChar(AttributedCharacterIterator, char[], int, StyledParagraph) - java.awt.font.StyledParagraph (2 matches)
+										equals(Object) - javax.naming.directory.BasicAttributes
+										getAdapter(Class) - org.eclipse.ui.internal.ObjectActionContributor
+										equals(symbol_part) - com.sun.java_cup.internal.symbol_part
+										addValue(HashedReference) - org.eclipse.core.internal.registry.ReferenceHashSet
+										add(Object, int) - org.eclipse.core.internal.registry.ReferenceHashSet
+										cache(Object) - com.sun.jmx.remote.util.CacheMap
+										visitINVOKESTATIC(INVOKESTATIC) - com.sun.org.apache.bcel.internal.verifier.structurals.ExecutionVisitor (4 matches)
+										contains(StringToStringTable) - com.sun.org.apache.xml.internal.utils.StringToStringTableVector
+										preservingSelection(Runnable) - org.eclipse.jface.viewers.StructuredViewer
+										areEqual(Object, Object) - org.eclipse.ui.internal.Model
+										setPropertiesFromAttributes() - javax.swing.text.ParagraphView
+										setCellRenderer(ListCellRenderer) - javax.swing.JList
+										equals(Object) - org.eclipse.ui.internal.dialogs.PreferenceHistoryEntry
+										getCommonClass(Class, Class) - org.eclipse.ui.internal.ObjectActionContributorManager
+										showPerspective(String, IWorkbenchWindow, IAdaptable) - org.eclipse.ui.internal.Workbench (2 matches)
+										evaluate(IEvaluationContext) - org.eclipse.core.internal.expressions.TestExpression
+										firePropertyChange(String, Object, Object) - java.awt.Component
+										endElement(QName, Augmentations) - com.sun.org.apache.xerces.internal.parsers.AbstractDOMParser
+										fromStyleConstants(StyleConstants, Object) - javax.swing.text.html.CSS.FontWeight
+										equals(Object, Object) - java.beans.DefaultPersistenceDelegate
+										packageEquals(Class, Class) - com.sun.corba.se.impl.io.ObjectStreamClass
+										remove(Object) - org.eclipse.core.internal.runtime.ObjectMap
+										isSubstituteFor(IContributionItem) - org.eclipse.jface.action.MenuManager
+										setAction(Action) - javax.swing.JComboBox
+										removeAll(Collection) - javax.security.auth.Subject.SecureSet
+										setPropertiesFromAttributes() - javax.swing.text.html.InlineView
+										{...} - javax.swing.JPopupMenu
+										equals(Object) - org.eclipse.jface.viewers.StructuredSelection
+										equals(Object) - javax.naming.ldap.Rdn
+										restoreState(IMemento, IPerspectiveDescriptor) - org.eclipse.ui.internal.WorkbenchPage (2 matches)
+										search(Object, int) - com.sun.org.apache.xerces.internal.util.SymbolHash
+										createValueHandler(ORB) - com.sun.corba.se.impl.orbutil.ORBUtility (2 matches)
+										put(Object, Object) - org.eclipse.core.internal.runtime.ObjectMap
+										testWorkbenchPart(IWorkbenchPart) - org.eclipse.ui.internal.PartTester (2 matches)
+										isPartVisible(IWorkbenchPartReference) - org.eclipse.ui.internal.PerspectiveHelper
+										equals(Object) - javax.naming.Reference
+										equals(Object) - com.sun.corba.se.impl.ior.ObjectKeyTemplateBase (2 matches)
+										visitINVOKEINTERFACE(INVOKEINTERFACE) - com.sun.org.apache.bcel.internal.verifier.structurals.InstConstraintVisitor
+										isIntroInWindow(IWorkbenchWindow) - org.eclipse.ui.internal.WorkbenchIntroManager
+										invoke(Object, Method, Object[]) - javax.management.MBeanServerInvocationHandler (6 matches)
+										writeNestingLevel() - com.sun.corba.se.impl.encoding.CDROutputStream_1_0
+										mouseMove(MouseEvent) - org.eclipse.ui.internal.presentations.AbstractTableInformationControl.AbstractTableInformationControl(...).new MouseMoveListener() {...} (2 matches)
+										isAnyClass(Class) - com.sun.corba.se.impl.presentation.rmi.DynamicMethodMarshallerImpl (3 matches)
+										setEnd(Comparable) - javax.swing.SpinnerDateModel
+										equals(Object) - com.sun.corba.se.impl.ior.iiop.AlternateIIOPAddressComponentImpl
+										equals(Object) - org.eclipse.core.internal.runtime.ObjectMap
+										equals(Object) - org.eclipse.core.internal.expressions.Property
+										equals(ImageGraphicAttribute) - java.awt.font.ImageGraphicAttribute
+										doFindItem(Object) - org.eclipse.ui.internal.progress.FullProgressViewer
+										visitINVOKEINTERFACE(INVOKEINTERFACE) - com.sun.org.apache.bcel.internal.verifier.statics.Pass3aVerifier.InstOperandConstraintVisitor
+										equals(Object) - com.sun.org.apache.xalan.internal.xsltc.compiler.FunctionCall.JavaType
+										getCachedMBeanInterface(Class) - javax.management.StandardMBean.StandardMBeanMeta
+										addRequestor(Object, BeanContextServiceRevokedListener) - java.beans.beancontext.BeanContextServicesSupport.BCSSChild.BCSSCServiceClassRef
+										canSetParameter(String, Object) - com.sun.org.apache.xerces.internal.dom.DOMConfigurationImpl (3 matches)
+										equals(Object) - javax.naming.RefAddr
+										isNonStandardICC(ColorSpace) - com.sun.imageio.plugins.jpeg.JPEG (4 matches)
+										equals(Object) - javax.print.MimeType.ParameterMapEntry (2 matches)
+										showPerspective(String, IWorkbenchWindow) - org.eclipse.ui.internal.Workbench
+										contentsChanged(ListDataEvent) - javax.swing.JComboBox
+										getBoundsForIconOf(JInternalFrame) - javax.swing.DefaultDesktopManager
+										DynamicMethodMarshallerImpl(Method) - com.sun.corba.se.impl.presentation.rmi.DynamicMethodMarshallerImpl
+										split(CharSequence, int) - java.util.regex.Pattern
+										visitINVOKEVIRTUAL(INVOKEVIRTUAL) - com.sun.org.apache.bcel.internal.verifier.structurals.ExecutionVisitor (4 matches)
+										getParent(Object) - org.eclipse.ui.internal.dialogs.WizardContentProvider
+										revokeService(Class, boolean, boolean) - java.beans.beancontext.BeanContextServicesSupport.BCSSChild
+										setMinimum(Comparable) - javax.swing.SpinnerNumberModel
+										initializeIORTemplateList() - com.sun.corba.se.impl.ior.IORImpl
+										equals(Object) - javax.management.openmbean.CompositeType
+										getElement(Element, Object, Object, boolean) - javax.swing.text.html.HTMLDocument (2 matches)
+										equals(Object) - com.sun.corba.se.impl.ior.iiop.IIOPProfileImpl (2 matches)
+										equals(Object) - com.sun.corba.se.impl.orbutil.RepIdDelegator_1_3_1
+										getEnclosingMethod() - java.lang.Class
+										addHistoryEntry(PreferenceHistoryEntry) - org.eclipse.ui.internal.dialogs.PreferencePageHistory
+										getAccessibleIndexInParent() - java.awt.Component
+										equals(Object) - org.eclipse.ui.internal.activities.ws.CategorizedActivity (2 matches)
+										getLocalAttribute(Object) - javax.swing.text.StyleContext.SmallAttributeSet
+										visitReturnInstruction(ReturnInstruction) - com.sun.org.apache.bcel.internal.verifier.structurals.InstConstraintVisitor
+										indexOf(Object) - java.util.Arrays.ArrayList
+										removeSelectedWorkingSets() - org.eclipse.ui.internal.dialogs.WorkingSetSelectionDialog
+										canSetParameter(String, Object) - com.sun.org.apache.xerces.internal.parsers.DOMParserImpl (2 matches)
+										writeValue(Object, RTFGenerator, boolean) - javax.swing.text.rtf.RTFAttributes.AssertiveAttribute
+										getItem(Object) - com.sun.org.apache.xerces.internal.util.AugmentationsImpl.SmallContainer
+										traverse(Node) - com.sun.org.apache.xml.internal.utils.TreeWalker (2 matches)
+										identityEquals(Identity) - java.security.Identity
+										isLegacyORB(ORB) - com.sun.corba.se.impl.orbutil.ORBUtility
+										isDelegated() - java.beans.beancontext.BeanContextChildSupport
+										containsAllPDs(AccessControlContext) - java.security.AccessControlContext
+										fromStyleConstants(StyleConstants, Object) - javax.swing.text.html.CSS.StringValue (5 matches)
+										visitINVOKEVIRTUAL(INVOKEVIRTUAL) - com.sun.org.apache.bcel.internal.verifier.statics.Pass3aVerifier.InstOperandConstraintVisitor
+										ParagraphView(Element) - javax.swing.text.ParagraphView
+										visitANEWARRAY(ANEWARRAY) - com.sun.org.apache.bcel.internal.verifier.structurals.InstConstraintVisitor
+										equals(Object, Object) - org.eclipse.core.internal.commands.util.Util
+										equals(Object) - java.rmi.activation.ActivationID
+										verifyAndMaybeSetProvider(BeanContextServiceProvider, boolean) - java.beans.beancontext.BeanContextServicesSupport.BCSSChild.BCSSCServiceClassRef
+										compareTo(Object) - javax.naming.ldap.Rdn.RdnEntry
+										remove(Object) - org.eclipse.core.internal.registry.ReferenceHashSet
+										get(Object) - com.sun.org.apache.xalan.internal.xsltc.runtime.Hashtable
+										equals(Object) - com.sun.corba.se.impl.ior.iiop.IIOPProfileTemplateImpl
+										indexOf(Node, int) - com.sun.org.apache.xpath.internal.NodeSet
+										equals(Object) - org.eclipse.ui.internal.commands.CommandListenerWrapper (2 matches)
+										contains() - com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.ValueStoreBase
+										get(Object) - javax.swing.ArrayTable
+										dispatchEventImpl(AWTEvent) - java.awt.Component
+										update(boolean) - org.eclipse.jface.action.ToolBarManager
+										containsAttribute(Object, Object) - javax.swing.text.SimpleAttributeSet
+										checkFacets(ValidatedInfo) - com.sun.org.apache.xerces.internal.impl.dv.xs.XSSimpleTypeDecl
+										indexOfComponent(Component) - javax.swing.JTabbedPane
+										equals(Object) - org.eclipse.jface.resource.FileImageDescriptor
+										paramString() - java.awt.datatransfer.DataFlavor
+										writeClassBody(Class) - com.sun.corba.se.impl.encoding.CDROutputStream_1_0
+										logoutInternal() - com.sun.security.auth.module.KeyStoreLoginModule
+										removeElement(Node) - com.sun.org.apache.xpath.internal.NodeSet
+										equals(Object) - com.sun.corba.se.impl.orbutil.RepIdDelegator_1_3
+										firePropertyChangeEvent(String, Object, Object) - org.eclipse.jface.preference.PreferenceStore
+										cloneAttribute(Attribute) - com.sun.jmx.mbeanserver.JmxMBeanServer
+										indexOf(Object, Object[], int) - java.util.concurrent.CopyOnWriteArrayList
+										visitBASTORE(BASTORE) - com.sun.org.apache.bcel.internal.verifier.structurals.InstConstraintVisitor (2 matches)
+										bases(String) - com.sun.corba.se.impl.io.FVDCodeBaseImpl
+										removeItem(Object) - com.sun.org.apache.xerces.internal.util.AugmentationsImpl.SmallContainer
+										getCommonClass(List) - org.eclipse.ui.internal.ObjectActionContributorManager
+										removeByKey(Object) - org.eclipse.osgi.framework.internal.core.KeyedHashSet (2 matches)
+										mutatesTo(Object, Object) - java.beans.DefaultPersistenceDelegate
+										equals(Object) - javax.management.openmbean.OpenMBeanParameterInfoSupport (3 matches)
+										classEquals(Class, Class) - java.beans.beancontext.BeanContextSupport
+										mouseUp(MouseEvent) - org.eclipse.ui.internal.presentations.AbstractTableInformationControl.AbstractTableInformationControl(...).new MouseAdapter() {...} (2 matches)
+										isEmptyValue(Object) - javax.naming.ldap.Rdn
+										visitATHROW(ATHROW) - com.sun.org.apache.bcel.internal.verifier.structurals.ExecutionVisitor
+										setValue(Object) - javax.swing.SpinnerDateModel
+										update(boolean, boolean) - org.eclipse.jface.action.MenuManager
+										isPublicStaticVoid(Method) - com.sun.corba.se.impl.activation.ServerMain
+										containsAttributes(AttributeSet) - javax.swing.text.StyleContext.SmallAttributeSet
+										equals(ShapeGraphicAttribute) - java.awt.font.ShapeGraphicAttribute
+										getByKey(Object) - org.eclipse.osgi.framework.internal.core.KeyedHashSet (2 matches)
+										makeGetBulkResponsePdu(SnmpPduBulk, Object) - com.sun.jmx.snmp.daemon.SnmpRequestHandler
+										lastIndexOf(Object, int) - java.util.Vector
+										firePropertyChange(String, Object, Object) - javax.swing.AbstractAction
+										merge(OperandStack) - com.sun.org.apache.bcel.internal.verifier.structurals.OperandStack (2 matches)
+										equals(Object) - java.util.HashMap.Entry (2 matches)
+										update(boolean) - org.eclipse.jface.action.CoolBarManager
+										equals(Object) - java.net.Proxy
+										checkType(Type) - com.sun.org.apache.bcel.internal.generic.FieldGen
+										getEditorKitForContentType(String) - javax.swing.text.html.FrameView.FrameEditorPane
+										equals(Object) - org.eclipse.core.internal.registry.ReferenceHashSet.HashableWeakReference
+										readObject(ObjectInputStream) - java.beans.beancontext.BeanContextSupport
+										findCoolItem(IContributionItem) - org.eclipse.jface.action.CoolBarManager
+										postRemoveUpdate(DefaultDocumentEvent) - javax.swing.text.AbstractDocument
+										hashCode() - java.awt.datatransfer.DataFlavor (2 matches)
+										busyShowView(IViewPart, int) - org.eclipse.ui.internal.WorkbenchPage
+										equals(Object) - javax.management.Attribute
+										isValueSupported(Object) - javax.sound.sampled.EnumControl
+										hasSameConfiguration(GraphicsConfiguration, Color, Color, Color) - javax.swing.plaf.metal.BumpBuffer
+										equal(Any) - com.sun.corba.se.impl.corba.AnyImpl (3 matches)
+										setAction(Action) - javax.swing.AbstractButton
+										equals(Object) - com.sun.org.apache.xml.internal.utils.synthetic.reflection.Field (2 matches)
+										select(Viewer, Object, Object) - org.eclipse.ui.internal.dialogs.NewWizardActivityFilter
+										getInstance(ObjectName) - javax.management.ObjectName
+										isDefined(Object) - javax.swing.text.StyleContext.SmallAttributeSet
+										handleWidgetSelected() - org.eclipse.ui.dialogs.AbstractElementListSelectionDialog
+										setIntroStandby(IIntroPart, boolean) - org.eclipse.ui.internal.WorkbenchIntroManager
+										createEntry(IWorkbenchPage, IEditorPart, INavigationLocation) - org.eclipse.ui.internal.NavigationHistory
+										getItem() - javax.swing.plaf.synth.SynthComboBoxUI.SynthComboBoxEditor
+										addExtension(IExtensionTracker, IExtension) - org.eclipse.ui.internal.activities.ws.WorkbenchActivitySupport
+										addNodeInDocOrder(Node, boolean, XPathContext) - com.sun.org.apache.xpath.internal.NodeSet
+										matchSubjectAlternativeNames(X509Certificate) - java.security.cert.X509CertSelector
+										evaluate(IEvaluationContext) - org.eclipse.core.internal.expressions.EqualsExpression
+										objarrayequals(Object[], Object[]) - com.sun.org.apache.bcel.internal.verifier.statics.Pass3aVerifier.InstOperandConstraintVisitor
+										equalsHelper(Map, Set, Object, Object) - com.sun.corba.se.impl.orbutil.ObjectUtility
+										readEndTag() - com.sun.corba.se.impl.encoding.CDRInputStream_1_0
+										eq(Object, Object) - java.util.concurrent.ConcurrentHashMap.SimpleEntry
+										merge(LocalVariables, int) - com.sun.org.apache.bcel.internal.verifier.structurals.LocalVariables (3 matches)
+										setDropTarget(DropTarget) - java.awt.Component
+										equals(XObject) - com.sun.org.apache.xpath.internal.objects.XString (2 matches)
+										equals(Object) - com.sun.org.apache.xerces.internal.impl.dv.xs.ListDV.ListData
+										cloneAttributeList(AttributeList) - com.sun.jmx.mbeanserver.JmxMBeanServer (2 matches)
+										makeReaderWriter(Class) - com.sun.corba.se.impl.presentation.rmi.DynamicMethodMarshallerImpl (9 matches)
+										noMatchForTagInAttributes(AttributeSet, Tag, Object) - javax.swing.text.html.HTMLWriter
+										closeIntro(IIntroPart) - org.eclipse.ui.internal.WorkbenchIntroManager
+										writeObject(ObjectOutputStream) - java.beans.beancontext.BeanContextSupport
+										mutatesTo(Object, Object) - java.beans.PrimitivePersistenceDelegate
+										addToVector(Object, int, Vector, int[]) - java.awt.font.StyledParagraph
+										equals(Object[], Object[]) - org.eclipse.core.internal.commands.util.Util
+										mergePerspectives(PropertyChangeEvent) - org.eclipse.ui.internal.registry.PerspectiveRegistry.PerspectiveRegistry().new IPropertyChangeListener() {...}
+										setValue(Object) - javax.swing.SpinnerNumberModel
+										setEditorInput(IEditorInput) - org.eclipse.ui.internal.part.PartPropertyProvider
+										initFromMap(Map) - java.awt.Font (2 matches)
+										fill(CoolBar, int) - org.eclipse.jface.action.ToolBarContributionItem
+										getInitialValueIndex() - javax.swing.plaf.basic.BasicOptionPaneUI
+										visitINVOKESTATIC(INVOKESTATIC) - com.sun.org.apache.bcel.internal.verifier.statics.Pass3aVerifier.InstOperandConstraintVisitor
+										getChange(Element) - javax.swing.text.AbstractDocument.DefaultDocumentEvent
+										checkSystemBundle(SystemBundle) - org.eclipse.osgi.framework.internal.core.PackageAdminImpl
+										setComponent(Component) - java.awt.dnd.DropTarget
+										insertString(int, String, AttributeSet) - javax.swing.text.PlainDocument
+										fireVetoableChange(PropertyChangeEvent) - java.beans.VetoableChangeSupport
+										remove(Object) - java.util.EnumMap.Values
+										get(Object) - org.eclipse.core.internal.jobs.Queue
+										propertyChange(PropertyChangeEvent) - org.eclipse.ui.internal.WorkbenchPage.propertyChangeListener.new IPropertyChangeListener() {...}
+										toPattern() - java.text.MessageFormat (14 matches)
+										equals(Object) - javax.imageio.ImageTypeSpecifier.Banded
+										updateInsets() - javax.swing.text.html.TableView
+										containsKey(Object) - org.eclipse.core.internal.runtime.ObjectMap
+										removeMapping(Object, Object) - java.util.EnumMap
+										equals(Object) - org.eclipse.core.internal.registry.ReferenceHashSet.StrongReference
+										reorder(IPerspectiveDescriptor, int) - org.eclipse.ui.internal.WorkbenchPage.PerspectiveList
+										add(int, String, Type) - com.sun.org.apache.bcel.internal.verifier.statics.LocalVariableInfo
+										equals(Object) - java.rmi.activation.ActivationGroupID
+										handleText(char[], int) - javax.swing.text.html.HTMLDocument.HTMLReader (2 matches)
+										equals(Object) - com.sun.corba.se.impl.orb.ParserActionBase
+										remove(Object) - javax.swing.ArrayTable
+										serializeNode(Node) - com.sun.org.apache.xml.internal.serialize.BaseMarkupSerializer (2 matches)
+										visitBALOAD(BALOAD) - com.sun.org.apache.bcel.internal.verifier.structurals.InstConstraintVisitor (2 matches)
+										containsValue(Object) - org.eclipse.core.internal.runtime.ObjectMap
+										equals(Object) - com.sun.security.auth.X500Principal
+										equals(Object) - javax.swing.tree.TreePath
+										doesListMatch(int, int, List) - javax.naming.ldap.LdapName
+										getColumnIndex(Object) - javax.swing.table.DefaultTableColumnModel
+										equals(Object) - org.eclipse.ui.part.DrillFrame
+										validRestrictionOf(String, XSAttributeGroupDecl) - com.sun.org.apache.xerces.internal.impl.xs.XSAttributeGroupDecl
+										concatenateArrays(Object, Object) - com.sun.corba.se.impl.orbutil.ObjectUtility
+										getExistingComponent(Object, ServiceFactory) - org.eclipse.ui.internal.components.framework.Container
+										widgetSelected(SelectionEvent) - org.eclipse.ui.internal.PerspectiveSwitcher.addDockOnSubMenu(...).new SelectionAdapter() {...} (2 matches)
+										isLeftToRight(int, int) - javax.swing.text.AbstractDocument
+										equals(Object) - org.osgi.framework.AdminPermission
+										containsAttributes(AttributeSet) - javax.swing.text.SimpleAttributeSet
+										getItem() - javax.swing.plaf.basic.BasicComboBoxEditor
+										applyPattern(String) - java.text.ChoiceFormat
+										toString() - com.sun.org.apache.bcel.internal.generic.Type
+										valuesMatch(Object, Object) - java.text.AttributedString
+										checkStateChanged(CheckStateChangedEvent) - org.eclipse.ui.internal.misc.CheckboxDoubleListGroup
+										equals(Object) - com.sun.corba.se.impl.presentation.rmi.PresentationManagerImpl.NodeImpl
+										equalMember(TypeCode, InputStream, InputStream) - com.sun.corba.se.impl.corba.AnyImpl (3 matches)
+										handleInsertString(int, String, AttributeSet) - javax.swing.text.AbstractDocument (2 matches)
+										removeDragGestureListener(DragGestureListener) - java.awt.dnd.DragGestureRecognizer
+										findEditor(IEditorInput) - org.eclipse.ui.internal.EditorManager
+										valEquals(Object, Object) - java.util.TreeMap
+										isServiceClass(Class) - java.beans.beancontext.BeanContextServiceRevokedEvent
+										isRequested(QualifiedName) - org.eclipse.core.internal.content.ContentDescription
+										equals(Object) - java.util.EnumMap
+										retainAll(Collection) - javax.security.auth.Subject.SecureSet
+										UndoRedoDocumentEvent(AbstractDocument, DefaultDocumentEvent, boolean) - javax.swing.text.AbstractDocument.UndoRedoDocumentEvent (2 matches)
+										equalsObject(Map, Set, Class, Object, Object) - com.sun.corba.se.impl.orbutil.ObjectUtility
+										build_machine(production) - com.sun.java_cup.internal.lalr_state
+										getRootSet(Class, NodeImpl, Graph) - com.sun.corba.se.impl.presentation.rmi.PresentationManagerImpl
+										writeObject(ObjectOutputStream) - javax.swing.JFileChooser
+										fill(Menu, int) - org.eclipse.ui.internal.WorkingSetMenuContributionItem
+										addFont(Object, int) - java.awt.font.StyledParagraph
+										removeStats(String, Object) - org.eclipse.core.runtime.PerformanceStats
+										setEditor(JComponent) - javax.swing.JSpinner
+										equals(Object) - java.text.DateFormat
+										contains(Object) - com.sun.org.apache.xalan.internal.xsltc.runtime.Hashtable
+										setMaximum(Comparable) - javax.swing.SpinnerNumberModel
+										evaluate(IEvaluationContext) - org.eclipse.ui.LegacyHandlerSubmissionExpression (3 matches)
+										add(Attribute) - javax.print.attribute.HashAttributeSet
+										equals(Object) - org.eclipse.jface.action.ActionContributionItem
+										equals(XObject) - com.sun.org.apache.xpath.internal.objects.XObject
+										checkNameAndTypeOK(XSElementDecl, int, int, XSElementDecl, int, int) - com.sun.org.apache.xerces.internal.impl.xs.XSConstraints
+										equals(Object) - java.lang.reflect.Method
+										updateNavigationHistory(IWorkbenchPartReference, boolean) - org.eclipse.ui.internal.NavigationHistory.NavigationHistory(...).new IPartListener2() {...}
+										isEquivalent(TaggedProfile) - com.sun.corba.se.impl.ior.iiop.IIOPProfileImpl (2 matches)
+										sameShell() - org.eclipse.ui.internal.PerspectiveSwitcher.hookDragSupport().new IDragOverListener() {...}.PerspectiveDropTarget
+										visitINVOKESPECIAL(INVOKESPECIAL) - com.sun.org.apache.bcel.internal.verifier.structurals.ExecutionVisitor (4 matches)
+										equals(XMLGrammarDescription, XMLGrammarDescription) - com.sun.org.apache.xerces.internal.util.XMLGrammarPoolImpl
+										equals(TextLayout) - java.awt.font.TextLayout
+										create(Element) - javax.swing.plaf.basic.BasicTextAreaUI
+										equals(Object, Object) - org.eclipse.ui.internal.util.Util
+										equals(Object) - java.text.RuleBasedBreakIterator
+										startElement(String, String, String, Attributes) - org.eclipse.help.internal.context.ContextsFileParser
+										setLowerSelectedElement(Object) - org.eclipse.ui.dialogs.TwoPaneElementSelector
+										partOpened(IWorkbenchPart) - org.eclipse.ui.internal.PagePartSelectionTracker
+										isPrimary(IWizardDescriptor) - org.eclipse.ui.internal.dialogs.NewWizardNewPage
+										getAdapter(Class) - org.eclipse.ui.operations.OperationHistoryActionHandler (3 matches)
+										match(CRL) - java.security.cert.X509CRLSelector
+										get(Object) - org.eclipse.core.internal.runtime.ObjectMap
+										installWorker(String, PrivilegedExceptionAction) - org.eclipse.osgi.framework.internal.core.Framework
+										indexOf(Object, int) - java.util.Vector
+										mergeInto(NavigationHistoryEntry) - org.eclipse.ui.internal.NavigationHistoryEntry
+										valueOfInt(Instruction, Type) - com.sun.org.apache.bcel.internal.verifier.structurals.InstConstraintVisitor
+										readObject(ObjectInputStream) - javax.swing.tree.DefaultTreeSelectionModel
+										compare_Unknown(int, Object, Object) - org.eclipse.osgi.framework.internal.core.FilterImpl (4 matches)
+										isUpdateJob(Job) - org.eclipse.ui.internal.progress.ProgressViewUpdater
+										compareList(List, List) - org.eclipse.ui.internal.registry.FileEditorMapping
+										actionPerformed(ActionEvent) - javax.swing.plaf.basic.BasicComboBoxUI.Handler
+										put(Object, Object) - javax.swing.ArrayTable
+										coalesceEvents(AWTEvent, AWTEvent) - java.awt.Component
+										maps(Object, Object) - com.sun.org.apache.xalan.internal.xsltc.compiler.util.MultiHashtable
+										equals(Object) - javax.swing.KeyboardManager.ComponentKeyStrokePair (2 matches)
+										contains(Object) - javax.security.auth.Subject.SecureSet
+										visitATHROW(ATHROW) - com.sun.org.apache.bcel.internal.verifier.structurals.InstConstraintVisitor (2 matches)
+										equals(Object) - java.security.AccessControlContext
+										equals(Object) - com.sun.org.apache.xml.internal.utils.synthetic.reflection.EntryPoint
+										eq(Object, Object) - java.util.AbstractMap.SimpleEntry
+										create(Element) - javax.swing.JEditorPane.PlainEditorKit
+										setParameter(String, Object) - com.sun.org.apache.xerces.internal.parsers.DOMParserImpl (2 matches)
+										remove(Object) - org.eclipse.core.internal.jobs.Queue
+										getDescribedProperty(QualifiedName) - org.eclipse.core.internal.content.ContentDescription
+										visitINVOKESPECIAL(INVOKESPECIAL) - com.sun.org.apache.bcel.internal.verifier.structurals.InstConstraintVisitor
+										getByKey(Object) - org.eclipse.core.internal.registry.KeyedHashSet (2 matches)
+										isEqual(Object, Object) - com.sun.org.apache.xerces.internal.impl.dv.xs.XSSimpleTypeDecl
+										visitINVOKESPECIAL(INVOKESPECIAL) - com.sun.org.apache.bcel.internal.verifier.statics.Pass3aVerifier.InstOperandConstraintVisitor (3 matches)
+										traverseLocal(Element, XSDocumentInfo, SchemaGrammar, XSComplexTypeDecl) - com.sun.org.apache.xerces.internal.impl.xs.traversers.XSDAttributeTraverser
+										setSearchContexts(IScopeContext[]) - org.eclipse.ui.preferences.ScopedPreferenceStore
+										addDecoration(Decoration, int) - java.awt.font.StyledParagraph
+										indexOf(Node) - com.sun.org.apache.xpath.internal.NodeSet
+										isDefault(ColorDefinition) - org.eclipse.ui.internal.themes.ColorsAndFontsPreferencePage (2 matches)
+										addAll(AttributeSet) - javax.print.attribute.HashAttributeSet
+										writeObject(ObjectOutputStream) - java.beans.beancontext.BeanContextChildSupport
+										equals(Object, Object) - org.eclipse.ui.internal.misc.OverlayComposite
+										partClosed(IWorkbenchPart) - org.eclipse.ui.internal.PagePartSelectionTracker
+										processOneAttribute(QName, XMLAttributes, int, XSAttributeDecl, XSAttributeUseImpl, AttributePSVImpl) - com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator (2 matches)
+										setPrototypeCellValue(Object) - javax.swing.JList
+										containsKey(Object) - com.sun.org.apache.xalan.internal.xsltc.runtime.Hashtable
+										traverse(Node, Node) - com.sun.org.apache.xml.internal.utils.TreeWalker (2 matches)
+										DefaultCellEditor(JCheckBox) - javax.swing.DefaultCellEditor
+										processElementContent(QName) - com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator (2 matches)
+										deepEquals(Object[], Object[]) - java.util.Arrays
+										showOptionDialog(Component, Object, String, int, int, Icon, Object[], Object) - javax.swing.JOptionPane
+										subParseZoneString(String, int) - java.text.SimpleDateFormat
+										put(Object, Object) - com.sun.org.apache.xalan.internal.xsltc.runtime.Hashtable
+										eq(Object, Object) - java.lang.StackTraceElement
+										start(Tag, MutableAttributeSet) - javax.swing.text.html.HTMLDocument.HTMLReader.MetaAction (2 matches)
+										performStateTransition(FSM, Input, StateImpl, Action, boolean) - com.sun.corba.se.impl.orbutil.fsm.StateEngineImpl
+										hasSameConfiguration(GraphicsConfiguration) - javax.swing.plaf.metal.MetalIconFactory.ImageCacher.ImageGcPair
+										JPEGMetadata(ImageTypeSpecifier, ImageWriteParam, JPEGImageWriter) - com.sun.imageio.plugins.jpeg.JPEGMetadata
+										contains(Node) - com.sun.org.apache.xpath.internal.NodeSet
+										readObject(ObjectInputStream) - javax.swing.tree.DefaultMutableTreeNode
+										write(IIOMetadata, IIOImage, ImageWriteParam) - com.sun.imageio.plugins.wbmp.WBMPImageWriter
+										cancelLatestCommittedText(Attribute[]) - javax.swing.text.JTextComponent.InputMethodRequestsHandler
+										arrayrefOfArrayType(Instruction, Type) - com.sun.org.apache.bcel.internal.verifier.structurals.InstConstraintVisitor
+										keyEquals(Object, Object) - org.eclipse.jface.viewers.CustomHashtable
+										visitConstantValue(ConstantValue) - com.sun.org.apache.bcel.internal.verifier.statics.Pass2Verifier.CPESSC_Visitor (9 matches)
+										eq(Object, Object) - java.util.concurrent.ConcurrentHashMap.EntryIterator
+										resetGlobFilter() - javax.swing.plaf.basic.BasicFileChooserUI
+										equals(Object) - javax.imageio.ImageTypeSpecifier.Interleaved
+										translateHTMLToCSS(AttributeSet) - javax.swing.text.html.CSS (2 matches)
+										implies(Permission) - org.osgi.framework.AdminPermission
+										focusLost(FocusEvent) - javax.swing.plaf.basic.BasicComboBoxUI.Handler
+										putItem(Object, Object) - com.sun.org.apache.xerces.internal.util.AugmentationsImpl.SmallContainer
+										equals(Object) - org.eclipse.ui.internal.contexts.ContextListenerWrapper (2 matches)
+										setAction(Action) - javax.swing.JTextField
+										checkProp(Object, Object) - org.eclipse.osgi.internal.resolver.StateImpl
+										arrayEquals(Object, Object) - javax.naming.directory.BasicAttribute
+										equals(Object) - org.eclipse.ui.internal.keys.SchemeListenerWrapper (2 matches)
+										selectedPerspectiveIsActive(Object) - org.eclipse.ui.internal.PerspectiveSwitcher
+										layoutRow(FlowView, int, int) - javax.swing.text.TextLayoutStrategy
+										removeAttributes(AttributeSet) - javax.swing.text.SimpleAttributeSet
+										containsMapping(Object, Object) - java.util.EnumMap
+										removeDragSourceListener(DragSourceListener) - java.awt.dnd.DragSourceContext
+										introspect(Class, Class) - com.sun.jmx.mbeanserver.Introspector (3 matches)
+										getRicherData(DataFlavor) - javax.swing.plaf.basic.BasicTextUI.TextTransferHandler.TextTransferable (3 matches)
+										equals(Object) - com.sun.org.apache.bcel.internal.verifier.structurals.LocalVariables
+										updateAllUIs() - com.sun.java.swing.plaf.windows.DesktopProperty
+										removeCollector(IProgressUpdateCollector) - org.eclipse.ui.internal.progress.ProgressViewUpdater
+										equals(Object) - java.text.AttributeEntry
+										lastIndexOf(Object, Object[], int) - java.util.concurrent.CopyOnWriteArrayList
+										find(ObjectAdapterId) - com.sun.corba.se.impl.oa.toa.TOAFactory
+										getAdapter(Class) - org.eclipse.ui.internal.registry.ViewDescriptor
+										matches(IEditorInput) - org.eclipse.ui.internal.EditorHistoryItem
+										get(Object) - org.eclipse.core.internal.registry.ReferenceHashSet
+										containsKey(Object) - javax.swing.ArrayTable
+										getSelectedIndex() - javax.swing.JComboBox
+										verifyRequestor(Object, BeanContextServiceRevokedListener) - java.beans.beancontext.BeanContextServicesSupport.BCSSChild.BCSSCServiceClassRef
+										setEndOffset() - javax.swing.text.html.HTMLDocument.LeafIterator
+										addDragSourceListener(DragSourceListener) - java.awt.dnd.DragSourceContext
+										equals(Object) - java.rmi.server.RemoteObject
+										equals(Object) - org.eclipse.core.runtime.dynamichelpers.ExtensionTracker.HandlerWrapper
+										equals(Object) - java.util.WeakHashMap.Entry (2 matches)
+										equals(Object) - com.sun.org.apache.bcel.internal.generic.ReturnaddressType
+										checkDuplicates(NavigationHistoryEditorInfo) - org.eclipse.ui.internal.NavigationHistory
+										isEquivalent(TaggedProfileTemplate) - com.sun.corba.se.impl.ior.iiop.IIOPProfileTemplateImpl
+										closeEditors(IEditorReference[], boolean) - org.eclipse.ui.internal.WorkbenchPage
+										indexOfTab(Icon) - javax.swing.JTabbedPane
+										containsAttributes(AttributeSet) - javax.swing.text.html.MuxingAttributeSet
+										equals(Object, Object) - org.eclipse.jface.viewers.StructuredViewer
+										equals(DataFlavor) - java.awt.datatransfer.DataFlavor (2 matches)
+										readObject(ObjectInputStream) - javax.swing.JMenuBar
+										remove(Object) - javax.security.auth.Subject.SecureSet
+										insertUpdate(DefaultDocumentEvent, AttributeSet) - javax.swing.text.AbstractDocument
+										chooseRequestVersion(ORB, IOR) - com.sun.corba.se.spi.ior.iiop.GIOPVersion
+										equals(Object) - org.eclipse.osgi.framework.internal.core.BundleNativeCode.Attribute
+										same(Object, Object) - org.eclipse.core.internal.runtime.ListenerList
+										eq(Object, Object) - java.util.HashMap
+										createAddedElement(Widget, Object) - org.eclipse.jface.viewers.AbstractTreeViewer (2 matches)
+										setParameter(String, Object) - com.sun.org.apache.xerces.internal.dom.DOMConfigurationImpl (2 matches)
+										showInternalOptionDialog(Component, Object, String, int, int, Icon, Object[], Object) - javax.swing.JOptionPane
+										visitGETFIELD(GETFIELD) - com.sun.org.apache.bcel.internal.verifier.structurals.ExecutionVisitor (4 matches)
+										equals(Object) - javax.management.openmbean.OpenMBeanAttributeInfoSupport (3 matches)
+										addImpl(Component, Object, int) - javax.swing.JSplitPane (5 matches)
+										_is_equivalent(Object) - org.omg.CORBA.LocalObject
+										equals(Object) - java.security.spec.EllipticCurve
+										valueEquals(Object, Object) - javax.naming.directory.BasicAttribute
+										getIndex(Object) - org.eclipse.osgi.framework.util.Headers
+										readClass() - com.sun.corba.se.impl.encoding.CDRInputStream_1_0
+										remove(Object) - com.sun.org.apache.xalan.internal.xsltc.runtime.Hashtable
+										equals(Object) - java.text.CollationKey
+										setSelectedValue(Object, boolean) - javax.swing.JList (2 matches)
+										visitINVOKESTATIC(INVOKESTATIC) - com.sun.org.apache.bcel.internal.verifier.structurals.InstConstraintVisitor
+										equals(Object) - java.util.Calendar
+										equals(Object, Object) - java.beans.MetaData
+										equals(Object) - com.sun.corba.se.spi.orb.ParserImplTableBase.MapEntry (2 matches)
+										indexOfInt(Instruction, Type) - com.sun.org.apache.bcel.internal.verifier.structurals.InstConstraintVisitor
+										checkActiveWindow(IWorkbenchWindow) - org.eclipse.ui.internal.keys.WorkbenchKeyboard
+								update() - org.eclipse.ui.internal.presentations.defaultpresentation.DefaultThemeListener
+									propertyChanged(String[]) - org.eclipse.ui.internal.preferences.AbstractPropertyListener
+										firePropertyChange(String[]) - org.eclipse.ui.internal.preferences.PropertyListenerList (2 matches)
+									listenerAttached() - org.eclipse.ui.internal.preferences.AbstractPropertyListener
+										add(String[], IPropertyMapListener) - org.eclipse.ui.internal.preferences.PropertyListenerList
+										add(IPropertyMapListener) - org.eclipse.ui.internal.preferences.PropertyListenerList
+								getColor(String, Color) - org.eclipse.ui.internal.presentations.defaultpresentation.DefaultThemeListener
+									update() - org.eclipse.ui.internal.presentations.defaultpresentation.DefaultThemeListener (11 matches)
+										propertyChanged(String[]) - org.eclipse.ui.internal.preferences.AbstractPropertyListener
+										listenerAttached() - org.eclipse.ui.internal.preferences.AbstractPropertyListener
+								copy(IPropertyMap, IPropertyMap) - org.eclipse.ui.internal.preferences.PropertyUtil
+								get(IPropertyMap, String, boolean) - org.eclipse.ui.internal.preferences.PropertyUtil
+									update() - org.eclipse.ui.internal.presentations.defaultpresentation.DefaultPropertyListener
+									update() - org.eclipse.ui.internal.preferences.AbstractBooleanListener
+								getBoolean(String, boolean) - org.eclipse.ui.internal.presentations.defaultpresentation.DefaultThemeListener
+									update() - org.eclipse.ui.internal.presentations.defaultpresentation.DefaultThemeListener (3 matches)
+								get(IPropertyMap, String, int) - org.eclipse.ui.internal.preferences.PropertyUtil
+									update() - org.eclipse.ui.internal.preferences.AbstractIntegerListener
+								getValue(String, Class) - org.eclipse.ui.internal.preferences.DelegatingPropertyMap
+									getInt(String, int) - org.eclipse.ui.internal.presentations.defaultpresentation.DefaultThemeListener
+									addMap(IPropertyMap) - org.eclipse.ui.internal.preferences.PropertyMapUnion (3 matches)
+									isEqual(IPropertyMap, IPropertyMap) - org.eclipse.ui.internal.preferences.PropertyUtil (2 matches)
+									update() - org.eclipse.ui.internal.presentations.defaultpresentation.DefaultThemeListener
+									getColor(String, Color) - org.eclipse.ui.internal.presentations.defaultpresentation.DefaultThemeListener
+									copy(IPropertyMap, IPropertyMap) - org.eclipse.ui.internal.preferences.PropertyUtil
+									get(IPropertyMap, String, boolean) - org.eclipse.ui.internal.preferences.PropertyUtil
+									getBoolean(String, boolean) - org.eclipse.ui.internal.presentations.defaultpresentation.DefaultThemeListener
+									get(IPropertyMap, String, int) - org.eclipse.ui.internal.preferences.PropertyUtil
+									getValue(String, Class) - org.eclipse.ui.internal.preferences.DelegatingPropertyMap
+							setValue(String, int) - org.eclipse.core.internal.preferences.PreferenceForwarder
+								setValue(String, Object) - org.eclipse.ui.internal.preferences.PreferencesAdapter (2 matches)
+									copy(IPropertyMap, IPropertyMap) - org.eclipse.ui.internal.preferences.PropertyUtil
+									setValue(String, Object) - org.eclipse.ui.internal.preferences.DelegatingPropertyMap
+						setValue(String, int) - org.eclipse.core.internal.preferences.PreferenceForwarder (2 matches)
+							setValue(String, Object) - org.eclipse.ui.internal.preferences.PreferencesAdapter (2 matches)
+								copy(IPropertyMap, IPropertyMap) - org.eclipse.ui.internal.preferences.PropertyUtil
+								setValue(String, Object) - org.eclipse.ui.internal.preferences.DelegatingPropertyMap
+						getLong(String) - org.eclipse.core.internal.preferences.PreferenceForwarder
+							setValue(String, long) - org.eclipse.core.internal.preferences.PreferenceForwarder
+								setValue(String, Object) - org.eclipse.ui.internal.preferences.PreferencesAdapter
+							getValue(String, Class) - org.eclipse.ui.internal.preferences.PreferencesAdapter
+								getInt(String, int) - org.eclipse.ui.internal.presentations.defaultpresentation.DefaultThemeListener
+								addMap(IPropertyMap) - org.eclipse.ui.internal.preferences.PropertyMapUnion (3 matches)
+								isEqual(IPropertyMap, IPropertyMap) - org.eclipse.ui.internal.preferences.PropertyUtil (2 matches)
+								update() - org.eclipse.ui.internal.presentations.defaultpresentation.DefaultThemeListener
+								getColor(String, Color) - org.eclipse.ui.internal.presentations.defaultpresentation.DefaultThemeListener
+								copy(IPropertyMap, IPropertyMap) - org.eclipse.ui.internal.preferences.PropertyUtil
+								get(IPropertyMap, String, boolean) - org.eclipse.ui.internal.preferences.PropertyUtil
+								getBoolean(String, boolean) - org.eclipse.ui.internal.presentations.defaultpresentation.DefaultThemeListener
+								get(IPropertyMap, String, int) - org.eclipse.ui.internal.preferences.PropertyUtil
+								getValue(String, Class) - org.eclipse.ui.internal.preferences.DelegatingPropertyMap
+							setValue(String, long) - org.eclipse.core.runtime.Preferences
+								setValue(String, Object) - org.eclipse.ui.internal.preferences.PreferencesAdapter
+						flush() - org.eclipse.core.internal.preferences.PreferenceForwarder
+							store(OutputStream, String) - org.eclipse.core.internal.preferences.PreferenceForwarder
+							savePluginPreferences() - org.eclipse.core.runtime.Plugin
+								saveEnabledStates() - org.eclipse.ui.internal.ActivityPersistanceHelper
+									shutdown() - org.eclipse.ui.internal.ActivityPersistanceHelper
+										shutdown() - org.eclipse.ui.internal.Workbench
+									activityManagerChanged(ActivityManagerEvent) - org.eclipse.ui.internal.ActivityPersistanceHelper.activityManagerListener.new IActivityManagerListener() {...}
+										fireActivityManagerChanged(ActivityManagerEvent) - org.eclipse.ui.internal.activities.AbstractActivityManager
+								saveInternalPrefs() - org.eclipse.ui.internal.util.PrefUtil
+									savePrefs() - org.eclipse.ui.internal.util.PrefUtil
+										performOk() - org.eclipse.ui.internal.dialogs.StartupPreferencePage
+										performOk() - org.eclipse.ui.internal.dialogs.PerspectivesPreferencePage
+								savePreferenceStore() - org.eclipse.ui.plugin.AbstractUIPlugin
+								performDefaults() - org.eclipse.ui.internal.dialogs.ViewsPreferencePage
+									widgetSelected(SelectionEvent) - org.eclipse.jface.preference.PreferencePage.createControl(...).new SelectionAdapter() {...}
+										firePostSelectionEvent(SelectionEvent) - org.eclipse.jface.util.OpenStrategy
+										handleEvent(Event) - org.eclipse.swt.widgets.TypedListener
+										handleEvent(Event) - org.eclipse.swt.widgets.TypedListener
+										fireSelectionEvent(SelectionEvent) - org.eclipse.jface.util.OpenStrategy
+								performOk() - org.eclipse.ui.internal.dialogs.WorkbenchPreferencePage
+									run() - org.eclipse.jface.preference.PreferenceDialog.okPressed().new SafeRunnable() {...}
+										run(ISafeRunnable) - org.eclipse.core.internal.runtime.InternalPlatform
+										run(ISafeRunnable) - org.eclipse.jface.util.SafeRunnable.createDefaultRunner().new ISafeRunnableRunner() {...}
+									performApply() - org.eclipse.jface.preference.PreferencePage
+										performApply() - org.eclipse.ui.internal.themes.ColorsAndFontsPreferencePage
+										widgetSelected(SelectionEvent) - org.eclipse.jface.preference.PreferencePage.createControl(...).new SelectionAdapter() {...}
+								savePreferences() - org.eclipse.ui.internal.UIPlugin.start(...).new ICallback() {...}
+									saveAPIPrefs() - org.eclipse.ui.internal.util.PrefUtil
+										openIntro(IWorkbenchWindowConfigurer) - org.eclipse.ui.application.WorkbenchAdvisor
+										savePrefs() - org.eclipse.ui.internal.util.PrefUtil
+										setCurrentTheme(String) - org.eclipse.ui.internal.themes.WorkbenchThemeManager
+										openIntro() - org.eclipse.ui.application.WorkbenchWindowAdvisor
+								allow(ITriggerPoint, IIdentifier) - org.eclipse.ui.activities.WorkbenchTriggerPointAdvisor
+									allow(ITriggerPoint, IIdentifier) - org.eclipse.ui.activities.WorkbenchActivityHelper
+										allowUseOf(ITriggerPoint, Object) - org.eclipse.ui.activities.WorkbenchActivityHelper
+							load(InputStream) - org.eclipse.core.internal.preferences.PreferenceForwarder
+						getBoolean(String) - org.eclipse.core.internal.preferences.PreferenceForwarder
+							getValue(String, Class) - org.eclipse.ui.internal.preferences.PreferencesAdapter
+								getInt(String, int) - org.eclipse.ui.internal.presentations.defaultpresentation.DefaultThemeListener
+									update() - org.eclipse.ui.internal.presentations.defaultpresentation.DefaultThemeListener (3 matches)
+										propertyChanged(String[]) - org.eclipse.ui.internal.preferences.AbstractPropertyListener
+										listenerAttached() - org.eclipse.ui.internal.preferences.AbstractPropertyListener
+								addMap(IPropertyMap) - org.eclipse.ui.internal.preferences.PropertyMapUnion (3 matches)
+								isEqual(IPropertyMap, IPropertyMap) - org.eclipse.ui.internal.preferences.PropertyUtil (2 matches)
+								update() - org.eclipse.ui.internal.presentations.defaultpresentation.DefaultThemeListener
+								getColor(String, Color) - org.eclipse.ui.internal.presentations.defaultpresentation.DefaultThemeListener
+								copy(IPropertyMap, IPropertyMap) - org.eclipse.ui.internal.preferences.PropertyUtil
+								get(IPropertyMap, String, boolean) - org.eclipse.ui.internal.preferences.PropertyUtil
+								getBoolean(String, boolean) - org.eclipse.ui.internal.presentations.defaultpresentation.DefaultThemeListener
+								get(IPropertyMap, String, int) - org.eclipse.ui.internal.preferences.PropertyUtil
+								getValue(String, Class) - org.eclipse.ui.internal.preferences.DelegatingPropertyMap
+							setValue(String, boolean) - org.eclipse.core.internal.preferences.PreferenceForwarder
+							isInitiallyVisible() - org.eclipse.ui.internal.registry.ActionSetDescriptor
+							setValue(String, boolean) - org.eclipse.core.runtime.Preferences
+						contains(String) - org.eclipse.core.internal.preferences.PreferenceForwarder
+						setValue(String, float) - org.eclipse.core.internal.preferences.PreferenceForwarder (2 matches)
+						setValue(String, String) - org.eclipse.core.internal.preferences.PreferenceForwarder (2 matches)
+						isDefault(String) - org.eclipse.core.internal.preferences.PreferenceForwarder
+						setValue(String, long) - org.eclipse.core.internal.preferences.PreferenceForwarder (2 matches)
+						propertyNames() - org.eclipse.core.internal.preferences.PreferenceForwarder
+						getString(String) - org.eclipse.core.internal.preferences.PreferenceForwarder
+						added(NodeChangeEvent) - org.eclipse.core.internal.preferences.PreferenceForwarder
+						getFloat(String) - org.eclipse.core.internal.preferences.PreferenceForwarder
+						needsSaving() - org.eclipse.core.internal.preferences.PreferenceForwarder
+						getDouble(String) - org.eclipse.core.internal.preferences.PreferenceForwarder
+						setValue(String, boolean) - org.eclipse.core.internal.preferences.PreferenceForwarder (2 matches)
+						setValue(String, double) - org.eclipse.core.internal.preferences.PreferenceForwarder (2 matches)
+						setToDefault(String) - org.eclipse.core.internal.preferences.PreferenceForwarder
+					trimTree(IEclipsePreferences, IPreferenceFilter) - org.eclipse.core.internal.preferences.PreferencesService (5 matches)
+						internalApply(IEclipsePreferences, IPreferenceFilter[]) - org.eclipse.core.internal.preferences.PreferencesService
+						internalExport(IEclipsePreferences, IPreferenceFilter[], OutputStream) - org.eclipse.core.internal.preferences.PreferencesService
+					pluginRoot - org.eclipse.core.internal.preferences.PreferenceForwarder
+					internalMatches(IEclipsePreferences, IPreferenceFilter) - org.eclipse.core.internal.preferences.PreferencesService (2 matches)
+					node(String) - org.eclipse.core.internal.preferences.RootPreferences
+					internalNode(String, boolean, Plugin) - org.eclipse.core.internal.preferences.EclipsePreferences (2 matches)
+					visit(IEclipsePreferences) - org.eclipse.core.internal.preferences.PreferencesService.mergeTrees(...).new IPreferenceNodeVisitor() {...}
+					visit(IEclipsePreferences) - org.eclipse.core.internal.preferences.PreferencesService.internalApply(...).new IPreferenceNodeVisitor() {...}
+					processPreferences(ContentTypeCatalog) - org.eclipse.core.internal.content.ContentType
+					setDefaultCharset(String) - org.eclipse.core.internal.content.ContentType
+					exportPreferences(IPath) - org.eclipse.core.runtime.Preferences
+					applyPreferences(IExportedPreferences) - org.eclipse.core.internal.preferences.PreferencesService
+					getChildren(Object) - org.eclipse.ui.internal.dialogs.PreferencesContentProvider (2 matches)
+					scopeRemoved(String) - org.eclipse.core.internal.preferences.PreferencesService
+					flush() - org.eclipse.core.internal.preferences.EclipsePreferences
+					flush() - org.eclipse.core.internal.preferences.RootPreferences
+					addFileSpec(ContentTypeCatalog, String, int) - org.eclipse.core.internal.content.ContentType
+					visit(IEclipsePreferences) - org.eclipse.core.internal.preferences.PreferencesService.applyPreferences(...).new IPreferenceNodeVisitor() {...} (2 matches)
+					copyFromTo(Preferences, Preferences, String[], int) - org.eclipse.core.internal.preferences.PreferencesService (2 matches)
+					defaultsRoot - org.eclipse.core.internal.preferences.PreferenceForwarder
+					getNodes(String, String, IScopeContext[]) - org.eclipse.core.internal.preferences.PreferencesService (4 matches)
+					initializeDefaultPreferences() - org.eclipse.ui.internal.UIPreferenceInitializer (2 matches)
+					node(String) - org.eclipse.ui.internal.preferences.WorkingCopyPreferences
+					hasKeys(Preferences) - org.eclipse.ui.internal.dialogs.PreferencesContentProvider
+					initializeDefaultPreferences() - org.eclipse.ui.internal.WorkbenchPreferenceInitializer (2 matches)
+					convertFromProperties(Properties) - org.eclipse.core.internal.preferences.PreferencesService (4 matches)
+					getNode(String) - org.eclipse.core.internal.preferences.AbstractScope (2 matches)
+					removeFileSpec(ContentTypeCatalog, String, int) - org.eclipse.core.internal.content.ContentType
+				applyDefaults(String, Properties, Properties) - org.eclipse.core.internal.preferences.DefaultPreferences
+				node(String, Plugin) - org.eclipse.core.internal.preferences.DefaultPreferences
+			create(IEclipsePreferences, String) - org.eclipse.core.internal.preferences.EclipsePreferences
+			getChild(String, Plugin, boolean) - org.eclipse.core.internal.preferences.EclipsePreferences
+
+<B>Permission Requirements:</B><BR/><BR/><UL>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/>
+
+<HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/internal/preferences/EclipsePreferences.html#L610" , parent.fbot ); return false'>Line# 615</a> void load( org.eclipse.core.runtime.IPath )
+   Permission: java.lang.RuntimePermission "getClassLoader"
+      Primordial/void java.util.Properties.load( java.io.InputStream )
+   Permission: java.util.PropertyPermission "java.vendor.url.bug", "read"
+      Primordial/void java.util.Properties.load( java.io.InputStream )
+<BR/><BR/><B>CODE</B><BR/><BR/>
+protected void load(IPath location) throws BackingStoreException {
+		if (location == null) {
+			if (InternalPlatform.DEBUG_PREFERENCE_GENERAL)
+				Policy.debug("Unable to determine location of preference file for node: " + absolutePath()); //$NON-NLS-1$
+			return;
+		}
+		if (InternalPlatform.DEBUG_PREFERENCE_GENERAL)
+			Policy.debug("Loading preferences from file: " + location); //$NON-NLS-1$
+		InputStream input = null;
+		Properties fromDisk = new Properties();
+		try {
+			input = new BufferedInputStream(new FileInputStream(location.toFile()));
+			<FONT style="background-color:yellow;display;inline">fromDisk.load(input);</FONT>
+		} catch (FileNotFoundException e) {
+			// file doesn't exist but that's ok.
+			if (InternalPlatform.DEBUG_PREFERENCE_GENERAL)
+				Policy.debug("Preference file does not exist: " + location); //$NON-NLS-1$
+			return;
+		} catch (IOException e) {
+			String message = NLS.bind(Messages.preferences_loadException, location);
+			log(new Status(IStatus.INFO, Platform.PI_RUNTIME, IStatus.INFO, message, e));
+			throw new BackingStoreException(message);
+		} finally {
+			if (input != null)
+				try {
+					input.close();
+				} catch (IOException e) {
+					// ignore
+				}
+		}
+		convertFromProperties(fromDisk, false);
+	}
+
+<B>Tainted variable reference trace:</B><BR/><BR/>
+See prior example of load method for reference trace data.
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.lang.RuntimePermission "getClassLoader";</LI>
+<LI>permission java.util.PropertyPermission "java.vendor.url.bug", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/>
+Patch the method to wrap the operation in a privileged action:
+
+	protected void load(IPath location) throws BackingStoreException {
+		if (location == null) {
+			if (InternalPlatform.DEBUG_PREFERENCE_GENERAL)
+				Policy.debug("Unable to determine location of preference file for node: " + absolutePath()); //$NON-NLS-1$
+			return;
+		}
+		if (InternalPlatform.DEBUG_PREFERENCE_GENERAL)
+			Policy.debug("Loading preferences from file: " + location); //$NON-NLS-1$
+		InputStream input = null;
+		Properties fromDisk = new Properties();
+		try {
+			input = new BufferedInputStream(new FileInputStream(location.toFile()));
+			<FONT style="background-color:yellow;display;inline">if (System.getSecurityManager()==null)</FONT>
+			  fromDisk.load(input);
+			<FONT style="background-color:yellow;display;inline">else
+			{
+               AccessController.doPrivileged(new PropertyLoadAction(input,fromDisk));
+			}</FONT>
+		} catch (FileNotFoundException e) {
+			// file doesn't exist but that's ok.
+			if (InternalPlatform.DEBUG_PREFERENCE_GENERAL)
+				Policy.debug("Preference file does not exist: " + location); //$NON-NLS-1$
+			return;
+		} catch (IOException e) {
+			String message = NLS.bind(Messages.preferences_loadException, location);
+			log(new Status(IStatus.INFO, Platform.PI_RUNTIME, IStatus.INFO, message, e));
+			throw new BackingStoreException(message);
+		} <FONT style="background-color:yellow;display;inline">catch (PrivilegedActionException pae) {
+			Exception e = pae.getException();
+			if (e instanceof FileNotFoundException)
+			{
+				if (InternalPlatform.DEBUG_PREFERENCE_GENERAL)
+					Policy.debug("Preference file does not exist: " + location); //$NON-NLS-1$
+				return;
+				
+			} else
+			{
+				String message = NLS.bind(Messages.preferences_loadException, location);
+				log(new Status(IStatus.INFO, Platform.PI_RUNTIME, IStatus.INFO, message, e));
+				throw new BackingStoreException(message);
+			}
+		}</FONT> finally {
+			if (input != null)
+				try {
+					input.close();
+				} catch (IOException e) {
+					// ignore
+				}
+		}
+		convertFromProperties(fromDisk, false);
+	}
+
+
+Add the following class:
+
+<FONT style="color:blue;display;inline">/*******************************************************************************
+ * Copyright (c) 2004 IBM Corporation and others.
+ * All rights reserved. This program and the accompanying materials 
+ * are made available under the terms of the Common Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/cpl-v10.html
+ * 
+ * Contributors:
+ *     IBM Corporation - initial API and implementation
+ *******************************************************************************/</FONT>
+
+package org.eclipse.core.internal.security;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.security.PrivilegedExceptionAction;
+import java.util.Properties;
+
+<FONT style="color:blue;display;inline">/**
+ * @author habeck
+ *
+ * Created: Dec 8, 2004 6:53:22 PM
+ * 
+ */</FONT>
+public final class PropertyLoadAction implements PrivilegedExceptionAction
+{
+  private InputStream is;
+  private Properties props;
+    
+  <FONT style="color:blue;display;inline">/**
+   * 
+   * @param input The input stream to load the properties from.
+   * @param store The propreties object to load the values into.
+   */</FONT>
+  public PropertyLoadAction(InputStream input, Properties store)
+  {
+    is = input;
+    props = store;
+  }
+  
+  <FONT style="color:green;display;inline">/* (non-Javadoc)
+   * @see java.security.PrivilegedExceptionAction#run()
+   */</FONT>
+  public Object run() throws IOException
+  {
+    props.load(is);
+    return null;
+  }
+
+}
+
+<HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/internal/preferences/EclipsePreferences.html#L955" , parent.fbot ); return false'>Line# 960</a> void save( org.eclipse.core.runtime.IPath )
+<BR/><BR/><B>CODE</B><BR/><BR/>
+	protected void save(IPath location) throws BackingStoreException {
+		if (location == null) {
+			if (InternalPlatform.DEBUG_PREFERENCE_GENERAL)
+				Policy.debug("Unable to determine location of preference file for node: " + absolutePath()); //$NON-NLS-1$
+			return;
+		}
+		if (InternalPlatform.DEBUG_PREFERENCE_GENERAL)
+			Policy.debug("Saving preferences to file: " + location); //$NON-NLS-1$
+		Properties table = convertToProperties(new Properties(), EMPTY_STRING);
+		if (table.isEmpty()) {
+			// nothing to save. delete existing file if one exists.
+			if (location.toFile().exists() && !location.toFile().delete()) {
+				String message = NLS.bind(Messages.preferences_failedDelete, location);
+				log(new Status(IStatus.WARNING, Platform.PI_RUNTIME, IStatus.WARNING, message, null));
+			}
+			return;
+		}
+		table.put(VERSION_KEY, VERSION_VALUE);
+		OutputStream output = null;
+		try {
+			// create the parent dirs if they don't exist
+			File parentFile = location.toFile().getParentFile();
+			if (parentFile == null)
+				return;
+			parentFile.mkdirs();
+			// set append to be false so we overwrite current settings.
+			<FONT style="background-color:yellow;display;inline">output = new BufferedOutputStream(new FileOutputStream(location.toOSString(), false));</FONT>
+			table.store(output, null);
+		} catch (IOException e) {
+			String message = NLS.bind(Messages.preferences_saveException, location);
+			log(new Status(IStatus.ERROR, Platform.PI_RUNTIME, IStatus.ERROR, message, e));
+			throw new BackingStoreException(message);
+		} finally {
+			if (output != null)
+				try {
+					output.close();
+				} catch (IOException e) {
+					// ignore
+				}
+		}
+	}
+
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/>
+TODO: Need to investigate missing permission requirements problem.
+<HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/internal/preferences/EclipsePreferences.html#L956" , parent.fbot ); return false'>Line# 961</a> void save( org.eclipse.core.runtime.IPath )
+   Permission: java.lang.RuntimePermission "getClassLoader"
+      Primordial/void java.util.Properties.store( java.io.OutputStream, java.lang.String )
+<BR/><BR/><B>CODE</B><BR/><BR/>
+	protected void save(IPath location) throws BackingStoreException {
+		if (location == null) {
+			if (InternalPlatform.DEBUG_PREFERENCE_GENERAL)
+				Policy.debug("Unable to determine location of preference file for node: " + absolutePath()); //$NON-NLS-1$
+			return;
+		}
+		if (InternalPlatform.DEBUG_PREFERENCE_GENERAL)
+			Policy.debug("Saving preferences to file: " + location); //$NON-NLS-1$
+		Properties table = convertToProperties(new Properties(), EMPTY_STRING);
+		if (table.isEmpty()) {
+			// nothing to save. delete existing file if one exists.
+			if (location.toFile().exists() && !location.toFile().delete()) {
+				String message = NLS.bind(Messages.preferences_failedDelete, location);
+				log(new Status(IStatus.WARNING, Platform.PI_RUNTIME, IStatus.WARNING, message, null));
+			}
+			return;
+		}
+		table.put(VERSION_KEY, VERSION_VALUE);
+		OutputStream output = null;
+		try {
+			// create the parent dirs if they don't exist
+			File parentFile = location.toFile().getParentFile();
+			if (parentFile == null)
+				return;
+			parentFile.mkdirs();
+			// set append to be false so we overwrite current settings.
+			output = new BufferedOutputStream(new FileOutputStream(location.toOSString(), false));
+			<FONT style="background-color:yellow;display;inline">table.store(output, null);</FONT>
+		} catch (IOException e) {
+			String message = NLS.bind(Messages.preferences_saveException, location);
+			log(new Status(IStatus.ERROR, Platform.PI_RUNTIME, IStatus.ERROR, message, e));
+			throw new BackingStoreException(message);
+		} finally {
+			if (output != null)
+				try {
+					output.close();
+				} catch (IOException e) {
+					// ignore
+				}
+		}
+	}
+
+<B>Tainted variable reference trace:</B><BR/><BR/>
+save(IPath) - org.eclipse.core.internal.preferences.EclipsePreferences
+	save() - org.eclipse.core.internal.preferences.EclipsePreferences
+		flush() - org.eclipse.core.internal.preferences.EclipsePreferences
+			applyPreferences(IExportedPreferences) - org.eclipse.core.internal.preferences.PreferencesService
+				importPreferences(InputStream) - org.eclipse.core.internal.preferences.PreferencesService
+					importPreferences(IPath) - org.eclipse.core.runtime.Preferences
+			flush() - org.eclipse.ui.internal.preferences.WorkingCopyPreferences
+				applyPreferences(IExportedPreferences) - org.eclipse.core.internal.preferences.PreferencesService
+				flush() - org.eclipse.ui.internal.preferences.WorkingCopyPreferences
+				sync() - org.eclipse.core.internal.preferences.EclipsePreferences
+				flush() - org.eclipse.core.internal.preferences.EclipsePreferences (2 matches)
+				flush() - org.eclipse.core.internal.preferences.RootPreferences
+				flush() - org.eclipse.core.internal.preferences.PreferenceForwarder
+				applyChanges() - org.eclipse.ui.internal.preferences.WorkingCopyManager
+				addFileSpec(ContentTypeCatalog, String, int) - org.eclipse.core.internal.content.ContentType
+				removeFileSpec(ContentTypeCatalog, String, int) - org.eclipse.core.internal.content.ContentType
+				save() - org.eclipse.ui.preferences.ScopedPreferenceStore
+				setDefaultCharset(String) - org.eclipse.core.internal.content.ContentType
+			sync() - org.eclipse.core.internal.preferences.EclipsePreferences
+				sync() - org.eclipse.core.internal.preferences.RootPreferences
+					sync() - org.eclipse.core.internal.preferences.RootPreferences
+					sync() - org.eclipse.ui.internal.preferences.WorkingCopyPreferences
+						sync() - org.eclipse.core.internal.preferences.RootPreferences
+						sync() - org.eclipse.ui.internal.preferences.WorkingCopyPreferences
+				sync() - org.eclipse.ui.internal.preferences.WorkingCopyPreferences
+					sync() - org.eclipse.core.internal.preferences.RootPreferences
+						sync() - org.eclipse.core.internal.preferences.RootPreferences
+						sync() - org.eclipse.ui.internal.preferences.WorkingCopyPreferences
+					sync() - org.eclipse.ui.internal.preferences.WorkingCopyPreferences
+			flush() - org.eclipse.core.internal.preferences.EclipsePreferences (2 matches)
+			flush() - org.eclipse.core.internal.preferences.RootPreferences
+				applyPreferences(IExportedPreferences) - org.eclipse.core.internal.preferences.PreferencesService
+				flush() - org.eclipse.ui.internal.preferences.WorkingCopyPreferences
+				sync() - org.eclipse.core.internal.preferences.EclipsePreferences
+				flush() - org.eclipse.core.internal.preferences.EclipsePreferences (2 matches)
+				flush() - org.eclipse.core.internal.preferences.RootPreferences
+				flush() - org.eclipse.core.internal.preferences.PreferenceForwarder
+				addFileSpec(ContentTypeCatalog, String, int) - org.eclipse.core.internal.content.ContentType
+				removeFileSpec(ContentTypeCatalog, String, int) - org.eclipse.core.internal.content.ContentType
+				create(EclipsePreferences, String, Plugin) - org.eclipse.core.internal.preferences.EclipsePreferences
+				save() - org.eclipse.ui.preferences.ScopedPreferenceStore
+				setDefaultCharset(String) - org.eclipse.core.internal.content.ContentType
+			flush() - org.eclipse.core.internal.preferences.PreferenceForwarder
+				store(OutputStream, String) - org.eclipse.core.internal.preferences.PreferenceForwarder
+				savePluginPreferences() - org.eclipse.core.runtime.Plugin
+				load(InputStream) - org.eclipse.core.internal.preferences.PreferenceForwarder
+			addFileSpec(ContentTypeCatalog, String, int) - org.eclipse.core.internal.content.ContentType
+				addFileSpec(String, int) - org.eclipse.core.internal.content.ContentType
+				addFileSpec(ContentTypeCatalog, String, int) - org.eclipse.core.internal.content.ContentType
+			removeFileSpec(ContentTypeCatalog, String, int) - org.eclipse.core.internal.content.ContentType
+				removeFileSpec(ContentTypeCatalog, String, int) - org.eclipse.core.internal.content.ContentType
+				removeFileSpec(String, int) - org.eclipse.core.internal.content.ContentType
+			create(EclipsePreferences, String, Plugin) - org.eclipse.core.internal.preferences.EclipsePreferences
+				internalNode(String, boolean, Plugin) - org.eclipse.core.internal.preferences.EclipsePreferences
+				create(IEclipsePreferences, String) - org.eclipse.core.internal.preferences.EclipsePreferences
+				getChild(String, Plugin, boolean) - org.eclipse.core.internal.preferences.EclipsePreferences
+			save() - org.eclipse.ui.preferences.ScopedPreferenceStore
+				handleSave() - org.eclipse.jface.preference.PreferenceDialog
+					run() - org.eclipse.jface.preference.PreferenceDialog.okPressed().new SafeRunnable() {...}
+						run(ISafeRunnable) - org.eclipse.core.internal.runtime.InternalPlatform
+							run(Runnable) - org.eclipse.core.internal.runtime.InternalPlatform
+								endSplash() - org.eclipse.core.internal.runtime.InternalPlatform
+									endSplash() - org.eclipse.core.runtime.Platform
+										runUI() - org.eclipse.ui.internal.Workbench
+							log(IStatus) - org.eclipse.core.internal.runtime.Log
+								log(IStatus) - org.eclipse.ui.internal.WorkbenchPlugin
+								createExecutableExtension(Bundle, String, Object, ConfigurationElement, String) - org.eclipse.core.internal.registry.ConfigurationElement
+								loadTesters(Class) - org.eclipse.core.internal.expressions.TypeExtensionManager
+								log(IStatus) - org.eclipse.ui.internal.JFaceUtil.initializeJFace().new ILogger() {...}
+								createExecutableExtension(String) - org.eclipse.core.internal.registry.ConfigurationElementHandle
+								log(Throwable) - org.eclipse.ui.internal.WorkbenchPlugin
+								logError(IStatus) - org.eclipse.help.internal.HelpPlugin
+								getAdapter(Class) - org.eclipse.ui.internal.PartSite
+								throwException(String, Throwable) - org.eclipse.core.internal.registry.ConfigurationElement
+								log(IStatus) - org.eclipse.ui.internal.part.services.SystemLog
+								handleCoreException(CoreException) - org.eclipse.ui.internal.decorators.DecoratorDefinition
+								logWarning(String) - org.eclipse.help.internal.HelpPlugin
+								log(String, IStatus) - org.eclipse.ui.internal.WorkbenchPlugin (2 matches)
+								initializeDefaultPreferences() - org.eclipse.ui.internal.UIPreferenceInitializer
+								setEnablementTest(IConfigurationElement) - org.eclipse.ui.internal.ObjectActionContributor.ObjectContribution
+								createPartControl(Composite) - org.eclipse.ui.internal.part.NewPartToOldWrapper
+								initializeDefaultPreferences() - org.eclipse.ui.internal.WorkbenchPreferenceInitializer
+								createExecutableExtension(String) - org.eclipse.core.internal.registry.ConfigurationElement (2 matches)
+								isApplicableTo(Object) - org.eclipse.ui.internal.ObjectActionContributor.ObjectContribution
+								getInitialSide() - org.eclipse.ui.internal.FastViewBar
+								log(String) - org.eclipse.ui.internal.WorkbenchPlugin
+								log(String, Throwable) - org.eclipse.ui.internal.util.BundleUtility
+							log(IStatus) - org.eclipse.core.internal.runtime.InternalPlatform
+								closeInputFile() - org.eclipse.core.internal.registry.TableReader
+								loadConfigurationElement(int) - org.eclipse.core.internal.registry.TableReader (2 matches)
+								saveCache(RegistryObjectManager, long) - org.eclipse.core.internal.registry.TableWriter
+								endJob(InternalJob) - org.eclipse.core.internal.jobs.ImplicitJobs
+								getBundleModel(Bundle) - org.eclipse.core.internal.registry.EclipseBundleListener
+								illegalPop(ISchedulingRule) - org.eclipse.core.internal.jobs.ThreadJob
+								openInputFile() - org.eclipse.core.internal.registry.TableReader
+								log(IStatus) - org.eclipse.core.internal.runtime.Log
+								logError(String, Exception) - org.eclipse.core.internal.preferences.PreferenceForwarder
+								isCanceled(IProgressMonitor) - org.eclipse.core.internal.jobs.ThreadJob
+								loadExtensionPoint(int) - org.eclipse.core.internal.registry.TableReader (2 matches)
+								logParsingError(Bundle, Exception) - org.eclipse.core.internal.registry.EclipseBundleListener
+								create(EclipsePreferences, String, Plugin) - org.eclipse.core.internal.preferences.EclipsePreferences
+								clearRegistryCache() - org.eclipse.core.internal.registry.ExtensionRegistry
+								loadProperties(String) - org.eclipse.core.internal.preferences.DefaultPreferences
+								log(IStatus) - org.eclipse.core.internal.preferences.PreferencesService
+								handleException(Throwable) - org.eclipse.core.internal.jobs.LockManager
+								handleException(Object, Throwable) - org.eclipse.core.internal.jobs.JobListeners
+								illegalPush(ISchedulingRule, ISchedulingRule) - org.eclipse.core.internal.jobs.ThreadJob
+								savePluginPreferences() - org.eclipse.core.runtime.Plugin
+								log(IStatus) - org.eclipse.core.internal.preferences.EclipsePreferences
+								loadKeyring() - org.eclipse.core.internal.runtime.AuthorizationHandler
+								loadExtensionPointExtraData(int) - org.eclipse.core.internal.registry.TableReader (2 matches)
+								openExtraFile() - org.eclipse.core.internal.registry.TableReader
+								PerformanceStatsProcessor() - org.eclipse.core.internal.runtime.PerformanceStatsProcessor
+								log(String, Throwable) - org.eclipse.core.internal.content.ContentType
+								checkCriteria(InputSource) - org.eclipse.core.runtime.content.XMLRootElementContentDescriber
+								monitorFor(IProgressMonitor) - org.eclipse.core.internal.jobs.JobManager
+								registerContentType(IConfigurationElement) - org.eclipse.core.internal.content.ContentTypeBuilder
+								handleException(ISafeRunnable, Throwable) - org.eclipse.core.internal.runtime.InternalPlatform
+								log(IStatus) - org.eclipse.core.internal.jobs.Worker
+								reportDeadlock(Deadlock) - org.eclipse.core.internal.jobs.DeadlockDetector
+								closeExtraFile() - org.eclipse.core.internal.registry.TableReader
+								loadExtensionExtraData(int) - org.eclipse.core.internal.registry.TableReader (2 matches)
+								checkCacheValidity(DataInputStream, long) - org.eclipse.core.internal.registry.TableReader
+								readAllCache(RegistryObjectManager) - org.eclipse.core.internal.registry.TableReader
+								load(InputStream) - org.eclipse.core.internal.runtime.AuthorizationDatabase
+								loadFactory(boolean) - org.eclipse.core.internal.runtime.AdapterFactoryProxy
+								loadExtensionPointTree(int, RegistryObjectManager) - org.eclipse.core.internal.registry.TableReader (2 matches)
+								loadThirdLevelConfigurationElements(int, RegistryObjectManager) - org.eclipse.core.internal.registry.TableReader (2 matches)
+								Plugin(IPluginDescriptor) - org.eclipse.core.runtime.Plugin
+								getPluginDescriptor(String) - org.eclipse.core.internal.runtime.CompatibilityHelper
+								loadExtension(int) - org.eclipse.core.internal.registry.TableReader (2 matches)
+								logError() - org.eclipse.core.internal.runtime.AdapterFactoryProxy
+								shutdown() - org.eclipse.core.runtime.Plugin
+								loadTables(long) - org.eclipse.core.internal.registry.TableReader
+								closeFiles() - org.eclipse.core.internal.registry.TableWriter
+								loadNamespaces() - org.eclipse.core.internal.registry.TableReader
+								openFiles() - org.eclipse.core.internal.registry.TableWriter
+							run(ISafeRunnable) - org.eclipse.core.runtime.Platform
+								firePreApplyEvent(IEclipsePreferences) - org.eclipse.core.internal.preferences.PreferencesService
+								firePropertyChangeEvent(String, Object, Object) - org.eclipse.core.runtime.Preferences
+								safeDecorateImage(Object, Image, FullDecoratorDefinition) - org.eclipse.ui.internal.decorators.DecoratorManager
+								firePostSelection(IWorkbenchPart, ISelection) - org.eclipse.ui.internal.AbstractSelectionService
+								fill(Menu, int) - org.eclipse.ui.internal.ReopenEditorMenu
+								getMenu(Menu) - org.eclipse.ui.internal.WWinPluginPulldown.MenuProxy
+								disposePart(IWorkbenchPart) - org.eclipse.ui.part.MultiPageEditorPart
+								safeDecorateText(Object, String, FullDecoratorDefinition) - org.eclipse.ui.internal.decorators.DecoratorManager
+								firePropertyChange(int) - org.eclipse.ui.internal.part.PartPropertyProvider
+								applyPolicy(ISelectionPolicy, IContentType[], boolean, boolean) - org.eclipse.core.internal.content.ContentTypeCatalog
+								dispose() - org.eclipse.ui.internal.WorkbenchPage
+								fireWindowOpened(IWorkbenchWindow) - org.eclipse.ui.internal.Workbench
+								fireListeners(LabelProviderChangedEvent) - org.eclipse.ui.internal.decorators.DecoratorManager
+								fireWindowActivated(IWorkbenchWindow) - org.eclipse.ui.internal.Workbench
+								fireEvent(SafeRunnable, IPageListener, IWorkbenchPage, String) - org.eclipse.ui.internal.PageListenerList
+								fireSelection(IWorkbenchPart, ISelection) - org.eclipse.ui.internal.AbstractPartSelectionTracker
+								fireSelection(IWorkbenchPart, ISelection) - org.eclipse.ui.internal.AbstractSelectionService
+								run() - org.eclipse.ui.internal.dialogs.WorkbenchWizardNode.getWizard().new Runnable() {...}
+								firePropertyChange(int) - org.eclipse.ui.part.WorkbenchPart
+								fireEvent(SafeRunnable, IPartListener2, IWorkbenchPartReference, String) - org.eclipse.ui.internal.PartListenerList2
+								firePropertyChangeEvent(String, Object, Object) - org.eclipse.ui.preferences.ScopedPreferenceStore
+								firePropertyChange(int) - org.eclipse.ui.internal.EditorSite
+								selectedButtonExport() - org.eclipse.ui.internal.keys.KeysPreferencePage
+								fireEvent(SafeRunnable, IPartListener, IWorkbenchPart, String) - org.eclipse.ui.internal.PartListenerList
+								getMenu(Control) - org.eclipse.ui.internal.WWinPluginPulldown.MenuProxy
+								fireSelectionChanged(SelectionChangedEvent) - org.eclipse.ui.part.MultiPageSelectionProvider
+								firePropertyChange(int) - org.eclipse.ui.internal.registry.EditorRegistry
+								saveViewState(IMemento, IViewReference, MultiStatus) - org.eclipse.ui.internal.ViewFactory
+								firePropertyChange(int) - org.eclipse.ui.part.IntroPart
+								decorate(Object, DecorationBuilder, LightweightDecoratorDefinition) - org.eclipse.ui.internal.decorators.LightweightDecoratorManager
+								fireContentTypeChangeEvent(ContentType) - org.eclipse.core.internal.content.ContentTypeManager
+								restoreState() - org.eclipse.ui.internal.Workbench
+								internalGetDecorator() - org.eclipse.ui.internal.decorators.LightweightDecoratorDefinition
+								restoreState(IMemento) - org.eclipse.ui.internal.EditorManager
+								busyClose(boolean) - org.eclipse.ui.internal.Workbench (3 matches)
+								activatePart(IWorkbenchPart) - org.eclipse.ui.internal.WorkbenchPage
+								disposePart(IWorkbenchPartReference) - org.eclipse.ui.internal.WorkbenchPage
+								notifyCheckStateChangeListeners(CheckStateChangedEvent) - org.eclipse.ui.internal.misc.CheckboxDoubleListGroup
+								run(ISafeRunnable) - org.eclipse.ui.internal.JFaceUtil.initializeJFace().new ISafeRunnableRunner() {...}
+								selectionChanged(SelectionChangedEvent) - org.eclipse.ui.part.PageBookView.SelectionProvider
+								run() - org.eclipse.ui.internal.Workbench.startPlugins().new Runnable() {...}
+								firePreferenceEvent(String, Object, Object) - org.eclipse.core.internal.preferences.EclipsePreferences
+								firePostSelection(IWorkbenchPart, ISelection) - org.eclipse.ui.internal.AbstractPartSelectionTracker
+								fireWindowDeactivated(IWorkbenchWindow) - org.eclipse.ui.internal.Workbench
+								run() - org.eclipse.ui.internal.Workbench.startupRegistryListener.new IRegistryChangeListener() {...}.registryChanged(...).new Runnable() {...}
+								internalGetDecorator() - org.eclipse.ui.internal.decorators.FullDecoratorDefinition
+								fireWindowClosed(IWorkbenchWindow) - org.eclipse.ui.internal.Workbench
+								saveEditorState(IMemento, IEditorReference, MultiStatus) - org.eclipse.ui.internal.EditorManager
+								setSelection(ISelection) - org.eclipse.ui.internal.part.SelectionProviderAdapter
+								fireNodeEvent(NodeChangeEvent, boolean) - org.eclipse.core.internal.preferences.EclipsePreferences
+								fireEvent(SafeRunnable, IPerspectiveListener, IPerspectiveDescriptor, String) - org.eclipse.ui.internal.PerspectiveListenerList
+								saveAllEditors(boolean) - org.eclipse.ui.internal.Workbench
+						run(ISafeRunnable) - org.eclipse.jface.util.SafeRunnable.createDefaultRunner().new ISafeRunnableRunner() {...}
+			setDefaultCharset(String) - org.eclipse.core.internal.content.ContentType
+<BR/><BR/>
+<B>Discussion:</B> The input parameter to the method, and the privileged operation is tainted.    However, it appears that the
+InstanceLocation object's getBaseLocation() method is what provides the location of the output file to save the preferences to.
+So, as long as whatever is extending EclipsePreferences and overriding the getLocation() method ensures uniquness of the 
+ouput store, it is OK to wrap this method in a privileged operation.  
+
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.lang.RuntimePermission "getClassLoader";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/>
+Wrap the parameterless save() method in a privileged action.  See illustration below:
+<BR/>
+	protected void save() throws BackingStoreException {
+		<FONT style="background-color:yellow;display;inline">if (System.getSecurityManager()==null)</FONT>
+   		  save(getLocation());
+		<FONT style="background-color:yellow;display;inline">else
+		{
+			try
+			{
+				AccessController.doPrivileged(new PrivilegedExceptionAction() {
+
+					public Object run() throws Exception
+					{
+						save(getLocation());
+						return null;
+					}
+					
+				});
+			} catch (PrivilegedActionException e)
+			{
+				throw (BackingStoreException) e.getException();
+			}
+		}</FONT>
+	}
+
+<HR/>
+</pre>
+</body></html>

@@ -1,0 +1,233 @@
+		*********PERMISSIONS BY CLASS*********
+
+
+** Class: org.eclipse.core.internal.preferences.EclipsePreferences
+	java.lang.RuntimePermission "getClassLoader"
+	java.util.PropertyPermission "java.vendor.url.bug", "read"
+
+** Class: org.eclipse.core.internal.preferences.ExportedPreferences
+	java.lang.RuntimePermission "getClassLoader"
+	java.util.PropertyPermission "java.vendor.url.bug", "read"
+
+** Class: org.eclipse.core.internal.preferences.PreferencesService
+	java.lang.RuntimePermission "getClassLoader"
+	java.util.PropertyPermission "java.vendor.url.bug", "read"
+
+** Class: org.eclipse.core.internal.preferences.PreferencesService$1
+	java.lang.RuntimePermission "getClassLoader"
+	java.util.PropertyPermission "java.vendor.url.bug", "read"
+
+** Class: org.eclipse.core.internal.preferences.RootPreferences
+	java.lang.RuntimePermission "getClassLoader"
+	java.util.PropertyPermission "java.vendor.url.bug", "read"
+
+** Class: org.eclipse.core.internal.runtime.AuthorizationDatabase
+	java.io.FilePermission ".keyring", "delete"
+	java.io.FilePermission ".keyring", "read"
+	java.io.FilePermission ".keyring", "write"
+	java.io.FilePermission "???System Property Value???", "delete"
+	java.io.FilePermission "???System Property Value???", "write"
+	java.io.FilePermission "???file???", "delete"
+	java.io.FilePermission "???file???", "read"
+	java.io.FilePermission "???file???", "write"
+	java.io.FilePermission "GMT", "delete"
+	java.io.FilePermission "GMT", "write"
+	java.io.SerializablePermission "enableSubclassImplementation"
+	java.lang.RuntimePermission "getClassLoader"
+	java.net.NetPermission "specifyStreamHandler"
+	java.util.PropertyPermission "user.dir", "read"
+
+** Class: org.eclipse.core.internal.runtime.AuthorizationHandler
+	java.io.FilePermission ".keyring", "delete"
+	java.io.FilePermission ".keyring", "read"
+	java.io.FilePermission ".keyring", "write"
+	java.io.FilePermission "???System Property Value???", "delete"
+	java.io.FilePermission "???System Property Value???", "write"
+	java.io.FilePermission "???file???", "delete"
+	java.io.FilePermission "???file???", "read"
+	java.io.FilePermission "???file???", "write"
+	java.io.FilePermission "GMT", "delete"
+	java.io.FilePermission "GMT", "write"
+	java.io.SerializablePermission "enableSubclassImplementation"
+	java.lang.RuntimePermission "getClassLoader"
+	java.net.NetPermission "specifyStreamHandler"
+	java.util.PropertyPermission "user.dir", "read"
+
+** Class: org.eclipse.core.internal.runtime.DataArea
+	java.io.FilePermission "", "read"
+	java.io.FilePermission "", "write"
+	java.io.FilePermission "???file???", "read"
+	java.io.FilePermission "???file???", "write"
+	java.util.PropertyPermission "user.dir", "read"
+
+** Class: org.eclipse.core.internal.runtime.DevClassPathHelper
+	java.lang.RuntimePermission "getClassLoader"
+	java.net.NetPermission "specifyStreamHandler"
+	java.util.PropertyPermission "java.vendor.url.bug", "read"
+	java.util.PropertyPermission "osgi.dev", "read"
+
+** Class: org.eclipse.core.internal.runtime.FindSupport
+	java.util.PropertyPermission "osgi.arch", "read"
+	java.util.PropertyPermission "osgi.nl", "read"
+	java.util.PropertyPermission "osgi.os", "read"
+	java.util.PropertyPermission "osgi.ws", "read"
+
+** Class: org.eclipse.core.internal.runtime.InternalPlatform
+	java.io.FilePermission "", "read"
+	java.io.FilePermission "", "write"
+	java.io.FilePermission ".keyring", "delete"
+	java.io.FilePermission ".keyring", "read"
+	java.io.FilePermission ".keyring", "write"
+	java.io.FilePermission "???System Property Value???", "delete"
+	java.io.FilePermission "???System Property Value???", "write"
+	java.io.FilePermission "???file???", "delete"
+	java.io.FilePermission "???file???", "read"
+	java.io.FilePermission "???file???", "write"
+	java.io.FilePermission "GMT", "delete"
+	java.io.FilePermission "GMT", "write"
+	java.io.SerializablePermission "enableSubclassImplementation"
+	java.lang.RuntimePermission "createClassLoader"
+	java.lang.RuntimePermission "getClassLoader"
+	java.net.NetPermission "specifyStreamHandler"
+	java.util.PropertyPermission "eclipse.product", "read"
+	java.util.PropertyPermission "eclipse.startTime", "read"
+	java.util.PropertyPermission "osgi.arch", "read"
+	java.util.PropertyPermission "osgi.nl", "read"
+	java.util.PropertyPermission "osgi.os", "read"
+	java.util.PropertyPermission "osgi.ws", "read"
+	java.util.PropertyPermission "user.dir", "read"
+
+** Class: org.eclipse.core.internal.runtime.ResourceTranslator
+	java.lang.RuntimePermission "createClassLoader"
+	java.lang.RuntimePermission "getClassLoader"
+
+** Class: org.eclipse.core.internal.runtime.URLTool
+	java.lang.RuntimePermission "getClassLoader"
+	java.net.NetPermission "specifyStreamHandler"
+
+** Class: org.eclipse.core.runtime.PerformanceStats
+	java.lang.RuntimePermission "getClassLoader"
+
+** Class: org.eclipse.core.runtime.Platform
+	java.io.FilePermission "", "read"
+	java.io.FilePermission "", "write"
+	java.io.FilePermission ".keyring", "delete"
+	java.io.FilePermission ".keyring", "read"
+	java.io.FilePermission ".keyring", "write"
+	java.io.FilePermission "???System Property Value???", "delete"
+	java.io.FilePermission "???System Property Value???", "write"
+	java.io.FilePermission "???file???", "delete"
+	java.io.FilePermission "???file???", "read"
+	java.io.FilePermission "???file???", "write"
+	java.io.FilePermission "GMT", "delete"
+	java.io.FilePermission "GMT", "write"
+	java.io.SerializablePermission "enableSubclassImplementation"
+	java.lang.RuntimePermission "createClassLoader"
+	java.lang.RuntimePermission "getClassLoader"
+	java.net.NetPermission "specifyStreamHandler"
+	java.util.PropertyPermission "eclipse.product", "read"
+	java.util.PropertyPermission "eclipse.startTime", "read"
+	java.util.PropertyPermission "osgi.arch", "read"
+	java.util.PropertyPermission "osgi.debug", "read"
+	java.util.PropertyPermission "osgi.dev", "read"
+	java.util.PropertyPermission "osgi.nl", "read"
+	java.util.PropertyPermission "osgi.os", "read"
+	java.util.PropertyPermission "osgi.ws", "read"
+	java.util.PropertyPermission "user.dir", "read"
+
+** Class: org.eclipse.core.runtime.Preferences
+	java.lang.RuntimePermission "getClassLoader"
+	java.util.PropertyPermission "java.vendor.url.bug", "read"
+
+
+
+		*********PERMISSIONS BY CODE SOURCE*********
+
+
+
+========================================
+
+
+** CodeSource:
+	CodeBase: file:C:/ejs/eclipse_head/org.eclipse.core.runtime/org.eclipse.core.runtime.jar
+	Certificates:
+
+
+PERMISSIONS ALREADY GRANTED
+java.lang.RuntimePermission "stopThread" ""
+java.net.SocketPermission "localhost:1024-" "listen,resolve"
+java.util.PropertyPermission "java.version" "read"
+java.util.PropertyPermission "java.vm.name" "read"
+java.util.PropertyPermission "java.vm.vendor" "read"
+java.util.PropertyPermission "os.name" "read"
+java.util.PropertyPermission "java.vendor.url" "read"
+java.util.PropertyPermission "java.vm.specification.vendor" "read"
+java.util.PropertyPermission "java.specification.vendor" "read"
+java.util.PropertyPermission "os.version" "read"
+java.util.PropertyPermission "java.specification.name" "read"
+java.util.PropertyPermission "java.class.version" "read"
+java.util.PropertyPermission "file.separator" "read"
+java.util.PropertyPermission "java.vm.version" "read"
+java.util.PropertyPermission "os.arch" "read"
+java.util.PropertyPermission "java.vm.specification.name" "read"
+java.util.PropertyPermission "java.vm.specification.version" "read"
+java.util.PropertyPermission "java.specification.version" "read"
+java.util.PropertyPermission "java.vendor" "read"
+java.util.PropertyPermission "path.separator" "read"
+java.util.PropertyPermission "line.separator" "read"
+
+PERMISSIONS REQUIRED
+java.io.FilePermission "", "read"
+java.io.FilePermission "", "write"
+java.io.FilePermission ".keyring", "delete"
+java.io.FilePermission ".keyring", "read"
+java.io.FilePermission ".keyring", "write"
+java.io.FilePermission "???System Property Value???", "delete"
+java.io.FilePermission "???System Property Value???", "write"
+java.io.FilePermission "???file???", "delete"
+java.io.FilePermission "???file???", "read"
+java.io.FilePermission "???file???", "write"
+java.io.FilePermission "GMT", "delete"
+java.io.FilePermission "GMT", "write"
+java.io.SerializablePermission "enableSubclassImplementation"
+java.lang.RuntimePermission "createClassLoader"
+java.lang.RuntimePermission "getClassLoader"
+java.net.NetPermission "specifyStreamHandler"
+java.util.PropertyPermission "eclipse.product", "read"
+java.util.PropertyPermission "eclipse.startTime", "read"
+java.util.PropertyPermission "java.vendor.url.bug", "read"
+java.util.PropertyPermission "osgi.arch", "read"
+java.util.PropertyPermission "osgi.debug", "read"
+java.util.PropertyPermission "osgi.dev", "read"
+java.util.PropertyPermission "osgi.nl", "read"
+java.util.PropertyPermission "osgi.os", "read"
+java.util.PropertyPermission "osgi.ws", "read"
+java.util.PropertyPermission "user.dir", "read"
+
+PERMISSIONS REQUIRED AND NOT ALREADY GRANTED
+java.io.FilePermission "", "read"
+java.io.FilePermission "", "write"
+java.io.FilePermission ".keyring", "delete"
+java.io.FilePermission ".keyring", "read"
+java.io.FilePermission ".keyring", "write"
+java.io.FilePermission "???System Property Value???", "delete"
+java.io.FilePermission "???System Property Value???", "write"
+java.io.FilePermission "???file???", "delete"
+java.io.FilePermission "???file???", "read"
+java.io.FilePermission "???file???", "write"
+java.io.FilePermission "GMT", "delete"
+java.io.FilePermission "GMT", "write"
+java.io.SerializablePermission "enableSubclassImplementation"
+java.lang.RuntimePermission "createClassLoader"
+java.lang.RuntimePermission "getClassLoader"
+java.net.NetPermission "specifyStreamHandler"
+java.util.PropertyPermission "eclipse.product", "read"
+java.util.PropertyPermission "eclipse.startTime", "read"
+java.util.PropertyPermission "java.vendor.url.bug", "read"
+java.util.PropertyPermission "osgi.arch", "read"
+java.util.PropertyPermission "osgi.debug", "read"
+java.util.PropertyPermission "osgi.dev", "read"
+java.util.PropertyPermission "osgi.nl", "read"
+java.util.PropertyPermission "osgi.os", "read"
+java.util.PropertyPermission "osgi.ws", "read"
+java.util.PropertyPermission "user.dir", "read"

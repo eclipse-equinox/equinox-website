@@ -1,0 +1,391 @@
+<html><head><title>Permission Analysis Report</title><script language='javaScript' src='linkUtil.js'></script></head><body>
+<h1>Permission Analysis Report</h1>
+<BR/><H2>Analysis of: org.eclipse.core.runtime</H2>
+<B>Detail</B><BR/><BR/>
+<pre>
+
+Class: <a href="foo" onClick="return openURLinSrc( 'Application/org/eclipse/core/internal/runtime/DevClassPathHelper.html' )">org.eclipse.core.internal.runtime.DevClassPathHelper</a> (Application)
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/DevClassPathHelper.html#L21" , parent.fbot ); return false'>Line# 26</a> void &lt;clinit&gt;(  )
+   Permission: java.util.PropertyPermission "osgi.dev", "read"
+      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )
+<BR/><BR/><B>CODE</B><BR/><BR/>
+	static {
+		// Check the osgi.dev property to see if dev classpath entries have been defined.
+		<font style="background-color:yellow;display;inline">String osgiDev = System.getProperty(InternalPlatform.PROP_DEV);</font>
+		if (osgiDev != null) {
+			try {
+				inDevelopmentMode = true;
+				URL location = new URL(osgiDev);
+				devProperties = load(location);
+				if (devProperties != null)
+					devDefaultClasspath = getArrayFromList(devProperties.getProperty("*")); //$NON-NLS-1$
+			} catch (MalformedURLException e) {
+				devDefaultClasspath = getArrayFromList(osgiDev);
+			}
+		}
+	}
+
+<B>Tainted variable reference trace:</B><BR/><BR/>
+getStateLocationOrNull() - org.eclipse.ui.plugin.AbstractUIPlugin
+	loadDialogSettings() - org.eclipse.ui.plugin.AbstractUIPlugin
+		getDialogSettings() - org.eclipse.ui.plugin.AbstractUIPlugin
+			run() - org.eclipse.ui.actions.ImportResourcesAction
+				run() - org.eclipse.ui.actions.NewWizardDropDownAction
+				run() - org.eclipse.ui.actions.RetargetAction
+				buttonPressed(int) - org.eclipse.ui.internal.progress.JobErrorDialog
+				runWithEvent(Event) - org.eclipse.ui.actions.BaseSelectionListenerAction
+				doAction() - org.eclipse.ui.internal.progress.ProgressAnimationItem
+				runWithEvent(Event) - org.eclipse.jface.action.Action
+				handleActivate() - org.eclipse.ui.internal.progress.NewProgressViewer.Hyperlink
+			load() - org.eclipse.ui.internal.registry.PerspectiveRegistry
+				getPerspectiveRegistry() - org.eclipse.ui.internal.WorkbenchPlugin
+			getDialogSettings() - org.eclipse.ui.internal.dialogs.EditorSelectionDialog
+				saveWidgetValues() - org.eclipse.ui.internal.dialogs.EditorSelectionDialog
+				restoreWidgetValues() - org.eclipse.ui.internal.dialogs.EditorSelectionDialog
+			doSearch(String, boolean) - org.eclipse.ui.internal.actions.HelpSearchContributionItem
+				widgetSelected(SelectionEvent) - org.eclipse.ui.internal.actions.HelpSearchContributionItem.createControl(...).new SelectionAdapter() {...}
+				keyReleased(KeyEvent) - org.eclipse.ui.internal.actions.HelpSearchContributionItem.createControl(...).new KeyAdapter() {...}
+			getDialogSettings() - org.eclipse.ui.internal.dialogs.ShowViewDialog
+				saveWidgetValues() - org.eclipse.ui.internal.dialogs.ShowViewDialog
+				restoreWidgetValues() - org.eclipse.ui.internal.dialogs.ShowViewDialog
+			getDialogSettings() - org.eclipse.ui.internal.dialogs.WorkbenchEditorsDialog
+				WorkbenchEditorsDialog(IWorkbenchWindow) - org.eclipse.ui.internal.dialogs.WorkbenchEditorsDialog
+				saveDialogSettings() - org.eclipse.ui.internal.dialogs.WorkbenchEditorsDialog
+			createControl(Composite) - org.eclipse.ui.internal.actions.HelpSearchContributionItem
+				fill(ToolBar, int) - org.eclipse.jface.action.ControlContribution
+				fill(Composite) - org.eclipse.jface.action.ControlContribution
+			run() - org.eclipse.ui.actions.NewWizardAction
+				run() - org.eclipse.ui.actions.NewWizardDropDownAction
+				run() - org.eclipse.ui.actions.RetargetAction
+				buttonPressed(int) - org.eclipse.ui.internal.progress.JobErrorDialog
+				runWithEvent(Event) - org.eclipse.ui.actions.BaseSelectionListenerAction
+				doAction() - org.eclipse.ui.internal.progress.ProgressAnimationItem
+				runWithEvent(Event) - org.eclipse.jface.action.Action
+				handleActivate() - org.eclipse.ui.internal.progress.NewProgressViewer.Hyperlink
+			run() - org.eclipse.ui.actions.ExportResourcesAction
+				run() - org.eclipse.ui.actions.NewWizardDropDownAction
+				run() - org.eclipse.ui.actions.RetargetAction
+				buttonPressed(int) - org.eclipse.ui.internal.progress.JobErrorDialog
+				runWithEvent(Event) - org.eclipse.ui.actions.BaseSelectionListenerAction
+				doAction() - org.eclipse.ui.internal.progress.ProgressAnimationItem
+				runWithEvent(Event) - org.eclipse.jface.action.Action
+				handleActivate() - org.eclipse.ui.internal.progress.NewProgressViewer.Hyperlink
+	saveDialogSettings() - org.eclipse.ui.plugin.AbstractUIPlugin
+		stop(BundleContext) - org.eclipse.ui.plugin.AbstractUIPlugin
+			run() - org.eclipse.osgi.framework.internal.core.BundleContextImpl.stop().new PrivilegedExceptionAction() {...}
+			stop(BundleContext) - org.eclipse.ui.internal.WorkbenchPlugin
+
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "osgi.dev", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/>
+Once again, this is a setting that should be retrievable by all plug-ins.  Add the permission
+to retrieve this permission to the default permissions assigned to bundles.
+e.g. org/eclipse/osgi/framework/internal/core/implied.permissions as:
+ "(permission java.util.PropertyPermission "osgi.dev", "read")"
+
+<HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/DevClassPathHelper.html#L25" , parent.fbot ); return false'>Line# 30</a> void &lt;clinit&gt;(  )
+   Permission: java.lang.RuntimePermission "getClassLoader"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.net.NetPermission "specifyStreamHandler"
+      Primordial/void java.net.URL.URL( java.lang.String )
+<BR/><BR/><B>CODE</B><BR/><BR/>
+public class DevClassPathHelper {
+	static protected boolean inDevelopmentMode = false;
+	static protected String[] devDefaultClasspath;
+	static protected Properties devProperties = null;
+
+	static {
+		// Check the osgi.dev property to see if dev classpath entries have been defined.
+		String osgiDev = System.getProperty(InternalPlatform.PROP_DEV);
+		if (osgiDev != null) {
+			try {
+				inDevelopmentMode = true;
+				URL location = <FONT style="background-color:yellow;display;inline">new URL(osgiDev);</FONT>
+				devProperties = load(location);
+				if (devProperties != null)
+					devDefaultClasspath = getArrayFromList(devProperties.getProperty("*")); //$NON-NLS-1$
+			} catch (MalformedURLException e) {
+				devDefaultClasspath = getArrayFromList(osgiDev);
+			}
+		}
+	}
+    . . .
+}
+<B>Tainted variable reference trace:</B><BR/><BR/>
+getStateLocationOrNull() - org.eclipse.ui.plugin.AbstractUIPlugin
+	loadDialogSettings() - org.eclipse.ui.plugin.AbstractUIPlugin
+		getDialogSettings() - org.eclipse.ui.plugin.AbstractUIPlugin
+			run() - org.eclipse.ui.actions.ImportResourcesAction
+				run() - org.eclipse.ui.actions.NewWizardDropDownAction
+				run() - org.eclipse.ui.actions.RetargetAction
+				buttonPressed(int) - org.eclipse.ui.internal.progress.JobErrorDialog
+				runWithEvent(Event) - org.eclipse.ui.actions.BaseSelectionListenerAction
+				doAction() - org.eclipse.ui.internal.progress.ProgressAnimationItem
+				runWithEvent(Event) - org.eclipse.jface.action.Action
+				handleActivate() - org.eclipse.ui.internal.progress.NewProgressViewer.Hyperlink
+			load() - org.eclipse.ui.internal.registry.PerspectiveRegistry
+				getPerspectiveRegistry() - org.eclipse.ui.internal.WorkbenchPlugin
+			getDialogSettings() - org.eclipse.ui.internal.dialogs.EditorSelectionDialog
+				saveWidgetValues() - org.eclipse.ui.internal.dialogs.EditorSelectionDialog
+				restoreWidgetValues() - org.eclipse.ui.internal.dialogs.EditorSelectionDialog
+			doSearch(String, boolean) - org.eclipse.ui.internal.actions.HelpSearchContributionItem
+				widgetSelected(SelectionEvent) - org.eclipse.ui.internal.actions.HelpSearchContributionItem.createControl(...).new SelectionAdapter() {...}
+				keyReleased(KeyEvent) - org.eclipse.ui.internal.actions.HelpSearchContributionItem.createControl(...).new KeyAdapter() {...}
+			getDialogSettings() - org.eclipse.ui.internal.dialogs.ShowViewDialog
+				saveWidgetValues() - org.eclipse.ui.internal.dialogs.ShowViewDialog
+				restoreWidgetValues() - org.eclipse.ui.internal.dialogs.ShowViewDialog
+			getDialogSettings() - org.eclipse.ui.internal.dialogs.WorkbenchEditorsDialog
+				WorkbenchEditorsDialog(IWorkbenchWindow) - org.eclipse.ui.internal.dialogs.WorkbenchEditorsDialog
+				saveDialogSettings() - org.eclipse.ui.internal.dialogs.WorkbenchEditorsDialog
+			createControl(Composite) - org.eclipse.ui.internal.actions.HelpSearchContributionItem
+				fill(ToolBar, int) - org.eclipse.jface.action.ControlContribution
+				fill(Composite) - org.eclipse.jface.action.ControlContribution
+			run() - org.eclipse.ui.actions.NewWizardAction
+				run() - org.eclipse.ui.actions.NewWizardDropDownAction
+				run() - org.eclipse.ui.actions.RetargetAction
+				buttonPressed(int) - org.eclipse.ui.internal.progress.JobErrorDialog
+				runWithEvent(Event) - org.eclipse.ui.actions.BaseSelectionListenerAction
+				doAction() - org.eclipse.ui.internal.progress.ProgressAnimationItem
+				runWithEvent(Event) - org.eclipse.jface.action.Action
+				handleActivate() - org.eclipse.ui.internal.progress.NewProgressViewer.Hyperlink
+			run() - org.eclipse.ui.actions.ExportResourcesAction
+				run() - org.eclipse.ui.actions.NewWizardDropDownAction
+				run() - org.eclipse.ui.actions.RetargetAction
+				buttonPressed(int) - org.eclipse.ui.internal.progress.JobErrorDialog
+				runWithEvent(Event) - org.eclipse.ui.actions.BaseSelectionListenerAction
+				doAction() - org.eclipse.ui.internal.progress.ProgressAnimationItem
+				runWithEvent(Event) - org.eclipse.jface.action.Action
+				handleActivate() - org.eclipse.ui.internal.progress.NewProgressViewer.Hyperlink
+	saveDialogSettings() - org.eclipse.ui.plugin.AbstractUIPlugin
+		stop(BundleContext) - org.eclipse.ui.plugin.AbstractUIPlugin
+			run() - org.eclipse.osgi.framework.internal.core.BundleContextImpl.stop().new PrivilegedExceptionAction() {...}
+			stop(BundleContext) - org.eclipse.ui.internal.WorkbenchPlugin
+
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.lang.RuntimePermission "getClassLoader";</LI>
+<LI>permission java.net.NetPermission "specifyStreamHandler";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/>
+This is yet another instance of the classic URL construction problem.  However, since usage of
+development mode is not likely by an RCP user, one questions weather or not running in development
+mode is supported while executing RCP applications.   It could be as simple as stating that 
+executing development mode with the security manager enabled is unsupported.  The problem  
+is that it may make debugging RCP applications more difficult.   Consequently, it is recommended 
+that the the url construction  be wrapped in a doPrivileged() action in order to preserve 
+functionality.
+
+Recommended fix:<BR/><BR/>
+<PRE>
+public class DevClassPathHelper {
+	static protected boolean inDevelopmentMode = false;
+	static protected String[] devDefaultClasspath;
+	static protected Properties devProperties = null;
+
+	static {
+		// Check the osgi.dev property to see if dev classpath entries have been defined.
+		String osgiDev = System.getProperty(InternalPlatform.PROP_DEV);
+		if (osgiDev != null) {
+			try {
+				inDevelopmentMode = true;
+				<FONT style="background-color:yellow;display;inline">if (System.getSecurityManager()==null)
+				{</FONT>
+  				   URL location = new URL(osgiDev);
+  				<FONT style="background-color:yellow;display;inline">} else
+  				{
+  				  URL location = (URL) AccessController.doPrivileged(new URLFromStringAction(osgiDev));
+  				}</FONT>
+				devProperties = load(location);
+				if (devProperties != null)
+					devDefaultClasspath = getArrayFromList(devProperties.getProperty("*")); //$NON-NLS-1$
+			} catch (MalformedURLException e) {
+				devDefaultClasspath = getArrayFromList(osgiDev);
+			<FONT style="background-color:yellow;display;inline">} catch (PrivilegedActionException pae)
+			{
+				devDefaultClasspath = getArrayFromList(osgiDev);
+			}</FONT>
+		}
+	}
+    . . .
+}
+
+Add the following class (org.eclipse.core.internal.security):
+
+<FONT style="color:blue;display;inline">
+/*******************************************************************************
+ * Copyright (c) 2000, 2004 IBM Corporation and others.
+ * All rights reserved. This program and the accompanying materials 
+ * are made available under the terms of the Common Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/cpl-v10.html
+ * 
+ * Contributors:
+ *     IBM Corporation - initial API and implementation
+ *******************************************************************************/</FONT>
+package org.eclipse.core.internal.security;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.security.PrivilegedExceptionAction;
+<FONT style="color:blue;display;inline">
+/**
+ * @author habeck
+ *
+ * Created: Dec 14, 2004 12:50:16 PM
+ * 
+ */</FONT>
+public final class URLFromStringAction implements PrivilegedExceptionAction
+{
+  private String url;
+  <FONT style="color:blue;display;inline">
+  /**
+   * 
+   * @param spec - The string to parse as a URL.
+   */</FONT>
+  public URLFromStringAction(String spec)
+  {
+    url = spec;
+  }
+  <FONT style="color:green;display;inline">/* (non-Javadoc)
+   * @see java.security.PrivilegedExceptionAction#run()
+   */</FONT>
+  public Object run() throws MalformedURLException
+  {
+    return new URL(url);
+  }
+
+}
+
+
+</PRE>
+
+
+
+<HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/DevClassPathHelper.html#L79" , parent.fbot ); return false'>Line# 84</a> java.util.Properties load( java.net.URL )
+   Permission: java.lang.RuntimePermission "getClassLoader"
+      Primordial/void java.util.Properties.load( java.io.InputStream )
+   Permission: java.util.PropertyPermission "java.vendor.url.bug", "read"
+      Primordial/void java.util.Properties.load( java.io.InputStream )
+<BR/><BR/><B>CODE</B><BR/><BR/>
+	private static Properties load(URL url) {
+		Properties props = new Properties();
+		try {
+			InputStream is = null;
+			try {
+				is = url.openStream();
+				<FONT style="background-color:yellow;display;inline">props.load(is);</FONT>
+			} finally {
+				is.close();
+			}
+		} catch (IOException e) {
+			// TODO consider logging here
+		}
+		return props;
+	}
+
+<B>Tainted variable reference trace:</B><BR/><BR/>
+load(URL) - org.eclipse.core.internal.runtime.DevClassPathHelper
+	{...} - org.eclipse.core.internal.runtime.DevClassPathHelper ( &LT cinit &GT )
+
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.lang.RuntimePermission "getClassLoader";</LI>
+<LI>permission java.util.PropertyPermission "java.vendor.url.bug", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/>
+This private method is only called when the object is instantiated.   Wrap the caller's usage of this method.  An additional performance optimization can be
+achieved if the two consecutive calls to AccessController.doPrivileged() are combined.   
+
+
+Apply the following code change to the object declaration section:
+
+public class DevClassPathHelper {
+	static protected boolean inDevelopmentMode = false;
+	static protected String[] devDefaultClasspath;
+	static protected Properties devProperties = null;
+
+	static {
+		// Check the osgi.dev property to see if dev classpath entries have been defined.
+		String osgiDev = System.getProperty(InternalPlatform.PROP_DEV);
+		if (osgiDev != null) {
+			try {
+				inDevelopmentMode = true;
+				<FONT style="background-color:yellow;display;inline">if (System.getSecurityManager()==null)
+				{</FONT>
+  				   URL location = new URL(osgiDev);
+  				   devProperties = load(location);  				   
+  				<FONT style="background-color:yellow;display;inline">} else
+  				{
+  				  URL location = (URL) AccessController.doPrivileged(new URLFromStringAction(osgiDev));
+  				  devProperties = (Properties) AccessController.doPrivileged(new PropertyLoadAction(location));
+  				}</FONT>
+
+				if (devProperties != null)
+					devDefaultClasspath = getArrayFromList(devProperties.getProperty("*")); //$NON-NLS-1$
+			} catch (MalformedURLException e) {
+				devDefaultClasspath = getArrayFromList(osgiDev);
+			<FONT style="background-color:yellow;display;inline">} catch (PrivilegedActionException pae)
+			{
+				devDefaultClasspath = getArrayFromList(osgiDev);
+			}</FONT>
+		}
+	}
+    . . .
+}
+
+Add the following class:
+
+<FONT style="color:blue;display;inline">/*******************************************************************************
+ * Copyright (c) 2004 IBM Corporation and others.
+ * All rights reserved. This program and the accompanying materials 
+ * are made available under the terms of the Common Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/cpl-v10.html
+ * 
+ * Contributors:
+ *     IBM Corporation - initial API and implementation
+ *******************************************************************************/</FONT>
+
+package org.eclipse.core.internal.security;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.security.PrivilegedExceptionAction;
+import java.util.Properties;
+
+<FONT style="color:blue;display;inline">/**
+ * @author habeck
+ *
+ * Created: Dec 8, 2004 6:53:22 PM
+ * 
+ */</FONT>
+public final class PropertyLoadAction implements PrivilegedExceptionAction
+{
+  private InputStream is;
+  private Properties props;
+    
+  <FONT style="color:blue;display;inline">/**
+   * 
+   * @param input The input stream to load the properties from.
+   * @param store The propreties object to load the values into.
+   */</FONT>
+  public PropertyLoadAction(InputStream input, Properties store)
+  {
+    is = input;
+    props = store;
+  }
+  
+  <FONT style="color:green;display;inline">/* (non-Javadoc)
+   * @see java.security.PrivilegedExceptionAction#run()
+   */</FONT>
+  public Object run() throws IOException
+  {
+    props.load(is);
+    return null;
+  }
+
+}
+<HR/>
+</pre>
+</body></html>

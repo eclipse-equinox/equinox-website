@@ -1,0 +1,293 @@
+		*********DOPRIVILEGED ANALYSIS*********
+
+org.eclipse.core.internal.preferences.EclipsePreferences
+protected
+ void load( org.eclipse.core.runtime.IPath ) #614
+
+org.eclipse.core.internal.preferences.EclipsePreferences
+protected
+ void load( org.eclipse.core.runtime.IPath ) #615
+java.lang.RuntimePermission "getClassLoader"
+java.util.PropertyPermission "java.vendor.url.bug", "read"
+
+org.eclipse.core.internal.preferences.EclipsePreferences
+protected
+ void save( org.eclipse.core.runtime.IPath ) #960
+
+org.eclipse.core.internal.preferences.EclipsePreferences
+protected
+ void save( org.eclipse.core.runtime.IPath ) #961
+java.lang.RuntimePermission "getClassLoader"
+
+org.eclipse.core.internal.preferences.PreferencesService
+public
+ org.eclipse.core.runtime.IStatus exportPreferences( org.eclipse.core.runtime.preferences.IEclipsePreferences, java.io.OutputStream, java.lang.String[] ) #428
+java.lang.RuntimePermission "getClassLoader"
+
+org.eclipse.core.internal.preferences.PreferencesService
+public
+ org.eclipse.core.runtime.preferences.IExportedPreferences readPreferences( java.io.InputStream ) #665
+java.lang.RuntimePermission "getClassLoader"
+java.util.PropertyPermission "java.vendor.url.bug", "read"
+
+org.eclipse.core.internal.preferences.PreferencesService
+public
+ org.eclipse.core.runtime.IStatus validateVersions( org.eclipse.core.runtime.IPath ) #776
+
+org.eclipse.core.internal.runtime.AuthorizationDatabase
+private
+static
+ boolean canWrite( java.io.File ) #322
+
+org.eclipse.core.internal.runtime.AuthorizationDatabase
+private
+static
+ boolean canWrite( java.io.File ) #325
+
+org.eclipse.core.internal.runtime.AuthorizationDatabase
+private
+static
+ boolean canWrite( java.io.File ) #330
+java.io.FilePermission "???System Property Value???", "write"
+java.io.FilePermission "???file???", "write"
+java.io.FilePermission "GMT", "write"
+
+org.eclipse.core.internal.runtime.AuthorizationDatabase
+private
+static
+ boolean canWrite( java.io.File ) #336
+java.io.FilePermission "???System Property Value???", "delete"
+java.io.FilePermission "???file???", "delete"
+java.io.FilePermission "GMT", "delete"
+
+org.eclipse.core.internal.runtime.AuthorizationDatabase
+private
+ void load(  ) #253
+java.io.FilePermission ".keyring", "read"
+
+org.eclipse.core.internal.runtime.AuthorizationDatabase
+private
+ void load(  ) #258
+java.io.FilePermission ".keyring", "read"
+
+org.eclipse.core.internal.runtime.AuthorizationDatabase
+private
+ void load( java.io.InputStream ) #277
+java.io.SerializablePermission "enableSubclassImplementation"
+
+org.eclipse.core.internal.runtime.AuthorizationDatabase
+private
+ void load( java.io.InputStream ) #279
+java.lang.RuntimePermission "getClassLoader"
+
+org.eclipse.core.internal.runtime.AuthorizationDatabase
+private
+ void load( java.io.InputStream ) #280
+java.lang.RuntimePermission "getClassLoader"
+
+org.eclipse.core.internal.runtime.AuthorizationDatabase
+public
+ void save(  ) #305
+java.io.FilePermission ".keyring", "delete"
+
+org.eclipse.core.internal.runtime.AuthorizationDatabase
+public
+ void save(  ) #306
+java.io.FilePermission "???file???", "read"
+java.util.PropertyPermission "user.dir", "read"
+
+org.eclipse.core.internal.runtime.AuthorizationDatabase
+public
+ void save(  ) #308
+java.io.FilePermission ".keyring", "write"
+
+org.eclipse.core.internal.runtime.AuthorizationDatabase
+public
+ void save(  ) #309
+java.io.FilePermission ".keyring", "write"
+
+org.eclipse.core.internal.runtime.AuthorizationDatabase
+private
+ void save( java.io.OutputStream ) #346
+java.io.SerializablePermission "enableSubclassImplementation"
+
+org.eclipse.core.internal.runtime.AuthorizationHandler
+private
+static
+ void loadKeyring(  ) #35
+java.io.FilePermission ".keyring", "read"
+
+org.eclipse.core.internal.runtime.AuthorizationHandler
+private
+static
+ void loadKeyring(  ) #40
+java.io.FilePermission "???file???", "read"
+java.util.PropertyPermission "user.dir", "read"
+
+org.eclipse.core.internal.runtime.AuthorizationHandler
+private
+static
+ void loadKeyring(  ) #49
+java.io.FilePermission ".keyring", "delete"
+
+org.eclipse.core.internal.runtime.AuthorizationHandler
+private
+static
+ void loadKeyring(  ) #53
+java.io.FilePermission ".keyring", "read"
+
+org.eclipse.core.internal.runtime.DataArea
+private
+ void createLocation(  ) #106
+java.io.FilePermission "", "read"
+java.io.FilePermission "", "write"
+java.io.FilePermission "???file???", "read"
+java.io.FilePermission "???file???", "write"
+java.util.PropertyPermission "user.dir", "read"
+
+org.eclipse.core.internal.runtime.DataArea
+private
+ void createLocation(  ) #108
+java.io.FilePermission "???file???", "read"
+java.util.PropertyPermission "user.dir", "read"
+
+org.eclipse.core.internal.runtime.DataArea
+private
+ void createLocation(  ) #111
+java.io.FilePermission "", "write"
+java.io.FilePermission "???file???", "write"
+
+org.eclipse.core.internal.runtime.DataArea
+private
+ void createLocation(  ) #112
+java.io.FilePermission "???file???", "read"
+java.util.PropertyPermission "user.dir", "read"
+
+org.eclipse.core.internal.runtime.DataArea
+private
+ void initializeLocation(  ) #89
+java.io.FilePermission "", "read"
+java.io.FilePermission "???file???", "read"
+
+org.eclipse.core.internal.runtime.DataArea
+private
+ void initializeLocation(  ) #90
+java.io.FilePermission "", "read"
+java.io.FilePermission "???file???", "read"
+
+org.eclipse.core.internal.runtime.DataArea
+private
+ void initializeLocation(  ) #97
+java.io.FilePermission "???file???", "read"
+java.util.PropertyPermission "user.dir", "read"
+
+org.eclipse.core.internal.runtime.DevClassPathHelper
+static
+ void <clinit>(  ) #26
+java.util.PropertyPermission "osgi.dev", "read"
+
+org.eclipse.core.internal.runtime.DevClassPathHelper
+static
+ void <clinit>(  ) #30
+java.lang.RuntimePermission "getClassLoader"
+java.net.NetPermission "specifyStreamHandler"
+
+org.eclipse.core.internal.runtime.DevClassPathHelper
+private
+static
+ java.util.Properties load( java.net.URL ) #84
+java.lang.RuntimePermission "getClassLoader"
+java.util.PropertyPermission "java.vendor.url.bug", "read"
+
+org.eclipse.core.internal.runtime.InternalPlatform
+public
+ void endSplash(  ) #232
+java.util.PropertyPermission "eclipse.startTime", "read"
+
+org.eclipse.core.internal.runtime.InternalPlatform
+public
+ java.lang.String getNL(  ) #450
+java.util.PropertyPermission "osgi.nl", "read"
+
+org.eclipse.core.internal.runtime.InternalPlatform
+public
+ java.lang.String getOS(  ) #463
+java.util.PropertyPermission "osgi.os", "read"
+
+org.eclipse.core.internal.runtime.InternalPlatform
+public
+ java.lang.String getOSArch(  ) #467
+java.util.PropertyPermission "osgi.arch", "read"
+
+org.eclipse.core.internal.runtime.InternalPlatform
+public
+ org.eclipse.core.runtime.IProduct getProduct(  ) #561
+java.util.PropertyPermission "eclipse.product", "read"
+
+org.eclipse.core.internal.runtime.InternalPlatform
+public
+ org.eclipse.core.runtime.IPath getStateLocation( org.osgi.framework.Bundle, boolean ) #658
+java.io.FilePermission "", "read"
+java.io.FilePermission "", "write"
+java.io.FilePermission "???file???", "read"
+java.io.FilePermission "???file???", "write"
+java.util.PropertyPermission "user.dir", "read"
+
+org.eclipse.core.internal.runtime.InternalPlatform
+public
+ java.lang.String getWS(  ) #679
+java.util.PropertyPermission "osgi.ws", "read"
+
+org.eclipse.core.internal.runtime.ResourceTranslator
+private
+static
+ java.lang.ClassLoader createTempClassloader( org.osgi.framework.Bundle ) #105
+java.lang.RuntimePermission "createClassLoader"
+java.lang.RuntimePermission "getClassLoader"
+
+org.eclipse.core.internal.runtime.URLTool
+public
+static
+ java.net.URL getParent( java.net.URL ) #186
+java.lang.RuntimePermission "getClassLoader"
+java.net.NetPermission "specifyStreamHandler"
+
+org.eclipse.core.runtime.PerformanceStats
+public
+static
+ void printStats(  ) #244
+java.lang.RuntimePermission "getClassLoader"
+
+org.eclipse.core.runtime.Platform
+public
+static
+ boolean inDebugMode(  ) #1306
+java.util.PropertyPermission "osgi.debug", "read"
+
+org.eclipse.core.runtime.Platform
+public
+static
+ boolean inDevelopmentMode(  ) #1319
+java.util.PropertyPermission "osgi.dev", "read"
+
+org.eclipse.core.runtime.Preferences
+public
+static
+ void exportPreferences( org.eclipse.core.runtime.IPath ) #324
+
+org.eclipse.core.runtime.Preferences
+public
+static
+ void importPreferences( org.eclipse.core.runtime.IPath ) #371
+
+org.eclipse.core.runtime.Preferences
+public
+ void load( java.io.InputStream ) #1255
+java.lang.RuntimePermission "getClassLoader"
+java.util.PropertyPermission "java.vendor.url.bug", "read"
+
+org.eclipse.core.runtime.Preferences
+public
+ void store( java.io.OutputStream, java.lang.String ) #1239
+java.lang.RuntimePermission "getClassLoader"
+

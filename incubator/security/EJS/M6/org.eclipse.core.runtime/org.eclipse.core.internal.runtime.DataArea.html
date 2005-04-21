@@ -1,0 +1,896 @@
+<html><head><title>Permission Analysis Report</title><script language='javaScript' src='linkUtil.js'></script></head><body>
+<h1>Permission Analysis Report</h1>
+<BR/><H2>Analysis of: org.eclipse.core.runtime</H2>
+<B>Detail</B><BR/><BR/>
+<pre>
+
+Class: <a href="foo" onClick="return openURLinSrc( 'Application/org/eclipse/core/internal/runtime/DataArea.html' )">org.eclipse.core.internal.runtime.DataArea</a> (Application)
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/DataArea.html#L101" , parent.fbot ); return false'>Line# 106</a> void createLocation(  )
+   Permission: java.io.FilePermission "", "read"
+      Primordial/boolean java.io.File.mkdirs(  )
+   Permission: java.io.FilePermission "", "write"
+      Primordial/boolean java.io.File.mkdirs(  )
+   Permission: java.io.FilePermission "???file???", "read"
+      Primordial/boolean java.io.File.mkdirs(  )
+   Permission: java.io.FilePermission "???file???", "write"
+      Primordial/boolean java.io.File.mkdirs(  )
+   Permission: java.util.PropertyPermission "user.dir", "read"
+      Primordial/boolean java.io.File.mkdirs(  )
+<BR/><BR/><B>CODE</B><BR/><BR/>
+	private void createLocation() throws CoreException {
+		// append on the metadata location so that the whole structure is created.  
+		File file = location.append(F_META_AREA).toFile();
+		try {
+			<FONT style="background-color:yellow;display;inline">file.mkdirs();</FONT>
+		} catch (Exception e) {
+			String message = NLS.bind(Messages.meta_couldNotCreate, file.getAbsolutePath());
+			throw new CoreException(new Status(IStatus.ERROR, Platform.PI_RUNTIME, Platform.FAILED_WRITE_METADATA, message, e));
+		}
+		if (!file.canWrite()) {
+			String message = NLS.bind(Messages.meta_readonly, file.getAbsolutePath());
+			throw new CoreException(new Status(IStatus.ERROR, Platform.PI_RUNTIME, Platform.FAILED_WRITE_METADATA, message, null));
+		}
+		// set the log file location now that we created the data area
+		IPath path = location.append(F_META_AREA).append(F_LOG);
+		try {
+			InternalPlatform.getDefault().getFrameworkLog().setFile(path.toFile(), true);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+<B>Tainted variable reference trace: (Call heirarchy, and/or discussion of privilege operation parameter sources)</B><BR/><BR/>
+<B>Call hierarchy</B><BR/>
+createLocation() - org.eclipse.core.internal.runtime.DataArea
+	initializeLocation() - org.eclipse.core.internal.runtime.DataArea
+		assertLocationInitialized() - org.eclipse.core.internal.runtime.DataArea
+			getStateLocation(Bundle) - org.eclipse.core.internal.runtime.DataArea
+				getStateLocation(Bundle, boolean) - org.eclipse.core.internal.runtime.InternalPlatform
+					getStateLocation(Bundle) - org.eclipse.core.internal.runtime.InternalPlatform
+						getStateLocation(Bundle) - org.eclipse.core.runtime.Platform
+					getStateLocation() - org.eclipse.core.runtime.Plugin
+						getDataLocation() - org.eclipse.ui.internal.WorkbenchPlugin
+							getWorkbenchStateFile() - org.eclipse.ui.internal.Workbench
+							getWorkingSetStateFile() - org.eclipse.ui.internal.WorkingSetManager
+							readResources(Map) - org.eclipse.ui.internal.registry.EditorRegistry
+							readEditors(Map) - org.eclipse.ui.internal.registry.EditorRegistry
+							loadCustom() - org.eclipse.ui.internal.registry.PerspectiveRegistry
+						getStateLocationOrNull() - org.eclipse.ui.plugin.AbstractUIPlugin
+						getPluginStateLocation(Plugin) - org.eclipse.core.runtime.Platform
+			getMetadataLocation() - org.eclipse.core.internal.runtime.DataArea
+				getStateLocation(String) - org.eclipse.core.internal.runtime.DataArea
+					getStateLocation(Bundle) - org.eclipse.core.internal.runtime.DataArea
+						getStateLocation(Bundle, boolean) - org.eclipse.core.internal.runtime.InternalPlatform
+							getStateLocation(Bundle) - org.eclipse.core.internal.runtime.InternalPlatform
+								getStateLocation(Bundle) - org.eclipse.core.runtime.Platform
+									getStateFile(String) - org.eclipse.ui.internal.part.services.PluginResources
+									resolve() - org.eclipse.core.internal.runtime.PlatformURLMetaConnection
+										openConnection(URL) - org.eclipse.core.internal.boot.PlatformURLHandler
+							getStateLocation() - org.eclipse.core.runtime.Plugin
+								getDataLocation() - org.eclipse.ui.internal.WorkbenchPlugin
+									getWorkbenchStateFile() - org.eclipse.ui.internal.Workbench
+									getWorkingSetStateFile() - org.eclipse.ui.internal.WorkingSetManager
+									readResources(Map) - org.eclipse.ui.internal.registry.EditorRegistry
+									readEditors(Map) - org.eclipse.ui.internal.registry.EditorRegistry
+									loadCustom() - org.eclipse.ui.internal.registry.PerspectiveRegistry
+								getStateLocationOrNull() - org.eclipse.ui.plugin.AbstractUIPlugin
+									loadDialogSettings() - org.eclipse.ui.plugin.AbstractUIPlugin
+										getDialogSettings() - org.eclipse.ui.plugin.AbstractUIPlugin
+									saveDialogSettings() - org.eclipse.ui.plugin.AbstractUIPlugin
+										stop(BundleContext) - org.eclipse.ui.plugin.AbstractUIPlugin
+								getPluginStateLocation(Plugin) - org.eclipse.core.runtime.Platform
+					getPreferenceLocation(String, boolean) - org.eclipse.core.internal.runtime.DataArea
+						loadLegacy() - org.eclipse.core.internal.preferences.InstancePreferences
+							create(EclipsePreferences, String, Plugin) - org.eclipse.core.internal.preferences.EclipsePreferences
+								internalNode(String, boolean, Plugin) - org.eclipse.core.internal.preferences.EclipsePreferences
+								create(IEclipsePreferences, String) - org.eclipse.core.internal.preferences.EclipsePreferences
+								getChild(String, Plugin, boolean) - org.eclipse.core.internal.preferences.EclipsePreferences
+					getBaseLocation() - org.eclipse.core.internal.preferences.InstancePreferences
+						initializeChildren() - org.eclipse.core.internal.preferences.InstancePreferences
+							InstancePreferences(EclipsePreferences, String) - org.eclipse.core.internal.preferences.InstancePreferences
+								InstancePreferences() - org.eclipse.core.internal.preferences.InstancePreferences
+								internalCreate(EclipsePreferences, String, Plugin) - org.eclipse.core.internal.preferences.InstancePreferences
+						getLocation() - org.eclipse.core.internal.preferences.InstancePreferences
+			getInstanceDataLocation() - org.eclipse.core.internal.runtime.DataArea
+			getStateLocation(String) - org.eclipse.core.internal.runtime.DataArea
+				getStateLocation(Bundle) - org.eclipse.core.internal.runtime.DataArea
+					getStateLocation(Bundle, boolean) - org.eclipse.core.internal.runtime.InternalPlatform
+						getStateLocation(Bundle) - org.eclipse.core.internal.runtime.InternalPlatform
+							getStateLocation(Bundle) - org.eclipse.core.runtime.Platform
+								getStateFile(String) - org.eclipse.ui.internal.part.services.PluginResources
+								resolve() - org.eclipse.core.internal.runtime.PlatformURLMetaConnection
+						getStateLocation() - org.eclipse.core.runtime.Plugin
+							getDataLocation() - org.eclipse.ui.internal.WorkbenchPlugin
+							getStateLocationOrNull() - org.eclipse.ui.plugin.AbstractUIPlugin
+							getPluginStateLocation(Plugin) - org.eclipse.core.runtime.Platform
+				getPreferenceLocation(String, boolean) - org.eclipse.core.internal.runtime.DataArea
+				getBaseLocation() - org.eclipse.core.internal.preferences.InstancePreferences
+					initializeChildren() - org.eclipse.core.internal.preferences.InstancePreferences
+						InstancePreferences(EclipsePreferences, String) - org.eclipse.core.internal.preferences.InstancePreferences
+							InstancePreferences() - org.eclipse.core.internal.preferences.InstancePreferences
+							internalCreate(EclipsePreferences, String, Plugin) - org.eclipse.core.internal.preferences.InstancePreferences
+								create(EclipsePreferences, String, Plugin) - org.eclipse.core.internal.preferences.EclipsePreferences
+									internalNode(String, boolean, Plugin) - org.eclipse.core.internal.preferences.EclipsePreferences
+										convertFromProperties(Properties, boolean) - org.eclipse.core.internal.preferences.EclipsePreferences
+										node(String) - org.eclipse.core.internal.preferences.EclipsePreferences
+										applyDefaults(String, Properties, Properties) - org.eclipse.core.internal.preferences.DefaultPreferences
+										node(String, Plugin) - org.eclipse.core.internal.preferences.DefaultPreferences
+									create(IEclipsePreferences, String) - org.eclipse.core.internal.preferences.EclipsePreferences
+										createNode(String) - org.eclipse.core.internal.preferences.PreferencesService
+									getChild(String, Plugin, boolean) - org.eclipse.core.internal.preferences.EclipsePreferences
+										internalNode(String, boolean, Plugin) - org.eclipse.core.internal.preferences.EclipsePreferences
+										getChildren(boolean) - org.eclipse.core.internal.preferences.EclipsePreferences
+										nodeExists(String) - org.eclipse.core.internal.preferences.EclipsePreferences
+					getLocation() - org.eclipse.core.internal.preferences.InstancePreferences
+						save() - org.eclipse.core.internal.preferences.EclipsePreferences
+							flush() - org.eclipse.core.internal.preferences.EclipsePreferences
+								applyPreferences(IExportedPreferences) - org.eclipse.core.internal.preferences.PreferencesService
+									importPreferences(InputStream) - org.eclipse.core.internal.preferences.PreferencesService
+										importPreferences(IPath) - org.eclipse.core.runtime.Preferences
+								flush() - org.eclipse.ui.internal.preferences.WorkingCopyPreferences
+									applyPreferences(IExportedPreferences) - org.eclipse.core.internal.preferences.PreferencesService
+										importPreferences(InputStream) - org.eclipse.core.internal.preferences.PreferencesService
+									flush() - org.eclipse.ui.internal.preferences.WorkingCopyPreferences
+									sync() - org.eclipse.core.internal.preferences.EclipsePreferences
+										sync() - org.eclipse.core.internal.preferences.RootPreferences
+										sync() - org.eclipse.ui.internal.preferences.WorkingCopyPreferences
+									flush() - org.eclipse.core.internal.preferences.EclipsePreferences (2 matches)
+									flush() - org.eclipse.core.internal.preferences.RootPreferences
+										applyPreferences(IExportedPreferences) - org.eclipse.core.internal.preferences.PreferencesService
+										flush() - org.eclipse.ui.internal.preferences.WorkingCopyPreferences
+										sync() - org.eclipse.core.internal.preferences.EclipsePreferences
+										flush() - org.eclipse.core.internal.preferences.EclipsePreferences (2 matches)
+										flush() - org.eclipse.core.internal.preferences.RootPreferences
+										flush() - org.eclipse.core.internal.preferences.PreferenceForwarder
+										addFileSpec(ContentTypeCatalog, String, int) - org.eclipse.core.internal.content.ContentType
+										removeFileSpec(ContentTypeCatalog, String, int) - org.eclipse.core.internal.content.ContentType
+										create(EclipsePreferences, String, Plugin) - org.eclipse.core.internal.preferences.EclipsePreferences
+										save() - org.eclipse.ui.preferences.ScopedPreferenceStore
+										setDefaultCharset(String) - org.eclipse.core.internal.content.ContentType
+									flush() - org.eclipse.core.internal.preferences.PreferenceForwarder
+										store(OutputStream, String) - org.eclipse.core.internal.preferences.PreferenceForwarder
+										savePluginPreferences() - org.eclipse.core.runtime.Plugin
+										load(InputStream) - org.eclipse.core.internal.preferences.PreferenceForwarder
+									applyChanges() - org.eclipse.ui.internal.preferences.WorkingCopyManager
+										okPressed() - org.eclipse.ui.internal.dialogs.FilteredPreferenceDialog
+									addFileSpec(ContentTypeCatalog, String, int) - org.eclipse.core.internal.content.ContentType
+										addFileSpec(String, int) - org.eclipse.core.internal.content.ContentType
+										addFileSpec(ContentTypeCatalog, String, int) - org.eclipse.core.internal.content.ContentType
+									removeFileSpec(ContentTypeCatalog, String, int) - org.eclipse.core.internal.content.ContentType
+										removeFileSpec(ContentTypeCatalog, String, int) - org.eclipse.core.internal.content.ContentType
+										removeFileSpec(String, int) - org.eclipse.core.internal.content.ContentType
+									save() - org.eclipse.ui.preferences.ScopedPreferenceStore
+										handleSave() - org.eclipse.jface.preference.PreferenceDialog
+									setDefaultCharset(String) - org.eclipse.core.internal.content.ContentType
+										widgetSelected(SelectionEvent) - org.eclipse.ui.internal.dialogs.ContentTypesPreferencePage.createCharset(...).new SelectionAdapter() {...}
+								sync() - org.eclipse.core.internal.preferences.EclipsePreferences
+									sync() - org.eclipse.core.internal.preferences.RootPreferences
+										sync() - org.eclipse.core.internal.preferences.RootPreferences
+										sync() - org.eclipse.ui.internal.preferences.WorkingCopyPreferences
+									sync() - org.eclipse.ui.internal.preferences.WorkingCopyPreferences
+										sync() - org.eclipse.core.internal.preferences.RootPreferences
+										sync() - org.eclipse.ui.internal.preferences.WorkingCopyPreferences
+								flush() - org.eclipse.core.internal.preferences.EclipsePreferences (2 matches)
+								flush() - org.eclipse.core.internal.preferences.RootPreferences
+									applyPreferences(IExportedPreferences) - org.eclipse.core.internal.preferences.PreferencesService
+										importPreferences(InputStream) - org.eclipse.core.internal.preferences.PreferencesService
+									flush() - org.eclipse.ui.internal.preferences.WorkingCopyPreferences
+										applyPreferences(IExportedPreferences) - org.eclipse.core.internal.preferences.PreferencesService
+										flush() - org.eclipse.ui.internal.preferences.WorkingCopyPreferences
+										sync() - org.eclipse.core.internal.preferences.EclipsePreferences
+										flush() - org.eclipse.core.internal.preferences.EclipsePreferences (2 matches)
+										flush() - org.eclipse.core.internal.preferences.RootPreferences
+										flush() - org.eclipse.core.internal.preferences.PreferenceForwarder
+										applyChanges() - org.eclipse.ui.internal.preferences.WorkingCopyManager
+										addFileSpec(ContentTypeCatalog, String, int) - org.eclipse.core.internal.content.ContentType
+										removeFileSpec(ContentTypeCatalog, String, int) - org.eclipse.core.internal.content.ContentType
+										save() - org.eclipse.ui.preferences.ScopedPreferenceStore
+										setDefaultCharset(String) - org.eclipse.core.internal.content.ContentType
+									sync() - org.eclipse.core.internal.preferences.EclipsePreferences
+										sync() - org.eclipse.core.internal.preferences.RootPreferences
+										sync() - org.eclipse.ui.internal.preferences.WorkingCopyPreferences
+									flush() - org.eclipse.core.internal.preferences.EclipsePreferences (2 matches)
+									flush() - org.eclipse.core.internal.preferences.RootPreferences
+									flush() - org.eclipse.core.internal.preferences.PreferenceForwarder
+										store(OutputStream, String) - org.eclipse.core.internal.preferences.PreferenceForwarder
+										savePluginPreferences() - org.eclipse.core.runtime.Plugin
+										load(InputStream) - org.eclipse.core.internal.preferences.PreferenceForwarder
+									addFileSpec(ContentTypeCatalog, String, int) - org.eclipse.core.internal.content.ContentType
+										addFileSpec(String, int) - org.eclipse.core.internal.content.ContentType
+										addFileSpec(ContentTypeCatalog, String, int) - org.eclipse.core.internal.content.ContentType
+									removeFileSpec(ContentTypeCatalog, String, int) - org.eclipse.core.internal.content.ContentType
+										removeFileSpec(ContentTypeCatalog, String, int) - org.eclipse.core.internal.content.ContentType
+										removeFileSpec(String, int) - org.eclipse.core.internal.content.ContentType
+									create(EclipsePreferences, String, Plugin) - org.eclipse.core.internal.preferences.EclipsePreferences
+										internalNode(String, boolean, Plugin) - org.eclipse.core.internal.preferences.EclipsePreferences
+										create(IEclipsePreferences, String) - org.eclipse.core.internal.preferences.EclipsePreferences
+										getChild(String, Plugin, boolean) - org.eclipse.core.internal.preferences.EclipsePreferences
+									save() - org.eclipse.ui.preferences.ScopedPreferenceStore
+										handleSave() - org.eclipse.jface.preference.PreferenceDialog
+									setDefaultCharset(String) - org.eclipse.core.internal.content.ContentType
+										widgetSelected(SelectionEvent) - org.eclipse.ui.internal.dialogs.ContentTypesPreferencePage.createCharset(...).new SelectionAdapter() {...}
+								flush() - org.eclipse.core.internal.preferences.PreferenceForwarder
+									store(OutputStream, String) - org.eclipse.core.internal.preferences.PreferenceForwarder
+									savePluginPreferences() - org.eclipse.core.runtime.Plugin
+										saveEnabledStates() - org.eclipse.ui.internal.ActivityPersistanceHelper
+										saveInternalPrefs() - org.eclipse.ui.internal.util.PrefUtil
+										savePreferenceStore() - org.eclipse.ui.plugin.AbstractUIPlugin
+										performDefaults() - org.eclipse.ui.internal.dialogs.ViewsPreferencePage
+										performOk() - org.eclipse.ui.internal.dialogs.WorkbenchPreferencePage
+										savePreferences() - org.eclipse.ui.internal.UIPlugin.start(...).new ICallback() {...}
+										allow(ITriggerPoint, IIdentifier) - org.eclipse.ui.activities.WorkbenchTriggerPointAdvisor
+									load(InputStream) - org.eclipse.core.internal.preferences.PreferenceForwarder
+								addFileSpec(ContentTypeCatalog, String, int) - org.eclipse.core.internal.content.ContentType
+									addFileSpec(String, int) - org.eclipse.core.internal.content.ContentType
+										okPressed() - org.eclipse.ui.internal.dialogs.NewContentTypeFileAssociationDialog
+									addFileSpec(ContentTypeCatalog, String, int) - org.eclipse.core.internal.content.ContentType
+								removeFileSpec(ContentTypeCatalog, String, int) - org.eclipse.core.internal.content.ContentType
+									removeFileSpec(ContentTypeCatalog, String, int) - org.eclipse.core.internal.content.ContentType
+									removeFileSpec(String, int) - org.eclipse.core.internal.content.ContentType
+										widgetSelected(SelectionEvent) - org.eclipse.ui.internal.dialogs.ContentTypesPreferencePage.createFileAssociations(...).new SelectionAdapter() {...} (2 matches)
+								create(EclipsePreferences, String, Plugin) - org.eclipse.core.internal.preferences.EclipsePreferences
+									internalNode(String, boolean, Plugin) - org.eclipse.core.internal.preferences.EclipsePreferences
+										convertFromProperties(Properties, boolean) - org.eclipse.core.internal.preferences.EclipsePreferences
+										node(String) - org.eclipse.core.internal.preferences.EclipsePreferences
+										applyDefaults(String, Properties, Properties) - org.eclipse.core.internal.preferences.DefaultPreferences
+										node(String, Plugin) - org.eclipse.core.internal.preferences.DefaultPreferences
+									create(IEclipsePreferences, String) - org.eclipse.core.internal.preferences.EclipsePreferences
+										createNode(String) - org.eclipse.core.internal.preferences.PreferencesService
+									getChild(String, Plugin, boolean) - org.eclipse.core.internal.preferences.EclipsePreferences
+										internalNode(String, boolean, Plugin) - org.eclipse.core.internal.preferences.EclipsePreferences
+										getChildren(boolean) - org.eclipse.core.internal.preferences.EclipsePreferences
+										nodeExists(String) - org.eclipse.core.internal.preferences.EclipsePreferences
+								save() - org.eclipse.ui.preferences.ScopedPreferenceStore
+									handleSave() - org.eclipse.jface.preference.PreferenceDialog
+										run() - org.eclipse.jface.preference.PreferenceDialog.okPressed().new SafeRunnable() {...}
+								setDefaultCharset(String) - org.eclipse.core.internal.content.ContentType
+									widgetSelected(SelectionEvent) - org.eclipse.ui.internal.dialogs.ContentTypesPreferencePage.createCharset(...).new SelectionAdapter() {...}
+										firePostSelectionEvent(SelectionEvent) - org.eclipse.jface.util.OpenStrategy
+										handleEvent(Event) - org.eclipse.swt.widgets.TypedListener
+										handleEvent(Event) - org.eclipse.swt.widgets.TypedListener
+										fireSelectionEvent(SelectionEvent) - org.eclipse.jface.util.OpenStrategy
+						load() - org.eclipse.core.internal.preferences.EclipsePreferences
+							sync() - org.eclipse.core.internal.preferences.EclipsePreferences
+								sync() - org.eclipse.core.internal.preferences.RootPreferences
+									sync() - org.eclipse.core.internal.preferences.RootPreferences
+									sync() - org.eclipse.ui.internal.preferences.WorkingCopyPreferences
+										sync() - org.eclipse.core.internal.preferences.RootPreferences
+										sync() - org.eclipse.ui.internal.preferences.WorkingCopyPreferences
+								sync() - org.eclipse.ui.internal.preferences.WorkingCopyPreferences
+									sync() - org.eclipse.core.internal.preferences.RootPreferences
+										sync() - org.eclipse.core.internal.preferences.RootPreferences
+										sync() - org.eclipse.ui.internal.preferences.WorkingCopyPreferences
+									sync() - org.eclipse.ui.internal.preferences.WorkingCopyPreferences
+							create(EclipsePreferences, String, Plugin) - org.eclipse.core.internal.preferences.EclipsePreferences
+								internalNode(String, boolean, Plugin) - org.eclipse.core.internal.preferences.EclipsePreferences
+									convertFromProperties(Properties, boolean) - org.eclipse.core.internal.preferences.EclipsePreferences
+										load(IPath) - org.eclipse.core.internal.preferences.EclipsePreferences
+									node(String) - org.eclipse.core.internal.preferences.EclipsePreferences
+										sync() - org.eclipse.core.internal.preferences.RootPreferences
+										getPluginPreferences(boolean) - org.eclipse.core.internal.preferences.PreferenceForwarder
+										trimTree(IEclipsePreferences, IPreferenceFilter) - org.eclipse.core.internal.preferences.PreferencesService (5 matches)
+										pluginRoot - org.eclipse.core.internal.preferences.PreferenceForwarder
+										internalMatches(IEclipsePreferences, IPreferenceFilter) - org.eclipse.core.internal.preferences.PreferencesService (2 matches)
+										node(String) - org.eclipse.core.internal.preferences.RootPreferences
+										internalNode(String, boolean, Plugin) - org.eclipse.core.internal.preferences.EclipsePreferences (2 matches)
+										visit(IEclipsePreferences) - org.eclipse.core.internal.preferences.PreferencesService.mergeTrees(...).new IPreferenceNodeVisitor() {...}
+										visit(IEclipsePreferences) - org.eclipse.core.internal.preferences.PreferencesService.internalApply(...).new IPreferenceNodeVisitor() {...}
+										processPreferences(ContentTypeCatalog) - org.eclipse.core.internal.content.ContentType
+										setDefaultCharset(String) - org.eclipse.core.internal.content.ContentType
+										exportPreferences(IPath) - org.eclipse.core.runtime.Preferences
+										applyPreferences(IExportedPreferences) - org.eclipse.core.internal.preferences.PreferencesService
+										getChildren(Object) - org.eclipse.ui.internal.dialogs.PreferencesContentProvider (2 matches)
+										scopeRemoved(String) - org.eclipse.core.internal.preferences.PreferencesService
+										flush() - org.eclipse.core.internal.preferences.EclipsePreferences
+										flush() - org.eclipse.core.internal.preferences.RootPreferences
+										addFileSpec(ContentTypeCatalog, String, int) - org.eclipse.core.internal.content.ContentType
+										visit(IEclipsePreferences) - org.eclipse.core.internal.preferences.PreferencesService.applyPreferences(...).new IPreferenceNodeVisitor() {...} (2 matches)
+										copyFromTo(Preferences, Preferences, String[], int) - org.eclipse.core.internal.preferences.PreferencesService (2 matches)
+										defaultsRoot - org.eclipse.core.internal.preferences.PreferenceForwarder
+										getNodes(String, String, IScopeContext[]) - org.eclipse.core.internal.preferences.PreferencesService (4 matches)
+										initializeDefaultPreferences() - org.eclipse.ui.internal.UIPreferenceInitializer (2 matches)
+										node(String) - org.eclipse.ui.internal.preferences.WorkingCopyPreferences
+										hasKeys(Preferences) - org.eclipse.ui.internal.dialogs.PreferencesContentProvider
+										initializeDefaultPreferences() - org.eclipse.ui.internal.WorkbenchPreferenceInitializer (2 matches)
+										convertFromProperties(Properties) - org.eclipse.core.internal.preferences.PreferencesService (4 matches)
+										getNode(String) - org.eclipse.core.internal.preferences.AbstractScope (2 matches)
+										removeFileSpec(ContentTypeCatalog, String, int) - org.eclipse.core.internal.content.ContentType
+									applyDefaults(String, Properties, Properties) - org.eclipse.core.internal.preferences.DefaultPreferences
+										applyCommandLineDefaults() - org.eclipse.core.internal.preferences.DefaultPreferences
+										applyProductDefaults() - org.eclipse.core.internal.preferences.DefaultPreferences
+										applyBundleDefaults() - org.eclipse.core.internal.preferences.DefaultPreferences
+									node(String, Plugin) - org.eclipse.core.internal.preferences.DefaultPreferences
+										getDefaultPreferences() - org.eclipse.core.internal.preferences.PreferenceForwarder
+								create(IEclipsePreferences, String) - org.eclipse.core.internal.preferences.EclipsePreferences
+									createNode(String) - org.eclipse.core.internal.preferences.PreferencesService
+										getChild(String, Plugin) - org.eclipse.core.internal.preferences.RootPreferences
+								getChild(String, Plugin, boolean) - org.eclipse.core.internal.preferences.EclipsePreferences
+									internalNode(String, boolean, Plugin) - org.eclipse.core.internal.preferences.EclipsePreferences
+										convertFromProperties(Properties, boolean) - org.eclipse.core.internal.preferences.EclipsePreferences
+										node(String) - org.eclipse.core.internal.preferences.EclipsePreferences
+										applyDefaults(String, Properties, Properties) - org.eclipse.core.internal.preferences.DefaultPreferences
+										node(String, Plugin) - org.eclipse.core.internal.preferences.DefaultPreferences
+									getChildren(boolean) - org.eclipse.core.internal.preferences.EclipsePreferences
+										shareStrings(StringPool) - org.eclipse.core.internal.preferences.EclipsePreferences
+										removeNode() - org.eclipse.core.internal.preferences.EclipsePreferences
+										convertToProperties(Properties, String) - org.eclipse.core.internal.preferences.EclipsePreferences
+										accept(IPreferenceNodeVisitor) - org.eclipse.core.internal.preferences.EclipsePreferences
+									nodeExists(String) - org.eclipse.core.internal.preferences.EclipsePreferences
+										getPluginPreferences(boolean) - org.eclipse.core.internal.preferences.PreferenceForwarder
+										nodeExists(String) - org.eclipse.ui.internal.preferences.WorkingCopyPreferences (2 matches)
+										initializeDefaultPreferences() - org.eclipse.ui.internal.WorkbenchPreferenceInitializer
+										trimTree(IEclipsePreferences, IPreferenceFilter) - org.eclipse.core.internal.preferences.PreferencesService (2 matches)
+										nodeExists(String) - org.eclipse.core.internal.preferences.EclipsePreferences (2 matches)
+										internalMatches(IEclipsePreferences, IPreferenceFilter) - org.eclipse.core.internal.preferences.PreferencesService (2 matches)
+										initializeDefaultPreferences() - org.eclipse.ui.internal.UIPreferenceInitializer
+						create(EclipsePreferences, String, Plugin) - org.eclipse.core.internal.preferences.EclipsePreferences
+							internalNode(String, boolean, Plugin) - org.eclipse.core.internal.preferences.EclipsePreferences
+								convertFromProperties(Properties, boolean) - org.eclipse.core.internal.preferences.EclipsePreferences
+									load(IPath) - org.eclipse.core.internal.preferences.EclipsePreferences
+										load() - org.eclipse.core.internal.preferences.EclipsePreferences
+								node(String) - org.eclipse.core.internal.preferences.EclipsePreferences
+									sync() - org.eclipse.core.internal.preferences.RootPreferences
+										sync() - org.eclipse.core.internal.preferences.RootPreferences
+										sync() - org.eclipse.ui.internal.preferences.WorkingCopyPreferences
+									getPluginPreferences(boolean) - org.eclipse.core.internal.preferences.PreferenceForwarder
+										addPropertyChangeListener(IPropertyChangeListener) - org.eclipse.core.internal.preferences.PreferenceForwarder
+										convertFromProperties(Properties) - org.eclipse.core.internal.preferences.PreferenceForwarder
+										getInt(String) - org.eclipse.core.internal.preferences.PreferenceForwarder
+										setValue(String, int) - org.eclipse.core.internal.preferences.PreferenceForwarder (2 matches)
+										getLong(String) - org.eclipse.core.internal.preferences.PreferenceForwarder
+										flush() - org.eclipse.core.internal.preferences.PreferenceForwarder
+										getBoolean(String) - org.eclipse.core.internal.preferences.PreferenceForwarder
+										contains(String) - org.eclipse.core.internal.preferences.PreferenceForwarder
+										setValue(String, float) - org.eclipse.core.internal.preferences.PreferenceForwarder (2 matches)
+										setValue(String, String) - org.eclipse.core.internal.preferences.PreferenceForwarder (2 matches)
+										isDefault(String) - org.eclipse.core.internal.preferences.PreferenceForwarder
+										setValue(String, long) - org.eclipse.core.internal.preferences.PreferenceForwarder (2 matches)
+										propertyNames() - org.eclipse.core.internal.preferences.PreferenceForwarder
+										getString(String) - org.eclipse.core.internal.preferences.PreferenceForwarder
+										added(NodeChangeEvent) - org.eclipse.core.internal.preferences.PreferenceForwarder
+										getFloat(String) - org.eclipse.core.internal.preferences.PreferenceForwarder
+										needsSaving() - org.eclipse.core.internal.preferences.PreferenceForwarder
+										getDouble(String) - org.eclipse.core.internal.preferences.PreferenceForwarder
+										setValue(String, boolean) - org.eclipse.core.internal.preferences.PreferenceForwarder (2 matches)
+										setValue(String, double) - org.eclipse.core.internal.preferences.PreferenceForwarder (2 matches)
+										setToDefault(String) - org.eclipse.core.internal.preferences.PreferenceForwarder
+									trimTree(IEclipsePreferences, IPreferenceFilter) - org.eclipse.core.internal.preferences.PreferencesService (5 matches)
+										internalApply(IEclipsePreferences, IPreferenceFilter[]) - org.eclipse.core.internal.preferences.PreferencesService
+										internalExport(IEclipsePreferences, IPreferenceFilter[], OutputStream) - org.eclipse.core.internal.preferences.PreferencesService
+									pluginRoot - org.eclipse.core.internal.preferences.PreferenceForwarder
+									internalMatches(IEclipsePreferences, IPreferenceFilter) - org.eclipse.core.internal.preferences.PreferencesService (2 matches)
+										internalMatches(IEclipsePreferences, IPreferenceFilter[]) - org.eclipse.core.internal.preferences.PreferencesService
+									node(String) - org.eclipse.core.internal.preferences.RootPreferences
+										sync() - org.eclipse.core.internal.preferences.RootPreferences
+										getPluginPreferences(boolean) - org.eclipse.core.internal.preferences.PreferenceForwarder
+										trimTree(IEclipsePreferences, IPreferenceFilter) - org.eclipse.core.internal.preferences.PreferencesService (5 matches)
+										pluginRoot - org.eclipse.core.internal.preferences.PreferenceForwarder
+										internalMatches(IEclipsePreferences, IPreferenceFilter) - org.eclipse.core.internal.preferences.PreferencesService (2 matches)
+										node(String) - org.eclipse.core.internal.preferences.RootPreferences
+										internalNode(String, boolean, Plugin) - org.eclipse.core.internal.preferences.EclipsePreferences (2 matches)
+										visit(IEclipsePreferences) - org.eclipse.core.internal.preferences.PreferencesService.mergeTrees(...).new IPreferenceNodeVisitor() {...}
+										visit(IEclipsePreferences) - org.eclipse.core.internal.preferences.PreferencesService.internalApply(...).new IPreferenceNodeVisitor() {...}
+										processPreferences(ContentTypeCatalog) - org.eclipse.core.internal.content.ContentType
+										setDefaultCharset(String) - org.eclipse.core.internal.content.ContentType
+										exportPreferences(IPath) - org.eclipse.core.runtime.Preferences
+										applyPreferences(IExportedPreferences) - org.eclipse.core.internal.preferences.PreferencesService
+										getChildren(Object) - org.eclipse.ui.internal.dialogs.PreferencesContentProvider (2 matches)
+										scopeRemoved(String) - org.eclipse.core.internal.preferences.PreferencesService
+										flush() - org.eclipse.core.internal.preferences.EclipsePreferences
+										flush() - org.eclipse.core.internal.preferences.RootPreferences
+										addFileSpec(ContentTypeCatalog, String, int) - org.eclipse.core.internal.content.ContentType
+										visit(IEclipsePreferences) - org.eclipse.core.internal.preferences.PreferencesService.applyPreferences(...).new IPreferenceNodeVisitor() {...} (2 matches)
+										copyFromTo(Preferences, Preferences, String[], int) - org.eclipse.core.internal.preferences.PreferencesService (2 matches)
+										defaultsRoot - org.eclipse.core.internal.preferences.PreferenceForwarder
+										getNodes(String, String, IScopeContext[]) - org.eclipse.core.internal.preferences.PreferencesService (4 matches)
+										initializeDefaultPreferences() - org.eclipse.ui.internal.UIPreferenceInitializer (2 matches)
+										node(String) - org.eclipse.ui.internal.preferences.WorkingCopyPreferences
+										hasKeys(Preferences) - org.eclipse.ui.internal.dialogs.PreferencesContentProvider
+										initializeDefaultPreferences() - org.eclipse.ui.internal.WorkbenchPreferenceInitializer (2 matches)
+										convertFromProperties(Properties) - org.eclipse.core.internal.preferences.PreferencesService (4 matches)
+										getNode(String) - org.eclipse.core.internal.preferences.AbstractScope (2 matches)
+										removeFileSpec(ContentTypeCatalog, String, int) - org.eclipse.core.internal.content.ContentType
+									internalNode(String, boolean, Plugin) - org.eclipse.core.internal.preferences.EclipsePreferences (2 matches)
+									visit(IEclipsePreferences) - org.eclipse.core.internal.preferences.PreferencesService.mergeTrees(...).new IPreferenceNodeVisitor() {...}
+										accept(IPreferenceNodeVisitor) - org.eclipse.core.internal.preferences.EclipsePreferences
+										accept(IPreferenceNodeVisitor) - org.eclipse.ui.internal.preferences.WorkingCopyPreferences
+									visit(IEclipsePreferences) - org.eclipse.core.internal.preferences.PreferencesService.internalApply(...).new IPreferenceNodeVisitor() {...}
+										accept(IPreferenceNodeVisitor) - org.eclipse.core.internal.preferences.EclipsePreferences
+										accept(IPreferenceNodeVisitor) - org.eclipse.ui.internal.preferences.WorkingCopyPreferences
+									processPreferences(ContentTypeCatalog) - org.eclipse.core.internal.content.ContentType
+										createContentType(ContentTypeCatalog, String, String, byte, String[], String[], String, String, Map, IConfigurationElement) - org.eclipse.core.internal.content.ContentType
+									setDefaultCharset(String) - org.eclipse.core.internal.content.ContentType
+										widgetSelected(SelectionEvent) - org.eclipse.ui.internal.dialogs.ContentTypesPreferencePage.createCharset(...).new SelectionAdapter() {...}
+									exportPreferences(IPath) - org.eclipse.core.runtime.Preferences
+									applyPreferences(IExportedPreferences) - org.eclipse.core.internal.preferences.PreferencesService
+										importPreferences(InputStream) - org.eclipse.core.internal.preferences.PreferencesService
+									getChildren(Object) - org.eclipse.ui.internal.dialogs.PreferencesContentProvider (2 matches)
+										contentProviderGetChildren(Object) - org.eclipse.ui.internal.progress.NewProgressViewer
+										select(Viewer, Object, Object) - org.eclipse.ui.internal.dialogs.WizardTagFilter
+										select(Viewer, Object, Object) - org.eclipse.ui.internal.dialogs.FilteredPreferenceDialog.createTreeViewer(...).new PatternFilter() {...}
+										select(Viewer, Object, Object) - org.eclipse.ui.internal.dialogs.PatternFilter
+										select(Viewer, Object, Object) - org.eclipse.ui.internal.dialogs.NewWizardActivityFilter
+										select(Viewer, Object, Object) - org.eclipse.ui.internal.themes.ColorsAndFontsPreferencePage.createTree(...).new PatternFilter() {...}
+										getElements(Object) - org.eclipse.ui.internal.dialogs.PreferencesContentProvider
+										getRawChildren(Object) - org.eclipse.jface.viewers.AbstractTreeViewer
+									scopeRemoved(String) - org.eclipse.core.internal.preferences.PreferencesService
+										registryChanged(IRegistryChangeEvent) - org.eclipse.core.internal.preferences.PreferencesService
+									flush() - org.eclipse.core.internal.preferences.EclipsePreferences
+										applyPreferences(IExportedPreferences) - org.eclipse.core.internal.preferences.PreferencesService
+										flush() - org.eclipse.ui.internal.preferences.WorkingCopyPreferences
+										sync() - org.eclipse.core.internal.preferences.EclipsePreferences
+										flush() - org.eclipse.core.internal.preferences.EclipsePreferences (2 matches)
+										flush() - org.eclipse.core.internal.preferences.RootPreferences
+										flush() - org.eclipse.core.internal.preferences.PreferenceForwarder
+										addFileSpec(ContentTypeCatalog, String, int) - org.eclipse.core.internal.content.ContentType
+										removeFileSpec(ContentTypeCatalog, String, int) - org.eclipse.core.internal.content.ContentType
+										create(EclipsePreferences, String, Plugin) - org.eclipse.core.internal.preferences.EclipsePreferences
+										save() - org.eclipse.ui.preferences.ScopedPreferenceStore
+										setDefaultCharset(String) - org.eclipse.core.internal.content.ContentType
+									flush() - org.eclipse.core.internal.preferences.RootPreferences
+										applyPreferences(IExportedPreferences) - org.eclipse.core.internal.preferences.PreferencesService
+										flush() - org.eclipse.ui.internal.preferences.WorkingCopyPreferences
+										sync() - org.eclipse.core.internal.preferences.EclipsePreferences
+										flush() - org.eclipse.core.internal.preferences.EclipsePreferences (2 matches)
+										flush() - org.eclipse.core.internal.preferences.RootPreferences
+										flush() - org.eclipse.core.internal.preferences.PreferenceForwarder
+										addFileSpec(ContentTypeCatalog, String, int) - org.eclipse.core.internal.content.ContentType
+										removeFileSpec(ContentTypeCatalog, String, int) - org.eclipse.core.internal.content.ContentType
+										create(EclipsePreferences, String, Plugin) - org.eclipse.core.internal.preferences.EclipsePreferences
+										save() - org.eclipse.ui.preferences.ScopedPreferenceStore
+										setDefaultCharset(String) - org.eclipse.core.internal.content.ContentType
+									addFileSpec(ContentTypeCatalog, String, int) - org.eclipse.core.internal.content.ContentType
+										addFileSpec(String, int) - org.eclipse.core.internal.content.ContentType
+										addFileSpec(ContentTypeCatalog, String, int) - org.eclipse.core.internal.content.ContentType
+									copyFromTo(Preferences, Preferences, String[], int) - org.eclipse.core.internal.preferences.PreferencesService (2 matches)
+										visit(IEclipsePreferences) - org.eclipse.core.internal.preferences.PreferencesService.mergeTrees(...).new IPreferenceNodeVisitor() {...}
+										visit(IEclipsePreferences) - org.eclipse.core.internal.preferences.PreferencesService.internalApply(...).new IPreferenceNodeVisitor() {...}
+										trimTree(IEclipsePreferences, IPreferenceFilter) - org.eclipse.core.internal.preferences.PreferencesService (3 matches)
+										copyFromTo(Preferences, Preferences, String[], int) - org.eclipse.core.internal.preferences.PreferencesService
+									visit(IEclipsePreferences) - org.eclipse.core.internal.preferences.PreferencesService.applyPreferences(...).new IPreferenceNodeVisitor() {...} (2 matches)
+										accept(IPreferenceNodeVisitor) - org.eclipse.core.internal.preferences.EclipsePreferences
+										accept(IPreferenceNodeVisitor) - org.eclipse.ui.internal.preferences.WorkingCopyPreferences
+									getNodes(String, String, IScopeContext[]) - org.eclipse.core.internal.preferences.PreferencesService (4 matches)
+										getDouble(String, String, double, IScopeContext[]) - org.eclipse.core.internal.preferences.PreferencesService
+										getBoolean(String, String, boolean, IScopeContext[]) - org.eclipse.core.internal.preferences.PreferencesService
+										getLong(String, String, long, IScopeContext[]) - org.eclipse.core.internal.preferences.PreferencesService
+										getByteArray(String, String, byte[], IScopeContext[]) - org.eclipse.core.internal.preferences.PreferencesService
+										getString(String, String, String, IScopeContext[]) - org.eclipse.core.internal.preferences.PreferencesService
+										getInt(String, String, int, IScopeContext[]) - org.eclipse.core.internal.preferences.PreferencesService
+										getFloat(String, String, float, IScopeContext[]) - org.eclipse.core.internal.preferences.PreferencesService
+									defaultsRoot - org.eclipse.core.internal.preferences.PreferenceForwarder
+									initializeDefaultPreferences() - org.eclipse.ui.internal.UIPreferenceInitializer (2 matches)
+										runInitializer(IConfigurationElement) - org.eclipse.core.internal.preferences.DefaultPreferences
+									hasKeys(Preferences) - org.eclipse.ui.internal.dialogs.PreferencesContentProvider
+										hasKeys(Preferences) - org.eclipse.ui.internal.dialogs.PreferencesContentProvider
+										getChildren(Object) - org.eclipse.ui.internal.dialogs.PreferencesContentProvider (2 matches)
+										hasChildren(Object) - org.eclipse.ui.internal.dialogs.PreferencesContentProvider (2 matches)
+									node(String) - org.eclipse.ui.internal.preferences.WorkingCopyPreferences
+										getPluginPreferences(boolean) - org.eclipse.core.internal.preferences.PreferenceForwarder
+										trimTree(IEclipsePreferences, IPreferenceFilter) - org.eclipse.core.internal.preferences.PreferencesService (5 matches)
+										pluginRoot - org.eclipse.core.internal.preferences.PreferenceForwarder
+										internalMatches(IEclipsePreferences, IPreferenceFilter) - org.eclipse.core.internal.preferences.PreferencesService (2 matches)
+										accept(IPreferenceNodeVisitor) - org.eclipse.ui.internal.preferences.WorkingCopyPreferences
+										node(String) - org.eclipse.core.internal.preferences.RootPreferences
+										internalNode(String, boolean, Plugin) - org.eclipse.core.internal.preferences.EclipsePreferences (2 matches)
+										visit(IEclipsePreferences) - org.eclipse.core.internal.preferences.PreferencesService.mergeTrees(...).new IPreferenceNodeVisitor() {...}
+										visit(IEclipsePreferences) - org.eclipse.core.internal.preferences.PreferencesService.internalApply(...).new IPreferenceNodeVisitor() {...}
+										removeNode() - org.eclipse.ui.internal.preferences.WorkingCopyPreferences
+										processPreferences(ContentTypeCatalog) - org.eclipse.core.internal.content.ContentType
+										setDefaultCharset(String) - org.eclipse.core.internal.content.ContentType
+										exportPreferences(IPath) - org.eclipse.core.runtime.Preferences
+										applyPreferences(IExportedPreferences) - org.eclipse.core.internal.preferences.PreferencesService
+										getChildren(Object) - org.eclipse.ui.internal.dialogs.PreferencesContentProvider (2 matches)
+										addFileSpec(ContentTypeCatalog, String, int) - org.eclipse.core.internal.content.ContentType
+										copyFromTo(Preferences, Preferences, String[], int) - org.eclipse.core.internal.preferences.PreferencesService (2 matches)
+										getNodes(String, String, IScopeContext[]) - org.eclipse.core.internal.preferences.PreferencesService (4 matches)
+										defaultsRoot - org.eclipse.core.internal.preferences.PreferenceForwarder
+										initializeDefaultPreferences() - org.eclipse.ui.internal.UIPreferenceInitializer (2 matches)
+										hasKeys(Preferences) - org.eclipse.ui.internal.dialogs.PreferencesContentProvider
+										node(String) - org.eclipse.ui.internal.preferences.WorkingCopyPreferences
+										initializeDefaultPreferences() - org.eclipse.ui.internal.WorkbenchPreferenceInitializer (2 matches)
+										convertFromProperties(Properties) - org.eclipse.core.internal.preferences.PreferencesService (4 matches)
+										getNode(String) - org.eclipse.core.internal.preferences.AbstractScope (2 matches)
+										removeFileSpec(ContentTypeCatalog, String, int) - org.eclipse.core.internal.content.ContentType
+									initializeDefaultPreferences() - org.eclipse.ui.internal.WorkbenchPreferenceInitializer (2 matches)
+										runInitializer(IConfigurationElement) - org.eclipse.core.internal.preferences.DefaultPreferences
+									convertFromProperties(Properties) - org.eclipse.core.internal.preferences.PreferencesService (4 matches)
+										readPreferences(InputStream) - org.eclipse.core.internal.preferences.PreferencesService
+									getNode(String) - org.eclipse.core.internal.preferences.AbstractScope (2 matches)
+										getDefaultPreferences() - org.eclipse.ui.preferences.ScopedPreferenceStore
+										initializeDefaultPreferences() - org.eclipse.ui.internal.WorkbenchPreferenceInitializer
+										getStorePreferences() - org.eclipse.ui.preferences.ScopedPreferenceStore
+										getPreferenceNodes(boolean) - org.eclipse.ui.preferences.ScopedPreferenceStore
+										getNodes(String, String, IScopeContext[]) - org.eclipse.core.internal.preferences.PreferencesService
+										getPreferences() - org.eclipse.core.internal.content.ContentTypeManager
+										initializeDefaultPreferences() - org.eclipse.ui.internal.UIPreferenceInitializer
+									removeFileSpec(ContentTypeCatalog, String, int) - org.eclipse.core.internal.content.ContentType
+										removeFileSpec(ContentTypeCatalog, String, int) - org.eclipse.core.internal.content.ContentType
+										removeFileSpec(String, int) - org.eclipse.core.internal.content.ContentType
+								applyDefaults(String, Properties, Properties) - org.eclipse.core.internal.preferences.DefaultPreferences
+									applyCommandLineDefaults() - org.eclipse.core.internal.preferences.DefaultPreferences
+										loadDefaults() - org.eclipse.core.internal.preferences.DefaultPreferences
+									applyProductDefaults() - org.eclipse.core.internal.preferences.DefaultPreferences
+										loadDefaults() - org.eclipse.core.internal.preferences.DefaultPreferences
+									applyBundleDefaults() - org.eclipse.core.internal.preferences.DefaultPreferences
+										loadDefaults() - org.eclipse.core.internal.preferences.DefaultPreferences
+								node(String, Plugin) - org.eclipse.core.internal.preferences.DefaultPreferences
+									getDefaultPreferences() - org.eclipse.core.internal.preferences.PreferenceForwarder
+										setDefault(String, String) - org.eclipse.core.internal.preferences.PreferenceForwarder
+										getDefaultDouble(String) - org.eclipse.core.internal.preferences.PreferenceForwarder
+										getDefaultString(String) - org.eclipse.core.internal.preferences.PreferenceForwarder
+										getInt(String) - org.eclipse.core.internal.preferences.PreferenceForwarder
+										setDefault(String, float) - org.eclipse.core.internal.preferences.PreferenceForwarder
+										getLong(String) - org.eclipse.core.internal.preferences.PreferenceForwarder
+										setDefault(String, boolean) - org.eclipse.core.internal.preferences.PreferenceForwarder
+										getBoolean(String) - org.eclipse.core.internal.preferences.PreferenceForwarder
+										contains(String) - org.eclipse.core.internal.preferences.PreferenceForwarder
+										setDefault(String, int) - org.eclipse.core.internal.preferences.PreferenceForwarder
+										defaultPropertyNames() - org.eclipse.core.internal.preferences.PreferenceForwarder
+										getDefaultLong(String) - org.eclipse.core.internal.preferences.PreferenceForwarder
+										setDefault(String, double) - org.eclipse.core.internal.preferences.PreferenceForwarder
+										getString(String) - org.eclipse.core.internal.preferences.PreferenceForwarder
+										getFloat(String) - org.eclipse.core.internal.preferences.PreferenceForwarder
+										getDefaultInt(String) - org.eclipse.core.internal.preferences.PreferenceForwarder
+										getDefaultBoolean(String) - org.eclipse.core.internal.preferences.PreferenceForwarder
+										getDouble(String) - org.eclipse.core.internal.preferences.PreferenceForwarder
+										getDefaultFloat(String) - org.eclipse.core.internal.preferences.PreferenceForwarder
+										setDefault(String, long) - org.eclipse.core.internal.preferences.PreferenceForwarder
+										getDefault(String, Object) - org.eclipse.core.internal.preferences.PreferenceForwarder
+							create(IEclipsePreferences, String) - org.eclipse.core.internal.preferences.EclipsePreferences
+								createNode(String) - org.eclipse.core.internal.preferences.PreferencesService
+									getChild(String, Plugin) - org.eclipse.core.internal.preferences.RootPreferences
+										getChildren() - org.eclipse.core.internal.preferences.RootPreferences
+										node(String) - org.eclipse.core.internal.preferences.RootPreferences
+							getChild(String, Plugin, boolean) - org.eclipse.core.internal.preferences.EclipsePreferences
+								internalNode(String, boolean, Plugin) - org.eclipse.core.internal.preferences.EclipsePreferences
+									convertFromProperties(Properties, boolean) - org.eclipse.core.internal.preferences.EclipsePreferences
+										load(IPath) - org.eclipse.core.internal.preferences.EclipsePreferences
+									node(String) - org.eclipse.core.internal.preferences.EclipsePreferences
+										sync() - org.eclipse.core.internal.preferences.RootPreferences
+										getPluginPreferences(boolean) - org.eclipse.core.internal.preferences.PreferenceForwarder
+										trimTree(IEclipsePreferences, IPreferenceFilter) - org.eclipse.core.internal.preferences.PreferencesService (5 matches)
+										pluginRoot - org.eclipse.core.internal.preferences.PreferenceForwarder
+										internalMatches(IEclipsePreferences, IPreferenceFilter) - org.eclipse.core.internal.preferences.PreferencesService (2 matches)
+										node(String) - org.eclipse.core.internal.preferences.RootPreferences
+										internalNode(String, boolean, Plugin) - org.eclipse.core.internal.preferences.EclipsePreferences (2 matches)
+										visit(IEclipsePreferences) - org.eclipse.core.internal.preferences.PreferencesService.mergeTrees(...).new IPreferenceNodeVisitor() {...}
+										visit(IEclipsePreferences) - org.eclipse.core.internal.preferences.PreferencesService.internalApply(...).new IPreferenceNodeVisitor() {...}
+										processPreferences(ContentTypeCatalog) - org.eclipse.core.internal.content.ContentType
+										setDefaultCharset(String) - org.eclipse.core.internal.content.ContentType
+										exportPreferences(IPath) - org.eclipse.core.runtime.Preferences
+										applyPreferences(IExportedPreferences) - org.eclipse.core.internal.preferences.PreferencesService
+										getChildren(Object) - org.eclipse.ui.internal.dialogs.PreferencesContentProvider (2 matches)
+										scopeRemoved(String) - org.eclipse.core.internal.preferences.PreferencesService
+										flush() - org.eclipse.core.internal.preferences.EclipsePreferences
+										flush() - org.eclipse.core.internal.preferences.RootPreferences
+										addFileSpec(ContentTypeCatalog, String, int) - org.eclipse.core.internal.content.ContentType
+										copyFromTo(Preferences, Preferences, String[], int) - org.eclipse.core.internal.preferences.PreferencesService (2 matches)
+										visit(IEclipsePreferences) - org.eclipse.core.internal.preferences.PreferencesService.applyPreferences(...).new IPreferenceNodeVisitor() {...} (2 matches)
+										getNodes(String, String, IScopeContext[]) - org.eclipse.core.internal.preferences.PreferencesService (4 matches)
+										defaultsRoot - org.eclipse.core.internal.preferences.PreferenceForwarder
+										initializeDefaultPreferences() - org.eclipse.ui.internal.UIPreferenceInitializer (2 matches)
+										hasKeys(Preferences) - org.eclipse.ui.internal.dialogs.PreferencesContentProvider
+										node(String) - org.eclipse.ui.internal.preferences.WorkingCopyPreferences
+										initializeDefaultPreferences() - org.eclipse.ui.internal.WorkbenchPreferenceInitializer (2 matches)
+										convertFromProperties(Properties) - org.eclipse.core.internal.preferences.PreferencesService (4 matches)
+										getNode(String) - org.eclipse.core.internal.preferences.AbstractScope (2 matches)
+										removeFileSpec(ContentTypeCatalog, String, int) - org.eclipse.core.internal.content.ContentType
+									applyDefaults(String, Properties, Properties) - org.eclipse.core.internal.preferences.DefaultPreferences
+										applyCommandLineDefaults() - org.eclipse.core.internal.preferences.DefaultPreferences
+										applyProductDefaults() - org.eclipse.core.internal.preferences.DefaultPreferences
+										applyBundleDefaults() - org.eclipse.core.internal.preferences.DefaultPreferences
+									node(String, Plugin) - org.eclipse.core.internal.preferences.DefaultPreferences
+										getDefaultPreferences() - org.eclipse.core.internal.preferences.PreferenceForwarder
+								getChildren(boolean) - org.eclipse.core.internal.preferences.EclipsePreferences
+									shareStrings(StringPool) - org.eclipse.core.internal.preferences.EclipsePreferences
+										shareStrings(StringPool) - org.eclipse.core.internal.preferences.EclipsePreferences
+										shareStrings() - org.eclipse.core.internal.preferences.PreferencesService
+									removeNode() - org.eclipse.core.internal.preferences.EclipsePreferences
+										flush() - org.eclipse.ui.internal.preferences.WorkingCopyPreferences
+										removeNode() - org.eclipse.ui.internal.preferences.WorkingCopyPreferences
+										removeNode() - org.eclipse.core.internal.preferences.EclipsePreferences
+										visit(IEclipsePreferences) - org.eclipse.core.internal.preferences.PreferencesService.applyPreferences(...).new IPreferenceNodeVisitor() {...}
+										remove(String) - org.eclipse.core.internal.preferences.ExportedPreferences
+									convertToProperties(Properties, String) - org.eclipse.core.internal.preferences.EclipsePreferences
+										save(IPath) - org.eclipse.core.internal.preferences.EclipsePreferences
+										convertToProperties(Properties, String) - org.eclipse.core.internal.preferences.EclipsePreferences
+									accept(IPreferenceNodeVisitor) - org.eclipse.core.internal.preferences.EclipsePreferences
+										applyPreferences(IExportedPreferences) - org.eclipse.core.internal.preferences.PreferencesService
+										containsKeys(IEclipsePreferences) - org.eclipse.core.internal.preferences.PreferencesService
+										validateVersions(IPath) - org.eclipse.core.internal.preferences.PreferencesService
+										mergeTrees(IEclipsePreferences[]) - org.eclipse.core.internal.preferences.PreferencesService
+										internalApply(IEclipsePreferences, IPreferenceFilter[]) - org.eclipse.core.internal.preferences.PreferencesService
+										toDeepDebugString() - org.eclipse.core.internal.preferences.EclipsePreferences
+										accept(IPreferenceNodeVisitor) - org.eclipse.core.internal.preferences.EclipsePreferences
+										accept(IPreferenceNodeVisitor) - org.eclipse.ui.internal.preferences.WorkingCopyPreferences
+										convertToProperties(IEclipsePreferences, String[]) - org.eclipse.core.internal.preferences.PreferencesService
+								nodeExists(String) - org.eclipse.core.internal.preferences.EclipsePreferences
+									getPluginPreferences(boolean) - org.eclipse.core.internal.preferences.PreferenceForwarder
+										addPropertyChangeListener(IPropertyChangeListener) - org.eclipse.core.internal.preferences.PreferenceForwarder
+										getInt(String) - org.eclipse.core.internal.preferences.PreferenceForwarder
+										convertFromProperties(Properties) - org.eclipse.core.internal.preferences.PreferenceForwarder
+										getLong(String) - org.eclipse.core.internal.preferences.PreferenceForwarder
+										setValue(String, int) - org.eclipse.core.internal.preferences.PreferenceForwarder (2 matches)
+										getBoolean(String) - org.eclipse.core.internal.preferences.PreferenceForwarder
+										flush() - org.eclipse.core.internal.preferences.PreferenceForwarder
+										contains(String) - org.eclipse.core.internal.preferences.PreferenceForwarder
+										setValue(String, float) - org.eclipse.core.internal.preferences.PreferenceForwarder (2 matches)
+										setValue(String, String) - org.eclipse.core.internal.preferences.PreferenceForwarder (2 matches)
+										isDefault(String) - org.eclipse.core.internal.preferences.PreferenceForwarder
+										setValue(String, long) - org.eclipse.core.internal.preferences.PreferenceForwarder (2 matches)
+										propertyNames() - org.eclipse.core.internal.preferences.PreferenceForwarder
+										getString(String) - org.eclipse.core.internal.preferences.PreferenceForwarder
+										added(NodeChangeEvent) - org.eclipse.core.internal.preferences.PreferenceForwarder
+										getFloat(String) - org.eclipse.core.internal.preferences.PreferenceForwarder
+										needsSaving() - org.eclipse.core.internal.preferences.PreferenceForwarder
+										getDouble(String) - org.eclipse.core.internal.preferences.PreferenceForwarder
+										setValue(String, boolean) - org.eclipse.core.internal.preferences.PreferenceForwarder (2 matches)
+										setValue(String, double) - org.eclipse.core.internal.preferences.PreferenceForwarder (2 matches)
+										setToDefault(String) - org.eclipse.core.internal.preferences.PreferenceForwarder
+									nodeExists(String) - org.eclipse.ui.internal.preferences.WorkingCopyPreferences (2 matches)
+										getPluginPreferences(boolean) - org.eclipse.core.internal.preferences.PreferenceForwarder
+										nodeExists(String) - org.eclipse.ui.internal.preferences.WorkingCopyPreferences (2 matches)
+										initializeDefaultPreferences() - org.eclipse.ui.internal.WorkbenchPreferenceInitializer
+										trimTree(IEclipsePreferences, IPreferenceFilter) - org.eclipse.core.internal.preferences.PreferencesService (2 matches)
+										nodeExists(String) - org.eclipse.core.internal.preferences.EclipsePreferences (2 matches)
+										internalMatches(IEclipsePreferences, IPreferenceFilter) - org.eclipse.core.internal.preferences.PreferencesService (2 matches)
+										initializeDefaultPreferences() - org.eclipse.ui.internal.UIPreferenceInitializer
+									initializeDefaultPreferences() - org.eclipse.ui.internal.WorkbenchPreferenceInitializer
+										runInitializer(IConfigurationElement) - org.eclipse.core.internal.preferences.DefaultPreferences
+									trimTree(IEclipsePreferences, IPreferenceFilter) - org.eclipse.core.internal.preferences.PreferencesService (2 matches)
+										internalApply(IEclipsePreferences, IPreferenceFilter[]) - org.eclipse.core.internal.preferences.PreferencesService
+										internalExport(IEclipsePreferences, IPreferenceFilter[], OutputStream) - org.eclipse.core.internal.preferences.PreferencesService
+									nodeExists(String) - org.eclipse.core.internal.preferences.EclipsePreferences (2 matches)
+									internalMatches(IEclipsePreferences, IPreferenceFilter) - org.eclipse.core.internal.preferences.PreferencesService (2 matches)
+										internalMatches(IEclipsePreferences, IPreferenceFilter[]) - org.eclipse.core.internal.preferences.PreferencesService
+									initializeDefaultPreferences() - org.eclipse.ui.internal.UIPreferenceInitializer
+										runInitializer(IConfigurationElement) - org.eclipse.core.internal.preferences.DefaultPreferences
+<BR/><BR/>
+<B>Discussion of privilege operation parameter source:</B><BR/>
+The location varible used in the construction of the File object 
+whose mkdirs() method is ultimately called originates in method
+assertLocationInitialized().  It is retrieved by a call to:<BR/>
+		Location service = InternalPlatform.getDefault().getInstanceLocation();<BR/>
+Since service objects can only be registed by OSGi, it is OK to wrap this method in a PrivilegedAction.
+
+<B>Note:</B> Because the metadata folder root (.metadata) is shared by all plug-ins, and
+the call hierarchy indicates that plug-ins can force the initialization (create/delete) of 
+the .metadata folder, granting explicit file permissions to the plug-ins at bundle startup
+will not be sufficient. (i.e. it does not help to grant plug-in 'x' access to <data_area>+"/.metadata/"+plugin-id since
+the plug-in will also require the ability to create the .metadata folder itself.
+
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.io.FilePermission "", "read";</LI>
+<LI>permission java.io.FilePermission "", "write";</LI>
+<LI>permission java.io.FilePermission "???file???", "read";</LI>
+<LI>permission java.io.FilePermission "???file???", "write";</LI>
+<LI>permission java.util.PropertyPermission "user.dir", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/>
+Since this method is private, and construction of the parameters passed to the privileged operation are constrained to the OSGi service registry, it is OK to
+wrap this method in a privilaged action.    Grant the required permissions to the org.eclipse.core.runtime plug-in via it's META-INF/permissions.perm file:
+
+<B>Recommended fix:</B><BR/>
+<BR/>Add this class:
+
+	class CreateLocationAction implements PrivilegedExceptionAction
+	{
+		private IPath location;
+		
+		public CreateLocationAction(IPath location)
+		{
+			this.location = location;
+		}
+		
+		public Object run() throws Exception
+		{
+			File file = location.append(F_META_AREA).toFile();
+			try {
+				file.mkdirs();
+			} catch (Exception e) {
+				String message = NLS.bind(Messages.meta_couldNotCreate, file.getAbsolutePath());
+				throw new CoreException(new Status(IStatus.ERROR, Platform.PI_RUNTIME, Platform.FAILED_WRITE_METADATA, message, e));
+			}
+			if (!file.canWrite()) {
+				String message = NLS.bind(Messages.meta_readonly, file.getAbsolutePath());
+				throw new CoreException(new Status(IStatus.ERROR, Platform.PI_RUNTIME, Platform.FAILED_WRITE_METADATA, message, null));
+			}
+			// set the log file location now that we created the data area
+			IPath path = location.append(F_META_AREA).append(F_LOG);
+			try {
+				InternalPlatform.getDefault().getFrameworkLog().setFile(path.toFile(), true);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return null;
+		}
+	}
+
+Update this method:
+	
+	private void createLocation() throws CoreException 
+	{
+		// append on the metadata location so that the whole structure is created.  
+		<FONT style="background-color:yellow;display;inline">
+		CreateLocationAction cla = new CreateLocationAction(location);
+		if (System.getSecurityManager()==null)
+		{
+			try {
+			  Object tmp = cla.run();
+			} catch (Exception e)
+			{
+				throw (CoreException)e;
+			}
+		} else
+		{
+			try {
+			AccessController.doPrivileged(cla);
+			} catch (PrivilegedActionException pae)
+			{
+				throw (CoreException) pae.getException();
+			}
+		}</FONT>
+    }
+<HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/DataArea.html#L103" , parent.fbot ); return false'>Line# 108</a> void createLocation(  )
+   Permission: java.io.FilePermission "???file???", "read"
+      Primordial/java.lang.String java.io.File.getAbsolutePath(  )
+   Permission: java.util.PropertyPermission "user.dir", "read"
+      Primordial/java.lang.String java.io.File.getAbsolutePath(  )
+<BR/><BR/><B>CODE</B><BR/><BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.io.FilePermission "???file???", "read";</LI>
+<LI>permission java.util.PropertyPermission "user.dir", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/>
+See prior discussion of createLocation() and associated code update.  Grant the required permissions to the org.eclipse.core.runtime plug-in via the META-INF/permissions.perm file.
+<HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/DataArea.html#L106" , parent.fbot ); return false'>Line# 111</a> void createLocation(  )
+   Permission: java.io.FilePermission "", "write"
+      Primordial/boolean java.io.File.canWrite(  )
+   Permission: java.io.FilePermission "???file???", "write"
+      Primordial/boolean java.io.File.canWrite(  )
+<BR/><BR/><B>CODE</B><BR/><BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.io.FilePermission "", "write";</LI>
+<LI>permission java.io.FilePermission "???file???", "write";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/>
+See prior discussion of createLocation() and associated code update.  Grant the required permissions to the org.eclipse.core.runtime plug-in via the META-INF/permissions.perm file.
+<HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/DataArea.html#L107" , parent.fbot ); return false'>Line# 112</a> void createLocation(  )
+   Permission: java.io.FilePermission "???file???", "read"
+      Primordial/java.lang.String java.io.File.getAbsolutePath(  )
+   Permission: java.util.PropertyPermission "user.dir", "read"
+      Primordial/java.lang.String java.io.File.getAbsolutePath(  )
+<BR/><BR/><B>CODE</B><BR/><BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.io.FilePermission "???file???", "read";</LI>
+<LI>permission java.util.PropertyPermission "user.dir", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/>
+See prior discussion of createLocation() and associated code update.  Grant the required permissions to the org.eclipse.core.runtime plug-in via the META-INF/permissions.perm file.
+<HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/DataArea.html#L84" , parent.fbot ); return false'>Line# 89</a> void initializeLocation(  )
+   Permission: java.io.FilePermission "", "read"
+      Primordial/boolean java.io.File.exists(  )
+   Permission: java.io.FilePermission "???file???", "read"
+      Primordial/boolean java.io.File.exists(  )
+<BR/><BR/><B>CODE</B><BR/><BR/>
+	private void initializeLocation() throws CoreException {
+		// check if the location can be created
+		if (<FONT style="background-color:yellow;display;inline">location.toFile().exists()</FONT>) {
+			if (<FONT style="background-color:yellow;display;inline">!location.toFile().isDirectory()</FONT>) {
+				String message = NLS.bind(Messages.meta_notDir, location);
+				throw new CoreException(new Status(IStatus.ERROR, Platform.PI_RUNTIME, Platform.FAILED_WRITE_METADATA, message, null));
+			}
+		}
+		//try infer the device if there isn't one (windows)
+		if (location.getDevice() == null)
+			location = new <FONT style="background-color:yellow;display;inline">Path(location.toFile().getAbsolutePath());</FONT>
+		createLocation();
+		initialized = true;
+	}
+
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.io.FilePermission "", "read";</LI>
+<LI>permission java.io.FilePermission "???file???", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/>
+Grant the required permissions to plug-in org.eclipse.core.runtime via it's META-INF/permissions.perm file, and apply the code patch illustrated below.
+See discussion at the top of this web page for details on call heirarcy relevant to this method.
+Recommended fix:
+<BR/>Add the following class:<BR/>
+	class InitializeLocationAction implements PrivilegedExceptionAction
+	{
+    private IPath location;
+		
+		public InitializeLocationAction(IPath location)
+		{
+			this.location = location;
+		}
+		
+		public Object run() throws Exception
+		{
+			if (location.toFile().exists()) {
+				if (!location.toFile().isDirectory()) {
+					String message = NLS.bind(Messages.meta_notDir, location);
+					throw new CoreException(new Status(IStatus.ERROR, Platform.PI_RUNTIME, Platform.FAILED_WRITE_METADATA, message, null));
+				}
+			}
+			//try infer the device if there isn't one (windows)
+			if (location.getDevice() == null)
+				location = new Path(location.toFile().getAbsolutePath());
+
+			return location;
+		}
+		
+	}
+<BR/><BR/>	
+Update the initializeLocationMethod as illustrated below:
+<BR/>
+	private void initializeLocation() throws CoreException 
+	{
+		// check if the location can be created
+		InitializeLocationAction ila = new InitializeLocationAction(location);
+		if (System.getSecurityManager()==null)
+		{
+			try
+			{
+			  location = (IPath) ila.run();
+			} catch (Exception e)
+			{
+				throw (CoreException)e;
+			}
+	  } else
+		{
+			try {
+				location = (IPath) AccessController.doPrivileged(ila);
+			} catch (PrivilegedActionException pae)
+			{
+				throw (CoreException) pae.getException();
+			}
+		}
+		createLocation();
+		initialized = true;
+	}
+
+<HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/DataArea.html#L85" , parent.fbot ); return false'>Line# 90</a> void initializeLocation(  )
+   Permission: java.io.FilePermission "", "read"
+      Primordial/boolean java.io.File.isDirectory(  )
+   Permission: java.io.FilePermission "???file???", "read"
+      Primordial/boolean java.io.File.isDirectory(  )
+<BR/><BR/><B>CODE</B><BR/><BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.io.FilePermission "", "read";</LI>
+<LI>permission java.io.FilePermission "???file???", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/>
+See discussion at the top of this web page for details on call heirarcy relevant to this method.
+See previous code patch.
+<HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/DataArea.html#L92" , parent.fbot ); return false'>Line# 97</a> void initializeLocation(  )
+   Permission: java.io.FilePermission "???file???", "read"
+      Primordial/java.lang.String java.io.File.getAbsolutePath(  )
+   Permission: java.util.PropertyPermission "user.dir", "read"
+      Primordial/java.lang.String java.io.File.getAbsolutePath(  )
+<BR/><BR/><B>CODE</B><BR/><BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.io.FilePermission "???file???", "read";</LI>
+<LI>permission java.util.PropertyPermission "user.dir", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/>
+See discussion at the top of this web page for details on call heirarcy relevant to this method.
+See previous code patch.
+
+<HR/>
+</pre>
+</body></html>

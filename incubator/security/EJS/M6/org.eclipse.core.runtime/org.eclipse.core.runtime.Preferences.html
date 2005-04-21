@@ -1,0 +1,118 @@
+<html><head><title>Permission Analysis Report</title><script language='javaScript' src='linkUtil.js'></script></head><body>
+<h1>Permission Analysis Report</h1>
+<BR/><H2>Analysis of: org.eclipse.core.runtime</H2>
+<B>Detail</B><BR/><BR/>
+<pre>
+
+Class: <a href="foo" onClick="return openURLinSrc( 'Application/org/eclipse/core/runtime/Preferences.html' )">org.eclipse.core.runtime.Preferences</a> (Application)
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/runtime/Preferences.html#L319" , parent.fbot ); return false'>Line# 324</a> void exportPreferences( org.eclipse.core.runtime.IPath )
+<BR/><BR/><B>CODE</B><BR/><BR/>
+	public static void exportPreferences(IPath path) throws CoreException {
+		File file = path.toFile();
+		if (file.exists())
+			file.delete();
+		file.getParentFile().mkdirs();
+		IPreferencesService service = Platform.getPreferencesService();
+		OutputStream output = null;
+		try {
+			output = new BufferedOutputStream(<font style="background-color:yellow;display;inline">new FileOutputStream(file)</font>);
+			IEclipsePreferences node = (IEclipsePreferences) service.getRootNode().node(Plugin.PLUGIN_PREFERENCE_SCOPE);
+			service.exportPreferences(node, output, (String[]) null);
+		} catch (FileNotFoundException e) {
+			String message = NLS.bind(Messages.preferences_errorWriting, file, e.getMessage());
+			IStatus status = new Status(IStatus.ERROR, Platform.PI_RUNTIME, IStatus.ERROR, message, e);
+			throw new CoreException(status);
+		} finally {
+			if (output != null)
+				try {
+					output.close();
+				} catch (IOException e) {
+					// ignore
+				}
+		}
+	}
+<B>Tainted variable reference trace:</B><BR/><BR/>
+N/A. All callers must have the required permissions to read/write/delete objects in the filesystem. 
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.io.FilePermission "&LT&LT ALL FILES &GT&GT","read","write","delete"</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/>
+Grant the required permissions to runtime.jar. Any caller write to a file in the filesystem must have permission explicitly granted. - Fine grained access control. 
+<HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/runtime/Preferences.html#L366" , parent.fbot ); return false'>Line# 371</a> void importPreferences( org.eclipse.core.runtime.IPath )
+<BR/><BR/><B>CODE</B><BR/><BR/>
+	public static void importPreferences(IPath path) throws CoreException {
+		if (!path.toFile().exists()) {
+			String msg = NLS.bind(Messages.preferences_fileNotFound, path.toOSString());
+			throw new CoreException(new Status(IStatus.ERROR, Platform.PI_RUNTIME, 1, msg, null));
+		}
+		IPreferencesService service = Platform.getPreferencesService();
+		InputStream input = null;
+		try {
+			input = new BufferedInputStream(<font style="background-color:yellow;display;inline">new FileInputStream(path.toFile())</font>);
+			service.importPreferences(input);
+		} catch (FileNotFoundException e) {
+			String msg = NLS.bind(Messages.preferences_fileNotFound, path.toOSString());
+			throw new CoreException(new Status(IStatus.ERROR, Platform.PI_RUNTIME, 1, msg, e));
+		} finally {
+			if (input != null)
+				try {
+					input.close();
+				} catch (IOException e) {
+					// ignore
+				}
+		}
+	}
+	<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+N/A. All callers must have the required permissions to read/write/delete objects in the filesystem. 
+(Top level entry point) - No callers in workspace.
+<BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.io.FilePermission "&LT&LT ALL FILES &GT&GT","read"</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/>
+Grant the required permissions to runtime.jar. Any caller read from a file in the filesystem must have permission explicitly granted. - Fine grained access control. 
+<HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/runtime/Preferences.html#L1250" , parent.fbot ); return false'>Line# 1255</a> void load( java.io.InputStream )
+   Permission: java.lang.RuntimePermission "getClassLoader"
+      Primordial/void java.util.Properties.load( java.io.InputStream )
+   Permission: java.util.PropertyPermission "java.vendor.url.bug", "read"
+      Primordial/void java.util.Properties.load( java.io.InputStream )
+<BR/><BR/><B>CODE</B><BR/><BR/>
+	public void load(InputStream in) throws IOException {
+		<font style="background-color:yellow;display;inline">properties.load(in);</font>
+		dirty = false;
+	}
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.lang.RuntimePermission "getClassLoader";</LI>
+<LI>permission java.util.PropertyPermission "java.vendor.url.bug", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/>
+Consider refactoring so that the explicit path or URL is supplied.  That way the permission for "getClassLoader"
+and the "java.util.PropertyPermission "java.vendor.url.bug", "read"" can be mitigated.  Furthermore, supplying a
+final class rather than an extendable class for I/O operations would be prefereable since it would have a well known
+behavior.
+<HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/runtime/Preferences.html#L1234" , parent.fbot ); return false'>Line# 1239</a> void store( java.io.OutputStream, java.lang.String )
+   Permission: java.lang.RuntimePermission "getClassLoader"
+      Primordial/void java.util.Properties.store( java.io.OutputStream, java.lang.String )
+<BR/><BR/><B>CODE</B><BR/><BR/>
+	public void store(OutputStream out, String header) throws IOException {
+		properties.store(out, header);
+		dirty = false;
+	}
+<B>Tainted variable reference trace:</B><BR/><BR/>
+N/A.   All callers must have the required permissions to read/write/delete objects in the filesystem. 
+(Top level entry point) - No callers in workspace.
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.lang.RuntimePermission "getClassLoader";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/>
+Consider refactoring so that the explicit path or URL is supplied.  That way the permission for "getClassLoader" 
+can be mitigated.  Furthermore, supplying a final class rather than an extendable class for I/O operations would 
+be prefereable since it would have a well known behavior.
+<HR/>
+</pre>
+</body></html>

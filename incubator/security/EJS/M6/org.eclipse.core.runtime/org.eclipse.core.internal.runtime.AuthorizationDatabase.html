@@ -1,0 +1,633 @@
+<html><head><title>Permission Analysis Report</title><script language='javaScript' src='linkUtil.js'></script></head><body>
+<h1>Permission Analysis Report</h1>
+<BR/><H2>Analysis of: org.eclipse.core.runtime</H2>
+<B>Detail</B><BR/><BR/>
+<pre>
+
+Class: <a href="foo" onClick="return openURLinSrc( 'Application/org/eclipse/core/internal/runtime/AuthorizationDatabase.html' )">org.eclipse.core.internal.runtime.AuthorizationDatabase</a> (Application)
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/AuthorizationDatabase.html#L317" , parent.fbot ); return false'>Line# 322</a> boolean canWrite( java.io.File )
+<BR/><BR/><B>CODE</B><BR/><BR/>
+private static boolean canWrite(File installDir) {
+		if (!<FONT style="background-color:yellow;display;inline">installDir.canWrite()</FONT>)
+			return false;
+
+		if (!installDir.isDirectory())
+			return false;
+
+		File fileTest = null;
+		try {
+			fileTest = File.createTempFile("writtableArea", null, installDir); //$NON-NLS-1$
+		} catch (IOException e) {
+			//If an exception occured while trying to create the file, it means that it is not writtable
+			return false;
+		} finally {
+			if (fileTest != null)
+				fileTest.delete();
+		}
+		return true;
+	}
+<B>Tainted variable reference trace:</B><BR/><BR/>
+canWrite(File) - org.eclipse.core.internal.runtime.AuthorizationDatabase
+	save() - org.eclipse.core.internal.runtime.AuthorizationDatabase
+		addAuthorizationInfo(URL, String, String, Map) - org.eclipse.core.internal.runtime.AuthorizationHandler
+			addAuthorizationInfo(URL, String, String, Map) - org.eclipse.core.internal.runtime.InternalPlatform
+				addAuthorizationInfo(URL, String, String, Map) - org.eclipse.core.runtime.Platform
+		load(InputStream) - org.eclipse.core.internal.runtime.AuthorizationDatabase
+			load() - org.eclipse.core.internal.runtime.AuthorizationDatabase
+				AuthorizationDatabase(String, String) - org.eclipse.core.internal.runtime.AuthorizationDatabase
+					loadKeyring() - org.eclipse.core.internal.runtime.AuthorizationHandler (2 matches)
+						addAuthorizationInfo(URL, String, String, Map) - org.eclipse.core.internal.runtime.AuthorizationHandler
+							addAuthorizationInfo(URL, String, String, Map) - org.eclipse.core.internal.runtime.InternalPlatform
+								addAuthorizationInfo(URL, String, String, Map) - org.eclipse.core.runtime.Platform
+						getProtectionSpace(URL) - org.eclipse.core.internal.runtime.AuthorizationHandler
+							getProtectionSpace(URL) - org.eclipse.core.internal.runtime.InternalPlatform
+								getProtectionSpace(URL) - org.eclipse.core.runtime.Platform
+						addProtectionSpace(URL, String) - org.eclipse.core.internal.runtime.AuthorizationHandler
+							addProtectionSpace(URL, String) - org.eclipse.core.internal.runtime.InternalPlatform
+								addProtectionSpace(URL, String) - org.eclipse.core.runtime.Platform
+						getAuthorizationInfo(URL, String, String) - org.eclipse.core.internal.runtime.AuthorizationHandler
+							getAuthorizationInfo(URL, String, String) - org.eclipse.core.internal.runtime.InternalPlatform
+								getAuthorizationInfo(URL, String, String) - org.eclipse.core.runtime.Platform
+						flushAuthorizationInfo(URL, String, String) - org.eclipse.core.internal.runtime.AuthorizationHandler
+							flushAuthorizationInfo(URL, String, String) - org.eclipse.core.internal.runtime.InternalPlatform
+								flushAuthorizationInfo(URL, String, String) - org.eclipse.core.runtime.Platform
+		addProtectionSpace(URL, String) - org.eclipse.core.internal.runtime.AuthorizationHandler
+			addProtectionSpace(URL, String) - org.eclipse.core.internal.runtime.InternalPlatform
+				addProtectionSpace(URL, String) - org.eclipse.core.runtime.Platform
+		flushAuthorizationInfo(URL, String, String) - org.eclipse.core.internal.runtime.AuthorizationHandler
+			flushAuthorizationInfo(URL, String, String) - org.eclipse.core.internal.runtime.InternalPlatform
+				flushAuthorizationInfo(URL, String, String) - org.eclipse.core.runtime.Platform
+		load() - org.eclipse.core.internal.runtime.AuthorizationDatabase
+			AuthorizationDatabase(String, String) - org.eclipse.core.internal.runtime.AuthorizationDatabase
+				loadKeyring() - org.eclipse.core.internal.runtime.AuthorizationHandler (2 matches)
+					addAuthorizationInfo(URL, String, String, Map) - org.eclipse.core.internal.runtime.AuthorizationHandler
+						addAuthorizationInfo(URL, String, String, Map) - org.eclipse.core.internal.runtime.InternalPlatform
+							addAuthorizationInfo(URL, String, String, Map) - org.eclipse.core.runtime.Platform
+					getProtectionSpace(URL) - org.eclipse.core.internal.runtime.AuthorizationHandler
+						getProtectionSpace(URL) - org.eclipse.core.internal.runtime.InternalPlatform
+							getProtectionSpace(URL) - org.eclipse.core.runtime.Platform
+					addProtectionSpace(URL, String) - org.eclipse.core.internal.runtime.AuthorizationHandler
+						addProtectionSpace(URL, String) - org.eclipse.core.internal.runtime.InternalPlatform
+							addProtectionSpace(URL, String) - org.eclipse.core.runtime.Platform
+					getAuthorizationInfo(URL, String, String) - org.eclipse.core.internal.runtime.AuthorizationHandler
+						getAuthorizationInfo(URL, String, String) - org.eclipse.core.internal.runtime.InternalPlatform
+							getAuthorizationInfo(URL, String, String) - org.eclipse.core.runtime.Platform
+					flushAuthorizationInfo(URL, String, String) - org.eclipse.core.internal.runtime.AuthorizationHandler
+						flushAuthorizationInfo(URL, String, String) - org.eclipse.core.internal.runtime.InternalPlatform
+							flushAuthorizationInfo(URL, String, String) - org.eclipse.core.runtime.Platform
+
+<B>Permission Requirements:</B><BR/><BR/><UL>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/>
+Do not wrap any of the AuthorizationDatabase object methods in privilege actions.   Rather, wrap the AuthorizationHandler method for save & load.  The premise is that 
+runtime initialization will set the keyring file in the AuthorizationHandler object, and it can not be altered once set.  This will cover the anticipated use of
+Platform.addAuthorizationInfo(),Platform.addProtectionSpace(), Platform.getProtectionSpace(), and Platform.getAuthorizationInfo() by plug-in developers.
+
+Grant the required permissions to the org.eclipse.core.runtime plug-in via META-INF/PERMISSIONS.PERM.
+
+
+<HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/AuthorizationDatabase.html#L320" , parent.fbot ); return false'>Line# 325</a> boolean canWrite( java.io.File )
+<BR/><BR/><B>CODE</B><BR/><BR/>
+	private static boolean canWrite(File installDir) {
+		<FONT style="background-color:yellow;display;inline">if (!installDir.canWrite())</FONT>
+			return false;
+
+		if (!installDir.isDirectory())
+			return false;
+
+		File fileTest = null;
+		try {
+			fileTest = File.createTempFile("writtableArea", null, installDir); //$NON-NLS-1$
+		} catch (IOException e) {
+			//If an exception occured while trying to create the file, it means that it is not writtable
+			return false;
+		} finally {
+			if (fileTest != null)
+				fileTest.delete();
+		}
+		return true;
+	}
+
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/>
+Do not wrap any of the AuthorizationDatabase object methods in privilege actions.   Rather, wrap the AuthorizationHandler method for save & load.  The premise is that 
+runtime initialization will set the keyring file in the AuthorizationHandler object, and it can not be altered once set.  This will cover the anticipated use of
+Platform.addAuthorizationInfo(),Platform.addProtectionSpace(), Platform.getProtectionSpace(), and Platform.getAuthorizationInfo() by plug-in developers.
+
+Grant the required permissions to the org.eclipse.core.runtime plug-in via META-INF/PERMISSIONS.PERM.
+
+<HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/AuthorizationDatabase.html#L325" , parent.fbot ); return false'>Line# 330</a> boolean canWrite( java.io.File )
+   Permission: java.io.FilePermission "???System Property Value???", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission "???file???", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+   Permission: java.io.FilePermission "GMT", "write"
+      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )
+<BR/><BR/><B>CODE</B><BR/><BR/>
+	private static boolean canWrite(File installDir) {
+		if (!installDir.canWrite())
+			return false;
+
+		<FONT style="background-color:yellow;display;inline">if (!installDir.isDirectory())</FONT>
+			return false;
+
+		File fileTest = null;
+		try {
+			fileTest = File.createTempFile("writtableArea", null, installDir); //$NON-NLS-1$
+		} catch (IOException e) {
+			//If an exception occured while trying to create the file, it means that it is not writtable
+			return false;
+		} finally {
+			if (fileTest != null)
+				fileTest.delete();
+		}
+		return true;
+	}
+
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.io.FilePermission "???System Property Value???", "write";</LI>
+<LI>permission java.io.FilePermission "???file???", "write";</LI>
+<LI>permission java.io.FilePermission "GMT", "write";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/>
+Do not wrap any of the AuthorizationDatabase object methods in privilege actions.   Rather, wrap the AuthorizationHandler method for save & load.  The premise is that 
+runtime initialization will set the keyring file in the AuthorizationHandler object, and it can not be altered once set.  This will cover the anticipated use of
+Platform.addAuthorizationInfo(),Platform.addProtectionSpace(), Platform.getProtectionSpace(), and Platform.getAuthorizationInfo() by plug-in developers.
+
+Grant the required permissions to the org.eclipse.core.runtime plug-in via META-INF/PERMISSIONS.PERM.
+
+
+<HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/AuthorizationDatabase.html#L331" , parent.fbot ); return false'>Line# 336</a> boolean canWrite( java.io.File )
+   Permission: java.io.FilePermission "???System Property Value???", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "???file???", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "GMT", "delete"
+      Primordial/boolean java.io.File.delete(  )
+<BR/><BR/><B>CODE</B><BR/><BR/>
+	private static boolean canWrite(File installDir) {
+		if (!installDir.canWrite())
+			return false;
+
+		if (!installDir.isDirectory())
+			return false;
+
+		File fileTest = null;
+		try {
+			<FONT style="background-color:yellow;display;inline">fileTest = File.createTempFile("writtableArea", null, installDir); //$NON-NLS-1$</FONT>
+		} catch (IOException e) {
+			//If an exception occured while trying to create the file, it means that it is not writtable
+			return false;
+		} finally {
+			if (fileTest != null)
+				fileTest.delete();
+		}
+		return true;
+	}
+
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.io.FilePermission "???System Property Value???", "delete";</LI>
+<LI>permission java.io.FilePermission "???file???", "delete";</LI>
+<LI>permission java.io.FilePermission "GMT", "delete";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/>
+Do not wrap any of the AuthorizationDatabase object methods in privilege actions.   Rather, wrap the AuthorizationHandler method for save & load.  The premise is that 
+runtime initialization will set the keyring file in the AuthorizationHandler object, and it can not be altered once set.  This will cover the anticipated use of
+Platform.addAuthorizationInfo(),Platform.addProtectionSpace(), Platform.getProtectionSpace(), and Platform.getAuthorizationInfo() by plug-in developers.
+
+Grant the required permissions to the org.eclipse.core.runtime plug-in via META-INF/PERMISSIONS.PERM.
+
+
+<HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/AuthorizationDatabase.html#L248" , parent.fbot ); return false'>Line# 253</a> void load(  )
+   Permission: java.io.FilePermission ".keyring", "read"
+      Primordial/boolean java.io.File.exists(  )
+<BR/><BR/><B>CODE</B><BR/><BR/>
+	private void load() throws CoreException {
+		if (file == null)
+			return;
+		if (!<FONT style="background-color:yellow;display;inline">file.exists()</FONT>) {
+			save();
+			return;
+		}
+		try {
+			InputStream input = new FileInputStream(file);
+			try {
+				load(input);
+			} finally {
+				input.close();
+			}
+		} catch (IOException e) {
+			throw new CoreException(new Status(IStatus.ERROR, Platform.PI_RUNTIME, Platform.FAILED_READ_METADATA, NLS.bind(Messages.meta_unableToReadAuthorization, file), e));
+		} catch (ClassNotFoundException e) {
+			throw new CoreException(new Status(IStatus.ERROR, Platform.PI_RUNTIME, Platform.FAILED_READ_METADATA, NLS.bind(Messages.meta_unableToReadAuthorization, file), e));
+		}
+	}
+
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.io.FilePermission ".keyring", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/>
+Do not wrap any of the AuthorizationDatabase object methods in privilege actions.   Rather, wrap the AuthorizationHandler method for save & load.  The premise is that 
+runtime initialization will set the keyring file in the AuthorizationHandler object, and it can not be altered once set.  This will cover the anticipated use of
+Platform.addAuthorizationInfo(),Platform.addProtectionSpace(), Platform.getProtectionSpace(), and Platform.getAuthorizationInfo() by plug-in developers.
+
+Grant the required permissions to the org.eclipse.core.runtime plug-in via META-INF/PERMISSIONS.PERM.
+
+<HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/AuthorizationDatabase.html#L253" , parent.fbot ); return false'>Line# 258</a> void load(  )
+   Permission: java.io.FilePermission ".keyring", "read"
+      Primordial/void java.io.FileInputStream.FileInputStream( java.io.File )
+<BR/><BR/><B>CODE</B><BR/><BR/>
+	private void load() throws CoreException {
+		if (file == null)
+			return;
+		if (!file.exists()) {
+			save();
+			return;
+		}
+		try {
+			<FONT style="background-color:yellow;display;inline">InputStream input = new FileInputStream(file);</FONT>
+			try {
+				load(input);
+			} finally {
+				input.close();
+			}
+		} catch (IOException e) {
+			throw new CoreException(new Status(IStatus.ERROR, Platform.PI_RUNTIME, Platform.FAILED_READ_METADATA, NLS.bind(Messages.meta_unableToReadAuthorization, file), e));
+		} catch (ClassNotFoundException e) {
+			throw new CoreException(new Status(IStatus.ERROR, Platform.PI_RUNTIME, Platform.FAILED_READ_METADATA, NLS.bind(Messages.meta_unableToReadAuthorization, file), e));
+		}
+	}
+
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.io.FilePermission ".keyring", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/>
+Do not wrap any of the AuthorizationDatabase object methods in privilege actions.   Rather, wrap the AuthorizationHandler method for save & load.  The premise is that 
+runtime initialization will set the keyring file in the AuthorizationHandler object, and it can not be altered once set.  This will cover the anticipated use of
+Platform.addAuthorizationInfo(),Platform.addProtectionSpace(), Platform.getProtectionSpace(), and Platform.getAuthorizationInfo() by plug-in developers.
+
+Grant the required permissions to the org.eclipse.core.runtime plug-in via META-INF/PERMISSIONS.PERM.
+
+
+<HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/AuthorizationDatabase.html#L272" , parent.fbot ); return false'>Line# 277</a> void load( java.io.InputStream )
+   Permission: java.io.SerializablePermission "enableSubclassImplementation"
+      Primordial/void java.io.ObjectInputStream.ObjectInputStream( java.io.InputStream )
+<BR/><BR/><B>CODE</B><BR/><BR/>
+	private void load(InputStream is) throws IOException, ClassNotFoundException, CoreException {
+		//try to read the file version number. Pre 2.0 versions had no number
+		int version = is.read();
+		if (version == KEYRING_FILE_VERSION) {
+			//read the authorization data
+			CipherInputStream cis = new CipherInputStream(is, password);
+			<FONT style="background-color:yellow;display;inline">ObjectInputStream ois = new ObjectInputStream(cis);</FONT>
+			try {
+				authorizationInfo = (Hashtable) ois.readObject();
+				protectionSpace = (Hashtable) ois.readObject();
+			} finally {
+				ois.close();
+			}
+		} else {
+			//the format has changed, just log a warning
+			InternalPlatform.getDefault().log(new Status(IStatus.WARNING, Platform.PI_RUNTIME, Platform.FAILED_READ_METADATA, Messages.meta_authFormatChanged, null));
+			//close the stream and save a new file in the correct format
+			try {
+				is.close();
+			} catch (IOException e) {
+				//ignore failure to close
+			}
+			needsSaving = true;
+			save();
+		}
+	}
+
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.io.SerializablePermission "enableSubclassImplementation";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/>
+Do not wrap any of the AuthorizationDatabase object methods in privilege actions.   Rather, wrap the AuthorizationHandler method for save & load.  The premise is that 
+runtime initialization will set the keyring file in the AuthorizationHandler object, and it can not be altered once set.  This will cover the anticipated use of
+Platform.addAuthorizationInfo(),Platform.addProtectionSpace(), Platform.getProtectionSpace(), and Platform.getAuthorizationInfo() by plug-in developers.
+
+Grant the required permissions to the org.eclipse.core.runtime plug-in via META-INF/PERMISSIONS.PERM.
+
+<HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/AuthorizationDatabase.html#L274" , parent.fbot ); return false'>Line# 279</a> void load( java.io.InputStream )
+   Permission: java.lang.RuntimePermission "getClassLoader"
+      Primordial/java.lang.Object java.io.ObjectInputStream.readObject(  )
+<BR/><BR/><B>CODE</B><BR/><BR/>
+	private void load(InputStream is) throws IOException, ClassNotFoundException, CoreException {
+		//try to read the file version number. Pre 2.0 versions had no number
+		int version = is.read();
+		if (version == KEYRING_FILE_VERSION) {
+			//read the authorization data
+			CipherInputStream cis = new CipherInputStream(is, password);
+			ObjectInputStream ois = new ObjectInputStream(cis);
+			try {
+				<FONT style="background-color:yellow;display;inline">authorizationInfo = (Hashtable) ois.readObject();</FONT>
+				protectionSpace = (Hashtable) ois.readObject();
+			} finally {
+				ois.close();
+			}
+		} else {
+			//the format has changed, just log a warning
+			InternalPlatform.getDefault().log(new Status(IStatus.WARNING, Platform.PI_RUNTIME, Platform.FAILED_READ_METADATA, Messages.meta_authFormatChanged, null));
+			//close the stream and save a new file in the correct format
+			try {
+				is.close();
+			} catch (IOException e) {
+				//ignore failure to close
+			}
+			needsSaving = true;
+			save();
+		}
+	}
+
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.lang.RuntimePermission "getClassLoader";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/>
+Do not wrap any of the AuthorizationDatabase object methods in privilege actions.   Rather, wrap the AuthorizationHandler method for save & load.  The premise is that 
+runtime initialization will set the keyring file in the AuthorizationHandler object, and it can not be altered once set.  This will cover the anticipated use of
+Platform.addAuthorizationInfo(),Platform.addProtectionSpace(), Platform.getProtectionSpace(), and Platform.getAuthorizationInfo() by plug-in developers.
+
+Grant the required permissions to the org.eclipse.core.runtime plug-in via META-INF/PERMISSIONS.PERM.
+
+<HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/AuthorizationDatabase.html#L275" , parent.fbot ); return false'>Line# 280</a> void load( java.io.InputStream )
+   Permission: java.lang.RuntimePermission "getClassLoader"
+      Primordial/java.lang.Object java.io.ObjectInputStream.readObject(  )
+<BR/><BR/><B>CODE</B><BR/><BR/>
+	private void load(InputStream is) throws IOException, ClassNotFoundException, CoreException {
+		//try to read the file version number. Pre 2.0 versions had no number
+		int version = is.read();
+		if (version == KEYRING_FILE_VERSION) {
+			//read the authorization data
+			CipherInputStream cis = new CipherInputStream(is, password);
+			ObjectInputStream ois = new ObjectInputStream(cis);
+			try {
+				authorizationInfo = (Hashtable) ois.readObject();
+				<FONT style="background-color:yellow;display;inline">protectionSpace = (Hashtable) ois.readObject();</FONT>
+			} finally {
+				ois.close();
+			}
+		} else {
+			//the format has changed, just log a warning
+			InternalPlatform.getDefault().log(new Status(IStatus.WARNING, Platform.PI_RUNTIME, Platform.FAILED_READ_METADATA, Messages.meta_authFormatChanged, null));
+			//close the stream and save a new file in the correct format
+			try {
+				is.close();
+			} catch (IOException e) {
+				//ignore failure to close
+			}
+			needsSaving = true;
+			save();
+		}
+	}
+
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.lang.RuntimePermission "getClassLoader";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/>
+Do not wrap any of the AuthorizationDatabase object methods in privilege actions.   Rather, wrap the AuthorizationHandler method for save & load.  The premise is that 
+runtime initialization will set the keyring file in the AuthorizationHandler object, and it can not be altered once set.  This will cover the anticipated use of
+Platform.addAuthorizationInfo(),Platform.addProtectionSpace(), Platform.getProtectionSpace(), and Platform.getAuthorizationInfo() by plug-in developers.
+
+Grant the required permissions to the org.eclipse.core.runtime plug-in via META-INF/PERMISSIONS.PERM.
+
+<HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/AuthorizationDatabase.html#L300" , parent.fbot ); return false'>Line# 305</a> void save(  )
+   Permission: java.io.FilePermission ".keyring", "delete"
+      Primordial/boolean java.io.File.delete(  )
+<BR/><BR/><B>CODE</B><BR/><BR/>
+	public void save() throws CoreException {
+		if (!needsSaving || file == null)
+			return;
+		try {
+			<FONT style="background-color:yellow;display;inline">file.delete();</FONT>
+			if ((!file.getParentFile().exists() && !file.getParentFile().mkdirs()) || !canWrite(file.getParentFile()))
+				throw new CoreException(new Status(IStatus.ERROR, Platform.PI_RUNTIME, Platform.FAILED_WRITE_METADATA, NLS.bind(Messages.meta_unableToWriteAuthorization, file), null));
+			file.createNewFile();
+			FileOutputStream out = new FileOutputStream(file);
+			try {
+				save(out);
+			} finally {
+				out.close();
+			}
+		} catch (IOException e) {
+			throw new CoreException(new Status(IStatus.ERROR, Platform.PI_RUNTIME, Platform.FAILED_WRITE_METADATA, NLS.bind(Messages.meta_unableToWriteAuthorization, file), e));
+		}
+		needsSaving = false;
+	}
+
+<B>Tainted variable reference trace:</B><BR/><BR/>
+save() - org.eclipse.core.internal.runtime.AuthorizationDatabase
+	addAuthorizationInfo(URL, String, String, Map) - org.eclipse.core.internal.runtime.AuthorizationHandler
+		addAuthorizationInfo(URL, String, String, Map) - org.eclipse.core.internal.runtime.InternalPlatform
+			addAuthorizationInfo(URL, String, String, Map) - org.eclipse.core.runtime.Platform
+	load(InputStream) - org.eclipse.core.internal.runtime.AuthorizationDatabase
+		load() - org.eclipse.core.internal.runtime.AuthorizationDatabase
+			AuthorizationDatabase(String, String) - org.eclipse.core.internal.runtime.AuthorizationDatabase
+				loadKeyring() - org.eclipse.core.internal.runtime.AuthorizationHandler (2 matches)
+					addAuthorizationInfo(URL, String, String, Map) - org.eclipse.core.internal.runtime.AuthorizationHandler
+					getProtectionSpace(URL) - org.eclipse.core.internal.runtime.AuthorizationHandler
+					addProtectionSpace(URL, String) - org.eclipse.core.internal.runtime.AuthorizationHandler
+					getAuthorizationInfo(URL, String, String) - org.eclipse.core.internal.runtime.AuthorizationHandler
+					flushAuthorizationInfo(URL, String, String) - org.eclipse.core.internal.runtime.AuthorizationHandler
+	addProtectionSpace(URL, String) - org.eclipse.core.internal.runtime.AuthorizationHandler
+		addProtectionSpace(URL, String) - org.eclipse.core.internal.runtime.InternalPlatform
+			addProtectionSpace(URL, String) - org.eclipse.core.runtime.Platform
+	flushAuthorizationInfo(URL, String, String) - org.eclipse.core.internal.runtime.AuthorizationHandler
+		flushAuthorizationInfo(URL, String, String) - org.eclipse.core.internal.runtime.InternalPlatform
+			flushAuthorizationInfo(URL, String, String) - org.eclipse.core.runtime.Platform
+	load() - org.eclipse.core.internal.runtime.AuthorizationDatabase
+		AuthorizationDatabase(String, String) - org.eclipse.core.internal.runtime.AuthorizationDatabase
+			loadKeyring() - org.eclipse.core.internal.runtime.AuthorizationHandler (2 matches)
+				addAuthorizationInfo(URL, String, String, Map) - org.eclipse.core.internal.runtime.AuthorizationHandler
+					addAuthorizationInfo(URL, String, String, Map) - org.eclipse.core.internal.runtime.InternalPlatform
+						addAuthorizationInfo(URL, String, String, Map) - org.eclipse.core.runtime.Platform
+				getProtectionSpace(URL) - org.eclipse.core.internal.runtime.AuthorizationHandler
+					getProtectionSpace(URL) - org.eclipse.core.internal.runtime.InternalPlatform
+						getProtectionSpace(URL) - org.eclipse.core.runtime.Platform
+				addProtectionSpace(URL, String) - org.eclipse.core.internal.runtime.AuthorizationHandler
+					addProtectionSpace(URL, String) - org.eclipse.core.internal.runtime.InternalPlatform
+						addProtectionSpace(URL, String) - org.eclipse.core.runtime.Platform
+				getAuthorizationInfo(URL, String, String) - org.eclipse.core.internal.runtime.AuthorizationHandler
+					getAuthorizationInfo(URL, String, String) - org.eclipse.core.internal.runtime.InternalPlatform
+						getAuthorizationInfo(URL, String, String) - org.eclipse.core.runtime.Platform
+				flushAuthorizationInfo(URL, String, String) - org.eclipse.core.internal.runtime.AuthorizationHandler
+					flushAuthorizationInfo(URL, String, String) - org.eclipse.core.internal.runtime.InternalPlatform
+						flushAuthorizationInfo(URL, String, String) - org.eclipse.core.runtime.Platform
+
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.io.FilePermission ".keyring", "delete";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/>
+Do not wrap any of the AuthorizationDatabase object methods in privilege actions.   Rather, wrap the AuthorizationHandler method for save & load.  The premise is that 
+runtime initialization will set the keyring file in the AuthorizationHandler object, and it can not be altered once set.  This will cover the anticipated use of
+Platform.addAuthorizationInfo(),Platform.addProtectionSpace(), Platform.getProtectionSpace(), and Platform.getAuthorizationInfo() by plug-in developers.
+
+Grant the required permissions to the org.eclipse.core.runtime plug-in via META-INF/PERMISSIONS.PERM.
+
+<HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/AuthorizationDatabase.html#L301" , parent.fbot ); return false'>Line# 306</a> void save(  )
+   Permission: java.io.FilePermission "???file???", "read"
+      Primordial/boolean java.io.File.mkdirs(  )
+   Permission: java.util.PropertyPermission "user.dir", "read"
+      Primordial/boolean java.io.File.mkdirs(  )
+<BR/><BR/><B>CODE</B><BR/><BR/>
+	public void save() throws CoreException {
+		if (!needsSaving || file == null)
+			return;
+		try {
+			file.delete();
+			<FONT style="background-color:yellow;display;inline">if ((!file.getParentFile().exists() && !file.getParentFile().mkdirs()) || !canWrite(file.getParentFile()))</FONT>
+				throw new CoreException(new Status(IStatus.ERROR, Platform.PI_RUNTIME, Platform.FAILED_WRITE_METADATA, NLS.bind(Messages.meta_unableToWriteAuthorization, file), null));
+			file.createNewFile();
+			FileOutputStream out = new FileOutputStream(file);
+			try {
+				save(out);
+			} finally {
+				out.close();
+			}
+		} catch (IOException e) {
+			throw new CoreException(new Status(IStatus.ERROR, Platform.PI_RUNTIME, Platform.FAILED_WRITE_METADATA, NLS.bind(Messages.meta_unableToWriteAuthorization, file), e));
+		}
+		needsSaving = false;
+	}
+
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.io.FilePermission "???file???", "read";</LI>
+<LI>permission java.util.PropertyPermission "user.dir", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/>
+
+<BR/>
+Do not wrap any of the AuthorizationDatabase object methods in privilege actions.   Rather, wrap the AuthorizationHandler method for save & load.  The premise is that 
+runtime initialization will set the keyring file in the AuthorizationHandler object, and it can not be altered once set.  This will cover the anticipated use of
+Platform.addAuthorizationInfo(),Platform.addProtectionSpace(), Platform.getProtectionSpace(), and Platform.getAuthorizationInfo() by plug-in developers.
+
+Grant the required permissions to the org.eclipse.core.runtime plug-in via META-INF/PERMISSIONS.PERM.
+
+<HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/AuthorizationDatabase.html#L303" , parent.fbot ); return false'>Line# 308</a> void save(  )
+   Permission: java.io.FilePermission ".keyring", "write"
+      Primordial/boolean java.io.File.createNewFile(  )
+<BR/><BR/><B>CODE</B><BR/><BR/>
+	public void save() throws CoreException {
+		if (!needsSaving || file == null)
+			return;
+		try {
+			file.delete();
+			if ((!file.getParentFile().exists() && !file.getParentFile().mkdirs()) || !canWrite(file.getParentFile()))
+				throw new CoreException(new Status(IStatus.ERROR, Platform.PI_RUNTIME, Platform.FAILED_WRITE_METADATA, NLS.bind(Messages.meta_unableToWriteAuthorization, file), null));
+			<FONT style="background-color:yellow;display;inline">file.createNewFile();</FONT>
+			FileOutputStream out = new FileOutputStream(file);
+			try {
+				save(out);
+			} finally {
+				out.close();
+			}
+		} catch (IOException e) {
+			throw new CoreException(new Status(IStatus.ERROR, Platform.PI_RUNTIME, Platform.FAILED_WRITE_METADATA, NLS.bind(Messages.meta_unableToWriteAuthorization, file), e));
+		}
+		needsSaving = false;
+	}
+
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.io.FilePermission ".keyring", "write";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/>
+Do not wrap any of the AuthorizationDatabase object methods in privilege actions.   Rather, wrap the AuthorizationHandler method for save & load.  The premise is that 
+runtime initialization will set the keyring file in the AuthorizationHandler object, and it can not be altered once set.  This will cover the anticipated use of
+Platform.addAuthorizationInfo(),Platform.addProtectionSpace(), Platform.getProtectionSpace(), and Platform.getAuthorizationInfo() by plug-in developers.
+
+Grant the required permissions to the org.eclipse.core.runtime plug-in via META-INF/PERMISSIONS.PERM.
+
+
+<HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/AuthorizationDatabase.html#L304" , parent.fbot ); return false'>Line# 309</a> void save(  )
+   Permission: java.io.FilePermission ".keyring", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+<BR/><BR/><B>CODE</B><BR/><BR/>
+	public void save() throws CoreException {
+		if (!needsSaving || file == null)
+			return;
+		try {
+			file.delete();
+			if ((!file.getParentFile().exists() && !file.getParentFile().mkdirs()) || !canWrite(file.getParentFile()))
+				throw new CoreException(new Status(IStatus.ERROR, Platform.PI_RUNTIME, Platform.FAILED_WRITE_METADATA, NLS.bind(Messages.meta_unableToWriteAuthorization, file), null));
+			file.createNewFile();
+			<FONT style="background-color:yellow;display;inline">FileOutputStream out = new FileOutputStream(file);</FONT>
+			try {
+				save(out);
+			} finally {
+				out.close();
+			}
+		} catch (IOException e) {
+			throw new CoreException(new Status(IStatus.ERROR, Platform.PI_RUNTIME, Platform.FAILED_WRITE_METADATA, NLS.bind(Messages.meta_unableToWriteAuthorization, file), e));
+		}
+		needsSaving = false;
+	}
+
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.io.FilePermission ".keyring", "write";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/>
+Do not wrap any of the AuthorizationDatabase object methods in privilege actions.   Rather, wrap the AuthorizationHandler method for save & load.  The premise is that 
+runtime initialization will set the keyring file in the AuthorizationHandler object, and it can not be altered once set.  This will cover the anticipated use of
+Platform.addAuthorizationInfo(),Platform.addProtectionSpace(), Platform.getProtectionSpace(), and Platform.getAuthorizationInfo() by plug-in developers.
+
+Grant the required permissions to the org.eclipse.core.runtime plug-in via META-INF/PERMISSIONS.PERM.
+
+<HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/AuthorizationDatabase.html#L341" , parent.fbot ); return false'>Line# 346</a> void save( java.io.OutputStream )
+   Permission: java.io.SerializablePermission "enableSubclassImplementation"
+      Primordial/void java.io.ObjectOutputStream.ObjectOutputStream( java.io.OutputStream )
+<BR/><BR/><B>CODE</B><BR/><BR/>
+	private void save(OutputStream os) throws IOException {
+		//write the version number
+		os.write(KEYRING_FILE_VERSION);
+
+		CipherOutputStream cos = new CipherOutputStream(os, password);
+		<FONT style="background-color:yellow;display;inline">ObjectOutputStream oos = new ObjectOutputStream(cos);</FONT>
+		//write the data
+		try {
+			oos.writeObject(authorizationInfo);
+			oos.writeObject(protectionSpace);
+		} finally {
+			oos.close();
+		}
+	}
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.io.SerializablePermission "enableSubclassImplementation";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/>
+Do not wrap any of the AuthorizationDatabase object methods in privilege actions.   Rather, wrap the AuthorizationHandler method for save & load.  The premise is that 
+runtime initialization will set the keyring file in the AuthorizationHandler object, and it can not be altered once set.  This will cover the anticipated use of
+Platform.addAuthorizationInfo(),Platform.addProtectionSpace(), Platform.getProtectionSpace(), and Platform.getAuthorizationInfo() by plug-in developers.
+
+Grant the required permissions to the org.eclipse.core.runtime plug-in via META-INF/PERMISSIONS.PERM.
+
+
+<HR/>
+</pre>
+</body></html>

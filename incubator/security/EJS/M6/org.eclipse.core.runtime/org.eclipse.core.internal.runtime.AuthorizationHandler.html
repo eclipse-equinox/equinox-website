@@ -1,0 +1,284 @@
+<html><head><title>Permission Analysis Report</title><script language='javaScript' src='linkUtil.js'></script></head><body>
+<h1>Permission Analysis Report</h1>
+<BR/><H2>Analysis of: org.eclipse.core.runtime</H2>
+<B>Detail</B><BR/><BR/>
+<pre>
+
+Class: <a href="foo" onClick="return openURLinSrc( 'Application/org/eclipse/core/internal/runtime/AuthorizationHandler.html' )">org.eclipse.core.internal.runtime.AuthorizationHandler</a> (Application)
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/AuthorizationHandler.html#L30" , parent.fbot ); return false'>Line# 35</a> void loadKeyring(  )
+   Permission: java.io.FilePermission ".keyring", "read"
+      Primordial/long java.io.File.lastModified(  )
+<BR/><BR/><B>CODE</B><BR/><BR/>
+	private static void loadKeyring() throws CoreException {
+		if (keyring != null && new <FONT style="background-color:yellow;display;inline">File(keyringFile).lastModified()</FONT> == keyringTimeStamp)
+			return;
+		if (keyringFile == null) {
+			File file = new File(InternalPlatform.getDefault().getConfigurationLocation().getURL().getPath() + '/' + Platform.PI_RUNTIME);
+			file = new File(file, F_KEYRING);
+			keyringFile = file.getAbsolutePath();
+		}
+		try {
+			keyring = new AuthorizationDatabase(keyringFile, password);
+		} catch (CoreException e) {
+			InternalPlatform.getDefault().log(e.getStatus());
+		}
+		if (keyring == null) {
+			//try deleting the file and loading again - format may have changed
+			new java.io.File(keyringFile).delete();
+			keyring = new AuthorizationDatabase(keyringFile, password);
+			//don't bother logging a second failure and let it flows to the callers
+		}
+		keyringTimeStamp = new File(keyringFile).lastModified();
+	}
+
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Call Hierarchy</B>
+loadKeyring() - org.eclipse.core.internal.runtime.AuthorizationHandler
+	addAuthorizationInfo(URL, String, String, Map) - org.eclipse.core.internal.runtime.AuthorizationHandler
+		addAuthorizationInfo(URL, String, String, Map) - org.eclipse.core.internal.runtime.InternalPlatform
+			addAuthorizationInfo(URL, String, String, Map) - org.eclipse.core.runtime.Platform
+	getProtectionSpace(URL) - org.eclipse.core.internal.runtime.AuthorizationHandler
+		getProtectionSpace(URL) - org.eclipse.core.internal.runtime.InternalPlatform
+			getProtectionSpace(URL) - org.eclipse.core.runtime.Platform
+	addProtectionSpace(URL, String) - org.eclipse.core.internal.runtime.AuthorizationHandler
+		addProtectionSpace(URL, String) - org.eclipse.core.internal.runtime.InternalPlatform
+			addProtectionSpace(URL, String) - org.eclipse.core.runtime.Platform
+	getAuthorizationInfo(URL, String, String) - org.eclipse.core.internal.runtime.AuthorizationHandler
+		getAuthorizationInfo(URL, String, String) - org.eclipse.core.internal.runtime.InternalPlatform
+			getAuthorizationInfo(URL, String, String) - org.eclipse.core.runtime.Platform
+	flushAuthorizationInfo(URL, String, String) - org.eclipse.core.internal.runtime.AuthorizationHandler
+		flushAuthorizationInfo(URL, String, String) - org.eclipse.core.internal.runtime.InternalPlatform
+			flushAuthorizationInfo(URL, String, String) - org.eclipse.core.runtime.Platform
+<B>Origin of parameter(s) passed to the privileged operation</B>
+The keyring file, and it's associated password can be specified as startup parameters.   Additionally, they default to <osgi.install.area>+"/configuration/org.eclipse.core.runtime/.keyring" and
+"" for the filepath and keyring password respectively.  Additionally, there exist setKeyringFile, and setKeyringPassword methods on the AuthorizationHandler object.
+<BR/>
+setPassword(String) - org.eclipse.core.internal.runtime.AuthorizationHandler
+	initializeAuthorizationHandler() - org.eclipse.core.internal.runtime.InternalPlatform
+		start(BundleContext) - org.eclipse.core.internal.runtime.InternalPlatform
+			startInternalPlatform() - org.eclipse.core.internal.runtime.PlatformActivator
+				start(BundleContext) - org.eclipse.core.internal.runtime.PlatformActivator
+					run() - org.eclipse.osgi.framework.internal.core.BundleContextImpl.startActivator(...).new PrivilegedExceptionAction() {...}
+						call() - java.util.concurrent.Executors.PrivilegedExceptionActionAdapter
+<BR/>
+setKeyringFile(String) - org.eclipse.core.internal.runtime.AuthorizationHandler
+	initializeAuthorizationHandler() - org.eclipse.core.internal.runtime.InternalPlatform
+		start(BundleContext) - org.eclipse.core.internal.runtime.InternalPlatform
+			startInternalPlatform() - org.eclipse.core.internal.runtime.PlatformActivator
+				start(BundleContext) - org.eclipse.core.internal.runtime.PlatformActivator
+					run() - org.eclipse.osgi.framework.internal.core.BundleContextImpl.startActivator(...).new PrivilegedExceptionAction() {...}
+						call() - java.util.concurrent.Executors.PrivilegedExceptionActionAdapter
+
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.io.FilePermission ".keyring", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/>
+Since the setKeyringFile() method can only be called once (at platform startup) it is not
+possible to override.  Consequently it is OK to wrap the privileged operations within the context 
+of the loadKeyring() method in a privileged action.  Furthermore, since this method is called
+by the OSGi framework, under a privileged operation, it is NOT necessary to wrap this method.
+The OSGi framework runs with all permissions.  Unfortunately, there are several scenarios that require
+this method to be wrapped.   That being Platform.addAuthorizationInfo(), Platform.addProtectionSpace(), Platform.getAuthorizationInfo(), and Platform.getProtectionSpace().
+
+Recommended code patch:
+<BR/>Define a new class:<BR/>
+class AuthorizationHandlerInfo {
+	private  AuthorizationDatabase keyring = null;
+	private  long keyringTimeStamp;
+	private  String keyringFile = null;
+	private  String password = null;
+	
+	AuthorizationHandlerInfo(AuthorizationDatabase keyring, long keyringTimeStamp, String keyringFile,String password)
+	{
+		this.keyring = keyring;
+		this.keyringFile = keyringFile;
+		this.keyringTimeStamp = keyringTimeStamp;
+		this.password = password;
+	}
+	final AuthorizationDatabase getKeyring()
+	{
+		return keyring;
+	}
+	final String getKeyringFile()
+	{
+		return keyringFile;
+	}
+	final long getKeyringTimeStamp()
+	{
+		return keyringTimeStamp;
+	}
+	final void setKeyring(AuthorizationDatabase keyring)
+	{
+		this.keyring = keyring;
+	}
+	final void setKeyringFile(String keyringFile)
+	{
+		this.keyringFile = keyringFile;
+	}
+	final void setKeyringTimeStamp(long keyringTimeStamp)
+	{
+		this.keyringTimeStamp = keyringTimeStamp;
+	}
+	final String getPassword()
+	{
+		return password;
+	}
+}
+<BR/>
+	static class LoadKeyringAction implements PrivilegedExceptionAction
+	{
+		private AuthorizationHandlerInfo ahi;
+    LoadKeyringAction(AuthorizationDatabase keyring, long keyringTimeStamp, String keyringFile,String password)
+    {
+			ahi = new AuthorizationHandlerInfo(keyring,keyringTimeStamp,keyringFile,password);
+    }
+		
+		public Object run() throws Exception
+		{
+			if (ahi.getKeyring() != null && new File(ahi.getKeyringFile()).lastModified() == ahi.getKeyringTimeStamp())
+				return ahi;
+			if (ahi.getKeyringFile() == null) {
+				File file = new File(InternalPlatform.getDefault().getConfigurationLocation().getURL().getPath() + '/' + Platform.PI_RUNTIME);
+				file = new File(file, F_KEYRING);
+				ahi.setKeyringFile(file.getAbsolutePath());
+			}
+			try {
+				ahi.setKeyring(new AuthorizationDatabase(ahi.getKeyringFile(), ahi.getPassword()));
+			} catch (CoreException e) {
+				InternalPlatform.getDefault().log(e.getStatus());
+			}
+			if (ahi.getKeyring() == null) {
+				//try deleting the file and loading again - format may have changed
+				new java.io.File(ahi.getKeyringFile()).delete();
+				ahi.setKeyring(new AuthorizationDatabase(ahi.getKeyringFile(),ahi.getPassword()));
+				//don't bother logging a second failure and let it flows to the callers
+			}
+			ahi.setKeyringTimeStamp(new File(ahi.getKeyringFile()).lastModified());
+			return ahi;
+		}
+		
+	}
+<BR/>
+Finally, modify loadKeyRing() as illustrated below:
+<BR/>
+	/**
+	 * Opens the password database (if any) initally provided to the platform at startup.
+	 */
+	private static void loadKeyring() throws CoreException {
+		 LoadKeyringAction lka = new LoadKeyringAction(keyring,keyringTimeStamp,keyringFile,password);
+		 if (System.getSecurityManager()==null)
+		 {
+			 try
+			{
+				AuthorizationHandlerInfo ahi = (AuthorizationHandlerInfo) lka.run();
+				keyring = ahi.getKeyring();
+				keyringTimeStamp = ahi.getKeyringTimeStamp();
+				keyringFile = ahi.getKeyringFile();
+			} catch (Exception e)
+			{
+				throw (CoreException)e;
+			}
+		 } else
+		 {
+			 try
+			{
+				AuthorizationHandlerInfo ahi = (AuthorizationHandlerInfo) AccessController.doPrivileged(lka);
+				keyring = ahi.getKeyring();
+				keyringTimeStamp = ahi.getKeyringTimeStamp();
+				keyringFile = ahi.getKeyringFile();				
+			} catch (PrivilegedActionException e)
+			{
+				throw (CoreException) e.getException();
+			}
+		 }
+	}
+<BR/>
+
+Create two more new method in AuthorizationHandler:
+<BR/>
+	static class SaveKeyringAction implements PrivilegedExceptionAction
+	{
+
+		private AuthorizationDatabase keyring;
+		
+		SaveKeyringAction(AuthorizationDatabase keyring)
+		{
+			this.keyring = keyring;
+		}
+		
+		public Object run() throws Exception
+		{
+      keyring.save();
+			return null;
+		}
+		
+	}
+<BR/>
+	static void save() throws CoreException
+	{
+		SaveKeyringAction ska = new SaveKeyringAction(keyring);
+		if (System.getSecurityManager()==null)
+		{
+			try
+			{
+				ska.run();
+			} catch (Exception e)
+			{
+				throw (CoreException)e;
+			}
+			
+		} else
+		{
+			try
+			{
+				AccessController.doPrivileged(ska);
+			} catch (PrivilegedActionException e)
+			{
+				throw (CoreException) e.getException();
+			}
+		}
+	}
+<BR/>
+Finally, replace direct calls to keyring.save() with save().
+<HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/AuthorizationHandler.html#L35" , parent.fbot ); return false'>Line# 40</a> void loadKeyring(  )
+   Permission: java.io.FilePermission "???file???", "read"
+      Primordial/java.lang.String java.io.File.getAbsolutePath(  )
+   Permission: java.util.PropertyPermission "user.dir", "read"
+      Primordial/java.lang.String java.io.File.getAbsolutePath(  )
+<BR/><BR/><B>CODE</B><BR/><BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.io.FilePermission "???file???", "read";</LI>
+<LI>permission java.util.PropertyPermission "user.dir", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/>
+This method is called by the OSGi framework, under a privileged operation, it is NOT necessary to wrap this method.
+The OSGi framework runs with all permissions.
+<HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/AuthorizationHandler.html#L44" , parent.fbot ); return false'>Line# 49</a> void loadKeyring(  )
+   Permission: java.io.FilePermission ".keyring", "delete"
+      Primordial/boolean java.io.File.delete(  )
+<BR/><BR/><B>CODE</B><BR/><BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.io.FilePermission ".keyring", "delete";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/>
+This method is called by the OSGi framework, under a privileged operation, it is NOT necessary to wrap this method.
+The OSGi framework runs with all permissions.
+<HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/AuthorizationHandler.html#L48" , parent.fbot ); return false'>Line# 53</a> void loadKeyring(  )
+   Permission: java.io.FilePermission ".keyring", "read"
+      Primordial/long java.io.File.lastModified(  )
+<BR/><BR/><B>CODE</B><BR/><BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.io.FilePermission ".keyring", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/>
+This method is called by the OSGi framework, under a privileged operation, it is NOT necessary to wrap this method.
+The OSGi framework runs with all permissions.
+<HR/>
+</pre>
+</body></html>

@@ -1,0 +1,54 @@
+<html><head><title>Permission Analysis Report</title><script language='javaScript' src='linkUtil.js'></script></head><body>
+<h1>Permission Analysis Report</h1>
+<BR/><H2>Analysis of: org.eclipse.core.runtime</H2>
+<B>Detail</B><BR/><BR/>
+<pre>
+Class: <a href="foo" onClick="return openURLinSrc( 'Application/org/eclipse/core/runtime/PerformanceStats.html' )">org.eclipse.core.runtime.PerformanceStats</a> (Application)
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/runtime/PerformanceStats.html#L239" , parent.fbot ); return false'>Line# 244</a> void printStats(  )
+   Permission: java.lang.RuntimePermission "getClassLoader"
+      Primordial/void java.io.PrintWriter.PrintWriter( java.io.OutputStream )
+<BR/><BR/><B>CODE</B><BR/><BR/>
+	public static void printStats() {
+		if (!ENABLED)
+			return;
+		PrintWriter writer = <font style="background-color:yellow;display;inline">new PrintWriter(System.out);</font>
+		PerformanceStatsProcessor.printStats(writer);
+		writer.flush();
+		writer.close();
+	}
+<B>Tainted variable reference trace:</B><BR/><BR/>
+N/A - Top level entry point.
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.lang.RuntimePermission "getClassLoader";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/>
+This method is only writing statistics to standard out.  Assuming that no one has
+programmatically redirected std out to step on a data file, it should be OK to 
+wrap this method in a doPrivileged() call if the security manager is enabled.
+<BR/><BR/>
+<B>Example fix:</B><BR/><BR/>
+
+	public static void printStats() {
+		if (!ENABLED)
+			return;
+		<font style="background-color:yellow;display;inline">PrintWriter writer;
+		if (System.getSecurityManager()==null)
+		   writer = new PrintWriter(System.out);
+		else
+		{
+			writer = (PrintWriter) AccessController.doPrivileged(new PrivilegedAction() {
+				public Object run()
+				{
+				  PrintWriter tmpWriter = new PrintWriter(System.out);
+				  return tmpWriter;
+				}
+			});
+		}</font>
+		PerformanceStatsProcessor.printStats(writer);
+		writer.flush();
+		writer.close();
+	}
+
+<HR/>
+</pre>
+</body></html>
