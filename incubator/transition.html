@@ -1,0 +1,215 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Equinox Transition Proposal</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link type="text/css" rel="stylesheet" href="http://www.eclipse.org/proposals/templates/eclipse-proposal.css">
+</head>
+<body>
+
+
+<p id="header"><img src="http://www.eclipse.org/images/Idea.jpg" align="right" height="86" hspace="50" width="120"> <br>
+
+<span class="indextop">Equinox Project</span><br>
+
+<span class="indexsub">A Transition Proposal</span> </p>
+
+
+<h1>Introduction</h1>
+
+
+<p>The existing Equinox Technology project is to transition to be an <a href="http://eclipse.org/eclipse">Eclipse
+    Project</a>. </p>
+
+
+<p align="center"><font color="#FF0000" size=+1><a href="transition.pdf">Download
+the transition review slides<img border="0" src="http://www.eclipse.org/org/processes/pdf.gif" width="18" height="18"></a></font></p>
+
+
+<h1>Background</h1>
+<p>In mid-2003, while recovering from releasing Eclipse 2.1, the Eclipse Runtime
+  team started to think of how to make Eclipse more dynamic. One of the drivers
+  for this was the community push for Eclipse as a Rich Client Platform. A further
+  driver was broadening the appeal of the Eclipse runtime infrastructure and
+  leveraging existing standards and facilities. The team wanted to engage the
+  community in the search for and investigation of
+  new runtime technology for Eclipse. To support this, the Equinox Technology
+project was created.</p>
+<p>Equinox was set up as an incubator -- the first such project in Eclipse.
+  As a separate project under the Technology PMC, the investigations were
+  isolated from the main code and the entry barriers for interested parties
+  lower. The output of the project was to either graduate into the main Eclipse
+  code base or wither due to lack of interest. Having setup the project, the
+  team proceeded to investigate various runtime component models (e.g., Avalon,
+  OSGi,
+  ...) and eventually settled
+  on the OSGi framework as the most promising. In parallel, other team members
+  looked at areas such as dynamic registry behaviour.</p>
+<p>By the end of 2003, the team had completed implemenations of a dynamic registry
+  and an OSGi R3 framework implementation (plus various extensions).
+  As
+  of Eclipse 3.0 M6, the original Eclipse Runtime was seamlessly replaced with
+  a
+  fully OSGi-based runtime. In June of 2004, Eclipse 3.0 shipped and thousands
+  of people began running and shipping OSGi in their development environments
+  and products!</p>
+<p>The Equinox work did not end there. The team could have closed down the project
+  as a raging success. Instead, &quot;Phase 2&quot; was started with a focus
+  on security, framework layering and the like. Some of this work was subsequently
+  absorbed into the main Eclipse OSGi framework and some continues
+  today.</p>
+<p>Similarly, the OSGi work did not stop. Several of the original Equinox
+  committers became Platform Core committers and continued to work on the code.
+  The team
+    also worked closely with the OSGi Core Platform Experts Group (CPEG) to standardize
+    the framework extensions (e.g., fragments, Require-Bundle) added to the Eclipse
+  implementation in support of our expanded usecases. Much of this work
+  is now exposed in the recent
+  OSGi R4 framework
+    specification
+    draft and the OSGi Alliance has elected to use the Eclipse 3.1 OSGi implementation
+  as their R4 specification reference implementation. The Eclipse team
+  continues to be committed to OSGi as the base for
+its runtime technology.</p>
+<p>To go to the next level with OSGi, we need a community around OSGi
+  and the framework implementation. The need for an independent OSGi implementation
+  project
+  at Eclipse was highlighted at the 2004 OSGi World Congress. It became apparent
+  that the lack of a clear and obvious community rallying point was an inhibitor
+  to people using our
+  implementation and in fact, joining the community. Simple things such as the
+  lack of an independent download, obvious mailing list or bug home were sending
+  a signal that the
+  Eclipse OSGi implementation was not standalone. In many ways, this
+reflected reality but in others, the community and opportunities were there but
+  not well advertised.</p>
+<p>The need for such a community is further supported by the recent interest
+  in OSGi, the specificiation and the technology. The  desire to use OSGi, and
+  more generally a Java component model, is growing as evidenced
+  by the emergence of groups such as the
+  Apache Felix incubator
+  project
+  and JSR-277
+  (Java
+  Module System). People
+  are still asking why Eclipse has not setup a community around its OSGi implementation.
+  This proposal
+  addresses
+  that
+  concern.</p>
+<h1>Description</h1>
+
+
+<h2>Proposal</h2>
+
+
+<p>Concretely we propose to transition the Equinox Technology project to be an
+  Eclipse project. The new Equinox Eclipse project will be the home of the OSGi
+  community at Eclipse.org. As a peer of the Platform, JDT and PDE projects,
+  the OSGi code will continue
+to be managed by the Eclipse PMC and ship with the Eclipse project major releases. </p>
+<p>This setup provides the needed infrastructure (mailing lists etc), retains
+  the linkage to the Platform (as OSGi is a key element there) and provides a
+  plausible,
+  visible rallying point for an OSGi community at Eclipse. Creating a top-level
+  project is another option but this option seems like additional overhead
+  for no apparent gain (it is unclear that people readily distinguish between
+projects and subprojects).</p>
+<p>Why move Equinox? Why not create a new subproject? There are several reasons. </p>
+<ul>
+  <li>It is a natural evolution of the project. It was originally setup as an
+    incubator. It produced content that was eventually consumed by the Platform
+    project. This was a success. That content is now more globally interesting
+    so we can use Equinox, the project that originally produced it, to carry
+  it forward even further.</li>
+  <li>There is already some level of brand recognition with people referring
+  to the &quot;Equinox OSGi implementation&quot;. </li>
+  <li> Most of the  infrastructure is already in place.</li>
+  <li> The
+  name is cool.</li>
+</ul>
+<p>What of the other work in Equinox? Equinox was the first technology incubator
+    project. It was put in place before we had the ability to invite others to
+    join existing projects for speculative work. The need to bring in others
+    but not give them full commit rights was one of the key motivators in spawning
+    a Technology project. Since then we have several cases where people have
+    been invited to join ongoing work with less than full commit rights. This
+    is the
+    vision for the new Equinox. The current team working in the various workareas
+  will move to an incubator area of the rehosted Equinox. Nothing will change
+  for
+    them other than the repo location, mailing list name, etc.</p>
+<h2>Project Scope </h2>
+
+
+<p>The new Equinox will be open to:</p>
+<ul>
+  <li>Implementation of all aspects of the OSGi specification (including the
+    MEG and VEG work)</li>
+  <li>Investigation and research related to future versions of OSGi specifications
+    and related runtime issues</li>
+  <li>Non-standard infrastructure deemed to be essential to the running and management
+    of OSGi-based systems </li>
+  <li>Key framework services and extensions
+      needed for running Eclipse (e.g., the Eclipse Adaptor, Extension registry)
+    and deemed generally useful to people using OSGi.</li>
+</ul>
+<p>As such, the  OSGi framework implementation previously developed in Equinox
+and now hosted in the Platform project will move back to Equinox for further
+  development and maintenance.</p>
+<p>The new Equinox will not undertake development of the Eclipse Runtime function
+  such as Jobs, Preferences and Content Types. This will remain part of the Platform
+  project. This furthers the vision of Eclipse as a landscape of OSGi bundles
+  rather than calling out particular bundles as &quot;OSGi&quot; and others as Eclipse.
+  That is, a large (and increasing) number of Eclipse plug-ins can be run on
+  any OSGi framework -- there is no particular value in cluttering Equinox
+  with unrelated content.</p>
+<h1>Organization</h1>
+<p>The project will be structured into the following components:</p>
+<dl>
+  <dt><strong>framework</strong></dt>
+  <dd>The implementation of the OSGi core framework specification. Work in this
+    component also includes various adaptors and related mechanisms in support
+    of successfully running an OSGi based system.</dd>
+  <dt><strong>services</strong></dt>
+  <dd>The implementation of other OSGi standard services and facilities. This
+    component may also contain some additional (i.e., non-standard) mechanisms
+    if they are deamed to be generally and widely applicable or interesting.</dd>
+  <dt><strong>incubator</strong></dt>
+  <dd>Research and prototyping of new techniques and approaches relating to OSGi
+    and componentized runtimes in general. </dd>
+</dl>
+<p>Each of these components will have a developer mailing list, a team website,
+  a bugzilla component and other infrastructure as appropriate. Equinox will
+  have just one newsgroup to host the user community. For now, separate newsgroups
+  would fragment the discussion too much. This point can be revisited if the
+  message volume gets unwieldy.</p>
+<p>The Equinox repository will be structured as follows:</p>
+<ul>
+  <li>The current Equinox repository artifacts will be moved to
+      an equinox-incubator area in the Eclipse project repository and retain
+    their current sturcture and history.</li>
+  <li>The new project will continue to use the flat structure of the
+      Eclipse project repository. Again, this avoids issues of relatively arbitrary
+      categorization and puts the standard Eclipse plug-ins on par with new and
+    existing bundles.</li>
+  <li>The org.eclipse.osgi bundle will not be renamed or moved nor
+      will the code (i.e., packages) it contains.</li>
+</ul>
+<h2 align="left">Proposed project lead and initial committers</h2>
+
+
+<p>The current Platform Runtime committers will be
+  grandfathered as full Equinox committers. Current Equinox committers will be
+  grandfathered as committers in the new Equinox Incubator area. The project
+  as a whole will continue to be led by Jeff McAffer, IBM.</p>
+<h2 align="left">Interested parties</h2>
+
+
+<p>The submitters of this proposal welcome interested parties to post to the <a href="news://news.eclipse.org/eclipse.equinox">eclipse.equinox</a> newsgroup
+  and ask to be added to the list as interested parties or to suggest changes
+  to this document. </p>
+
+
+</body>
+</html>
