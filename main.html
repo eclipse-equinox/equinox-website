@@ -4,6 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 <title>Equinox - An OSGi  Framework</title>
 <link rel="stylesheet" href="http://dev.eclipse.org/default_style.css" type="text/css">
+<link rel="stylesheet" href="equinox.css" type="text/css">
 </head>
 <body>
 <center>
@@ -19,34 +20,39 @@
 	<a href="faq.html">[faq]</a>
 </center>
 <br>
-<table BORDER=0 CELLSPACING=0 CELLPADDING=2 WIDTH="100%" >
-  <tr> 
-    <td ALIGN=LEFT VALIGN=TOP COLSPAN="2" BGCOLOR="#0080C0"><b><font color="#FFFFFF"> 
-      Mission Statement</font></b></td>
-  </tr>
-</table>
-<p><strong>Note: The role of Equinox is currently in flux. See the <a href="transition.html">Transition
-  Proposal</a>  for more details.</strong></p>
-<p>The goal of the Equinox project is to experiment with techniques for
-     broadening the range of Eclipse platform runtime configurations. For example,
-     the Eclipse plugin model is static; there is no discussion of practices
-   and tools for managing/reducing interplugin dependencies; service discovery
-is not covered and the component distribution mechanism is non-standard. </p>
-<p>These issues do not severely impact the usefulness of Eclipse as a development 
-        tool platform but they do affect the use of Eclipse in more constrained 
-        environments (e.g., handheld devices, IT managed environments, mass-appeal 
-        applications etc.). The Equinox project will investigate such issues and 
-        develop approaches which are practical and applicable to the main Eclipse 
-        code base. <a href="description.html">more info...</a></p>
-      <table BORDER=0 CELLSPACING=0 CELLPADDING=2 WIDTH="100%" >
-  <tr> 
-    <td ALIGN=LEFT VALIGN=TOP COLSPAN="2" BGCOLOR="#0080C0"><b><font color="#FFFFFF"> 
-      What's New</font></b></td>
-  </tr>
-</table>
+<p class=bar>Mission Statement</p>
+<p>The goal of the Equinox project is to be a first class OSGi
+  community and foster the vision of Eclipse as a landscape of bundles. As part
+  of this, it is responsible for developing and delivering the OSGi framework
+  implementation
+  used for all
+  of
+  Eclipse. In addition. the
+  project
+  is open to:</p>
+<ul>
+  <li>Implementation of all aspects of the OSGi specification (including the MEG
+  and VEG work) </li>
+  <li>    Investigation and research related to future versions of OSGi specifications
+  and related runtime issues </li>
+  <li>Development of non-standard infrastructure deemed to be essential
+  to the running and management of OSGi-based systems </li>
+  <li>Implementation of key framework services
+      and extensions needed for running Eclipse (e.g., the Eclipse Adaptor, Extension
+  registry) and deemed generally useful to people using OSGi.  </li>
+</ul>
+  As a peer of the Platform, JDT and PDE projects, the Equinox OSGi code is
+  managed by the Eclipse PMC and ships with the Eclipse project
+major releases. The various other bundles developed here may ship independently
+  and on different schedules. <a href="description.html">More info...</a>
+<p>Did you come here expecting to find the Equinox Technology project? It has
+  been transitioned. See the <a href="documents/transition.html">transition documentation</a> for more details.</p>
+<p class=bar>What's New</p>
 <p>
-  <b>Sept 23</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14"> Transition
-call scheduled for 1800UTC (1300 EST).</p>
+  <b>Sept 23</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14"> Equinox
+  transition approved!! The infrastructure transition should begin presently.</p>
+<p><b>Sept 16</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14"> Transition
+    call scheduled for September 23, 2005 at 1800UTC (1400 EST).</p>
 <p><b>Sept 5</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14"> <a href="transition.html">Proposal</a> to
   transition Equinox from the Technology PMC to the Eclipse PMC and have it be
   the official home of OSGi at Eclipse.</p>

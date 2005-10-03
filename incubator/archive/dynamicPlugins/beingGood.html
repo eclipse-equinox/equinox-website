@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>The Equinox Project - How to be a good dynamic pluging</title>
+<link rel="stylesheet" title="default" href="http://eclipse.org/default_style.css" type="text/css">
+</head>
+<body>
+<table BORDER=0 CELLSPACING=5 CELLPADDING=2 WIDTH="100%" >
+  <tr> 
+    <td ALIGN=left width="60%">
+      <p><font class=indextop> equinox</font><br>
+        <font class=indexsub> dynamic plugins > being a good dynamic plugin</font></p>
+    </td>
+    <td WIDTH="40%">&nbsp; </td>
+  </tr>
+</table>
+<table border=0 cellspacing=5 cellpadding=2 width="100%" >
+  <tr> 
+    <td align=LEFT valign=TOP colspan="2" bgcolor="#0080C0"><b><font color="#FFFFFF"> 
+      How To Be A Good Plugin</font></b></td>
+  </tr>
+</table>
+Before a plugin is being deactivated, it has a chance of running some codes to 
+save its state and more importantly doing some cleanup! In order to help you doing 
+the cleanup, here is checklist that can help you. 
+<ul>
+  <!-- UI -->
+  <li>Did you deallocate all the graphics you allocated: fonts, images, colors</li>
+  <!-- RUNTIME -->
+  <li>Did you unregister the IAdapterFactory you created? See IAdapterManager.unregisterAdapters.</li>
+  <!-- RESOURCES -->
+  <li>Did you unregister the IResourceChangeListener you created? See IWorkspace.removeResourceChangeListener.</li>
+  <li>Beside the instances created through createExecutableExtension(), who should 
+    collect the other instances?</li>
+  <li>As a matter of example, which plugin is supposed to close the views: the 
+    UI plugin, or the plugin providing the view?</li>
+  <li>Does a generic scheme to collect the instance exists?</li>
+  <li>When can a brute force cleanup mechanism be applied?</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>
