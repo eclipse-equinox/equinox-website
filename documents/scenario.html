@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>RCP Scenario</title>
+<link rel="stylesheet" title="default" href="http://eclipse.org/default_style.css" type="text/css">
+</head>
+<body>
+<table BORDER=0 CELLSPACING=5 CELLPADDING=2 WIDTH="100%" >
+  <tr> 
+    <td ALIGN=left width="60%">
+      <p><font class=indextop> equinox</font><br>
+        <font class=indexsub> rcp scenario</font></p>
+    </td>
+    <td WIDTH="40%">&nbsp; </td>
+  </tr>
+</table>
+
+<table BORDER=0 CELLSPACING=5 CELLPADDING=2 WIDTH="100%" >
+  <tr> 
+    <td ALIGN=LEFT VALIGN=TOP COLSPAN="2" BGCOLOR="#0080C0"><b><font color="#FFFFFF"> 
+      Introduction</font></b></td>
+  </tr>
+  <tr> 
+    <td> 
+      <p>The Eclipse RCP should allow users to start with a minimal Eclipse install 
+        and incrementally add the function they want. The initial install should 
+        be as small as possible and ideally installed via WebStart or similar 
+        technology. Installing further function can be done using the standard 
+        Eclipse Install/Update support or some other mechanism. This document 
+        details a scenario for running which explores these possibilities.</p>
+      <p>Last update: 2300 November 20, 2003</p>
+    </td>
+  </tr>
+  <tr> 
+    <td ALIGN=LEFT VALIGN=TOP COLSPAN="2" BGCOLOR="#0080C0"><b><font color="#FFFFFF"> 
+      The minimal installs</font></b></td>
+  </tr>
+  <tr> 
+    <td> 
+      <p>A minimal Eclipse RCP install would be headless and include a console 
+        which allows users to install further bundles. Stepping up from this the 
+        install would include a basic GUI based directly on SWT. We will explore 
+        both in this scenario.</p>
+      <h4>Minimal headless install</h4>
+      <p>The minimal headless RCP install includes the following bundles:</p>
+      <ul>
+        <li>org.eclipse.osgi (including console.jar)</li>
+        <li>org.eclipse.osgi.services</li>
+        <li>org.eclipse.osgi.utils</li>
+        <li>org.eclipse.core.runtime.osgi</li>
+      </ul>
+      <h4>Minimal GUI install</h4>
+      <p>The minimal GUI RCP install includes all the headless bundles (though 
+        console.jar is not required) plus the following bundles:</p>
+      <ul>
+        <li>org.eclipse.swt</li>
+        <li>org.eclipse.swt.<i>ws</i> (window system specific bundle)</li>
+        <li>org.eclipse.jface</li>
+        <li>org.eclipse.ui</li>
+        <li>org.eclipse.ui.workbench</li>
+      </ul>
+      </td>
+  </tr>
+  <tr> 
+    <td ALIGN=LEFT VALIGN=TOP COLSPAN="2" BGCOLOR="#0080C0"><b><font color="#FFFFFF"> 
+      Minimal Headless Scenario</font></b></td>
+  </tr>
+  <tr> 
+    <td> 
+      <ol>
+        <li>get and unzip the minimal headless install</li>
+        <li>start eclipse.exe -console</li>
+        <li>in the console type &quot;ss&quot; to get a list of the bundles known 
+          to the runtime</li>
+        <li>install some number of bundles</li>
+        <li>list the bundles installed and discover their state</li>
+        <li>list the products/applications installed and identify one of each/or 
+          both to start or start desired bundles directly</li>
+        <li>use the application started</li>
+        <li>exit the application via its exit mechanism or stop the framework</li>
+      </ol>
+    </td>
+  </tr>
+  <tr> 
+    <td ALIGN=LEFT VALIGN=TOP COLSPAN="2" BGCOLOR="#0080C0"><b><font color="#FFFFFF"> 
+      Minimal GUI Scenario</font></b></td>
+  </tr>
+  <tr> 
+    <td> 
+      <ol>
+        <li>get and unzip the minimal GUI install (or start with the minimal headless 
+          install and use it to install the GUI install manager. goto step 3)</li>
+        <li>start eclipse.exe [-console]</li>
+        <li>in the GUI identify the bundles to install either by file, entered 
+          URL or known URL, click ok</li>
+        <li>select a product and/or application to run using the run menu or start 
+          various bundles directly </li>
+        <li>use the application started</li>
+        <li>exit the application via its exit mechanism or stop the framework</li>
+      </ol>
+    </td>
+  </tr>
+    <tr> 
+    <td ALIGN=LEFT VALIGN=TOP COLSPAN="2" BGCOLOR="#0080C0"><b><font color="#FFFFFF"> 
+      Minimal installer GUI</font></b></td>
+  </tr>
+  <tr> 
+    <td> 
+      <p>The minimal GUI install manager is based on org.eclipse.core.runtime.osgi 
+        and org.eclipse.swt and allows users to:</p>
+      <ul>
+        <li>install/update bundles from the file system (using a file dialog)</li>
+        <li>install/update bundles from a user enteredURL (text entry dialog) 
+        </li>
+        <li>install/update bundles by selecting from a list of known URLs (chooser/drop 
+          down) </li>
+        <li>uninstall bundles (multi-select list and context menu/menu bar/tool 
+          bar)</li>
+        <li>query the framework state including the status of all bundles (list 
+          of bundles with decoration), running application, system properties 
+          (text report)</li>
+        <li> start/stop installed bundles (multi-select list and context menu/menu 
+          bar/tool bar)</li>
+        <li>choose a product and/or application to run (dual list dialog, selection 
+          in one or both then ok)</li>
+        <li>spawn a text based console (requires console.jar be available)</li>
+        <li>stop/restart/refresh the framework</li>
+      </ul>
+    </td>
+  </tr>
+
+</table>
+
+</body>
+</html>
