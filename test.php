@@ -8,7 +8,6 @@
 </head>
 <body>
 
-<!--#include file="nav-include.html"-->
 <?php include("nav-include.html") ?>
 
 <p class=bar>Mission Statement</p>

@@ -7,9 +7,7 @@
 <link rel="stylesheet" href="equinox.css" type="text/css">
 </head>
 <body>
-
-<!--#include file="nav-include.html"-->
-
+<?php include("nav-include.html") ?>
 <p class=bar>Mission Statement</p>
 <p>The goal of the Equinox project is to be a first class OSGi
   community and foster the vision of Eclipse as a landscape of bundles. As part
