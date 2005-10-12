@@ -7,7 +7,6 @@
 <link rel="stylesheet" href="../equinox.css" type="text/css">
 </head>
 <body>
-<center>
 <?php include("nav-include.html") ?>
 
 <p class=bar>Resources</p>
