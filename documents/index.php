@@ -22,8 +22,8 @@
 	  - Programming Eclipse with Eclipse - Jeff McAffer
 	  &amp; Thomas Watson
 	  <ul>
-	    <li><a href="osgicongress2005/coding.swf">Demo 1 movie</a></li>
-	    <li><a href="osgicongress2005/debugging.swf">Demo 2 movie</a></li>
+	    <li><a href="osgicongress2005/coding.html">Demo 1 movie</a></li>
+	    <li><a href="osgicongress2005/debugging.html">Demo 2 movie</a></li>
       </ul>
 	</li>
 	</ul>
