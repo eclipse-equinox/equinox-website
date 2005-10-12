@@ -45,10 +45,13 @@ major releases. The various other bundles developed here may ship independently
     with OSGi.</p>
   <p class=bar>What's New</p>
 <p>
-  <b>Oct 2</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14"> Track
-  the transition details in <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=110486">bugzilla</a>.</p>
-<p> <b>Sept 23</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14"> Equinox
-transition approved!! The infrastructure transition should begin presently.</p>
+  <b>Oct 12</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14"> Two
+  presentations on Eclipse and OSGi at OSGi Congress in Paris now available on
+  the <a href="documents">documents page</a>.</p>
+<p> <b></b><b>Oct 2</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14"> Track
+the transition details in <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=110486">bugzilla</a>.</p>
+<p><b>Sept 23</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14"> Equinox
+  transition approved!! The infrastructure transition should begin presently.</p>
 <p><b>Sept 16</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14"> Transition
     call scheduled for September 23, 2005 at 1800UTC (1400 EST).</p>
 <p><b>Sept 5</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14"> <a href="documents/transition.html">Proposal</a> to

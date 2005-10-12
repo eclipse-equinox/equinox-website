@@ -6,13 +6,7 @@
 <link rel="stylesheet" title="default" href="http://eclipse.org/default_style.css" type="text/css">
 </head>
 <body>
-<center>
-	<font class=indextop>equinox</font><br>
-	<font class=indexsub> eclipse runtime exploration</font><p></p>
-	<a href="index.html">[home]</a>
-	<a href="documents">[documents]</a>
-	<a href="downloads.html">[downloads]</a>
-</center>
+<?php include("nav-include.html") ?>
 <br>
 <table BORDER=0 CELLSPACING=0 CELLPADDING=2 WIDTH="100%" >
   <tr> 
