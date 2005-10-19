@@ -17,7 +17,7 @@
   for the Extenstion registry used throughout Eclipse.</p>
     <p class=bar>What's New</p>
     <p class=bar>Committers</p>
-      <p>The following people are committers on the Equinox bundles area:</p>
+      <p>The following people are committers on the Equinox bundles component:</p>
       <ul>
         <li>Jennifer Fogell, IBM PvC</li>
         <li>BJ Hargrave, IBM PvC</li>

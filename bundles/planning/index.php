@@ -4,7 +4,7 @@
 <title>Equinox Bundles Planning</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 <link rel="stylesheet" href="http://dev.eclipse.org/default_style.css" type="text/css">
-<link rel="stylesheet" href="../equinox.css" type="text/css">
+<link rel="stylesheet" href="../../equinox.css" type="text/css">
 </head>
 <body>
 <?php include("nav-include.html") ?>
@@ -12,7 +12,7 @@
 
 <table BORDER=0 CELLPADDING=2 WIDTH="100%" >
   <tr>
-    <td WIDTH="2%" ALIGN=RIGHT VALIGN=TOP><img SRC="images/Adarrow.gif" BORDER=0 height=16 width=16></td>
+    <td WIDTH="2%" ALIGN=RIGHT VALIGN=TOP><img SRC="../../images/Adarrow.gif" BORDER=0 height=16 width=16></td>
     <td><b>3.2 Release</b>
         <ul>
           <li><a href="3.2/plan.html">General 3.2 Equinox Bundles Plan</a></li>
