@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="../../equinox.css" type="text/css">
 </head>
 <body>
-<?php include("nav-include.html") ?>
+<?php include("../nav-include.html") ?>
 <p class=bar>Planning</p>
 
 <table BORDER=0 CELLPADDING=2 WIDTH="100%" >
