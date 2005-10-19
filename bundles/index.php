@@ -15,7 +15,7 @@
   team defines and produces bundles and services that are of general utility
   to OSGi systems and programmers. For example, the Bundles team is responsible
   for the Extenstion registry used throughout Eclipse.</p>
-<p class=bar>Bundle Projects</p>
+<p class=bar><a name="bundleprojects"></a>Bundle Projects</p>
 <p>The Bundles component consists of several &quot;projects&quot; in the Eclipse
   CVS repository (see the <a href="resources.php">resources</a> page for information
   on repository location and access). In general the name of the project matches

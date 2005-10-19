@@ -42,7 +42,8 @@
           <p>:pserver:anonymous@dev.eclipse.org/eclipse</p>
         </blockquote>
         <p>The Equinox work goes on in various folders as appropriate for the
-      bundles being developed. </p></td>
+      bundles being developed. For details, see the list of <a href="index.php#bundleprojects">Framework
+      projects</a>.</p></td>
   </tr>
 	<tr>
       <td align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>

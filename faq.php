@@ -38,12 +38,12 @@
   </tr>
   <tr> 
     <td align=RIGHT valign=TOP><b>Q.</b></td>
-    <td > 
-      <p><b>What is <em>Phase 2</em> of Equinox?</b><br>
+    <td >      <p><b>What is <em>Phase 2</em> of Equinox?</b><br>
         The first main thrust of Equinox was to produce a new runtime for Eclipse.
-          This was completed with the release of Eclipse 3.0. Phase 2 collectively
-          refers to the work in Equinox which started after Eclipse 3.0 was released
-          (June 2004).</p>
+          That first phase was completed with the release of Eclipse 3.0. <em>Phase
+          2</em> collectively refers to the work in Equinox which started after
+          Eclipse 3.0 was released
+          (June 2004) and continues on today in the <a href="incubator">incubator</a>.</p>
     </td>
   </tr>
   <tr> 
@@ -58,11 +58,10 @@
   </tr>
   <tr> 
     <td align=RIGHT valign=TOP><b>Q.</b></td>
-    <td> 
-      <p><b>Is there still innovation and research going on in Equinox?</b><br>
+    <td>      <p><b>Is there still innovation and research going on in Equinox?</b><br>
         Yes! The original mandate of the Equinox project was to investigate and
           prototype new runtime technologies. That mission continues today in
-          the Equinox incubator component. </p>
+          the <a href="incubator">Equinox incubator</a> component. </p>
     </td>
   </tr>
   <tr> 

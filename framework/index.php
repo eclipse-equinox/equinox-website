@@ -14,7 +14,7 @@
   produces launchers, bootstrap infrastructure and application models that facilitate
   the use of Equinox OSGi in end-user product scenarios.</p>
 
-<p class=bar>Framework Projects</p>
+<p class=bar><a name="frameworkprojects"></a>Framework Projects</p>
 <p>The Framework component consists of several &quot;projects&quot; in the Eclipse CVS
   repository (see the <a href="resources.php">resources</a> page for information on repository location and
   access).</p>
