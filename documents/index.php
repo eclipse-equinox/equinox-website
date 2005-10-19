@@ -23,8 +23,10 @@
 	  Eclipse</a> - Jeff McAffer
 	  &amp; Thomas Watson
 	  <ul>
-	    <li><a href="osgicongress2005/coding.html">Coding bundles on the Slug</a></li>
-	    <li><a href="osgicongress2005/debugging.html">Remote debugging on the Slug</a></li>
+	    <li><a href="osgicongress2005/coding.html">Coding bundles on the Slug</a> (demo
+	      movie)</li>
+	    <li><a href="osgicongress2005/debugging.html">Remote debugging on the Slug</a> (demo
+	      movie)</li>
       </ul>
   </li>
 </ul>
