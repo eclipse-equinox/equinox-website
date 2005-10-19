@@ -17,16 +17,17 @@
 <p class=bar>Presentations</p>
 <ul>
 	<li><a href="http://osgicongress.com">OSGi Developer Forum 2005</a> (October)
-	  - Eclipse the Rich Client Platform - Jeff McAffer</li>
+	  - <a href="osgicongress2005/mcaffer_1012_1530.pdf">Eclipse the Rich Client Platform</a> - Jeff McAffer</li>
 	<li><a href="http://osgicongress.com">OSGi Developer Forum 2005</a> (October)
-	  - Programming Eclipse with Eclipse - Jeff McAffer
+	  - <a href="osgicongress2005/mcaffer_1013_1330.pdf">Programming Eclipse with
+	  Eclipse</a> - Jeff McAffer
 	  &amp; Thomas Watson
 	  <ul>
-	    <li><a href="osgicongress2005/coding.html">Demo 1 movie</a></li>
-	    <li><a href="osgicongress2005/debugging.html">Demo 2 movie</a></li>
+	    <li><a href="osgicongress2005/coding.html">Coding bundles on the Slug</a></li>
+	    <li><a href="osgicongress2005/debugging.html">Remote debugging on the Slug</a></li>
       </ul>
-	</li>
-	</ul>
+  </li>
+</ul>
 
 
 <p class=bar>Related Documents</p>
