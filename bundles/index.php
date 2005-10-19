@@ -16,5 +16,16 @@
   to OSGi systems and programmers. For example, the Bundles team is responsible
   for the Extenstion registry used throughout Eclipse.</p>
     <p class=bar>What's New</p>
+    <p class=bar>Committers</p>
+      <p>The following people are committers on the Equinox bundles area:</p>
+      <ul>
+        <li>Jennifer Fogell, IBM PvC</li>
+        <li>BJ Hargrave, IBM PvC</li>
+		<li>DJ Houghton, IBM Rational</li>
+		<li>Jeff McAffer, IBM Rational (Project lead)</li>
+        <li>Pascal Rapicault, IBM Rational</li>
+        <li>Tom Watson, IBM PvC</li>
+      </ul>
+
 </body>
 </html>

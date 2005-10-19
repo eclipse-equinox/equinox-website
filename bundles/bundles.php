@@ -7,17 +7,7 @@
 <link rel="stylesheet" href="../equinox.css" type="text/css">
 </head>
 <body>
-<center>
-	<font class=indextop>equinox bundles</font><br>
-    <font class=indexsub>a library of OSGi bundles</font>
-    <p></p>
-	<a href="index.html">[home]</a>
-	<a href="../faq.php">[documents]</a>
-	<a href="../downloads.html">[downloads]</a>
-	<a href="bundles.html">[bundles]</a>
-	<a href="resources.html">[resources]</a>
-	<a href="../documents">[faq]</a>
-</center>
+<?php include("nav-include.html") ?>
 <p class=bar>Bundles</p>
 <table BORDER=0 CELLSPACING=5 CELLPADDING=2 WIDTH="100%" >
   <tr>

@@ -14,10 +14,17 @@
   produces launchers, bootstrap infrastructure and application models that facilitate
   the use of Equinox OSGi in end-user product scenarios.</p>
     <p class=bar>What's New</p>
-<p>
-  <b>Oct 12</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14"> Two
-  presentations on Eclipse and OSGi at OSGi Congress in Paris now available on
-  the <a href="documents">documents page</a>.</p>
+
+<p class=bar>Committers</p>
+      <p>The following people are committers on the Equinox project:</p>
+      <ul>
+        <li>Jennifer Fogell, IBM PvC</li>
+        <li>BJ Hargrave, IBM PvC</li>
+        <li>DJ Houghton, IBM Rational</li>
+        <li>Jeff McAffer, IBM Rational (Project lead)</li>
+        <li>Pascal Rapicault, IBM Rational</li>
+        <li>Tom Watson, IBM PvC</li>
+      </ul>
 
 </body>
 </html>
