@@ -15,7 +15,7 @@
     <td WIDTH="2%" ALIGN=RIGHT VALIGN=TOP><img SRC=../../images/Adarrow.gif BORDER=0 height=16 width=16></td>
     <td><b>3.2 Release</b>
         <ul>
-          <li><a href="3.2/plan.html">General 3.2 Equinox Framework Plan</a></li>
+          <li><a href="3.2/plan.php">General 3.2 Equinox Framework Plan</a></li>
           <li>Check out the <a href="documents.html">documents</a> page for links
             to some of the major items that we are working on.</li>
         </ul>
