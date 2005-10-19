@@ -33,7 +33,7 @@
 	<tr>
       <td align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
       <td>
-        <p><a href="http://dev.eclipse.org/viewcvs/indextech.cgi/org.eclipse.equinox" target="_top"><b>CVS</b></a><br>
+        <p><a href="http://dev.eclipse.org/viewcvs/index.cgi/" target="_top"><b>CVS</b></a><br>
       The Equinox Framework code repository is part of the normal Eclipse project
         repository and is available via <a href="http://dev.eclipse.org/viewcvs/index.cgi/">web
         access</a> or direct CVS access. For direct access, use anonymous login

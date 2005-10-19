@@ -9,7 +9,15 @@
 <body>
 <?php include("nav-include.html") ?>
 <p class=bar>Mission Statement</p>
-<p><strong>Note: The role of Equinox is currently in flux. See the <a href="../documents/transition.html">Transition
-  Proposal</a>  for more details.</strong></p>
+<p>The Equinox Framework component is tasked with being a full implementation
+  to the OSGi Core Framework R4 specification. In addition, the Framework component
+  produces launchers, bootstrap infrastructure and application models that facilitate
+  the use of Equinox OSGi in end-user product scenarios.</p>
+    <p class=bar>What's New</p>
+<p>
+  <b>Oct 12</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14"> Two
+  presentations on Eclipse and OSGi at OSGi Congress in Paris now available on
+  the <a href="documents">documents page</a>.</p>
+
 </body>
 </html>
