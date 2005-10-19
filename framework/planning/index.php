@@ -12,7 +12,7 @@
 
 <table BORDER=0 CELLPADDING=2 WIDTH="100%" >
   <tr>
-    <td WIDTH="2%" ALIGN=RIGHT VALIGN=TOP><img SRC=../../"images/Adarrow.gif" BORDER=0 height=16 width=16></td>
+    <td WIDTH="2%" ALIGN=RIGHT VALIGN=TOP><img SRC=../../images/Adarrow.gif BORDER=0 height=16 width=16></td>
     <td><b>3.2 Release</b>
         <ul>
           <li><a href="3.2/plan.html">General 3.2 Equinox Framework Plan</a></li>
