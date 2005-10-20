@@ -12,6 +12,7 @@
 <p class=bar>Documents</p>
 
 <ul>
+	<li><a href="plugin-versioning.html">Recommendation to version plug-ins</a></li>
 	<li>Minimal install scenario</li>
 </ul>
 <p class=bar>Presentations</p>

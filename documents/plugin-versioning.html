@@ -1,0 +1,308 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN2">
+<html>
+<head>
+<title>Plug-in Versioning</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Style-Type" content="text/css">
+    <link href="http://dev.eclipse.org/default_style.css" rel="stylesheet" type="text/css">
+</head>
+<body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td style="background:#0080C0"><b><span style="color:white">Proposal</span></b></td></tr>
+</table>
+<h1>Eclipse Plug-in Versioning</h1>
+<blockquote> 
+  <p><b>Summary</b> <br>
+  The Eclipse team currently changes their plug-in version numbers to match each
+    major release of Eclipse (e.g., 2.1, 3.0). This is a convenient
+    way of understanding the origin of plug-ins but does not capture the actual
+    semantics of the changes that occurred. Here we outline the current use of version numbers
+    and propose guidelines for using plug-in
+    version numbering to better indicate levels of compatibility.</p>
+    <p><b>By Pascal Rapicault, Mike Wilson, John Arthorne, Jeff McAffer, IBM</b></p>
+  <p>Last Modified:
+    October 20, 2005</p>
+</blockquote>
+
+<h2>Problem Definition</h2>
+<p>Current Eclipse practice calls for the teams to increment plug-in version
+  numbers to match the upcoming release of Eclipse. For example, during the eclipse 3.1 development
+cycle, our plug-in version numbers went from 3.0.0 to 3.1.0, such that when we  
+  delivered Eclipse 3.1 all plug-ins (save a few third party ones) were versioned as 
+3.1.0. This is convenient because it allows people to look at the plug-in version
+number and immediately understand what version of Eclipse that plug-in is from.</p>
+<p>This approach has several drawbacks:</p>
+<ul>
+  <li>The arbitrary change of a version number creates artificial incompatibilities for 
+plug-ins properly expressing their prerequisites.
+For example, in eclipse 3.0, even though org.eclipse.core.resources only received minor bug fixes, 
+its version has been set to 3.0.0 thus unnecessarily forcing people relying on the version 2.1.0
+to release a new version of their plug-in.</li>
+
+  <li>This approach does not set a good example. People building on top of
+      Eclipse look to us to understand how they should structure their work.
+    If the community followed the eclipse way and changed the version number on each release, 
+    plug-ins like EMF and GEF would have incremented their version numbers to match the 
+    Eclipse version numbers regardless of whether they had changed
+    at all. In addition to causing the problem outlined in the previous point, it also does not 
+    scale well as a small change at the bottom 
+    ripples all the way up.</li>
+
+   <li>Because plug-in versions are not incremented on a per build basis, the update
+    manager can not be used to deliver plug-ins and thus is not exercised by the development team.</li>
+
+</ul>
+
+<h2>Proposal</h2>
+<p>The following proposal is twofold:
+<ul>
+  <li>first it provides guidelines on how plug-in versions should be used</li>
+  <li>second it provides guidelines on how feature versions should be used as well as proposes some improvements to the feature mechanism</li>
+</ul>
+</p>
+<h3>Guidelines on versioning plug-ins</h3>
+<p>This section contains a set of guidelines expressing how to evolve plug-in version numbers in a way that captures the nature
+of the changes that have been made. </p>
+<p>
+Reminder: in eclipse, version numbers are composed of four (4) segments: 3 integers and a string respectively named major.minor.service.qualifier.
+</p>
+Each segment captures a different intent:
+	<ul>
+	<li> the major segment indicates breakage in the API </li>
+	<li> the minor segment indicates "externally visible" changes</li>
+	<li> the service segment indicates bug fixes and the change of development stream (the semantics attached to development stream is new to this proposal, see below)</li>
+	<li> the qualifier segment indicates a particular build</li>    
+	</ul>
+
+	
+<h4>When to change the major segment</h4>
+<p>The major segment number should be increased when a plug-in changes in a non binary compatible way. When the major segment is changed
+the minor and service segments are reset to 0.<br/>
+<b>Example</b>: From the version 2.2.7, an incompatible change would lead to 3.0.0.<br/>
+By definition, such changes should not be made when working in a maintenance stream.</p>
+
+<h4>When to change the minor segment</h4>
+The minor segment number should be incremented when a plug-in changes in an "externally visible" way. Examples of externally visible
+changes include binary compatible API changes, significant performance changes, major code rework, etc. Another way to know when this version number 
+should be changed is by exclusion: it should indicate changes that are neither bug fixes (indicated by the service segment) 
+nor breaking API changes (indicated by the major segment). When the minor segment is changed, the service segment 
+is reset to 0.<br/>
+<b>Example</b>: From the version 2.2.7, a minor change would lead to 2.3.0.<br/>
+Such changes would not typically be made when working in a maintenance stream.<br/>
+
+
+<h4>When to change the service segment</h4>
+The service segment number should be changed to indicate that bug fixes have occurred in a plug-in. <br>
+What is new in this proposal is that in addition, incrementing the version number by one hundred (100) indicates the changes of developement stream.
+This increment must be done when the first bug fix is done in a new development stream.
+This practice makes it easy to manage one line of 
+descent after a release and still guarantee that plug-ins coming in 
+the next release will have a higher version number than ones from 
+maintenance releases (thus enabling the usage of update manager from maintenance 
+releases to the new releases).<br/>
+<b>Example</b>: At the end of the development stream N, the version of the plug-in P is 2.4.8. When P receives its first bug fix in the development
+stream N+1 or higher, then the version should be changed to 2.4.108. If P version 2.4.8 needs to receive a bug fix in the maintenance stream started
+from N, then its version number will be 2.4.9.
+</p>
+
+<h4>Overall example</h4>
+This example shows how the version of a plug-in reacts to changes (indicated in parenthesis) in the context of different development stream
+<pre>
+First development stream
+ - 1.0.0
+
+Second development stream
+ - 1.0.100 (indicates a bug fix)
+ - 1.1.0 (a new API has been introduced)
+ The plug-in ships as 1.1.0
+
+Third development stream
+ - 1.1.100 (indicates a bug fix)
+ - 2.0.0 (indicates a breaking change)
+ The plug-in ships as 2.0.0
+
+Maintenance stream after 1.1.0
+ - 1.1.1
+ The plug-in ships as 1.1.0
+
+</pre>
+
+
+<h4> When to change the qualifier segment</h4>
+<p>Because changing the version number of a plug-in on every commit can be burdensome to the development team, we recommend only applying the previous 
+guidelines once per release cycle. However, since we want to enable the use of the update manager by the development teams, we will use the qualifier 
+segment to indicate changes between builds.</p>
+
+<p>Since Eclipse 3.1, PDE Build can automatically derive the value of the qualifier from the tag associated with the plug-in
+in the map file that has been fed as input to the build. This leaves the responsibility to the developer preparing the input for the build 
+to tag their plug-ins with a value that is lexicographically higher than the previous one. To facilitate this, we recommend the usage of the 
+date formatted as YearMonthDay or a number that you increment everytime.<br/> 
+<b>Example</b>: The map file for the plug-in P indicates v20050506, and P's version is 4.2.3. The resulting fully qualified version number would be
+4.2.3.v20050506.<br/>
+Deriving the qualifier from the build input offers the advantage that if the plug-in code has not changed, no new version will be created
+and therefore update manager won't download the plug-in again.</p>
+
+
+
+<h4>How to specify plug-in requirements</h4>
+<p>Plug-ins that require other plug-ins must qualify their requirements with a version range since the absence of a version range means that any version 
+can satisfy the dependency. Given that all the changes between the version x.0.0 and the version x+1.0.0 excluded must be compatible 
+(given the previous guidelines); the recommended range includes the minimal required version up-to but not including the next major release.<br/>
+<b>Example</b> JFace 3.1.0 should probably express the following requirement on SWT: [3.1.0, 4.0.0).</p>
+
+<p>Also, while setting values for prerequisites, watch for opportunities to widen the set of plug-ins against which a plug-in can work.<br/>
+<b>Example</b>: A plug-in using basic functions from the job API, may express a dependency on runtime 3.0.0 ( [3.0.0, 4.0.0) ) instead of 3.1.0 ( [3.1.0, 4.0.0) ).
+</p>
+
+
+<h4>How to specify versions when plug-ins re-export other plug-ins</h4>
+<p>Plug-ins re-exporting other plug-ins tie themselves to the re-exported plug-ins, since they are making the re-exported plug-ins part of their API.
+Therefore, the version of such plug-ins must indicate the most significant type of change between all the plug-ins they re-export and the changes made locally.
+<br/>
+<b>Example</b>: JFace 8.4.2 re-exports SWT 1.1.1 and Commands 2.2.2.<br/>
+Case 1: if Commands increases its service segment to 2.2.3, JFace version does not need to change.<br/>
+Case 2: if Commands increases its service segment to 2.2.3, and SWT its minor segment to 1.2.0, JFace version would be 8.5.0.<br/>
+Case 3: if JFace makes incompatible changes, JFace would change to 9.0.0 covering changes from re-exported plug-ins.<br/>
+</p>
+
+<h4>How to version packages</h4>
+<p>Exported packages being used as service APIs must have a version number. The guidelines to evolve those version numbers are the same as for plug-ins. 
+For plug-ins importing individual packages, you should follow the same guidelines as when requiring a plug-in to specify the version range of packages being imported.</p>
+
+<h4>Which version to use in javadoc tags</h4>
+<p>In the javadoc, @since tags are used to indicate the version of a <b>plug-in</b> in which a specific API has been added. Because javadoc
+describes API, only the first two segment of the plug-in version number should be used. This represents a change
+with the current practice where @since indicates the development stream. In addition to using the plug-in version, we recommend to prefix
+the version number by the plug-in id. This allows to track APIs moving from a plug-in to another (this can happen when a plug-in is split
+into multiple plug-ins but the package names are kept).<br/>
+<b>Example</b>: In the 3.2 development stream, the API of the new plug-in org.eclipse.core.filesystem should be tagged as follows:<br/>
+/**<br/>
+ * This class is the main entry point for clients of the Eclipse file system API.  This<br/>
+ * class has factory methods for obtaining instances of file systems and file<br/>
+ * stores, and provides constants for option values and error codes.<br/>
+ * <br/>
+ * This class is not intended to be instantiated or subclassed.<br/>
+ * <br/>
+ * <b>@since org.eclipse.core.filesytem 1.0</b><br/>
+ */<br/>
+</p>
+
+<h3>Versioning features</h3>
+<p>Features are a grouping mechanism that supports reasoning in terms of sets of plug-ins. Therefore, features hide the plug-in boundaries 
+of the plug-ins they contain
+and act as if their API was the set of all the APIs of all the consituting plug-ins.
+Because of this, features are akin to plug-ins re-exporting other plug-ins and should follow the same versioning guidelines.
+</p>
+<p>To avoid the brittleness caused by version changes in required features, we recommend feature authors favor the expression
+of their dependencies at the plug-in level, rather than at the feature level. To be more precise, all the immediate plug-ins required by 
+the plug-ins included in a feature should be listed as plug-in prerequisite of the feature. This approach has the benefit of isolating feature
+authors from changes that do not impact them.</p>
+<b>Example</b> 
+<pre>
+ Case 1: Today the feature org.eclipse.gef is as follows:
+    requires feature org.eclipse.platform	3.1.0
+    contains plugins:
+      org.eclipse.draw2d	3.1.0
+      org.eclipse.gef		3.1.0
+ 
+ Case 2: In the new model it should be:
+     requires feature org.eclipse.platform	3.1.0
+     contains plugins:
+       org.eclipse.draw2d	3.1.0
+       org.eclipse.gef		3.1.0  
+     requires plugins:
+       org.eclipse.core.runtime [3.1.0, 4.0.0)
+       org.eclipse.ui.views     [3.1.0, 4.0.0)
+       org.eclipse.ui.workbench [3.1.0, 4.0.0)
+       org.eclipse.jface        [3.1.0, 4.0.0)
+       org.eclipse.swt		[3.1.0, 4.0.0)
+
+</pre>
+In case 1, if the version of the org.eclipse.platform feature changes to 4.0.0 (because org.eclipse.core.resources changes
+its major version number), org.eclipse.gef is required to deliver a new version of its features. In case 2, such changes are transparent
+to the author of gef.
+<p/>
+
+
+<h3>"Warm fuzzy" feeling</h3>
+<p>When version numbers are evolving all at once, looking at the feature version is enough to understand which eclipse build is
+being run (1). However, this is no longer possible because versions evolve independently. To address this problem we are proposing
+the introduction of a so called "marketing" string that will 
+be used to show a more "meaningful to the end user" number (for example the name of the "eclipse train", see bug #108146). 
+It is important to note that no semantics can be attached to this string nor can it be used to express dependency among features.
+<br/>
+
+<b>Example</b>: The version number of the platform feature could be 3.1.7.v20051010 allowing the precise capture of dependencies among
+features, and the marketing string could be still be 3.1 or even "Zebra".
+<br/>
+(1) This has never been completly true as some plugins do not have matching numbers (e.g., lucene, tomcat, junit...),
+and no warmth is generated regarding additions or deletions of plugins or features.
+</p>
+
+
+<h2>Transitioning</h2>
+<p>If we decide to follow these new guidances, we can retrofit the 3.2
+  plug-ins with &quot;correct&quot; version numbers. 
+  Starting now avoids the situation where Eclipse 3.1 based plug-ins do not
+  work on the released 3.2 because of resolution problems (rather than because
+  of actual incompatibilities).</p>
+
+This effort needs to be coordinated inside each deliverable (one deliverable being SDK, or GEF, or EMF...) by a person
+that will be responsible for telling each plug-in owner when to change their version numbers.
+<p>
+<b>Updating the plug-ins</b>
+<p>
+<ol>
+<li>Wait until all the plug-ins you rely on have their correct version number.</li>
+<li>Set your version number correctly using the guidelines previously described, review your code change since the beginning of the 3.2 development 
+cycle and decide if your version number should be 3.1.x+100 or 3.2.0. Be careful to not forget about the re-exported plug-ins.</li>
+<li>Suffix the version number of your plug-in by ".qualifier" (e.g.., 3.1.100.qualifier) to enable the qualifier generation by PDE Build</li>
+<li>Set your prerequisite correctly using the guidelines previously described.</li>
+</ol>
+<p>
+
+<b>Updating feature version number</b>
+<ol>
+<li>The feature version number can be modified once all the plug-ins included in the feature and all the features included in that feature have been modified. 
+This is a manual step and could eventually be tooled (see bug #111543)</li>
+<li>The list of required plug-ins will be computed automatically based on the set of plug-ins included in the feature (see bug #111541).</li>
+</ol>
+
+
+<h2>Known limitations</h2>
+<h3>One branch of descent</h3>
+The solution proposed for changing the service segment after a release makes the management of multiple lines of descent hard to deal 
+with (but not impossible -- to work around this, one may decide to increment the qualifier by more than 100 if they know that there will 
+be multiple lines of descent). 
+Having looked at how plug-ins evolve in the eclipse eco-systems we believe this restriction is not likely to cause problems for us.
+
+<h3>Generation of qualifiers</h3>
+<p>For teams not using a map file-like mechanism, PDE build will generate a value derived from the date and time of day. Doing this is, however, not recommended since 
+even plug-ins whose code has not been changed yet will be given a new qualifier causing update to unnecessarily download the binary.
+</p>
+<p>For teams having a mechanism other than map files, the build can be provided with a file where the value of qualifier will be read.</p>
+
+
+<h3>Features semantics</h3>
+These recommendations represent a shift in the way features are being used, and will require
+some adaptations in the syntax and in the code (see list below). In fact, this proposal acknowledges the fact that plug-ins are 
+the only things that matter.
+<p>
+Here is an outline of the changes that would be required:
+<ul>
+<li>Enhancement of the feature syntax to support a marketing string.</li>
+<li>The usage of "required feature" is changed, such that requirements on features do not have to be satisfied as long 
+as the plug-ins that are required by a feature are present.<br/>
+<b>Example</b>: In the GEF example, if runtime, views, workbench, jface and swt are present, then the gef feature can be installed.
+</li>
+
+<li>The expression of required features becomes a hint for the update manager to know where to get missing plug-ins if they are not present.<br/>
+<b>Example</b>: In the GEF example, if any of runtime, views, workbench, jface or swt is not present, update manager should go 
+and download the complete 3.1.0 platform feature or higher.</li>
+
+<li>The expression of required plug-ins must be enhanced to support version ranges</li>
+</ul>
+Note that these enhancements are not required to move forward with this proposal.
+</body>
+</html>
