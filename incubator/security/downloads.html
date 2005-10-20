@@ -1,4 +1,4 @@
-<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<!-- tpl:insert page="/incubator/security/equinox.htpl" --><!doctype html public "-//w3c//dtd html 4.0 transitional//en">
 <html>
 <head>
 <title>Equinox Security Home</title>
@@ -103,7 +103,18 @@ a.nav:hover { text-decoration: underline; color: "#000000"; }
 </td>
 <!--  start of main content  -->
 <td bgcolor="white" valign="top" >
-<!-- tpl:insert attribute="bodyarea" -->Default content of bodyarea<!-- /tpl:insert -->
+<!-- tpl:put name="bodyarea" -->
+				<TABLE border="0" cellspacing="0" cellpadding="2" width="100%">
+					<TR>
+						<TD align="LEFT" valign="TOP" colspan="2" bgcolor="#0080C0"><B><FONT
+							color="#FFFFFF"> Downloads</FONT></B></TD>
+					</TR>
+				</TABLE>
+				<BR>
+				<IMG border="0" src="EJS/rcp/u011ani.gif" width="63" height="63"><UL>
+					<LI><FONT color="silver">RCP 3.1</FONT></LI>
+				</UL>
+				<BR><!-- /tpl:put -->
 <!--  end of main content -->
 </td>
 </tr>
@@ -112,3 +123,4 @@ a.nav:hover { text-decoration: underline; color: "#000000"; }
 </body>
 </html>
 
+<!-- /tpl:insert -->
