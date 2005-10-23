@@ -7,18 +7,7 @@
 <link rel="stylesheet" href="../equinox.css" type="text/css">
 </head>
 <body>
-<center>
-	<font class=indextop>equinox osgi</font> <br>
-	<font class=indexsub> advancing OSGi</font>
-	<p></p>
-	<a href="index.html" target="_top">[home]</a>
-	<a href="../documents">[documents]</a>
-	<a href="http://download.eclipse.org/eclipse/equinox">[downloads]</a>
-	<a href="areas.html">[work areas]</a>
-	<a href="resources.html">[resources]</a>
-	<a href="../faq.php">[faq]</a>
-</center>
-
+<?php include("nav-include.html") ?>
 <p class=bar>Resources</p>
 
 <table BORDER=0 CELLSPACING=5 CELLPADDING=2 WIDTH="100%" >
@@ -43,28 +32,27 @@
   </tr>
 	<tr>
       <td align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-      <td><a href=archive/index.html target="_top"><b>Archives</b></a><br>
+      <td><a href=archive target="_top"><b>Archives</b></a><br>
     Past content from the Equinox Incubator web site</td>
   </tr>
 	<tr>
       <td align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
       <td>        <p><a href="http://dev.eclipse.org/viewcvs/indextech.cgi/org.eclipse.equinox" target="_top"><b>CVS</b></a><br>
-      The Equinox Incubator code repository is available via <a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator">web
-      access</a> or direct CVS access. For direct access, use anonymous login
-      to the CVS repo</p>
+      The Equinox Incubator code repository is part of the normal Eclipse project
+        repository and is available via <a href="http://dev.eclipse.org/viewcvs/index.cgi/">web
+        access</a> or direct CVS access. For direct access, use anonymous login
+        to the CVS repo</p>
         <blockquote>
           <p>:pserver:anonymous@dev.eclipse.org/eclipse</p>
         </blockquote>
         <p>The Equinox Incubator work goes on in the </p>
         <blockquote>
           <p>equinox-incubator</p>
-        </blockquote>        <p> directory/module.
-              Note that most work is done in various branches rather than HEAD.</p></td>
-  </tr>
-	<tr>
-      <td align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-      <td><a href="committers.html" target="_top"><b>Committers</b></a><br>
-    The people actively working in the Equinox Incubator</td>
+        </blockquote>
+        <p> directory/module. Note that most work is done in various branches
+          rather than HEAD. See the individual <a href="index.php#workareas">work-area
+          home pages</a> for details.</p>
+      </td>
   </tr>
 </table>
 
