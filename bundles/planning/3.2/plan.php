@@ -12,7 +12,7 @@
 
 <table BORDER=0 CELLPADDING=2 WIDTH="100%" >
   <tr>
-    <td ALIGN=RIGHT VALIGN=TOP><img SRC="../../images/Adarrow.gif" BORDER=0 height=16 width=16></td>
+    <td ALIGN=RIGHT VALIGN=TOP><img SRC="../../../images/Adarrow.gif" BORDER=0 height=16 width=16></td>
     <td><b>Standalone OSGi support</b>
         <ul>
           <li><img src="../../../images/small_progress.gif" width="14" height="5"> Refactor
@@ -21,7 +21,7 @@
     </td>
   </tr>
   <tr>
-    <td ALIGN=RIGHT VALIGN=TOP><img SRC="../../images/Adarrow.gif" BORDER=0 height=16 width=16></td>
+    <td ALIGN=RIGHT VALIGN=TOP><img SRC="../../../images/Adarrow.gif" BORDER=0 height=16 width=16></td>
     <td><b>Increased flexibility</b>
         <ul>
           <li><img src="../../../images/small_progress.gif" width="14" height="5"> Refactor
@@ -30,7 +30,7 @@
     </td>
   </tr>
   <tr> 
-    <td ALIGN=RIGHT VALIGN=TOP WIDTH="2%"><img SRC="../../images/Adarrow.gif" BORDER=0 height=16 width=16></td>
+    <td ALIGN=RIGHT VALIGN=TOP WIDTH="2%"><img SRC="../../../images/Adarrow.gif" BORDER=0 height=16 width=16></td>
     <td><b>Adopt OSGi standard services </b>
       <ul>
         <li><img src="../../../images/small_progress.gif" width="14" height="5"> Use

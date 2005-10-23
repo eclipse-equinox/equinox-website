@@ -41,7 +41,7 @@ major releases. The various other bundles developed here may ship independently
     and use these individually or together.</p>
   <p>See the <a href="quickstart.html">Quick Start Guide</a> for how to get up and running with the standalone
     Equinox OSGi framework. </p>
-  <p>See the <a href="downloads.html">downloads</a> page for more information on acquiring bundles for use
+  <p>See the <a href="http://download.eclipse.org/eclipse/equinox">downloads</a> page for more information on acquiring bundles for use
     with OSGi.</p>
   <p class=bar>What's New</p>
 <p>

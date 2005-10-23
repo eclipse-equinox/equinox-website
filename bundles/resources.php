@@ -45,11 +45,6 @@
       bundles being developed. For details, see the list of <a href="index.php#bundleprojects">Bundle
       projects</a>.</p></td>
   </tr>
-	<tr>
-      <td align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-      <td><a href="committers.php" target="_top"><b>Committers</b></a><br>
-    The people working on the Equinox Framework</td>
-  </tr>
 </table>
 
 
