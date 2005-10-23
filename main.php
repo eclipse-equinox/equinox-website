@@ -9,15 +9,19 @@
 <body>
 <?php include("nav-include.html") ?>
 <p class=bar>Mission Statement</p>
-<p>The goal of the Equinox project is to be a first class OSGi
-  community and foster the vision of Eclipse as a landscape of bundles. As part
-  of this, it is responsible for developing and delivering the OSGi framework
-  implementation
-  used for all
-  of
-  Eclipse. In addition. the
-  project
-  is open to:</p>
+<p>From a code point of view, Equinox is an implementation of the <a href="http://osgi.org/osgi_technology/download_specs.asp?section=2#Release4">OSGi
+    R4 core framework specification</a>, a set of bundles that implement
+    various optional OSGi services and other infrastructure for running OSGi-based
+    systems.</p>
+<p>More generally, the goal of the Equinox project is to be a first class OSGi
+    community and foster the vision of Eclipse as a landscape of bundles. As
+  part of this, it is responsible for developing and delivering the OSGi framework
+    implementation
+    used for all
+    of
+    Eclipse. In addition. the
+    project
+    is open to:</p>
 <ul>
   <li>Implementation of all aspects of the OSGi specification (including the MEG
   and VEG work) </li>
@@ -35,14 +39,15 @@ major releases. The various other bundles developed here may ship independently
   and on different schedules. 
   <p>Did you come here expecting to find the Equinox Technology project? It has
   been transitioned. See the <a href="documents/transition.html">transition documentation</a> for more details.</p>
-  <p class=bar>What is Equinox</p>
-  <p> In short, Equinox is an implementation of the OSGi R4 framework specification
-    and a set of bundles that implement the optional OSGi services. You can get
-    and use these individually or together.</p>
-  <p>See the <a href="quickstart.html">Quick Start Guide</a> for how to get up and running with the standalone
-    Equinox OSGi framework. </p>
-  <p>See the <a href="http://download.eclipse.org/eclipse/equinox">downloads</a> page for more information on acquiring bundles for use
-    with OSGi.</p>
+  <p class=bar>Getting Started and Getting Involved</p>
+  <p>The easiest way to get involved in Equinox is to try it out. See the <a href="quickstart.html">Quick
+      Start Guide</a> for how to get up and running with the standalone
+  Equinox OSGi framework and  the <a href="http://download.eclipse.org/eclipse/equinox">downloads</a> page
+  for more information on acquiring various Equinox OSGi bundles.</p>
+  <p>If you want to find out more, ask questions, report bugs, get (or contribute
+    :-) code, check out the <a href="resources.php">community
+      resources</a> and look into the work going on in the <a href="framework">framework</a>, <a href="bundles">bundles</a> or <a href="incubator">incubator</a> components
+  of Equinox.</p>
   <p class=bar>What's New</p>
 <p>
   <b>Oct 12</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14"> Two
@@ -57,7 +62,6 @@ the transition details in <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id
 <p><b>Sept 5</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14"> <a href="documents/transition.html">Proposal</a> to
   transition Equinox from the Technology PMC to the Eclipse PMC and have it be
   the official home of OSGi at Eclipse.</p>
-<p>&nbsp;</p>
 <p>&nbsp;</p>
 </body>
 </html>
