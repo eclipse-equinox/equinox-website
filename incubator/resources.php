@@ -43,7 +43,7 @@
         access</a> or direct CVS access. For direct access, use anonymous login
         to the CVS repo</p>
         <blockquote>
-          <p>:pserver:anonymous@dev.eclipse.org/eclipse</p>
+          <p>:pserver:anonymous@dev.eclipse.org/cvsroot/eclipse</p>
         </blockquote>
         <p>The Equinox Incubator work goes on in the </p>
         <blockquote>

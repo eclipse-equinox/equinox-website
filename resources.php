@@ -39,7 +39,7 @@
         access</a> or direct CVS access. For direct access, use anonymous login
         to the CVS repo</p>
         <blockquote>
-          <p>:pserver:anonymous@dev.eclipse.org/eclipse</p>
+          <p>:pserver:anonymous@dev.eclipse.org/cvsroot/eclipse</p>
         </blockquote>
         <p>The Equinox work goes on in various folders as appropriate for the
       work being done. See the project lists in the <a href="framework/index.php#frameworkprojects">framework</a>, <a href="bundles/index.php#bundleprojects">bundles</a> and <a href="incubator/index.php#workareas">incubator</a>          components for more details.</p></td>
