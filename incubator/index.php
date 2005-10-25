@@ -28,7 +28,7 @@ The goal of the Equinox Incubator is to experiment with techniques for
 <table BORDER=0 CELLSPACING=5 CELLPADDING=2 WIDTH="100%" >
 	<tr>
       <td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-      <td width="98%"><a href="aspects" target="_top"><b>Aspects</b></a><br>
+      <td width="98%"><a href="aspects/index.php" target="_top"><b>Aspects</b></a><br>
     Issues around Aspect-oriented programming, load-time weaving and modularity.</td>
   </tr>
 	<tr>
