@@ -1,0 +1,68 @@
+		*********DOPRIVILEGED ANALYSIS*********
+
+org.eclipse.core.internal.expressions.SystemTestExpression
+public
+ org.eclipse.core.expressions.EvaluationResult evaluate( org.eclipse.core.expressions.IEvaluationContext ) #40
+java.util.PropertyPermission "???key???", "read"
+
+org.eclipse.core.internal.expressions.TestExpression
+public
+ org.eclipse.core.expressions.EvaluationResult evaluate( org.eclipse.core.expressions.IEvaluationContext ) #49
+java.util.PropertyPermission "???key???", "read"
+
+org.eclipse.osgi.framework.debug.FrameworkDebugOptions
+private
+static
+ java.net.URL adjustTrailingSlash( java.net.URL, boolean ) #71
+java.lang.RuntimePermission "getClassLoader"
+java.net.NetPermission "specifyStreamHandler"
+
+org.eclipse.osgi.framework.debug.FrameworkDebugOptions
+private
+static
+ java.net.URL buildURL( java.lang.String, boolean ) #51
+java.io.FilePermission "???file???", "read"
+java.lang.RuntimePermission "getClassLoader"
+java.net.NetPermission "specifyStreamHandler"
+java.util.PropertyPermission "user.dir", "read"
+
+org.eclipse.osgi.framework.debug.FrameworkDebugOptions
+private
+static
+ java.net.URL buildURL( java.lang.String, boolean ) #52
+java.lang.RuntimePermission "getClassLoader"
+java.net.NetPermission "specifyStreamHandler"
+
+org.eclipse.osgi.framework.debug.FrameworkDebugOptions
+private
+static
+ java.net.URL buildURL( java.lang.String, boolean ) #59
+java.io.FilePermission ".options", "read"
+java.io.FilePermission "???file???", "read"
+java.lang.RuntimePermission "getClassLoader"
+java.net.NetPermission "specifyStreamHandler"
+java.util.PropertyPermission "user.dir", "read"
+
+org.eclipse.osgi.framework.debug.FrameworkDebugOptions
+private
+ void loadOptions(  ) #129
+java.util.PropertyPermission "osgi.debug", "read"
+
+org.eclipse.osgi.framework.debug.FrameworkDebugOptions
+private
+ void loadOptions(  ) #138
+java.util.PropertyPermission "user.dir", "read"
+
+org.eclipse.osgi.framework.debug.FrameworkDebugOptions
+private
+ void loadOptions(  ) #152
+java.lang.RuntimePermission "getClassLoader"
+java.util.PropertyPermission "java.vendor.url.bug", "read"
+
+org.eclipse.osgi.framework.internal.core.MessageResourceBundle
+public
+static
+ void load( java.lang.String, java.lang.Class ) #208
+java.lang.RuntimePermission "getClassLoader"
+java.util.PropertyPermission "java.vendor.url.bug", "read"
+

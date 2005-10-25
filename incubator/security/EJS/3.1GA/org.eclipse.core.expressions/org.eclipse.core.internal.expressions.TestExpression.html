@@ -1,0 +1,32 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Permission Analysis Report</title>
+  <script language="javaScript" src="linkUtil.js"></script>
+</head>
+<body>
+<h1>Permission Analysis Report</h1>
+<br>
+<h2>Analysis of: org.eclipse.core.expressions</h2>
+<b>Detail</b><br>
+<br>
+<pre>
+Class: <a href="foo"
+ onclick="return openURLinSrc( 'Application/org/eclipse/core/internal/expressions/TestExpression.html' )">org.eclipse.core.internal.expressions.TestExpression</a> (Application)<br>DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/expressions/TestExpression.html#L44" , parent.fbot ); return false'>Line# 49</a> org.eclipse.core.expressions.EvaluationResult evaluate( org.eclipse.core.expressions.IEvaluationContext )<br>   Permission: java.util.PropertyPermission "???key???", "read"<br>      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )<br><br><br><b>CODE</b><br><br>	public EvaluationResult evaluate(IEvaluationContext context) throws CoreException {<br>		Object element= context.getDefaultVariable();<br>		if (System.class.equals(element)) {<br>		<span
+ style="color: rgb(255, 0, 0);">	String str= System.getProperty(fProperty);</span><br>			if (str == null) <br>				return EvaluationResult.FALSE;<br>			return EvaluationResult.valueOf(str.equals(fArgs[0]));<br>		}<br>		Property property= fgTypeExtensionManager.getProperty(element, fNamespace, fProperty);<br>		if (!property.isInstantiated())<br>			return EvaluationResult.NOT_LOADED;<br>		return EvaluationResult.valueOf(property.test(element, fArgs, fExpectedValue));<br>	}<br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.util.PropertyPermission "???key???", "read";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>The fProperty is set by an attribute in an IConfigurationElement which is passed through this class's constructor.  The caller should not need <br>the above permission to use this method.  It is ok to wrap the line in a doPrivilged action.<br><br>Grant the permission to this plug-in via OSGI-INF/permissions.perm file.<br><br>public EvaluationResult evaluate(IEvaluationContext context) throws CoreException {<br>		Object element= context.getDefaultVariable();<br>		if (System.class.equals(element)) {<br>		<span
+ style="color: rgb(255, 0, 0);">	String str;</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			if(System.getSecurityManager() == null) {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">				str= System.getProperty(fProperty);</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			} else {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">				str = (String) AccessController.doPrivileged(new SecurePropertyAction(fProperty));</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			}</span><br>			if (str == null) <br>				return EvaluationResult.FALSE;<br>			return EvaluationResult.valueOf(str.equals(fArgs[0]));<br>		}<br>		Property property= fgTypeExtensionManager.getProperty(element, fNamespace, fProperty);<br>		if (!property.isInstantiated())<br>			return EvaluationResult.NOT_LOADED;<br>		return EvaluationResult.valueOf(property.test(element, fArgs, fExpectedValue));<br>	}<br><hr>
+</pre>
+</body>
+</html>

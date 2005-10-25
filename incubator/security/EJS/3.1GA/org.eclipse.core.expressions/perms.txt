@@ -1,0 +1,179 @@
+		*********PERMISSIONS BY CLASS*********
+
+
+** Class: org.eclipse.core.internal.expressions.ExpressionMessages
+	java.lang.RuntimePermission "getClassLoader"
+	java.util.PropertyPermission "java.vendor.url.bug", "read"
+
+** Class: org.eclipse.core.internal.expressions.SystemTestExpression
+	java.util.PropertyPermission "???key???", "read"
+
+** Class: org.eclipse.core.internal.expressions.TestExpression
+	java.util.PropertyPermission "???key???", "read"
+
+** Class: org.eclipse.core.internal.runtime.Messages
+	java.lang.RuntimePermission "getClassLoader"
+	java.util.PropertyPermission "java.vendor.url.bug", "read"
+
+** Class: org.eclipse.osgi.framework.debug.Debug
+	java.io.FilePermission ".options", "read"
+	java.io.FilePermission "???file???", "read"
+	java.lang.RuntimePermission "getClassLoader"
+	java.net.NetPermission "specifyStreamHandler"
+	java.util.PropertyPermission "java.vendor.url.bug", "read"
+	java.util.PropertyPermission "osgi.debug", "read"
+	java.util.PropertyPermission "user.dir", "read"
+
+** Class: org.eclipse.osgi.framework.debug.FrameworkDebugOptions
+	java.io.FilePermission ".options", "read"
+	java.io.FilePermission "???file???", "read"
+	java.lang.RuntimePermission "getClassLoader"
+	java.net.NetPermission "specifyStreamHandler"
+	java.util.PropertyPermission "java.vendor.url.bug", "read"
+	java.util.PropertyPermission "osgi.debug", "read"
+	java.util.PropertyPermission "user.dir", "read"
+
+** Class: org.eclipse.osgi.framework.internal.core.MessageResourceBundle
+	java.lang.RuntimePermission "getClassLoader"
+	java.util.PropertyPermission "java.vendor.url.bug", "read"
+
+** Class: org.eclipse.osgi.util.NLS
+	java.lang.RuntimePermission "getClassLoader"
+	java.util.PropertyPermission "java.vendor.url.bug", "read"
+
+
+
+		*********PERMISSIONS BY CODE SOURCE*********
+
+
+
+========================================
+
+
+** CodeSource:
+	CodeBase: file:C:/wp/eclipseui/org.eclipse.core.expressions/org.eclipse.core.expressions.jar
+	Certificates:
+
+
+PERMISSIONS ALREADY GRANTED
+java.lang.RuntimePermission "stopThread" ""
+java.net.SocketPermission "localhost:1024-" "listen,resolve"
+java.util.PropertyPermission "java.version" "read"
+java.util.PropertyPermission "java.vm.name" "read"
+java.util.PropertyPermission "java.vm.vendor" "read"
+java.util.PropertyPermission "os.name" "read"
+java.util.PropertyPermission "java.vendor.url" "read"
+java.util.PropertyPermission "java.vm.specification.vendor" "read"
+java.util.PropertyPermission "java.specification.vendor" "read"
+java.util.PropertyPermission "os.version" "read"
+java.util.PropertyPermission "java.specification.name" "read"
+java.util.PropertyPermission "java.class.version" "read"
+java.util.PropertyPermission "file.separator" "read"
+java.util.PropertyPermission "java.vm.version" "read"
+java.util.PropertyPermission "os.arch" "read"
+java.util.PropertyPermission "java.vm.specification.name" "read"
+java.util.PropertyPermission "java.vm.specification.version" "read"
+java.util.PropertyPermission "java.specification.version" "read"
+java.util.PropertyPermission "java.vendor" "read"
+java.util.PropertyPermission "path.separator" "read"
+java.util.PropertyPermission "line.separator" "read"
+
+PERMISSIONS REQUIRED
+java.lang.RuntimePermission "getClassLoader"
+java.util.PropertyPermission "???key???", "read"
+java.util.PropertyPermission "java.vendor.url.bug", "read"
+
+PERMISSIONS REQUIRED AND NOT ALREADY GRANTED
+java.lang.RuntimePermission "getClassLoader"
+java.util.PropertyPermission "???key???", "read"
+java.util.PropertyPermission "java.vendor.url.bug", "read"
+
+
+========================================
+
+
+** CodeSource:
+	CodeBase: file:C:/eclipse/3.1Security/eclipse/plugins/org.eclipse.osgi_3.1.0.jar
+	Certificates:
+
+
+PERMISSIONS ALREADY GRANTED
+java.lang.RuntimePermission "stopThread" ""
+java.net.SocketPermission "localhost:1024-" "listen,resolve"
+java.util.PropertyPermission "java.version" "read"
+java.util.PropertyPermission "java.vm.name" "read"
+java.util.PropertyPermission "java.vm.vendor" "read"
+java.util.PropertyPermission "os.name" "read"
+java.util.PropertyPermission "java.vendor.url" "read"
+java.util.PropertyPermission "java.vm.specification.vendor" "read"
+java.util.PropertyPermission "java.specification.vendor" "read"
+java.util.PropertyPermission "os.version" "read"
+java.util.PropertyPermission "java.specification.name" "read"
+java.util.PropertyPermission "java.class.version" "read"
+java.util.PropertyPermission "file.separator" "read"
+java.util.PropertyPermission "java.vm.version" "read"
+java.util.PropertyPermission "os.arch" "read"
+java.util.PropertyPermission "java.vm.specification.name" "read"
+java.util.PropertyPermission "java.vm.specification.version" "read"
+java.util.PropertyPermission "java.specification.version" "read"
+java.util.PropertyPermission "java.vendor" "read"
+java.util.PropertyPermission "path.separator" "read"
+java.util.PropertyPermission "line.separator" "read"
+
+PERMISSIONS REQUIRED
+java.io.FilePermission ".options", "read"
+java.io.FilePermission "???file???", "read"
+java.lang.RuntimePermission "getClassLoader"
+java.net.NetPermission "specifyStreamHandler"
+java.util.PropertyPermission "java.vendor.url.bug", "read"
+java.util.PropertyPermission "osgi.debug", "read"
+java.util.PropertyPermission "user.dir", "read"
+
+PERMISSIONS REQUIRED AND NOT ALREADY GRANTED
+java.io.FilePermission ".options", "read"
+java.io.FilePermission "???file???", "read"
+java.lang.RuntimePermission "getClassLoader"
+java.net.NetPermission "specifyStreamHandler"
+java.util.PropertyPermission "java.vendor.url.bug", "read"
+java.util.PropertyPermission "osgi.debug", "read"
+java.util.PropertyPermission "user.dir", "read"
+
+
+========================================
+
+
+** CodeSource:
+	CodeBase: file:C:/eclipse/3.1Security/eclipse/plugins/org.eclipse.core.runtime_3.1.0.jar
+	Certificates:
+
+
+PERMISSIONS ALREADY GRANTED
+java.lang.RuntimePermission "stopThread" ""
+java.net.SocketPermission "localhost:1024-" "listen,resolve"
+java.util.PropertyPermission "java.version" "read"
+java.util.PropertyPermission "java.vm.name" "read"
+java.util.PropertyPermission "java.vm.vendor" "read"
+java.util.PropertyPermission "os.name" "read"
+java.util.PropertyPermission "java.vendor.url" "read"
+java.util.PropertyPermission "java.vm.specification.vendor" "read"
+java.util.PropertyPermission "java.specification.vendor" "read"
+java.util.PropertyPermission "os.version" "read"
+java.util.PropertyPermission "java.specification.name" "read"
+java.util.PropertyPermission "java.class.version" "read"
+java.util.PropertyPermission "file.separator" "read"
+java.util.PropertyPermission "java.vm.version" "read"
+java.util.PropertyPermission "os.arch" "read"
+java.util.PropertyPermission "java.vm.specification.name" "read"
+java.util.PropertyPermission "java.vm.specification.version" "read"
+java.util.PropertyPermission "java.specification.version" "read"
+java.util.PropertyPermission "java.vendor" "read"
+java.util.PropertyPermission "path.separator" "read"
+java.util.PropertyPermission "line.separator" "read"
+
+PERMISSIONS REQUIRED
+java.lang.RuntimePermission "getClassLoader"
+java.util.PropertyPermission "java.vendor.url.bug", "read"
+
+PERMISSIONS REQUIRED AND NOT ALREADY GRANTED
+java.lang.RuntimePermission "getClassLoader"
+java.util.PropertyPermission "java.vendor.url.bug", "read"

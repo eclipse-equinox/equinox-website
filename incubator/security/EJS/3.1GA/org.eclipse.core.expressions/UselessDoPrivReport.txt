@@ -1,0 +1,15 @@
+	USELESS CALLS TO java.security.AccessController.doPrivileged()
+
+
+Site # 1378
+Method invoked: java.security.AccessController.doPrivileged(Ljava.security.PrivilegedAction;)Ljava.lang.Object;
+Invoked by:
+	Site # 1171
+		org.eclipse.osgi.framework.internal.core.MessageResourceBundle.makeAccessible(Ljava.lang.reflect.Field;)V
+		Class loader: Application
+		Line number: 143
+	Site # 1388
+		org.eclipse.osgi.framework.internal.core.MessageResourceBundle.makeAccessible(Ljava.lang.reflect.Field;)V
+		Class loader: Application
+		Line number: 143
+

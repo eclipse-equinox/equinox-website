@@ -1,0 +1,18 @@
+grant codeBase "file:C:/wp/eclipseui/org.eclipse.core.expressions/org.eclipse.core.expressions.jar" {
+	java.lang.RuntimePermission "getClassLoader"
+	java.util.PropertyPermission "???key???", "read"
+	java.util.PropertyPermission "java.vendor.url.bug", "read"
+}
+grant codeBase "file:C:/eclipse/3.1Security/eclipse/plugins/org.eclipse.osgi_3.1.0.jar" {
+	java.io.FilePermission ".options", "read"
+	java.io.FilePermission "???file???", "read"
+	java.lang.RuntimePermission "getClassLoader"
+	java.net.NetPermission "specifyStreamHandler"
+	java.util.PropertyPermission "java.vendor.url.bug", "read"
+	java.util.PropertyPermission "osgi.debug", "read"
+	java.util.PropertyPermission "user.dir", "read"
+}
+grant codeBase "file:C:/eclipse/3.1Security/eclipse/plugins/org.eclipse.core.runtime_3.1.0.jar" {
+	java.lang.RuntimePermission "getClassLoader"
+	java.util.PropertyPermission "java.vendor.url.bug", "read"
+}
