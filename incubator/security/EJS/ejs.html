@@ -333,31 +333,39 @@ are method parameters (supplied by caller) and other objects which
 return values (e.g. A FileDialog which prompts to the user to supply a
 path and filename from the filesystem). This is the "tainted variable"
 concept.</p>
-      <p>A reference trace is required to determine what codebases
-(.jar files and classes) ultimately make use of a given method. Eclipse
-provides a pop-up menu context when a method is selected, <font
- style="background-color: yellow; display: inline;">"Open Call
-Heirarchy"</font> which provides the required reference trace.</p>
-      <p>You would not typically allow a user to read, write, or save a
-file from any location in the filesystem if you were trying to protect
-data between applications in a framework such as RCP. You would
-however, hide the complexities of saving a file so that only the
-required file privileges need to be specified. (For example, if your
-library implements logging to track changes, this operation is self
-contained and could be wrapped in a privileged action so that the
-caller does not need both java.io.FilePermission "read,write,delete"
-AND java.util.logging.LoggingPermission "control", ""). </p>
-      </span><br>
-      <b>Method visibility and Access modifiers</b><br>
-      <span style="text-indent: 0.5in;">
-      <p> There is also the issue of the encapsulating methods's
-visibility. If a method is pubic, then any class capable of loading the
-class with the privileged operation can call it's methods. Great care
-should be taken when implementing a publicly visible trusted library
-method to avoid unintentionally elevating the privileges of the caller.
-      </p>
+      
       </span></p>
-      </div>
+				<P>A reference trace is required to determine what codebases (.jar
+				files and classes) ultimately make use of a given method. Eclipse
+				provides a pop-up menu context when a method is selected, <FONT
+					style="background-color:yellow;display:inline">"Open Call
+				Heirarchy"</FONT> which provides the required reference trace.
+				SWORD4J provides a more precise reference trace. To use SWORD4J's
+				callpath analysis tool, right mouse-click on a permission marker and
+				select <SPAN style="text-indent:.5in"><FONT
+					style="background-color:yellow;display:inline">"Show callpath"</FONT></SPAN>.</P>
+				<P><SPAN style="text-indent: 0.5in;">
+				<P>You would not typically allow a user to read, write, or save a
+				file from any location in the filesystem if you were trying to
+				protect data between applications in a framework such as RCP. You
+				would however, hide the complexities of saving a file so that only
+				the required file privileges need to be specified. (For example, if
+				your library implements logging to track changes, this operation is
+				self contained and could be wrapped in a privileged action so that
+				the caller does not need both java.io.FilePermission
+				"read,write,delete" AND java.util.logging.LoggingPermission
+				"control", "").</P>
+				</SPAN><BR>
+				<B>Method visibility and Access modifiers</B><BR>
+				<SPAN style="text-indent: 0.5in;">
+				<P>There is also the issue of the encapsulating methods's
+				visibility. If a method is pubic, then any class capable of loading
+				the class with the privileged operation can call it's methods. Great
+				care should be taken when implementing a publicly visible trusted
+				library method to avoid unintentionally elevating the privileges of
+				the caller.</P>
+				</SPAN></P>
+				</div>
 <!-- /tpl:put --><!--  end of main content --> </td>
     </tr>
   </tbody>
