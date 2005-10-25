@@ -39,7 +39,7 @@
       <td align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
       <td>        <p><a href="http://dev.eclipse.org/viewcvs/indextech.cgi/org.eclipse.equinox" target="_top"><b>CVS</b></a><br>
       The Equinox Incubator code repository is part of the normal Eclipse project
-        repository and is available via <a href="http://dev.eclipse.org/viewcvs/index.cgi/">web
+        repository and is available via <a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/">web
         access</a> or direct CVS access. For direct access, use anonymous login
         to the CVS repo</p>
         <blockquote>
