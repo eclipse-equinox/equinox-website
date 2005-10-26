@@ -13,7 +13,7 @@
 
 <ul>
 	<li><a href="plugin-versioning.html">Recommendation to version plug-ins</a></li>
-	<li>Minimal install scenario</li>
+	<li><a href="coding.php">Equinox Coding Practices</a></li>
 </ul>
 <p class=bar>Presentations</p>
 <ul>
@@ -35,7 +35,7 @@
 
 <p class=bar>Related Documents</p>
     <ul>
-      <li> OSGi R4 draft specs</li>
+      <li> <a href="http://osgi.org/osgi_technology/download_specs.asp?section=2">OSGi specifications</a></li>
     </ul>
 </body>
 </html>

@@ -4,16 +4,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 <title></title>
 <link rel="stylesheet" title="default" href="http://eclipse.org/default_style.css" type="text/css">
+<link rel="stylesheet" title="default" href="equinox.css" type="text/css">
 </head>
 <body>
 <?php include("nav-include.html") ?>
-<br>
-<table BORDER=0 CELLSPACING=0 CELLPADDING=2 WIDTH="100%" >
-  <tr> 
-    <td ALIGN=LEFT VALIGN=TOP COLSPAN="2" BGCOLOR="#0080C0"><b><font color="#FFFFFF"> 
-      Frequently Asked Questions</font></b></td>
-  </tr>
-</table>
+<p class="bar">Frequently Asked Questions</p>
 <table border=0 cellspacing=5 cellpadding=2 width="100%" >
   <tr>
     <td align=RIGHT valign=TOP><b>Q.</b></td>
