@@ -16,9 +16,9 @@ a.nav:hover { text-decoration: underline; color: "#000000"; }
   <link rel="stylesheet2" href="http://eclipse.org/default_style.css"
  type="text/css">
 </head>
-<body leftmargin="0" topmargin="0" rightmargin="0"
- style="background-color: rgb(255, 255, 255);" alink="#ff0000"
- link="#0000ee" marginheight="0" vlink="#551a8b">
+<body style="background-color: rgb(255, 255, 255);" rightmargin="0"
+ topmargin="0" leftmargin="0" alink="#ff0000" link="#0000ee"
+ marginheight="0" vlink="#551a8b">
 <!--  start of banner  -->
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
   <tbody>
@@ -157,7 +157,7 @@ a.nav:hover { text-decoration: underline; color: "#000000"; }
         <tbody>
           <tr>
             <td colspan="2" align="left" bgcolor="#0080c0" valign="top"><b><font
- color="#ffffff">RCP plug-in analysis ( 3.1 GA )</font></b></td>
+ color="#ffffff"> <a name="#RCPPlugin">RCP Plug-in 3.1 (GA)</a></font></b></td>
           </tr>
         </tbody>
       </table>
@@ -168,17 +168,20 @@ changes for Eclipse 3.1 (RCP) plug-ins</p>
         <tbody>
           <tr>
             <td valign="top">
-            <table>
+            <table style="width: 380px; height: 340px;">
               <tbody>
                 <tr bgcolor="silver">
                   <td>Plug-in</td>
                   <td>Review status</td>
+                  <td style="width: 40px;">Committed to security branch</td>
                 </tr>
                 <tr>
                   <td><img src="icons/folder.open.png" alt="Open"
  height="16" width="16"> <img src="icons/box1.png" alt=" " height="16"
  width="16"> org.eclipse.core.runtime</td>
-                  <td align="center"><br>
+                  <td align="center">10%<br>
+                  </td>
+                  <td style="vertical-align: top; text-align: center;">No<br>
                   </td>
                 </tr>
                 <tr>
@@ -186,6 +189,8 @@ changes for Eclipse 3.1 (RCP) plug-ins</p>
  height="16" width="16"> <img src="icons/box1.png" alt=" " height="16"
  width="16"> <a href="3.1GA/org.eclipse.help/Changes.html">org.eclipse.help</a></td>
                   <td align="center">100%<br>
+                  </td>
+                  <td align="center">Yes<br>
                   </td>
                 </tr>
                 <tr>
@@ -195,11 +200,17 @@ changes for Eclipse 3.1 (RCP) plug-ins</p>
                   </td>
                   <td align="center">100%<br>
                   </td>
+                  <td style="vertical-align: top; text-align: center;">Yes<br>
+                  </td>
                 </tr>
                 <tr>
                   <td><img src="icons/folder.open.png" alt="Open"
  height="16" width="16"> <img src="icons/box1.png" alt=" " height="16"
  width="16"> org.eclipse.osgi<br>
+                  </td>
+                  <td align="center">45%<br>
+                  </td>
+                  <td style="vertical-align: top; text-align: center;">No<br>
                   </td>
                 </tr>
                 <tr>
@@ -207,11 +218,19 @@ changes for Eclipse 3.1 (RCP) plug-ins</p>
  height="16" width="16"> <img src="icons/box1.png" alt=" " height="16"
  width="16"> org.eclipse.swt.win32<br>
                   </td>
+                  <td align="center">100%<br>
+                  </td>
+                  <td style="vertical-align: top; text-align: center;">No<br>
+                  </td>
                 </tr>
                 <tr>
                   <td><img src="icons/folder.png" with="16"
  alt="No changes required" height="16"> <img src="icons/box1.png"
  alt=" " height="16" width="16"> org.eclipse.swt<br>
+                  </td>
+                  <td align="center">100%<br>
+                  </td>
+                  <td style="vertical-align: top; text-align: center;">N/A<br>
                   </td>
                 </tr>
                 <tr>
@@ -219,11 +238,18 @@ changes for Eclipse 3.1 (RCP) plug-ins</p>
  height="16" width="16"> <img src="icons/box1.png" alt=" " height="16"
  width="16"> org.eclipse.ui.workbench<br>
                   </td>
+                  <td align="center">100%<br>
+                  </td>
+                  <td style="vertical-align: top; text-align: center;">No</td>
                 </tr>
                 <tr>
-                  <td><img src="icons/folder.open.png" alt="Open"
- height="16" width="16"> <img src="icons/box1.png" alt=" " height="16"
- width="16"> org.eclipse.ui<br>
+                  <td><img src="icons/folder.png" with="16"
+ alt="No changes required" height="16"> <img src="icons/box1.png"
+ alt=" " height="16" width="16"> org.eclipse.ui<br>
+                  </td>
+                  <td align="center">100%<br>
+                  </td>
+                  <td style="vertical-align: top; text-align: center;">N/A<br>
                   </td>
                 </tr>
                 <tr>
@@ -231,8 +257,9 @@ changes for Eclipse 3.1 (RCP) plug-ins</p>
  src="icons/folder.open.png" alt="Open" height="16" width="16"> <img
  src="icons/box1.png" alt=" " height="16" width="16">org.eclipse.core.commands<br>
                   </td>
-                  <td style="vertical-align: top;"><br>
+                  <td style="vertical-align: top; text-align: center;">100%<br>
                   </td>
+                  <td style="vertical-align: top; text-align: center;">No</td>
                 </tr>
                 <tr>
                   <td style="vertical-align: top;"><img
@@ -241,6 +268,18 @@ changes for Eclipse 3.1 (RCP) plug-ins</p>
  href="3.1GA/org.eclipse.core.expressions/Changes.html">org.eclipse.core.expressions</a><br>
                   </td>
                   <td style="vertical-align: top; text-align: center;">100%<br>
+                  </td>
+                  <td style="vertical-align: top; text-align: center;">Yes<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="vertical-align: top;"><img
+ src="icons/folder.sec.png" alt="Secured" height="16" width="16"> <img
+ src="icons/box1.png" alt=" " height="16" width="16">org.eclipse.update.configurator<br>
+                  </td>
+                  <td style="vertical-align: top; text-align: center;">100%<br>
+                  </td>
+                  <td style="vertical-align: top; text-align: center;">Yes<br>
                   </td>
                 </tr>
               </tbody>
@@ -297,7 +336,173 @@ changes for Eclipse 3.1 (RCP) plug-ins</p>
           </tr>
         </tbody>
       </table>
-      <div><br>
+      <br>
+      <table border="0" cellpadding="2" cellspacing="0" width="100%">
+        <tbody>
+          <tr>
+            <td colspan="2" align="left" bgcolor="#0080c0" valign="top"><b><font
+ color="#ffffff"> <a name="#RCPPlugin">Non-RCP Plug-in 3.1 (GA)</a></font></b></td>
+          </tr>
+        </tbody>
+      </table>
+      <p>Java2 security analysis test results, plug-in status and
+changes for Eclipse 3.1 (Non-RCP) plug-ins</p>
+      <br>
+      <table cellpadding="2">
+        <tbody>
+          <tr>
+            <td valign="top">
+            <table style="height: 340px; width: 380px;">
+              <tbody>
+                <tr bgcolor="silver">
+                  <td>Plug-in</td>
+                  <td>Review status</td>
+                  <td style="width: 40px;">Committed to security branch</td>
+                </tr>
+                <tr>
+                  <td><img src="icons/folder.sec.png" alt="Secured"
+ height="16" width="16"> <img src="icons/box1.png" alt=" " height="16"
+ width="16"> org.eclipse.update.core</td>
+                  <td align="center">100%<br>
+                  </td>
+                  <td style="vertical-align: top; text-align: center;">Yes<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="icons/folder.open.png" alt="Open"
+ height="16" width="16"> <img src="icons/box1.png" alt=" " height="16"
+ width="16"> org.eclipse.ui.forms<a
+ href="3.1GA/org.eclipse.jface/Changes.html"></a> </td>
+                  <td align="center">100%<br>
+                  </td>
+                  <td style="vertical-align: top; text-align: center;">No<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="icons/folder.png" with="16"
+ alt="No changes required" height="16"> <img src="icons/box1.png"
+ alt=" " height="16" width="16"> org.eclipse.ui.views </td>
+                  <td align="center">100%<br>
+                  </td>
+                  <td style="vertical-align: top; text-align: center;">N/A<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="icons/folder.png" with="16"
+ alt="No changes required" height="16"> <img src="icons/box1.png"
+ alt=" " height="16" width="16"> org.eclipse.update.core.win32<br>
+                  </td>
+                  <td align="center">100%<br>
+                  </td>
+                  <td style="vertical-align: top; text-align: center;">N/A<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="icons/folder.png" with="16"
+ alt="No changes required" height="16"> <img src="icons/box1.png"
+ alt=" " height="16" width="16"> org.eclipse.update.ui<br>
+                  </td>
+                  <td align="center"><br>
+                  </td>
+                  <td style="vertical-align: top; text-align: center;">No<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="icons/folder.open.png" alt="Open"
+ height="16" width="16"> <img src="icons/box1.png" alt=" " height="16"
+ width="16"> org.eclipse.core.variables<br>
+                  </td>
+                  <td align="center"><br>
+                  </td>
+                  <td style="vertical-align: top; text-align: center;">No</td>
+                </tr>
+                <tr>
+                  <td><img src="icons/folder.png" with="16"
+ alt="No changes required" height="16"> <img src="icons/box1.png"
+ alt=" " height="16" width="16"> org.eclipse.core.resources<br>
+                  </td>
+                  <td align="center">50%<br>
+                  </td>
+                  <td style="vertical-align: top; text-align: center;">No</td>
+                </tr>
+                <tr>
+                  <td style="vertical-align: top;"><img
+ src="icons/folder.open.png" alt="Open" height="16" width="16"> <img
+ src="icons/box1.png" alt=" " height="16" width="16">org.eclipse.help.ui<br>
+                  </td>
+                  <td style="vertical-align: top; text-align: center;"><br>
+                  </td>
+                  <td style="vertical-align: top; text-align: center;">No</td>
+                </tr>
+                <tr>
+                  <td style="vertical-align: top;"><img
+ src="icons/folder.open.png" alt="Open" height="16" width="16"> <img
+ src="icons/box1.png" alt=" " height="16" width="16">
+org.eclipse.help.webapp<a
+ href="3.1GA/org.eclipse.core.expressions/Changes.html"></a><br>
+                  </td>
+                  <td style="vertical-align: top; text-align: center;"><br>
+                  </td>
+                  <td style="vertical-align: top; text-align: center;">No<br>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            </td>
+            <td width="20"><br>
+            </td>
+            <td style="color: white;" valign="top">
+            <table border="1">
+              <tbody>
+                <tr>
+                  <td style="color: white;" bgcolor="#0080c0"><b>Legend</b></td>
+                </tr>
+                <tr>
+                  <td>
+                  <table>
+                    <tbody>
+                      <tr bgcolor="silver">
+                        <td>Plug-in status</td>
+                        <td>icon</td>
+                      </tr>
+                      <tr>
+                        <td>Plug-in secured</td>
+                        <td><img src="icons/folder.sec.png"
+ alt="Secured" height="16" width="16"></td>
+                      </tr>
+                      <tr>
+                        <td>Plug-in NOT secured</td>
+                        <td><img src="icons/folder.open.png" alt="Open"
+ height="16" width="16"></td>
+                      </tr>
+                      <tr>
+                        <td>No changes required</td>
+                        <td><img src="icons/folder.png" with="16"
+ alt="No changes required" height="16"></td>
+                      </tr>
+                      <tr>
+                        <td>Analysis Tool Completed OK</td>
+                        <td><img src="icons/box1.png" alt=" "
+ height="16" width="16"></td>
+                      </tr>
+                      <tr>
+                        <td>Analysis Tool Failed</td>
+                        <td><img src="icons/alert.red.png" alt=" "
+ height="16" width="16"></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <br>
+      <br>
       <table border="0" cellpadding="2" cellspacing="0" width="100%">
         <tbody>
           <tr>
@@ -366,7 +571,6 @@ class with the privileged operation can call it's methods. Great care
 should be taken when implementing a publicly visible trusted library
 method to avoid unintentionally elevating the privileges of the caller.</p>
       </span></p>
-      </div>
 <!-- /tpl:put --><!--  end of main content --> </td>
     </tr>
   </tbody>
