@@ -1,0 +1,26 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Permission Analysis Report</title>
+  <script language="javaScript" src="linkUtil.js"></script>
+</head>
+<body>
+<h1>Permission Analysis Report</h1>
+<br>
+<h2>Analysis of: org.eclipse.jface</h2>
+<b>Detail</b><br>
+<br>
+<pre>
+Class: <a href="foo"
+ onclick="return openURLinSrc( 'Application/org/eclipse/jface/preference/PathEditor.html' )">org.eclipse.jface.preference.PathEditor</a> (Application)<br>DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/jface/preference/PathEditor.html#L77" , parent.fbot ); return false'>Line# 82</a> java.lang.String getNewInputObject(  )<br>   Permission: java.io.FilePermission "???file???", "read"<br>      Primordial/boolean java.io.File.exists(  )<br><br><br><b>CODE</b><br>    protected String getNewInputObject() {<br><br>        DirectoryDialog dialog = new DirectoryDialog(getShell());<br>        if (dirChooserLabelText != null)<br>            dialog.setMessage(dirChooserLabelText);<br>        if (lastPath != null) {<br><span
+ style="color: rgb(255, 0, 0);">            if (new File(lastPath).exists())</span><br>                dialog.setFilterPath(lastPath);<br>        }<br>        String dir = dialog.open();<br>        if (dir != null) {<br>            dir = dir.trim();<br>            if (dir.length() == 0)<br>                return null;<br>            lastPath = dir;<br>        }<br>        return dir;<br>    }<br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.io.FilePermission "???file???", "read";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>Grant the permission to this plug-in via OSGI-INF/permissions file - fine access control.<br><hr>
+</pre>
+</body>
+</html>

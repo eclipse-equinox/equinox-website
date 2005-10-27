@@ -1,0 +1,106 @@
+	USELESS CALLS TO java.security.AccessController.doPrivileged()
+
+
+Site # 42583
+Method invoked: java.security.AccessController.doPrivileged(Ljava.security.PrivilegedAction;)Ljava.lang.Object;
+Invoked by:
+	Site # 128741
+		org.eclipse.osgi.framework.internal.core.FrameworkSecurityManager.checkPermission(Ljava.security.Permission;Ljava.lang.Object;)V
+		Class loader: Application
+		Line number: 91
+	Site # 85230
+		org.eclipse.osgi.framework.internal.core.FrameworkSecurityManager.checkPermission(Ljava.security.Permission;Ljava.lang.Object;)V
+		Class loader: Application
+		Line number: 91
+	Site # 71842
+		org.eclipse.osgi.framework.internal.core.FrameworkSecurityManager.checkPermission(Ljava.security.Permission;Ljava.lang.Object;)V
+		Class loader: Application
+		Line number: 91
+	Site # 76983
+		org.eclipse.osgi.framework.internal.core.FrameworkSecurityManager.checkPermission(Ljava.security.Permission;Ljava.lang.Object;)V
+		Class loader: Application
+		Line number: 91
+	Site # 61943
+		org.eclipse.osgi.framework.internal.core.FrameworkSecurityManager.checkPermission(Ljava.security.Permission;Ljava.lang.Object;)V
+		Class loader: Application
+		Line number: 91
+	Site # 114315
+		org.eclipse.osgi.framework.internal.core.FrameworkSecurityManager.checkPermission(Ljava.security.Permission;Ljava.lang.Object;)V
+		Class loader: Application
+		Line number: 91
+	Site # 78927
+		org.eclipse.osgi.framework.internal.core.FrameworkSecurityManager.checkPermission(Ljava.security.Permission;Ljava.lang.Object;)V
+		Class loader: Application
+		Line number: 91
+	Site # 111648
+		org.eclipse.osgi.framework.internal.core.FrameworkSecurityManager.checkPermission(Ljava.security.Permission;Ljava.lang.Object;)V
+		Class loader: Application
+		Line number: 91
+	Site # 83052
+		org.eclipse.osgi.framework.internal.core.FrameworkSecurityManager.checkPermission(Ljava.security.Permission;Ljava.lang.Object;)V
+		Class loader: Application
+		Line number: 91
+	Site # 128733
+		org.eclipse.osgi.framework.internal.core.FrameworkSecurityManager.checkPermission(Ljava.security.Permission;Ljava.lang.Object;)V
+		Class loader: Application
+		Line number: 91
+	Site # 70972
+		org.eclipse.osgi.framework.internal.core.FrameworkSecurityManager.checkPermission(Ljava.security.Permission;Ljava.lang.Object;)V
+		Class loader: Application
+		Line number: 91
+	Site # 43699
+		org.eclipse.osgi.framework.internal.core.FrameworkSecurityManager.checkPermission(Ljava.security.Permission;Ljava.lang.Object;)V
+		Class loader: Application
+		Line number: 91
+	Site # 110231
+		org.eclipse.osgi.framework.internal.core.FrameworkSecurityManager.checkPermission(Ljava.security.Permission;Ljava.lang.Object;)V
+		Class loader: Application
+		Line number: 91
+	Site # 60958
+		org.eclipse.osgi.framework.internal.core.FrameworkSecurityManager.checkPermission(Ljava.security.Permission;Ljava.lang.Object;)V
+		Class loader: Application
+		Line number: 91
+	Site # 77683
+		org.eclipse.osgi.framework.internal.core.FrameworkSecurityManager.checkPermission(Ljava.security.Permission;Ljava.lang.Object;)V
+		Class loader: Application
+		Line number: 91
+	Site # 39011
+		org.eclipse.osgi.framework.internal.core.FrameworkSecurityManager.checkPermission(Ljava.security.Permission;Ljava.lang.Object;)V
+		Class loader: Application
+		Line number: 91
+	Site # 39023
+		org.eclipse.osgi.framework.internal.core.FrameworkSecurityManager.checkPermission(Ljava.security.Permission;Ljava.lang.Object;)V
+		Class loader: Application
+		Line number: 91
+	Site # 78774
+		org.eclipse.osgi.framework.internal.core.FrameworkSecurityManager.checkPermission(Ljava.security.Permission;Ljava.lang.Object;)V
+		Class loader: Application
+		Line number: 91
+	Site # 60841
+		org.eclipse.osgi.framework.internal.core.FrameworkSecurityManager.checkPermission(Ljava.security.Permission;Ljava.lang.Object;)V
+		Class loader: Application
+		Line number: 91
+	Site # 88037
+		org.eclipse.osgi.framework.internal.core.FrameworkSecurityManager.checkPermission(Ljava.security.Permission;Ljava.lang.Object;)V
+		Class loader: Application
+		Line number: 91
+	Site # 51116
+		org.eclipse.osgi.framework.internal.core.FrameworkSecurityManager.checkPermission(Ljava.security.Permission;Ljava.lang.Object;)V
+		Class loader: Application
+		Line number: 91
+	Site # 128514
+		org.eclipse.osgi.framework.internal.core.FrameworkSecurityManager.checkPermission(Ljava.security.Permission;Ljava.lang.Object;)V
+		Class loader: Application
+		Line number: 91
+Site # 46472
+Method invoked: java.security.AccessController.doPrivileged(Ljava.security.PrivilegedAction;)Ljava.lang.Object;
+Invoked by:
+	Site # 42078
+		org.eclipse.osgi.framework.internal.core.MessageResourceBundle.makeAccessible(Ljava.lang.reflect.Field;)V
+		Class loader: Application
+		Line number: 143
+	Site # 46481
+		org.eclipse.osgi.framework.internal.core.MessageResourceBundle.makeAccessible(Ljava.lang.reflect.Field;)V
+		Class loader: Application
+		Line number: 143
+

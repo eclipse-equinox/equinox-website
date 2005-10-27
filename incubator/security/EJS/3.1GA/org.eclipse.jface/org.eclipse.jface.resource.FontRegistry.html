@@ -1,0 +1,26 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Permission Analysis Report</title>
+  <script language="javaScript" src="linkUtil.js"></script>
+</head>
+<body>
+<h1>Permission Analysis Report</h1>
+<br>
+<h2>Analysis of: org.eclipse.jface</h2>
+<b>Detail</b><br>
+<br>
+<pre>
+Class: <a href="foo"
+ onclick="return openURLinSrc( 'Application/org/eclipse/jface/resource/FontRegistry.html' )">org.eclipse.jface.resource.FontRegistry</a> (Application)<br>DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/jface/resource/FontRegistry.html#L286" , parent.fbot ); return false'>Line# 291</a> void readResourceBundle( java.lang.String )<br>   Permission: java.util.PropertyPermission "os.name", "read"<br>      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )<br><br><br><b>CODE</b><br>    private void readResourceBundle(String location) {<br><span
+ style="color: rgb(255, 0, 0);">        String osname = System.getProperty("os.name").trim(); //$NON-NLS-1$</span><br>        String wsname = SWT.getPlatform();<br>        osname = StringConverter.removeWhiteSpaces(osname).toLowerCase();<br>        wsname = StringConverter.removeWhiteSpaces(wsname).toLowerCase();<br>        String OSLocation = location;<br>        String WSLocation = location;<br>        ResourceBundle bundle = null;<br>        if (osname != null) {<br>            OSLocation = location + "_" + osname; //$NON-NLS-1$<br>            if (wsname != null)<br>                WSLocation = OSLocation + "_" + wsname; //$NON-NLS-1$<br>        }<br><br>        try {<br>            bundle = ResourceBundle.getBundle(WSLocation);<br>            readResourceBundle(bundle, WSLocation);<br>        } catch (MissingResourceException wsException) {<br>            try {<br>                bundle = ResourceBundle.getBundle(OSLocation);<br>                readResourceBundle(bundle, WSLocation);<br>            } catch (MissingResourceException osException) {<br>                if (location != OSLocation) {<br>                    bundle = ResourceBundle.getBundle(location);<br>                    readResourceBundle(bundle, WSLocation);<br>                } else<br>                    throw osException;<br>            }<br>        }<br>    }<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.util.PropertyPermission "os.name", "read";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>os.name property seems very common, add it to the OSGI's implied.permissions file.<br><hr>
+</pre>
+</body>
+</html>

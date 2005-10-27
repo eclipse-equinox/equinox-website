@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Permission Analysis Report</title>
+  <script language="javaScript" src="linkUtil.js"></script>
+</head>
+<body>
+<h1>Permission Analysis Report</h1>
+<br>
+<h2>Analysis of: org.eclipse.jface</h2>
+<b>Detail</b><br>
+<br>
+<pre>
+Class: <a href="foo"
+ onclick="return openURLinSrc( 'Application/org/eclipse/jface/resource/FileImageDescriptor.html' )">org.eclipse.jface.resource.FileImageDescriptor</a> (Application)<br>DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/jface/resource/FileImageDescriptor.html#L111" , parent.fbot ); return false'>Line# 116</a> java.io.InputStream getStream(  )<br>   Permission: java.io.FilePermission "???file???", "read"<br>      Primordial/java.io.InputStream java.lang.Class.getResourceAsStream( java.lang.String )<br>   Permission: java.lang.RuntimePermission "getClassLoader"<br>      Primordial/java.io.InputStream java.lang.Class.getResourceAsStream( java.lang.String )<br>   Permission: java.net.NetPermission "specifyStreamHandler"<br>      Primordial/java.io.InputStream java.lang.Class.getResourceAsStream( java.lang.String )<br>   Permission: java.net.SocketPermission "", "resolve"<br>      Primordial/java.io.InputStream java.lang.Class.getResourceAsStream( java.lang.String )<br>   Permission: java.net.SocketPermission ":???port???", "connect"<br>      Primordial/java.io.InputStream java.lang.Class.getResourceAsStream( java.lang.String )<br><br><br><b>CODE</b><br><br>    private InputStream getStream() {<br>        InputStream is = null;<br><br>        if (location != null) {<br><span
+ style="color: rgb(255, 0, 0);">            is = location.getResourceAsStream(name);</span><br><br>        } else {<br>            try {<br>                is = new FileInputStream(name);<br>            } catch (FileNotFoundException e) {<br>                return null;<br>            }<br>        }<br>        if (is == null)<br>            return null;<br>        else<br>            return new BufferedInputStream(is);<br>    }<br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.io.FilePermission "???file???", "read";</li>
+<li>permission java.lang.RuntimePermission "getClassLoader";</li>
+<li>permission java.net.NetPermission "specifyStreamHandler";</li>
+<li>permission java.net.SocketPermission "", "resolve";</li>
+<li>permission java.net.SocketPermission ":???port???", "connect";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>This method is private and primiarly returns a InputStream for the image, and this method is invoked by getImageData.  The caller should not require all the above <br>permission.  It is ok to wrap the identified location in a doPrivilged location.  <br><br>Grant the required permissions to this plug-in via OSGI-INF/permissions.perm file.<br><br>    private InputStream getStream() {<br>        InputStream is = null;<br><br>        if (location != null) {<br><span
+ style="color: rgb(255, 0, 0);">        	if(System.getSecurityManager() == null) {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">        		is = location.getResourceAsStream(name);</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">        	} else {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">        		is = (InputStream) AccessController.doPrivileged(new GetResourceAsStreamAction(location, name));</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">        	}</span><br
+ style="color: rgb(255, 0, 0);"><br style="color: rgb(255, 0, 0);">        } else {<br>            try {<br>                is = new FileInputStream(name);<br>            } catch (FileNotFoundException e) {<br>                return null;<br>            }<br>        }<br>        if (is == null)<br>            return null;<br>        else<br>            return new BufferedInputStream(is);<br>    }<br><br><br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/jface/resource/FileImageDescriptor.html#L115" , parent.fbot ); return false'>Line# 120</a> java.io.InputStream getStream(  )<br>   Permission: java.io.FilePermission "???file???", "read"<br>      Primordial/void java.io.FileInputStream.FileInputStream( java.lang.String )<br>   Permission: java.io.FilePermission "images/dots_button.gif", "read"<br>      Primordial/void java.io.FileInputStream.FileInputStream( java.lang.String )<br>   Permission: java.io.FilePermission "images/message_error.gif", "read"<br>      Primordial/void java.io.FileInputStream.FileInputStream( java.lang.String )<br>   Permission: java.io.FilePermission "images/message_info.gif", "read"<br>      Primordial/void java.io.FileInputStream.FileInputStream( java.lang.String )<br>   Permission: java.io.FilePermission "images/message_warning.gif", "read"<br>      Primordial/void java.io.FileInputStream.FileInputStream( java.lang.String )<br>   Permission: java.io.FilePermission "images/page.gif", "read"<br>      Primordial/void java.io.FileInputStream.FileInputStream( java.lang.String )<br>   Permission: java.io.FilePermission "images/pref_dialog_title.gif", "read"<br>      Primordial/void java.io.FileInputStream.FileInputStream( java.lang.String )<br>   Permission: java.io.FilePermission "images/stop.gif", "read"<br>      Primordial/void java.io.FileInputStream.FileInputStream( java.lang.String )<br>   Permission: java.io.FilePermission "images/title_banner.gif", "read"<br>      Primordial/void java.io.FileInputStream.FileInputStream( java.lang.String )<br><br><br><b>CODE</b><br>    private InputStream getStream() {<br>        InputStream is = null;<br><br>        if (location != null) {<br>        	if(System.getSecurityManager() == null) {<br>        		is = location.getResourceAsStream(name);<br>        	} else {<br>        		is = (InputStream) AccessController.doPrivileged(new GetResourceAsStreamAction(location, name));<br>        	}<br><br>        } else {<br>            try {<br><span
+ style="color: rgb(255, 0, 0);">                is = new FileInputStream(name);</span><br>            } catch (FileNotFoundException e) {<br>                return null;<br>            }<br>        }<br>        if (is == null)<br>            return null;<br>        else<br>            return new BufferedInputStream(is);<br>    }<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.io.FilePermission "???file???", "read";</li>
+<li>permission java.io.FilePermission "images/dots_button.gif", "read";</li>
+<li>permission java.io.FilePermission "images/message_error.gif", "read";</li>
+<li>permission java.io.FilePermission "images/message_info.gif", "read";</li>
+<li>permission java.io.FilePermission "images/message_warning.gif", "read";</li>
+<li>permission java.io.FilePermission "images/page.gif", "read";</li>
+<li>permission java.io.FilePermission "images/pref_dialog_title.gif", "read";</li>
+<li>permission java.io.FilePermission "images/stop.gif", "read";</li>
+<li>permission java.io.FilePermission "images/title_banner.gif", "read";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>Grant the required permissions to this plug-in via OSGI-INF/permissions.perm file.<br><hr>
+</pre>
+</body>
+</html>

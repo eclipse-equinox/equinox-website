@@ -1,0 +1,27 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Permission Analysis Report</title>
+  <script language="javaScript" src="linkUtil.js"></script>
+</head>
+<body>
+<h1>Permission Analysis Report</h1>
+<br>
+<h2>Analysis of: org.eclipse.jface</h2>
+<b>Detail</b><br>
+<br>
+<pre><br><br>
+
+Class: <a href="foo"
+ onclick="return openURLinSrc( 'Application/org/eclipse/jface/operation/ModalContext.html' )">org.eclipse.jface.operation.ModalContext$ModalContextThread</a> (Application)<br>DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/jface/operation/ModalContext.html#L94" , parent.fbot ); return false'>Line# 99</a> void &lt;init&gt;( org.eclipse.jface.operation.IRunnableWithProgress, org.eclipse.core.runtime.IProgressMonitor, org.eclipse.swt.widgets.Display )<br>   Permission: java.lang.RuntimePermission "modifyThread"<br>      Primordial/void java.lang.Thread.Thread( java.lang.String )<br><br><br><b>CODE</b><br>        private ModalContextThread(IRunnableWithProgress operation,<br>                IProgressMonitor monitor, Display display) {<br><span
+ style="color: rgb(255, 0, 0);">            super("ModalContext"); //$NON-NLS-1$</span><br>            Assert.isTrue(monitor != null &amp;&amp; display != null);<br>            runnable = operation;<br>            progressMonitor = new AccumulatingProgressMonitor(monitor, display);<br>            this.display = display;<br>            this.callingThread = Thread.currentThread();<br>        }<br>
+<b>Tainted variable reference trace:</b><br><br>&lt;M&gt; default ModalContext$ModalContextThread( ) (99) - void org.eclipse.jface.operation.ModalContext$ModalContextThread<br>&lt;M&gt; public Thread( ) (359) - void java.lang.Thread<br>	&lt;M&gt; private init( java.lang.ThreadGroup, java.lang.Runnable, java.lang.String, long ) (264) - void java.lang.Thread<br>		&lt;M&gt; public setPriority( int ) (871) - void java.lang.Thread<br>			&lt;M&gt; public checkAccess(  ) (1122) - void java.lang.Thread<br>				&lt;M&gt; public checkAccess( java.lang.Thread ) (647) - void java.lang.SecurityManager<br>					&lt;M&gt; public checkPermission( java.security.Permission ) (524) - void java.lang.SecurityManager<br>						&lt;M&gt; public checkPermission( java.security.Permission ) (385) - void java.security.AccessController<br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.lang.RuntimePermission "modifyThread";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br><hr>
+</pre>
+</body>
+</html>

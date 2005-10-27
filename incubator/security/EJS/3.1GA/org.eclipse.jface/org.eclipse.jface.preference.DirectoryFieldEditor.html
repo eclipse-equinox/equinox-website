@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Permission Analysis Report</title>
+  <script language="javaScript" src="linkUtil.js"></script>
+</head>
+<body>
+<h1>Permission Analysis Report</h1>
+<br>
+<h2>Analysis of: org.eclipse.jface</h2>
+<b>Detail</b><br>
+<br>
+<pre>
+Class: <a href="foo"
+ onclick="return openURLinSrc( 'Application/org/eclipse/jface/preference/DirectoryFieldEditor.html' )">org.eclipse.jface.preference.DirectoryFieldEditor</a> (Application)<br>DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/jface/preference/DirectoryFieldEditor.html#L48" , parent.fbot ); return false'>Line# 53</a> java.lang.String changePressed(  )<br>   Permission: java.io.FilePermission "", "read"<br>      Primordial/boolean java.io.File.exists(  )<br><br><br><b>CODE</b><br>    protected String changePressed() {<br>        File f = new File(getTextControl().getText());<br><span
+ style="color: rgb(255, 0, 0);">        if (!f.exists())</span><br>            f = null;<br>        File d = getDirectory(f);<br>        if (d == null)<br>            return null;<br><br>        return d.getAbsolutePath();<br>    }<br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.io.FilePermission "", "read";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>Grant the permission to this plug-in via OSGI-INF/Permissions.perm file - fine acccess control.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/jface/preference/DirectoryFieldEditor.html#L54" , parent.fbot ); return false'>Line# 59</a> java.lang.String changePressed(  )<br>   Permission: java.io.FilePermission "???file???", "read"<br>      Primordial/java.lang.String java.io.File.getAbsolutePath(  )<br>   Permission: java.util.PropertyPermission "user.dir", "read"<br>      Primordial/java.lang.String java.io.File.getAbsolutePath(  )<br><br><br><b>CODE</b><br>    protected String changePressed() {<br>        File f = new File(getTextControl().getText());<br>        if (!f.exists())<br>            f = null;<br>        File d = getDirectory(f);<br>        if (d == null)<br>            return null;<br><br><span
+ style="color: rgb(255, 0, 0);">        return d.getAbsolutePath();</span><br>    }<br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.io.FilePermission "???file???", "read";</li>
+<li>permission java.util.PropertyPermission "user.dir", "read";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>See prior conclusion.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/jface/preference/DirectoryFieldEditor.html#L67" , parent.fbot ); return false'>Line# 72</a> boolean doCheckState(  )<br>   Permission: java.io.FilePermission "???file???", "read"<br>      Primordial/boolean java.io.File.isDirectory(  )<br><br><br><b>CODE</b><br>    protected boolean doCheckState() {<br>        String fileName = getTextControl().getText();<br>        fileName = fileName.trim();<br>        if (fileName.length() == 0 &amp;&amp; isEmptyStringAllowed())<br>            return true;<br>        File file = new File(fileName);<br><span
+ style="color: rgb(255, 0, 0);">        return file.isDirectory();</span><br>    }<br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.io.FilePermission "???file???", "read";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>See prior conclusion.<br><hr>
+</pre>
+</body>
+</html>

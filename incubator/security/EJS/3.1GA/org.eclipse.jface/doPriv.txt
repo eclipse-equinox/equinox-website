@@ -1,0 +1,183 @@
+		*********DOPRIVILEGED ANALYSIS*********
+
+org.eclipse.jface.operation.ModalContext$ModalContextThread
+ void <init>( org.eclipse.jface.operation.IRunnableWithProgress, org.eclipse.core.runtime.IProgressMonitor, org.eclipse.swt.widgets.Display ) #99
+java.lang.RuntimePermission "modifyThread"
+
+org.eclipse.jface.preference.DirectoryFieldEditor
+protected
+ java.lang.String changePressed(  ) #53
+java.io.FilePermission "", "read"
+
+org.eclipse.jface.preference.DirectoryFieldEditor
+protected
+ java.lang.String changePressed(  ) #59
+java.io.FilePermission "???file???", "read"
+java.util.PropertyPermission "user.dir", "read"
+
+org.eclipse.jface.preference.DirectoryFieldEditor
+protected
+ boolean doCheckState(  ) #72
+java.io.FilePermission "???file???", "read"
+
+org.eclipse.jface.preference.FileFieldEditor
+protected
+ java.lang.String changePressed(  ) #81
+java.io.FilePermission "", "read"
+
+org.eclipse.jface.preference.FileFieldEditor
+protected
+ java.lang.String changePressed(  ) #87
+java.io.FilePermission "???file???", "read"
+java.util.PropertyPermission "user.dir", "read"
+
+org.eclipse.jface.preference.FileFieldEditor
+protected
+ boolean checkState(  ) #108
+java.io.FilePermission "", "read"
+
+org.eclipse.jface.preference.PathEditor
+protected
+ java.lang.String getNewInputObject(  ) #82
+java.io.FilePermission "???file???", "read"
+
+org.eclipse.jface.preference.PreferenceStore
+public
+ void load(  ) #370
+java.io.FilePermission "???file???", "read"
+
+org.eclipse.jface.preference.PreferenceStore
+public
+ void load( java.io.InputStream ) #385
+java.lang.RuntimePermission "getClassLoader"
+java.util.PropertyPermission "java.vendor.url.bug", "read"
+
+org.eclipse.jface.preference.PreferenceStore
+public
+ void save(  ) #441
+java.io.FilePermission "???file???", "write"
+
+org.eclipse.jface.preference.PreferenceStore
+public
+ void save( java.io.OutputStream, java.lang.String ) #461
+java.lang.RuntimePermission "getClassLoader"
+
+org.eclipse.jface.resource.FileImageDescriptor
+private
+ java.io.InputStream getStream(  ) #116
+java.io.FilePermission "???file???", "read"
+java.lang.RuntimePermission "getClassLoader"
+java.net.NetPermission "specifyStreamHandler"
+java.net.SocketPermission "", "resolve"
+java.net.SocketPermission ":???port???", "connect"
+
+org.eclipse.jface.resource.FileImageDescriptor
+private
+ java.io.InputStream getStream(  ) #120
+java.io.FilePermission "???file???", "read"
+java.io.FilePermission "images/dots_button.gif", "read"
+java.io.FilePermission "images/message_error.gif", "read"
+java.io.FilePermission "images/message_info.gif", "read"
+java.io.FilePermission "images/message_warning.gif", "read"
+java.io.FilePermission "images/page.gif", "read"
+java.io.FilePermission "images/pref_dialog_title.gif", "read"
+java.io.FilePermission "images/stop.gif", "read"
+java.io.FilePermission "images/title_banner.gif", "read"
+
+org.eclipse.jface.resource.FontRegistry
+private
+ void readResourceBundle( java.lang.String ) #291
+java.util.PropertyPermission "os.name", "read"
+
+org.eclipse.osgi.framework.debug.FrameworkDebugOptions
+private
+static
+ java.net.URL adjustTrailingSlash( java.net.URL, boolean ) #71
+java.lang.RuntimePermission "getClassLoader"
+java.net.NetPermission "specifyStreamHandler"
+
+org.eclipse.osgi.framework.debug.FrameworkDebugOptions
+private
+static
+ java.net.URL buildURL( java.lang.String, boolean ) #51
+java.io.FilePermission "???file???", "read"
+java.lang.RuntimePermission "getClassLoader"
+java.net.NetPermission "specifyStreamHandler"
+java.util.PropertyPermission "user.dir", "read"
+
+org.eclipse.osgi.framework.debug.FrameworkDebugOptions
+private
+static
+ java.net.URL buildURL( java.lang.String, boolean ) #52
+java.lang.RuntimePermission "getClassLoader"
+java.net.NetPermission "specifyStreamHandler"
+
+org.eclipse.osgi.framework.debug.FrameworkDebugOptions
+private
+static
+ java.net.URL buildURL( java.lang.String, boolean ) #59
+java.io.FilePermission ".options", "read"
+java.io.FilePermission "???file???", "read"
+java.lang.RuntimePermission "getClassLoader"
+java.net.NetPermission "specifyStreamHandler"
+java.util.PropertyPermission "user.dir", "read"
+
+org.eclipse.osgi.framework.debug.FrameworkDebugOptions
+private
+ void loadOptions(  ) #129
+java.util.PropertyPermission "osgi.debug", "read"
+
+org.eclipse.osgi.framework.debug.FrameworkDebugOptions
+private
+ void loadOptions(  ) #138
+java.util.PropertyPermission "user.dir", "read"
+
+org.eclipse.osgi.framework.debug.FrameworkDebugOptions
+private
+ void loadOptions(  ) #152
+java.lang.RuntimePermission "getClassLoader"
+java.util.PropertyPermission "java.vendor.url.bug", "read"
+
+org.eclipse.osgi.framework.internal.core.FrameworkSecurityManager
+public
+ void <init>(  ) #30
+java.lang.RuntimePermission "createSecurityManager"
+
+org.eclipse.osgi.framework.internal.core.MessageResourceBundle
+public
+static
+ void load( java.lang.String, java.lang.Class ) #208
+java.lang.RuntimePermission "getClassLoader"
+java.util.PropertyPermission "java.vendor.url.bug", "read"
+
+org.eclipse.swt.internal.Library
+static
+ void <clinit>(  ) #38
+java.util.PropertyPermission "java.version", "read"
+
+org.eclipse.swt.internal.Library
+public
+static
+ void loadLibrary( java.lang.String ) #107
+java.util.PropertyPermission "swt.version", "read"
+
+org.eclipse.swt.internal.Library
+public
+static
+ void loadLibrary( java.lang.String ) #123
+java.io.FilePermission "???file???", "read"
+java.lang.RuntimePermission "loadLibrary.???library???"
+java.util.PropertyPermission "java.library.path", "read"
+java.util.PropertyPermission "sun.boot.library.path", "read"
+java.util.PropertyPermission "user.dir", "read"
+
+org.eclipse.swt.internal.Library
+public
+static
+ void loadLibrary( java.lang.String ) #128
+java.io.FilePermission "???file???", "read"
+java.lang.RuntimePermission "loadLibrary.???library???"
+java.util.PropertyPermission "java.library.path", "read"
+java.util.PropertyPermission "sun.boot.library.path", "read"
+java.util.PropertyPermission "user.dir", "read"
+

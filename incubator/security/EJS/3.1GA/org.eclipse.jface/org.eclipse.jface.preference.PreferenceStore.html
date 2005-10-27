@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Permission Analysis Report</title>
+  <script language="javaScript" src="linkUtil.js"></script>
+</head>
+<body>
+<h1>Permission Analysis Report</h1>
+<br>
+<h2>Analysis of: org.eclipse.jface</h2>
+<b>Detail</b><br>
+<br>
+<pre>
+Class: <a href="foo"
+ onclick="return openURLinSrc( 'Application/org/eclipse/jface/preference/PreferenceStore.html' )">org.eclipse.jface.preference.PreferenceStore</a> (Application)<br>DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/jface/preference/PreferenceStore.html#L365" , parent.fbot ); return false'>Line# 370</a> void load(  )<br>   Permission: java.io.FilePermission "???file???", "read"<br>      Primordial/void java.io.FileInputStream.FileInputStream( java.lang.String )<br><br><br><b>CODE</b><br>    public void load() throws IOException {<br>        if (filename == null)<br>            throw new IOException("File name not specified");//$NON-NLS-1$<br><span
+ style="color: rgb(255, 0, 0);">        FileInputStream in = new FileInputStream(filename);</span><br>        load(in);<br>        in.close();<br>    }<br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.io.FilePermission "???file???", "read";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>The filename variable is set by constructor.  The caller requires the above permission to use load method.<br><br>Grant the above permission to this plug-in via OSGI-INF/permissions.perm file.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/jface/preference/PreferenceStore.html#L380" , parent.fbot ); return false'>Line# 385</a> void load( java.io.InputStream )<br>   Permission: java.lang.RuntimePermission "getClassLoader"<br>      Primordial/void java.util.Properties.load( java.io.InputStream )<br>   Permission: java.util.PropertyPermission "java.vendor.url.bug", "read"<br>      Primordial/void java.util.Properties.load( java.io.InputStream )<br><br><br><b>CODE</b><br>    public void load(InputStream in) throws IOException {<br><span
+ style="color: rgb(255, 0, 0);">        properties.load(in);</span><br>        dirty = false;<br>    }<br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.lang.RuntimePermission "getClassLoader";</li>
+<li>permission java.util.PropertyPermission "java.vendor.url.bug", "read";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>This tries to load the properties from an InputStream instance, the caller should not need the getClassLoader permission.<br><br>Grant the required permissions to this plug-in via OSGI-INF/permissions.perm file.<br><br>    public void load(InputStream in) throws IOException {<br>    	<span
+ style="color: rgb(255, 0, 0);">if(System.getSecurityManager() == null) {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">    		properties.load(in);</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">    	} else {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">    		try {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">				AccessController.doPrivileged(new LoadPropertyFromInputStreamAction(properties, in));</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			} catch (PrivilegedActionException pae) {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">				throw (IOException) pae.getException();</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			}</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">    	}</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">     </span>   dirty = false;<br>    }<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/jface/preference/PreferenceStore.html#L436" , parent.fbot ); return false'>Line# 441</a> void save(  )<br>   Permission: java.io.FilePermission "???file???", "write"<br>      Primordial/void java.io.FileOutputStream.FileOutputStream( java.lang.String )<br><br><br><b>CODE</b><br>    public void save() throws IOException {<br>        if (filename == null)<br>            throw new IOException("File name not specified");//$NON-NLS-1$<br>        FileOutputStream out = null;<br>        try {<br><span
+ style="color: rgb(255, 0, 0);">            out = new FileOutputStream(filename);</span><br>            save(out, null);<br>        } finally {<br>            if (out != null)<br>                out.close();<br>        }<br>    }<br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.io.FilePermission "???file???", "write";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>Grant the permission to this plug-in via OSGI-INF/permissions.perm file.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/jface/preference/PreferenceStore.html#L456" , parent.fbot ); return false'>Line# 461</a> void save( java.io.OutputStream, java.lang.String )<br>   Permission: java.lang.RuntimePermission "getClassLoader"<br>      Primordial/void java.util.Properties.store( java.io.OutputStream, java.lang.String )<br><br><br><b>CODE</b><br>   public void save(OutputStream out, String header) throws IOException {<br><span
+ style="color: rgb(255, 0, 0);">        properties.store(out, header);</span><br>        dirty = false;<br>    }<br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.lang.RuntimePermission "getClassLoader";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>Grant the permission to this plug-in via OSGI-INF/permissions.perm file.<br><br>    public void save(OutputStream out, String header) throws IOException {<br>    	<span
+ style="color: rgb(255, 0, 0);">if(System.getSecurityManager() == null) {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">    		properties.store(out, header);</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">    	} else {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">    		try {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">				AccessController.doPrivileged(new StorePropertyOutputStreamStringAction(properties, out, header));</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			} catch (PrivilegedActionException pae) {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">				throw (IOException) pae.getException();</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			}</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">    	}</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">     </span>   dirty = false;<br>    }<br><hr>
+</pre>
+</body>
+</html>
