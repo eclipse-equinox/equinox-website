@@ -1,0 +1,34 @@
+grant codeBase "file:C:/eclipse/plugins/org.eclipse.core.runtime_3.1.0.jar" {
+	java.io.FilePermission "???file???", "read"
+	java.io.FilePermission "???file???", "write"
+	java.util.PropertyPermission "eclipse.product", "read"
+	java.util.PropertyPermission "java.vendor.url.bug", "read"
+	java.util.PropertyPermission "osgi.arch", "read"
+	java.util.PropertyPermission "osgi.nl", "read"
+	java.util.PropertyPermission "osgi.os", "read"
+	java.util.PropertyPermission "osgi.ws", "read"
+}
+grant codeBase "file:C:/eclipse/plugins/org.eclipse.osgi_3.1.0.jar" {
+	java.io.FilePermission "???file???", "read"
+	java.lang.RuntimePermission "createSecurityManager"
+	java.lang.RuntimePermission "getClassLoader"
+	java.net.NetPermission "specifyStreamHandler"
+	java.util.PropertyPermission "java.vendor.url.bug", "read"
+	java.util.PropertyPermission "osgi.debug", "read"
+	java.util.PropertyPermission "user.dir", "read"
+}
+grant codeBase "file:C:/j2se-workspace/org.eclipse.help/org.eclipse.help.jar" {
+	java.io.FilePermission "???file???", "read"
+	java.io.FilePermission "???file???", "write"
+	java.lang.RuntimePermission "getClassLoader"
+	java.net.NetPermission "specifyStreamHandler"
+	java.net.SocketPermission ":???port???", "connect"
+	java.util.PropertyPermission "eclipse.product", "read"
+	java.util.PropertyPermission "java.home", "read"
+	java.util.PropertyPermission "java.vendor.url.bug", "read"
+	java.util.PropertyPermission "javax.xml.parsers.SAXParserFactory", "read"
+	java.util.PropertyPermission "osgi.arch", "read"
+	java.util.PropertyPermission "osgi.nl", "read"
+	java.util.PropertyPermission "osgi.os", "read"
+	java.util.PropertyPermission "osgi.ws", "read"
+}

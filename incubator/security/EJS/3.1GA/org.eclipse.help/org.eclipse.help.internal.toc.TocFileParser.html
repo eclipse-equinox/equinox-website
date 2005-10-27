@@ -1,0 +1,114 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=us-ascii">
+<meta name=Generator content="Microsoft Word 10 (filtered)">
+<title>Permission Analysis Report</title>
+
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman";}
+h1
+	{margin-right:0in;
+	margin-left:0in;
+	font-size:24.0pt;
+	font-family:"Times New Roman";}
+h2
+	{margin-right:0in;
+	margin-left:0in;
+	font-size:18.0pt;
+	font-family:"Times New Roman";}
+pre
+	{font-size:10.0pt;
+	font-family:"Courier New";}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+
+<script language="JavaScript"  src="linkUtil.js">
+</script>
+</head>
+
+<body lang=EN-US link=blue vlink=blue>
+
+<div class=Section1>
+
+<h1>Permission Analysis Report</h1>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h2>Analysis of: org.eclipse.help</h2>
+
+<p class=MsoNormal style='margin-bottom:12.0pt'><b>Detail</b></p>
+
+<pre>&nbsp;</pre><pre>&nbsp;</pre><pre>Class: <a href="foo"
+onclick="return openURLinSrc( 'Application/org/eclipse/help/internal/toc/TocFileParser.html' )">org.eclipse.help.internal.toc.TocFileParser</a> (Application)</pre><pre>DoPrivileged location: <a
+href="foo"
+onclick="return openURLinFrame( &quot;Application/org/eclipse/help/internal/toc/TocFileParser.html#L29&quot; , parent.fbot ); return false">Line# 34</a> void &lt;clinit&gt;(&nbsp; )</pre><pre>&nbsp;&nbsp; Permission: java.io.FilePermission &quot;???file???&quot;, &quot;read&quot;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Primordial/javax.xml.parsers.SAXParserFactory javax.xml.parsers.SAXParserFactory.newInstance(&nbsp; )</pre><pre>&nbsp;&nbsp; Permission: java.lang.RuntimePermission &quot;getClassLoader&quot;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Primordial/javax.xml.parsers.SAXParserFactory javax.xml.parsers.SAXParserFactory.newInstance(&nbsp; )</pre><pre>&nbsp;&nbsp; Permission: java.net.NetPermission &quot;specifyStreamHandler&quot;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Primordial/javax.xml.parsers.SAXParserFactory javax.xml.parsers.SAXParserFactory.newInstance(&nbsp; )</pre><pre>&nbsp;&nbsp; Permission: java.net.SocketPermission &quot;&quot;, &quot;resolve&quot;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Primordial/javax.xml.parsers.SAXParserFactory javax.xml.parsers.SAXParserFactory.newInstance(&nbsp; )</pre><pre>&nbsp;&nbsp; Permission: java.net.SocketPermission &quot;:???port???&quot;, &quot;connect&quot;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Primordial/javax.xml.parsers.SAXParserFactory javax.xml.parsers.SAXParserFactory.newInstance(&nbsp; )</pre><pre>&nbsp;&nbsp; Permission: java.util.PropertyPermission &quot;java.home&quot;, &quot;read&quot;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Primordial/javax.xml.parsers.SAXParserFactory javax.xml.parsers.SAXParserFactory.newInstance(&nbsp; )</pre><pre>&nbsp;&nbsp; Permission: java.util.PropertyPermission &quot;java.vendor.url.bug&quot;, &quot;read&quot;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Primordial/javax.xml.parsers.SAXParserFactory javax.xml.parsers.SAXParserFactory.newInstance(&nbsp; )</pre><pre>&nbsp;&nbsp; Permission: java.util.PropertyPermission &quot;javax.xml.parsers.SAXParserFactory&quot;, &quot;read&quot;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Primordial/javax.xml.parsers.SAXParserFactory javax.xml.parsers.SAXParserFactory.newInstance(&nbsp; )</pre><pre><br>
+<br>
+<b>CODE</b><br>
+<br>
+</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style='background:
+yellow'>static SAXParserFactory factory = SAXParserFactory.newInstance();</span><br>
+<br>
+</pre><pre><b>Tainted variable reference trace:</b><br>
+<br>
+<br>
+</pre><pre style='margin-bottom:12.0pt'><b>Permission Requirements:</b></pre><pre
+style='margin-left:.5in'>&nbsp;</pre><pre style='margin-left:.5in;text-indent:
+-.25in'><span style='font-family:Symbol'>&middot;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>permission java.io.FilePermission &quot;???file???&quot;, &quot;read&quot;;</pre><pre
+style='margin-left:.5in'>&nbsp;</pre><pre style='margin-left:.5in;text-indent:
+-.25in'><span style='font-family:Symbol'>&middot;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>permission java.lang.RuntimePermission &quot;getClassLoader&quot;;</pre><pre
+style='margin-left:.5in'>&nbsp;</pre><pre style='margin-left:.5in;text-indent:
+-.25in'><span style='font-family:Symbol'>&middot;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>permission java.net.NetPermission &quot;specifyStreamHandler&quot;;</pre><pre
+style='margin-left:.5in'>&nbsp;</pre><pre style='margin-left:.5in;text-indent:
+-.25in'><span style='font-family:Symbol'>&middot;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>permission java.net.SocketPermission &quot;&quot;, &quot;resolve&quot;;</pre><pre
+style='margin-left:.5in'>&nbsp;</pre><pre style='margin-left:.5in;text-indent:
+-.25in'><span style='font-family:Symbol'>&middot;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>permission java.net.SocketPermission &quot;:???port???&quot;, &quot;connect&quot;;</pre><pre
+style='margin-left:.5in'>&nbsp;</pre><pre style='margin-left:.5in;text-indent:
+-.25in'><span style='font-family:Symbol'>&middot;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>permission java.util.PropertyPermission &quot;java.home&quot;, &quot;read&quot;;</pre><pre
+style='margin-left:.5in'>&nbsp;</pre><pre style='margin-left:.5in;text-indent:
+-.25in'><span style='font-family:Symbol'>&middot;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>permission java.util.PropertyPermission &quot;java.vendor.url.bug&quot;, &quot;read&quot;;</pre><pre
+style='margin-left:.5in'>&nbsp;</pre><pre style='margin-left:.5in;text-indent:
+-.25in'><span style='font-family:Symbol'>&middot;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>permission java.util.PropertyPermission &quot;javax.xml.parsers.SAXParserFactory&quot;, &quot;read&quot;;</pre><pre
+style='margin-left:.5in'>&nbsp;</pre><pre><br>
+<br>
+<br>
+</pre><pre style='margin-bottom:12.0pt'><b>Conclusion:</b></pre><pre>This static intializer needs to be wrapped in a DoPrivileged call</pre><pre>&nbsp;</pre><pre>Proposed code change :</pre><pre>&nbsp;</pre><pre
+style='margin-bottom:12.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+style='background:yellow'>static SAXParserFactory factory;</span></pre><pre
+style='margin-bottom:12.0pt'><span style='background:yellow'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></pre><pre
+style='margin-bottom:12.0pt'><span style='background:yellow'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; static {</span></pre><pre
+style='margin-bottom:12.0pt'><span style='background:yellow'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(System.getSecurityManager() == null) {</span></pre><pre
+style='margin-bottom:12.0pt'><span style='background:yellow'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; factory = SAXParserFactory.newInstance();</span></pre><pre
+style='margin-bottom:12.0pt'><span style='background:yellow'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else {</span></pre><pre
+style='margin-bottom:12.0pt'><span style='background:yellow'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; factory = (SAXParserFactory) AccessController.doPrivileged(new SAXParserFactoryAction());</span></pre><pre
+style='margin-bottom:12.0pt'><span style='background:yellow'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</span></pre><pre
+style='margin-bottom:12.0pt'><span style='background:yellow'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</span></pre><pre
+style='text-align:center'>
+
+<hr size=2 width="100%" align=center>
+
+</pre><pre>&nbsp;</pre></div>
+
+</body>
+
+</html>

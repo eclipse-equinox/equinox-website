@@ -1,0 +1,182 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=us-ascii">
+<meta name=Generator content="Microsoft Word 10 (filtered)">
+<title>Permission Analysis Report</title>
+
+<style>
+<!--
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman";}
+h1
+	{margin-right:0in;
+	margin-left:0in;
+	font-size:24.0pt;
+	font-family:"Times New Roman";}
+h2
+	{margin-right:0in;
+	margin-left:0in;
+	font-size:18.0pt;
+	font-family:"Times New Roman";}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:blue;
+	text-decoration:underline;}
+pre
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Courier New";}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+
+<script language="JavaScript"  src="linkUtil.js">
+</script>
+</head>
+
+<body lang=EN-US link=blue vlink=blue>
+
+<div class=Section1>
+
+<h1>Permission Analysis Report</h1>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h2>Analysis of: org.eclipse.help</h2>
+
+<p class=MsoNormal style='margin-bottom:12.0pt'><b>Detail</b></p>
+
+<pre>&nbsp;</pre><pre>&nbsp;</pre><pre>Class: <a href="foo"
+onclick="return openURLinSrc( 'Application/org/eclipse/help/HelpSystem.html' )">org.eclipse.help.HelpSystem</a> (Application)</pre><pre>DoPrivileged location: <a
+href="foo"
+onclick="return openURLinFrame( &quot;Application/org/eclipse/help/HelpSystem.html#L73&quot; , parent.fbot ); return false">Line# 78</a> java.io.InputStream getHelpContent( java.lang.String )</pre><pre>&nbsp;&nbsp; Permission: java.lang.RuntimePermission &quot;getClassLoader&quot;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String, java.net.URLStreamHandler )</pre><pre>&nbsp;&nbsp; Permission: java.net.NetPermission &quot;specifyStreamHandler&quot;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String, java.net.URLStreamHandler )</pre><pre><br>
+<br>
+</pre><pre><br>
+<br>
+</pre><pre><b>CODE</b><br>
+<br>
+</pre><pre><br>
+<br>
+</pre><pre>public static InputStream getHelpContent(String href) {</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try {</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // URL helpURL = new URL(&quot;help:&quot; + href);</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+style='background:yellow'>URL helpURL = new URL(&quot;help&quot;, //$NON-NLS-1$</span></pre><pre><span
+style='background:yellow'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; null, -1, href, HelpURLStreamHandler.getDefault());</span></pre><pre>&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return helpURL.openStream();</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } catch (IOException ioe) {</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return null;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+<br>
+</pre><pre><br>
+<br>
+</pre><pre><b>Tainted variable reference trace:</b><br>
+<br>
+</pre><pre><br>
+<br>
+</pre><pre><br>
+<br>
+</pre><pre style='margin-bottom:12.0pt'><b>Permission Requirements:</b></pre><pre
+style='margin-left:.5in'>&nbsp;</pre><pre style='margin-left:.5in;text-indent:
+-.25in'><span style='font-family:Symbol'>&middot;</span><span style='font-size:
+7.0pt;font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>permission java.lang.RuntimePermission &quot;getClassLoader&quot;;</pre><pre
+style='margin-left:.5in'>&nbsp;</pre><pre style='margin-left:.5in;text-indent:
+-.25in'><span style='font-family:Symbol'>&middot;</span><span style='font-size:
+7.0pt;font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>permission java.net.NetPermission &quot;specifyStreamHandler&quot;;</pre><pre
+style='margin-left:.5in'>&nbsp;</pre><pre><br>
+<br>
+</pre><pre><br>
+<br>
+</pre><pre><br>
+<br>
+</pre><pre style='margin-bottom:12.0pt'><b>Conclusion:</b></pre><pre>Patch the method to wrap the operation in a privileged action:</pre><pre>&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; public static InputStream getHelpContent(String href) {</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try {</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // URL helpURL = new URL(&quot;help:&quot; + href);</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(System.getSecurityManager() == null) {</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; URL helpURL = new URL(&quot;help&quot;, //$NON-NLS-1$</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; null, -1, href, HelpURLStreamHandler.getDefault());</pre><pre>&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; return helpURL.openStream();</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else {</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; <span
+style='background:yellow'>return (InputStream)AccessController.doPrivileged(new GetInputStreamFromStringURL(&quot;help&quot;, //$NON-NLS-1$</span></pre><pre><span
+style='background:yellow'>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; null, -1, href, HelpURLStreamHandler.getDefault()));</span></pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; </pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } catch (IOException ioe) {</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return null;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } catch (PrivilegedActionException e) {</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return null;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } </pre><pre
+style='text-align:center'>&nbsp;</pre><pre style='text-align:center'>
+
+<hr size=2 width="100%" align=center>
+
+</pre><pre style='text-align:center'>&nbsp;</pre><pre style='text-align:center'>&nbsp;</pre><pre>&nbsp;</pre><pre>DoPrivileged location: <a
+href="foo"
+onclick="return openURLinFrame( &quot;Application/org/eclipse/help/HelpSystem.html#L76&quot; , parent.fbot ); return false">Line# 81</a> java.io.InputStream getHelpContent( java.lang.String )</pre><pre>&nbsp;&nbsp; Permission: java.lang.RuntimePermission &quot;getClassLoader&quot;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Primordial/java.io.InputStream java.net.URL.openStream(&nbsp; )</pre><pre>&nbsp;&nbsp; Permission: java.net.NetPermission &quot;specifyStreamHandler&quot;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Primordial/java.io.InputStream java.net.URL.openStream(&nbsp; )</pre><pre>&nbsp;&nbsp; Permission: java.util.PropertyPermission &quot;eclipse.product&quot;, &quot;read&quot;</pre><pre> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Primordial/java.io.InputStream java.net.URL.openStream(&nbsp; )</pre><pre>&nbsp;&nbsp; Permission: java.util.PropertyPermission &quot;osgi.arch&quot;, &quot;read&quot;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Primordial/java.io.InputStream java.net.URL.openStream(&nbsp; )</pre><pre>&nbsp;&nbsp; Permission: java.util.PropertyPermission &quot;osgi.nl&quot;, &quot;read&quot;</pre><pre> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Primordial/java.io.InputStream java.net.URL.openStream(&nbsp; )</pre><pre>&nbsp;&nbsp; Permission: java.util.PropertyPermission &quot;osgi.os&quot;, &quot;read&quot;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Primordial/java.io.InputStream java.net.URL.openStream(&nbsp; )</pre><pre>&nbsp;&nbsp; Permission: java.util.PropertyPermission &quot;osgi.ws&quot;, &quot;read&quot;</pre><pre>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;Primordial/java.io.InputStream java.net.URL.openStream(&nbsp; )</pre><pre><br>
+<br>
+</pre><pre><br>
+<br>
+</pre><pre><b>CODE</b><br>
+<br>
+</pre><pre><br>
+<br>
+</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; public static InputStream getHelpContent(String href) {</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try {</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // URL helpURL = new URL(&quot;help:&quot; + href);</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; URL helpURL = new URL(&quot;help&quot;, //$NON-NLS-1$</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; null, -1, href, HelpURLStreamHandler.getDefault());</pre><pre>&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+style='background:yellow'>return helpURL.openStream();</span></pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } catch (IOException ioe) {</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return null;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+<br>
+</pre><pre><br>
+<br>
+</pre><pre><b>Tainted variable reference trace:</b><br>
+<br>
+</pre><pre><br>
+<br>
+</pre><pre><br>
+<br>
+</pre><pre style='margin-bottom:12.0pt'><b>Permission Requirements:</b></pre><pre
+style='margin-left:.5in'>&nbsp;</pre><pre style='margin-left:.5in;text-indent:
+-.25in'><span style='font-family:Symbol'>&middot;</span><span style='font-size:
+7.0pt;font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>permission java.lang.RuntimePermission &quot;getClassLoader&quot;;</pre><pre
+style='margin-left:.5in'>&nbsp;</pre><pre style='margin-left:.5in;text-indent:
+-.25in'><span style='font-family:Symbol'>&middot;</span><span style='font-size:
+7.0pt;font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>permission java.net.NetPermission &quot;specifyStreamHandler&quot;;</pre><pre
+style='margin-left:.5in'>&nbsp;</pre><pre style='margin-left:.5in;text-indent:
+-.25in'><span style='font-family:Symbol'>&middot;</span><span style='font-size:
+7.0pt;font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>permission java.util.PropertyPermission &quot;eclipse.product&quot;, &quot;read&quot;;</pre><pre
+style='margin-left:.5in'>&nbsp;</pre><pre style='margin-left:.5in;text-indent:
+-.25in'><span style='font-family:Symbol'>&middot;</span><span style='font-size:
+7.0pt;font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>permission java.util.PropertyPermission &quot;osgi.arch&quot;, &quot;read&quot;;</pre><pre
+style='margin-left:.5in'>&nbsp;</pre><pre style='margin-left:.5in;text-indent:
+-.25in'><span style='font-family:Symbol'>&middot;</span><span style='font-size:
+7.0pt;font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>permission java.util.PropertyPermission &quot;osgi.nl&quot;, &quot;read&quot;;</pre><pre
+style='margin-left:.5in'>&nbsp;</pre><pre style='margin-left:.5in;text-indent:
+-.25in'><span style='font-family:Symbol'>&middot;</span><span style='font-size:
+7.0pt;font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>permission java.util.PropertyPermission &quot;osgi.os&quot;, &quot;read&quot;;</pre><pre
+style='margin-left:.5in'>&nbsp;</pre><pre style='margin-left:.5in;text-indent:
+-.25in'><span style='font-family:Symbol'>&middot;</span><span style='font-size:
+7.0pt;font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>permission java.util.PropertyPermission &quot;osgi.ws&quot;, &quot;read&quot;;</pre><pre
+style='margin-left:.5in'>&nbsp;</pre><pre><br>
+<br>
+</pre><pre><br>
+<br>
+</pre><pre><br>
+<br>
+</pre><pre style='margin-bottom:12.0pt'><b>Conclusion:</b></pre><pre>Patch the method to wrap the operation in a privileged action:</pre><pre
+style='margin-bottom:12.0pt'><b>&nbsp;</b></pre><pre style='margin-bottom:12.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; public static InputStream getHelpContent(String href) {</pre><pre
+style='margin-bottom:12.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try {</pre><pre
+style='margin-bottom:12.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // URL helpURL = new URL(&quot;help:&quot; + href);</pre><pre
+style='margin-bottom:12.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(System.getSecurityManager() == null) {</pre><pre
+style='margin-bottom:12.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; URL helpURL = new URL(&quot;help&quot;, //$NON-NLS-1$</pre><pre
+style='margin-bottom:12.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; null, -1, href, HelpURLStreamHandler.getDefault());</pre><pre
+style='margin-bottom:12.0pt'>&nbsp;</pre><pre style='margin-bottom:12.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; return helpURL.openStream();</pre><pre
+style='margin-bottom:12.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else {</pre><pre
+style='margin-bottom:12.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; <span
+style='background:yellow'>return (InputStream)AccessController.doPrivileged(new GetInputStreamFromStringURL(&quot;help&quot;, //$NON-NLS-1$</span></pre><pre
+style='margin-bottom:12.0pt'><span style='background:yellow'>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; null, -1, href, HelpURLStreamHandler.getDefault()));</span></pre><pre
+style='margin-bottom:12.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; </pre><pre
+style='margin-bottom:12.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</pre><pre
+style='margin-bottom:12.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } catch (IOException ioe) {</pre><pre
+style='margin-bottom:12.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return null;</pre><pre
+style='margin-bottom:12.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } catch (PrivilegedActionException e) {</pre><pre
+style='margin-bottom:12.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return null;</pre><pre
+style='margin-bottom:12.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</pre><pre
+style='margin-bottom:12.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } </pre><pre
+style='text-align:center'>&nbsp;</pre><pre style='text-align:center'>&nbsp;</pre><pre
+style='text-align:center'>
+
+<hr size=2 width="100%" align=center>
+
+</pre><pre style='text-align:center'>&nbsp;</pre><pre style='text-align:center'>&nbsp;</pre><pre>&nbsp;</pre></div>
+
+</body>
+
+</html>

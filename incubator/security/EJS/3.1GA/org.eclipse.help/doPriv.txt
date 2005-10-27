@@ -1,0 +1,162 @@
+		*********DOPRIVILEGED ANALYSIS*********
+
+org.eclipse.core.internal.preferences.EclipsePreferences
+protected
+static
+ java.util.Properties loadProperties( org.eclipse.core.runtime.IPath ) #620
+java.io.FilePermission "???file???", "read"
+
+org.eclipse.core.internal.preferences.EclipsePreferences
+protected
+static
+ java.util.Properties loadProperties( org.eclipse.core.runtime.IPath ) #621
+java.util.PropertyPermission "java.vendor.url.bug", "read"
+
+org.eclipse.core.internal.preferences.EclipsePreferences
+protected
+ void save( org.eclipse.core.runtime.IPath ) #986
+java.io.FilePermission "???file???", "write"
+
+org.eclipse.core.internal.runtime.InternalPlatform
+public
+ java.lang.String getNL(  ) #464
+java.util.PropertyPermission "osgi.nl", "read"
+
+org.eclipse.core.internal.runtime.InternalPlatform
+public
+ java.lang.String getOS(  ) #477
+java.util.PropertyPermission "osgi.os", "read"
+
+org.eclipse.core.internal.runtime.InternalPlatform
+public
+ java.lang.String getOSArch(  ) #481
+java.util.PropertyPermission "osgi.arch", "read"
+
+org.eclipse.core.internal.runtime.InternalPlatform
+public
+ org.eclipse.core.runtime.IProduct getProduct(  ) #575
+java.util.PropertyPermission "eclipse.product", "read"
+
+org.eclipse.core.internal.runtime.InternalPlatform
+public
+ java.lang.String getWS(  ) #691
+java.util.PropertyPermission "osgi.ws", "read"
+
+org.eclipse.help.HelpSystem
+public
+static
+ java.io.InputStream getHelpContent( java.lang.String ) #78
+java.lang.RuntimePermission "getClassLoader"
+java.net.NetPermission "specifyStreamHandler"
+
+org.eclipse.help.HelpSystem
+public
+static
+ java.io.InputStream getHelpContent( java.lang.String ) #81
+java.lang.RuntimePermission "getClassLoader"
+java.net.NetPermission "specifyStreamHandler"
+java.util.PropertyPermission "eclipse.product", "read"
+java.util.PropertyPermission "osgi.arch", "read"
+java.util.PropertyPermission "osgi.nl", "read"
+java.util.PropertyPermission "osgi.os", "read"
+java.util.PropertyPermission "osgi.ws", "read"
+
+org.eclipse.help.internal.context.ContextsFile
+protected
+ java.io.InputStream getInputStream(  ) #44
+java.io.FilePermission "???file???", "read"
+
+org.eclipse.help.internal.context.ContextsFileParser
+static
+ void <clinit>(  ) #38
+java.io.FilePermission "???file???", "read"
+java.lang.RuntimePermission "getClassLoader"
+java.net.NetPermission "specifyStreamHandler"
+java.net.SocketPermission "", "resolve"
+java.net.SocketPermission ":???port???", "connect"
+java.util.PropertyPermission "java.home", "read"
+java.util.PropertyPermission "java.vendor.url.bug", "read"
+java.util.PropertyPermission "javax.xml.parsers.SAXParserFactory", "read"
+
+org.eclipse.help.internal.toc.TocFile
+protected
+ java.io.InputStream getInputStream(  ) #66
+java.io.FilePermission "???file???", "read"
+
+org.eclipse.help.internal.toc.TocFileParser
+static
+ void <clinit>(  ) #34
+java.io.FilePermission "???file???", "read"
+java.lang.RuntimePermission "getClassLoader"
+java.net.NetPermission "specifyStreamHandler"
+java.net.SocketPermission "", "resolve"
+java.net.SocketPermission ":???port???", "connect"
+java.util.PropertyPermission "java.home", "read"
+java.util.PropertyPermission "java.vendor.url.bug", "read"
+java.util.PropertyPermission "javax.xml.parsers.SAXParserFactory", "read"
+
+org.eclipse.help.internal.util.ResourceLocator
+public
+static
+ java.io.InputStream openFromZip( org.osgi.framework.Bundle, java.lang.String, java.lang.String, java.lang.String ) #240
+java.lang.RuntimePermission "getClassLoader"
+java.net.NetPermission "specifyStreamHandler"
+
+org.eclipse.osgi.framework.debug.FrameworkDebugOptions
+private
+static
+ java.net.URL adjustTrailingSlash( java.net.URL, boolean ) #71
+java.lang.RuntimePermission "getClassLoader"
+java.net.NetPermission "specifyStreamHandler"
+
+org.eclipse.osgi.framework.debug.FrameworkDebugOptions
+private
+static
+ java.net.URL buildURL( java.lang.String, boolean ) #51
+java.io.FilePermission "???file???", "read"
+java.lang.RuntimePermission "getClassLoader"
+java.net.NetPermission "specifyStreamHandler"
+java.util.PropertyPermission "user.dir", "read"
+
+org.eclipse.osgi.framework.debug.FrameworkDebugOptions
+private
+static
+ java.net.URL buildURL( java.lang.String, boolean ) #52
+java.lang.RuntimePermission "getClassLoader"
+java.net.NetPermission "specifyStreamHandler"
+
+org.eclipse.osgi.framework.debug.FrameworkDebugOptions
+private
+static
+ java.net.URL buildURL( java.lang.String, boolean ) #59
+java.io.FilePermission "???file???", "read"
+java.lang.RuntimePermission "getClassLoader"
+java.net.NetPermission "specifyStreamHandler"
+java.util.PropertyPermission "user.dir", "read"
+
+org.eclipse.osgi.framework.debug.FrameworkDebugOptions
+private
+ void loadOptions(  ) #129
+java.util.PropertyPermission "osgi.debug", "read"
+
+org.eclipse.osgi.framework.debug.FrameworkDebugOptions
+private
+ void loadOptions(  ) #138
+java.util.PropertyPermission "user.dir", "read"
+
+org.eclipse.osgi.framework.debug.FrameworkDebugOptions
+private
+ void loadOptions(  ) #152
+java.util.PropertyPermission "java.vendor.url.bug", "read"
+
+org.eclipse.osgi.framework.internal.core.FrameworkSecurityManager
+public
+ void <init>(  ) #30
+java.lang.RuntimePermission "createSecurityManager"
+
+org.eclipse.osgi.framework.internal.core.MessageResourceBundle
+public
+static
+ void load( java.lang.String, java.lang.Class ) #208
+java.util.PropertyPermission "java.vendor.url.bug", "read"
+

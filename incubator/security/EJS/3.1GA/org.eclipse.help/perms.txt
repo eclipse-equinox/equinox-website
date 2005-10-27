@@ -1,0 +1,368 @@
+		*********PERMISSIONS BY CLASS*********
+
+
+** Class: com.ibm.security.eclipse.SecurityManagerSetter$1
+	java.lang.RuntimePermission "createSecurityManager"
+	java.lang.RuntimePermission "setSecurityManager"
+
+** Class: org.eclipse.core.internal.preferences.EclipsePreferences
+	java.io.FilePermission "???file???", "read"
+	java.io.FilePermission "???file???", "write"
+	java.util.PropertyPermission "java.vendor.url.bug", "read"
+
+** Class: org.eclipse.core.internal.preferences.EclipsePreferences$1
+	java.io.FilePermission "???file???", "read"
+	java.io.FilePermission "???file???", "write"
+	java.util.PropertyPermission "java.vendor.url.bug", "read"
+
+** Class: org.eclipse.core.internal.preferences.PreferenceForwarder
+	java.io.FilePermission "???file???", "read"
+	java.io.FilePermission "???file???", "write"
+	java.util.PropertyPermission "java.vendor.url.bug", "read"
+
+** Class: org.eclipse.core.internal.preferences.PreferencesService
+	java.io.FilePermission "???file???", "read"
+	java.io.FilePermission "???file???", "write"
+	java.util.PropertyPermission "java.vendor.url.bug", "read"
+
+** Class: org.eclipse.core.internal.preferences.RootPreferences
+	java.io.FilePermission "???file???", "read"
+	java.io.FilePermission "???file???", "write"
+	java.util.PropertyPermission "java.vendor.url.bug", "read"
+
+** Class: org.eclipse.core.internal.runtime.FindSupport
+	java.util.PropertyPermission "osgi.arch", "read"
+	java.util.PropertyPermission "osgi.nl", "read"
+	java.util.PropertyPermission "osgi.os", "read"
+	java.util.PropertyPermission "osgi.ws", "read"
+
+** Class: org.eclipse.core.internal.runtime.InternalPlatform
+	java.io.FilePermission "???file???", "read"
+	java.io.FilePermission "???file???", "write"
+	java.util.PropertyPermission "eclipse.product", "read"
+	java.util.PropertyPermission "java.vendor.url.bug", "read"
+	java.util.PropertyPermission "osgi.arch", "read"
+	java.util.PropertyPermission "osgi.nl", "read"
+	java.util.PropertyPermission "osgi.os", "read"
+	java.util.PropertyPermission "osgi.ws", "read"
+
+** Class: org.eclipse.core.internal.runtime.Messages
+	java.util.PropertyPermission "java.vendor.url.bug", "read"
+
+** Class: org.eclipse.core.runtime.Platform
+	java.io.FilePermission "???file???", "read"
+	java.io.FilePermission "???file???", "write"
+	java.util.PropertyPermission "eclipse.product", "read"
+	java.util.PropertyPermission "java.vendor.url.bug", "read"
+	java.util.PropertyPermission "osgi.arch", "read"
+	java.util.PropertyPermission "osgi.nl", "read"
+	java.util.PropertyPermission "osgi.os", "read"
+	java.util.PropertyPermission "osgi.ws", "read"
+
+** Class: org.eclipse.core.runtime.Plugin
+	java.io.FilePermission "???file???", "read"
+	java.io.FilePermission "???file???", "write"
+	java.util.PropertyPermission "java.vendor.url.bug", "read"
+
+** Class: org.eclipse.help.HelpSystem
+	java.io.FilePermission "???file???", "read"
+	java.lang.RuntimePermission "getClassLoader"
+	java.net.NetPermission "specifyStreamHandler"
+	java.util.PropertyPermission "eclipse.product", "read"
+	java.util.PropertyPermission "osgi.arch", "read"
+	java.util.PropertyPermission "osgi.nl", "read"
+	java.util.PropertyPermission "osgi.os", "read"
+	java.util.PropertyPermission "osgi.ws", "read"
+
+** Class: org.eclipse.help.internal.HelpPlugin
+	java.io.FilePermission "???file???", "read"
+	java.io.FilePermission "???file???", "write"
+	java.util.PropertyPermission "java.vendor.url.bug", "read"
+	java.util.PropertyPermission "osgi.arch", "read"
+	java.util.PropertyPermission "osgi.nl", "read"
+	java.util.PropertyPermission "osgi.os", "read"
+	java.util.PropertyPermission "osgi.ws", "read"
+
+** Class: org.eclipse.help.internal.context.ContextManager
+	java.io.FilePermission "???file???", "read"
+	java.util.PropertyPermission "osgi.arch", "read"
+	java.util.PropertyPermission "osgi.nl", "read"
+	java.util.PropertyPermission "osgi.os", "read"
+	java.util.PropertyPermission "osgi.ws", "read"
+
+** Class: org.eclipse.help.internal.context.ContextsBuilder
+	java.io.FilePermission "???file???", "read"
+	java.util.PropertyPermission "osgi.arch", "read"
+	java.util.PropertyPermission "osgi.nl", "read"
+	java.util.PropertyPermission "osgi.os", "read"
+	java.util.PropertyPermission "osgi.ws", "read"
+
+** Class: org.eclipse.help.internal.context.ContextsFile
+	java.io.FilePermission "???file???", "read"
+	java.util.PropertyPermission "osgi.arch", "read"
+	java.util.PropertyPermission "osgi.nl", "read"
+	java.util.PropertyPermission "osgi.os", "read"
+	java.util.PropertyPermission "osgi.ws", "read"
+
+** Class: org.eclipse.help.internal.context.ContextsFileParser
+	java.io.FilePermission "???file???", "read"
+	java.lang.RuntimePermission "getClassLoader"
+	java.net.NetPermission "specifyStreamHandler"
+	java.net.SocketPermission "", "resolve"
+	java.net.SocketPermission ":???port???", "connect"
+	java.util.PropertyPermission "java.home", "read"
+	java.util.PropertyPermission "java.vendor.url.bug", "read"
+	java.util.PropertyPermission "javax.xml.parsers.SAXParserFactory", "read"
+	java.util.PropertyPermission "osgi.arch", "read"
+	java.util.PropertyPermission "osgi.nl", "read"
+	java.util.PropertyPermission "osgi.os", "read"
+	java.util.PropertyPermission "osgi.ws", "read"
+
+** Class: org.eclipse.help.internal.protocols.HelpURLConnection
+	java.lang.RuntimePermission "getClassLoader"
+	java.net.NetPermission "specifyStreamHandler"
+	java.util.PropertyPermission "eclipse.product", "read"
+	java.util.PropertyPermission "osgi.arch", "read"
+	java.util.PropertyPermission "osgi.nl", "read"
+	java.util.PropertyPermission "osgi.os", "read"
+	java.util.PropertyPermission "osgi.ws", "read"
+
+** Class: org.eclipse.help.internal.toc.TocBuilder
+	java.io.FilePermission "???file???", "read"
+	java.util.PropertyPermission "osgi.arch", "read"
+	java.util.PropertyPermission "osgi.nl", "read"
+	java.util.PropertyPermission "osgi.os", "read"
+	java.util.PropertyPermission "osgi.ws", "read"
+
+** Class: org.eclipse.help.internal.toc.TocFile
+	java.io.FilePermission "???file???", "read"
+	java.util.PropertyPermission "osgi.arch", "read"
+	java.util.PropertyPermission "osgi.nl", "read"
+	java.util.PropertyPermission "osgi.os", "read"
+	java.util.PropertyPermission "osgi.ws", "read"
+
+** Class: org.eclipse.help.internal.toc.TocFileParser
+	java.io.FilePermission "???file???", "read"
+	java.lang.RuntimePermission "getClassLoader"
+	java.net.NetPermission "specifyStreamHandler"
+	java.net.SocketPermission "", "resolve"
+	java.net.SocketPermission ":???port???", "connect"
+	java.util.PropertyPermission "java.home", "read"
+	java.util.PropertyPermission "java.vendor.url.bug", "read"
+	java.util.PropertyPermission "javax.xml.parsers.SAXParserFactory", "read"
+	java.util.PropertyPermission "osgi.arch", "read"
+	java.util.PropertyPermission "osgi.nl", "read"
+	java.util.PropertyPermission "osgi.os", "read"
+	java.util.PropertyPermission "osgi.ws", "read"
+
+** Class: org.eclipse.help.internal.toc.TocManager
+	java.io.FilePermission "???file???", "read"
+	java.io.FilePermission "???file???", "write"
+	java.util.PropertyPermission "java.vendor.url.bug", "read"
+	java.util.PropertyPermission "osgi.arch", "read"
+	java.util.PropertyPermission "osgi.nl", "read"
+	java.util.PropertyPermission "osgi.os", "read"
+	java.util.PropertyPermission "osgi.ws", "read"
+
+** Class: org.eclipse.help.internal.util.ResourceLocator
+	java.lang.RuntimePermission "getClassLoader"
+	java.net.NetPermission "specifyStreamHandler"
+	java.util.PropertyPermission "osgi.arch", "read"
+	java.util.PropertyPermission "osgi.nl", "read"
+	java.util.PropertyPermission "osgi.os", "read"
+	java.util.PropertyPermission "osgi.ws", "read"
+
+** Class: org.eclipse.osgi.framework.debug.Debug
+	java.io.FilePermission "???file???", "read"
+	java.lang.RuntimePermission "getClassLoader"
+	java.net.NetPermission "specifyStreamHandler"
+	java.util.PropertyPermission "java.vendor.url.bug", "read"
+	java.util.PropertyPermission "osgi.debug", "read"
+	java.util.PropertyPermission "user.dir", "read"
+
+** Class: org.eclipse.osgi.framework.debug.FrameworkDebugOptions
+	java.io.FilePermission "???file???", "read"
+	java.lang.RuntimePermission "getClassLoader"
+	java.net.NetPermission "specifyStreamHandler"
+	java.util.PropertyPermission "java.vendor.url.bug", "read"
+	java.util.PropertyPermission "osgi.debug", "read"
+	java.util.PropertyPermission "user.dir", "read"
+
+** Class: org.eclipse.osgi.framework.internal.core.FrameworkSecurityManager
+	java.lang.RuntimePermission "createSecurityManager"
+
+** Class: org.eclipse.osgi.framework.internal.core.MessageResourceBundle
+	java.util.PropertyPermission "java.vendor.url.bug", "read"
+
+** Class: org.eclipse.osgi.util.NLS
+	java.util.PropertyPermission "java.vendor.url.bug", "read"
+
+
+
+		*********PERMISSIONS BY CODE SOURCE*********
+
+
+
+========================================
+
+
+** CodeSource:
+	CodeBase: file:C:/eclipse/plugins/org.eclipse.osgi_3.1.0.jar
+	Certificates:
+
+
+PERMISSIONS ALREADY GRANTED
+java.lang.RuntimePermission "stopThread" ""
+java.util.PropertyPermission "java.version" "read"
+java.util.PropertyPermission "java.vm.name" "read"
+java.util.PropertyPermission "java.vm.vendor" "read"
+java.util.PropertyPermission "os.name" "read"
+java.util.PropertyPermission "java.vendor.url" "read"
+java.util.PropertyPermission "java.vm.specification.vendor" "read"
+java.util.PropertyPermission "java.specification.vendor" "read"
+java.util.PropertyPermission "os.version" "read"
+java.util.PropertyPermission "java.specification.name" "read"
+java.util.PropertyPermission "java.class.version" "read"
+java.util.PropertyPermission "file.separator" "read"
+java.util.PropertyPermission "java.vm.version" "read"
+java.util.PropertyPermission "os.arch" "read"
+java.util.PropertyPermission "java.vm.specification.name" "read"
+java.util.PropertyPermission "java.vm.specification.version" "read"
+java.util.PropertyPermission "java.specification.version" "read"
+java.util.PropertyPermission "java.vendor" "read"
+java.util.PropertyPermission "path.separator" "read"
+java.util.PropertyPermission "line.separator" "read"
+java.net.SocketPermission "localhost:1024-" "listen,resolve"
+
+PERMISSIONS REQUIRED
+java.io.FilePermission "???file???", "read"
+java.lang.RuntimePermission "createSecurityManager"
+java.lang.RuntimePermission "getClassLoader"
+java.net.NetPermission "specifyStreamHandler"
+java.util.PropertyPermission "java.vendor.url.bug", "read"
+java.util.PropertyPermission "osgi.debug", "read"
+java.util.PropertyPermission "user.dir", "read"
+
+PERMISSIONS REQUIRED AND NOT ALREADY GRANTED
+java.io.FilePermission "???file???", "read"
+java.lang.RuntimePermission "createSecurityManager"
+java.lang.RuntimePermission "getClassLoader"
+java.net.NetPermission "specifyStreamHandler"
+java.util.PropertyPermission "java.vendor.url.bug", "read"
+java.util.PropertyPermission "osgi.debug", "read"
+java.util.PropertyPermission "user.dir", "read"
+
+
+========================================
+
+
+** CodeSource:
+	CodeBase: file:C:/eclipse/plugins/org.eclipse.core.runtime_3.1.0.jar
+	Certificates:
+
+
+PERMISSIONS ALREADY GRANTED
+java.lang.RuntimePermission "stopThread" ""
+java.util.PropertyPermission "java.version" "read"
+java.util.PropertyPermission "java.vm.name" "read"
+java.util.PropertyPermission "java.vm.vendor" "read"
+java.util.PropertyPermission "os.name" "read"
+java.util.PropertyPermission "java.vendor.url" "read"
+java.util.PropertyPermission "java.vm.specification.vendor" "read"
+java.util.PropertyPermission "java.specification.vendor" "read"
+java.util.PropertyPermission "os.version" "read"
+java.util.PropertyPermission "java.specification.name" "read"
+java.util.PropertyPermission "java.class.version" "read"
+java.util.PropertyPermission "file.separator" "read"
+java.util.PropertyPermission "java.vm.version" "read"
+java.util.PropertyPermission "os.arch" "read"
+java.util.PropertyPermission "java.vm.specification.name" "read"
+java.util.PropertyPermission "java.vm.specification.version" "read"
+java.util.PropertyPermission "java.specification.version" "read"
+java.util.PropertyPermission "java.vendor" "read"
+java.util.PropertyPermission "path.separator" "read"
+java.util.PropertyPermission "line.separator" "read"
+java.net.SocketPermission "localhost:1024-" "listen,resolve"
+
+PERMISSIONS REQUIRED
+java.io.FilePermission "???file???", "read"
+java.io.FilePermission "???file???", "write"
+java.util.PropertyPermission "eclipse.product", "read"
+java.util.PropertyPermission "java.vendor.url.bug", "read"
+java.util.PropertyPermission "osgi.arch", "read"
+java.util.PropertyPermission "osgi.nl", "read"
+java.util.PropertyPermission "osgi.os", "read"
+java.util.PropertyPermission "osgi.ws", "read"
+
+PERMISSIONS REQUIRED AND NOT ALREADY GRANTED
+java.io.FilePermission "???file???", "read"
+java.io.FilePermission "???file???", "write"
+java.util.PropertyPermission "eclipse.product", "read"
+java.util.PropertyPermission "java.vendor.url.bug", "read"
+java.util.PropertyPermission "osgi.arch", "read"
+java.util.PropertyPermission "osgi.nl", "read"
+java.util.PropertyPermission "osgi.os", "read"
+java.util.PropertyPermission "osgi.ws", "read"
+
+
+========================================
+
+
+** CodeSource:
+	CodeBase: file:C:/j2se-workspace/org.eclipse.help/org.eclipse.help.jar
+	Certificates:
+
+
+PERMISSIONS ALREADY GRANTED
+java.lang.RuntimePermission "stopThread" ""
+java.util.PropertyPermission "java.version" "read"
+java.util.PropertyPermission "java.vm.name" "read"
+java.util.PropertyPermission "java.vm.vendor" "read"
+java.util.PropertyPermission "os.name" "read"
+java.util.PropertyPermission "java.vendor.url" "read"
+java.util.PropertyPermission "java.vm.specification.vendor" "read"
+java.util.PropertyPermission "java.specification.vendor" "read"
+java.util.PropertyPermission "os.version" "read"
+java.util.PropertyPermission "java.specification.name" "read"
+java.util.PropertyPermission "java.class.version" "read"
+java.util.PropertyPermission "file.separator" "read"
+java.util.PropertyPermission "java.vm.version" "read"
+java.util.PropertyPermission "os.arch" "read"
+java.util.PropertyPermission "java.vm.specification.name" "read"
+java.util.PropertyPermission "java.vm.specification.version" "read"
+java.util.PropertyPermission "java.specification.version" "read"
+java.util.PropertyPermission "java.vendor" "read"
+java.util.PropertyPermission "path.separator" "read"
+java.util.PropertyPermission "line.separator" "read"
+java.net.SocketPermission "localhost:1024-" "listen,resolve"
+
+PERMISSIONS REQUIRED
+java.io.FilePermission "???file???", "read"
+java.io.FilePermission "???file???", "write"
+java.lang.RuntimePermission "getClassLoader"
+java.net.NetPermission "specifyStreamHandler"
+java.net.SocketPermission "", "resolve"
+java.net.SocketPermission ":???port???", "connect"
+java.util.PropertyPermission "eclipse.product", "read"
+java.util.PropertyPermission "java.home", "read"
+java.util.PropertyPermission "java.vendor.url.bug", "read"
+java.util.PropertyPermission "javax.xml.parsers.SAXParserFactory", "read"
+java.util.PropertyPermission "osgi.arch", "read"
+java.util.PropertyPermission "osgi.nl", "read"
+java.util.PropertyPermission "osgi.os", "read"
+java.util.PropertyPermission "osgi.ws", "read"
+
+PERMISSIONS REQUIRED AND NOT ALREADY GRANTED
+java.io.FilePermission "???file???", "read"
+java.io.FilePermission "???file???", "write"
+java.lang.RuntimePermission "getClassLoader"
+java.net.NetPermission "specifyStreamHandler"
+java.net.SocketPermission ":???port???", "connect"
+java.util.PropertyPermission "eclipse.product", "read"
+java.util.PropertyPermission "java.home", "read"
+java.util.PropertyPermission "java.vendor.url.bug", "read"
+java.util.PropertyPermission "javax.xml.parsers.SAXParserFactory", "read"
+java.util.PropertyPermission "osgi.arch", "read"
+java.util.PropertyPermission "osgi.nl", "read"
+java.util.PropertyPermission "osgi.os", "read"
+java.util.PropertyPermission "osgi.ws", "read"
