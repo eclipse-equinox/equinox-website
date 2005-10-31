@@ -8,7 +8,6 @@
 </head>
 <body>
 <?php include("nav-include.html") ?>
-<br>
 <p class=bar>Mission Statement</p>
 
 <p>
@@ -49,6 +48,8 @@ The goal of the Equinox Incubator is to experiment with techniques for
   </tr>
 </table>
 
+<p>For an understanding of how work is carried out in the incubators, check out
+  the <a href="howto.php">How to Incubate</a> guide.</p>
 <p class=bar>Old work areas</p>
 <p>See the <a href="archive">Equinox Incubator Archive</a> for details of previous
   work areas.</p>
@@ -68,9 +69,7 @@ Evnironment for Java</B> ( <A
 	href="http://www.alphaworks.ibm.com/tech/sword4j" target="_blank">SWORD4J</A> ). This
 tool was used to <A
 	href="http://www.eclipse.org/equinox/incubator/security/EJS/ejs.html"
-	target="_parent">analyze the RCP plug-ins</A> within the equinox project.<BR>
-<BR>
-</P>
+	target="_parent">analyze the RCP plug-ins</A> within the equinox project.</P>
 <p class=bar>Committers</p>
       <p>The following people are committers on the Equinox Incubator:</p>
       <ul>

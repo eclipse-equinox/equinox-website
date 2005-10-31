@@ -51,7 +51,8 @@
         </blockquote>
         <p> directory/module. Note that most work is done in various branches
           rather than HEAD. See the individual <a href="index.php#workareas">work-area
-          home pages</a> for details.</p>
+          home pages</a> for details. For an understanding of how work is carried
+          out in the incubators, check out the <a href="howto.php">How to Incubate</a> guide.</p>
       </td>
   </tr>
 </table>
