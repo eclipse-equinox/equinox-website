@@ -16,7 +16,7 @@
   are also wanting to move to OSGi. This incubator project is targetted at eliminating
   barriers to using and integrating OSGi (and Equinox more specificially) on
   the server.</p>
-<p>&lt;more here&gt;</p>
+<p>See the <a href="proposal.php">incubator proposal</a> for more detail.</p>
 <p class=bar>Working With the Server-side Incubator</p>
 <p>The Server-side incubator uses the main <a href="../resources.php">incubator
     resources</a> with
