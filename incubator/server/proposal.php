@@ -104,10 +104,5 @@ application servers is also of interest.
 <p>Please direct comments or questions to <a
 	href="mailto:equinox-dev@eclipse.org">equinox-dev@eclipse.org</a>.</p>
 
-<p class="bar">Contributors</p>
-<ul>
-	<li>XXX</li>
-</ul>
-
 </body>
 </html>
