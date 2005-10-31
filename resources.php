@@ -33,16 +33,37 @@
   </tr>
 	<tr>
       <td align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-      <td>        <p><a href="http://dev.eclipse.org/viewcvs/index.cgi/" target="_top"><b>CVS</b></a><br>
-      The Equinox  code is hosted in the normal Eclipse project
-        repository and is available via <a href="http://dev.eclipse.org/viewcvs/index.cgi/">web
+      <td>
+        <p><a href="http://dev.eclipse.org/viewcvs/index.cgi/" target="_top"><b>CVS</b></a><br>
+      The Equinox code is hosted in the normal Eclipse project repository and
+        is available via <a href="http://dev.eclipse.org/viewcvs/index.cgi/">web
         access</a> or direct CVS access. For direct access, use anonymous login
         to the CVS repo</p>
         <blockquote>
           <p>:pserver:anonymous@dev.eclipse.org/cvsroot/eclipse</p>
         </blockquote>
         <p>The Equinox work goes on in various folders as appropriate for the
-      work being done. See the project lists in the <a href="framework/index.php#frameworkprojects">framework</a>, <a href="bundles/index.php#bundleprojects">bundles</a> and <a href="incubator/index.php#workareas">incubator</a>          components for more details.</p></td>
+          work being done. See the project lists in the <a href="framework/index.php#frameworkprojects">framework</a>, <a href="bundles/index.php#bundleprojects">bundles</a> and <a href="incubator/index.php#workareas">incubator</a> components
+          for more details.</p>
+      </td>
+  </tr>
+	<tr>
+      <td align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+      <td>        <p><a href="http://eclipse.org/equinox" target="_top"><b>Website</b></a><br>
+      The Equinox  website itself is hosted in a CVS repository and mirrored
+          on a conventional HTTP server every minute or so. This allows use of
+          PHP, Flash, ... and enables versioning and diffing using Eclipse. The
+          site is open for editing by all Equinox committers using:</p>
+        <blockquote>
+          <p>:extssh:&lt;you here&gt;@dev.eclipse.org/cvsroot/org.eclipse</p>
+        </blockquote>
+        <p>The Equinox website is in </p>
+        <blockquote>
+          <p>www/equinox</p>
+        </blockquote>        
+      <p>You can use Eclipse to check out the whole site and then edit and commit.
+      Remember your changes will take a minute or so to be reflected in the real
+        site.</p></td>
   </tr>
 </table>
 
