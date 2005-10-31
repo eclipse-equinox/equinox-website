@@ -95,8 +95,10 @@ launcher will be part of the initial contribution for the incubator.
 </p>
 
 <p class="bar">Application Server Integration</p>
-... more information to come.
-
+The Geronimo community have expressed some interest in OSGi. This incubator intends
+to investigate what it means to integrate OSGi and Geronimo as well as any changes
+to Equinox that might be required to support Geronimo. Integration with other
+application servers is also of interest.
 <p class="bar">Resources</p>
 
 <p>Please direct comments or questions to <a
