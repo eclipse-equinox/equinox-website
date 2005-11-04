@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 <title>Equinox Coding Practices</title>
 <link rel="stylesheet" title="default" href="http://eclipse.org/default_style.css" type="text/css">
-<link rel="stylesheet" title="default" href="equinox.css" type="text/css">
+<link rel="stylesheet" title="default" href="../equinox.css" type="text/css">
 </head>
 <body>
 <?php include("nav-include.html") ?>
