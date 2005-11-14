@@ -1,0 +1,1701 @@
+Index: Eclipse UI/org/eclipse/ui/SelectionEnabler.java
+===================================================================
+RCS file: /cvsroot/eclipse/equinox-incubator/org.eclipse.ui.workbench/Eclipse UI/org/eclipse/ui/SelectionEnabler.java,v
+retrieving revision 1.1.8.2
+diff -u -r1.1.8.2 SelectionEnabler.java
+--- Eclipse UI/org/eclipse/ui/SelectionEnabler.java	8 Aug 2005 13:40:53 -0000	1.1.8.2
++++ Eclipse UI/org/eclipse/ui/SelectionEnabler.java	9 Nov 2005 21:21:41 -0000
+@@ -12,10 +12,15 @@
+ 
+ import java.lang.reflect.InvocationTargetException;
+ import java.lang.reflect.Method;
++
++import java.security.AccessController;
++import java.security.PrivilegedActionException;
+ import java.util.ArrayList;
+ import java.util.Iterator;
+ import java.util.List;
+ 
++
++import org.eclipse.common.secureaction.reflection.GetDeclaredMethodAction;
+ import org.eclipse.core.runtime.IAdaptable;
+ import org.eclipse.core.runtime.IConfigurationElement;
+ import org.eclipse.core.runtime.Platform;
+@@ -198,8 +203,14 @@
+         Class tselClass = getTextSelectionClass();
+         if (tselClass != null && tselClass.isInstance(selection)) {
+             try {
+-                Method m = tselClass.getDeclaredMethod(
+-                        "getLength", new Class[0]); //$NON-NLS-1$
++                Method m = null;
++                
++                if(System.getSecurityManager() == null) {
++                	m = tselClass.getDeclaredMethod("getLength", new Class[0]); //$NON-NLS-1$
++                } else {
++                	m = (Method) AccessController.doPrivileged(new GetDeclaredMethodAction(tselClass, "getLength", new Class[0])); //$NON-NLS-1$
++                }
++                        
+                 Object r = m.invoke(selection, new Object[0]);
+                 if (r instanceof Integer) {
+                     return isEnabledFor(selection, ((Integer) r).intValue());
+@@ -212,6 +223,8 @@
+                 // should not happen - fall through if it does
+             } catch (InvocationTargetException e) {
+                 // should not happen - fall through if it does
++            } catch (PrivilegedActionException e) {
++                // should not happen - fall through if it does			}
+             }
+         }
+ 
+Index: Eclipse UI/org/eclipse/ui/XMLMemento.java
+===================================================================
+RCS file: /cvsroot/eclipse/equinox-incubator/org.eclipse.ui.workbench/Eclipse UI/org/eclipse/ui/XMLMemento.java,v
+retrieving revision 1.1.8.2
+diff -u -r1.1.8.2 XMLMemento.java
+--- Eclipse UI/org/eclipse/ui/XMLMemento.java	8 Aug 2005 13:40:53 -0000	1.1.8.2
++++ Eclipse UI/org/eclipse/ui/XMLMemento.java	9 Nov 2005 21:21:41 -0000
+@@ -15,12 +15,14 @@
+ import java.io.PrintWriter;
+ import java.io.Reader;
+ import java.io.Writer;
++import java.security.AccessController;
+ import java.util.ArrayList;
+ 
+ import javax.xml.parsers.DocumentBuilder;
+ import javax.xml.parsers.DocumentBuilderFactory;
+ import javax.xml.parsers.ParserConfigurationException;
+ 
++import org.eclipse.common.secureaction.builder.DocumentBuilderFactoryGetterAction;
+ import org.eclipse.ui.internal.WorkbenchMessages;
+ import org.eclipse.ui.internal.WorkbenchPlugin;
+ import org.w3c.dom.Attr;
+@@ -34,518 +36,552 @@
+ import org.xml.sax.SAXException;
+ 
+ /**
+- * This class represents the default implementation of the
+- * <code>IMemento</code> interface.
++ * This class represents the default implementation of the <code>IMemento</code>
++ * interface.
+  * <p>
+  * This class is not intended to be extended by clients.
+  * </p>
+- *
++ * 
+  * @see IMemento
+  */
+ public final class XMLMemento implements IMemento {
+-    private Document factory;
++	private Document factory;
+ 
+-    private Element element;
++	private Element element;
+ 
+-    /**
+-     * Creates a <code>Document</code> from the <code>Reader</code>
+-     * and returns a memento on the first <code>Element</code> for reading
+-     * the document.
+-     * <p>
+-     * Same as calling createReadRoot(reader, null)
+-     * </p>
+-     * 
+-     * @param reader the <code>Reader</code> used to create the memento's document
+-     * @return a memento on the first <code>Element</code> for reading the document
+-     * @throws WorkbenchException if IO problems, invalid format, or no element.
+-     */
+-    public static XMLMemento createReadRoot(Reader reader)
+-            throws WorkbenchException {
+-        return createReadRoot(reader, null);
+-    }
+-
+-    /**
+-     * Creates a <code>Document</code> from the <code>Reader</code>
+-     * and returns a memento on the first <code>Element</code> for reading
+-     * the document.
+-     * 
+-     * @param reader the <code>Reader</code> used to create the memento's document
+-     * @param baseDir the directory used to resolve relative file names
+-     * 		in the XML document. This directory must exist and include the
+-     * 		trailing separator. The directory format, including the separators,
+-     * 		must be valid for the platform. Can be <code>null</code> if not
+-     * 		needed.
+-     * @return a memento on the first <code>Element</code> for reading the document
+-     * @throws WorkbenchException if IO problems, invalid format, or no element.
+-     */
+-    public static XMLMemento createReadRoot(Reader reader, String baseDir)
+-            throws WorkbenchException {
+-        String errorMessage = null;
+-        Exception exception = null;
+-
+-        try {
+-            DocumentBuilderFactory factory = DocumentBuilderFactory
+-                    .newInstance();
+-            DocumentBuilder parser = factory.newDocumentBuilder();
+-            InputSource source = new InputSource(reader);
+-            if (baseDir != null)
+-                source.setSystemId(baseDir);
+-            Document document = parser.parse(source);
+-            NodeList list = document.getChildNodes();
+-            for (int i = 0; i < list.getLength(); i++) {
+-                Node node = list.item(i);
+-                if (node instanceof Element)
+-                    return new XMLMemento(document, (Element) node);
+-            }
+-        } catch (ParserConfigurationException e) {
+-            exception = e;
+-            errorMessage = WorkbenchMessages.XMLMemento_parserConfigError;
+-        } catch (IOException e) {
+-            exception = e;
+-            errorMessage = WorkbenchMessages.XMLMemento_ioError; 
+-        } catch (SAXException e) {
+-            exception = e;
+-            errorMessage = WorkbenchMessages.XMLMemento_formatError; 
+-        }
+-
+-        String problemText = null;
+-        if (exception != null)
+-            problemText = exception.getMessage();
+-        if (problemText == null || problemText.length() == 0)
+-            problemText = errorMessage != null ? errorMessage
+-                    : WorkbenchMessages.XMLMemento_noElement; 
+-        throw new WorkbenchException(problemText, exception);
+-    }
+-
+-    /**
+-     * Returns a root memento for writing a document.
+-     * 
+-     * @param type the element node type to create on the document
+-     * @return the root memento for writing a document
+-     */
+-    public static XMLMemento createWriteRoot(String type) {
+-        Document document;
+-        try {
+-            document = DocumentBuilderFactory.newInstance()
+-                    .newDocumentBuilder().newDocument();
+-            Element element = document.createElement(type);
+-            document.appendChild(element);
+-            return new XMLMemento(document, element);
+-        } catch (ParserConfigurationException e) {
+-//            throw new Error(e);
+-            throw new Error(e.getMessage());
+-        }
+-    }
+-
+-    /**
+-     * Creates a memento for the specified document and element.
+-     * <p>
+-     * Clients should use <code>createReadRoot</code> and
+-     * <code>createWriteRoot</code> to create the initial
+-     * memento on a document.
+-     * </p>
+-     * 
+-     * @param document the document for the memento
+-     * @param element the element node for the memento
+-     */
+-    public XMLMemento(Document document, Element element) {
+-        super();
+-        this.factory = document;
+-        this.element = element;
+-    }
+-
+-    /* (non-Javadoc)
+-     * Method declared in IMemento.
+-     */
+-    public IMemento createChild(String type) {
+-        Element child = factory.createElement(type);
+-        element.appendChild(child);
+-        return new XMLMemento(factory, child);
+-    }
+-
+-    /* (non-Javadoc)
+-     * Method declared in IMemento.
+-     */
+-    public IMemento createChild(String type, String id) {
+-        Element child = factory.createElement(type);
+-        child.setAttribute(TAG_ID, id == null ? "" : id); //$NON-NLS-1$
+-        element.appendChild(child);
+-        return new XMLMemento(factory, child);
+-    }
+-
+-    /* (non-Javadoc)
+-     * Method declared in IMemento.
+-     */
+-    public IMemento copyChild(IMemento child) {
+-        Element childElement = ((XMLMemento) child).element;
+-        Element newElement = (Element) factory.importNode(childElement, true);
+-        element.appendChild(newElement);
+-        return new XMLMemento(factory, newElement);
+-    }
+-
+-    /* (non-Javadoc)
+-     * Method declared in IMemento.
+-     */
+-    public IMemento getChild(String type) {
+-
+-        // Get the nodes.
+-        NodeList nodes = element.getChildNodes();
+-        int size = nodes.getLength();
+-        if (size == 0)
+-            return null;
+-
+-        // Find the first node which is a child of this node.
+-        for (int nX = 0; nX < size; nX++) {
+-            Node node = nodes.item(nX);
+-            if (node instanceof Element) {
+-                Element element = (Element) node;
+-                if (element.getNodeName().equals(type))
+-                    return new XMLMemento(factory, element);
+-            }
+-        }
+-
+-        // A child was not found.
+-        return null;
+-    }
+-
+-    /* (non-Javadoc)
+-     * Method declared in IMemento.
+-     */
+-    public IMemento[] getChildren(String type) {
+-
+-        // Get the nodes.
+-        NodeList nodes = element.getChildNodes();
+-        int size = nodes.getLength();
+-        if (size == 0)
+-            return new IMemento[0];
+-
+-        // Extract each node with given type.
+-        ArrayList list = new ArrayList(size);
+-        for (int nX = 0; nX < size; nX++) {
+-            Node node = nodes.item(nX);
+-            if (node instanceof Element) {
+-                Element element = (Element) node;
+-                if (element.getNodeName().equals(type))
+-                    list.add(element);
+-            }
+-        }
+-
+-        // Create a memento for each node.
+-        size = list.size();
+-        IMemento[] results = new IMemento[size];
+-        for (int x = 0; x < size; x++) {
+-            results[x] = new XMLMemento(factory, (Element) list.get(x));
+-        }
+-        return results;
+-    }
+-
+-    /* (non-Javadoc)
+-     * Method declared in IMemento.
+-     */
+-    public Float getFloat(String key) {
+-        Attr attr = element.getAttributeNode(key);
+-        if (attr == null)
+-            return null;
+-        String strValue = attr.getValue();
+-        try {
+-            return new Float(strValue);
+-        } catch (NumberFormatException e) {
+-            WorkbenchPlugin.log("Memento problem - Invalid float for key: " //$NON-NLS-1$
+-                    + key + " value: " + strValue, e); //$NON-NLS-1$
+-            return null;
+-        }
+-    }
+-
+-    /* (non-Javadoc)
+-     * Method declared in IMemento.
+-     */
+-    public String getID() {
+-        return element.getAttribute(TAG_ID);
+-    }
+-
+-    /* (non-Javadoc)
+-     * Method declared in IMemento.
+-     */
+-    public Integer getInteger(String key) {
+-        Attr attr = element.getAttributeNode(key);
+-        if (attr == null)
+-            return null;
+-        String strValue = attr.getValue();
+-        try {
+-            return new Integer(strValue);
+-        } catch (NumberFormatException e) {
+-            WorkbenchPlugin
+-                    .log("Memento problem - invalid integer for key: " + key //$NON-NLS-1$
+-                            + " value: " + strValue, e); //$NON-NLS-1$
+-            return null;
+-        }
+-    }
+-
+-    /* (non-Javadoc)
+-     * Method declared in IMemento.
+-     */
+-    public String getString(String key) {
+-        Attr attr = element.getAttributeNode(key);
+-        if (attr == null)
+-            return null;
+-        return attr.getValue();
+-    }
+-
+-    /* (non-Javadoc)
+-     * Method declared in IMemento.
+-     */
+-    public String getTextData() {
+-        Text textNode = getTextNode();
+-        if (textNode != null) {
+-            return textNode.getData();
+-        }
+-        return null;
+-    }
+-
+-    /**
+-     * Returns the Text node of the memento. Each memento is allowed only 
+-     * one Text node.
+-     * 
+-     * @return the Text node of the memento, or <code>null</code> if
+-     * the memento has no Text node.
+-     */
+-    private Text getTextNode() {
+-        // Get the nodes.
+-        NodeList nodes = element.getChildNodes();
+-        int size = nodes.getLength();
+-        if (size == 0)
+-            return null;
+-        for (int nX = 0; nX < size; nX++) {
+-            Node node = nodes.item(nX);
+-            if (node instanceof Text) {
+-                return (Text) node;
+-            }
+-        }
+-        // a Text node was not found
+-        return null;
+-    }
+-
+-    /**
+-     * Places the element's attributes into the document.
+-     */
+-    private void putElement(Element element) {
+-        NamedNodeMap nodeMap = element.getAttributes();
+-        int size = nodeMap.getLength();
+-        for (int i = 0; i < size; i++) {
+-            Attr attr = (Attr) nodeMap.item(i);
+-            putString(attr.getName(), attr.getValue());
+-        }
+-
+-        NodeList nodes = element.getChildNodes();
+-        size = nodes.getLength();
+-        for (int i = 0; i < size; i++) {
+-            Node node = nodes.item(i);
+-            if (node instanceof Element) {
+-                XMLMemento child = (XMLMemento) createChild(node.getNodeName());
+-                child.putElement((Element) node);
+-            }
+-        }
+-    }
+-
+-    /* (non-Javadoc)
+-     * Method declared in IMemento.
+-     */
+-    public void putFloat(String key, float f) {
+-        element.setAttribute(key, String.valueOf(f));
+-    }
+-
+-    /* (non-Javadoc)
+-     * Method declared in IMemento.
+-     */
+-    public void putInteger(String key, int n) {
+-        element.setAttribute(key, String.valueOf(n));
+-    }
+-
+-    /* (non-Javadoc)
+-     * Method declared in IMemento.
+-     */
+-    public void putMemento(IMemento memento) {
+-        putElement(((XMLMemento) memento).element);
+-    }
+-
+-    /* (non-Javadoc)
+-     * Method declared in IMemento.
+-     */
+-    public void putString(String key, String value) {
+-        if (value == null)
+-            return;
+-        element.setAttribute(key, value);
+-    }
+-
+-    /* (non-Javadoc)
+-     * Method declared in IMemento.
+-     */
+-    public void putTextData(String data) {
+-        Text textNode = getTextNode();
+-        if (textNode == null) {
+-            textNode = factory.createTextNode(data);
+-			// Always add the text node as the first child (fixes bug 93718) 
++	/**
++	 * Creates a <code>Document</code> from the <code>Reader</code> and
++	 * returns a memento on the first <code>Element</code> for reading the
++	 * document.
++	 * <p>
++	 * Same as calling createReadRoot(reader, null)
++	 * </p>
++	 * 
++	 * @param reader
++	 *            the <code>Reader</code> used to create the memento's
++	 *            document
++	 * @return a memento on the first <code>Element</code> for reading the
++	 *         document
++	 * @throws WorkbenchException
++	 *             if IO problems, invalid format, or no element.
++	 */
++	public static XMLMemento createReadRoot(Reader reader)
++			throws WorkbenchException {
++		return createReadRoot(reader, null);
++	}
++
++	/**
++	 * Creates a <code>Document</code> from the <code>Reader</code> and
++	 * returns a memento on the first <code>Element</code> for reading the
++	 * document.
++	 * 
++	 * @param reader
++	 *            the <code>Reader</code> used to create the memento's
++	 *            document
++	 * @param baseDir
++	 *            the directory used to resolve relative file names in the XML
++	 *            document. This directory must exist and include the trailing
++	 *            separator. The directory format, including the separators,
++	 *            must be valid for the platform. Can be <code>null</code> if
++	 *            not needed.
++	 * @return a memento on the first <code>Element</code> for reading the
++	 *         document
++	 * @throws WorkbenchException
++	 *             if IO problems, invalid format, or no element.
++	 */
++	public static XMLMemento createReadRoot(Reader reader, String baseDir)
++			throws WorkbenchException {
++		String errorMessage = null;
++		Exception exception = null;
++
++		try {
++			DocumentBuilderFactory factory = null;
++
++			if (System.getSecurityManager() == null) {
++				factory = DocumentBuilderFactory.newInstance();
++			} else {
++				factory = (DocumentBuilderFactory) AccessController
++						.doPrivileged(new DocumentBuilderFactoryGetterAction());
++			}
++
++			
++			DocumentBuilder parser = factory.newDocumentBuilder();
++			InputSource source = new InputSource(reader);
++			if (baseDir != null)
++				source.setSystemId(baseDir);
++			Document document = parser.parse(source);
++			NodeList list = document.getChildNodes();
++			for (int i = 0; i < list.getLength(); i++) {
++				Node node = list.item(i);
++				if (node instanceof Element)
++					return new XMLMemento(document, (Element) node);
++			}
++		} catch (ParserConfigurationException e) {
++			exception = e;
++			errorMessage = WorkbenchMessages.XMLMemento_parserConfigError;
++		} catch (IOException e) {
++			exception = e;
++			errorMessage = WorkbenchMessages.XMLMemento_ioError;
++		} catch (SAXException e) {
++			exception = e;
++			errorMessage = WorkbenchMessages.XMLMemento_formatError;
++		}
++
++		String problemText = null;
++		if (exception != null)
++			problemText = exception.getMessage();
++		if (problemText == null || problemText.length() == 0)
++			problemText = errorMessage != null ? errorMessage
++					: WorkbenchMessages.XMLMemento_noElement;
++		throw new WorkbenchException(problemText, exception);
++	}
++
++	/**
++	 * Returns a root memento for writing a document.
++	 * 
++	 * @param type
++	 *            the element node type to create on the document
++	 * @return the root memento for writing a document
++	 */
++	public static XMLMemento createWriteRoot(String type) {
++		Document document;
++		try {
++			DocumentBuilderFactory bFactory = null;
++			if (System.getSecurityManager() == null) {
++				bFactory = DocumentBuilderFactory.newInstance();
++			} else {
++				bFactory = (DocumentBuilderFactory) AccessController
++						.doPrivileged(new DocumentBuilderFactoryGetterAction());
++			}
++			
++			document = bFactory.newDocumentBuilder().newDocument();
++			Element element = document.createElement(type);
++			document.appendChild(element);
++			return new XMLMemento(document, element);
++		} catch (ParserConfigurationException e) {
++			// throw new Error(e);
++			throw new Error(e.getMessage());
++		}
++
++	}
++
++	/**
++	 * Creates a memento for the specified document and element.
++	 * <p>
++	 * Clients should use <code>createReadRoot</code> and
++	 * <code>createWriteRoot</code> to create the initial memento on a
++	 * document.
++	 * </p>
++	 * 
++	 * @param document
++	 *            the document for the memento
++	 * @param element
++	 *            the element node for the memento
++	 */
++	public XMLMemento(Document document, Element element) {
++		super();
++		this.factory = document;
++		this.element = element;
++	}
++
++	/*
++	 * (non-Javadoc) Method declared in IMemento.
++	 */
++	public IMemento createChild(String type) {
++		Element child = factory.createElement(type);
++		element.appendChild(child);
++		return new XMLMemento(factory, child);
++	}
++
++	/*
++	 * (non-Javadoc) Method declared in IMemento.
++	 */
++	public IMemento createChild(String type, String id) {
++		Element child = factory.createElement(type);
++		child.setAttribute(TAG_ID, id == null ? "" : id); //$NON-NLS-1$
++		element.appendChild(child);
++		return new XMLMemento(factory, child);
++	}
++
++	/*
++	 * (non-Javadoc) Method declared in IMemento.
++	 */
++	public IMemento copyChild(IMemento child) {
++		Element childElement = ((XMLMemento) child).element;
++		Element newElement = (Element) factory.importNode(childElement, true);
++		element.appendChild(newElement);
++		return new XMLMemento(factory, newElement);
++	}
++
++	/*
++	 * (non-Javadoc) Method declared in IMemento.
++	 */
++	public IMemento getChild(String type) {
++
++		// Get the nodes.
++		NodeList nodes = element.getChildNodes();
++		int size = nodes.getLength();
++		if (size == 0)
++			return null;
++
++		// Find the first node which is a child of this node.
++		for (int nX = 0; nX < size; nX++) {
++			Node node = nodes.item(nX);
++			if (node instanceof Element) {
++				Element element = (Element) node;
++				if (element.getNodeName().equals(type))
++					return new XMLMemento(factory, element);
++			}
++		}
++
++		// A child was not found.
++		return null;
++	}
++
++	/*
++	 * (non-Javadoc) Method declared in IMemento.
++	 */
++	public IMemento[] getChildren(String type) {
++
++		// Get the nodes.
++		NodeList nodes = element.getChildNodes();
++		int size = nodes.getLength();
++		if (size == 0)
++			return new IMemento[0];
++
++		// Extract each node with given type.
++		ArrayList list = new ArrayList(size);
++		for (int nX = 0; nX < size; nX++) {
++			Node node = nodes.item(nX);
++			if (node instanceof Element) {
++				Element element = (Element) node;
++				if (element.getNodeName().equals(type))
++					list.add(element);
++			}
++		}
++
++		// Create a memento for each node.
++		size = list.size();
++		IMemento[] results = new IMemento[size];
++		for (int x = 0; x < size; x++) {
++			results[x] = new XMLMemento(factory, (Element) list.get(x));
++		}
++		return results;
++	}
++
++	/*
++	 * (non-Javadoc) Method declared in IMemento.
++	 */
++	public Float getFloat(String key) {
++		Attr attr = element.getAttributeNode(key);
++		if (attr == null)
++			return null;
++		String strValue = attr.getValue();
++		try {
++			return new Float(strValue);
++		} catch (NumberFormatException e) {
++			WorkbenchPlugin.log("Memento problem - Invalid float for key: " //$NON-NLS-1$
++					+ key + " value: " + strValue, e); //$NON-NLS-1$
++			return null;
++		}
++	}
++
++	/*
++	 * (non-Javadoc) Method declared in IMemento.
++	 */
++	public String getID() {
++		return element.getAttribute(TAG_ID);
++	}
++
++	/*
++	 * (non-Javadoc) Method declared in IMemento.
++	 */
++	public Integer getInteger(String key) {
++		Attr attr = element.getAttributeNode(key);
++		if (attr == null)
++			return null;
++		String strValue = attr.getValue();
++		try {
++			return new Integer(strValue);
++		} catch (NumberFormatException e) {
++			WorkbenchPlugin.log(
++					"Memento problem - invalid integer for key: " + key //$NON-NLS-1$
++							+ " value: " + strValue, e); //$NON-NLS-1$
++			return null;
++		}
++	}
++
++	/*
++	 * (non-Javadoc) Method declared in IMemento.
++	 */
++	public String getString(String key) {
++		Attr attr = element.getAttributeNode(key);
++		if (attr == null)
++			return null;
++		return attr.getValue();
++	}
++
++	/*
++	 * (non-Javadoc) Method declared in IMemento.
++	 */
++	public String getTextData() {
++		Text textNode = getTextNode();
++		if (textNode != null) {
++			return textNode.getData();
++		}
++		return null;
++	}
++
++	/**
++	 * Returns the Text node of the memento. Each memento is allowed only one
++	 * Text node.
++	 * 
++	 * @return the Text node of the memento, or <code>null</code> if the
++	 *         memento has no Text node.
++	 */
++	private Text getTextNode() {
++		// Get the nodes.
++		NodeList nodes = element.getChildNodes();
++		int size = nodes.getLength();
++		if (size == 0)
++			return null;
++		for (int nX = 0; nX < size; nX++) {
++			Node node = nodes.item(nX);
++			if (node instanceof Text) {
++				return (Text) node;
++			}
++		}
++		// a Text node was not found
++		return null;
++	}
++
++	/**
++	 * Places the element's attributes into the document.
++	 */
++	private void putElement(Element element) {
++		NamedNodeMap nodeMap = element.getAttributes();
++		int size = nodeMap.getLength();
++		for (int i = 0; i < size; i++) {
++			Attr attr = (Attr) nodeMap.item(i);
++			putString(attr.getName(), attr.getValue());
++		}
++
++		NodeList nodes = element.getChildNodes();
++		size = nodes.getLength();
++		for (int i = 0; i < size; i++) {
++			Node node = nodes.item(i);
++			if (node instanceof Element) {
++				XMLMemento child = (XMLMemento) createChild(node.getNodeName());
++				child.putElement((Element) node);
++			}
++		}
++	}
++
++	/*
++	 * (non-Javadoc) Method declared in IMemento.
++	 */
++	public void putFloat(String key, float f) {
++		element.setAttribute(key, String.valueOf(f));
++	}
++
++	/*
++	 * (non-Javadoc) Method declared in IMemento.
++	 */
++	public void putInteger(String key, int n) {
++		element.setAttribute(key, String.valueOf(n));
++	}
++
++	/*
++	 * (non-Javadoc) Method declared in IMemento.
++	 */
++	public void putMemento(IMemento memento) {
++		putElement(((XMLMemento) memento).element);
++	}
++
++	/*
++	 * (non-Javadoc) Method declared in IMemento.
++	 */
++	public void putString(String key, String value) {
++		if (value == null)
++			return;
++		element.setAttribute(key, value);
++	}
++
++	/*
++	 * (non-Javadoc) Method declared in IMemento.
++	 */
++	public void putTextData(String data) {
++		Text textNode = getTextNode();
++		if (textNode == null) {
++			textNode = factory.createTextNode(data);
++			// Always add the text node as the first child (fixes bug 93718)
+ 			element.insertBefore(textNode, element.getFirstChild());
+-        } else {
+-            textNode.setData(data);
+-        }
+-    }
+-
+-    /**
+-     * Saves this memento's document current values to the
+-     * specified writer. 
+-     * 
+-     * @param writer the writer used to save the memento's document
+-     * @throws IOException if there is a problem serializing the document to the stream.
+-     */
+-    public void save(Writer writer) throws IOException {
+-    	DOMWriter out = new DOMWriter(writer);
+-        try {
+-        	out.print(element);
+-    	} finally {
+-    		out.close();
+-    	}
++		} else {
++			textNode.setData(data);
++		}
++	}
++
++	/**
++	 * Saves this memento's document current values to the specified writer.
++	 * 
++	 * @param writer
++	 *            the writer used to save the memento's document
++	 * @throws IOException
++	 *             if there is a problem serializing the document to the stream.
++	 */
++	public void save(Writer writer) throws IOException {
++		DOMWriter out = new DOMWriter(writer);
++		try {
++			out.print(element);
++		} finally {
++			out.close();
++		}
+ 	}
+ 
+ 	/**
+-     * A simple XML writer.  Using this instead of the javax.xml.transform classes allows
+-     * compilation against JCL Foundation (bug 80053). 
+-     */
+-    private static final class DOMWriter extends PrintWriter {
+-    	
+-    	private int tab;
+-
+-    	/* constants */
+-    	private static final String XML_VERSION = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"; //$NON-NLS-1$
+-
+-    	/**
+-    	 * Creates a new DOM writer on the given output writer.
+-    	 * 
+-    	 * @param output the output writer
+-    	 */
+-    	public DOMWriter(Writer output) {
+-    		super(output);
+-    		tab = 0;
+-    		println(XML_VERSION);
+-    	}
+-
+-    	/**
+-    	 * Prints the given element.
+-    	 * 
+-    	 * @param element the element to print
+-    	 */
+-        public void print(Element element) {
+-        	// Ensure extra whitespace is not emitted next to a Text node,
+-        	// as that will result in a situation where the restored text data is not the
+-        	// same as the saved text data.
+-        	boolean hasChildren = element.hasChildNodes();
+-        	startTag(element, hasChildren);
+-        	if (hasChildren) {
+-	        	tab++;
+-	        	boolean prevWasText = false;
+-	        	NodeList children = element.getChildNodes();
+-	    		for (int i = 0; i < children.getLength(); i++) {
+-	    			Node node = children.item(i);
+-	    			if (node instanceof Element) {
+-	    				if (!prevWasText) {
+-	    					println();
+-	    					printTabulation();
+-	    				}
+-	    				print((Element) children.item(i));
+-	    				prevWasText = false;
+-	    			}
+-	    			else if (node instanceof Text) {
+-	    				print(getEscaped(node.getNodeValue()));
+-	    				prevWasText = true;
+-	    			}
+-	    		}
+-	    		tab--;
+-	    		if (!prevWasText) {
+-	    			println();
+-	    			printTabulation();
+-	    		}
+-	    		endTag(element);
+-        	}
+-    	}
+-
+-    	private void printTabulation() {
+-        	// Indenting is disabled, as it can affect the result of getTextData().
+-        	// In 3.0, elements were separated by a newline but not indented.
+-    		// This causes getTextData() to return "\n" even if no text data had explicitly been set.
+-        	// The code here emulates that behaviour.
+-    		
+-//    		for (int i = 0; i < tab; i++)
+-//    			super.print("\t"); //$NON-NLS-1$
+-    	}
+-
+-    	private void startTag(Element element, boolean hasChildren) {
+-    		StringBuffer sb = new StringBuffer();
+-    		sb.append("<"); //$NON-NLS-1$
+-    		sb.append(element.getTagName());
+-    		NamedNodeMap attributes = element.getAttributes();
+-   			for (int i = 0;  i < attributes.getLength(); i++) {
+-   				Attr attribute = (Attr)attributes.item(i);
++	 * A simple XML writer. Using this instead of the javax.xml.transform
++	 * classes allows compilation against JCL Foundation (bug 80053).
++	 */
++	private static final class DOMWriter extends PrintWriter {
++
++		private int tab;
++
++		/* constants */
++		private static final String XML_VERSION = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"; //$NON-NLS-1$
++
++		/**
++		 * Creates a new DOM writer on the given output writer.
++		 * 
++		 * @param output
++		 *            the output writer
++		 */
++		public DOMWriter(Writer output) {
++			super(output);
++			tab = 0;
++			println(XML_VERSION);
++		}
++
++		/**
++		 * Prints the given element.
++		 * 
++		 * @param element
++		 *            the element to print
++		 */
++		public void print(Element element) {
++			// Ensure extra whitespace is not emitted next to a Text node,
++			// as that will result in a situation where the restored text data
++			// is not the
++			// same as the saved text data.
++			boolean hasChildren = element.hasChildNodes();
++			startTag(element, hasChildren);
++			if (hasChildren) {
++				tab++;
++				boolean prevWasText = false;
++				NodeList children = element.getChildNodes();
++				for (int i = 0; i < children.getLength(); i++) {
++					Node node = children.item(i);
++					if (node instanceof Element) {
++						if (!prevWasText) {
++							println();
++							printTabulation();
++						}
++						print((Element) children.item(i));
++						prevWasText = false;
++					} else if (node instanceof Text) {
++						print(getEscaped(node.getNodeValue()));
++						prevWasText = true;
++					}
++				}
++				tab--;
++				if (!prevWasText) {
++					println();
++					printTabulation();
++				}
++				endTag(element);
++			}
++		}
++
++		private void printTabulation() {
++			// Indenting is disabled, as it can affect the result of
++			// getTextData().
++			// In 3.0, elements were separated by a newline but not indented.
++			// This causes getTextData() to return "\n" even if no text data had
++			// explicitly been set.
++			// The code here emulates that behaviour.
++
++			// for (int i = 0; i < tab; i++)
++			// super.print("\t"); //$NON-NLS-1$
++		}
++
++		private void startTag(Element element, boolean hasChildren) {
++			StringBuffer sb = new StringBuffer();
++			sb.append("<"); //$NON-NLS-1$
++			sb.append(element.getTagName());
++			NamedNodeMap attributes = element.getAttributes();
++			for (int i = 0; i < attributes.getLength(); i++) {
++				Attr attribute = (Attr) attributes.item(i);
+ 				sb.append(" "); //$NON-NLS-1$
+ 				sb.append(attribute.getName());
+ 				sb.append("=\""); //$NON-NLS-1$
+ 				sb.append(getEscaped(String.valueOf(attribute.getValue())));
+ 				sb.append("\""); //$NON-NLS-1$
+-   			}
+-   			sb.append(hasChildren ? ">" : "/>"); //$NON-NLS-1$ //$NON-NLS-2$
+-   			print(sb.toString());
+-    	}
+-
+-    	private void endTag(Element element) {
+-    		StringBuffer sb = new StringBuffer();
+-    		sb.append("</"); //$NON-NLS-1$
+-    		sb.append(element.getNodeName());
+-    		sb.append(">"); //$NON-NLS-1$
+-   			print(sb.toString());
+-    	}
+-    	
+-    	private static void appendEscapedChar(StringBuffer buffer, char c) {
+-    		String replacement = getReplacement(c);
+-    		if (replacement != null) {
+-    			buffer.append('&');
+-    			buffer.append(replacement);
+-    			buffer.append(';');
+-    		} else {
+-    			buffer.append(c);
+-    		}
+-    	}
+-
+-    	private static String getEscaped(String s) {
+-    		StringBuffer result = new StringBuffer(s.length() + 10);
+-    		for (int i = 0; i < s.length(); ++i)
+-    			appendEscapedChar(result, s.charAt(i));
+-    		return result.toString();
+-    	}
+-
+-    	private static String getReplacement(char c) {
+-    		// Encode special XML characters into the equivalent character references.
++			}
++			sb.append(hasChildren ? ">" : "/>"); //$NON-NLS-1$ //$NON-NLS-2$
++			print(sb.toString());
++		}
++
++		private void endTag(Element element) {
++			StringBuffer sb = new StringBuffer();
++			sb.append("</"); //$NON-NLS-1$
++			sb.append(element.getNodeName());
++			sb.append(">"); //$NON-NLS-1$
++			print(sb.toString());
++		}
++
++		private static void appendEscapedChar(StringBuffer buffer, char c) {
++			String replacement = getReplacement(c);
++			if (replacement != null) {
++				buffer.append('&');
++				buffer.append(replacement);
++				buffer.append(';');
++			} else {
++				buffer.append(c);
++			}
++		}
++
++		private static String getEscaped(String s) {
++			StringBuffer result = new StringBuffer(s.length() + 10);
++			for (int i = 0; i < s.length(); ++i)
++				appendEscapedChar(result, s.charAt(i));
++			return result.toString();
++		}
++
++		private static String getReplacement(char c) {
++			// Encode special XML characters into the equivalent character
++			// references.
+ 			// The first five are defined by default for all XML documents.
+ 			// The next three (#xD, #xA, #x9) are encoded to avoid them
+ 			// being converted to spaces on deserialization
+ 			// (fixes bug 93720)
+-    		switch (c) {
+-    			case '<' :
+-    				return "lt"; //$NON-NLS-1$
+-    			case '>' :
+-    				return "gt"; //$NON-NLS-1$
+-    			case '"' :
+-    				return "quot"; //$NON-NLS-1$
+-    			case '\'' :
+-    				return "apos"; //$NON-NLS-1$
+-    			case '&' :
+-    				return "amp"; //$NON-NLS-1$
+-				case '\r':
+-					return "#x0D"; //$NON-NLS-1$
+-				case '\n':
+-					return "#x0A"; //$NON-NLS-1$
+-				case '\u0009':
+-					return "#x09"; //$NON-NLS-1$
+-    		}
+-    		return null;
+-    	}
+-    }
++			switch (c) {
++			case '<':
++				return "lt"; //$NON-NLS-1$
++			case '>':
++				return "gt"; //$NON-NLS-1$
++			case '"':
++				return "quot"; //$NON-NLS-1$
++			case '\'':
++				return "apos"; //$NON-NLS-1$
++			case '&':
++				return "amp"; //$NON-NLS-1$
++			case '\r':
++				return "#x0D"; //$NON-NLS-1$
++			case '\n':
++				return "#x0A"; //$NON-NLS-1$
++			case '\u0009':
++				return "#x09"; //$NON-NLS-1$
++			}
++			return null;
++		}
++	}
+ }
+Index: Eclipse UI/org/eclipse/ui/internal/BrandingProperties.java
+===================================================================
+RCS file: /cvsroot/eclipse/equinox-incubator/org.eclipse.ui.workbench/Eclipse UI/org/eclipse/ui/internal/BrandingProperties.java,v
+retrieving revision 1.1.8.2
+diff -u -r1.1.8.2 BrandingProperties.java
+--- Eclipse UI/org/eclipse/ui/internal/BrandingProperties.java	8 Aug 2005 13:40:19 -0000	1.1.8.2
++++ Eclipse UI/org/eclipse/ui/internal/BrandingProperties.java	9 Nov 2005 21:21:41 -0000
+@@ -12,9 +12,12 @@
+ 
+ import java.net.MalformedURLException;
+ import java.net.URL;
++import java.security.AccessController;
++import java.security.PrivilegedActionException;
+ import java.util.ArrayList;
+ import java.util.StringTokenizer;
+ 
++import org.eclipse.common.secureaction.url.URLFromStringAction;
+ import org.eclipse.core.runtime.Path;
+ import org.eclipse.core.runtime.Platform;
+ import org.eclipse.jface.resource.ImageDescriptor;
+@@ -28,95 +31,103 @@
+  */
+ public abstract class BrandingProperties {
+ 
+-    /**
+-     * Create an url from the argument absolute or relative path. The bundle
+-     * parameter is used as the base for relative paths and is allowed to be
+-     * null.
+-     * 
+-     * @param value
+-     *            the absolute or relative path
+-     * @param definingBundle
+-     *            bundle to be used for relative paths (may be null)
+-     * @return
+-     */
+-    public static URL getUrl(String value, Bundle definingBundle) {
+-        try {
+-            if (value != null)
+-                return new URL(value);
+-        } catch (MalformedURLException e) {
+-            if (definingBundle != null)
+-                return Platform.find(definingBundle, new Path(value));
+-        }
+-
+-        return null;
+-    }
+-
+-    /**
+-     * Create a descriptor from the argument absolute or relative path to an
+-     * image file. bundle parameter is used as the base for relative paths and
+-     * is allowed to be null.
+-     * 
+-     * @param value
+-     *            the absolute or relative path
+-     * @param definingBundle
+-     *            bundle to be used for relative paths (may be null)
+-     * @return
+-     */
+-    public static ImageDescriptor getImage(String value, Bundle definingBundle) {
+-        URL url = getUrl(value, definingBundle);
+-        return url == null ? null : ImageDescriptor.createFromURL(url);
+-    }
+-
+-    /**
+-     * Returns a array of URL for the given property or <code>null</code>.
+-     * The property value should be a comma separated list of urls (either
+-     * absolute or relative to the argument bundle). Tokens that do not
+-     * represent a valid url will be represented with a null entry in the
+-     * returned array.
+-     * 
+-     * @param value
+-     *            value of a property that contains a comma-separated list of
+-     *            product relative urls
+-     * @param definingBundle
+-     *            bundle to be used as base for relative paths (may be null)
+-     * @return a URL for the given property, or <code>null</code>
+-     */
+-    public static URL[] getURLs(String value, Bundle definingBundle) {
+-        if (value == null)
+-            return null;
+-
+-        StringTokenizer tokens = new StringTokenizer(value, ","); //$NON-NLS-1$
+-        ArrayList array = new ArrayList(10);
+-        while (tokens.hasMoreTokens())
+-            array.add(getUrl(tokens.nextToken().trim(), definingBundle));
+-
+-        return (URL[]) array.toArray(new URL[array.size()]);
+-    }
+-
+-    /**
+-     * Returns an array of image descriptors for the given property, or
+-     * <code>null</code>. The property value should be a comma separated list
+-     * of image paths. Each path should either be absolute or relative to the
+-     * optional bundle parameter.
+-     * 
+-     * @param value
+-     *            value of a property that contains a comma-separated list of
+-     *            product relative urls describing images
+-     * @param definingBundle
+-     *            bundle to be used for relative paths (may be null)
+-     * @return an array of image descriptors for the given property, or
+-     *         <code>null</code>
+-     */
+-    public static ImageDescriptor[] getImages(String value,
+-            Bundle definingBundle) {
+-        URL[] urls = getURLs(value, definingBundle);
+-        if (urls == null || urls.length <= 0)
+-            return null;
+-
+-        ImageDescriptor[] images = new ImageDescriptor[urls.length];
+-        for (int i = 0; i < images.length; ++i)
+-            images[i] = ImageDescriptor.createFromURL(urls[i]);
++	/**
++	 * Create an url from the argument absolute or relative path. The bundle
++	 * parameter is used as the base for relative paths and is allowed to be
++	 * null.
++	 * 
++	 * @param value
++	 *            the absolute or relative path
++	 * @param definingBundle
++	 *            bundle to be used for relative paths (may be null)
++	 * @return
++	 */
++	public static URL getUrl(String value, Bundle definingBundle) {
++		try {
++			if (value != null) {
++				if (System.getSecurityManager() == null) {
++					return new URL(value);
++				}
++				return (URL) AccessController
++						.doPrivileged(new URLFromStringAction(value));
++			}
++		} catch (MalformedURLException e) {
++			if (definingBundle != null)
++				return Platform.find(definingBundle, new Path(value));
++		} catch (PrivilegedActionException e) {
++			if (definingBundle != null)
++				return Platform.find(definingBundle, new Path(value));
++		}
++
++		return null;
++	}
++
++	/**
++	 * Create a descriptor from the argument absolute or relative path to an
++	 * image file. bundle parameter is used as the base for relative paths and
++	 * is allowed to be null.
++	 * 
++	 * @param value
++	 *            the absolute or relative path
++	 * @param definingBundle
++	 *            bundle to be used for relative paths (may be null)
++	 * @return
++	 */
++	public static ImageDescriptor getImage(String value, Bundle definingBundle) {
++		URL url = getUrl(value, definingBundle);
++		return url == null ? null : ImageDescriptor.createFromURL(url);
++	}
++
++	/**
++	 * Returns a array of URL for the given property or <code>null</code>.
++	 * The property value should be a comma separated list of urls (either
++	 * absolute or relative to the argument bundle). Tokens that do not
++	 * represent a valid url will be represented with a null entry in the
++	 * returned array.
++	 * 
++	 * @param value
++	 *            value of a property that contains a comma-separated list of
++	 *            product relative urls
++	 * @param definingBundle
++	 *            bundle to be used as base for relative paths (may be null)
++	 * @return a URL for the given property, or <code>null</code>
++	 */
++	public static URL[] getURLs(String value, Bundle definingBundle) {
++		if (value == null)
++			return null;
++
++		StringTokenizer tokens = new StringTokenizer(value, ","); //$NON-NLS-1$
++		ArrayList array = new ArrayList(10);
++		while (tokens.hasMoreTokens())
++			array.add(getUrl(tokens.nextToken().trim(), definingBundle));
++
++		return (URL[]) array.toArray(new URL[array.size()]);
++	}
++
++	/**
++	 * Returns an array of image descriptors for the given property, or
++	 * <code>null</code>. The property value should be a comma separated list
++	 * of image paths. Each path should either be absolute or relative to the
++	 * optional bundle parameter.
++	 * 
++	 * @param value
++	 *            value of a property that contains a comma-separated list of
++	 *            product relative urls describing images
++	 * @param definingBundle
++	 *            bundle to be used for relative paths (may be null)
++	 * @return an array of image descriptors for the given property, or
++	 *         <code>null</code>
++	 */
++	public static ImageDescriptor[] getImages(String value,
++			Bundle definingBundle) {
++		URL[] urls = getURLs(value, definingBundle);
++		if (urls == null || urls.length <= 0)
++			return null;
++
++		ImageDescriptor[] images = new ImageDescriptor[urls.length];
++		for (int i = 0; i < images.length; ++i)
++			images[i] = ImageDescriptor.createFromURL(urls[i]);
+ 
+-        return images;
+-    }
++		return images;
++	}
+ }
+Index: Eclipse UI/org/eclipse/ui/internal/WorkbenchPlugin.java
+===================================================================
+RCS file: /cvsroot/eclipse/equinox-incubator/org.eclipse.ui.workbench/Eclipse UI/org/eclipse/ui/internal/WorkbenchPlugin.java,v
+retrieving revision 1.1.8.2
+diff -u -r1.1.8.2 WorkbenchPlugin.java
+--- Eclipse UI/org/eclipse/ui/internal/WorkbenchPlugin.java	8 Aug 2005 13:40:21 -0000	1.1.8.2
++++ Eclipse UI/org/eclipse/ui/internal/WorkbenchPlugin.java	9 Nov 2005 21:21:43 -0000
+@@ -12,9 +12,11 @@
+ package org.eclipse.ui.internal;
+ 
+ import java.io.OutputStream;
++import java.security.AccessController;
+ import java.text.MessageFormat;
+ import java.util.Locale;
+ 
++import org.eclipse.common.secureaction.property.SecurePropertyAction;
+ import org.eclipse.core.runtime.CoreException;
+ import org.eclipse.core.runtime.IConfigurationElement;
+ import org.eclipse.core.runtime.IExtensionPoint;
+@@ -759,9 +761,16 @@
+ 	 */
+ 	private int checkCommandLineLocale() {
+ 		
++		String nlUserPropertyValue;
++		if(System.getSecurityManager() == null) {
++			nlUserPropertyValue = System.getProperty(NL_USER_PROPERTY);
++		} else {
++			nlUserPropertyValue = (String) AccessController.doPrivileged(new SecurePropertyAction(NL_USER_PROPERTY));
++		}
++		
+ 		//Check if the user property is set. If not do not
+ 		//rely on the vm.
+-		if(System.getProperty(NL_USER_PROPERTY) == null)
++		if(nlUserPropertyValue == null)
+ 			return SWT.NONE;
+ 		
+ 		Locale locale = Locale.getDefault();
+Index: Eclipse UI/org/eclipse/ui/internal/about/AboutData.java
+===================================================================
+RCS file: /cvsroot/eclipse/equinox-incubator/org.eclipse.ui.workbench/Eclipse UI/org/eclipse/ui/internal/about/AboutData.java,v
+retrieving revision 1.1.8.2
+diff -u -r1.1.8.2 AboutData.java
+--- Eclipse UI/org/eclipse/ui/internal/about/AboutData.java	8 Aug 2005 13:41:18 -0000	1.1.8.2
++++ Eclipse UI/org/eclipse/ui/internal/about/AboutData.java	9 Nov 2005 21:21:43 -0000
+@@ -12,6 +12,8 @@
+ 
+ import java.io.IOException;
+ import java.net.URL;
++import java.security.AccessController;
++import java.security.PrivilegedActionException;
+ import java.text.Collator;
+ import java.util.Arrays;
+ import java.util.Collections;
+@@ -19,6 +21,7 @@
+ import java.util.List;
+ import java.util.Locale;
+ 
++import org.eclipse.common.secureaction.url.URLFromStringAction;
+ import org.eclipse.jface.resource.ImageDescriptor;
+ 
+ /**
+@@ -216,11 +219,17 @@
+ 
+     protected static URL getURL(String value) {
+         try {
+-            if (value != null)
+-                return new URL(value);
++            if (value != null) {
++            	if(System.getSecurityManager() == null) {
++            		return new URL(value);
++            	}
++				return (URL) AccessController.doPrivileged(new URLFromStringAction(value));
++            }
+         } catch (IOException e) {
+             // do nothing
+-        }
++        } catch (PrivilegedActionException e) {
++            // do nothing
++		}
+ 
+         return null;
+     }
+Index: Eclipse UI/org/eclipse/ui/internal/dialogs/AboutPluginsDialog.java
+===================================================================
+RCS file: /cvsroot/eclipse/equinox-incubator/org.eclipse.ui.workbench/Eclipse UI/org/eclipse/ui/internal/dialogs/AboutPluginsDialog.java,v
+retrieving revision 1.1.8.2
+diff -u -r1.1.8.2 AboutPluginsDialog.java
+--- Eclipse UI/org/eclipse/ui/internal/dialogs/AboutPluginsDialog.java	8 Aug 2005 13:40:18 -0000	1.1.8.2
++++ Eclipse UI/org/eclipse/ui/internal/dialogs/AboutPluginsDialog.java	9 Nov 2005 21:21:43 -0000
+@@ -14,9 +14,12 @@
+ 
+ import java.io.IOException;
+ import java.net.URL;
++import java.security.AccessController;
++import java.security.PrivilegedActionException;
+ import java.util.HashMap;
+ import java.util.Map;
+ 
++import org.eclipse.common.secureaction.url.SecureURL;
+ import org.eclipse.core.runtime.IPath;
+ import org.eclipse.core.runtime.Path;
+ import org.eclipse.core.runtime.Platform;
+@@ -425,11 +428,19 @@
+ 				    // Make local all content in the "about" directory.
+ 				    // This is needed to handle jar'ed plug-ins.
+ 				    // See Bug 88240 [About] About dialog needs to extract subdirs.
+-					URL about = new URL(aboutUrl, "about_files"); //$NON-NLS-1$
++					URL about;
++					if(System.getSecurityManager() == null) {
++						about = new URL(aboutUrl, "about_files"); //$NON-NLS-1$
++					} else {
++						about = (URL) AccessController.doPrivileged(new SecureURL(aboutUrl, "about_files"));  //$NON-NLS-1$
++					}
++					
+ 					if (about != null)
+ 						Platform.asLocalURL(about);
+ 				} catch (IOException e) {
+ 					// skip the about dir if its not found or there are other problems.
++				} catch (PrivilegedActionException e) {
++					// skip the about dir if its not found or there are other problems.					
+ 				}
+ 				return result;
+ 		    } catch(IOException e) {
+Index: Eclipse UI/org/eclipse/ui/internal/dialogs/AboutSystemDialog.java
+===================================================================
+RCS file: /cvsroot/eclipse/equinox-incubator/org.eclipse.ui.workbench/Eclipse UI/org/eclipse/ui/internal/dialogs/AboutSystemDialog.java,v
+retrieving revision 1.1.8.2
+diff -u -r1.1.8.2 AboutSystemDialog.java
+--- Eclipse UI/org/eclipse/ui/internal/dialogs/AboutSystemDialog.java	8 Aug 2005 13:40:18 -0000	1.1.8.2
++++ Eclipse UI/org/eclipse/ui/internal/dialogs/AboutSystemDialog.java	9 Nov 2005 21:21:43 -0000
+@@ -17,6 +17,8 @@
+ import java.io.IOException;
+ import java.io.PrintWriter;
+ import java.io.StringWriter;
++import java.security.AccessController;
++import java.security.PrivilegedAction;
+ import java.text.Collator;
+ import java.util.Arrays;
+ import java.util.Comparator;
+@@ -143,7 +145,7 @@
+      * Appends the contents of all extentions to the configurationLogSections
+      * extension point. 
+      */
+-    private void appendExtensions(PrintWriter writer) {
++    private void appendExtensions(final PrintWriter writer) {
+         IConfigurationElement[] configElements = getSortedExtensions();
+         for (int i = 0; i < configElements.length; ++i) {
+             IConfigurationElement element = configElements[i];
+@@ -162,8 +164,17 @@
+             writer.println(NLS.bind(WorkbenchMessages.SystemSummary_sectionTitle, element.getAttribute("sectionTitle") )); //$NON-NLS-1$
+ 
+             if (obj instanceof ISystemSummarySection) {
+-                ISystemSummarySection logSection = (ISystemSummarySection) obj;
+-                logSection.write(writer);
++                final ISystemSummarySection logSection = (ISystemSummarySection) obj;
++                if(System.getSecurityManager() == null) {
++                	logSection.write(writer);
++                } else {
++                	AccessController.doPrivileged(new PrivilegedAction() {
++                		public Object run() {
++                			logSection.write(writer);
++                			return null;
++                		}
++                	});
++                }
+             } else
+                 writer.println(WorkbenchMessages.SystemSummary_sectionError);
+         }
+Index: Eclipse UI/org/eclipse/ui/internal/dialogs/ProductInfoDialog.java
+===================================================================
+RCS file: /cvsroot/eclipse/equinox-incubator/org.eclipse.ui.workbench/Eclipse UI/org/eclipse/ui/internal/dialogs/ProductInfoDialog.java,v
+retrieving revision 1.1.8.2
+diff -u -r1.1.8.2 ProductInfoDialog.java
+--- Eclipse UI/org/eclipse/ui/internal/dialogs/ProductInfoDialog.java	8 Aug 2005 13:40:17 -0000	1.1.8.2
++++ Eclipse UI/org/eclipse/ui/internal/dialogs/ProductInfoDialog.java	9 Nov 2005 21:21:43 -0000
+@@ -13,8 +13,11 @@
+ import java.io.IOException;
+ import java.net.MalformedURLException;
+ import java.net.URL;
++import java.security.AccessController;
++import java.security.PrivilegedActionException;
+ import java.util.ArrayList;
+ 
++import org.eclipse.common.secureaction.url.URLFromStringAction;
+ import org.eclipse.core.runtime.IStatus;
+ import org.eclipse.core.runtime.Platform;
+ import org.eclipse.jface.dialogs.Dialog;
+@@ -330,13 +333,21 @@
+ 		IWorkbenchBrowserSupport support = PlatformUI.getWorkbench().getBrowserSupport();
+ 		try {
+ 			IWebBrowser browser = support.getExternalBrowser();
+-			browser.openURL(new URL(urlEncodeForSpaces(href.toCharArray())));
++			if(System.getSecurityManager() == null) {
++				browser.openURL(new URL(urlEncodeForSpaces(href.toCharArray())));
++			} else {
++				URL url = (URL) AccessController.doPrivileged(new URLFromStringAction(urlEncodeForSpaces(href.toCharArray())));
++				browser.openURL(url);
++			}
+ 		}
+ 		catch (MalformedURLException e) {
+ 			openWebBrowserError(href, e);
+ 		}
+ 		catch (PartInitException e) {
+ 			openWebBrowserError(href, e);
++		} catch (PrivilegedActionException pae) {
++			MalformedURLException e = (MalformedURLException) pae.getException();
++			openWebBrowserError(href, e);
+ 		}
+     }
+ 
+Index: Eclipse UI/org/eclipse/ui/internal/progress/ErrorNotificationManager.java
+===================================================================
+RCS file: /cvsroot/eclipse/equinox-incubator/org.eclipse.ui.workbench/Eclipse UI/org/eclipse/ui/internal/progress/ErrorNotificationManager.java,v
+retrieving revision 1.1.8.2
+diff -u -r1.1.8.2 ErrorNotificationManager.java
+--- Eclipse UI/org/eclipse/ui/internal/progress/ErrorNotificationManager.java	8 Aug 2005 13:40:42 -0000	1.1.8.2
++++ Eclipse UI/org/eclipse/ui/internal/progress/ErrorNotificationManager.java	9 Nov 2005 21:21:44 -0000
+@@ -12,12 +12,15 @@
+ 
+ import java.net.MalformedURLException;
+ import java.net.URL;
++import java.security.AccessController;
++import java.security.PrivilegedActionException;
+ import java.util.Collection;
+ import java.util.Collections;
+ import java.util.HashSet;
+ import java.util.Iterator;
+ import java.util.Set;
+ 
++import org.eclipse.common.secureaction.url.SecureURL;
+ import org.eclipse.core.runtime.IProgressMonitor;
+ import org.eclipse.core.runtime.IStatus;
+ import org.eclipse.core.runtime.Platform;
+@@ -60,8 +63,20 @@
+      * @throws MalformedURLException
+      */
+     void setUpImages(URL iconsRoot) throws MalformedURLException {
++    	URL iconURL = null;
++    	
++    	if(System.getSecurityManager() == null) {
++    		iconURL = new URL(iconsRoot, ERROR_JOB);
++    	} else {
++    		try {
++				iconURL = (URL) AccessController.doPrivileged(new SecureURL(iconsRoot, ERROR_JOB));
++			} catch (PrivilegedActionException pae) {
++				throw (MalformedURLException) pae.getException();
++			}
++    	}
++    	
+         JFaceResources.getImageRegistry().put(ERROR_JOB_KEY,
+-                ImageDescriptor.createFromURL(new URL(iconsRoot, ERROR_JOB)));
++                ImageDescriptor.createFromURL(iconURL));
+     }
+ 
+     /**
+Index: Eclipse UI/org/eclipse/ui/internal/testing/WorkbenchTestable.java
+===================================================================
+RCS file: /cvsroot/eclipse/equinox-incubator/org.eclipse.ui.workbench/Eclipse UI/org/eclipse/ui/internal/testing/WorkbenchTestable.java,v
+retrieving revision 1.1.8.2
+diff -u -r1.1.8.2 WorkbenchTestable.java
+--- Eclipse UI/org/eclipse/ui/internal/testing/WorkbenchTestable.java	8 Aug 2005 13:41:51 -0000	1.1.8.2
++++ Eclipse UI/org/eclipse/ui/internal/testing/WorkbenchTestable.java	9 Nov 2005 21:21:44 -0000
+@@ -10,6 +10,9 @@
+  *******************************************************************************/
+ package org.eclipse.ui.internal.testing;
+ 
++import java.security.AccessController;
++
++import org.eclipse.common.secureaction.thread.SecureThreadAction;
+ import org.eclipse.core.runtime.OperationCanceledException;
+ import org.eclipse.core.runtime.Platform;
+ import org.eclipse.jface.dialogs.ErrorDialog;
+@@ -68,7 +71,11 @@
+                     getTestHarness().runTests();
+                 }
+             };
+-            new Thread(runnable, "WorkbenchTestable").start(); //$NON-NLS-1$
++            if(System.getSecurityManager() == null) {
++            	new Thread(runnable, "WorkbenchTestable").start(); //$NON-NLS-1$
++            } else {
++            	AccessController.doPrivileged(new SecureThreadAction(runnable, "WorkbenchTestable")); //$NON-NLS-1$
++            }
+         }
+     }
+ 
+Index: Eclipse UI/org/eclipse/ui/plugin/AbstractUIPlugin.java
+===================================================================
+RCS file: /cvsroot/eclipse/equinox-incubator/org.eclipse.ui.workbench/Eclipse UI/org/eclipse/ui/plugin/AbstractUIPlugin.java,v
+retrieving revision 1.1.8.2
+diff -u -r1.1.8.2 AbstractUIPlugin.java
+--- Eclipse UI/org/eclipse/ui/plugin/AbstractUIPlugin.java	8 Aug 2005 13:41:49 -0000	1.1.8.2
++++ Eclipse UI/org/eclipse/ui/plugin/AbstractUIPlugin.java	9 Nov 2005 21:21:44 -0000
+@@ -17,7 +17,10 @@
+ import java.io.InputStreamReader;
+ import java.net.MalformedURLException;
+ import java.net.URL;
++import java.security.AccessController;
++import java.security.PrivilegedActionException;
+ 
++import org.eclipse.common.secureaction.url.URLFromStringAction;
+ import org.eclipse.core.runtime.CoreException;
+ import org.eclipse.core.runtime.IPath;
+ import org.eclipse.core.runtime.IPluginDescriptor;
+@@ -663,10 +666,16 @@
+         URL fullPathString = BundleUtility.find(bundle, imageFilePath);
+         if (fullPathString == null) {
+             try {
+-                fullPathString = new URL(imageFilePath);
++            	if(System.getSecurityManager() == null) {
++            		fullPathString = new URL(imageFilePath);
++            	} else {
++            		fullPathString = (URL) AccessController.doPrivileged(new URLFromStringAction(imageFilePath));
++            	}
+             } catch (MalformedURLException e) {
+                 return null;
+-            }
++            } catch (PrivilegedActionException e) {
++            	return null;
++			}
+         }
+ 
+         if (fullPathString == null)
+Index: META-INF/MANIFEST.MF
+===================================================================
+RCS file: /cvsroot/eclipse/equinox-incubator/org.eclipse.ui.workbench/META-INF/MANIFEST.MF,v
+retrieving revision 1.1.2.1
+diff -u -r1.1.2.1 MANIFEST.MF
+--- META-INF/MANIFEST.MF	8 Aug 2005 13:41:50 -0000	1.1.2.1
++++ META-INF/MANIFEST.MF	9 Nov 2005 21:21:44 -0000
+@@ -76,5 +76,6 @@
+  org.eclipse.help,
+  org.eclipse.jface,
+  org.eclipse.swt,
+- org.eclipse.core.expressions
++ org.eclipse.core.expressions,
++ org.eclipse.common.secureaction
+ Eclipse-AutoStart: true
+Index: OSGI-INF/permissions.perm
+===================================================================
+RCS file: OSGI-INF/permissions.perm
+diff -N OSGI-INF/permissions.perm
+--- /dev/null	1 Jan 1970 00:00:00 -0000
++++ OSGI-INF/permissions.perm	1 Jan 1970 00:00:00 -0000
+@@ -0,0 +1,26 @@
++# Generated by SWORD4J on Mon Oct 10 18:11:57 EDT 2005
++(java.io.FilePermission "<<ALL FILES>>" "delete")
++(java.io.FilePermission "<<ALL FILES>>" "execute")
++(java.io.FilePermission "<<ALL FILES>>" "read")
++(java.io.FilePermission "<<ALL FILES>>" "write")
++(java.lang.RuntimePermission "accessDeclaredMembers")
++(java.lang.RuntimePermission "createClassLoader")
++(java.lang.RuntimePermission "getClassLoader")
++(java.lang.RuntimePermission "modifyThread")
++(java.net.NetPermission "specifyStreamHandler")
++(java.net.SocketPermission "" "resolve")
++(java.net.SocketPermission ":0-" "connect")
++(java.util.PropertyPermission "*" "read,write")
++(java.util.PropertyPermission "???key???" "read")
++(java.util.PropertyPermission "file.encoding" "read")
++(java.util.PropertyPermission "java.home" "read")
++(java.util.PropertyPermission "java.vendor.url.bug" "read")
++(java.util.PropertyPermission "javax.xml.parsers.DocumentBuilderFactory" "read")
++(java.util.PropertyPermission "org.eclipse.ui.testsWaitForEarlyStartup" "read")
++(org.osgi.framework.AdminPermission "*" "resource")
++(org.osgi.framework.AdminPermission "*" "class")
++(org.osgi.framework.AdminPermission "*" "metadata")
++(org.osgi.framework.AdminPermission "*" "execute")
++(org.osgi.framework.ServicePermission "*" "get")
++(java.util.logging.LoggingPermission "control")
++(java.lang.RuntimePermission "accessClassInPackage.sun.util.logging.resources")
