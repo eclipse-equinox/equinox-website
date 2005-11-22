@@ -14,6 +14,7 @@
 <ul>
 	<li><a href="plugin-versioning.html">Recommendation to version plug-ins</a></li>
 	<li><a href="coding.php">Equinox Coding Practices</a></li>
+    <li><a href="3.2-migration.html">3.2 Migration Guide</a></li>
 </ul>
 <p class=bar>Presentations</p>
 <ul>
