@@ -9,10 +9,10 @@
 <body>
 <?php include("nav-include.html") ?>
 
-<p class=bar>Changes</p>
+<p>This document details the major changes in the Eclipse runtime layer (aka Equinox) during the 3.2 development cycle.</p>
+<p class=bar>Runtime Split</p>
 
-You probably noticed new &quot;equinox&quot; plugins appearing in the last
-few nightly builds. These are by-products of the runtime refactoring effort (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=113663">https://bugs.eclipse.org/bugs/show_bug.cgi?id=113663</a>).
+The Runtime has been refactored as per <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=113663">https://bugs.eclipse.org/bugs/show_bug.cgi?id=113663</a>.
 The refactoring was done to:
 
 <ul> 
@@ -45,7 +45,7 @@ make the runtime more flexible
   that is used to support running without OSGi.</li>
 </ul>  
   <p>These changes should have no affect on other plugins. </p>
-<p class=bar>Adapting</p>
+<p class=subbar>Adapting</p>
   <ol>
   <li>Conflicts with new public APIs. org.eclipse.equinox.common includes several
     new API classes (e.g., Assert and ListenerList) that have common names. Code
