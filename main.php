@@ -50,9 +50,13 @@ major releases. The various other bundles developed here may ship independently
   of Equinox.</p>
   <p class=bar>What's New</p>
 <p>
-  <b>Oct 12</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14"> Two
-  presentations on Eclipse and OSGi at OSGi Congress in Paris now available on
-  the <a href="documents">documents page</a>.</p>
+  <b>Nov 21</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14"> The
+  refactored Runtime has been contributed to this week's Integration builds.
+  See the <a href="../documents/3.2-migration.php">migration doc</a> and the
+  <a href="bundles">bundles component</a> for more details.</p>
+<p><b>Oct 12</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14"> Two
+    presentations on Eclipse and OSGi at OSGi Congress in Paris now available
+  on the <a href="documents">documents page</a>.</p>
 <p> <b></b><b>Oct 2</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14"> Track
 the transition details in <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=110486">bugzilla</a>.</p>
 <p><b>Sept 23</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14"> Equinox

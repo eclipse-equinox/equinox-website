@@ -36,14 +36,19 @@
   </tr>
   <tr>
     <td align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-    <td><b>Extension Registry  (<a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox.registry">org.eclipse.equinox.registry</a>)</b><br>
-      <font color="#FF0000">Coming soon...</font> The Eclipse extension registry allows bundles to communicate
+    <td><b><img src="../images/new.gif" width="31" height="14">Perferences Service
+        (<a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox.preferences">org.eclipse.equinox.preferences</a>)</b><br>
+    The Eclipse preference service is an extension of the standard OSGi preference
+    service that adds listeners and the notion of preference scopes.</td>
+  </tr>
+  <tr>
+    <td align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+    <td><b><img src="../images/new.gif" width="31" height="14">Extension Registry  (<a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox.registry">org.eclipse.equinox.registry</a>)</b><br>
+      The Eclipse extension registry allows bundles to communicate
         and cooperate using declarative markup and lazy instantiation. The extension
         mechanism
         is similar to OSGi services and declarative services but has some different
-        contractual and management characteristics.<font color="#FF0000"> (Currently
-        this code is part of the Eclipse runtime but it is being factored out
-        to be standalone)</font></td>
+        contractual and management characteristics.</td>
   </tr>
   <tr>
     <td align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
@@ -66,8 +71,25 @@
   <tr>
     <td align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
     <td><b>HTTP Service (<a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox.http">org.eclipse.equinox.http</a>)</b><br>
-      <font color="#FF0000">Coming soon...</font> An implementation of the OSGi
-      R4 HTTP service.</td>
+        <font color="#FF0000">Coming soon...</font> An implementation of the
+        OSGi R4 HTTP service.</td>
+  </tr>
+  <tr>
+    <td align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+    <td><b><img src="../images/new.gif" width="31" height="14">Common Utility Bundle (<a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox.common">org.eclipse.equinox.common</a>)</b><br>
+      A library of utility classes (e.g., IStatus, Assert, IAdaptable,
+        ...) that are frequently used by Eclipse bundles. This bundle can be
+         used in various different OSGi systems or standalone (i.e., without
+        OSGi).</td>
+  </tr>
+  <tr>
+    <td align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+    <td><b><img src="../images/new.gif" width="31" height="14">Supplemental Bundle/JAR
+        (<a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox.supplement">org.eclipse.equinox.supplement</a>)</b><br>
+      A library that includes a very small number of types normally supplied
+      by the Equinox implementation. This JAR is useful when running certain
+      bundles outside of Equinox or outside of OSGi altogether. This bundle is
+      not needed when running inside Equinox.</td>
   </tr>
 </table>
 <p>The Framework team typically develops using Eclipse itself so getting and
@@ -77,6 +99,15 @@
 <p>If you are working without Eclipse (gads! :-) then use your favorite CVS client
   and check out the relevant projects.</p>
 <p class=bar>What's New</p>
+<p> <b>Nov 21</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14"> The
+  refactored Runtime has been contributed to this week's Integration builds.
+  This includes the standalone registry, the preference service, a common utility
+  bundle and a supplemental JAR/bundle to help when running outside of OSGi.
+  See the <a href="../documents/3.2-migration.php">migration
+  doc</a> for
+  more details.</p>
+<p> <b>Nov 21</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14"> The
+  stand-alone Eclipse Extension Registry bundle has been added to the repo. </p>
 <p class=bar>Committers</p>
       <p>The following people are committers on the Equinox bundles component:</p>
       <ul>
