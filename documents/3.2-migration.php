@@ -3,9 +3,14 @@
 <head>
 <title>Equinox Migration Preview</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" title="default" href="http://eclipse.org/default_style.css" type="text/css">
+<link rel="stylesheet" title="default" href="../equinox.css" type="text/css">
 </head>
-
 <body>
+<?php include("nav-include.html") ?>
+
+<p class=bar>Changes</p>
+
 You probably noticed new &quot;equinox&quot; plugins appearing in the last
 few nightly builds. These are by-products of the runtime refactoring effort (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=113663">https://bugs.eclipse.org/bugs/show_bug.cgi?id=113663</a>).
 The refactoring was done to:
@@ -40,7 +45,7 @@ make the runtime more flexible
   that is used to support running without OSGi.</li>
 </ul>  
   <p>These changes should have no affect on other plugins. </p>
-  <h2>Adapting:</h2>
+<p class=bar>Adapting</p>
   <ol>
   <li>Conflicts with new public APIs. org.eclipse.equinox.common includes several
     new API classes (e.g., Assert and ListenerList) that have common names. Code
