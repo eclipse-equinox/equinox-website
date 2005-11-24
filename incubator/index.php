@@ -37,14 +37,10 @@ The goal of the Equinox Incubator is to experiment with techniques for
   </tr>
 	<tr>
       <td align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-      <td><a href="layering/index.html" target="_top"><b>Framework Layering</b></a> (obsolete?)<br>
-    The aim of this work is to separate a fairly general purpose module layer
-      out of the OSGi framework which supports interface sharing by specification
-      version, as defined in OSGi R3, as well as class sharing by implementation
-      version, as supported in Eclipse 3.0. This separation allows for more flexibility
-      in the use scenarios for OSGi framework implementations. This layering
-      is being discussed in the OSGi Core Platform Expert Group and the intention
-      is to feed the practical experience gained in Equinox into the CPEG work. </td>
+      <td><a href="server" target="_top"><b>Server Side OSGi</b></a> <br>
+    This incubator project is targetted at eliminating
+  barriers to using and integrating OSGi (and Equinox more specificially) on
+  the server.</td>
   </tr>
 </table>
 
@@ -55,19 +51,23 @@ The goal of the Equinox Incubator is to experiment with techniques for
   work areas.</p>
 
 <P class="bar">What's New</P>
+<P><B>Nov 11</B> - <IMG height="14"
+	src="http://www.eclipse.org/images/new.gif" width="31"> Created the <a href="server">Server-side
+  incubator</a>.</P>
 <P><B>Oct 12</B> - <IMG height="14"
-	src="http://www.eclipse.org/images/new.gif" width="31"> 
-Presentation on SWORD4J at OSGi Congress in Paris now
-available on the <A href="security/documents/index.html" target="_parent">documents page</A>.<BR>
-<BR>
-<B>Sept 30</B> - <IMG src="http://www.eclipse.org/images/new.gif"
+	src="http://www.eclipse.org/images/new.gif" width="31"> Presentation on SWORD4J
+  at OSGi Congress in Paris now
+available on the <A href="security/documents/index.html" target="_parent">documents
+page</A>.<BR>
+  <BR>
+  <B>Sept 30</B> - <IMG src="http://www.eclipse.org/images/new.gif"
 	width="31" height="14"> A collection of Eclipse plug-ins designed to
-aid in performing security related development tasks for Java, Eclipse,
-and OSGi bundle developers has been released on the IBM alphaWorks
-website. The download is called, <B>IBM Security Workbench Development
-Evnironment for Java</B> ( <A
-	href="http://www.alphaworks.ibm.com/tech/sword4j" target="_blank">SWORD4J</A> ). This
-tool was used to <A
+  aid in performing security related development tasks for Java, Eclipse,
+  and OSGi bundle developers has been released on the IBM alphaWorks
+  website. The download is called, <B>IBM Security Workbench Development
+  Evnironment for Java</B> ( <A
+	href="http://www.alphaworks.ibm.com/tech/sword4j" target="_blank">SWORD4J</A> ).
+  This tool was used to <A
 	href="http://www.eclipse.org/equinox/incubator/security/EJS/ejs.html"
 	target="_parent">analyze the RCP plug-ins</A> within the equinox project.</P>
 <p class=bar>Committers</p>
@@ -77,6 +77,7 @@ tool was used to <A
         <li>Olivier Gruber, IBM Research</li>
 		<li>Ted Habeck, IBM Research</li>
         <li>BJ Hargrave, IBM PvC</li>
+        <li>Simon Kaegi, Cognos</li>
         <li>Peter Kriens, aQute</li>
         <li>Martin Lippert, it-agile</li>
         <li>Jeff McAffer, IBM Rational (Project lead)</li>
