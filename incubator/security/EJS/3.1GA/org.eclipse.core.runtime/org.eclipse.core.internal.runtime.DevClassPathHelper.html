@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Permission Analysis Report</title>
+  <script language="javaScript" src="linkUtil.js"></script>
+</head>
+<body>
+<h1>Permission Analysis Report</h1>
+<br>
+<h2>Analysis of: org.eclipse.core.runtime</h2>
+<b>Detail</b><br>
+<br>
+<pre>
+Class: <a href="foo"
+ onclick="return openURLinSrc( 'Application/org/eclipse/core/internal/runtime/DevClassPathHelper.html' )">org.eclipse.core.internal.runtime.DevClassPathHelper</a> (Application)<br>DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/DevClassPathHelper.html#L21" , parent.fbot ); return false'>Line# 26</a> void &lt;clinit&gt;(  )<br>   Permission: java.util.PropertyPermission "osgi.dev", "read"<br>      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )<br><br><br><b>CODE</b><br>
+public class DevClassPathHelper {
+	static protected boolean inDevelopmentMode = false;
+	static protected String[] devDefaultClasspath;
+	static protected Properties devProperties = null;
+
+	static {
+		// Check the osgi.dev property to see if dev classpath entries have been defined.
+<font style="background-color: rgb(242, 197, 83);">		String osgiDev = System.getProperty(InternalPlatform.PROP_DEV);<br></font>		if (osgiDev != null) {<br>			try {<br>				inDevelopmentMode = true;<br>				URL location = new URL(osgiDe ... <br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.util.PropertyPermission "osgi.dev", "read";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>Wrap the code as shown in the following:<br><br>	static {<br>		// Check the osgi.dev property to see if dev classpath entries have been defined.<br>		String osgiDev;<br>		<br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">		if(System.getSecurityManager() == null) {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			osgiDev = System.getProperty(InternalPlatform.PROP_DEV);</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">		} else {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			osgiDev = (String) AccessController.doPrivileged(new PrivilegedAction() {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">				public Object run() {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">					return System.getProperty(InternalPlatform.PROP_DEV);</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">				}</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			});</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">		}</span><br>		<br>		if (osgiDev != null) {<br>			try {<br>				inDevelopmentMode = true;<br>				<br>				URL location;<br>				if(System.getSecurityManager() == null) {<br>					location = new URL(osgiDev);<br>				} else {<br>					final String tmpOSGIdev = osgiDev;<br>					location = (URL) AccessController.doPrivileged(new PrivilegedExceptionAction() {<br>						public Object run() throws MalformedURLException {<br>							return new URL(tmpOSGIdev);<br>						}<br>					});<br>				}<br>				<br>				devProperties = load(location);<br>				if (devProperties != null)<br>					devDefaultClasspath = getArrayFromList(devProperties.getProperty("*")); //$NON-NLS-1$<br>			} catch (MalformedURLException e) {<br>				devDefaultClasspath = getArrayFromList(osgiDev);<br>			} catch (PrivilegedActionException e) {<br>				devDefaultClasspath = getArrayFromList(osgiDev);<br>			}<br>		}<br>	}<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/DevClassPathHelper.html#L25" , parent.fbot ); return false'>Line# 30</a> void &lt;clinit&gt;(  )<br>   Permission: java.lang.RuntimePermission "getClassLoader"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: java.lang.RuntimePermission "modifyThread"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: java.net.NetPermission "specifyStreamHandler"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: java.net.SocketPermission "???host???", "resolve"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: java.net.SocketPermission "???host???:???port???", "connect"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: java.net.SocketPermission "localhost", "resolve"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: java.net.SocketPermission "localhost:1024-", "resolve"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: java.net.SocketPermission "localhost:1024-:???port???", "connect"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: java.net.SocketPermission "localhost:???port???", "connect"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: java.util.PropertyPermission "java.protocol.handler.pkgs", "read"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "<unknown>", "<unknown>"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "<unknown>", "get"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", "<unknown>"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", "get"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "<unknown>"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br><br><br><b>CODE</b><br>
+public class DevClassPathHelper {
+	static protected boolean inDevelopmentMode = false;
+	static protected String[] devDefaultClasspath;
+	static protected Properties devProperties = null;
+
+	static {
+		// Check the osgi.dev property to see if dev classpath entries have been defined.
+		String osgiDev = System.getProperty(InternalPlatform.PROP_DEV);
+		if (osgiDev != null) {
+			try {
+				inDevelopmentMode = true;
+<font style="background-color: rgb(242, 197, 83);">				URL location = new URL(osgiDev);<br></font>				devProperties = load(location);<br>				if (devProperties != null)<br>					devDefaultClasspath = getA ... <br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br></unknown></unknown></unknown></unknown></unknown><ul>
+<li>permission java.lang.RuntimePermission "getClassLoader";</li>
+<li>permission java.lang.RuntimePermission "modifyThread";</li>
+<li>permission java.net.NetPermission "specifyStreamHandler";</li>
+<li>permission java.net.SocketPermission "???host???", "resolve";</li>
+<li>permission java.net.SocketPermission "???host???:???port???", "connect";</li>
+<li>permission java.net.SocketPermission "localhost", "resolve";</li>
+<li>permission java.net.SocketPermission "localhost:1024-", "resolve";</li>
+<li>permission java.net.SocketPermission "localhost:1024-:???port???", "connect";</li>
+<li>permission java.net.SocketPermission "localhost:???port???", "connect";</li>
+<li>permission java.util.PropertyPermission "java.protocol.handler.pkgs", "read";</li>
+<li>permission org.osgi.framework.ServicePermission "<unknown>", "<unknown>";</unknown></unknown></li>
+<li>permission org.osgi.framework.ServicePermission "<unknown>", "get";</unknown></li>
+<li>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", "<unknown>";</unknown></li>
+<li>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", "get";</li>
+<li>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "<unknown>";</unknown></li>
+<li>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>See prior conclusion.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/DevClassPathHelper.html#L79" , parent.fbot ); return false'>Line# 84</a> java.util.Properties load( java.net.URL )<br>   Permission: java.util.PropertyPermission "java.vendor.url.bug", "read"<br>      Primordial/void java.util.Properties.load( java.io.InputStream )<br><br><br><b>CODE</b><br>
+private static Properties load(URL url) {
+		Properties props = new Properties();
+		try {
+			InputStream is = null;
+			try {
+				is = url.openStream();
+<font style="background-color: rgb(242, 197, 83);">				props.load(is);<br></font>			} finally {<br>				if (is != null)<br>					is.close();<br>			}<br>		} catch (IOException e) {<br>			// TODO consider logging here<br>		}<br>		return props;<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.util.PropertyPermission "java.vendor.url.bug", "read";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>Typical java.vendor.url.bug property permission. Each plug-in is granted the permission via the OSGI's implied.permissions file.<br><hr>
+</pre>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Permission Analysis Report</title>
+  <script language="javaScript" src="linkUtil.js"></script>
+</head>
+<body>
+<h1>Permission Analysis Report</h1>
+<br>
+<h2>Analysis of: org.eclipse.core.runtime</h2>
+<b>Detail</b><br>
+<br>
+<pre>
+Class: <a href="foo"
+ onclick="return openURLinSrc( 'Application/org/eclipse/core/internal/registry/RegistryObjectManager.html' )">org.eclipse.core.internal.registry.RegistryObjectManager</a> (Application)<br>DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/registry/RegistryObjectManager.html#L60" , parent.fbot ); return false'>Line# 65</a> void &lt;init&gt;(  )<br>   Permission: java.util.PropertyPermission "eclipse.noRegistryFlushing", "read"<br>      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )<br><br><br><b>CODE</b><br>
+public RegistryObjectManager() {
+		extensionPoints = new HashtableOfStringAndInt();
+<font style="background-color: rgb(242, 197, 83);">		if ("true".equalsIgnoreCase(System.getProperty(InternalPlatform.PROP_NO_REGISTRY_FLUSHING))) { //$NON-NLS-1$<br></font>			cache = new ReferenceMap(ReferenceMap.HARD, CACHE_INITIAL_SIZE, DEFAULT_LOADFACTOR);<br>		} else {<br>			cache = new ReferenceMap(ReferenceMap.SOFT, CACHE_INITIAL_SIZE, DEFAULT_LOADFACTOR);<br>		}<br>		newContributions = new KeyedHashSet();<br>		fileOffsets = new HashtableOfInt();<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.util.PropertyPermission "eclipse.noRegistryFlushing", "read";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>Wrap the line as shown in the following:<br><br>	public RegistryObjectManager() {<br>		extensionPoints = new HashtableOfStringAndInt();<br>		<br>		<span
+ style="color: rgb(255, 0, 0);">// get the noRegistryFlushing value</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">		String noRegistryFlushing;</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">		if(System.getSecurityManager() == null) {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			noRegistryFlushing = System.getProperty(InternalPlatform.PROP_NO_REGISTRY_FLUSHING);</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">		} else {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			noRegistryFlushing = (String) AccessController.doPrivileged(new PrivilegedAction() {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">				public Object run() {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">					return System.getProperty(InternalPlatform.PROP_NO_REGISTRY_FLUSHING);</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">				}</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			});</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">		}</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">		</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">		if ("true".equalsIgnoreCase(noRegistryFlushing)) { //$NON-NLS-1$</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			cache = new ReferenceMap(ReferenceMap.HARD, CACHE_INITIAL_SIZE, DEFAULT_LOADFACTOR);</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">		} else {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			cache = new ReferenceMap(ReferenceMap.SOFT, CACHE_INITIAL_SIZE, DEFAULT_LOADFACTOR);</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">		}</span><br>		newContributions = new KeyedHashSet();<br>		fileOffsets = new HashtableOfInt();<br>	}<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/registry/RegistryObjectManager.html#L83" , parent.fbot ); return false'>Line# 88</a> boolean init( long )<br>   Permission: java.util.PropertyPermission "eclipse.noLazyRegistryCacheLoading", "read"<br>      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )<br><br><br><b>CODE</b><br>
+/**
+	 * Initialize the object manager. Return true if the initialization succeeded, false otherwise
+	 */
+	synchronized boolean init(long timeStamp) {
+		TableReader reader = new TableReader();
+		Object[] results = reader.loadTables(timeStamp);
+		if (results == null) {
+			return false;
+		}
+		fileOffsets = (HashtableOfInt) results[0];
+		extensionPoints = (HashtableOfStringAndInt) results[1];
+		nextId = ((Integer) results[2]).intValue();
+		fromCache = true;
+
+<font style="background-color: rgb(242, 197, 83);">		if ("true".equalsIgnoreCase(System.getProperty(InternalPlatform.PROP_NO_LAZY_CACHE_LOADING))) { //$NON-NLS-1$<br></font>			//TODO Here we could grow all the tables to the right size (ReferenceMap)<br>			reader.setHoldObjects(true);<br>			markOrphansHasDirty(getOrphans());<br>			fromCache = reader.readAllCache(this);<br>			formerContributions = getFormerContributions();<br>		}<br>		return fromCache;<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.util.PropertyPermission "eclipse.noLazyRegistryCacheLoading", "read";</li>
+</ul><br><br>
+<b>Conclusion:<br><br>Wrap the line as shown in the following:<br><br></b>	synchronized boolean init(long timeStamp) {<br>		TableReader reader = new TableReader();<br>		Object[] results = reader.loadTables(timeStamp);<br>		if (results == null) {<br>			return false;<br>		}<br>		fileOffsets = (HashtableOfInt) results[0];<br>		extensionPoints = (HashtableOfStringAndInt) results[1];<br>		nextId = ((Integer) results[2]).intValue();<br>		fromCache = true;<br><br>	<span
+ style="color: rgb(255, 0, 0);">	// get the noLazyRegistryCacheLoading value</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">		String noLazyRegistryCacheLoading;</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">		if(System.getSecurityManager() == null) {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			noLazyRegistryCacheLoading = System.getProperty(InternalPlatform.PROP_NO_LAZY_CACHE_LOADING);</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">		} else {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			noLazyRegistryCacheLoading = (String) AccessController.doPrivileged(new PrivilegedAction() {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">				public Object run() {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">					return System.getProperty(InternalPlatform.PROP_NO_LAZY_CACHE_LOADING);</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">				}</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			});</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">		}</span><br><br>		<br>		if ("true".equalsIgnoreCase(noLazyRegistryCacheLoading)) { //$NON-NLS-1$<br>			//TODO Here we could grow all the tables to the right size (ReferenceMap)<br>			reader.setHoldObjects(true);<br>			markOrphansHasDirty(getOrphans());<br>			fromCache = reader.readAllCache(this);<br>			formerContributions = getFormerContributions();<br>		}<br>		return fromCache;<br>	}<br><hr>
+</pre>
+</body>
+</html>

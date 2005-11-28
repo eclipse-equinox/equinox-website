@@ -1,0 +1,52 @@
+<html><head><title>Permission Analysis Report</title><script language='javaScript' src='linkUtil.js'></script></head><body>
+<h1>Permission Analysis Report</h1>
+<BR/><H2>Analysis of: org.eclipse.core.runtime</H2>
+<B>Detail</B><BR/><BR/>
+<pre>
+
+Class: <a href="foo" onClick="return openURLinSrc( 'Application/org/eclipse/core/runtime/Platform.html' )">org.eclipse.core.runtime.Platform</a> (Application)
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/runtime/Platform.html#L1358" , parent.fbot ); return false'>Line# 1363</a> boolean inDebugMode(  )
+   Permission: java.util.PropertyPermission "osgi.debug", "read"
+      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * Returns <code>true</code> if the platform is currently running in 
+	 * debug mode.  The platform is typically put in debug mode using the
+	 * "-debug" command line argument.
+	 *
+	 * @return whether or not the platform is running in debug mode
+	 * @since 3.0
+	 */
+	public static boolean inDebugMode() {
+<FONT style="background-color:#F2C553;display;inline">		return System.getProperty("osgi.debug") != null; //$NON-NLS-1$
+</FONT>	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "osgi.debug", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/runtime/Platform.html#L1371" , parent.fbot ); return false'>Line# 1376</a> boolean inDevelopmentMode(  )
+   Permission: java.util.PropertyPermission "osgi.dev", "read"
+      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * Returns <code>true</code> if the platform is currently running in 
+	 * development mode.  That is, if special procedures are to be 
+	 * taken when defining plug-in class paths.  The platform is typically put in 
+	 * development mode using the "-dev" command line argument.
+	 *
+	 * @return whether or not the platform is running in development mode
+	 * @since 3.0
+	 */
+	public static boolean inDevelopmentMode() {
+<FONT style="background-color:#F2C553;display;inline">		return System.getProperty("osgi.dev") != null; //$NON-NLS-1$
+</FONT>	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "osgi.dev", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+</pre>
+</body></html>

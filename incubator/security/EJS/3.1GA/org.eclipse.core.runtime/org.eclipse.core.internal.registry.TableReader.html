@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Permission Analysis Report</title>
+  <script language="javaScript" src="linkUtil.js"></script>
+</head>
+<body>
+<h1>Permission Analysis Report</h1>
+<br>
+<h2>Analysis of: org.eclipse.core.runtime</h2>
+<b>Detail</b><br>
+<br>
+<pre>
+Class: <a href="foo"
+ onclick="return openURLinSrc( 'Application/org/eclipse/core/internal/registry/TableReader.html' )">org.eclipse.core.internal.registry.TableReader</a> (Application)<br>DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/registry/TableReader.html#L163" , parent.fbot ); return false'>Line# 168</a> boolean checkCacheValidity( java.io.DataInputStream, long )<br>   Permission: java.io.FilePermission "???file???", "read"<br>      Primordial/long java.io.File.length(  )<br><br><br><b>CODE</b><br>
+private boolean checkCacheValidity(DataInputStream in, long expectedTimestamp) {
+		int version;
+		try {
+			version = in.readInt();
+			if (version != CACHE_VERSION)
+				return false;
+
+			long installStamp = in.readLong();
+			long registryStamp = in.readLong();
+			long mainDataFileSize = in.readLong();
+			long extraDataFileSize = in.readLong();
+			long contributionsFileSize = in.readLong();
+			long orphansFileSize = in.readLong();
+			String osStamp = in.readUTF();
+			String windowsStamp = in.readUTF();
+			String localeStamp = in.readUTF();
+			InternalPlatform info = InternalPlatform.getDefault();
+<font style="background-color: rgb(242, 197, 83);">			return ((expectedTimestamp == 0 || expectedTimestamp == registryStamp) &amp;&amp; (installStamp == info.getStateTimeStamp()) &amp;&amp; (osStamp.equals(info.getOS())) &amp;&amp; (windowsStamp.equals(info.getWS())) &amp;&amp; (localeStamp.equals(info.getNL())) &amp;&amp; mainDataFileSize == mainDataFile.length() &amp;&amp; extraDataFileSize == extraDataFile.length() &amp;&amp; contributionsFileSize == contributionsFile.length() &amp;&amp; orphansFileSize == orphansFile.length());<br></font>		} catch (IOException e) {<br>			InternalPlatform.getDefault().log(new Status(IStatus.ERROR, Platform.PI_RUNTIME, fileError, Messages.meta_registryCacheInconsistent, e));<br>			return false;<br>		}<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.io.FilePermission "???file???", "read";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>The mainFile is set through a setter method.  <br><br>Grant the permission to this plug-in via OSGI-INF/permissions.perm file.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/registry/TableReader.html#L402" , parent.fbot ); return false'>Line# 407</a> org.eclipse.core.internal.registry.KeyedHashSet loadNamespaces(  )<br>   Permission: java.io.FilePermission "???file???", "read"<br>      Primordial/void java.io.FileInputStream.FileInputStream( java.io.File )<br><br><br><b>CODE</b><br>
+public KeyedHashSet loadNamespaces() {
+		DataInputStream namespaceInput = null;
+		try {
+<font style="background-color: rgb(242, 197, 83);">			namespaceInput = new DataInputStream(new BufferedInputStream(new FileInputStream(contributionsFile)));<br></font>			int size = namespaceInput.readInt();<br>			KeyedHashSet result = new KeyedHashSet(size);<br>			for (int i = 0; i &lt; size; i++) {<br>				Contribution n = new Contribution(namespaceInput.readLong());<br>				n.setRawChildren(readArray(namespaceInput));<br>				result.add(n);<br>			}<br>			return result;<br>		} catch (IOException e) {<br>			String message = NLS.bind(Messages.meta_regCacheIOExceptionReading, contributionsFile);<br>			InternalPlatform.getDefault().log(new Status(IStatus.ERROR, Platform.PI_RUNTIME, fileError, message, e));<br>			return null;<br>		} finally {<br>			if (namespaceInput != null)<br>				try {<br>					namespaceInput.close();<br>				} catch (IOException e1) {<br>					//Ignore<br>				}<br>		}<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.io.FilePermission "???file???", "read";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>The contributionFile is also set through a setter method.<br><br>Grant the permission to this plug-in via OSGI-INF/permissions.perm file.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/registry/TableReader.html#L501" , parent.fbot ); return false'>Line# 506</a> java.util.HashMap loadOrphans(  )<br>   Permission: java.io.FilePermission "???file???", "read"<br>      Primordial/void java.io.FileInputStream.FileInputStream( java.io.File )<br><br><br><b>CODE</b><br>
+public HashMap loadOrphans() {
+		DataInputStream orphanInput = null;
+		try {
+<font style="background-color: rgb(242, 197, 83);">			orphanInput = new DataInputStream(new BufferedInputStream(new FileInputStream(orphansFile)));<br></font>			int size = orphanInput.readInt();<br>			HashMap result = new HashMap(size);<br>			for (int i = 0; i &lt; size; i++) {<br>				String key = orphanInput.readUTF();<br>				int[] value = readArray(orphanInput);<br>				result.put(key, value);<br>			}<br>			return result;<br>		} catch (IOException e) {<br>			return null;<br>		} finally {<br>			if (orphanInput != null)<br>				try {<br>					orphanInput.close();<br>				} catch (IOException e1) {<br>					//ignore<br>				}<br>		}<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.io.FilePermission "???file???", "read";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>See prior conclusion.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/registry/TableReader.html#L122" , parent.fbot ); return false'>Line# 127</a> java.lang.Object[] loadTables( long )<br>   Permission: java.io.FilePermission "???file???", "read"<br>      Primordial/void java.io.FileInputStream.FileInputStream( java.io.File )<br><br><br><b>CODE</b><br>
+public Object[] loadTables(long expectedTimestamp) {
+		HashtableOfInt offsets;
+		HashtableOfStringAndInt extensionPoints;
+
+		DataInputStream tableInput = null;
+		try {
+<font style="background-color: rgb(242, 197, 83);">			tableInput = new DataInputStream(new BufferedInputStream(new FileInputStream(tableFile)));<br></font>			if (!checkCacheValidity(tableInput, expectedTimestamp))<br>				return null;<br><br>			Integer nextId = new Integer(tableInput.readInt());<br>			offsets = new HashtableOfInt();<br>			offsets.load(tableInput);<br>			extensionPoints = new HashtableOfStringAndInt();<br>			extensionPoints.load(tableInput);<br>			return new Object[] {offsets, extensionPoints, nextId};<br>		} catch (IOException e) {<br>			if (tableInput != null)<br>				try {<br>					tableInput.close();<br>				} catch (IOException e1) {<br>					//Ignore<br>				}<br>			InternalPlatform.getDefault().log(new Status(IStatus.ERROR, Platform.PI_RUNTIME, fileError, Messages.meta_registryCacheReadProblems, e));<br>			return null;<br>		}<br><br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.io.FilePermission "???file???", "read";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>See pror conclusion.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/registry/TableReader.html#L90" , parent.fbot ); return false'>Line# 95</a> void openExtraFile(  )<br>   Permission: java.io.FilePermission "???file???", "read"<br>      Primordial/void java.io.FileInputStream.FileInputStream( java.io.File )<br><br><br><b>CODE</b><br>
+private void openExtraFile() {
+		try {
+<font style="background-color: rgb(242, 197, 83);">			extraInput = new DataInputStream(new BufferedInputStream(new FileInputStream(extraDataFile)));<br></font>		} catch (FileNotFoundException e) {<br>			InternalPlatform.getDefault().log(new Status(IStatus.ERROR, Platform.PI_RUNTIME, fileError, Messages.meta_unableToReadCache, e));<br>			InternalPlatform.getDefault().clearRegistryCache();<br>			throw new IllegalStateException(Messages.meta_registryCacheReadProblems);<br>		}<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.io.FilePermission "???file???", "read";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>See pror conclusion.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/registry/TableReader.html#L80" , parent.fbot ); return false'>Line# 85</a> void openInputFile(  )<br>   Permission: java.io.FilePermission "???file???", "read"<br>      Primordial/void java.io.FileInputStream.FileInputStream( java.io.File )<br><br><br><b>CODE</b><br>
+private void openInputFile() {
+		try {
+<font style="background-color: rgb(242, 197, 83);">			mainInput = new DataInputStream(new BufferedInputStream(new FileInputStream(mainDataFile)));<br></font>		} catch (FileNotFoundException e) {<br>			InternalPlatform.getDefault().log(new Status(IStatus.ERROR, Platform.PI_RUNTIME, fileError, Messages.meta_unableToReadCache, e));<br>			InternalPlatform.getDefault().clearRegistryCache();<br>			throw new IllegalStateException(Messages.meta_registryCacheReadProblems);<br>		}<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.io.FilePermission "???file???", "read";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>See pror conclusion.<br><hr>
+</pre>
+</body>
+</html>

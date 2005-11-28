@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Permission Analysis Report</title>
+  <script language="javaScript" src="linkUtil.js"></script>
+</head>
+<body>
+<h1>Permission Analysis Report</h1>
+<br>
+<h2>Analysis of: org.eclipse.core.runtime</h2>
+<b>Detail</b><br>
+<br>
+<pre>
+Class: <a href="foo"
+ onclick="return openURLinSrc( 'Application/org/eclipse/core/internal/runtime/ResourceTranslator.html' )">org.eclipse.core.internal.runtime.ResourceTranslator</a> (Application)<br>DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/ResourceTranslator.html#L100" , parent.fbot ); return false'>Line# 105</a> java.lang.ClassLoader createTempClassloader( org.osgi.framework.Bundle )<br>   Permission: java.lang.RuntimePermission "createClassLoader"<br>      Primordial/void java.net.URLClassLoader.URLClassLoader( java.net.URL[] )<br>   Permission: java.lang.RuntimePermission "getClassLoader"<br>      Primordial/void java.net.URLClassLoader.URLClassLoader( java.net.URL[] )<br><br><br><b>CODE</b><br>
+private static ClassLoader createTempClassloader(Bundle b) {
+		ArrayList classpath = new ArrayList();
+		addClasspathEntries(b, classpath);
+		addBundleRoot(b, classpath);
+		addDevEntries(b, classpath);
+		addFragments(b, classpath);
+		URL[] urls = new URL[classpath.size()];
+<font style="background-color: rgb(242, 197, 83);">		return new URLClassLoader((URL[]) classpath.toArray(urls));<br></font>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.lang.RuntimePermission "createClassLoader";</li>
+<li>permission java.lang.RuntimePermission "getClassLoader";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>This is private method and is called by getResourceBundle method.  <br><br><br>	public static ResourceBundle getResourceBundle(final Bundle bundle) throws MissingResourceException {<br>		if (hasRuntime21(bundle)) {<br><span
+ style="color: rgb(255, 0, 0);">			if(System.getSecurityManager() == null) {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">				return ResourceBundle.getBundle("plugin", Locale.getDefault(), createTempClassloader(bundle)); //$NON-NLS-1$</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			}</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			return (ResourceBundle) AccessController.doPrivileged(new PrivilegedAction() {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">				public Object run() {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">					return ResourceBundle.getBundle("plugin", Locale.getDefault(), createTempClassloader(bundle)); //$NON-NLS-1$</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">				}</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			});</span><br>		}<br>		return localizationService.getLocalization(bundle, null);<br>	}<br><hr>
+</pre>
+</body>
+</html>

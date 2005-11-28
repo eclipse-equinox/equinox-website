@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Permission Analysis Report</title>
+  <script language="javaScript" src="linkUtil.js"></script>
+</head>
+<body>
+<h1>Permission Analysis Report</h1>
+<br>
+<h2>Analysis of: org.eclipse.core.runtime</h2>
+<b>Detail</b><br>
+<br>
+<pre>
+Class: <a href="foo"
+ onclick="return openURLinSrc( 'Application/org/eclipse/core/internal/jobs/Worker.html' )">org.eclipse.core.internal.jobs.Worker</a> (Application)<br>DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/jobs/Worker.html#L25" , parent.fbot ); return false'>Line# 30</a> void &lt;init&gt;( org.eclipse.core.internal.jobs.WorkerPool )<br>   Permission: java.lang.RuntimePermission "modifyThread"<br>      Primordial/void java.lang.Thread.Thread( java.lang.String )<br>   Permission: java.lang.RuntimePermission "setContextClassLoader"<br>      Primordial/void java.lang.Thread.Thread( java.lang.String )<br><br><br><b>CODE</b><br>
+public Worker(WorkerPool pool) {
+<font style="background-color: rgb(242, 197, 83);">		super("Worker-" + nextWorkerNumber++); //$NON-NLS-1$<br></font>		this.pool = pool;<br>		//set the context loader to avoid leaking the current context loader<br>		//for the thread that spawns this worker (bug 98376)<br>		setContextClassLoader(pool.defaultContextLoader);<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.lang.RuntimePermission "modifyThread";</li>
+<li>permission java.lang.RuntimePermission "setContextClassLoader";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>This class is This is an internal clsas and assuming this class will only be used by the WorkerPool class.  It is best to wrap the WorkerPool <br>class.  Also grant the above permissions to this plug-in via OSGI-INF/permissions.perm.<br><br>	protected synchronized void jobQueued(InternalJob job) {<br>		//if there is a sleeping thread, wake it up<br>		if (sleepingThreads &gt; 0) {<br>			notify();<br>			return;<br>		}<br>		//create a thread if all threads are busy and we're under the max size<br>		//if the job is high priority, we start a thread no matter what<br>		if (busyThreads &gt;= numThreads) {<br>			<span
+ style="color: rgb(255, 0, 0);">Worker worker;</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			if(System.getSecurityManager() == null) {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">				worker = new Worker(this);</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			} else {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">				final WorkerPool tmpWorkerPool = this;</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">				worker = (Worker) AccessController.doPrivileged(new PrivilegedAction() {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">					public Object run() {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">						return new Worker(tmpWorkerPool);</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">					}</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">				});</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			}</span><br>			add(worker);<br>			if (JobManager.DEBUG)<br>				JobManager.debug("worker added to pool: " + worker); //$NON-NLS-1$<br>			worker.start();<br>			return;<br>		}<br>	}<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/jobs/Worker.html#L29" , parent.fbot ); return false'>Line# 34</a> void &lt;init&gt;( org.eclipse.core.internal.jobs.WorkerPool )<br>   Permission: java.lang.RuntimePermission "setContextClassLoader"<br>      Primordial/void java.lang.Thread.setContextClassLoader( java.lang.ClassLoader )<br><br><br><b>CODE</b><br>
+public Worker(WorkerPool pool) {
+		super("Worker-" + nextWorkerNumber++); //$NON-NLS-1$
+		this.pool = pool;
+		//set the context loader to avoid leaking the current context loader
+		//for the thread that spawns this worker (bug 98376)
+<font style="background-color: rgb(242, 197, 83);">		setContextClassLoader(pool.defaultContextLoader);<br></font>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.lang.RuntimePermission "setContextClassLoader";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>See prior conclusion.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/jobs/Worker.html#L62" , parent.fbot ); return false'>Line# 67</a> void run(  )<br>   Permission: java.lang.RuntimePermission "modifyThread"<br>      Primordial/void java.lang.Thread.setPriority( int )<br><br><br><b>CODE</b><br>
+public void run() {
+<font style="background-color: rgb(242, 197, 83);">		setPriority(Thread.NORM_PRIORITY);<br></font>		try {<br>			while ((currentJob = pool.startJob(this)) != null) {<br>				//if job is null we've been shutdown<br>				if (currentJob == null)<br>					return;<br>				currentJob.setThread(this);<br>				IStatus result = Status.OK_STATUS;<br>				try {<br>					result = currentJob.run(currentJob.getProgressMonitor());<br>				} catch (OperationCanceledException e) {<br>					result = Status.CANCEL_STATUS;<br>				} catch (Exception e) {<br>					result = handleException(currentJob, e);<br>				} catch (ThreadDeath e) {<br>					//must not consume thread death<br>					throw e;<br>				} catch (Error e) {<br>					result = handleException(currentJob, e);<br>				} finally {<br>					//clear interrupted state for this thread<br>					Thread.interrupted();<br>					//result must not be null<br>					if (result == null)<br>						result = handleException(currentJob, new NullPointerException());<br>					pool.endJob(currentJob, result);<br>					if ((result.getSeverity() &amp; (IStatus.ERROR | IStatus.WARNING)) != 0)<br>						log(result);<br>					currentJob = null;<br>				}<br>			}<br>		} catch (Throwable t) {<br>			t.printStackTrace();<br>		} finally {<br>			currentJob = null;<br>			pool.endWorker(this);<br>		}<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.lang.RuntimePermission "modifyThread";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>This Worker class extends the Thread class.  The run method will be on the seperate thread of execution.   <br>There is no need to wrap the identified location, just grant the required permission to this plug-in <br>via OSGI-INF/permissions.perm file.<br><hr>
+</pre>
+</body>
+</html>

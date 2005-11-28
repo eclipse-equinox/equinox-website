@@ -1,0 +1,641 @@
+<html><head><title>Permission Analysis Report</title><script language='javaScript' src='linkUtil.js'></script></head><body>
+<h1>Permission Analysis Report</h1>
+<BR/><H2>Analysis of: org.eclipse.core.runtime</H2>
+<B>Detail</B><BR/><BR/>
+<pre>
+
+Class: <a href="foo" onClick="return openURLinSrc( 'Application/org/eclipse/core/runtime/adaptor/StreamManager.html' )">org.eclipse.core.runtime.adaptor.StreamManager</a> (Application)
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/runtime/adaptor/StreamManager.html#L37" , parent.fbot ); return false'>Line# 42</a> void &lt;clinit&gt;(  )
+   Permission: java.util.PropertyPermission "osgi.useReliableFiles", "read"
+      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+ * This class manages streams for a FileManager.
+ * <p>
+ * Clients may not extend this class.
+ * </p>
+ * @since 3.1
+ */
+public class StreamManager {
+	/**
+	 * Open mask. Obtain the best data stream available. If the primary data 
+	 * contents are invalid (corrupt, missing, etc.), the data for a prior 
+	 * version may be used. 
+	 * An IOException will be thrown if a valid data content can not be
+	 * determined. 
+	 * This is mutually exclusive with <code>OPEN_FAIL_ON_PRIMARY</code>.
+	 */
+	public static final int OPEN_BEST_AVAILABLE = ReliableFile.OPEN_BEST_AVAILABLE;
+	/**
+	 * Open mask. Obtain only the data stream for the primary file where any other 
+	 * version will not be valid. This should be used for data streams that are 
+	 * managed as a group as a prior contents may not match the other group data.
+	 * If the primary data is not invalid, a IOException will be thrown.
+	 * This is mutually exclusive with <code>OPEN_BEST_AVAILABLE</code>.
+	 */
+	public static final int OPEN_FAIL_ON_PRIMARY = ReliableFile.OPEN_FAIL_ON_PRIMARY;
+
+<FONT style="background-color:#F2C553;display;inline">	private static boolean useReliableFilesDefault = Boolean.valueOf(System.getProperty("osgi.useReliableFiles")).booleanValue(); //$NON-NLS-1$ //$NON-NLS-2$
+</FONT>	private FileManager manager;
+	private boolean useReliableFiles;
+
+	private static final int ST_OP ... 
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "osgi.useReliableFiles", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/runtime/adaptor/StreamManager.html#L186" , parent.fbot ); return false'>Line# 191</a> void abortOutputStream( org.eclipse.core.runtime.adaptor.StreamManagerOutputStream )
+   Permission: java.io.FilePermission "", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "*", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "-1", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "-2", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "-2147483648", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "-3", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "-9223372036854775808", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission ".", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "..", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission ".bundledata", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission ".contributions", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission ".extraData", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission ".lazy", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission ".log", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission ".mainData", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission ".manager", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission ".metadata", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission ".orphans", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission ".plugins", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission ".settings", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission ".state", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission ".table", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "/", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "0", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "1", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "1.3", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "10", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "13", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "2", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "23", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "3", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "3.0.0", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "4", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "5", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "6", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "7", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "8", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "9", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "???file???", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "Eclipse", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "META-INF/MANIFEST.MF", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "No message available.", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "aix", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "bin", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "bundles", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "carbon", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "charset", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "false", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "file-extensions", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "file-names", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "fragment.xml", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "hpux", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "instance", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "linux", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "macosx", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "manifests", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "motif", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "org.eclipse.core.runtime", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "org.eclipse.core.runtime.adaptor/resolver/timing/value", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "org.eclipse.core.runtime/content-types", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "org.eclipse.osgi", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "org.eclipse.osgi/defaultprofile/buffersize", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "org.eclipse.osgi/defaultprofile/logfilename", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "org.eclipse.osgi/defaultprofile/logsynchronously", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "org.eclipse.osgi/profile/benchmark", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "org.eclipse.osgi/profile/debug", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "org.eclipse.osgi/profile/impl", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "org.eclipse.osgi/profile/startup", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "performance.log", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "photon", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "plugin.xml", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "plugin_customization.ini", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "pref_store.ini", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "preferences", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "qnx", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "solaris", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "true", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "unknown", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "win32", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "x86", "delete"
+      Primordial/boolean java.io.File.delete(  )
+   Permission: java.io.FilePermission "x86_64", "delete"
+      Primordial/boolean java.io.File.delete(  )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * Instructs this manager to abort and discard a stream manager provided output stream(s).
+	 * This method should be used if any errors occur after opening a filemanager
+	 * output stream where the contents should not be saved. This method should
+	 * be used instead of closing the <code>OutputStream</code>.
+	 * If this output stream is part of a set, all other output streams in this set
+	 * will also be closed and aborted.
+	 * @param out the filemanager provided <code>OutputStream</code>.
+	 * @see #getOutputStream(String)
+	 * @see #getOutputStreamSet(String[])
+	 */
+	void abortOutputStream(StreamManagerOutputStream out) {
+		StreamManagerOutputStream[] set = out.getStreamSet();
+		if (set == null) {
+			set = new StreamManagerOutputStream[] {out};
+		}
+		synchronized (set) {
+			for (int idx = 0; idx < set.length; idx++) {
+				out = set[idx];
+				if (out.getOutputFile() == null) {
+					// this is a ReliableFileOutpuStream
+					ReliableFileOutputStream rfos = (ReliableFileOutputStream) out.getOutputStream();
+					rfos.abort();
+				} else {
+					// plain FileOutputStream();
+					if (out.getState() == ST_OPEN) {
+						try {
+							out.getOutputStream().close();
+						} catch (IOException e) {/*do nothing*/
+						}
+					}
+<FONT style="background-color:#F2C553;display;inline">					out.getOutputFile().delete();
+</FONT>				}
+				out.setState(ST_CLOSED);
+			}
+		}
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.io.FilePermission "", "delete";</LI>
+<LI>permission java.io.FilePermission "*", "delete";</LI>
+<LI>permission java.io.FilePermission "-1", "delete";</LI>
+<LI>permission java.io.FilePermission "-2", "delete";</LI>
+<LI>permission java.io.FilePermission "-2147483648", "delete";</LI>
+<LI>permission java.io.FilePermission "-3", "delete";</LI>
+<LI>permission java.io.FilePermission "-9223372036854775808", "delete";</LI>
+<LI>permission java.io.FilePermission ".", "delete";</LI>
+<LI>permission java.io.FilePermission "..", "delete";</LI>
+<LI>permission java.io.FilePermission ".bundledata", "delete";</LI>
+<LI>permission java.io.FilePermission ".contributions", "delete";</LI>
+<LI>permission java.io.FilePermission ".extraData", "delete";</LI>
+<LI>permission java.io.FilePermission ".lazy", "delete";</LI>
+<LI>permission java.io.FilePermission ".log", "delete";</LI>
+<LI>permission java.io.FilePermission ".mainData", "delete";</LI>
+<LI>permission java.io.FilePermission ".manager", "delete";</LI>
+<LI>permission java.io.FilePermission ".metadata", "delete";</LI>
+<LI>permission java.io.FilePermission ".orphans", "delete";</LI>
+<LI>permission java.io.FilePermission ".plugins", "delete";</LI>
+<LI>permission java.io.FilePermission ".settings", "delete";</LI>
+<LI>permission java.io.FilePermission ".state", "delete";</LI>
+<LI>permission java.io.FilePermission ".table", "delete";</LI>
+<LI>permission java.io.FilePermission "/", "delete";</LI>
+<LI>permission java.io.FilePermission "0", "delete";</LI>
+<LI>permission java.io.FilePermission "1", "delete";</LI>
+<LI>permission java.io.FilePermission "1.3", "delete";</LI>
+<LI>permission java.io.FilePermission "10", "delete";</LI>
+<LI>permission java.io.FilePermission "13", "delete";</LI>
+<LI>permission java.io.FilePermission "2", "delete";</LI>
+<LI>permission java.io.FilePermission "23", "delete";</LI>
+<LI>permission java.io.FilePermission "3", "delete";</LI>
+<LI>permission java.io.FilePermission "3.0.0", "delete";</LI>
+<LI>permission java.io.FilePermission "4", "delete";</LI>
+<LI>permission java.io.FilePermission "5", "delete";</LI>
+<LI>permission java.io.FilePermission "6", "delete";</LI>
+<LI>permission java.io.FilePermission "7", "delete";</LI>
+<LI>permission java.io.FilePermission "8", "delete";</LI>
+<LI>permission java.io.FilePermission "9", "delete";</LI>
+<LI>permission java.io.FilePermission "???file???", "delete";</LI>
+<LI>permission java.io.FilePermission "Eclipse", "delete";</LI>
+<LI>permission java.io.FilePermission "META-INF/MANIFEST.MF", "delete";</LI>
+<LI>permission java.io.FilePermission "No message available.", "delete";</LI>
+<LI>permission java.io.FilePermission "aix", "delete";</LI>
+<LI>permission java.io.FilePermission "bin", "delete";</LI>
+<LI>permission java.io.FilePermission "bundles", "delete";</LI>
+<LI>permission java.io.FilePermission "carbon", "delete";</LI>
+<LI>permission java.io.FilePermission "charset", "delete";</LI>
+<LI>permission java.io.FilePermission "false", "delete";</LI>
+<LI>permission java.io.FilePermission "file-extensions", "delete";</LI>
+<LI>permission java.io.FilePermission "file-names", "delete";</LI>
+<LI>permission java.io.FilePermission "fragment.xml", "delete";</LI>
+<LI>permission java.io.FilePermission "hpux", "delete";</LI>
+<LI>permission java.io.FilePermission "instance", "delete";</LI>
+<LI>permission java.io.FilePermission "linux", "delete";</LI>
+<LI>permission java.io.FilePermission "macosx", "delete";</LI>
+<LI>permission java.io.FilePermission "manifests", "delete";</LI>
+<LI>permission java.io.FilePermission "motif", "delete";</LI>
+<LI>permission java.io.FilePermission "org.eclipse.core.runtime", "delete";</LI>
+<LI>permission java.io.FilePermission "org.eclipse.core.runtime.adaptor/resolver/timing/value", "delete";</LI>
+<LI>permission java.io.FilePermission "org.eclipse.core.runtime/content-types", "delete";</LI>
+<LI>permission java.io.FilePermission "org.eclipse.osgi", "delete";</LI>
+<LI>permission java.io.FilePermission "org.eclipse.osgi/defaultprofile/buffersize", "delete";</LI>
+<LI>permission java.io.FilePermission "org.eclipse.osgi/defaultprofile/logfilename", "delete";</LI>
+<LI>permission java.io.FilePermission "org.eclipse.osgi/defaultprofile/logsynchronously", "delete";</LI>
+<LI>permission java.io.FilePermission "org.eclipse.osgi/profile/benchmark", "delete";</LI>
+<LI>permission java.io.FilePermission "org.eclipse.osgi/profile/debug", "delete";</LI>
+<LI>permission java.io.FilePermission "org.eclipse.osgi/profile/impl", "delete";</LI>
+<LI>permission java.io.FilePermission "org.eclipse.osgi/profile/startup", "delete";</LI>
+<LI>permission java.io.FilePermission "performance.log", "delete";</LI>
+<LI>permission java.io.FilePermission "photon", "delete";</LI>
+<LI>permission java.io.FilePermission "plugin.xml", "delete";</LI>
+<LI>permission java.io.FilePermission "plugin_customization.ini", "delete";</LI>
+<LI>permission java.io.FilePermission "pref_store.ini", "delete";</LI>
+<LI>permission java.io.FilePermission "preferences", "delete";</LI>
+<LI>permission java.io.FilePermission "qnx", "delete";</LI>
+<LI>permission java.io.FilePermission "solaris", "delete";</LI>
+<LI>permission java.io.FilePermission "true", "delete";</LI>
+<LI>permission java.io.FilePermission "unknown", "delete";</LI>
+<LI>permission java.io.FilePermission "win32", "delete";</LI>
+<LI>permission java.io.FilePermission "x86", "delete";</LI>
+<LI>permission java.io.FilePermission "x86_64", "delete";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/runtime/adaptor/StreamManager.html#L101" , parent.fbot ); return false'>Line# 106</a> java.io.InputStream getInputStream( java.lang.String, int )
+   Permission: java.io.FilePermission "???file???", "read"
+      Primordial/void java.io.FileInputStream.FileInputStream( java.io.File )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * Returns a managed <code>InputStream</code> for a filemanager managed file. 
+	 * <code>null</code> can be returned if the given target is not managed. 
+	 * The <code>openMask<code> modifies the behavior of obtaining the data stream
+	 * and can be ORed together.
+	 * 
+	 * @param target the base file name of the reliable file to open.
+	 * a backup version is not acceptable.
+	 * @param openMask mask used to open the input target.
+	 * @return an <code>InputStream</code> from the managed target file or 
+	 * <code>null</code> if the given target is not managed.
+	 * @throws IOException if the file is missing, corrupt or an error occurs.
+	 * @see #OPEN_BEST_AVAILABLE
+	 * @see #OPEN_FAIL_ON_PRIMARY
+	 */
+	public InputStream getInputStream(String target, int openMask) throws IOException {
+
+		if (useReliableFiles) {
+			int id = manager.getId(target);
+			return new ReliableFileInputStream(new File(manager.getBase(), target), id, openMask);
+		}
+		File lookup = manager.lookup(target, false);
+		if (lookup == null)
+			return null;
+<FONT style="background-color:#F2C553;display;inline">		return new FileInputStream(lookup);
+</FONT>	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.io.FilePermission "???file???", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/runtime/adaptor/StreamManager.html#L120" , parent.fbot ); return false'>Line# 125</a> org.eclipse.core.runtime.adaptor.StreamManagerOutputStream getOutputStream( java.lang.String )
+   Permission: java.io.FilePermission "", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "*", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "-1", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "-2", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "-2147483648", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "-3", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "-9223372036854775808", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission ".", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "..", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission ".bundledata", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission ".contributions", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission ".extraData", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission ".lazy", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission ".log", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission ".mainData", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission ".manager", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission ".metadata", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission ".orphans", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission ".plugins", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission ".settings", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission ".state", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission ".table", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "/", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "0", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "1", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "1.3", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "10", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "13", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "2", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "23", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "3", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "3.0.0", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "4", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "5", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "6", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "7", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "8", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "9", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "???file???", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "Eclipse", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "META-INF/MANIFEST.MF", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "No message available.", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "aix", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "bin", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "bundles", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "carbon", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "charset", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "false", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "file-extensions", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "file-names", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "fragment.xml", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "hpux", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "instance", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "linux", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "macosx", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "manifests", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "motif", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "org.eclipse.core.runtime", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "org.eclipse.core.runtime.adaptor/resolver/timing/value", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "org.eclipse.core.runtime/content-types", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "org.eclipse.osgi", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "org.eclipse.osgi/defaultprofile/buffersize", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "org.eclipse.osgi/defaultprofile/logfilename", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "org.eclipse.osgi/defaultprofile/logsynchronously", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "org.eclipse.osgi/profile/benchmark", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "org.eclipse.osgi/profile/debug", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "org.eclipse.osgi/profile/impl", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "org.eclipse.osgi/profile/startup", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "performance.log", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "photon", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "plugin.xml", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "plugin_customization.ini", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "pref_store.ini", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "preferences", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "qnx", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "solaris", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "true", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "unknown", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "win32", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "x86", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "x86_64", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * Returns an <code>OutputStream</code> for a filemanager managed file from a 
+	 * given base name. If enabled, the output stream will represent an OutputStream that
+	 * will be validated before reading. Closing the ouput stream will update filemanager
+	 * with the new target file.
+	 * 
+	 * @param target the base file name of the file to write.
+	 * @return <code>OutputStream</code> of a managed file with name of target.
+	 * @throws IOException if an error occurs opening the file.
+	 */
+	public StreamManagerOutputStream getOutputStream(String target) throws IOException {
+		if (useReliableFiles) {
+			ReliableFileOutputStream out = new ReliableFileOutputStream(new File(manager.getBase(), target));
+			return new StreamManagerOutputStream(out, this, target, null, ST_OPEN);
+		}
+		File tmpFile = manager.createTempFile(target);
+<FONT style="background-color:#F2C553;display;inline">		return new StreamManagerOutputStream(new FileOutputStream(tmpFile), this, target, tmpFile, ST_OPEN);
+</FONT>	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.io.FilePermission "", "write";</LI>
+<LI>permission java.io.FilePermission "*", "write";</LI>
+<LI>permission java.io.FilePermission "-1", "write";</LI>
+<LI>permission java.io.FilePermission "-2", "write";</LI>
+<LI>permission java.io.FilePermission "-2147483648", "write";</LI>
+<LI>permission java.io.FilePermission "-3", "write";</LI>
+<LI>permission java.io.FilePermission "-9223372036854775808", "write";</LI>
+<LI>permission java.io.FilePermission ".", "write";</LI>
+<LI>permission java.io.FilePermission "..", "write";</LI>
+<LI>permission java.io.FilePermission ".bundledata", "write";</LI>
+<LI>permission java.io.FilePermission ".contributions", "write";</LI>
+<LI>permission java.io.FilePermission ".extraData", "write";</LI>
+<LI>permission java.io.FilePermission ".lazy", "write";</LI>
+<LI>permission java.io.FilePermission ".log", "write";</LI>
+<LI>permission java.io.FilePermission ".mainData", "write";</LI>
+<LI>permission java.io.FilePermission ".manager", "write";</LI>
+<LI>permission java.io.FilePermission ".metadata", "write";</LI>
+<LI>permission java.io.FilePermission ".orphans", "write";</LI>
+<LI>permission java.io.FilePermission ".plugins", "write";</LI>
+<LI>permission java.io.FilePermission ".settings", "write";</LI>
+<LI>permission java.io.FilePermission ".state", "write";</LI>
+<LI>permission java.io.FilePermission ".table", "write";</LI>
+<LI>permission java.io.FilePermission "/", "write";</LI>
+<LI>permission java.io.FilePermission "0", "write";</LI>
+<LI>permission java.io.FilePermission "1", "write";</LI>
+<LI>permission java.io.FilePermission "1.3", "write";</LI>
+<LI>permission java.io.FilePermission "10", "write";</LI>
+<LI>permission java.io.FilePermission "13", "write";</LI>
+<LI>permission java.io.FilePermission "2", "write";</LI>
+<LI>permission java.io.FilePermission "23", "write";</LI>
+<LI>permission java.io.FilePermission "3", "write";</LI>
+<LI>permission java.io.FilePermission "3.0.0", "write";</LI>
+<LI>permission java.io.FilePermission "4", "write";</LI>
+<LI>permission java.io.FilePermission "5", "write";</LI>
+<LI>permission java.io.FilePermission "6", "write";</LI>
+<LI>permission java.io.FilePermission "7", "write";</LI>
+<LI>permission java.io.FilePermission "8", "write";</LI>
+<LI>permission java.io.FilePermission "9", "write";</LI>
+<LI>permission java.io.FilePermission "???file???", "write";</LI>
+<LI>permission java.io.FilePermission "Eclipse", "write";</LI>
+<LI>permission java.io.FilePermission "META-INF/MANIFEST.MF", "write";</LI>
+<LI>permission java.io.FilePermission "No message available.", "write";</LI>
+<LI>permission java.io.FilePermission "aix", "write";</LI>
+<LI>permission java.io.FilePermission "bin", "write";</LI>
+<LI>permission java.io.FilePermission "bundles", "write";</LI>
+<LI>permission java.io.FilePermission "carbon", "write";</LI>
+<LI>permission java.io.FilePermission "charset", "write";</LI>
+<LI>permission java.io.FilePermission "false", "write";</LI>
+<LI>permission java.io.FilePermission "file-extensions", "write";</LI>
+<LI>permission java.io.FilePermission "file-names", "write";</LI>
+<LI>permission java.io.FilePermission "fragment.xml", "write";</LI>
+<LI>permission java.io.FilePermission "hpux", "write";</LI>
+<LI>permission java.io.FilePermission "instance", "write";</LI>
+<LI>permission java.io.FilePermission "linux", "write";</LI>
+<LI>permission java.io.FilePermission "macosx", "write";</LI>
+<LI>permission java.io.FilePermission "manifests", "write";</LI>
+<LI>permission java.io.FilePermission "motif", "write";</LI>
+<LI>permission java.io.FilePermission "org.eclipse.core.runtime", "write";</LI>
+<LI>permission java.io.FilePermission "org.eclipse.core.runtime.adaptor/resolver/timing/value", "write";</LI>
+<LI>permission java.io.FilePermission "org.eclipse.core.runtime/content-types", "write";</LI>
+<LI>permission java.io.FilePermission "org.eclipse.osgi", "write";</LI>
+<LI>permission java.io.FilePermission "org.eclipse.osgi/defaultprofile/buffersize", "write";</LI>
+<LI>permission java.io.FilePermission "org.eclipse.osgi/defaultprofile/logfilename", "write";</LI>
+<LI>permission java.io.FilePermission "org.eclipse.osgi/defaultprofile/logsynchronously", "write";</LI>
+<LI>permission java.io.FilePermission "org.eclipse.osgi/profile/benchmark", "write";</LI>
+<LI>permission java.io.FilePermission "org.eclipse.osgi/profile/debug", "write";</LI>
+<LI>permission java.io.FilePermission "org.eclipse.osgi/profile/impl", "write";</LI>
+<LI>permission java.io.FilePermission "org.eclipse.osgi/profile/startup", "write";</LI>
+<LI>permission java.io.FilePermission "performance.log", "write";</LI>
+<LI>permission java.io.FilePermission "photon", "write";</LI>
+<LI>permission java.io.FilePermission "plugin.xml", "write";</LI>
+<LI>permission java.io.FilePermission "plugin_customization.ini", "write";</LI>
+<LI>permission java.io.FilePermission "pref_store.ini", "write";</LI>
+<LI>permission java.io.FilePermission "preferences", "write";</LI>
+<LI>permission java.io.FilePermission "qnx", "write";</LI>
+<LI>permission java.io.FilePermission "solaris", "write";</LI>
+<LI>permission java.io.FilePermission "true", "write";</LI>
+<LI>permission java.io.FilePermission "unknown", "write";</LI>
+<LI>permission java.io.FilePermission "win32", "write";</LI>
+<LI>permission java.io.FilePermission "x86", "write";</LI>
+<LI>permission java.io.FilePermission "x86_64", "write";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+</pre>
+</body></html>

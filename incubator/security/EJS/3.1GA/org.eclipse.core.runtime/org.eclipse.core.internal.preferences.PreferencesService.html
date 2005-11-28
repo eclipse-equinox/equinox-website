@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Permission Analysis Report</title>
+  <script language="javaScript" src="linkUtil.js"></script>
+</head>
+<body>
+<h1>Permission Analysis Report</h1>
+<br>
+<h2>Analysis of: org.eclipse.core.runtime</h2>
+<b>Detail</b><br>
+<br>
+<pre>
+Class: <a href="foo"
+ onclick="return openURLinSrc( 'Application/org/eclipse/core/internal/preferences/PreferencesService.html' )">org.eclipse.core.internal.preferences.PreferencesService</a> (Application)<br>DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/preferences/PreferencesService.html#L660" , parent.fbot ); return false'>Line# 665</a> org.eclipse.core.runtime.preferences.IExportedPreferences readPreferences( java.io.InputStream )<br>   Permission: java.util.PropertyPermission "java.vendor.url.bug", "read"<br>      Primordial/void java.util.Properties.load( java.io.InputStream )<br><br><br><b>CODE</b><br>
+public IExportedPreferences readPreferences(InputStream input) throws CoreException {
+		if (input == null)
+			throw new IllegalArgumentException();
+
+		if (InternalPlatform.DEBUG_PREFERENCE_GENERAL)
+			Policy.debug("Reading preferences from stream..."); //$NON-NLS-1$
+
+		// read the file into a properties object
+		Properties properties = new Properties();
+		try {
+<font style="background-color: rgb(242, 197, 83);">			properties.load(input);<br></font>		} catch (IOException e) {<br>			throw new CoreException(createStatusError(Messages.preferences_importProblems, e));<br>		} finally {<br>			try {<br>				input.close();<br>			} catch (IOException e) {<br>				// ignore<br>			}<br>		}<br><br>		// an empty file is an invalid file format<br>		if (properties.isEmpty())<br>			throw new CoreException(createStatusError(Messages.preferences_invalidFileFormat, null));<br><br>		// manipulate the file if it from a legacy preference export<br>		if (isLegacy(properties)) {<br>			if (InternalPlatform.DEBUG_PREFERENCE_GENERAL)<br>				Policy.debug("Read legacy preferences file, converting to 3.0 format..."); //$NON-NLS-1$<br>			properties = convertFromLegacy(properties);<br>		} else {<br>			if (InternalPlatform.DEBUG_PREFERENCE_GENERAL)<br>				Policy.debug("Read preferences file."); //$NON-NLS-1$<br>			properties.remove(VERSION_KEY);<br>		}<br><br>		// convert the Properties object into an object to return<br>		return convertFromProperties(properties);<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.util.PropertyPermission "java.vendor.url.bug", "read";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>Wrap the identified location as the shown in the following:<br><br>	public IExportedPreferences readPreferences(InputStream input) throws CoreException {<br>		if (input == null)<br>			throw new IllegalArgumentException();<br><br>		if (InternalPlatform.DEBUG_PREFERENCE_GENERAL)<br>			Policy.debug("Reading preferences from stream..."); //$NON-NLS-1$<br><br>		// read the file into a properties object<br>	<span
+ style="color: rgb(255, 0, 0);">	Properties properties = new Properties();</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">		try {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			if(System.getSecurityManager() == null) {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">				properties.load(input);</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			} else {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">				AccessController.doPrivileged(new LoadPropertyFromInputStreamAction(properties, input));</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			}</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">		} catch (IOException e) {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			throw new CoreException(createStatusError(Messages.preferences_importProblems, e));</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">		} catch (PrivilegedActionException pae) {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			throw (CoreException) new CoreException(createStatusError(Messages.preferences_importProblems, pae)).initCause(pae);</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">		} finally {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			try {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">				input.close();</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			} catch (IOException e) {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">				// ignore</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			}</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">		}</span><br><br>		// an empty file is an invalid file format<br>		if (properties.isEmpty())<br>			throw new CoreException(createStatusError(Messages.preferences_invalidFileFormat, null));<br><br>		// manipulate the file if it from a legacy preference export<br>		if (isLegacy(properties)) {<br>			if (InternalPlatform.DEBUG_PREFERENCE_GENERAL)<br>				Policy.debug("Read legacy preferences file, converting to 3.0 format..."); //$NON-NLS-1$<br>			properties = convertFromLegacy(properties);<br>		} else {<br>			if (InternalPlatform.DEBUG_PREFERENCE_GENERAL)<br>				Policy.debug("Read preferences file."); //$NON-NLS-1$<br>			properties.remove(VERSION_KEY);<br>		}<br><br>		// convert the Properties object into an object to return<br>		return convertFromProperties(properties);<br>	}<br><br>Grant the above permission to this plug-in via OSGI-INF/permissinos.perm file.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/preferences/PreferencesService.html#L775" , parent.fbot ); return false'>Line# 780</a> org.eclipse.core.runtime.IStatus validateVersions( org.eclipse.core.runtime.IPath )<br>   Permission: java.io.FilePermission "???file???", "read"<br>      Primordial/void java.io.FileInputStream.FileInputStream( java.io.File )<br><br><br><b>CODE</b><br>
+public IStatus validateVersions(IPath path) {
+		final MultiStatus result = new MultiStatus(Platform.PI_RUNTIME, IStatus.INFO, Messages.preferences_validate, null);
+		IPreferenceNodeVisitor visitor = new IPreferenceNodeVisitor() {
+			public boolean visit(IEclipsePreferences node) {
+				if (!(node instanceof ExportedPreferences))
+					return false;
+
+				// calculate the version in the file
+				ExportedPreferences realNode = (ExportedPreferences) node;
+				String version = realNode.getVersion();
+				if (version == null || !PluginVersionIdentifier.validateVersion(version).isOK())
+					return true;
+				PluginVersionIdentifier versionInFile = new PluginVersionIdentifier(version);
+
+				// calculate the version of the installed bundle
+				String bundleName = getBundleName(node.absolutePath());
+				if (bundleName == null)
+					return true;
+				String stringVersion = getBundleVersion(bundleName);
+				if (stringVersion == null || !PluginVersionIdentifier.validateVersion(stringVersion).isOK())
+					return true;
+				PluginVersionIdentifier versionInMemory = new PluginVersionIdentifier(stringVersion);
+
+				// verify the versions based on the matching rules
+				IStatus verification = validatePluginVersions(bundleName, versionInFile, versionInMemory);
+				if (verification != null)
+					result.add(verification);
+
+				return true;
+			}
+		};
+
+		InputStream input = null;
+		try {
+<font style="background-color: rgb(242, 197, 83);">			input = new BufferedInputStream(new FileInputStream(path.toFile()));<br></font>			IExportedPreferences prefs = readPreferences(input);<br>			prefs.accept(visitor);<br>		} catch (FileNotFoundException e) {<br>			// ignore...if the file does not exist then all is OK<br>		} catch (CoreException e) {<br>			result.add(createStatusError(Messages.preferences_validationException, e));<br>		} catch (BackingStoreException e) {<br>			result.add(createStatusError(Messages.preferences_validationException, e));<br>		}<br>		return result;<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.io.FilePermission "???file???", "read";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>The path variable is tained and provided by the caller.  <br><br>Grant the permission to this plug-in via OSGI-INF/permissions.perm file.<br><hr>
+</pre>
+</body>
+</html>

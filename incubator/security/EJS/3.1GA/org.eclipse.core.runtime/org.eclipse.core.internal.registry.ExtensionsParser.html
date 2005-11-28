@@ -1,0 +1,31 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Permission Analysis Report</title>
+  <script language="javaScript" src="linkUtil.js"></script>
+</head>
+<body>
+<h1>Permission Analysis Report</h1>
+<br>
+<h2>Analysis of: org.eclipse.core.runtime</h2>
+<b>Detail</b><br>
+<br>
+<pre>
+Class: <a href="foo"
+ onclick="return openURLinSrc( 'Application/org/eclipse/core/internal/registry/ExtensionsParser.html' )">org.eclipse.core.internal.registry.ExtensionsParser</a> (Application)<br>DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/registry/ExtensionsParser.html#L575" , parent.fbot ); return false'>Line# 580</a> org.eclipse.core.internal.registry.Extension[] fixRenamedExtensionPoints( org.eclipse.core.internal.registry.Extension[] )<br>   Permission: java.util.PropertyPermission "*", "read,write"<br>      Primordial/java.util.Properties java.lang.System.getProperties(  )<br><br><br><b>CODE</b><br>
+/**
+	 * Fixes up the extension declarations in the given pre-3.0 plug-in or fragment to compensate
+	 * for extension points that were renamed between release 2.1 and 3.0.
+	 */
+	private Extension[] fixRenamedExtensionPoints(Extension[] extensions) {
+<font style="background-color: rgb(242, 197, 83);">		if (extensions == null || (schemaVersion != null &amp;&amp; schemaVersion.equals("3.0")) || System.getProperties().get(NO_EXTENSION_MUNGING) != null) //$NON-NLS-1$<br></font>			return extensions;<br>		for (int i = 0; i &lt; extensions.length; i++) {<br>			Extension extension = extensions[i];<br>			String oldPointId = extension.getExtensionPointIdentifier();<br>			String newPointId = (String) extensionPointMap.get(oldPointId);<br>			if (newPointId != null) {<br>				extension.setExtensionPointIdentifier(newPointId);<br>			}<br>		}<br>		return extensions;<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.util.PropertyPermission "*", "read,write";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>This is a internal private API and seems only being used for the IDE.  Therefore, it is ok to ignore it.<br><hr>
+</pre>
+</body>
+</html>

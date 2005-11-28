@@ -1,0 +1,428 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Permission Analysis Report</title>
+  <script language="javaScript" src="linkUtil.js"></script>
+</head>
+<body>
+<h1>Permission Analysis Report</h1>
+<br>
+<h2>Analysis of: org.eclipse.core.runtime</h2>
+<b>Detail</b><br>
+<br>
+<pre>Class: <a href="foo"
+ onclick="return openURLinSrc( 'Application/org/eclipse/core/internal/runtime/InternalPlatform.html' )">org.eclipse.core.internal.runtime.InternalPlatform</a> (Application)<br>DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/InternalPlatform.html#L460" , parent.fbot ); return false'>Line# 465</a> java.lang.String getNL(  )<br>   Permission: java.util.PropertyPermission "osgi.nl", "read"<br>      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )<br><br><br><b>CODE</b><br>
+public String getNL() {
+<font style="background-color: rgb(242, 197, 83);">		return System.getProperty(PROP_NL);<br></font>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.util.PropertyPermission "osgi.nl", "read";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>Each plug-in is granted the permission via the OSGI's implied.permissions file.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/InternalPlatform.html#L473" , parent.fbot ); return false'>Line# 478</a> java.lang.String getOS(  )<br>   Permission: java.util.PropertyPermission "osgi.os", "read"<br>      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )<br><br><br><b>CODE</b><br>
+public String getOS() {
+<font style="background-color: rgb(242, 197, 83);">		return System.getProperty(PROP_OS);<br></font>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.util.PropertyPermission "osgi.os", "read";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>Each plug-in is granted the permission via the OSGI's implied.permissions file.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/InternalPlatform.html#L477" , parent.fbot ); return false'>Line# 482</a> java.lang.String getOSArch(  )<br>   Permission: java.util.PropertyPermission "osgi.arch", "read"<br>      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )<br><br><br><b>CODE</b><br>
+public String getOSArch() {
+<font style="background-color: rgb(242, 197, 83);">		return System.getProperty(PROP_ARCH);<br></font>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.util.PropertyPermission "osgi.arch", "read";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>Each plug-in is granted the permission via the OSGI's implied.permissions file.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/InternalPlatform.html#L509" , parent.fbot ); return false'>Line# 514</a> java.net.URL[] getPluginPath( java.net.URL )<br>   Permission: java.lang.RuntimePermission "getClassLoader"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: java.lang.RuntimePermission "modifyThread"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: java.net.NetPermission "specifyStreamHandler"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: java.net.SocketPermission "???host???", "resolve"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: java.net.SocketPermission "???host???:???port???", "connect"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: java.net.SocketPermission "localhost", "resolve"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: java.net.SocketPermission "localhost:1024-", "resolve"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: java.net.SocketPermission "localhost:1024-:???port???", "connect"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: java.net.SocketPermission "localhost:???port???", "connect"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: java.util.PropertyPermission "java.protocol.handler.pkgs", "read"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "<unknown>", "<unknown>"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "<unknown>", "get"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", "<unknown>"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", "get"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "<unknown>"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br><br><br><b>CODE</b><br>
+	public URL[] getPluginPath(URL pluginPathLocation /*R1.0 compatibility*/<br>	) {<br>		InputStream input = null;<br>		// first try and see if the given plugin path location exists.<br>		if (pluginPathLocation == null)<br>			return null;<br>		try {<br>			input = pluginPathLocation.openStream();<br>		} catch (IOException e) {<br>			//fall through<br>		}<br><br>		// if the given path was null or did not exist, look for a plugin path<br>		// definition in the install location.<br>		<span
+ style="color: rgb(255, 0, 0);">if (input == null)</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			try {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">				URL url;</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">				</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">				if(System.getSecurityManager() == null) {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">					url = new URL(PlatformURLBaseConnection.PLATFORM_URL_STRING + PLUGIN_PATH);</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">				} else {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">					url = (URL) AccessController.doPrivileged(new PrivilegedExceptionAction() {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">						public Object run() throws MalformedURLException {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">							return new URL(PlatformURLBaseConnection.PLATFORM_URL_STRING + PLUGIN_PATH);</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">						}</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">					});</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">				}</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">				</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">				input = url.openStream();</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			} catch (MalformedURLException e) {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">				//fall through</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			} catch (IOException e) {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">				//fall through</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			} catch (PrivilegedActionException e) {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">				//fall through</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			}</span><br
+ style="color: rgb(255, 0, 0);"><br>		// nothing was found at the supplied location or in the install location<br>		if (input == null)<br>			return null;<br>		// if we found a plugin path definition somewhere so read it and close the location.<br>		URL[] result = null;<br>		try {<br>			try {<br>				result = readPluginPath(input);<br>			} finally {<br>				input.close();<br>			}<br>		} catch (IOException e) {<br>			//let it return null on failure to read<br>		}<br>		return result;<br>	}</unknown></unknown></unknown></unknown></unknown><br><br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/InternalPlatform.html#L571" , parent.fbot ); return false'>Line# 576</a> org.eclipse.core.runtime.IProduct getProduct(  )<br>   Permission: java.util.PropertyPermission "eclipse.product", "read"<br>      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )<br><br><br><b>CODE</b><br>
+public IProduct getProduct() {
+		if (product != null)
+			return product;
+<font style="background-color: rgb(242, 197, 83);">		String productId = System.getProperty(PROP_PRODUCT);<br></font>		if (productId == null)<br>			return null;<br>		IConfigurationElement[] entries = getRegistry().getConfigurationElementsFor(Platform.PI_RUNTIME, Platform.PT_PRODUCT, productId);<br>		if (entries.length &gt; 0) {<br>			// There should only be one product with the given id so just take the first element<br>			product = new Product(productId, entries[0]);<br>			return product;<br>		}<br>		IConfigurationElement[] elements = getRegistry().getConfigurationElementsFor(Platform.PI_RUNTIME, Platform.PT_PRODUCT);<br>		List logEntries = null;<br>		for (int i = 0; i &lt; elements.length; i++) {<br>			IConfigurationElement element = elements[i];<br>			if (element.getName().equalsIgnoreCase("provider")) { //$NON-NLS-1$<br>				try {<br>					IProductProvider provider = (IProductProvider) element.createExecutableExtension("run"); //$NON-NLS-1$<br>					IProduct[] products = provider.getProducts();<br>					for (int j = 0; j &lt; products.length; j++) {<br>						IProduct provided = products[j];<br>						if (provided.getId().equalsIgnoreCase(productId)) {<br>							product = provided;<br>							return product;<br>						}<br>					}<br>				} catch (CoreException e) {<br>					if (logEntries == null)<br>						logEntries = new ArrayList(3);<br>					logEntries.add(new FrameworkLogEntry(Platform.PI_RUNTIME, NLS.bind(Messages.provider_invalid, element.getParent().toString()), 0, e, null));<br>				}<br>			}<br>		}<br>		if (logEntries != null)<br>			getFrameworkLog().log(new FrameworkLogEntry(Platform.PI_RUNTIME, Messages.provider_invalid_general, 0, null, (FrameworkLogEntry[]) logEntries.toArray()));<br><br>		if (!missingProductReported) {<br>			getFrameworkLog().log(new FrameworkLogEntry(Platform.PI_RUNTIME, NLS.bind(Messages.product_notFound, productId), 0, null, null));<br>			missingProductReported = true;<br>		}<br>		return null;<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.util.PropertyPermission "eclipse.product", "read";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>Wrap the code as shown in the following:<br><br>	public IProduct getProduct() {<br>		if (product != null)<br>			return product;<br>		<br>	<span
+ style="color: rgb(255, 0, 0);">	String productId; </span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">		if(System.getSecurityManager() == null) {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			productId = System.getProperty(PROP_PRODUCT);</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">		} else {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			productId = (String) AccessController.doPrivileged(new PrivilegedAction() {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">				public Object run() {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">					return System.getProperty(PROP_PRODUCT);</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">				}</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			});</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">		}</span><br>		<br>		if (productId == null)<br>			return null;<br>		IConfigurationElement[] entries = getRegistry().getConfigurationElementsFor(Platform.PI_RUNTIME, Platform.PT_PRODUCT, productId);<br>		if (entries.length &gt; 0) {<br>			// There should only be one product with the given id so just take the first element<br>			product = new Product(productId, entries[0]);<br>			return product;<br>		}<br>		IConfigurationElement[] elements = getRegistry().getConfigurationElementsFor(Platform.PI_RUNTIME, Platform.PT_PRODUCT);<br>		List logEntries = null;<br>		for (int i = 0; i &lt; elements.length; i++) {<br>			IConfigurationElement element = elements[i];<br>			if (element.getName().equalsIgnoreCase("provider")) { //$NON-NLS-1$<br>				try {<br>					IProductProvider provider = (IProductProvider) element.createExecutableExtension("run"); //$NON-NLS-1$<br>					IProduct[] products = provider.getProducts();<br>					for (int j = 0; j &lt; products.length; j++) {<br>						IProduct provided = products[j];<br>						if (provided.getId().equalsIgnoreCase(productId)) {<br>							product = provided;<br>							return product;<br>						}<br>					}<br>				} catch (CoreException e) {<br>					if (logEntries == null)<br>						logEntries = new ArrayList(3);<br>					logEntries.add(new FrameworkLogEntry(Platform.PI_RUNTIME, NLS.bind(Messages.provider_invalid, element.getParent().toString()), 0, e, null));<br>				}<br>			}<br>		}<br>		if (logEntries != null)<br>			getFrameworkLog().log(new FrameworkLogEntry(Platform.PI_RUNTIME, Messages.provider_invalid_general, 0, null, (FrameworkLogEntry[]) logEntries.toArray()));<br><br>		if (!missingProductReported) {<br>			getFrameworkLog().log(new FrameworkLogEntry(Platform.PI_RUNTIME, NLS.bind(Messages.product_notFound, productId), 0, null, null));<br>			missingProductReported = true;<br>		}<br>		return null;<br>	}<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/InternalPlatform.html#L668" , parent.fbot ); return false'>Line# 673</a> org.eclipse.core.runtime.IPath getStateLocation( org.osgi.framework.Bundle, boolean )<br>   Permission: java.io.FilePermission "???file???", "read"<br>      Primordial/boolean java.io.File.mkdirs(  )<br>   Permission: java.io.FilePermission "???file???", "write"<br>      Primordial/boolean java.io.File.mkdirs(  )<br>   Permission: java.util.PropertyPermission "user.dir", "read"<br>      Primordial/boolean java.io.File.mkdirs(  )<br><br><br><b>CODE</b><br>
+public IPath getStateLocation(Bundle bundle, boolean create) throws IllegalStateException {
+		assertInitialized();
+		IPath result = getMetaArea().getStateLocation(bundle);
+		if (create)
+<font style="background-color: rgb(242, 197, 83);">			result.toFile().mkdirs();<br></font>		return result;<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.io.FilePermission "???file???", "read";</li>
+<li>permission java.io.FilePermission "???file???", "write";</li>
+<li>permission java.util.PropertyPermission "user.dir", "read";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>Each plug-in is granted read/write permission to the meta area.<br><br>Grant the above required permissions to this plug-in via OSGI-INF/permissions.perm file.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/InternalPlatform.html#L687" , parent.fbot ); return false'>Line# 692</a> java.lang.String getWS(  )<br>   Permission: java.util.PropertyPermission "osgi.ws", "read"<br>      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )<br><br><br><b>CODE</b><br>
+public String getWS() {
+<font style="background-color: rgb(242, 197, 83);">		return System.getProperty(PROP_WS);<br></font>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.util.PropertyPermission "osgi.ws", "read";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>Add it to the OSGI's implied permission.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/InternalPlatform.html#L878" , parent.fbot ); return false'>Line# 883</a> java.lang.String[] processCommandLine( java.lang.String[] )<br>   Permission: java.util.PropertyPermission "*", "read,write"<br>      Primordial/java.util.Properties java.lang.System.getProperties(  )<br><br><br><b>CODE</b><br>
+private String[] processCommandLine(String[] args) {
+		final String TRUE = "true"; //$NON-NLS-1$
+
+		if (args == null)
+			return args;
+		allArgs = args;
+		if (args.length == 0)
+			return args;
+
+		int[] configArgs = new int[args.length];
+		//need to initialize the first element to something that could not be an index.
+		configArgs[0] = -1;
+		int configArgIndex = 0;
+		for (int i = 0; i &lt; args.length; i++) {
+			boolean found = false;
+			// check for args without parameters (i.e., a flag arg)
+
+			// look for the no registry cache flag
+			if (args[i].equalsIgnoreCase(NO_REGISTRY_CACHE)) {
+				// use the long way to set the property to compile against eeminimum
+<font style="background-color: rgb(242, 197, 83);">				System.getProperties().setProperty(PROP_NO_REGISTRY_CACHE, TRUE);<br></font>				found = true;<br>			}<br><br>			// check to see if we should NOT be lazily loading plug-in definitions from the registry cache file.<br>			// This will be processed below.<br>			if (args[i].equalsIgnoreCase(NO_LAZY_REGISTRY_CACHE_LOADING)) {<br>				// use the long way to set the property to compile against eeminimum<br>				System.getProperties().setProperty(PROP_NO_LAZY_CACHE_LOADING, TRUE);<br>				found = true;<br>			}<br><br>			// consume obsolete args<br>			if (args[i].equalsIgnoreCase(CLASSLOADER_PROPERTIES))<br>				found = true; // ignored<br>			if (args[i].equalsIgnoreCase(NO_PACKAGE_PREFIXES))<br>				found = true; // ignored<br>			if (args[i].equalsIgnoreCase(PLUGINS))<br>				found = true; // ignored<br>			if (args[i].equalsIgnoreCase(FIRST_USE))<br>				found = true; // ignored<br>			if (args[i].equalsIgnoreCase(NO_UPDATE))<br>				found = true; // ignored<br>			if (args[i].equalsIgnoreCase(NEW_UPDATES))<br>				found = true; // ignored<br>			if (args[i].equalsIgnoreCase(UPDATE))<br>				found = true; // ignored<br><br>			// done checking for args.  Remember where an arg was found <br>			if (found) {<br>				configArgs[configArgIndex++] = i;<br>				continue;<br>			}<br>			// check for args with parameters<br>			if (i == args.length - 1 || args[i + 1].startsWith("-")) //$NON-NLS-1$<br>				continue;<br>			String arg = args[++i];<br><br>			// look for the keyring file<br>			if (args[i - 1].equalsIgnoreCase(KEYRING)) {<br>				keyringFile = arg;<br>				found = true;<br>			}<br><br>			// look for the user password.  <br>			if (args[i - 1].equalsIgnoreCase(PASSWORD)) {<br>				password = arg;<br>				found = true;<br>			}<br><br>			// look for the product to run<br>			// treat -feature as a synonym for -product for compatibility.<br>			if (args[i - 1].equalsIgnoreCase(PRODUCT) || args[i - 1].equalsIgnoreCase(FEATURE)) {<br>				// use the long way to set the property to compile against eeminimum<br>				System.getProperties().setProperty(PROP_PRODUCT, arg);<br>				found = true;<br>			}<br><br>			// look for the application to run.  <br>			if (args[i - 1].equalsIgnoreCase(APPLICATION)) {<br>				// use the long way to set the property to compile against eeminimum<br>				System.getProperties().setProperty(PROP_APPLICATION, arg);<br>				found = true;<br>			}<br><br>			// look for the plug-in customization file<br>			if (args[i - 1].equalsIgnoreCase(PLUGIN_CUSTOMIZATION)) {<br>				pluginCustomizationFile = arg;<br>				found = true;<br>			}<br><br>			// consume obsolete args for compatibilty<br>			if (args[i - 1].equalsIgnoreCase(CLASSLOADER_PROPERTIES))<br>				found = true; // ignore<br>			if (args[i - 1].equalsIgnoreCase(BOOT))<br>				found = true; // ignore<br><br>			// done checking for args.  Remember where an arg was found <br>			if (found) {<br>				configArgs[configArgIndex++] = i - 1;<br>				configArgs[configArgIndex++] = i;<br>			}<br>		}<br><br>		// remove all the arguments consumed by this argument parsing<br>		if (configArgIndex == 0) {<br>			appArgs = args;<br>			return args;<br>		}<br>		appArgs = new String[args.length - configArgIndex];<br>		frameworkArgs = new String[configArgIndex];<br>		configArgIndex = 0;<br>		int j = 0;<br>		int k = 0;<br>		for (int i = 0; i &lt; args.length; i++) {<br>			if (i == configArgs[configArgIndex]) {<br>				frameworkArgs[k++] = args[i];<br>				configArgIndex++;<br>			} else<br>				appArgs[j++] = args[i];<br>		}<br>		return appArgs;<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.util.PropertyPermission "*", "read,write";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>It is OK to wrap it since the property varible is not tainted.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/InternalPlatform.html#L886" , parent.fbot ); return false'>Line# 891</a> java.lang.String[] processCommandLine( java.lang.String[] )<br>   Permission: java.util.PropertyPermission "*", "read,write"<br>      Primordial/java.util.Properties java.lang.System.getProperties(  )<br><br><br><b>CODE</b><br>
+private String[] processCommandLine(String[] args) {
+		final String TRUE = "true"; //$NON-NLS-1$
+
+		if (args == null)
+			return args;
+		allArgs = args;
+		if (args.length == 0)
+			return args;
+
+		int[] configArgs = new int[args.length];
+		//need to initialize the first element to something that could not be an index.
+		configArgs[0] = -1;
+		int configArgIndex = 0;
+		for (int i = 0; i &lt; args.length; i++) {
+			boolean found = false;
+			// check for args without parameters (i.e., a flag arg)
+
+			// look for the no registry cache flag
+			if (args[i].equalsIgnoreCase(NO_REGISTRY_CACHE)) {
+				// use the long way to set the property to compile against eeminimum
+				System.getProperties().setProperty(PROP_NO_REGISTRY_CACHE, TRUE);
+				found = true;
+			}
+
+			// check to see if we should NOT be lazily loading plug-in definitions from the registry cache file.
+			// This will be processed below.
+			if (args[i].equalsIgnoreCase(NO_LAZY_REGISTRY_CACHE_LOADING)) {
+				// use the long way to set the property to compile against eeminimum
+<font style="background-color: rgb(242, 197, 83);">				System.getProperties().setProperty(PROP_NO_LAZY_CACHE_LOADING, TRUE);<br></font>				found = true;<br>			}<br><br>			// consume obsolete args<br>			if (args[i].equalsIgnoreCase(CLASSLOADER_PROPERTIES))<br>				found = true; // ignored<br>			if (args[i].equalsIgnoreCase(NO_PACKAGE_PREFIXES))<br>				found = true; // ignored<br>			if (args[i].equalsIgnoreCase(PLUGINS))<br>				found = true; // ignored<br>			if (args[i].equalsIgnoreCase(FIRST_USE))<br>				found = true; // ignored<br>			if (args[i].equalsIgnoreCase(NO_UPDATE))<br>				found = true; // ignored<br>			if (args[i].equalsIgnoreCase(NEW_UPDATES))<br>				found = true; // ignored<br>			if (args[i].equalsIgnoreCase(UPDATE))<br>				found = true; // ignored<br><br>			// done checking for args.  Remember where an arg was found <br>			if (found) {<br>				configArgs[configArgIndex++] = i;<br>				continue;<br>			}<br>			// check for args with parameters<br>			if (i == args.length - 1 || args[i + 1].startsWith("-")) //$NON-NLS-1$<br>				continue;<br>			String arg = args[++i];<br><br>			// look for the keyring file<br>			if (args[i - 1].equalsIgnoreCase(KEYRING)) {<br>				keyringFile = arg;<br>				found = true;<br>			}<br><br>			// look for the user password.  <br>			if (args[i - 1].equalsIgnoreCase(PASSWORD)) {<br>				password = arg;<br>				found = true;<br>			}<br><br>			// look for the product to run<br>			// treat -feature as a synonym for -product for compatibility.<br>			if (args[i - 1].equalsIgnoreCase(PRODUCT) || args[i - 1].equalsIgnoreCase(FEATURE)) {<br>				// use the long way to set the property to compile against eeminimum<br>				System.getProperties().setProperty(PROP_PRODUCT, arg);<br>				found = true;<br>			}<br><br>			// look for the application to run.  <br>			if (args[i - 1].equalsIgnoreCase(APPLICATION)) {<br>				// use the long way to set the property to compile against eeminimum<br>				System.getProperties().setProperty(PROP_APPLICATION, arg);<br>				found = true;<br>			}<br><br>			// look for the plug-in customization file<br>			if (args[i - 1].equalsIgnoreCase(PLUGIN_CUSTOMIZATION)) {<br>				pluginCustomizationFile = arg;<br>				found = true;<br>			}<br><br>			// consume obsolete args for compatibilty<br>			if (args[i - 1].equalsIgnoreCase(CLASSLOADER_PROPERTIES))<br>				found = true; // ignore<br>			if (args[i - 1].equalsIgnoreCase(BOOT))<br>				found = true; // ignore<br><br>			// done checking for args.  Remember where an arg was found <br>			if (found) {<br>				configArgs[configArgIndex++] = i - 1;<br>				configArgs[configArgIndex++] = i;<br>			}<br>		}<br><br>		// remove all the arguments consumed by this argument parsing<br>		if (configArgIndex == 0) {<br>			appArgs = args;<br>			return args;<br>		}<br>		appArgs = new String[args.length - configArgIndex];<br>		frameworkArgs = new String[configArgIndex];<br>		configArgIndex = 0;<br>		int j = 0;<br>		int k = 0;<br>		for (int i = 0; i &lt; args.length; i++) {<br>			if (i == configArgs[configArgIndex]) {<br>				frameworkArgs[k++] = args[i];<br>				configArgIndex++;<br>			} else<br>				appArgs[j++] = args[i];<br>		}<br>		return appArgs;<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.util.PropertyPermission "*", "read,write";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>The problem seems very common in this method.  A good way to fix this permission problem is to create a method as shown in the following:<br><br>	private String[] processCommandLine(String[] args) {<br>		final String TRUE = "true"; //$NON-NLS-1$<br><br>		if (args == null)<br>			return args;<br>		allArgs = args;<br>		if (args.length == 0)<br>			return args;<br><br>		int[] configArgs = new int[args.length];<br>		//need to initialize the first element to something that could not be an index.<br>		configArgs[0] = -1;<br>		int configArgIndex = 0;<br>		for (int i = 0; i &lt; args.length; i++) {<br>			boolean found = false;<br>			// check for args without parameters (i.e., a flag arg)<br><br>			// look for the no registry cache flag<br>			if (args[i].equalsIgnoreCase(NO_REGISTRY_CACHE)) {<br>				// use the long way to set the property to compile against eeminimum<br><span
+ style="color: rgb(255, 0, 0);">				setSystemProperty(PROP_NO_REGISTRY_CACHE, TRUE);</span><br>				found = true;<br>			}<br><br>			// check to see if we should NOT be lazily loading plug-in definitions from the registry cache file.<br>			// This will be processed below.<br>			if (args[i].equalsIgnoreCase(NO_LAZY_REGISTRY_CACHE_LOADING)) {<br>				// use the long way to set the property to compile against eeminimum<br>				setSystemProperty(PROP_NO_LAZY_CACHE_LOADING, TRUE);<br>				found = true;<br>			}<br><br>			// consume obsolete args<br>			if (args[i].equalsIgnoreCase(CLASSLOADER_PROPERTIES))<br>				found = true; // ignored<br>			if (args[i].equalsIgnoreCase(NO_PACKAGE_PREFIXES))<br>				found = true; // ignored<br>			if (args[i].equalsIgnoreCase(PLUGINS))<br>				found = true; // ignored<br>			if (args[i].equalsIgnoreCase(FIRST_USE))<br>				found = true; // ignored<br>			if (args[i].equalsIgnoreCase(NO_UPDATE))<br>				found = true; // ignored<br>			if (args[i].equalsIgnoreCase(NEW_UPDATES))<br>				found = true; // ignored<br>			if (args[i].equalsIgnoreCase(UPDATE))<br>				found = true; // ignored<br><br>			// done checking for args.  Remember where an arg was found <br>			if (found) {<br>				configArgs[configArgIndex++] = i;<br>				continue;<br>			}<br>			// check for args with parameters<br>			if (i == args.length - 1 || args[i + 1].startsWith("-")) //$NON-NLS-1$<br>				continue;<br>			String arg = args[++i];<br><br>			// look for the keyring file<br>			if (args[i - 1].equalsIgnoreCase(KEYRING)) {<br>				keyringFile = arg;<br>				found = true;<br>			}<br><br>			// look for the user password.  <br>			if (args[i - 1].equalsIgnoreCase(PASSWORD)) {<br>				password = arg;<br>				found = true;<br>			}<br><br>			// look for the product to run<br>			// treat -feature as a synonym for -product for compatibility.<br>			if (args[i - 1].equalsIgnoreCase(PRODUCT) || args[i - 1].equalsIgnoreCase(FEATURE)) {<br>				// use the long way to set the property to compile against eeminimum<br>				setSystemProperty(PROP_PRODUCT, arg);<br>				found = true;<br>			}<br><br>			// look for the application to run.  <br>			if (args[i - 1].equalsIgnoreCase(APPLICATION)) {<br>				// use the long way to set the property to compile against eeminimum<br>				setSystemProperty(PROP_APPLICATION, arg);<br>				found = true;<br>			}<br><br>			// look for the plug-in customization file<br>			if (args[i - 1].equalsIgnoreCase(PLUGIN_CUSTOMIZATION)) {<br>				pluginCustomizationFile = arg;<br>				found = true;<br>			}<br><br>			// consume obsolete args for compatibilty<br>			if (args[i - 1].equalsIgnoreCase(CLASSLOADER_PROPERTIES))<br>				found = true; // ignore<br>			if (args[i - 1].equalsIgnoreCase(BOOT))<br>				found = true; // ignore<br><br>			// done checking for args.  Remember where an arg was found <br>			if (found) {<br>				configArgs[configArgIndex++] = i - 1;<br>				configArgs[configArgIndex++] = i;<br>			}<br>		}<br><br>		// remove all the arguments consumed by this argument parsing<br>		if (configArgIndex == 0) {<br>			appArgs = args;<br>			return args;<br>		}<br>		appArgs = new String[args.length - configArgIndex];<br>		frameworkArgs = new String[configArgIndex];<br>		configArgIndex = 0;<br>		int j = 0;<br>		int k = 0;<br>		for (int i = 0; i &lt; args.length; i++) {<br>			if (i == configArgs[configArgIndex]) {<br>				frameworkArgs[k++] = args[i];<br>				configArgIndex++;<br>			} else<br>				appArgs[j++] = args[i];<br>		}<br>		return appArgs;<br>	}<br><br><br>New Method:<br><br>	private void setSystemProperty(String key, String value) {<br>		if(System.getSecurityManager() == null) {<br>			System.getProperties().setProperty(key, value);<br>		} else {<br>			AccessController.doPrivileged(new SetPropertyAction(System.getProperties(), key, value));<br>		}<br>		<br>	}<br><br>Grant the permission to this plug-in via OSGI-INF/permissions.perm file.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/InternalPlatform.html#L932" , parent.fbot ); return false'>Line# 937</a> java.lang.String[] processCommandLine( java.lang.String[] )<br>   Permission: java.util.PropertyPermission "*", "read,write"<br>      Primordial/java.util.Properties java.lang.System.getProperties(  )<br><br><br><b>CODE</b><br>
+private String[] processCommandLine(String[] args) {
+		final String TRUE = "true"; //$NON-NLS-1$
+
+		if (args == null)
+			return args;
+		allArgs = args;
+		if (args.length == 0)
+			return args;
+
+		int[] configArgs = new int[args.length];
+		//need to initialize the first element to something that could not be an index.
+		configArgs[0] = -1;
+		int configArgIndex = 0;
+		for (int i = 0; i &lt; args.length; i++) {
+			boolean found = false;
+			// check for args without parameters (i.e., a flag arg)
+
+			// look for the no registry cache flag
+			if (args[i].equalsIgnoreCase(NO_REGISTRY_CACHE)) {
+				// use the long way to set the property to compile against eeminimum
+				System.getProperties().setProperty(PROP_NO_REGISTRY_CACHE, TRUE);
+				found = true;
+			}
+
+			// check to see if we should NOT be lazily loading plug-in definitions from the registry cache file.
+			// This will be processed below.
+			if (args[i].equalsIgnoreCase(NO_LAZY_REGISTRY_CACHE_LOADING)) {
+				// use the long way to set the property to compile against eeminimum
+				System.getProperties().setProperty(PROP_NO_LAZY_CACHE_LOADING, TRUE);
+				found = true;
+			}
+
+			// consume obsolete args
+			if (args[i].equalsIgnoreCase(CLASSLOADER_PROPERTIES))
+				found = true; // ignored
+			if (args[i].equalsIgnoreCase(NO_PACKAGE_PREFIXES))
+				found = true; // ignored
+			if (args[i].equalsIgnoreCase(PLUGINS))
+				found = true; // ignored
+			if (args[i].equalsIgnoreCase(FIRST_USE))
+				found = true; // ignored
+			if (args[i].equalsIgnoreCase(NO_UPDATE))
+				found = true; // ignored
+			if (args[i].equalsIgnoreCase(NEW_UPDATES))
+				found = true; // ignored
+			if (args[i].equalsIgnoreCase(UPDATE))
+				found = true; // ignored
+
+			// done checking for args.  Remember where an arg was found 
+			if (found) {
+				configArgs[configArgIndex++] = i;
+				continue;
+			}
+			// check for args with parameters
+			if (i == args.length - 1 || args[i + 1].startsWith("-")) //$NON-NLS-1$
+				continue;
+			String arg = args[++i];
+
+			// look for the keyring file
+			if (args[i - 1].equalsIgnoreCase(KEYRING)) {
+				keyringFile = arg;
+				found = true;
+			}
+
+			// look for the user password.  
+			if (args[i - 1].equalsIgnoreCase(PASSWORD)) {
+				password = arg;
+				found = true;
+			}
+
+			// look for the product to run
+			// treat -feature as a synonym for -product for compatibility.
+			if (args[i - 1].equalsIgnoreCase(PRODUCT) || args[i - 1].equalsIgnoreCase(FEATURE)) {
+				// use the long way to set the property to compile against eeminimum
+<font style="background-color: rgb(242, 197, 83);">				System.getProperties().setProperty(PROP_PRODUCT, arg);<br></font>				found = true;<br>			}<br><br>			// look for the application to run.  <br>			if (args[i - 1].equalsIgnoreCase(APPLICATION)) {<br>				// use the long way to set the property to compile against eeminimum<br>				System.getProperties().setProperty(PROP_APPLICATION, arg);<br>				found = true;<br>			}<br><br>			// look for the plug-in customization file<br>			if (args[i - 1].equalsIgnoreCase(PLUGIN_CUSTOMIZATION)) {<br>				pluginCustomizationFile = arg;<br>				found = true;<br>			}<br><br>			// consume obsolete args for compatibilty<br>			if (args[i - 1].equalsIgnoreCase(CLASSLOADER_PROPERTIES))<br>				found = true; // ignore<br>			if (args[i - 1].equalsIgnoreCase(BOOT))<br>				found = true; // ignore<br><br>			// done checking for args.  Remember where an arg was found <br>			if (found) {<br>				configArgs[configArgIndex++] = i - 1;<br>				configArgs[configArgIndex++] = i;<br>			}<br>		}<br><br>		// remove all the arguments consumed by this argument parsing<br>		if (configArgIndex == 0) {<br>			appArgs = args;<br>			return args;<br>		}<br>		appArgs = new String[args.length - configArgIndex];<br>		frameworkArgs = new String[configArgIndex];<br>		configArgIndex = 0;<br>		int j = 0;<br>		int k = 0;<br>		for (int i = 0; i &lt; args.length; i++) {<br>			if (i == configArgs[configArgIndex]) {<br>				frameworkArgs[k++] = args[i];<br>				configArgIndex++;<br>			} else<br>				appArgs[j++] = args[i];<br>		}<br>		return appArgs;<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.util.PropertyPermission "*", "read,write";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>See prior conclusion.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/InternalPlatform.html#L939" , parent.fbot ); return false'>Line# 944</a> java.lang.String[] processCommandLine( java.lang.String[] )<br>   Permission: java.util.PropertyPermission "*", "read,write"<br>      Primordial/java.util.Properties java.lang.System.getProperties(  )<br><br><br><b>CODE</b><br>
+private String[] processCommandLine(String[] args) {
+		final String TRUE = "true"; //$NON-NLS-1$
+
+		if (args == null)
+			return args;
+		allArgs = args;
+		if (args.length == 0)
+			return args;
+
+		int[] configArgs = new int[args.length];
+		//need to initialize the first element to something that could not be an index.
+		configArgs[0] = -1;
+		int configArgIndex = 0;
+		for (int i = 0; i &lt; args.length; i++) {
+			boolean found = false;
+			// check for args without parameters (i.e., a flag arg)
+
+			// look for the no registry cache flag
+			if (args[i].equalsIgnoreCase(NO_REGISTRY_CACHE)) {
+				// use the long way to set the property to compile against eeminimum
+				System.getProperties().setProperty(PROP_NO_REGISTRY_CACHE, TRUE);
+				found = true;
+			}
+
+			// check to see if we should NOT be lazily loading plug-in definitions from the registry cache file.
+			// This will be processed below.
+			if (args[i].equalsIgnoreCase(NO_LAZY_REGISTRY_CACHE_LOADING)) {
+				// use the long way to set the property to compile against eeminimum
+				System.getProperties().setProperty(PROP_NO_LAZY_CACHE_LOADING, TRUE);
+				found = true;
+			}
+
+			// consume obsolete args
+			if (args[i].equalsIgnoreCase(CLASSLOADER_PROPERTIES))
+				found = true; // ignored
+			if (args[i].equalsIgnoreCase(NO_PACKAGE_PREFIXES))
+				found = true; // ignored
+			if (args[i].equalsIgnoreCase(PLUGINS))
+				found = true; // ignored
+			if (args[i].equalsIgnoreCase(FIRST_USE))
+				found = true; // ignored
+			if (args[i].equalsIgnoreCase(NO_UPDATE))
+				found = true; // ignored
+			if (args[i].equalsIgnoreCase(NEW_UPDATES))
+				found = true; // ignored
+			if (args[i].equalsIgnoreCase(UPDATE))
+				found = true; // ignored
+
+			// done checking for args.  Remember where an arg was found 
+			if (found) {
+				configArgs[configArgIndex++] = i;
+				continue;
+			}
+			// check for args with parameters
+			if (i == args.length - 1 || args[i + 1].startsWith("-")) //$NON-NLS-1$
+				continue;
+			String arg = args[++i];
+
+			// look for the keyring file
+			if (args[i - 1].equalsIgnoreCase(KEYRING)) {
+				keyringFile = arg;
+				found = true;
+			}
+
+			// look for the user password.  
+			if (args[i - 1].equalsIgnoreCase(PASSWORD)) {
+				password = arg;
+				found = true;
+			}
+
+			// look for the product to run
+			// treat -feature as a synonym for -product for compatibility.
+			if (args[i - 1].equalsIgnoreCase(PRODUCT) || args[i - 1].equalsIgnoreCase(FEATURE)) {
+				// use the long way to set the property to compile against eeminimum
+				System.getProperties().setProperty(PROP_PRODUCT, arg);
+				found = true;
+			}
+
+			// look for the application to run.  
+			if (args[i - 1].equalsIgnoreCase(APPLICATION)) {
+				// use the long way to set the property to compile against eeminimum
+<font style="background-color: rgb(242, 197, 83);">				System.getProperties().setProperty(PROP_APPLICATION, arg);<br></font>				found = true;<br>			}<br><br>			// look for the plug-in customization file<br>			if (args[i - 1].equalsIgnoreCase(PLUGIN_CUSTOMIZATION)) {<br>				pluginCustomizationFile = arg;<br>				found = true;<br>			}<br><br>			// consume obsolete args for compatibilty<br>			if (args[i - 1].equalsIgnoreCase(CLASSLOADER_PROPERTIES))<br>				found = true; // ignore<br>			if (args[i - 1].equalsIgnoreCase(BOOT))<br>				found = true; // ignore<br><br>			// done checking for args.  Remember where an arg was found <br>			if (found) {<br>				configArgs[configArgIndex++] = i - 1;<br>				configArgs[configArgIndex++] = i;<br>			}<br>		}<br><br>		// remove all the arguments consumed by this argument parsing<br>		if (configArgIndex == 0) {<br>			appArgs = args;<br>			return args;<br>		}<br>		appArgs = new String[args.length - configArgIndex];<br>		frameworkArgs = new String[configArgIndex];<br>		configArgIndex = 0;<br>		int j = 0;<br>		int k = 0;<br>		for (int i = 0; i &lt; args.length; i++) {<br>			if (i == configArgs[configArgIndex]) {<br>				frameworkArgs[k++] = args[i];<br>				configArgIndex++;<br>			} else<br>				appArgs[j++] = args[i];<br>		}<br>		return appArgs;<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.util.PropertyPermission "*", "read,write";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>See prior conclusion.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/InternalPlatform.html#L985" , parent.fbot ); return false'>Line# 990</a> java.net.URL[] readPluginPath( java.io.InputStream )<br>   Permission: java.util.PropertyPermission "java.vendor.url.bug", "read"<br>      Primordial/void java.util.Properties.load( java.io.InputStream )<br><br><br><b>CODE</b><br>
+private URL[] readPluginPath(InputStream input) {
+		Properties ini = new Properties();
+		try {
+<font style="background-color: rgb(242, 197, 83);">			ini.load(input);<br></font>		} catch (IOException e) {<br>			return null;<br>		}<br>		Vector result = new Vector(5);<br>		for (Enumeration groups = ini.propertyNames(); groups.hasMoreElements();) {<br>			String group = (String) groups.nextElement();<br>			for (StringTokenizer entries = new StringTokenizer(ini.getProperty(group), ";"); entries.hasMoreElements();) { //$NON-NLS-1$<br>				String entry = (String) entries.nextElement();<br>				if (!entry.equals("")) //$NON-NLS-1$<br>					try {<br>						result.addElement(new URL(entry));<br>					} catch (MalformedURLException e) {<br>						//intentionally ignore bad URLs<br>						System.err.println("Ignoring plugin: " + entry); //$NON-NLS-1$<br>					}<br>			}<br>		}<br>		return (URL[]) result.toArray(new URL[result.size()]);<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.util.PropertyPermission "java.vendor.url.bug", "read";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>Added the permission to the OSGI's implied.permissions file.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/InternalPlatform.html#L996" , parent.fbot ); return false'>Line# 1001</a> java.net.URL[] readPluginPath( java.io.InputStream )<br>   Permission: java.lang.RuntimePermission "getClassLoader"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: java.lang.RuntimePermission "modifyThread"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: java.net.NetPermission "specifyStreamHandler"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: java.net.SocketPermission "???host???", "resolve"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: java.net.SocketPermission "???host???:???port???", "connect"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: java.net.SocketPermission "localhost", "resolve"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: java.net.SocketPermission "localhost:1024-", "resolve"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: java.net.SocketPermission "localhost:1024-:???port???", "connect"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: java.net.SocketPermission "localhost:???port???", "connect"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: java.util.PropertyPermission "java.protocol.handler.pkgs", "read"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "<unknown>", "<unknown>"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "<unknown>", "get"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", "<unknown>"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", "get"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "<unknown>"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br><br><br><b>CODE</b><br>
+private URL[] readPluginPath(InputStream input) {
+		Properties ini = new Properties();
+		try {
+			ini.load(input);
+		} catch (IOException e) {
+			return null;
+		}
+		Vector result = new Vector(5);
+		for (Enumeration groups = ini.propertyNames(); groups.hasMoreElements();) {
+			String group = (String) groups.nextElement();
+			for (StringTokenizer entries = new StringTokenizer(ini.getProperty(group), ";"); entries.hasMoreElements();) { //$NON-NLS-1$
+				String entry = (String) entries.nextElement();
+				if (!entry.equals("")) //$NON-NLS-1$
+					try {
+<font style="background-color: rgb(242, 197, 83);">						result.addElement(new URL(entry));<br></font>					} catch (MalformedURLException e) {<br>						//intentionally ignore bad URLs<br>						System.err.println("Ignoring plugin: " + entry); //$NON-NLS-1$<br>					}<br>			}<br>		}<br>		return (URL[]) result.toArray(new URL[result.size()]);<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br></unknown></unknown></unknown></unknown></unknown><ul>
+<li>permission java.lang.RuntimePermission "getClassLoader";</li>
+<li>permission java.lang.RuntimePermission "modifyThread";</li>
+<li>permission java.net.NetPermission "specifyStreamHandler";</li>
+<li>permission java.net.SocketPermission "???host???", "resolve";</li>
+<li>permission java.net.SocketPermission "???host???:???port???", "connect";</li>
+<li>permission java.net.SocketPermission "localhost", "resolve";</li>
+<li>permission java.net.SocketPermission "localhost:1024-", "resolve";</li>
+<li>permission java.net.SocketPermission "localhost:1024-:???port???", "connect";</li>
+<li>permission java.net.SocketPermission "localhost:???port???", "connect";</li>
+<li>permission java.util.PropertyPermission "java.protocol.handler.pkgs", "read";</li>
+<li>permission org.osgi.framework.ServicePermission "<unknown>", "<unknown>";</unknown></unknown></li>
+<li>permission org.osgi.framework.ServicePermission "<unknown>", "get";</unknown></li>
+<li>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", "<unknown>";</unknown></li>
+<li>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", "get";</li>
+<li>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "<unknown>";</unknown></li>
+<li>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>Wrap the method as shown in the following:<br><br>	private URL[] readPluginPath(InputStream input) {<br>		Properties ini = new Properties();<br>		try {<br>			ini.load(input);<br>		} catch (IOException e) {<br>			return null;<br>		}<br>		final Vector result = new Vector(5);<br>		for (Enumeration groups = ini.propertyNames(); groups.hasMoreElements();) {<br>			String group = (String) groups.nextElement();<br>			for (StringTokenizer entries = new StringTokenizer(ini.getProperty(group), ";"); entries.hasMoreElements();) { //$NON-NLS-1$<br>				String entry = (String) entries.nextElement();<br>				if (!entry.equals("")) //$NON-NLS-1$<br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">					try {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">						if(System.getSecurityManager() == null) {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">							result.addElement(new URL(entry));</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">						} else {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">							final String tmpEntry = entry;</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">							AccessController.doPrivileged(new PrivilegedExceptionAction() {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">								public Object run() throws MalformedURLException {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">									result.addElement(new URL(tmpEntry));</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">									return null;</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">								}</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">							});</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">						}</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">					} catch (MalformedURLException e) {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">						//intentionally ignore bad URLs</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">						System.err.println("Ignoring plugin: " + entry); //$NON-NLS-1$</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">					} catch (PrivilegedActionException e) {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">						System.err.println("Ignoring plugin: " + entry); //$NON-NLS-1$</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">					}</span><br>			}<br>		}<br>		return (URL[]) result.toArray(new URL[result.size()]);<br>	}<br><hr>
+</pre>
+</body>
+</html>

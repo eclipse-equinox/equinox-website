@@ -1,0 +1,547 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Permission Analysis Report</title>
+  <script language="javaScript" src="linkUtil.js"></script>
+</head>
+<body>
+<h1>Permission Analysis Report</h1>
+<br>
+<h2>Analysis of: org.eclipse.core.runtime</h2>
+<b>Detail</b><br>
+<br>
+<pre>Class: <a href="foo"
+ onclick="return openURLinSrc( 'Application/org/eclipse/core/internal/boot/PlatformURLConnection.html' )">org.eclipse.core.internal.boot.PlatformURLConnection</a> (Application)<br>DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/boot/PlatformURLConnection.html#L133" , parent.fbot ); return false'>Line# 138</a> void copyToCache(  )<br>   Permission: java.lang.RuntimePermission "getClassLoader"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: java.lang.RuntimePermission "modifyThread"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: java.net.NetPermission "specifyStreamHandler"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: java.net.SocketPermission "???host???", "resolve"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: java.net.SocketPermission "???host???:???port???", "connect"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: java.net.SocketPermission "localhost", "resolve"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: java.net.SocketPermission "localhost:1024-", "resolve"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: java.net.SocketPermission "localhost:1024-:???port???", "connect"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: java.net.SocketPermission "localhost:???port???", "connect"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: java.util.PropertyPermission "java.protocol.handler.pkgs", "read"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "<unknown>", "<unknown>"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "<unknown>", "get"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", "<unknown>"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", "get"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "<unknown>"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br><br><br><b>CODE</b><br>
+private void copyToCache() throws IOException {
+
+		if (isInCache | cachedURL == null)
+			return;
+		String tmp;
+		int ix;
+
+		// cache entry key
+		String key;
+		if (isJar) {
+			tmp = url.getFile();
+			ix = tmp.lastIndexOf(PlatformURLHandler.JAR_SEPARATOR);
+			if (ix != -1)
+				tmp = tmp.substring(0, ix);
+			key = tmp;
+		} else
+			key = url.getFile();
+
+		// source url
+		URL src;
+		if (isJar) {
+			tmp = resolvedURL.getFile();
+			ix = tmp.lastIndexOf(PlatformURLHandler.JAR_SEPARATOR);
+			if (ix != -1)
+				tmp = tmp.substring(0, ix);
+<font style="background-color: rgb(242, 197, 83);">			src = new URL(tmp);<br></font>		} else<br>			src = resolvedURL;<br>		InputStream srcis = null;<br><br>		// cache target<br>		String tgt;<br>		if (isJar) {<br>			tmp = cachedURL.getFile();<br>			ix = tmp.indexOf(PlatformURLHandler.PROTOCOL_SEPARATOR);<br>			if (ix != -1)<br>				tmp = tmp.substring(ix + 1);<br>			ix = tmp.lastIndexOf(PlatformURLHandler.JAR_SEPARATOR);<br>			if (ix != -1)<br>				tmp = tmp.substring(0, ix);<br>			tgt = tmp;<br>		} else<br>			tgt = cachedURL.getFile();<br>		File tgtFile = null;<br>		FileOutputStream tgtos = null;<br><br>		boolean error = false;<br>		long total = 0;<br><br>		try {<br>			if (DEBUG &amp;&amp; DEBUG_CACHE_COPY) {<br>				if (isJar)<br>					debug("Caching jar as " + tgt); //$NON-NLS-1$<br>				else<br>					debug("Caching as " + tgt); //$NON-NLS-1$<br>			}<br><br>			srcis = src.openStream();<br>			byte[] buf = new byte[BUF_SIZE];<br>			int count = srcis.read(buf);<br><br>			tgtFile = new File(tgt);<br>			tgtos = new FileOutputStream(tgtFile);<br><br>			while (count != -1) {<br>				total += count;<br>				tgtos.write(buf, 0, count);<br>				count = srcis.read(buf);<br>			}<br><br>			srcis.close();<br>			srcis = null;<br>			tgtos.flush();<br>			tgtos.getFD().sync();<br>			tgtos.close();<br>			tgtos = null;<br><br>			// add cache entry<br>			cacheIndex.put(key, tgt);<br>			isInCache = true;<br>		} catch (IOException e) {<br>			error = true;<br>			cacheIndex.put(key, NOT_FOUND);<br>			// mark cache entry for this execution<br>			if (DEBUG &amp;&amp; DEBUG_CACHE_COPY)<br>				debug("Failed to cache due to " + e); //$NON-NLS-1$<br>			throw e;<br>		} finally {<br>			if (!error &amp;&amp; DEBUG &amp;&amp; DEBUG_CACHE_COPY)<br>				debug(total + " bytes copied"); //$NON-NLS-1$<br>			if (srcis != null)<br>				srcis.close();<br>			if (tgtos != null)<br>				tgtos.close();<br>		}<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br></unknown></unknown></unknown></unknown></unknown><ul>
+<li>permission java.lang.RuntimePermission "getClassLoader";</li>
+<li>permission java.lang.RuntimePermission "modifyThread";</li>
+<li>permission java.net.NetPermission "specifyStreamHandler";</li>
+<li>permission java.net.SocketPermission "???host???", "resolve";</li>
+<li>permission java.net.SocketPermission "???host???:???port???", "connect";</li>
+<li>permission java.net.SocketPermission "localhost", "resolve";</li>
+<li>permission java.net.SocketPermission "localhost:1024-", "resolve";</li>
+<li>permission java.net.SocketPermission "localhost:1024-:???port???", "connect";</li>
+<li>permission java.net.SocketPermission "localhost:???port???", "connect";</li>
+<li>permission java.util.PropertyPermission "java.protocol.handler.pkgs", "read";</li>
+<li>permission org.osgi.framework.ServicePermission "<unknown>", "<unknown>";</unknown></unknown></li>
+<li>permission org.osgi.framework.ServicePermission "<unknown>", "get";</unknown></li>
+<li>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", "<unknown>";</unknown></li>
+<li>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", "get";</li>
+<li>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "<unknown>";</unknown></li>
+<li>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get";</li>
+</ul><span style="font-weight: bold;">Call Hierachy:<br></span><br>copyToCache() - org.eclipse.core.internal.boot.PlatformURLConnection<br>	getURLInCache() - org.eclipse.core.internal.boot.PlatformURLConnection<br>		connect(boolean) - org.eclipse.core.internal.boot.PlatformURLConnection<br>			connect() - org.eclipse.core.internal.boot.PlatformURLConnection<br>				searchForBundle(String, String) - org.eclipse.core.runtime.adaptor.EclipseStarter<br>					getInitialBundles(String[]) - org.eclipse.core.runtime.adaptor.EclipseStarter<br>						loadBasicBundles() - org.eclipse.core.runtime.adaptor.EclipseStarter<br>				getInputStream() - org.eclipse.core.internal.boot.PlatformURLConnection<br>					begin() - org.eclipse.osgi.framework.adaptor.core.AbstractFrameworkAdaptor.updateBundle(...).new BundleOperation() {...}<br>						installWorkerPrivileged(String, URLConnection, AccessControlContext) - org.eclipse.osgi.framework.internal.core.Framework<br>							run() - org.eclipse.osgi.framework.internal.core.Framework.installBundle(...).new PrivilegedExceptionAction() {...}<br>							run() - org.eclipse.osgi.framework.internal.core.Framework.installBundle(...).new PrivilegedExceptionAction() {...}<br>						uninstallWorkerPrivileged() - org.eclipse.osgi.framework.internal.core.AbstractBundle<br>							run() - org.eclipse.osgi.framework.internal.core.AbstractBundle.uninstall().new PrivilegedExceptionAction() {...}<br>						updateWorkerPrivileged(URLConnection, AccessControlContext) - org.eclipse.osgi.framework.internal.core.AbstractBundle<br>							run() - org.eclipse.osgi.framework.internal.core.AbstractBundle.update(...).new PrivilegedExceptionAction() {...}<br>							run() - org.eclipse.osgi.framework.internal.core.AbstractBundle.update().new PrivilegedExceptionAction() {...}<br>					getContent(URLConnection) - org.eclipse.osgi.framework.internal.protocol.ContentHandlerProxy.DefaultContentHandler<br>					getInputStream() - org.eclipse.core.internal.boot.PlatformURLConnection<br>					begin() - org.eclipse.osgi.framework.adaptor.core.AbstractFrameworkAdaptor.installBundle(...).new BundleOperation() {...}<br>						installWorkerPrivileged(String, URLConnection, AccessControlContext) - org.eclipse.osgi.framework.internal.core.Framework<br>						uninstallWorkerPrivileged() - org.eclipse.osgi.framework.internal.core.AbstractBundle<br>						updateWorkerPrivileged(URLConnection, AccessControlContext) - org.eclipse.osgi.framework.internal.core.AbstractBundle<br>					openFromZip(Bundle, String, String, String) - org.eclipse.help.internal.util.ResourceLocator<br>						getInputStream() - org.eclipse.help.internal.protocols.HelpURLConnection<br>			getURLAsLocal() - org.eclipse.core.internal.boot.PlatformURLConnection<br><span
+ style="font-weight: bold;"><br></span><br>
+<b>Conclusion:</b><br><br>Wrap the above code in a doPrivilged so it does not propagate down to other plug-ins.  So the best plcae to wrap would be in the connect method.<br><br><br>	private synchronized void connect(boolean asLocal) throws IOException {<br>		if (connected)<br>			return;<br><br>		if (shouldCache(asLocal)) {<br><span
+ style="color: rgb(255, 0, 0);">			try {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">				</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">				// check if the security manager is on.  Wrap the getURLInCache in a doPrivilged,</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">				// so the permissions do not get propagated down to the call stack</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">				URL inCache;</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">				if(System.getSecurityManager() == null) {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">					inCache = getURLInCache();</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">				} else {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">					inCache = (URL) AccessController.doPrivileged(new PrivilegedExceptionAction() {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">						public Object run() throws IOException {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">							return getURLInCache();</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">						}</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">					});</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">				}</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">				if (inCache != null)</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">					connection = inCache.openConnection();</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			} catch (IOException e) {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">				// failed to cache ... will use resolved URL instead</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			} catch (PrivilegedActionException e) {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">				// failed to cache ... will use resolved URL instead</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			}</span><br
+ style="color: rgb(255, 0, 0);">		}<br><br>		// use resolved URL<br>		if (connection == null)<br>			connection = resolvedURL.openConnection();<br>		connected = true;<br>		if (DEBUG &amp;&amp; DEBUG_CONNECT)<br>			debug("Connected as " + connection.getURL()); //$NON-NLS-1$<br>	}<br><br>Grant the above required permissions to this plug-in via OSGI-INF/permissions.perm file.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/boot/PlatformURLConnection.html#L170" , parent.fbot ); return false'>Line# 175</a> void copyToCache(  )<br>   Permission: java.io.FilePermission "???file???", "write"<br>      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )<br><br><br><b>CODE</b><br>
+private void copyToCache() throws IOException {
+
+		if (isInCache | cachedURL == null)
+			return;
+		String tmp;
+		int ix;
+
+		// cache entry key
+		String key;
+		if (isJar) {
+			tmp = url.getFile();
+			ix = tmp.lastIndexOf(PlatformURLHandler.JAR_SEPARATOR);
+			if (ix != -1)
+				tmp = tmp.substring(0, ix);
+			key = tmp;
+		} else
+			key = url.getFile();
+
+		// source url
+		URL src;
+		if (isJar) {
+			tmp = resolvedURL.getFile();
+			ix = tmp.lastIndexOf(PlatformURLHandler.JAR_SEPARATOR);
+			if (ix != -1)
+				tmp = tmp.substring(0, ix);
+			src = new URL(tmp);
+		} else
+			src = resolvedURL;
+		InputStream srcis = null;
+
+		// cache target
+		String tgt;
+		if (isJar) {
+			tmp = cachedURL.getFile();
+			ix = tmp.indexOf(PlatformURLHandler.PROTOCOL_SEPARATOR);
+			if (ix != -1)
+				tmp = tmp.substring(ix + 1);
+			ix = tmp.lastIndexOf(PlatformURLHandler.JAR_SEPARATOR);
+			if (ix != -1)
+				tmp = tmp.substring(0, ix);
+			tgt = tmp;
+		} else
+			tgt = cachedURL.getFile();
+		File tgtFile = null;
+		FileOutputStream tgtos = null;
+
+		boolean error = false;
+		long total = 0;
+
+		try {
+			if (DEBUG &amp;&amp; DEBUG_CACHE_COPY) {
+				if (isJar)
+					debug("Caching jar as " + tgt); //$NON-NLS-1$
+				else
+					debug("Caching as " + tgt); //$NON-NLS-1$
+			}
+
+			srcis = src.openStream();
+			byte[] buf = new byte[BUF_SIZE];
+			int count = srcis.read(buf);
+
+			tgtFile = new File(tgt);
+<font style="background-color: rgb(242, 197, 83);">			tgtos = new FileOutputStream(tgtFile);<br></font>
+			while (count != -1) {
+				total += count;
+				tgtos.write(buf, 0, count);
+				count = srcis.read(buf);
+			}
+
+			srcis.close();
+			srcis = null;
+			tgtos.flush();
+			tgtos.getFD().sync();
+			tgtos.close();
+			tgtos = null;
+
+			// add cache entry
+			cacheIndex.put(key, tgt);
+			isInCache = true;
+		} catch (IOException e) {
+			error = true;
+			cacheIndex.put(key, NOT_FOUND);
+			// mark cache entry for this execution
+			if (DEBUG &amp;&amp; DEBUG_CACHE_COPY)
+				debug("Failed to cache due to " + e); //$NON-NLS-1$
+			throw e;
+		} finally {
+			if (!error &amp;&amp; DEBUG &amp;&amp; DEBUG_CACHE_COPY)
+				debug(total + " bytes copied"); //$NON-NLS-1$
+			if (srcis != null)
+				srcis.close();
+			if (tgtos != null)
+				tgtos.close();
+		}
+	}
+<br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.io.FilePermission "???file???", "write";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>See the above conclusion.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/boot/PlatformURLConnection.html#L271" , parent.fbot ); return false'>Line# 276</a> java.net.URL getURLInCache(  )<br>   Permission: java.io.FilePermission "???file???", "read"<br>      Primordial/boolean java.io.File.exists(  )<br><br><br><b>CODE</b><br>
+private URL getURLInCache() throws IOException {
+
+		if (!allowCaching())
+			return null; // target should not be cached
+
+		if (isInCache)
+			return cachedURL;
+
+		if (cacheLocation == null | cacheIndex == null)
+			return null; // not caching
+
+		// check if we are dealing with a .jar/ .zip
+		String file = ""; //$NON-NLS-1$
+		String jarEntry = null;
+		if (isJar) {
+			file = url.getFile();
+			int ix = file.lastIndexOf(PlatformURLHandler.JAR_SEPARATOR);
+			if (ix != -1) {
+				jarEntry = file.substring(ix + PlatformURLHandler.JAR_SEPARATOR.length());
+				file = file.substring(0, ix);
+			}
+		} else {
+			file = url.getFile();
+			jarEntry = null;
+		}
+
+		// check for cached entry
+		String tmp = (String) cacheIndex.get(file);
+
+		// check for "not found" marker
+		if (tmp != null &amp;&amp; tmp == NOT_FOUND)
+			throw new IOException();
+
+		// validate cache entry
+<font style="background-color: rgb(242, 197, 83);">		if (tmp != null &amp;&amp; !(new File(tmp)).exists()) {<br></font>			tmp = null;<br>			cacheIndex.remove(url.getFile());<br>		}<br><br>		// found in cache<br>		if (tmp != null) {<br>			if (isJar) {<br>				if (DEBUG &amp;&amp; DEBUG_CACHE_LOOKUP)<br>					debug("Jar located in cache as " + tmp); //$NON-NLS-1$<br>				tmp = PlatformURLHandler.FILE + PlatformURLHandler.PROTOCOL_SEPARATOR + tmp + PlatformURLHandler.JAR_SEPARATOR + jarEntry;<br>				cachedURL = new URL(PlatformURLHandler.JAR, null, -1, tmp);<br>			} else {<br>				if (DEBUG &amp;&amp; DEBUG_CACHE_LOOKUP)<br>					debug("Located in cache as " + tmp); //$NON-NLS-1$<br>				cachedURL = new URL(PlatformURLHandler.FILE, null, -1, tmp);<br>			}<br>			isInCache = true;<br>		} else {<br>			// attemp to cache<br>			int ix = file.lastIndexOf("/"); //$NON-NLS-1$<br>			tmp = file.substring(ix + 1);<br>			tmp = cacheLocation + filePrefix + Long.toString((new java.util.Date()).getTime()) + "_" + tmp; //$NON-NLS-1$<br>			tmp = tmp.replace(File.separatorChar, '/');<br>			if (isJar) {<br>				tmp = PlatformURLHandler.FILE + PlatformURLHandler.PROTOCOL_SEPARATOR + tmp + PlatformURLHandler.JAR_SEPARATOR + jarEntry;<br>				cachedURL = new URL(PlatformURLHandler.JAR, null, -1, tmp);<br>			} else<br>				cachedURL = new URL(PlatformURLHandler.FILE, null, -1, tmp);<br>			copyToCache();<br>		}<br><br>		return cachedURL;<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.io.FilePermission "???file???", "read";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>See the above conclusion.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/boot/PlatformURLConnection.html#L282" , parent.fbot ); return false'>Line# 287</a> java.net.URL getURLInCache(  )<br>   Permission: java.lang.RuntimePermission "getClassLoader"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.lang.RuntimePermission "modifyThread"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.NetPermission "specifyStreamHandler"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.SocketPermission "???host???", "resolve"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.SocketPermission "???host???:???port???", "connect"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.SocketPermission "localhost", "resolve"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.SocketPermission "localhost:1024-", "resolve"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.SocketPermission "localhost:1024-:???port???", "connect"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.SocketPermission "localhost:???port???", "connect"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.util.PropertyPermission "java.protocol.handler.pkgs", "read"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "<unknown>", "<unknown>"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "<unknown>", "get"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", "<unknown>"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", "get"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "<unknown>"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br><br><br><b>CODE</b><br>
+private URL getURLInCache() throws IOException {
+
+		if (!allowCaching())
+			return null; // target should not be cached
+
+		if (isInCache)
+			return cachedURL;
+
+		if (cacheLocation == null | cacheIndex == null)
+			return null; // not caching
+
+		// check if we are dealing with a .jar/ .zip
+		String file = ""; //$NON-NLS-1$
+		String jarEntry = null;
+		if (isJar) {
+			file = url.getFile();
+			int ix = file.lastIndexOf(PlatformURLHandler.JAR_SEPARATOR);
+			if (ix != -1) {
+				jarEntry = file.substring(ix + PlatformURLHandler.JAR_SEPARATOR.length());
+				file = file.substring(0, ix);
+			}
+		} else {
+			file = url.getFile();
+			jarEntry = null;
+		}
+
+		// check for cached entry
+		String tmp = (String) cacheIndex.get(file);
+
+		// check for "not found" marker
+		if (tmp != null &amp;&amp; tmp == NOT_FOUND)
+			throw new IOException();
+
+		// validate cache entry
+		if (tmp != null &amp;&amp; !(new File(tmp)).exists()) {
+			tmp = null;
+			cacheIndex.remove(url.getFile());
+		}
+
+		// found in cache
+		if (tmp != null) {
+			if (isJar) {
+				if (DEBUG &amp;&amp; DEBUG_CACHE_LOOKUP)
+					debug("Jar located in cache as " + tmp); //$NON-NLS-1$
+				tmp = PlatformURLHandler.FILE + PlatformURLHandler.PROTOCOL_SEPARATOR + tmp + PlatformURLHandler.JAR_SEPARATOR + jarEntry;
+<font style="background-color: rgb(242, 197, 83);">				cachedURL = new URL(PlatformURLHandler.JAR, null, -1, tmp);<br></font>			} else {<br>				if (DEBUG &amp;&amp; DEBUG_CACHE_LOOKUP)<br>					debug("Located in cache as " + tmp); //$NON-NLS-1$<br>				cachedURL = new URL(PlatformURLHandler.FILE, null, -1, tmp);<br>			}<br>			isInCache = true;<br>		} else {<br>			// attemp to cache<br>			int ix = file.lastIndexOf("/"); //$NON-NLS-1$<br>			tmp = file.substring(ix + 1);<br>			tmp = cacheLocation + filePrefix + Long.toString((new java.util.Date()).getTime()) + "_" + tmp; //$NON-NLS-1$<br>			tmp = tmp.replace(File.separatorChar, '/');<br>			if (isJar) {<br>				tmp = PlatformURLHandler.FILE + PlatformURLHandler.PROTOCOL_SEPARATOR + tmp + PlatformURLHandler.JAR_SEPARATOR + jarEntry;<br>				cachedURL = new URL(PlatformURLHandler.JAR, null, -1, tmp);<br>			} else<br>				cachedURL = new URL(PlatformURLHandler.FILE, null, -1, tmp);<br>			copyToCache();<br>		}<br><br>		return cachedURL;<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br></unknown></unknown></unknown></unknown></unknown><ul>
+<li>permission java.lang.RuntimePermission "getClassLoader";</li>
+<li>permission java.lang.RuntimePermission "modifyThread";</li>
+<li>permission java.net.NetPermission "specifyStreamHandler";</li>
+<li>permission java.net.SocketPermission "???host???", "resolve";</li>
+<li>permission java.net.SocketPermission "???host???:???port???", "connect";</li>
+<li>permission java.net.SocketPermission "localhost", "resolve";</li>
+<li>permission java.net.SocketPermission "localhost:1024-", "resolve";</li>
+<li>permission java.net.SocketPermission "localhost:1024-:???port???", "connect";</li>
+<li>permission java.net.SocketPermission "localhost:???port???", "connect";</li>
+<li>permission java.util.PropertyPermission "java.protocol.handler.pkgs", "read";</li>
+<li>permission org.osgi.framework.ServicePermission "<unknown>", "<unknown>";</unknown></unknown></li>
+<li>permission org.osgi.framework.ServicePermission "<unknown>", "get";</unknown></li>
+<li>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", "<unknown>";</unknown></li>
+<li>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", "get";</li>
+<li>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "<unknown>";</unknown></li>
+<li>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>See the above conclusion.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/boot/PlatformURLConnection.html#L286" , parent.fbot ); return false'>Line# 291</a> java.net.URL getURLInCache(  )<br>   Permission: java.lang.RuntimePermission "getClassLoader"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.lang.RuntimePermission "modifyThread"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.NetPermission "specifyStreamHandler"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.SocketPermission "???host???", "resolve"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.SocketPermission "???host???:???port???", "connect"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.SocketPermission "localhost", "resolve"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.SocketPermission "localhost:1024-", "resolve"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.SocketPermission "localhost:1024-:???port???", "connect"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.SocketPermission "localhost:???port???", "connect"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.util.PropertyPermission "java.protocol.handler.pkgs", "read"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "<unknown>", "<unknown>"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "<unknown>", "get"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", "<unknown>"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", "get"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "<unknown>"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br><br><br><b>CODE</b><br>
+private URL getURLInCache() throws IOException {
+
+		if (!allowCaching())
+			return null; // target should not be cached
+
+		if (isInCache)
+			return cachedURL;
+
+		if (cacheLocation == null | cacheIndex == null)
+			return null; // not caching
+
+		// check if we are dealing with a .jar/ .zip
+		String file = ""; //$NON-NLS-1$
+		String jarEntry = null;
+		if (isJar) {
+			file = url.getFile();
+			int ix = file.lastIndexOf(PlatformURLHandler.JAR_SEPARATOR);
+			if (ix != -1) {
+				jarEntry = file.substring(ix + PlatformURLHandler.JAR_SEPARATOR.length());
+				file = file.substring(0, ix);
+			}
+		} else {
+			file = url.getFile();
+			jarEntry = null;
+		}
+
+		// check for cached entry
+		String tmp = (String) cacheIndex.get(file);
+
+		// check for "not found" marker
+		if (tmp != null &amp;&amp; tmp == NOT_FOUND)
+			throw new IOException();
+
+		// validate cache entry
+		if (tmp != null &amp;&amp; !(new File(tmp)).exists()) {
+			tmp = null;
+			cacheIndex.remove(url.getFile());
+		}
+
+		// found in cache
+		if (tmp != null) {
+			if (isJar) {
+				if (DEBUG &amp;&amp; DEBUG_CACHE_LOOKUP)
+					debug("Jar located in cache as " + tmp); //$NON-NLS-1$
+				tmp = PlatformURLHandler.FILE + PlatformURLHandler.PROTOCOL_SEPARATOR + tmp + PlatformURLHandler.JAR_SEPARATOR + jarEntry;
+				cachedURL = new URL(PlatformURLHandler.JAR, null, -1, tmp);
+			} else {
+				if (DEBUG &amp;&amp; DEBUG_CACHE_LOOKUP)
+					debug("Located in cache as " + tmp); //$NON-NLS-1$
+<font style="background-color: rgb(242, 197, 83);">				cachedURL = new URL(PlatformURLHandler.FILE, null, -1, tmp);<br></font>			}<br>			isInCache = true;<br>		} else {<br>			// attemp to cache<br>			int ix = file.lastIndexOf("/"); //$NON-NLS-1$<br>			tmp = file.substring(ix + 1);<br>			tmp = cacheLocation + filePrefix + Long.toString((new java.util.Date()).getTime()) + "_" + tmp; //$NON-NLS-1$<br>			tmp = tmp.replace(File.separatorChar, '/');<br>			if (isJar) {<br>				tmp = PlatformURLHandler.FILE + PlatformURLHandler.PROTOCOL_SEPARATOR + tmp + PlatformURLHandler.JAR_SEPARATOR + jarEntry;<br>				cachedURL = new URL(PlatformURLHandler.JAR, null, -1, tmp);<br>			} else<br>				cachedURL = new URL(PlatformURLHandler.FILE, null, -1, tmp);<br>			copyToCache();<br>		}<br><br>		return cachedURL;<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br></unknown></unknown></unknown></unknown></unknown><ul>
+<li>permission java.lang.RuntimePermission "getClassLoader";</li>
+<li>permission java.lang.RuntimePermission "modifyThread";</li>
+<li>permission java.net.NetPermission "specifyStreamHandler";</li>
+<li>permission java.net.SocketPermission "???host???", "resolve";</li>
+<li>permission java.net.SocketPermission "???host???:???port???", "connect";</li>
+<li>permission java.net.SocketPermission "localhost", "resolve";</li>
+<li>permission java.net.SocketPermission "localhost:1024-", "resolve";</li>
+<li>permission java.net.SocketPermission "localhost:1024-:???port???", "connect";</li>
+<li>permission java.net.SocketPermission "localhost:???port???", "connect";</li>
+<li>permission java.util.PropertyPermission "java.protocol.handler.pkgs", "read";</li>
+<li>permission org.osgi.framework.ServicePermission "<unknown>", "<unknown>";</unknown></unknown></li>
+<li>permission org.osgi.framework.ServicePermission "<unknown>", "get";</unknown></li>
+<li>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", "<unknown>";</unknown></li>
+<li>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", "get";</li>
+<li>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "<unknown>";</unknown></li>
+<li>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>See the above conclusion.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/boot/PlatformURLConnection.html#L297" , parent.fbot ); return false'>Line# 302</a> java.net.URL getURLInCache(  )<br>   Permission: java.lang.RuntimePermission "getClassLoader"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.lang.RuntimePermission "modifyThread"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.NetPermission "specifyStreamHandler"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.SocketPermission "???host???", "resolve"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.SocketPermission "???host???:???port???", "connect"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.SocketPermission "localhost", "resolve"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.SocketPermission "localhost:1024-", "resolve"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.SocketPermission "localhost:1024-:???port???", "connect"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.SocketPermission "localhost:???port???", "connect"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.util.PropertyPermission "java.protocol.handler.pkgs", "read"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "<unknown>", "<unknown>"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "<unknown>", "get"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", "<unknown>"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", "get"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "<unknown>"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br><br><br><b>CODE</b><br>
+private URL getURLInCache() throws IOException {
+
+		if (!allowCaching())
+			return null; // target should not be cached
+
+		if (isInCache)
+			return cachedURL;
+
+		if (cacheLocation == null | cacheIndex == null)
+			return null; // not caching
+
+		// check if we are dealing with a .jar/ .zip
+		String file = ""; //$NON-NLS-1$
+		String jarEntry = null;
+		if (isJar) {
+			file = url.getFile();
+			int ix = file.lastIndexOf(PlatformURLHandler.JAR_SEPARATOR);
+			if (ix != -1) {
+				jarEntry = file.substring(ix + PlatformURLHandler.JAR_SEPARATOR.length());
+				file = file.substring(0, ix);
+			}
+		} else {
+			file = url.getFile();
+			jarEntry = null;
+		}
+
+		// check for cached entry
+		String tmp = (String) cacheIndex.get(file);
+
+		// check for "not found" marker
+		if (tmp != null &amp;&amp; tmp == NOT_FOUND)
+			throw new IOException();
+
+		// validate cache entry
+		if (tmp != null &amp;&amp; !(new File(tmp)).exists()) {
+			tmp = null;
+			cacheIndex.remove(url.getFile());
+		}
+
+		// found in cache
+		if (tmp != null) {
+			if (isJar) {
+				if (DEBUG &amp;&amp; DEBUG_CACHE_LOOKUP)
+					debug("Jar located in cache as " + tmp); //$NON-NLS-1$
+				tmp = PlatformURLHandler.FILE + PlatformURLHandler.PROTOCOL_SEPARATOR + tmp + PlatformURLHandler.JAR_SEPARATOR + jarEntry;
+				cachedURL = new URL(PlatformURLHandler.JAR, null, -1, tmp);
+			} else {
+				if (DEBUG &amp;&amp; DEBUG_CACHE_LOOKUP)
+					debug("Located in cache as " + tmp); //$NON-NLS-1$
+				cachedURL = new URL(PlatformURLHandler.FILE, null, -1, tmp);
+			}
+			isInCache = true;
+		} else {
+			// attemp to cache
+			int ix = file.lastIndexOf("/"); //$NON-NLS-1$
+			tmp = file.substring(ix + 1);
+			tmp = cacheLocation + filePrefix + Long.toString((new java.util.Date()).getTime()) + "_" + tmp; //$NON-NLS-1$
+			tmp = tmp.replace(File.separatorChar, '/');
+			if (isJar) {
+				tmp = PlatformURLHandler.FILE + PlatformURLHandler.PROTOCOL_SEPARATOR + tmp + PlatformURLHandler.JAR_SEPARATOR + jarEntry;
+<font style="background-color: rgb(242, 197, 83);">				cachedURL = new URL(PlatformURLHandler.JAR, null, -1, tmp);<br></font>			} else<br>				cachedURL = new URL(PlatformURLHandler.FILE, null, -1, tmp);<br>			copyToCache();<br>		}<br><br>		return cachedURL;<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br></unknown></unknown></unknown></unknown></unknown><ul>
+<li>permission java.lang.RuntimePermission "getClassLoader";</li>
+<li>permission java.lang.RuntimePermission "modifyThread";</li>
+<li>permission java.net.NetPermission "specifyStreamHandler";</li>
+<li>permission java.net.SocketPermission "???host???", "resolve";</li>
+<li>permission java.net.SocketPermission "???host???:???port???", "connect";</li>
+<li>permission java.net.SocketPermission "localhost", "resolve";</li>
+<li>permission java.net.SocketPermission "localhost:1024-", "resolve";</li>
+<li>permission java.net.SocketPermission "localhost:1024-:???port???", "connect";</li>
+<li>permission java.net.SocketPermission "localhost:???port???", "connect";</li>
+<li>permission java.util.PropertyPermission "java.protocol.handler.pkgs", "read";</li>
+<li>permission org.osgi.framework.ServicePermission "<unknown>", "<unknown>";</unknown></unknown></li>
+<li>permission org.osgi.framework.ServicePermission "<unknown>", "get";</unknown></li>
+<li>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", "<unknown>";</unknown></li>
+<li>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", "get";</li>
+<li>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "<unknown>";</unknown></li>
+<li>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>See the above conclusion.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/boot/PlatformURLConnection.html#L299" , parent.fbot ); return false'>Line# 304</a> java.net.URL getURLInCache(  )<br>   Permission: java.lang.RuntimePermission "getClassLoader"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.lang.RuntimePermission "modifyThread"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.NetPermission "specifyStreamHandler"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.SocketPermission "???host???", "resolve"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.SocketPermission "???host???:???port???", "connect"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.SocketPermission "localhost", "resolve"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.SocketPermission "localhost:1024-", "resolve"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.SocketPermission "localhost:1024-:???port???", "connect"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.SocketPermission "localhost:???port???", "connect"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.util.PropertyPermission "java.protocol.handler.pkgs", "read"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "<unknown>", "<unknown>"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "<unknown>", "get"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", "<unknown>"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", "get"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "<unknown>"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br><br><br><b>CODE</b><br>
+private URL getURLInCache() throws IOException {
+
+		if (!allowCaching())
+			return null; // target should not be cached
+
+		if (isInCache)
+			return cachedURL;
+
+		if (cacheLocation == null | cacheIndex == null)
+			return null; // not caching
+
+		// check if we are dealing with a .jar/ .zip
+		String file = ""; //$NON-NLS-1$
+		String jarEntry = null;
+		if (isJar) {
+			file = url.getFile();
+			int ix = file.lastIndexOf(PlatformURLHandler.JAR_SEPARATOR);
+			if (ix != -1) {
+				jarEntry = file.substring(ix + PlatformURLHandler.JAR_SEPARATOR.length());
+				file = file.substring(0, ix);
+			}
+		} else {
+			file = url.getFile();
+			jarEntry = null;
+		}
+
+		// check for cached entry
+		String tmp = (String) cacheIndex.get(file);
+
+		// check for "not found" marker
+		if (tmp != null &amp;&amp; tmp == NOT_FOUND)
+			throw new IOException();
+
+		// validate cache entry
+		if (tmp != null &amp;&amp; !(new File(tmp)).exists()) {
+			tmp = null;
+			cacheIndex.remove(url.getFile());
+		}
+
+		// found in cache
+		if (tmp != null) {
+			if (isJar) {
+				if (DEBUG &amp;&amp; DEBUG_CACHE_LOOKUP)
+					debug("Jar located in cache as " + tmp); //$NON-NLS-1$
+				tmp = PlatformURLHandler.FILE + PlatformURLHandler.PROTOCOL_SEPARATOR + tmp + PlatformURLHandler.JAR_SEPARATOR + jarEntry;
+				cachedURL = new URL(PlatformURLHandler.JAR, null, -1, tmp);
+			} else {
+				if (DEBUG &amp;&amp; DEBUG_CACHE_LOOKUP)
+					debug("Located in cache as " + tmp); //$NON-NLS-1$
+				cachedURL = new URL(PlatformURLHandler.FILE, null, -1, tmp);
+			}
+			isInCache = true;
+		} else {
+			// attemp to cache
+			int ix = file.lastIndexOf("/"); //$NON-NLS-1$
+			tmp = file.substring(ix + 1);
+			tmp = cacheLocation + filePrefix + Long.toString((new java.util.Date()).getTime()) + "_" + tmp; //$NON-NLS-1$
+			tmp = tmp.replace(File.separatorChar, '/');
+			if (isJar) {
+				tmp = PlatformURLHandler.FILE + PlatformURLHandler.PROTOCOL_SEPARATOR + tmp + PlatformURLHandler.JAR_SEPARATOR + jarEntry;
+				cachedURL = new URL(PlatformURLHandler.JAR, null, -1, tmp);
+			} else
+<font style="background-color: rgb(242, 197, 83);">				cachedURL = new URL(PlatformURLHandler.FILE, null, -1, tmp);<br></font>			copyToCache();<br>		}<br><br>		return cachedURL;<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br></unknown></unknown></unknown></unknown></unknown><ul>
+<li>permission java.lang.RuntimePermission "getClassLoader";</li>
+<li>permission java.lang.RuntimePermission "modifyThread";</li>
+<li>permission java.net.NetPermission "specifyStreamHandler";</li>
+<li>permission java.net.SocketPermission "???host???", "resolve";</li>
+<li>permission java.net.SocketPermission "???host???:???port???", "connect";</li>
+<li>permission java.net.SocketPermission "localhost", "resolve";</li>
+<li>permission java.net.SocketPermission "localhost:1024-", "resolve";</li>
+<li>permission java.net.SocketPermission "localhost:1024-:???port???", "connect";</li>
+<li>permission java.net.SocketPermission "localhost:???port???", "connect";</li>
+<li>permission java.util.PropertyPermission "java.protocol.handler.pkgs", "read";</li>
+<li>permission org.osgi.framework.ServicePermission "<unknown>", "<unknown>";</unknown></unknown></li>
+<li>permission org.osgi.framework.ServicePermission "<unknown>", "get";</unknown></li>
+<li>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", "<unknown>";</unknown></li>
+<li>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", "get";</li>
+<li>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "<unknown>";</unknown></li>
+<li>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>See the above conclusion.<br><hr>
+</pre>
+</body>
+</html>

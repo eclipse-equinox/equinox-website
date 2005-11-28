@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Permission Analysis Report</title>
+  <script language="javaScript" src="linkUtil.js"></script>
+</head>
+<body>
+<h1>Permission Analysis Report</h1>
+<br>
+<h2>Analysis of: org.eclipse.core.runtime</h2>
+<b>Detail</b><br>
+<br>
+<pre>
+Class: <a href="foo"
+ onclick="return openURLinSrc( 'Application/org/eclipse/core/internal/runtime/PlatformURLPluginConnection.html' )">org.eclipse.core.internal.runtime.PlatformURLPluginConnection</a> (Application)<br>DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/PlatformURLPluginConnection.html#L52" , parent.fbot ); return false'>Line# 57</a> java.net.URL resolve(  )<br>   Permission: java.lang.RuntimePermission "getClassLoader"<br>      Primordial/void java.net.URL.URL( java.net.URL, java.lang.String )<br>   Permission: java.lang.RuntimePermission "modifyThread"<br>      Primordial/void java.net.URL.URL( java.net.URL, java.lang.String )<br>   Permission: java.net.NetPermission "specifyStreamHandler"<br>      Primordial/void java.net.URL.URL( java.net.URL, java.lang.String )<br>   Permission: java.net.SocketPermission "???host???", "resolve"<br>      Primordial/void java.net.URL.URL( java.net.URL, java.lang.String )<br>   Permission: java.net.SocketPermission "???host???:???port???", "connect"<br>      Primordial/void java.net.URL.URL( java.net.URL, java.lang.String )<br>   Permission: java.net.SocketPermission "localhost", "resolve"<br>      Primordial/void java.net.URL.URL( java.net.URL, java.lang.String )<br>   Permission: java.net.SocketPermission "localhost:1024-", "resolve"<br>      Primordial/void java.net.URL.URL( java.net.URL, java.lang.String )<br>   Permission: java.net.SocketPermission "localhost:1024-:???port???", "connect"<br>      Primordial/void java.net.URL.URL( java.net.URL, java.lang.String )<br>   Permission: java.net.SocketPermission "localhost:???port???", "connect"<br>      Primordial/void java.net.URL.URL( java.net.URL, java.lang.String )<br>   Permission: java.util.PropertyPermission "java.protocol.handler.pkgs", "read"<br>      Primordial/void java.net.URL.URL( java.net.URL, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "<unknown>", "<unknown>"<br>      Primordial/void java.net.URL.URL( java.net.URL, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "<unknown>", "get"<br>      Primordial/void java.net.URL.URL( java.net.URL, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", "<unknown>"<br>      Primordial/void java.net.URL.URL( java.net.URL, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", "get"<br>      Primordial/void java.net.URL.URL( java.net.URL, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "<unknown>"<br>      Primordial/void java.net.URL.URL( java.net.URL, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get"<br>      Primordial/void java.net.URL.URL( java.net.URL, java.lang.String )<br><br><br><b>CODE</b><br>
+protected URL resolve() throws IOException {
+		String spec = url.getFile().trim();
+		if (spec.startsWith("/")) //$NON-NLS-1$
+			spec = spec.substring(1);
+		if (!spec.startsWith(PLUGIN))
+			throw new IOException(NLS.bind(Messages.url_badVariant, url));
+		int ix = spec.indexOf("/", PLUGIN.length() + 1); //$NON-NLS-1$
+		String ref = ix == -1 ? spec.substring(PLUGIN.length() + 1) : spec.substring(PLUGIN.length() + 1, ix);
+		String id = getId(ref);
+		target = InternalPlatform.getDefault().getBundle(id);
+		if (target == null)
+			throw new IOException(NLS.bind(Messages.url_resolvePlugin, url));
+		if (ix == -1 || (ix + 1) &gt;= spec.length())
+			return target.getEntry("/"); //$NON-NLS-1$
+		URL result = target.getEntry(spec.substring(ix + 1));
+		if (result != null)
+			return result;
+		// if the result is null then force the creation of a URL that will throw FileNotFoundExceptions
+<font style="background-color: rgb(242, 197, 83);">		return new URL(target.getEntry("/"), spec.substring(ix + 1)); //$NON-NLS-1$<br></font>		<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br></unknown></unknown></unknown></unknown></unknown><ul>
+<li>permission java.lang.RuntimePermission "getClassLoader";</li>
+<li>permission java.lang.RuntimePermission "modifyThread";</li>
+<li>permission java.net.NetPermission "specifyStreamHandler";</li>
+<li>permission java.net.SocketPermission "???host???", "resolve";</li>
+<li>permission java.net.SocketPermission "???host???:???port???", "connect";</li>
+<li>permission java.net.SocketPermission "localhost", "resolve";</li>
+<li>permission java.net.SocketPermission "localhost:1024-", "resolve";</li>
+<li>permission java.net.SocketPermission "localhost:1024-:???port???", "connect";</li>
+<li>permission java.net.SocketPermission "localhost:???port???", "connect";</li>
+<li>permission java.util.PropertyPermission "java.protocol.handler.pkgs", "read";</li>
+<li>permission org.osgi.framework.ServicePermission "<unknown>", "<unknown>";</unknown></unknown></li>
+<li>permission org.osgi.framework.ServicePermission "<unknown>", "get";</unknown></li>
+<li>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", "<unknown>";</unknown></li>
+<li>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", "get";</li>
+<li>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "<unknown>";</unknown></li>
+<li>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>Wrap the line as shown in the following:<br><br>	protected URL resolve() throws IOException {<br>		String spec = url.getFile().trim();<br>		if (spec.startsWith("/")) //$NON-NLS-1$<br>			spec = spec.substring(1);<br>		if (!spec.startsWith(PLUGIN))<br>			throw new IOException(NLS.bind(Messages.url_badVariant, url));<br>		int ix = spec.indexOf("/", PLUGIN.length() + 1); //$NON-NLS-1$<br>		String ref = ix == -1 ? spec.substring(PLUGIN.length() + 1) : spec.substring(PLUGIN.length() + 1, ix);<br>		String id = getId(ref);<br>		target = InternalPlatform.getDefault().getBundle(id);<br>		if (target == null)<br>			throw new IOException(NLS.bind(Messages.url_resolvePlugin, url));<br>		if (ix == -1 || (ix + 1) &gt;= spec.length())<br>			return target.getEntry("/"); //$NON-NLS-1$<br>		URL result = target.getEntry(spec.substring(ix + 1));<br>		if (result != null)<br>			return result;<br>		// if the result is null then force the creation of a URL that will throw FileNotFoundExceptions<br>		i<span
+ style="color: rgb(255, 0, 0);">f(System.getSecurityManager() == null) {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			return new URL(target.getEntry("/"), spec.substring(ix + 1)); //$NON-NLS-1$</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">		} else {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			try {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">				return (URL) AccessController.doPrivileged(new SecureURL(target.getEntry("/"), spec.substring(ix + 1)));</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			} catch (PrivilegedActionException e) {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">				throw (IOException) e.getException();</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			}</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">		}</span><br>		<br>	}<br><hr>
+</pre>
+</body>
+</html>

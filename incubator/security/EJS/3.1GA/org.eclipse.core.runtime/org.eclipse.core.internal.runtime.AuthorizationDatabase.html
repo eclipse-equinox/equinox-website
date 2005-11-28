@@ -1,0 +1,419 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Permission Analysis Report</title>
+  <script language="javaScript" src="linkUtil.js"></script>
+</head>
+<body>
+<h1>Permission Analysis Report</h1>
+<br>
+<h2>Analysis of: org.eclipse.core.runtime</h2>
+<b>Detail</b><br>
+<br>
+<pre>
+Class: <a href="foo"
+ onclick="return openURLinSrc( 'Application/org/eclipse/core/internal/runtime/AuthorizationDatabase.html' )">org.eclipse.core.internal.runtime.AuthorizationDatabase</a> (Application)<br>DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/AuthorizationDatabase.html#L317" , parent.fbot ); return false'>Line# 322</a> boolean canWrite( java.io.File )<br>   Permission: java.io.FilePermission "???file???", "write"<br>      Primordial/boolean java.io.File.canWrite(  )<br><br><br><b>CODE</b><br>
+private static boolean canWrite(File installDir) {
+<font style="background-color: rgb(242, 197, 83);">		if (!installDir.canWrite())<br></font>			return false;<br><br>		if (!installDir.isDirectory())<br>			return false;<br><br>		File fileTest = null;<br>		try {<br>			fileTest = File.createTempFile("writtableArea", null, installDir); //$NON-NLS-1$<br>		} catch (IOException e) {<br>			//If an exception occured while trying to create the file, it means that it is not writtable<br>			return false;<br>		} finally {<br>			if (fileTest != null)<br>				fileTest.delete();<br>		}<br>		return true;<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.io.FilePermission "???file???", "write";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>The caller requires the permission.<br><br>Grant the permission to this plug-in via OSGI-INF/permissions.perm file.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/AuthorizationDatabase.html#L320" , parent.fbot ); return false'>Line# 325</a> boolean canWrite( java.io.File )<br>   Permission: java.io.FilePermission "???file???", "read"<br>      Primordial/boolean java.io.File.isDirectory(  )<br><br><br><b>CODE</b><br>
+private static boolean canWrite(File installDir) {
+		if (!installDir.canWrite())
+			return false;
+
+<font style="background-color: rgb(242, 197, 83);">		if (!installDir.isDirectory())<br></font>			return false;<br><br>		File fileTest = null;<br>		try {<br>			fileTest = File.createTempFile("writtableArea", null, installDir); //$NON-NLS-1$<br>		} catch (IOException e) {<br>			//If an exception occured while trying to create the file, it means that it is not writtable<br>			return false;<br>		} finally {<br>			if (fileTest != null)<br>				fileTest.delete();<br>		}<br>		return true;<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.io.FilePermission "???file???", "read";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>See prior conclusion.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/AuthorizationDatabase.html#L325" , parent.fbot ); return false'>Line# 330</a> boolean canWrite( java.io.File )<br>   Permission: java.io.FilePermission "", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "*", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "-1", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "-2", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "-2147483648", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "-3", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "-9223372036854775808", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission ".", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "..", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission ".bundledata", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission ".contributions", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission ".extraData", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission ".lazy", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission ".log", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission ".mainData", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission ".manager", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission ".metadata", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission ".orphans", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission ".plugins", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission ".settings", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission ".state", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission ".table", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "/", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "0", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "1", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "1.3", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "10", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "13", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "2", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "23", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "3", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "3.0.0", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "4", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "5", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "6", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "7", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "8", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "9", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "???file???", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "Eclipse", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "META-INF/MANIFEST.MF", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "No message available.", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "aix", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "bin", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "bundles", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "carbon", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "charset", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "false", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "file-extensions", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "file-names", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "fragment.xml", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "hpux", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "instance", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "linux", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "macosx", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "manifests", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "motif", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "org.eclipse.core.runtime", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "org.eclipse.core.runtime.adaptor/resolver/timing/value", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "org.eclipse.core.runtime/content-types", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "org.eclipse.osgi", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "org.eclipse.osgi/defaultprofile/buffersize", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "org.eclipse.osgi/defaultprofile/logfilename", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "org.eclipse.osgi/defaultprofile/logsynchronously", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "org.eclipse.osgi/profile/benchmark", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "org.eclipse.osgi/profile/debug", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "org.eclipse.osgi/profile/impl", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "org.eclipse.osgi/profile/startup", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "performance.log", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "photon", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "plugin.xml", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "plugin_customization.ini", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "pref_store.ini", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "preferences", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "qnx", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "solaris", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "true", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "unknown", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "win32", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "x86", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br>   Permission: java.io.FilePermission "x86_64", "write"<br>      Primordial/java.io.File java.io.File.createTempFile( java.lang.String, java.lang.String, java.io.File )<br><br><br><b>CODE</b><br>
+private static boolean canWrite(File installDir) {
+		if (!installDir.canWrite())
+			return false;
+
+		if (!installDir.isDirectory())
+			return false;
+
+		File fileTest = null;
+		try {
+<font style="background-color: rgb(242, 197, 83);">			fileTest = File.createTempFile("writtableArea", null, installDir); //$NON-NLS-1$<br></font>		} catch (IOException e) {<br>			//If an exception occured while trying to create the file, it means that it is not writtable<br>			return false;<br>		} finally {<br>			if (fileTest != null)<br>				fileTest.delete();<br>		}<br>		return true;<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.io.FilePermission "", "write";</li>
+<li>permission java.io.FilePermission "*", "write";</li>
+<li>permission java.io.FilePermission "-1", "write";</li>
+<li>permission java.io.FilePermission "-2", "write";</li>
+<li>permission java.io.FilePermission "-2147483648", "write";</li>
+<li>permission java.io.FilePermission "-3", "write";</li>
+<li>permission java.io.FilePermission "-9223372036854775808", "write";</li>
+<li>permission java.io.FilePermission ".", "write";</li>
+<li>permission java.io.FilePermission "..", "write";</li>
+<li>permission java.io.FilePermission ".bundledata", "write";</li>
+<li>permission java.io.FilePermission ".contributions", "write";</li>
+<li>permission java.io.FilePermission ".extraData", "write";</li>
+<li>permission java.io.FilePermission ".lazy", "write";</li>
+<li>permission java.io.FilePermission ".log", "write";</li>
+<li>permission java.io.FilePermission ".mainData", "write";</li>
+<li>permission java.io.FilePermission ".manager", "write";</li>
+<li>permission java.io.FilePermission ".metadata", "write";</li>
+<li>permission java.io.FilePermission ".orphans", "write";</li>
+<li>permission java.io.FilePermission ".plugins", "write";</li>
+<li>permission java.io.FilePermission ".settings", "write";</li>
+<li>permission java.io.FilePermission ".state", "write";</li>
+<li>permission java.io.FilePermission ".table", "write";</li>
+<li>permission java.io.FilePermission "/", "write";</li>
+<li>permission java.io.FilePermission "0", "write";</li>
+<li>permission java.io.FilePermission "1", "write";</li>
+<li>permission java.io.FilePermission "1.3", "write";</li>
+<li>permission java.io.FilePermission "10", "write";</li>
+<li>permission java.io.FilePermission "13", "write";</li>
+<li>permission java.io.FilePermission "2", "write";</li>
+<li>permission java.io.FilePermission "23", "write";</li>
+<li>permission java.io.FilePermission "3", "write";</li>
+<li>permission java.io.FilePermission "3.0.0", "write";</li>
+<li>permission java.io.FilePermission "4", "write";</li>
+<li>permission java.io.FilePermission "5", "write";</li>
+<li>permission java.io.FilePermission "6", "write";</li>
+<li>permission java.io.FilePermission "7", "write";</li>
+<li>permission java.io.FilePermission "8", "write";</li>
+<li>permission java.io.FilePermission "9", "write";</li>
+<li>permission java.io.FilePermission "???file???", "write";</li>
+<li>permission java.io.FilePermission "Eclipse", "write";</li>
+<li>permission java.io.FilePermission "META-INF/MANIFEST.MF", "write";</li>
+<li>permission java.io.FilePermission "No message available.", "write";</li>
+<li>permission java.io.FilePermission "aix", "write";</li>
+<li>permission java.io.FilePermission "bin", "write";</li>
+<li>permission java.io.FilePermission "bundles", "write";</li>
+<li>permission java.io.FilePermission "carbon", "write";</li>
+<li>permission java.io.FilePermission "charset", "write";</li>
+<li>permission java.io.FilePermission "false", "write";</li>
+<li>permission java.io.FilePermission "file-extensions", "write";</li>
+<li>permission java.io.FilePermission "file-names", "write";</li>
+<li>permission java.io.FilePermission "fragment.xml", "write";</li>
+<li>permission java.io.FilePermission "hpux", "write";</li>
+<li>permission java.io.FilePermission "instance", "write";</li>
+<li>permission java.io.FilePermission "linux", "write";</li>
+<li>permission java.io.FilePermission "macosx", "write";</li>
+<li>permission java.io.FilePermission "manifests", "write";</li>
+<li>permission java.io.FilePermission "motif", "write";</li>
+<li>permission java.io.FilePermission "org.eclipse.core.runtime", "write";</li>
+<li>permission java.io.FilePermission "org.eclipse.core.runtime.adaptor/resolver/timing/value", "write";</li>
+<li>permission java.io.FilePermission "org.eclipse.core.runtime/content-types", "write";</li>
+<li>permission java.io.FilePermission "org.eclipse.osgi", "write";</li>
+<li>permission java.io.FilePermission "org.eclipse.osgi/defaultprofile/buffersize", "write";</li>
+<li>permission java.io.FilePermission "org.eclipse.osgi/defaultprofile/logfilename", "write";</li>
+<li>permission java.io.FilePermission "org.eclipse.osgi/defaultprofile/logsynchronously", "write";</li>
+<li>permission java.io.FilePermission "org.eclipse.osgi/profile/benchmark", "write";</li>
+<li>permission java.io.FilePermission "org.eclipse.osgi/profile/debug", "write";</li>
+<li>permission java.io.FilePermission "org.eclipse.osgi/profile/impl", "write";</li>
+<li>permission java.io.FilePermission "org.eclipse.osgi/profile/startup", "write";</li>
+<li>permission java.io.FilePermission "performance.log", "write";</li>
+<li>permission java.io.FilePermission "photon", "write";</li>
+<li>permission java.io.FilePermission "plugin.xml", "write";</li>
+<li>permission java.io.FilePermission "plugin_customization.ini", "write";</li>
+<li>permission java.io.FilePermission "pref_store.ini", "write";</li>
+<li>permission java.io.FilePermission "preferences", "write";</li>
+<li>permission java.io.FilePermission "qnx", "write";</li>
+<li>permission java.io.FilePermission "solaris", "write";</li>
+<li>permission java.io.FilePermission "true", "write";</li>
+<li>permission java.io.FilePermission "unknown", "write";</li>
+<li>permission java.io.FilePermission "win32", "write";</li>
+<li>permission java.io.FilePermission "x86", "write";</li>
+<li>permission java.io.FilePermission "x86_64", "write";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>See prior conslusion.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/AuthorizationDatabase.html#L331" , parent.fbot ); return false'>Line# 336</a> boolean canWrite( java.io.File )<br>   Permission: java.io.FilePermission "", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "*", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "-1", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "-2", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "-2147483648", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "-3", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "-9223372036854775808", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission ".", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "..", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission ".bundledata", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission ".contributions", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission ".extraData", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission ".lazy", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission ".log", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission ".mainData", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission ".manager", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission ".metadata", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission ".orphans", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission ".plugins", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission ".settings", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission ".state", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission ".table", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "/", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "0", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "1", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "1.3", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "10", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "13", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "2", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "23", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "3", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "3.0.0", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "4", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "5", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "6", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "7", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "8", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "9", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "???file???", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "Eclipse", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "META-INF/MANIFEST.MF", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "No message available.", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "aix", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "bin", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "bundles", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "carbon", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "charset", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "false", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "file-extensions", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "file-names", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "fragment.xml", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "hpux", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "instance", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "linux", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "macosx", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "manifests", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "motif", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "org.eclipse.core.runtime", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "org.eclipse.core.runtime.adaptor/resolver/timing/value", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "org.eclipse.core.runtime/content-types", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "org.eclipse.osgi", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "org.eclipse.osgi/defaultprofile/buffersize", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "org.eclipse.osgi/defaultprofile/logfilename", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "org.eclipse.osgi/defaultprofile/logsynchronously", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "org.eclipse.osgi/profile/benchmark", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "org.eclipse.osgi/profile/debug", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "org.eclipse.osgi/profile/impl", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "org.eclipse.osgi/profile/startup", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "performance.log", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "photon", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "plugin.xml", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "plugin_customization.ini", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "pref_store.ini", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "preferences", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "qnx", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "solaris", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "true", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "unknown", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "win32", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "x86", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br>   Permission: java.io.FilePermission "x86_64", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br><br><br><b>CODE</b><br>
+private static boolean canWrite(File installDir) {
+		if (!installDir.canWrite())
+			return false;
+
+		if (!installDir.isDirectory())
+			return false;
+
+		File fileTest = null;
+		try {
+			fileTest = File.createTempFile("writtableArea", null, installDir); //$NON-NLS-1$
+		} catch (IOException e) {
+			//If an exception occured while trying to create the file, it means that it is not writtable
+			return false;
+		} finally {
+			if (fileTest != null)
+<font style="background-color: rgb(242, 197, 83);">				fileTest.delete();<br></font>		}<br>		return true;<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.io.FilePermission "", "delete";</li>
+<li>permission java.io.FilePermission "*", "delete";</li>
+<li>permission java.io.FilePermission "-1", "delete";</li>
+<li>permission java.io.FilePermission "-2", "delete";</li>
+<li>permission java.io.FilePermission "-2147483648", "delete";</li>
+<li>permission java.io.FilePermission "-3", "delete";</li>
+<li>permission java.io.FilePermission "-9223372036854775808", "delete";</li>
+<li>permission java.io.FilePermission ".", "delete";</li>
+<li>permission java.io.FilePermission "..", "delete";</li>
+<li>permission java.io.FilePermission ".bundledata", "delete";</li>
+<li>permission java.io.FilePermission ".contributions", "delete";</li>
+<li>permission java.io.FilePermission ".extraData", "delete";</li>
+<li>permission java.io.FilePermission ".lazy", "delete";</li>
+<li>permission java.io.FilePermission ".log", "delete";</li>
+<li>permission java.io.FilePermission ".mainData", "delete";</li>
+<li>permission java.io.FilePermission ".manager", "delete";</li>
+<li>permission java.io.FilePermission ".metadata", "delete";</li>
+<li>permission java.io.FilePermission ".orphans", "delete";</li>
+<li>permission java.io.FilePermission ".plugins", "delete";</li>
+<li>permission java.io.FilePermission ".settings", "delete";</li>
+<li>permission java.io.FilePermission ".state", "delete";</li>
+<li>permission java.io.FilePermission ".table", "delete";</li>
+<li>permission java.io.FilePermission "/", "delete";</li>
+<li>permission java.io.FilePermission "0", "delete";</li>
+<li>permission java.io.FilePermission "1", "delete";</li>
+<li>permission java.io.FilePermission "1.3", "delete";</li>
+<li>permission java.io.FilePermission "10", "delete";</li>
+<li>permission java.io.FilePermission "13", "delete";</li>
+<li>permission java.io.FilePermission "2", "delete";</li>
+<li>permission java.io.FilePermission "23", "delete";</li>
+<li>permission java.io.FilePermission "3", "delete";</li>
+<li>permission java.io.FilePermission "3.0.0", "delete";</li>
+<li>permission java.io.FilePermission "4", "delete";</li>
+<li>permission java.io.FilePermission "5", "delete";</li>
+<li>permission java.io.FilePermission "6", "delete";</li>
+<li>permission java.io.FilePermission "7", "delete";</li>
+<li>permission java.io.FilePermission "8", "delete";</li>
+<li>permission java.io.FilePermission "9", "delete";</li>
+<li>permission java.io.FilePermission "???file???", "delete";</li>
+<li>permission java.io.FilePermission "Eclipse", "delete";</li>
+<li>permission java.io.FilePermission "META-INF/MANIFEST.MF", "delete";</li>
+<li>permission java.io.FilePermission "No message available.", "delete";</li>
+<li>permission java.io.FilePermission "aix", "delete";</li>
+<li>permission java.io.FilePermission "bin", "delete";</li>
+<li>permission java.io.FilePermission "bundles", "delete";</li>
+<li>permission java.io.FilePermission "carbon", "delete";</li>
+<li>permission java.io.FilePermission "charset", "delete";</li>
+<li>permission java.io.FilePermission "false", "delete";</li>
+<li>permission java.io.FilePermission "file-extensions", "delete";</li>
+<li>permission java.io.FilePermission "file-names", "delete";</li>
+<li>permission java.io.FilePermission "fragment.xml", "delete";</li>
+<li>permission java.io.FilePermission "hpux", "delete";</li>
+<li>permission java.io.FilePermission "instance", "delete";</li>
+<li>permission java.io.FilePermission "linux", "delete";</li>
+<li>permission java.io.FilePermission "macosx", "delete";</li>
+<li>permission java.io.FilePermission "manifests", "delete";</li>
+<li>permission java.io.FilePermission "motif", "delete";</li>
+<li>permission java.io.FilePermission "org.eclipse.core.runtime", "delete";</li>
+<li>permission java.io.FilePermission "org.eclipse.core.runtime.adaptor/resolver/timing/value", "delete";</li>
+<li>permission java.io.FilePermission "org.eclipse.core.runtime/content-types", "delete";</li>
+<li>permission java.io.FilePermission "org.eclipse.osgi", "delete";</li>
+<li>permission java.io.FilePermission "org.eclipse.osgi/defaultprofile/buffersize", "delete";</li>
+<li>permission java.io.FilePermission "org.eclipse.osgi/defaultprofile/logfilename", "delete";</li>
+<li>permission java.io.FilePermission "org.eclipse.osgi/defaultprofile/logsynchronously", "delete";</li>
+<li>permission java.io.FilePermission "org.eclipse.osgi/profile/benchmark", "delete";</li>
+<li>permission java.io.FilePermission "org.eclipse.osgi/profile/debug", "delete";</li>
+<li>permission java.io.FilePermission "org.eclipse.osgi/profile/impl", "delete";</li>
+<li>permission java.io.FilePermission "org.eclipse.osgi/profile/startup", "delete";</li>
+<li>permission java.io.FilePermission "performance.log", "delete";</li>
+<li>permission java.io.FilePermission "photon", "delete";</li>
+<li>permission java.io.FilePermission "plugin.xml", "delete";</li>
+<li>permission java.io.FilePermission "plugin_customization.ini", "delete";</li>
+<li>permission java.io.FilePermission "pref_store.ini", "delete";</li>
+<li>permission java.io.FilePermission "preferences", "delete";</li>
+<li>permission java.io.FilePermission "qnx", "delete";</li>
+<li>permission java.io.FilePermission "solaris", "delete";</li>
+<li>permission java.io.FilePermission "true", "delete";</li>
+<li>permission java.io.FilePermission "unknown", "delete";</li>
+<li>permission java.io.FilePermission "win32", "delete";</li>
+<li>permission java.io.FilePermission "x86", "delete";</li>
+<li>permission java.io.FilePermission "x86_64", "delete";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>See prior conslusion.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/AuthorizationDatabase.html#L248" , parent.fbot ); return false'>Line# 253</a> void load(  )<br>   Permission: java.io.FilePermission "???file???", "read"<br>      Primordial/boolean java.io.File.exists(  )<br><br><br><b>CODE</b><br>
+private void load() throws CoreException {
+		if (file == null)
+			return;
+<font style="background-color: rgb(242, 197, 83);">		if (!file.exists()) {<br></font>			save();<br>			return;<br>		}<br>		try {<br>			InputStream input = new FileInputStream(file);<br>			try {<br>				load(input);<br>			} finally {<br>				input.close();<br>			}<br>		} catch (IOException e) {<br>			throw new CoreException(new Status(IStatus.ERROR, Platform.PI_RUNTIME, Platform.FAILED_READ_METADATA, NLS.bind(Messages.meta_unableToReadAuthorization, file), e));<br>		} catch (ClassNotFoundException e) {<br>			throw new CoreException(new Status(IStatus.ERROR, Platform.PI_RUNTIME, Platform.FAILED_READ_METADATA, NLS.bind(Messages.meta_unableToReadAuthorization, file), e));<br>		}<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.io.FilePermission "???file???", "read";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>See prior conslusion.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/AuthorizationDatabase.html#L253" , parent.fbot ); return false'>Line# 258</a> void load(  )<br>   Permission: java.io.FilePermission "???file???", "read"<br>      Primordial/void java.io.FileInputStream.FileInputStream( java.io.File )<br><br><br><b>CODE</b><br>
+private void load() throws CoreException {
+		if (file == null)
+			return;
+		if (!file.exists()) {
+			save();
+			return;
+		}
+		try {
+<font style="background-color: rgb(242, 197, 83);">			InputStream input = new FileInputStream(file);<br></font>			try {<br>				load(input);<br>			} finally {<br>				input.close();<br>			}<br>		} catch (IOException e) {<br>			throw new CoreException(new Status(IStatus.ERROR, Platform.PI_RUNTIME, Platform.FAILED_READ_METADATA, NLS.bind(Messages.meta_unableToReadAuthorization, file), e));<br>		} catch (ClassNotFoundException e) {<br>			throw new CoreException(new Status(IStatus.ERROR, Platform.PI_RUNTIME, Platform.FAILED_READ_METADATA, NLS.bind(Messages.meta_unableToReadAuthorization, file), e));<br>		}<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.io.FilePermission "???file???", "read";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>See prior conslusion.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/AuthorizationDatabase.html#L272" , parent.fbot ); return false'>Line# 277</a> void load( java.io.InputStream )<br>   Permission: java.io.SerializablePermission "enableSubclassImplementation"<br>      Primordial/void java.io.ObjectInputStream.ObjectInputStream( java.io.InputStream )<br><br><br><b>CODE</b><br>
+private void load(InputStream is) throws IOException, ClassNotFoundException, CoreException {
+		//try to read the file version number. Pre 2.0 versions had no number
+		int version = is.read();
+		if (version == KEYRING_FILE_VERSION) {
+			//read the authorization data
+			CipherInputStream cis = new CipherInputStream(is, password);
+<font style="background-color: rgb(242, 197, 83);">			ObjectInputStream ois = new ObjectInputStream(cis);<br></font>			try {<br>				authorizationInfo = (Hashtable) ois.readObject();<br>				protectionSpace = (Hashtable) ois.readObject();<br>			} finally {<br>				ois.close();<br>			}<br>		} else {<br>			//the format has changed, just log a warning<br>			InternalPlatform.getDefault().log(new Status(IStatus.WARNING, Platform.PI_RUNTIME, Platform.FAILED_READ_METADATA, Messages.meta_authFormatChanged, null));<br>			//close the stream and save a new file in the correct format<br>			try {<br>				is.close();<br>			} catch (IOException e) {<br>				//ignore failure to close<br>			}<br>			needsSaving = true;<br>			save();<br>		}<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.io.SerializablePermission "enableSubclassImplementation";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>This method is called by load. The best place to wrap would be in the load method.<br><br>	private void load() throws CoreException {<br>		if (file == null)<br>			return;<br>		if (!file.exists()) {<br>			save();<br>			return;<br>		}<br>		try {<br>			final InputStream input = new FileInputStream(file);<br>			try {<br>			<span
+ style="color: rgb(255, 0, 0);">	if(System.getSecurityManager() == null) {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">					load(input);</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">				} else {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">					AccessController.doPrivileged(new PrivilegedExceptionAction() {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">						public Object run() throws IOException, ClassNotFoundException, CoreException {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">							load(input);</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">							return null;</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">						}</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">					});</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">				}</span><br>			} finally {<br>				input.close();<br>			}<br>		} catch (IOException e) {<br>			throw new CoreException(new Status(IStatus.ERROR, Platform.PI_RUNTIME, Platform.FAILED_READ_METADATA, NLS.bind(Messages.meta_unableToReadAuthorization, file), e));<br>		} catch (ClassNotFoundException e) {<br>			throw new CoreException(new Status(IStatus.ERROR, Platform.PI_RUNTIME, Platform.FAILED_READ_METADATA, NLS.bind(Messages.meta_unableToReadAuthorization, file), e));<br>		} catch (PrivilegedActionException pae) {<br>			throw (CoreException) new CoreException(new Status(IStatus.ERROR, Platform.PI_RUNTIME, Platform.FAILED_READ_METADATA, NLS.bind(Messages.meta_unableToReadAuthorization, file), pae.getException())).initCause(pae);<br>		}<br>	}<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/AuthorizationDatabase.html#L274" , parent.fbot ); return false'>Line# 279</a> void load( java.io.InputStream )<br>   Permission: java.lang.RuntimePermission "getClassLoader"<br>      Primordial/java.lang.Object java.io.ObjectInputStream.readObject(  )<br><br><br><b>CODE</b><br>
+private void load(InputStream is) throws IOException, ClassNotFoundException, CoreException {
+		//try to read the file version number. Pre 2.0 versions had no number
+		int version = is.read();
+		if (version == KEYRING_FILE_VERSION) {
+			//read the authorization data
+			CipherInputStream cis = new CipherInputStream(is, password);
+			ObjectInputStream ois = new ObjectInputStream(cis);
+			try {
+<font style="background-color: rgb(242, 197, 83);">				authorizationInfo = (Hashtable) ois.readObject();<br></font>				protectionSpace = (Hashtable) ois.readObject();<br>			} finally {<br>				ois.close();<br>			}<br>		} else {<br>			//the format has changed, just log a warning<br>			InternalPlatform.getDefault().log(new Status(IStatus.WARNING, Platform.PI_RUNTIME, Platform.FAILED_READ_METADATA, Messages.meta_authFormatChanged, null));<br>			//close the stream and save a new file in the correct format<br>			try {<br>				is.close();<br>			} catch (IOException e) {<br>				//ignore failure to close<br>			}<br>			needsSaving = true;<br>			save();<br>		}<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.lang.RuntimePermission "getClassLoader";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>See prior conclusion.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/AuthorizationDatabase.html#L275" , parent.fbot ); return false'>Line# 280</a> void load( java.io.InputStream )<br>   Permission: java.lang.RuntimePermission "getClassLoader"<br>      Primordial/java.lang.Object java.io.ObjectInputStream.readObject(  )<br><br><br><b>CODE</b><br>
+private void load(InputStream is) throws IOException, ClassNotFoundException, CoreException {
+		//try to read the file version number. Pre 2.0 versions had no number
+		int version = is.read();
+		if (version == KEYRING_FILE_VERSION) {
+			//read the authorization data
+			CipherInputStream cis = new CipherInputStream(is, password);
+			ObjectInputStream ois = new ObjectInputStream(cis);
+			try {
+				authorizationInfo = (Hashtable) ois.readObject();
+<font style="background-color: rgb(242, 197, 83);">				protectionSpace = (Hashtable) ois.readObject();<br></font>			} finally {<br>				ois.close();<br>			}<br>		} else {<br>			//the format has changed, just log a warning<br>			InternalPlatform.getDefault().log(new Status(IStatus.WARNING, Platform.PI_RUNTIME, Platform.FAILED_READ_METADATA, Messages.meta_authFormatChanged, null));<br>			//close the stream and save a new file in the correct format<br>			try {<br>				is.close();<br>			} catch (IOException e) {<br>				//ignore failure to close<br>			}<br>			needsSaving = true;<br>			save();<br>		}<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.lang.RuntimePermission "getClassLoader";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>See prior conclusion.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/AuthorizationDatabase.html#L300" , parent.fbot ); return false'>Line# 305</a> void save(  )<br>   Permission: java.io.FilePermission "???file???", "delete"<br>      Primordial/boolean java.io.File.delete(  )<br><br><br><b>CODE</b><br>
+/**
+	 * Saves the authorization database to disk.
+	 */
+	public void save() throws CoreException {
+		if (!needsSaving || file == null)
+			return;
+		try {
+<font style="background-color: rgb(242, 197, 83);">			file.delete();<br></font>			if ((!file.getParentFile().exists() &amp;&amp; !file.getParentFile().mkdirs()) || !canWrite(file.getParentFile()))<br>				throw new CoreException(new Status(IStatus.ERROR, Platform.PI_RUNTIME, Platform.FAILED_WRITE_METADATA, NLS.bind(Messages.meta_unableToWriteAuthorization, file), null));<br>			file.createNewFile();<br>			FileOutputStream out = new FileOutputStream(file);<br>			try {<br>				save(out);<br>			} finally {<br>				out.close();<br>			}<br>		} catch (IOException e) {<br>			throw new CoreException(new Status(IStatus.ERROR, Platform.PI_RUNTIME, Platform.FAILED_WRITE_METADATA, NLS.bind(Messages.meta_unableToWriteAuthorization, file), e));<br>		}<br>		needsSaving = false;<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.io.FilePermission "???file???", "delete";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>The file variable is set by the constructor of this class.  <br><br>Grant the permission to this plug-in via OSGI-INF/permissions.perm file.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/AuthorizationDatabase.html#L301" , parent.fbot ); return false'>Line# 306</a> void save(  )<br>   Permission: java.io.FilePermission "???file???", "read"<br>      Primordial/boolean java.io.File.exists(  )<br>      Primordial/boolean java.io.File.mkdirs(  )<br>      Primordial/boolean java.io.File.exists(  )<br>      Primordial/boolean java.io.File.mkdirs(  )<br>      Primordial/boolean java.io.File.exists(  )<br>      Primordial/boolean java.io.File.mkdirs(  )<br>      Primordial/boolean java.io.File.exists(  )<br>      Primordial/boolean java.io.File.mkdirs(  )<br>   Permission: java.io.FilePermission "???file???", "write"<br>      Primordial/boolean java.io.File.mkdirs(  )<br>   Permission: java.util.PropertyPermission "user.dir", "read"<br>      Primordial/boolean java.io.File.mkdirs(  )<br><br><br><b>CODE</b><br>
+/**
+	 * Saves the authorization database to disk.
+	 */
+	public void save() throws CoreException {
+		if (!needsSaving || file == null)
+			return;
+		try {
+			file.delete();
+<font style="background-color: rgb(242, 197, 83);">			if ((!file.getParentFile().exists() &amp;&amp; !file.getParentFile().mkdirs()) || !canWrite(file.getParentFile()))<br></font>				throw new CoreException(new Status(IStatus.ERROR, Platform.PI_RUNTIME, Platform.FAILED_WRITE_METADATA, NLS.bind(Messages.meta_unableToWriteAuthorization, file), null));<br>			file.createNewFile();<br>			FileOutputStream out = new FileOutputStream(file);<br>			try {<br>				save(out);<br>			} finally {<br>				out.close();<br>			}<br>		} catch (IOException e) {<br>			throw new CoreException(new Status(IStatus.ERROR, Platform.PI_RUNTIME, Platform.FAILED_WRITE_METADATA, NLS.bind(Messages.meta_unableToWriteAuthorization, file), e));<br>		}<br>		needsSaving = false;<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.io.FilePermission "???file???", "read";</li>
+<li>permission java.io.FilePermission "???file???", "write";</li>
+<li>permission java.util.PropertyPermission "user.dir", "read";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>See prior conclusion.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/AuthorizationDatabase.html#L303" , parent.fbot ); return false'>Line# 308</a> void save(  )<br>   Permission: java.io.FilePermission "???file???", "write"<br>      Primordial/boolean java.io.File.createNewFile(  )<br><br><br><b>CODE</b><br>
+/**
+	 * Saves the authorization database to disk.
+	 */
+	public void save() throws CoreException {
+		if (!needsSaving || file == null)
+			return;
+		try {
+			file.delete();
+			if ((!file.getParentFile().exists() &amp;&amp; !file.getParentFile().mkdirs()) || !canWrite(file.getParentFile()))
+				throw new CoreException(new Status(IStatus.ERROR, Platform.PI_RUNTIME, Platform.FAILED_WRITE_METADATA, NLS.bind(Messages.meta_unableToWriteAuthorization, file), null));
+<font style="background-color: rgb(242, 197, 83);">			file.createNewFile();<br></font>			FileOutputStream out = new FileOutputStream(file);<br>			try {<br>				save(out);<br>			} finally {<br>				out.close();<br>			}<br>		} catch (IOException e) {<br>			throw new CoreException(new Status(IStatus.ERROR, Platform.PI_RUNTIME, Platform.FAILED_WRITE_METADATA, NLS.bind(Messages.meta_unableToWriteAuthorization, file), e));<br>		}<br>		needsSaving = false;<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.io.FilePermission "???file???", "write";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>See prior conclusion.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/AuthorizationDatabase.html#L304" , parent.fbot ); return false'>Line# 309</a> void save(  )<br>   Permission: java.io.FilePermission "???file???", "write"<br>      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )<br><br><br><b>CODE</b><br>
+/**
+	 * Saves the authorization database to disk.
+	 */
+	public void save() throws CoreException {
+		if (!needsSaving || file == null)
+			return;
+		try {
+			file.delete();
+			if ((!file.getParentFile().exists() &amp;&amp; !file.getParentFile().mkdirs()) || !canWrite(file.getParentFile()))
+				throw new CoreException(new Status(IStatus.ERROR, Platform.PI_RUNTIME, Platform.FAILED_WRITE_METADATA, NLS.bind(Messages.meta_unableToWriteAuthorization, file), null));
+			file.createNewFile();
+<font style="background-color: rgb(242, 197, 83);">			FileOutputStream out = new FileOutputStream(file);<br></font>			try {<br>				save(out);<br>			} finally {<br>				out.close();<br>			}<br>		} catch (IOException e) {<br>			throw new CoreException(new Status(IStatus.ERROR, Platform.PI_RUNTIME, Platform.FAILED_WRITE_METADATA, NLS.bind(Messages.meta_unableToWriteAuthorization, file), e));<br>		}<br>		needsSaving = false;<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.io.FilePermission "???file???", "write";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>See prior conclusion.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/AuthorizationDatabase.html#L341" , parent.fbot ); return false'>Line# 346</a> void save( java.io.FileOutputStream )<br>   Permission: java.io.SerializablePermission "enableSubclassImplementation"<br>      Primordial/void java.io.ObjectOutputStream.ObjectOutputStream( java.io.OutputStream )<br><br><br><b>CODE</b><br>
+private void save(FileOutputStream os) throws IOException {
+		//write the version number
+		os.write(KEYRING_FILE_VERSION);
+
+		CipherOutputStream cos = new CipherOutputStream(os, password);
+<font style="background-color: rgb(242, 197, 83);">		ObjectOutputStream oos = new ObjectOutputStream(cos);<br></font>		//write the data<br>		try {<br>			oos.writeObject(authorizationInfo);<br>			oos.writeObject(protectionSpace);<br>			os.flush();<br>			os.getFD().sync();<br>		} finally {<br>			oos.close();<br>		}<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.io.SerializablePermission "enableSubclassImplementation";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>See prior conclusion.<br><hr>
+</pre>
+</body>
+</html>

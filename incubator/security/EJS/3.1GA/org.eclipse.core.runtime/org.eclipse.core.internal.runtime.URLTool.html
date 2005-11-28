@@ -1,0 +1,310 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Permission Analysis Report</title>
+  <script language="javaScript" src="linkUtil.js"></script>
+</head>
+<body>
+<h1>Permission Analysis Report</h1>
+<br>
+<h2>Analysis of: org.eclipse.core.runtime</h2>
+<b>Detail</b><br>
+<br>
+<pre>
+Class: <a href="foo"
+ onclick="return openURLinSrc( 'Application/org/eclipse/core/internal/runtime/URLTool.html' )">org.eclipse.core.internal.runtime.URLTool</a> (Application)<br>DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/URLTool.html#L42" , parent.fbot ); return false'>Line# 47</a> java.net.URL appendTrailingSlash( java.net.URL )<br>   Permission: java.lang.RuntimePermission "getClassLoader"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.lang.RuntimePermission "modifyThread"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.NetPermission "specifyStreamHandler"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.SocketPermission "???host???", "resolve"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.SocketPermission "???host???:???port???", "connect"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.SocketPermission "localhost", "resolve"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.SocketPermission "localhost:1024-", "resolve"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.SocketPermission "localhost:1024-:???port???", "connect"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.SocketPermission "localhost:???port???", "connect"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.util.PropertyPermission "java.protocol.handler.pkgs", "read"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "<unknown>", "<unknown>"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "<unknown>", "get"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", "<unknown>"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", "get"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "<unknown>"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br><br><br><b>CODE</b><br>
+/**
+	 * Returns the given <code>URL</code> with a trailing slash appended to<br>	 * it. If the <code>URL</code> already has a trailing slash the<br>	 * <code>URL</code> is returned unchanged.<br>	 * </unknown></unknown></unknown></unknown></unknown>* * *   *   * *   *   * *   *   * <table>
+	 <caption>Example</caption>
+	 <tbody><tr>
+	 <th>Given URL</th>
+	 <th>Returned URL</th>
+	 </tr><tr>
+	 <td>"http://hostname/folder"</td>
+	 <td>"http://hostname/folder/"</td>
+	 </tr><tr>
+	 <td>"http://hostname/folder/</td>
+	 <td>"http://hostname/folder/"</td>
+	 </tr></tbody></table>
+	 *
+	 * @param url a URL
+	 * @return    the given URL with a trailing slash
+	 */
+	public static URL appendTrailingSlash(URL url) {
+		String file = url.getFile();
+		if (file.endsWith("/")) //$NON-NLS-1$
+			return url;
+		try {
+<font style="background-color: rgb(242, 197, 83);">			return new URL(url.getProtocol(), url.getHost(), url.getPort(), file + "/"); //$NON-NLS-1$<br></font>		} catch (MalformedURLException e) {<br>			Assert.isTrue(false, "internal error"); //$NON-NLS-1$<br>		}<br>		return null;<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.lang.RuntimePermission "getClassLoader";</li>
+<li>permission java.lang.RuntimePermission "modifyThread";</li>
+<li>permission java.net.NetPermission "specifyStreamHandler";</li>
+<li>permission java.net.SocketPermission "???host???", "resolve";</li>
+<li>permission java.net.SocketPermission "???host???:???port???", "connect";</li>
+<li>permission java.net.SocketPermission "localhost", "resolve";</li>
+<li>permission java.net.SocketPermission "localhost:1024-", "resolve";</li>
+<li>permission java.net.SocketPermission "localhost:1024-:???port???", "connect";</li>
+<li>permission java.net.SocketPermission "localhost:???port???", "connect";</li>
+<li>permission java.util.PropertyPermission "java.protocol.handler.pkgs", "read";</li>
+<li>permission org.osgi.framework.ServicePermission "<unknown>", "<unknown>";</unknown></unknown></li>
+<li>permission org.osgi.framework.ServicePermission "<unknown>", "get";</unknown></li>
+<li>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", "<unknown>";</unknown></li>
+<li>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", "get";</li>
+<li>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "<unknown>";</unknown></li>
+<li>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>The caller should not need the above permission.  Wrap the identified line as shown in the following:<br><br>public static URL appendTrailingSlash(URL url) {<br>		String file = url.getFile();<br>		if (file.endsWith("/")) //$NON-NLS-1$<br>			return url;<br>		try {<br><span
+ style="color: rgb(255, 0, 0);">			return getURL(url.getProtocol(), url.getHost(), url.getPort(), file + "/"); //$NON-NLS-1$</span><br>		} catch (MalformedURLException e) {<br>			Assert.isTrue(false, "internal error"); //$NON-NLS-1$<br>		} <br>		return null;<br>	}<br><br>Added method:<br><br>	private static URL getURL(String protocol, String host, int port, String file) throws MalformedURLException {<br>		if(System.getSecurityManager() == null) {<br>			return new URL(protocol, host, port, file); <br>		} <br>		try {<br>			return (URL) AccessController.doPrivileged(new URLFromAllFour(protocol, host, port, file));<br>		} catch (PrivilegedActionException pae) {<br>			throw (MalformedURLException) pae.getException();<br>		}<br><br>	}<br><br>Grant the above required permission to this plug-in via OSGI-INF/permissions.perm file.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/URLTool.html#L60" , parent.fbot ); return false'>Line# 65</a> java.net.URL getChild( java.net.URL, java.lang.String )<br>   Permission: java.lang.RuntimePermission "getClassLoader"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.lang.RuntimePermission "modifyThread"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.NetPermission "specifyStreamHandler"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.SocketPermission "???host???", "resolve"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.SocketPermission "???host???:???port???", "connect"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.SocketPermission "localhost", "resolve"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.SocketPermission "localhost:1024-", "resolve"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.SocketPermission "localhost:1024-:???port???", "connect"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.SocketPermission "localhost:???port???", "connect"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.util.PropertyPermission "java.protocol.handler.pkgs", "read"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "<unknown>", "<unknown>"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "<unknown>", "get"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", "<unknown>"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", "get"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "<unknown>"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br><br><br><b>CODE</b><br>
+/**
+	 * Returns the child URL formed by joining the given member with the
+	 * given parent URL.
+	 *
+	 * @return a child URL of the given parent
+	 */
+	public static URL getChild(URL parent, String member) {
+		String file = parent.getFile();
+		if (!file.endsWith("/")) //$NON-NLS-1$
+			file = file + "/"; //$NON-NLS-1$
+		try {
+<font style="background-color: rgb(242, 197, 83);">			return new URL(parent.getProtocol(), parent.getHost(), parent.getPort(), file + member);<br></font>		} catch (MalformedURLException e) {<br>			Assert.isTrue(false, "internal error"); //$NON-NLS-1$<br>		}<br>		return null;<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br></unknown></unknown></unknown></unknown></unknown><ul>
+<li>permission java.lang.RuntimePermission "getClassLoader";</li>
+<li>permission java.lang.RuntimePermission "modifyThread";</li>
+<li>permission java.net.NetPermission "specifyStreamHandler";</li>
+<li>permission java.net.SocketPermission "???host???", "resolve";</li>
+<li>permission java.net.SocketPermission "???host???:???port???", "connect";</li>
+<li>permission java.net.SocketPermission "localhost", "resolve";</li>
+<li>permission java.net.SocketPermission "localhost:1024-", "resolve";</li>
+<li>permission java.net.SocketPermission "localhost:1024-:???port???", "connect";</li>
+<li>permission java.net.SocketPermission "localhost:???port???", "connect";</li>
+<li>permission java.util.PropertyPermission "java.protocol.handler.pkgs", "read";</li>
+<li>permission org.osgi.framework.ServicePermission "<unknown>", "<unknown>";</unknown></unknown></li>
+<li>permission org.osgi.framework.ServicePermission "<unknown>", "get";</unknown></li>
+<li>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", "<unknown>";</unknown></li>
+<li>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", "get";</li>
+<li>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "<unknown>";</unknown></li>
+<li>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>Wrap the line as shown in the following:<br><br>	public static URL getChild(URL parent, String member) {<br>		String file = parent.getFile();<br>		if (!file.endsWith("/")) //$NON-NLS-1$<br>			file = file + "/"; //$NON-NLS-1$<br>		try {<br>		<span
+ style="color: rgb(255, 0, 0);">	return getURL(parent.getProtocol(), parent.getHost(), parent.getPort(), file + member);</span><br>		} catch (MalformedURLException e) {<br>			Assert.isTrue(false, "internal error"); //$NON-NLS-1$<br>		}<br>		return null;<br>	}<br><br>Grant the above required permission to this plug-in via OSGI-INF/permissions.perm file.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/URLTool.html#L181" , parent.fbot ); return false'>Line# 186</a> java.net.URL getParent( java.net.URL )<br>   Permission: java.lang.RuntimePermission "getClassLoader"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.lang.RuntimePermission "modifyThread"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.NetPermission "specifyStreamHandler"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.SocketPermission "???host???", "resolve"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.SocketPermission "???host???:???port???", "connect"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.SocketPermission "localhost", "resolve"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.SocketPermission "localhost:1024-", "resolve"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.SocketPermission "localhost:1024-:???port???", "connect"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.SocketPermission "localhost:???port???", "connect"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.util.PropertyPermission "java.protocol.handler.pkgs", "read"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "<unknown>", "<unknown>"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "<unknown>", "get"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", "<unknown>"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", "get"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "<unknown>"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br><br><br><b>CODE</b><br>
+/**
+	 * Returns the parent URL of the given URL, or <code>null</code> if the<br>	 * given URL is the root.<br>	 * </unknown></unknown></unknown></unknown></unknown>* * *   *   * *   *   * *   *   * <table>
+	 <caption>Example</caption>
+	 <tbody><tr>
+	 <th>Given URL</th>
+	 <th>Parent URL</th>
+	 </tr><tr>
+	 <td>"http://hostname/"</td>
+	 <td>null</td>
+	 </tr><tr>
+	 <td>"http://hostname/folder/file</td>
+	 <td>"http://hostname/folder/</td>
+	 </tr></tbody></table>
+	 *
+	 * @param url a URL
+	 * @return    the parent of the given URL
+	 */
+	public static URL getParent(URL url) {
+		String file = url.getFile();
+		int len = file.length();
+		if (len == 0 || len == 1 &amp;&amp; file.charAt(0) == '/')
+			return null;
+		int lastSlashIndex = -1;
+		for (int i = len - 2; lastSlashIndex == -1 &amp;&amp; i &gt;= 0; --i) {
+			if (file.charAt(i) == '/')
+				lastSlashIndex = i;
+		}
+		if (lastSlashIndex == -1)
+			file = ""; //$NON-NLS-1$
+		else
+			file = file.substring(0, lastSlashIndex + 1);
+
+		try {
+<font style="background-color: rgb(242, 197, 83);">			url = new URL(url.getProtocol(), url.getHost(), url.getPort(), file);<br></font>		} catch (MalformedURLException e) {<br>			Assert.isTrue(false, e.getMessage());<br>		}<br>		return url;<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.lang.RuntimePermission "getClassLoader";</li>
+<li>permission java.lang.RuntimePermission "modifyThread";</li>
+<li>permission java.net.NetPermission "specifyStreamHandler";</li>
+<li>permission java.net.SocketPermission "???host???", "resolve";</li>
+<li>permission java.net.SocketPermission "???host???:???port???", "connect";</li>
+<li>permission java.net.SocketPermission "localhost", "resolve";</li>
+<li>permission java.net.SocketPermission "localhost:1024-", "resolve";</li>
+<li>permission java.net.SocketPermission "localhost:1024-:???port???", "connect";</li>
+<li>permission java.net.SocketPermission "localhost:???port???", "connect";</li>
+<li>permission java.util.PropertyPermission "java.protocol.handler.pkgs", "read";</li>
+<li>permission org.osgi.framework.ServicePermission "<unknown>", "<unknown>";</unknown></unknown></li>
+<li>permission org.osgi.framework.ServicePermission "<unknown>", "get";</unknown></li>
+<li>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", "<unknown>";</unknown></li>
+<li>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", "get";</li>
+<li>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "<unknown>";</unknown></li>
+<li>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>Wrap the line as shown in the following:<br><br>	public static URL getParent(URL url) {<br>		String file = url.getFile();<br>		int len = file.length();<br>		if (len == 0 || len == 1 &amp;&amp; file.charAt(0) == '/')<br>			return null;<br>		int lastSlashIndex = -1;<br>		for (int i = len - 2; lastSlashIndex == -1 &amp;&amp; i &gt;= 0; --i) {<br>			if (file.charAt(i) == '/')<br>				lastSlashIndex = i;<br>		}<br>		if (lastSlashIndex == -1)<br>			file = ""; //$NON-NLS-1$<br>		else<br>			file = file.substring(0, lastSlashIndex + 1);<br><br>		try {<br>		<span
+ style="color: rgb(255, 0, 0);">	url = getURL(url.getProtocol(), url.getHost(), url.getPort(), file);</span><br>		} catch (MalformedURLException e) {<br>			Assert.isTrue(false, e.getMessage());<br>		}<br>		return url;<br>	}<br><br>Grant the above required permissions to this plug-in via OSGI-INF/permissions.perm file.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/URLTool.html#L208" , parent.fbot ); return false'>Line# 213</a> java.net.URL getRoot( java.lang.String )<br>   Permission: java.lang.RuntimePermission "getClassLoader"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: java.lang.RuntimePermission "modifyThread"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: java.net.NetPermission "specifyStreamHandler"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: java.net.SocketPermission "???host???", "resolve"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: java.net.SocketPermission "???host???:???port???", "connect"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: java.net.SocketPermission "localhost", "resolve"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: java.net.SocketPermission "localhost:1024-", "resolve"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: java.net.SocketPermission "localhost:1024-:???port???", "connect"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: java.net.SocketPermission "localhost:???port???", "connect"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: java.util.PropertyPermission "java.protocol.handler.pkgs", "read"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "<unknown>", "<unknown>"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "<unknown>", "get"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", "<unknown>"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", "get"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "<unknown>"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br><br><br><b>CODE</b><br>
+/**
+	 * Returns the root URL of the given URL.
+	 * </unknown></unknown></unknown></unknown></unknown>* * *   *   * *   *   * *   *   * <table>
+	 <caption>Example</caption>
+	 <tbody><tr>
+	 <th>Given URL</th>
+	 <th>Root URL</th>
+	 </tr><tr>
+	 <td>"http://hostname/"</td>
+	 <td>"http://hostname/"</td>
+	 </tr><tr>
+	 <td>"http://hostname/folder/file</td>
+	 <td>"http://hostname/"</td>
+	 </tr></tbody></table>
+	 *
+	 * @param urlString a URL
+	 * @return          the root url of the given URL
+	 * @throws          MalformedURLException if the given URL is malformed
+	 */
+	public static URL getRoot(String urlString) throws MalformedURLException {
+<font style="background-color: rgb(242, 197, 83);">		return getRoot(new URL(urlString));<br></font>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.lang.RuntimePermission "getClassLoader";</li>
+<li>permission java.lang.RuntimePermission "modifyThread";</li>
+<li>permission java.net.NetPermission "specifyStreamHandler";</li>
+<li>permission java.net.SocketPermission "???host???", "resolve";</li>
+<li>permission java.net.SocketPermission "???host???:???port???", "connect";</li>
+<li>permission java.net.SocketPermission "localhost", "resolve";</li>
+<li>permission java.net.SocketPermission "localhost:1024-", "resolve";</li>
+<li>permission java.net.SocketPermission "localhost:1024-:???port???", "connect";</li>
+<li>permission java.net.SocketPermission "localhost:???port???", "connect";</li>
+<li>permission java.util.PropertyPermission "java.protocol.handler.pkgs", "read";</li>
+<li>permission org.osgi.framework.ServicePermission "<unknown>", "<unknown>";</unknown></unknown></li>
+<li>permission org.osgi.framework.ServicePermission "<unknown>", "get";</unknown></li>
+<li>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", "<unknown>";</unknown></li>
+<li>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", "get";</li>
+<li>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "<unknown>";</unknown></li>
+<li>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>Wrap the line as shown in the following:<br><br>	public static URL getRoot(final String urlString) throws MalformedURLException {<br><span
+ style="color: rgb(255, 0, 0);">		if(System.getSecurityManager() == null) {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			return getRoot(new URL(urlString));</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">		}</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">		try {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			return (URL) AccessController.doPrivileged(new PrivilegedExceptionAction() {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">				public Object run() throws MalformedURLException {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">					return getRoot(new URL(urlString));</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">				}</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			});</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">		} catch (PrivilegedActionException pae) {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			throw (MalformedURLException) pae.getException();</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">		}</span><br
+ style="color: rgb(255, 0, 0);">	}<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/URLTool.html#L231" , parent.fbot ); return false'>Line# 236</a> java.net.URL getRoot( java.net.URL )<br>   Permission: java.lang.RuntimePermission "getClassLoader"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.lang.RuntimePermission "modifyThread"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.NetPermission "specifyStreamHandler"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.SocketPermission "???host???", "resolve"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.SocketPermission "???host???:???port???", "connect"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.SocketPermission "localhost", "resolve"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.SocketPermission "localhost:1024-", "resolve"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.SocketPermission "localhost:1024-:???port???", "connect"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.SocketPermission "localhost:???port???", "connect"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.util.PropertyPermission "java.protocol.handler.pkgs", "read"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "<unknown>", "<unknown>"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "<unknown>", "get"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", "<unknown>"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", "get"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "<unknown>"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br><br><br><b>CODE</b><br>
+/**
+	 * Returns the root URL of the given URL.
+	 * </unknown></unknown></unknown></unknown></unknown>* * *   *   * *   *   * *   *   * <table>
+	 <caption>Example</caption>
+	 <tbody><tr>
+	 <th>Given URL</th>
+	 <th>Root URL</th>
+	 </tr><tr>
+	 <td>"http://hostname/"</td>
+	 <td>"http://hostname/"</td>
+	 </tr><tr>
+	 <td>"http://hostname/folder/file</td>
+	 <td>"http://hostname/"</td>
+	 </tr></tbody></table>
+	 *
+	 * @param url a URL
+	 * @return    the root URL of the given URL
+	 */
+	public static URL getRoot(URL url) {
+		try {
+<font style="background-color: rgb(242, 197, 83);">			return new URL(url.getProtocol(), url.getHost(), url.getPort(), "/"); //$NON-NLS-1$<br></font>		} catch (MalformedURLException e) {<br>			Assert.isTrue(false, "internal error"); //$NON-NLS-1$<br>		}<br><br>		return null;<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.lang.RuntimePermission "getClassLoader";</li>
+<li>permission java.lang.RuntimePermission "modifyThread";</li>
+<li>permission java.net.NetPermission "specifyStreamHandler";</li>
+<li>permission java.net.SocketPermission "???host???", "resolve";</li>
+<li>permission java.net.SocketPermission "???host???:???port???", "connect";</li>
+<li>permission java.net.SocketPermission "localhost", "resolve";</li>
+<li>permission java.net.SocketPermission "localhost:1024-", "resolve";</li>
+<li>permission java.net.SocketPermission "localhost:1024-:???port???", "connect";</li>
+<li>permission java.net.SocketPermission "localhost:???port???", "connect";</li>
+<li>permission java.util.PropertyPermission "java.protocol.handler.pkgs", "read";</li>
+<li>permission org.osgi.framework.ServicePermission "<unknown>", "<unknown>";</unknown></unknown></li>
+<li>permission org.osgi.framework.ServicePermission "<unknown>", "get";</unknown></li>
+<li>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", "<unknown>";</unknown></li>
+<li>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", "get";</li>
+<li>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "<unknown>";</unknown></li>
+<li>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>This private method is called by the getRoot and doPrivilged is in place for the getRoot method.  therefore it is ok to ignore this method.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/URLTool.html#L264" , parent.fbot ); return false'>Line# 269</a> java.net.URL removeTrailingSlash( java.net.URL )<br>   Permission: java.lang.RuntimePermission "getClassLoader"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.lang.RuntimePermission "modifyThread"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.NetPermission "specifyStreamHandler"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.SocketPermission "???host???", "resolve"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.SocketPermission "???host???:???port???", "connect"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.SocketPermission "localhost", "resolve"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.SocketPermission "localhost:1024-", "resolve"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.SocketPermission "localhost:1024-:???port???", "connect"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.net.SocketPermission "localhost:???port???", "connect"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: java.util.PropertyPermission "java.protocol.handler.pkgs", "read"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "<unknown>", "<unknown>"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "<unknown>", "get"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", "<unknown>"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", "get"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "<unknown>"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get"<br>      Primordial/void java.net.URL.URL( java.lang.String, java.lang.String, int, java.lang.String )<br><br><br><b>CODE</b><br>
+/**
+	 * Returns the given URL with its trailing slash removed. If the URL has
+	 * no trailing slash, the URL is returned unchanged.
+	 * </unknown></unknown></unknown></unknown></unknown>* * *   *   * *   *   * *   *   * <table>
+	 <caption>Example</caption>
+	 <tbody><tr>
+	 <th>Given URL</th>
+	 <th>Returned URL</th>
+	 </tr><tr>
+	 <td>"http://hostname/folder"</td>
+	 <td>"http://hostname/folder"</td>
+	 </tr><tr>
+	 <td>"http://hostname/folder/</td>
+	 <td>"http://hostname/folder"</td>
+	 </tr></tbody></table>
+	 *
+	 * @param url a URL
+	 * @return    the given URL with its last slash removed
+	 */
+	public static URL removeTrailingSlash(URL url) {
+		String file = url.getFile();
+
+		if (file.endsWith("/")) { //$NON-NLS-1$
+			file = file.substring(0, file.length() - 1);
+			try {
+<font style="background-color: rgb(242, 197, 83);">				return new URL(url.getProtocol(), url.getHost(), url.getPort(), file);<br></font>			} catch (MalformedURLException e) {<br>				Assert.isTrue(false, e.getMessage());<br>			}<br>		} else {<br>			return url;<br>		}<br><br>		return null;<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.lang.RuntimePermission "getClassLoader";</li>
+<li>permission java.lang.RuntimePermission "modifyThread";</li>
+<li>permission java.net.NetPermission "specifyStreamHandler";</li>
+<li>permission java.net.SocketPermission "???host???", "resolve";</li>
+<li>permission java.net.SocketPermission "???host???:???port???", "connect";</li>
+<li>permission java.net.SocketPermission "localhost", "resolve";</li>
+<li>permission java.net.SocketPermission "localhost:1024-", "resolve";</li>
+<li>permission java.net.SocketPermission "localhost:1024-:???port???", "connect";</li>
+<li>permission java.net.SocketPermission "localhost:???port???", "connect";</li>
+<li>permission java.util.PropertyPermission "java.protocol.handler.pkgs", "read";</li>
+<li>permission org.osgi.framework.ServicePermission "<unknown>", "<unknown>";</unknown></unknown></li>
+<li>permission org.osgi.framework.ServicePermission "<unknown>", "get";</unknown></li>
+<li>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", "<unknown>";</unknown></li>
+<li>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", "get";</li>
+<li>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "<unknown>";</unknown></li>
+<li>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>Wrap the line as shown in the following:<br><br><br>	public static URL removeTrailingSlash(URL url) {<br>		String file = url.getFile();<br><br>		if (file.endsWith("/")) { //$NON-NLS-1$<br>			file = file.substring(0, file.length() - 1);<br>			try {<br><span
+ style="color: rgb(255, 0, 0);">				return getURL(url.getProtocol(), url.getHost(), url.getPort(), file);</span><br
+ style="color: rgb(255, 0, 0);">			} catch (MalformedURLException e) {<br>				Assert.isTrue(false, e.getMessage());<br>			}<br>		} else {<br>			return url;<br>		}<br><br>		return null;<br>	}<br><hr>
+</pre>
+</body>
+</html>

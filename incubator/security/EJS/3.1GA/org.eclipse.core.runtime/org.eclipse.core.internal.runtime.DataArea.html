@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Permission Analysis Report</title>
+  <script language="javaScript" src="linkUtil.js"></script>
+</head>
+<body>
+<h1>Permission Analysis Report</h1>
+<br>
+<h2>Analysis of: org.eclipse.core.runtime</h2>
+<b>Detail</b><br>
+<br>
+<pre>
+Class: <a href="foo"
+ onclick="return openURLinSrc( 'Application/org/eclipse/core/internal/runtime/DataArea.html' )">org.eclipse.core.internal.runtime.DataArea</a> (Application)<br>DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/DataArea.html#L101" , parent.fbot ); return false'>Line# 106</a> void createLocation(  )<br>   Permission: java.io.FilePermission "???file???", "read"<br>      Primordial/boolean java.io.File.mkdirs(  )<br>   Permission: java.io.FilePermission "???file???", "write"<br>      Primordial/boolean java.io.File.mkdirs(  )<br>   Permission: java.util.PropertyPermission "user.dir", "read"<br>      Primordial/boolean java.io.File.mkdirs(  )<br><br><br><b>CODE</b><br>
+private void createLocation() throws CoreException {
+		// append on the metadata location so that the whole structure is created.  
+		File file = location.append(F_META_AREA).toFile();
+		try {
+<font style="background-color: rgb(242, 197, 83);">			file.mkdirs();<br></font>		} catch (Exception e) {<br>			String message = NLS.bind(Messages.meta_couldNotCreate, file.getAbsolutePath());<br>			throw new CoreException(new Status(IStatus.ERROR, Platform.PI_RUNTIME, Platform.FAILED_WRITE_METADATA, message, e));<br>		}<br>		if (!file.canWrite()) {<br>			String message = NLS.bind(Messages.meta_readonly, file.getAbsolutePath());<br>			throw new CoreException(new Status(IStatus.ERROR, Platform.PI_RUNTIME, Platform.FAILED_WRITE_METADATA, message, null));<br>		}<br>		// set the log file location now that we created the data area<br>		IPath path = location.append(F_META_AREA).append(F_LOG);<br>		try {<br>			InternalPlatform.getDefault().getFrameworkLog().setFile(path.toFile(), true);<br>		} catch (IOException e) {<br>			e.printStackTrace();<br>		}<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.io.FilePermission "???file???", "read";</li>
+<li>permission java.io.FilePermission "???file???", "write";</li>
+<li>permission java.util.PropertyPermission "user.dir", "read";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>Each plug-in is granted the permission to the read/write to the directory that platform provides.  Therefore, just need to grant the above permissions to this <br>plug-in via OSGI-INF/permissions.perm file.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/DataArea.html#L103" , parent.fbot ); return false'>Line# 108</a> void createLocation(  )<br>   Permission: java.io.FilePermission "???file???", "read"<br>      Primordial/java.lang.String java.io.File.getAbsolutePath(  )<br>   Permission: java.util.PropertyPermission "user.dir", "read"<br>      Primordial/java.lang.String java.io.File.getAbsolutePath(  )<br><br><br><b>CODE</b><br>
+private void createLocation() throws CoreException {
+		// append on the metadata location so that the whole structure is created.  
+		File file = location.append(F_META_AREA).toFile();
+		try {
+			file.mkdirs();
+		} catch (Exception e) {
+<font style="background-color: rgb(242, 197, 83);">			String message = NLS.bind(Messages.meta_couldNotCreate, file.getAbsolutePath());<br></font>			throw new CoreException(new Status(IStatus.ERROR, Platform.PI_RUNTIME, Platform.FAILED_WRITE_METADATA, message, e));<br>		}<br>		if (!file.canWrite()) {<br>			String message = NLS.bind(Messages.meta_readonly, file.getAbsolutePath());<br>			throw new CoreException(new Status(IStatus.ERROR, Platform.PI_RUNTIME, Platform.FAILED_WRITE_METADATA, message, null));<br>		}<br>		// set the log file location now that we created the data area<br>		IPath path = location.append(F_META_AREA).append(F_LOG);<br>		try {<br>			InternalPlatform.getDefault().getFrameworkLog().setFile(path.toFile(), true);<br>		} catch (IOException e) {<br>			e.printStackTrace();<br>		}<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.io.FilePermission "???file???", "read";</li>
+<li>permission java.util.PropertyPermission "user.dir", "read";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>See prior conclusion.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/DataArea.html#L106" , parent.fbot ); return false'>Line# 111</a> void createLocation(  )<br>   Permission: java.io.FilePermission "???file???", "write"<br>      Primordial/boolean java.io.File.canWrite(  )<br><br><br><b>CODE</b><br>
+private void createLocation() throws CoreException {
+		// append on the metadata location so that the whole structure is created.  
+		File file = location.append(F_META_AREA).toFile();
+		try {
+			file.mkdirs();
+		} catch (Exception e) {
+			String message = NLS.bind(Messages.meta_couldNotCreate, file.getAbsolutePath());
+			throw new CoreException(new Status(IStatus.ERROR, Platform.PI_RUNTIME, Platform.FAILED_WRITE_METADATA, message, e));
+		}
+<font style="background-color: rgb(242, 197, 83);">		if (!file.canWrite()) {<br></font>			String message = NLS.bind(Messages.meta_readonly, file.getAbsolutePath());<br>			throw new CoreException(new Status(IStatus.ERROR, Platform.PI_RUNTIME, Platform.FAILED_WRITE_METADATA, message, null));<br>		}<br>		// set the log file location now that we created the data area<br>		IPath path = location.append(F_META_AREA).append(F_LOG);<br>		try {<br>			InternalPlatform.getDefault().getFrameworkLog().setFile(path.toFile(), true);<br>		} catch (IOException e) {<br>			e.printStackTrace();<br>		}<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.io.FilePermission "???file???", "write";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>See prior conclusion.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/DataArea.html#L107" , parent.fbot ); return false'>Line# 112</a> void createLocation(  )<br>   Permission: java.io.FilePermission "???file???", "read"<br>      Primordial/java.lang.String java.io.File.getAbsolutePath(  )<br>   Permission: java.util.PropertyPermission "user.dir", "read"<br>      Primordial/java.lang.String java.io.File.getAbsolutePath(  )<br><br><br><b>CODE</b><br>
+private void createLocation() throws CoreException {
+		// append on the metadata location so that the whole structure is created.  
+		File file = location.append(F_META_AREA).toFile();
+		try {
+			file.mkdirs();
+		} catch (Exception e) {
+			String message = NLS.bind(Messages.meta_couldNotCreate, file.getAbsolutePath());
+			throw new CoreException(new Status(IStatus.ERROR, Platform.PI_RUNTIME, Platform.FAILED_WRITE_METADATA, message, e));
+		}
+		if (!file.canWrite()) {
+<font style="background-color: rgb(242, 197, 83);">			String message = NLS.bind(Messages.meta_readonly, file.getAbsolutePath());<br></font>			throw new CoreException(new Status(IStatus.ERROR, Platform.PI_RUNTIME, Platform.FAILED_WRITE_METADATA, message, null));<br>		}<br>		// set the log file location now that we created the data area<br>		IPath path = location.append(F_META_AREA).append(F_LOG);<br>		try {<br>			InternalPlatform.getDefault().getFrameworkLog().setFile(path.toFile(), true);<br>		} catch (IOException e) {<br>			e.printStackTrace();<br>		}<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.io.FilePermission "???file???", "read";</li>
+<li>permission java.util.PropertyPermission "user.dir", "read";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>See prior conclusion.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/DataArea.html#L78" , parent.fbot ); return false'>Line# 83</a> org.eclipse.core.runtime.IPath getPreferenceLocation( java.lang.String, boolean )<br>   Permission: java.io.FilePermission "???file???", "read"<br>      Primordial/boolean java.io.File.mkdirs(  )<br>   Permission: java.io.FilePermission "???file???", "write"<br>      Primordial/boolean java.io.File.mkdirs(  )<br>   Permission: java.util.PropertyPermission "user.dir", "read"<br>      Primordial/boolean java.io.File.mkdirs(  )<br><br><br><b>CODE</b><br>
+public IPath getPreferenceLocation(String bundleName, boolean create) throws IllegalStateException {
+		IPath result = getStateLocation(bundleName);
+		if (create)
+<font style="background-color: rgb(242, 197, 83);">			result.toFile().mkdirs();<br></font>		return result.append(PREFERENCES_FILE_NAME);<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.io.FilePermission "???file???", "read";</li>
+<li>permission java.io.FilePermission "???file???", "write";</li>
+<li>permission java.util.PropertyPermission "user.dir", "read";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>See priror conclusion.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/DataArea.html#L84" , parent.fbot ); return false'>Line# 89</a> void initializeLocation(  )<br>   Permission: java.io.FilePermission "???file???", "read"<br>      Primordial/boolean java.io.File.exists(  )<br><br><br><b>CODE</b><br>
+private void initializeLocation() throws CoreException {
+		// check if the location can be created
+<font style="background-color: rgb(242, 197, 83);">		if (location.toFile().exists()) {<br></font>			if (!location.toFile().isDirectory()) {<br>				String message = NLS.bind(Messages.meta_notDir, location);<br>				throw new CoreException(new Status(IStatus.ERROR, Platform.PI_RUNTIME, Platform.FAILED_WRITE_METADATA, message, null));<br>			}<br>		}<br>		//try infer the device if there isn't one (windows)<br>		if (location.getDevice() == null)<br>			location = new Path(location.toFile().getAbsolutePath());<br>		createLocation();<br>		initialized = true;<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.io.FilePermission "???file???", "read";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>See prior conclusion.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/DataArea.html#L85" , parent.fbot ); return false'>Line# 90</a> void initializeLocation(  )<br>   Permission: java.io.FilePermission "???file???", "read"<br>      Primordial/boolean java.io.File.isDirectory(  )<br><br><br><b>CODE</b><br>
+private void initializeLocation() throws CoreException {
+		// check if the location can be created
+		if (location.toFile().exists()) {
+<font style="background-color: rgb(242, 197, 83);">			if (!location.toFile().isDirectory()) {<br></font>				String message = NLS.bind(Messages.meta_notDir, location);<br>				throw new CoreException(new Status(IStatus.ERROR, Platform.PI_RUNTIME, Platform.FAILED_WRITE_METADATA, message, null));<br>			}<br>		}<br>		//try infer the device if there isn't one (windows)<br>		if (location.getDevice() == null)<br>			location = new Path(location.toFile().getAbsolutePath());<br>		createLocation();<br>		initialized = true;<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.io.FilePermission "???file???", "read";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>See prior conclusion.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/runtime/DataArea.html#L92" , parent.fbot ); return false'>Line# 97</a> void initializeLocation(  )<br>   Permission: java.io.FilePermission "???file???", "read"<br>      Primordial/java.lang.String java.io.File.getAbsolutePath(  )<br>   Permission: java.util.PropertyPermission "user.dir", "read"<br>      Primordial/java.lang.String java.io.File.getAbsolutePath(  )<br><br><br><b>CODE</b><br>
+private void initializeLocation() throws CoreException {
+		// check if the location can be created
+		if (location.toFile().exists()) {
+			if (!location.toFile().isDirectory()) {
+				String message = NLS.bind(Messages.meta_notDir, location);
+				throw new CoreException(new Status(IStatus.ERROR, Platform.PI_RUNTIME, Platform.FAILED_WRITE_METADATA, message, null));
+			}
+		}
+		//try infer the device if there isn't one (windows)
+		if (location.getDevice() == null)
+<font style="background-color: rgb(242, 197, 83);">			location = new Path(location.toFile().getAbsolutePath());<br></font>		createLocation();<br>		initialized = true;<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.io.FilePermission "???file???", "read";</li>
+<li>permission java.util.PropertyPermission "user.dir", "read";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>See prior conclusion.<br><hr>
+</pre>
+</body>
+</html>

@@ -1,0 +1,188 @@
+<html><head><title>Permission Analysis Report</title><script language='javaScript' src='linkUtil.js'></script></head><body>
+<h1>Permission Analysis Report</h1>
+<BR/><H2>Analysis of: org.eclipse.core.runtime</H2>
+<B>Detail</B><BR/><BR/>
+<pre>
+
+Class: <a href="foo" onClick="return openURLinSrc( 'Application/org/eclipse/core/runtime/adaptor/EclipseClassLoader.html' )">org.eclipse.core.runtime.adaptor.EclipseClassLoader</a> (Application)
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/runtime/adaptor/EclipseClassLoader.html#L184" , parent.fbot ); return false'>Line# 189</a> java.lang.Class defineClass( java.lang.String, byte[], int, int, org.eclipse.osgi.framework.adaptor.core.DefaultClassLoader$ClasspathEntry )
+   Permission: java.io.SerializablePermission "enableSubclassImplementation"
+      Primordial/java.lang.Package java.lang.ClassLoader.getPackage( java.lang.String )
+   Permission: java.lang.RuntimePermission "getClassLoader"
+      Primordial/java.lang.Package java.lang.ClassLoader.getPackage( java.lang.String )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * Override defineClass to allow for package defining.
+	 */
+	protected Class defineClass(String name, byte[] classbytes, int off, int len, ClasspathEntry classpathEntry) throws ClassFormatError {
+		if (!DEFINE_PACKAGES)
+			return super.defineClass(name, classbytes, off, len, classpathEntry);
+
+		// Define the package if it is not the default package.
+		int lastIndex = name.lastIndexOf('.');
+		if (lastIndex != -1) {
+			String packageName = name.substring(0, lastIndex);
+<FONT style="background-color:#F2C553;display;inline">			Package pkg = getPackage(packageName);
+</FONT>			if (pkg == null) {
+				// get info about the package from the classpath entry's manifest.
+				String specTitle = null, specVersion = null, specVendor = null, implTitle = null, implVersion = null, implVendor = null;
+				Manifest mf = ((EclipseClasspathEntry) classpathEntry).getManifest();
+				if (mf != null) {
+					Attributes mainAttributes = mf.getMainAttributes();
+					String dirName = packageName.replace('.', '/') + '/';
+					Attributes packageAttributes = mf.getAttributes(dirName);
+					boolean noEntry = false;
+					if (packageAttributes == null) {
+						noEntry = true;
+						packageAttributes = mainAttributes;
+					}
+					specTitle = packageAttributes.getValue(Attributes.Name.SPECIFICATION_TITLE);
+					if (specTitle == null && !noEntry)
+						specTitle = mainAttributes.getValue(Attributes.Name.SPECIFICATION_TITLE);
+					specVersion = packageAttributes.getValue(Attributes.Name.SPECIFICATION_VERSION);
+					if (specVersion == null && !noEntry)
+						specVersion = mainAttributes.getValue(Attributes.Name.SPECIFICATION_VERSION);
+					specVendor = packageAttributes.getValue(Attributes.Name.SPECIFICATION_VENDOR);
+					if (specVendor == null && !noEntry)
+						specVendor = mainAttributes.getValue(Attributes.Name.SPECIFICATION_VENDOR);
+					implTitle = packageAttributes.getValue(Attributes.Name.IMPLEMENTATION_TITLE);
+					if (implTitle == null && !noEntry)
+						implTitle = mainAttributes.getValue(Attributes.Name.IMPLEMENTATION_TITLE);
+					implVersion = packageAttributes.getValue(Attributes.Name.IMPLEMENTATION_VERSION);
+					if (implVersion == null && !noEntry)
+						implVersion = mainAttributes.getValue(Attributes.Name.IMPLEMENTATION_VERSION);
+					implVendor = packageAttributes.getValue(Attributes.Name.IMPLEMENTATION_VENDOR);
+					if (implVendor == null && !noEntry)
+						implVendor = mainAttributes.getValue(Attributes.Name.IMPLEMENTATION_VENDOR);
+				}
+				// The package is not defined yet define it before we define the class.
+				// TODO still need to seal packages.
+				definePackage(packageName, specTitle, specVersion, specVendor, implTitle, implVersion, implVendor, null);
+			}
+		}
+		return super.defineClass(name, classbytes, off, len, classpathEntry);
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.io.SerializablePermission "enableSubclassImplementation";</LI>
+<LI>permission java.lang.RuntimePermission "getClassLoader";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/runtime/adaptor/EclipseClassLoader.html#L219" , parent.fbot ); return false'>Line# 224</a> java.lang.Class defineClass( java.lang.String, byte[], int, int, org.eclipse.osgi.framework.adaptor.core.DefaultClassLoader$ClasspathEntry )
+   Permission: java.io.SerializablePermission "enableSubclassImplementation"
+      Primordial/java.lang.Package java.lang.ClassLoader.definePackage( java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.net.URL )
+   Permission: java.lang.RuntimePermission "getClassLoader"
+      Primordial/java.lang.Package java.lang.ClassLoader.definePackage( java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.net.URL )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * Override defineClass to allow for package defining.
+	 */
+	protected Class defineClass(String name, byte[] classbytes, int off, int len, ClasspathEntry classpathEntry) throws ClassFormatError {
+		if (!DEFINE_PACKAGES)
+			return super.defineClass(name, classbytes, off, len, classpathEntry);
+
+		// Define the package if it is not the default package.
+		int lastIndex = name.lastIndexOf('.');
+		if (lastIndex != -1) {
+			String packageName = name.substring(0, lastIndex);
+			Package pkg = getPackage(packageName);
+			if (pkg == null) {
+				// get info about the package from the classpath entry's manifest.
+				String specTitle = null, specVersion = null, specVendor = null, implTitle = null, implVersion = null, implVendor = null;
+				Manifest mf = ((EclipseClasspathEntry) classpathEntry).getManifest();
+				if (mf != null) {
+					Attributes mainAttributes = mf.getMainAttributes();
+					String dirName = packageName.replace('.', '/') + '/';
+					Attributes packageAttributes = mf.getAttributes(dirName);
+					boolean noEntry = false;
+					if (packageAttributes == null) {
+						noEntry = true;
+						packageAttributes = mainAttributes;
+					}
+					specTitle = packageAttributes.getValue(Attributes.Name.SPECIFICATION_TITLE);
+					if (specTitle == null && !noEntry)
+						specTitle = mainAttributes.getValue(Attributes.Name.SPECIFICATION_TITLE);
+					specVersion = packageAttributes.getValue(Attributes.Name.SPECIFICATION_VERSION);
+					if (specVersion == null && !noEntry)
+						specVersion = mainAttributes.getValue(Attributes.Name.SPECIFICATION_VERSION);
+					specVendor = packageAttributes.getValue(Attributes.Name.SPECIFICATION_VENDOR);
+					if (specVendor == null && !noEntry)
+						specVendor = mainAttributes.getValue(Attributes.Name.SPECIFICATION_VENDOR);
+					implTitle = packageAttributes.getValue(Attributes.Name.IMPLEMENTATION_TITLE);
+					if (implTitle == null && !noEntry)
+						implTitle = mainAttributes.getValue(Attributes.Name.IMPLEMENTATION_TITLE);
+					implVersion = packageAttributes.getValue(Attributes.Name.IMPLEMENTATION_VERSION);
+					if (implVersion == null && !noEntry)
+						implVersion = mainAttributes.getValue(Attributes.Name.IMPLEMENTATION_VERSION);
+					implVendor = packageAttributes.getValue(Attributes.Name.IMPLEMENTATION_VENDOR);
+					if (implVendor == null && !noEntry)
+						implVendor = mainAttributes.getValue(Attributes.Name.IMPLEMENTATION_VENDOR);
+				}
+				// The package is not defined yet define it before we define the class.
+				// TODO still need to seal packages.
+<FONT style="background-color:#F2C553;display;inline">				definePackage(packageName, specTitle, specVersion, specVendor, implTitle, implVersion, implVendor, null);
+</FONT>			}
+		}
+		return super.defineClass(name, classbytes, off, len, classpathEntry);
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.io.SerializablePermission "enableSubclassImplementation";</LI>
+<LI>permission java.lang.RuntimePermission "getClassLoader";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/runtime/adaptor/EclipseClassLoader.html#L321" , parent.fbot ); return false'>Line# 326</a> java.lang.String substituteVars( java.lang.String )
+   Permission: java.util.PropertyPermission "", "read"
+      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )
+   Permission: java.util.PropertyPermission "???key???", "read"
+      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )
+<BR/><BR/><B>CODE</B><BR/>
+private String substituteVars(String cp) {
+		StringBuffer buf = new StringBuffer(cp.length());
+		StringTokenizer st = new StringTokenizer(cp, VARIABLE_DELIM_STRING, true);
+		boolean varStarted = false; // indicates we are processing a var subtitute
+		String var = null; // the current var key
+		while (st.hasMoreElements()) {
+			String tok = st.nextToken();
+			if (VARIABLE_DELIM_STRING.equals(tok)) {
+				if (!varStarted) {
+					varStarted = true; // we found the start of a var
+					var = ""; //$NON-NLS-1$
+				} else {
+					// we have found the end of a var
+					String prop = null;
+					// get the value of the var from system properties
+					if (var != null && var.length() > 0)
+<FONT style="background-color:#F2C553;display;inline">						prop = System.getProperty(var);
+</FONT>					if (prop != null)
+						// found a value; use it
+						buf.append(prop);
+					else
+						// could not find a value append the var name w/o delims 
+						buf.append(var == null ? "" : var); //$NON-NLS-1$
+					varStarted = false;
+					var = null;
+				}
+			} else {
+				if (!varStarted)
+					buf.append(tok); // the token is not part of a var
+				else
+					var = tok; // the token is the var key; save the key to process when we find the end token
+			}
+		}
+		if (var != null)
+			// found a case of $var at the end of the cp with no trailing $; just append it as is.
+			buf.append(VARIABLE_DELIM_CHAR).append(var);
+		return buf.toString();
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "", "read";</LI>
+<LI>permission java.util.PropertyPermission "???key???", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+</pre>
+</body></html>

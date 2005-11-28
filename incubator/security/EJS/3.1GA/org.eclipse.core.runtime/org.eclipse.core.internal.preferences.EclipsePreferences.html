@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Permission Analysis Report</title>
+  <script language="javaScript" src="linkUtil.js"></script>
+</head>
+<body>
+<h1>Permission Analysis Report</h1>
+<br>
+<h2>Analysis of: org.eclipse.core.runtime</h2>
+<b>Detail</b><br>
+<br>
+<pre>Class: <a href="foo"
+ onclick="return openURLinSrc( 'Application/org/eclipse/core/internal/preferences/EclipsePreferences.html' )">org.eclipse.core.internal.preferences.EclipsePreferences</a> (Application)<br>DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/preferences/EclipsePreferences.html#L188" , parent.fbot ); return false'>Line# 193</a> java.lang.String[] computeChildren( org.eclipse.core.runtime.IPath )<br>   Permission: java.io.FilePermission "???file???", "read"<br>      Primordial/java.io.File[] java.io.File.listFiles(  )<br><br><br><b>CODE</b><br>
+protected String[] computeChildren(IPath root) {
+		if (root == null)
+			return EMPTY_STRING_ARRAY;
+		IPath dir = root.append(DEFAULT_PREFERENCES_DIRNAME);
+		final ArrayList result = new ArrayList();
+		final String extension = '.' + PREFS_FILE_EXTENSION;
+		File file = dir.toFile();
+<font style="background-color: rgb(242, 197, 83);">		File[] totalFiles = file.listFiles();<br></font>		if (totalFiles != null) {<br>			for (int i = 0; i &lt; totalFiles.length; i++) {<br>				if (totalFiles[i].isFile()) {<br>					String filename = totalFiles[i].getName();<br>					if (filename.endsWith(extension)) {<br>						String shortName = filename.substring(0, filename.length() - extension.length());<br>						result.add(shortName);<br>					}<br>				}<br>			}<br>		}<br>		return (String[]) result.toArray(EMPTY_STRING_ARRAY);<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.io.FilePermission "???file???", "read";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>The parameter variable root is tainted and provided by the caller.  <br><br>Grant the permisssion to this plug-in via OSGI-INF/permissions.perm file.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/preferences/EclipsePreferences.html#L191" , parent.fbot ); return false'>Line# 196</a> java.lang.String[] computeChildren( org.eclipse.core.runtime.IPath )<br>   Permission: java.io.FilePermission "???file???", "read"<br>      Primordial/boolean java.io.File.isFile(  )<br><br><br><b>CODE</b><br>
+protected String[] computeChildren(IPath root) {
+		if (root == null)
+			return EMPTY_STRING_ARRAY;
+		IPath dir = root.append(DEFAULT_PREFERENCES_DIRNAME);
+		final ArrayList result = new ArrayList();
+		final String extension = '.' + PREFS_FILE_EXTENSION;
+		File file = dir.toFile();
+		File[] totalFiles = file.listFiles();
+		if (totalFiles != null) {
+			for (int i = 0; i &lt; totalFiles.length; i++) {
+<font style="background-color: rgb(242, 197, 83);">				if (totalFiles[i].isFile()) {<br></font>					String filename = totalFiles[i].getName();<br>					if (filename.endsWith(extension)) {<br>						String shortName = filename.substring(0, filename.length() - extension.length());<br>						result.add(shortName);<br>					}<br>				}<br>			}<br>		}<br>		return (String[]) result.toArray(EMPTY_STRING_ARRAY);<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.io.FilePermission "???file???", "read";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>See the above conclusion.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/preferences/EclipsePreferences.html#L599" , parent.fbot ); return false'>Line# 604</a> java.util.Properties loadProperties( org.eclipse.core.runtime.IPath )<br>   Permission: java.io.FilePermission "???file???", "read"<br>      Primordial/void java.io.FileInputStream.FileInputStream( java.io.File )<br><br><br><b>CODE</b><br>
+protected static Properties loadProperties(IPath location) throws BackingStoreException {
+		if (InternalPlatform.DEBUG_PREFERENCE_GENERAL)
+			Policy.debug("Loading preferences from file: " + location); //$NON-NLS-1$
+		InputStream input = null;
+		Properties result = new Properties();
+		try {
+<font style="background-color: rgb(242, 197, 83);">			input = new BufferedInputStream(new FileInputStream(location.toFile()));<br></font>			result.load(input);<br>		} catch (FileNotFoundException e) {<br>			// file doesn't exist but that's ok.<br>			if (InternalPlatform.DEBUG_PREFERENCE_GENERAL)<br>				Policy.debug("Preference file does not exist: " + location); //$NON-NLS-1$<br>			return result;<br>		} catch (IOException e) {<br>			String message = NLS.bind(Messages.preferences_loadException, location);<br>			log(new Status(IStatus.INFO, Platform.PI_RUNTIME, IStatus.INFO, message, e));<br>			throw new BackingStoreException(message);<br>		} finally {<br>			if (input != null)<br>				try {<br>					input.close();<br>				} catch (IOException e) {<br>					// ignore<br>				}<br>		}<br>		return result;<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.io.FilePermission "???file???", "read";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>See the above conclusion.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/preferences/EclipsePreferences.html#L600" , parent.fbot ); return false'>Line# 605</a> java.util.Properties loadProperties( org.eclipse.core.runtime.IPath )<br>   Permission: java.util.PropertyPermission "java.vendor.url.bug", "read"<br>      Primordial/void java.util.Properties.load( java.io.InputStream )<br><br><br><b>CODE</b><br>
+protected static Properties loadProperties(IPath location) throws BackingStoreException {
+		if (InternalPlatform.DEBUG_PREFERENCE_GENERAL)
+			Policy.debug("Loading preferences from file: " + location); //$NON-NLS-1$
+		InputStream input = null;
+		Properties result = new Properties();
+		try {
+			input = new BufferedInputStream(new FileInputStream(location.toFile()));
+<font style="background-color: rgb(242, 197, 83);">			result.load(input);<br></font>		} catch (FileNotFoundException e) {<br>			// file doesn't exist but that's ok.<br>			if (InternalPlatform.DEBUG_PREFERENCE_GENERAL)<br>				Policy.debug("Preference file does not exist: " + location); //$NON-NLS-1$<br>			return result;<br>		} catch (IOException e) {<br>			String message = NLS.bind(Messages.preferences_loadException, location);<br>			log(new Status(IStatus.INFO, Platform.PI_RUNTIME, IStatus.INFO, message, e));<br>			throw new BackingStoreException(message);<br>		} finally {<br>			if (input != null)<br>				try {<br>					input.close();<br>				} catch (IOException e) {<br>					// ignore<br>				}<br>		}<br>		return result;<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.util.PropertyPermission "java.vendor.url.bug", "read";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>See the above conclusion.<hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/preferences/EclipsePreferences.html#L975" , parent.fbot ); return false'>Line# 980</a> void save( org.eclipse.core.runtime.IPath )<br>   Permission: java.io.FilePermission "???file???", "write"<br>      Primordial/void java.io.FileOutputStream.FileOutputStream( java.lang.String, boolean )<br><br><br><b>CODE</b><br>
+protected void save(IPath location) throws BackingStoreException {
+		if (location == null) {
+			if (InternalPlatform.DEBUG_PREFERENCE_GENERAL)
+				Policy.debug("Unable to determine location of preference file for node: " + absolutePath()); //$NON-NLS-1$
+			return;
+		}
+		if (InternalPlatform.DEBUG_PREFERENCE_GENERAL)
+			Policy.debug("Saving preferences to file: " + location); //$NON-NLS-1$
+		Properties table = convertToProperties(new Properties(), EMPTY_STRING);
+		if (table.isEmpty()) {
+			// nothing to save. delete existing file if one exists.
+			if (location.toFile().exists() &amp;&amp; !location.toFile().delete()) {
+				String message = NLS.bind(Messages.preferences_failedDelete, location);
+				log(new Status(IStatus.WARNING, Platform.PI_RUNTIME, IStatus.WARNING, message, null));
+			}
+			return;
+		}
+		table.put(VERSION_KEY, VERSION_VALUE);
+		OutputStream output = null;
+		FileOutputStream fos = null;
+		try {
+			// create the parent dirs if they don't exist
+			File parentFile = location.toFile().getParentFile();
+			if (parentFile == null)
+				return;
+			parentFile.mkdirs();
+			// set append to be false so we overwrite current settings.
+<font style="background-color: rgb(242, 197, 83);">			fos = new FileOutputStream(location.toOSString(), false);<br></font>			output = new BufferedOutputStream(fos);<br>			table.store(output, null);<br>			output.flush();<br>			fos.getFD().sync();<br>		} catch (IOException e) {<br>			String message = NLS.bind(Messages.preferences_saveException, location);<br>			log(new Status(IStatus.ERROR, Platform.PI_RUNTIME, IStatus.ERROR, message, e));<br>			throw new BackingStoreException(message);<br>		} finally {<br>			if (output != null)<br>				try {<br>					output.close();<br>				} catch (IOException e) {<br>					// ignore<br>				}<br>		}<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.io.FilePermission "???file???", "write";</li>
+</ul><br><br>
+<b>Conclusion:<br><br></b>See the above conclusion.<br><hr>
+</pre>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<html><head><title>Permission Analysis Report</title><script language='javaScript' src='linkUtil.js'></script></head><body>
+<h1>Permission Analysis Report</h1>
+<BR/><H2>Analysis of: org.eclipse.core.runtime</H2>
+<B>Detail</B><BR/><BR/>
+<pre>
+
+Class: <a href="foo" onClick="return openURLinSrc( 'Application/org/eclipse/core/runtime/internal/adaptor/EclipseCommandProvider.html' )">org.eclipse.core.runtime.internal.adaptor.EclipseCommandProvider</a> (Application)
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/runtime/internal/adaptor/EclipseCommandProvider.html#L125" , parent.fbot ); return false'>Line# 130</a> void _getprop( org.eclipse.osgi.framework.console.CommandInterpreter )
+   Permission: java.util.PropertyPermission "*", "read,write"
+      Primordial/java.util.Properties java.lang.System.getProperties(  )
+<BR/><BR/><B>CODE</B><BR/>
+public void _getprop(CommandInterpreter ci) throws Exception {
+<FONT style="background-color:#F2C553;display;inline">		Properties allProperties = System.getProperties();
+</FONT>		String filter = ci.nextArgument();
+		Enumeration propertyNames = allProperties.keys();
+		while(propertyNames.hasMoreElements()) {
+			String prop = (String) propertyNames.nextElement();
+			if (filter == null || prop.startsWith(filter)) {
+				ci.println(prop+'='+allProperties.getProperty(prop));
+			}
+		}
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "*", "read,write";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+</pre>
+</body></html>

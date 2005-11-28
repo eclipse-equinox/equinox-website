@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Permission Analysis Report</title>
+  <script language="javaScript" src="linkUtil.js"></script>
+</head>
+<body>
+<h1>Permission Analysis Report</h1>
+<br>
+<h2>Analysis of: org.eclipse.core.runtime</h2>
+<b>Detail</b><br>
+<br>
+<pre>
+Class: <a href="foo"
+ onclick="return openURLinSrc( 'Application/org/eclipse/core/internal/boot/PlatformURLHandler.html' )">org.eclipse.core.internal.boot.PlatformURLHandler</a> (Application)<br>DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/boot/PlatformURLHandler.html#L62" , parent.fbot ); return false'>Line# 67</a> void register( java.lang.String, java.lang.Class )<br>   Permission: java.lang.RuntimePermission "accessDeclaredMembers"<br>      Primordial/java.lang.reflect.Constructor java.lang.Class.getConstructor( java.lang.Class[] )<br>   Permission: java.lang.RuntimePermission "getClassLoader"<br>      Primordial/java.lang.reflect.Constructor java.lang.Class.getConstructor( java.lang.Class[] )<br><br><br><b>CODE</b><br>
+public static void register(String type, Class connectionClass) {
+		try {
+<font style="background-color: rgb(242, 197, 83);">			Constructor c = connectionClass.getConstructor(new Class[] {URL.class});<br></font>			connectionType.put(type, c);<br>		} catch (NoSuchMethodException e) {<br>			//don't register connection classes that don't conform to the spec<br>		}<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.lang.RuntimePermission "accessDeclaredMembers";</li>
+<li>permission java.lang.RuntimePermission "getClassLoader";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>Wrap the above identified location in a doPrivilged action.<br><br>	public static void register(String type, final Class connectionClass) {<br><span
+ style="color: rgb(255, 0, 0);">		try {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			Constructor c;</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			if(System.getSecurityManager() == null) {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">				c = connectionClass.getConstructor(new Class[] {URL.class});</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			} else {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">				c = (Constructor) AccessController.doPrivileged(new PrivilegedExceptionAction() {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">					public Object run() throws NoSuchMethodException{</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">						return connectionClass.getConstructor(new Class[] {URL.class});</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">					}</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">				});</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			}</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			connectionType.put(type, c);</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">		} catch (NoSuchMethodException e) {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			//don't register connection classes that don't conform to the spec</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">		} catch (PrivilegedActionException e) {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			//	don't register connection classes that don't conform to the spec</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">		}</span><br>	}<br><br>Grant the above required permissions to this plug-in via OSGI-INF/permissions.perm file.<br><hr>
+</pre>
+</body>
+</html>

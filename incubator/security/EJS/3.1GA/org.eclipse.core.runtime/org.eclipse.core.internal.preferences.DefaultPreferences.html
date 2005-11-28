@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Permission Analysis Report</title>
+  <script language="javaScript" src="linkUtil.js"></script>
+</head>
+<body>
+<h1>Permission Analysis Report</h1>
+<br>
+<h2>Analysis of: org.eclipse.core.runtime</h2>
+<b>Detail</b><br>
+<br>
+<pre>
+Class: <a href="foo"
+ onclick="return openURLinSrc( 'Application/org/eclipse/core/internal/preferences/DefaultPreferences.html' )">org.eclipse.core.internal.preferences.DefaultPreferences</a> (Application)<br>DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/preferences/DefaultPreferences.html#L250" , parent.fbot ); return false'>Line# 255</a> void applyProductDefaults(  )<br>   Permission: java.lang.RuntimePermission "getClassLoader"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: java.lang.RuntimePermission "modifyThread"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: java.net.NetPermission "specifyStreamHandler"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: java.net.SocketPermission "???host???", "resolve"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: java.net.SocketPermission "???host???:???port???", "connect"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: java.net.SocketPermission "localhost", "resolve"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: java.net.SocketPermission "localhost:1024-", "resolve"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: java.net.SocketPermission "localhost:1024-:???port???", "connect"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: java.net.SocketPermission "localhost:???port???", "connect"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: java.util.PropertyPermission "java.protocol.handler.pkgs", "read"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "<unknown>", "<unknown>"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "<unknown>", "get"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", "<unknown>"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", "get"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "<unknown>"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br><br><br><b>CODE</b><br>
+private void applyProductDefaults() {
+		// prime the cache the first time
+		if (productCustomization == null) {
+			IProduct product = Platform.getProduct();
+			if (product == null) {
+				if (InternalPlatform.DEBUG_PREFERENCE_GENERAL)
+					Policy.debug("Product not available to set product default preference overrides."); //$NON-NLS-1$
+				return;
+			}
+			String id = product.getId();
+			if (id == null) {
+				if (InternalPlatform.DEBUG_PREFERENCE_GENERAL)
+					Policy.debug("Product ID not available to apply product-level preference defaults."); //$NON-NLS-1$
+				return;
+			}
+			Bundle bundle = product.getDefiningBundle();
+			if (bundle == null) {
+				if (InternalPlatform.DEBUG_PREFERENCE_GENERAL)
+					Policy.debug("Bundle not available to apply product-level preference defaults for product id: " + id); //$NON-NLS-1$
+				return;
+			}
+			String value = product.getProperty(PRODUCT_KEY);
+			URL url = null;
+			URL transURL = null;
+			if (value == null) {
+				if (InternalPlatform.DEBUG_PREFERENCE_GENERAL)
+					Policy.debug("Product : " + id + " does not define preference customization file. Using legacy file: plugin_customization.ini"); //$NON-NLS-1$//$NON-NLS-2$
+				value = LEGACY_PRODUCT_CUSTOMIZATION_FILENAME;
+				url = Platform.find(bundle, new Path(LEGACY_PRODUCT_CUSTOMIZATION_FILENAME));
+				transURL = Platform.find(bundle, NL_DIR.append(value).removeFileExtension().addFileExtension(PROPERTIES_FILE_EXTENSION));
+			} else {
+				// try to convert the key to a URL
+				try {
+<font style="background-color: rgb(242, 197, 83);">					url = new URL(value);<br></font>				} catch (MalformedURLException e) {<br>					// didn't work so treat it as a filename<br>					url = Platform.find(bundle, new Path(value));<br>					if (url != null)<br>						transURL = Platform.find(bundle, NL_DIR.append(value).removeFileExtension().addFileExtension(PROPERTIES_FILE_EXTENSION));<br>				}<br>			}<br>			if (url == null) {<br>				if (InternalPlatform.DEBUG_PREFERENCE_GENERAL)<br>					Policy.debug("Product preference customization file: " + value + " not found for bundle: " + id); //$NON-NLS-1$//$NON-NLS-2$<br>				return;<br>			}<br>			if (transURL == null &amp;&amp; InternalPlatform.DEBUG_PREFERENCE_GENERAL)<br>				Policy.debug("No preference translations found for product/file: " + bundle.getSymbolicName() + '/' + value); //$NON-NLS-1$<br><br>			productCustomization = loadProperties(url);<br>			productTranslation = loadProperties(transURL);<br>		}<br>		applyDefaults(null, productCustomization, productTranslation);<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br></unknown></unknown></unknown></unknown></unknown><ul>
+<li>permission java.lang.RuntimePermission "getClassLoader";</li>
+<li>permission java.lang.RuntimePermission "modifyThread";</li>
+<li>permission java.net.NetPermission "specifyStreamHandler";</li>
+<li>permission java.net.SocketPermission "???host???", "resolve";</li>
+<li>permission java.net.SocketPermission "???host???:???port???", "connect";</li>
+<li>permission java.net.SocketPermission "localhost", "resolve";</li>
+<li>permission java.net.SocketPermission "localhost:1024-", "resolve";</li>
+<li>permission java.net.SocketPermission "localhost:1024-:???port???", "connect";</li>
+<li>permission java.net.SocketPermission "localhost:???port???", "connect";</li>
+<li>permission java.util.PropertyPermission "java.protocol.handler.pkgs", "read";</li>
+<li>permission org.osgi.framework.ServicePermission "<unknown>", "<unknown>";</unknown></unknown></li>
+<li>permission org.osgi.framework.ServicePermission "<unknown>", "get";</unknown></li>
+<li>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", "<unknown>";</unknown></li>
+<li>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", "get";</li>
+<li>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "<unknown>";</unknown></li>
+<li>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>The caller should not need the above required permissions.  This is private method and the best place to wrap is <br>the calling method as shown in the following:<br><br>private void loadDefaults() {<br>		applyRuntimeDefaults();<br>		applyBundleDefaults();<br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">		if(System.getSecurityManager() == null) {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			applyProductDefaults();</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">		} else {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			AccessController.doPrivileged(new PrivilegedAction() {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">				public Object run() {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">					applyProductDefaults();</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">					return null;</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">				}</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			});</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">		}</span><br>		applyCommandLineDefaults();<br><br>}<br><br>Grant the above required permissions to this plug-in via OSGI-INF/permissions.perm file.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/preferences/DefaultPreferences.html#L344" , parent.fbot ); return false'>Line# 349</a> java.util.Properties loadProperties( java.lang.String )<br>   Permission: java.io.FilePermission "???file???", "read"<br>      Primordial/void java.io.FileInputStream.FileInputStream( java.lang.String )<br><br><br><b>CODE</b><br>
+private Properties loadProperties(String filename) {
+		Properties result = new Properties();
+		InputStream input = null;
+		try {
+<font style="background-color: rgb(242, 197, 83);">			input = new BufferedInputStream(new FileInputStream(filename));<br></font>			result.load(input);<br>		} catch (FileNotFoundException e) {<br>			if (InternalPlatform.DEBUG_PREFERENCE_GENERAL)<br>				Policy.debug("Preference customization file not found: " + filename); //$NON-NLS-1$<br>		} catch (IOException e) {<br>			String message = NLS.bind(Messages.preferences_loadException, filename);<br>			IStatus status = new Status(IStatus.ERROR, Platform.PI_RUNTIME, IStatus.ERROR, message, e);<br>			InternalPlatform.getDefault().log(status);<br>		} finally {<br>			if (input != null)<br>				try {<br>					input.close();<br>				} catch (IOException e) {<br>					// ignore<br>				}<br>		}<br>		return result;<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.io.FilePermission "???file???", "read";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>This method is eventually called by the loadDefaults method.  See above conclusion.  <br><br>Grant the above required permissions to this plug-in via OSGI-INF/permissions.perm file.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/preferences/DefaultPreferences.html#L345" , parent.fbot ); return false'>Line# 350</a> java.util.Properties loadProperties( java.lang.String )<br>   Permission: java.util.PropertyPermission "java.vendor.url.bug", "read"<br>      Primordial/void java.util.Properties.load( java.io.InputStream )<br><br><br><b>CODE</b><br>
+private Properties loadProperties(String filename) {
+		Properties result = new Properties();
+		InputStream input = null;
+		try {
+			input = new BufferedInputStream(new FileInputStream(filename));
+<font style="background-color: rgb(242, 197, 83);">			result.load(input);<br></font>		} catch (FileNotFoundException e) {<br>			if (InternalPlatform.DEBUG_PREFERENCE_GENERAL)<br>				Policy.debug("Preference customization file not found: " + filename); //$NON-NLS-1$<br>		} catch (IOException e) {<br>			String message = NLS.bind(Messages.preferences_loadException, filename);<br>			IStatus status = new Status(IStatus.ERROR, Platform.PI_RUNTIME, IStatus.ERROR, message, e);<br>			InternalPlatform.getDefault().log(status);<br>		} finally {<br>			if (input != null)<br>				try {<br>					input.close();<br>				} catch (IOException e) {<br>					// ignore<br>				}<br>		}<br>		return result;<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.util.PropertyPermission "java.vendor.url.bug", "read";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br><br>This method is eventually called by the loadDefaults method.  See above conclusion.  <br><br>Grant the above required permissions to this plug-in via OSGI-INF/permissions.perm file.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/core/internal/preferences/DefaultPreferences.html#L323" , parent.fbot ); return false'>Line# 328</a> java.util.Properties loadProperties( java.net.URL )<br>   Permission: java.util.PropertyPermission "java.vendor.url.bug", "read"<br>      Primordial/void java.util.Properties.load( java.io.InputStream )<br><br><br><b>CODE</b><br>
+private Properties loadProperties(URL url) {
+		Properties result = new Properties();
+		if (url == null)
+			return result;
+		InputStream input = null;
+		try {
+			input = url.openStream();
+<font style="background-color: rgb(242, 197, 83);">			result.load(input);<br></font>		} catch (IOException e) {<br>			if (InternalPlatform.DEBUG_PREFERENCE_GENERAL) {<br>				Policy.debug("Problem opening stream to preference customization file: " + url); //$NON-NLS-1$<br>				e.printStackTrace();<br>			}<br>		} finally {<br>			if (input != null)<br>				try {<br>					input.close();<br>				} catch (IOException e) {<br>					// ignore<br>				}<br>		}<br>		return result;<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.util.PropertyPermission "java.vendor.url.bug", "read";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br><br>This method is eventually called by the loadDefaults method.  See above conclusion.  <br><br>Grant the above required permissions to this plug-in via OSGI-INF/permissions.perm file.<br><hr>
+</pre>
+</body>
+</html>

@@ -1,0 +1,1148 @@
+Index: .cvsignore
+===================================================================
+RCS file: /cvsroot/eclipse/equinox-incubator/org.eclipse.core.runtime/.cvsignore,v
+retrieving revision 1.1
+diff -u -r1.1 .cvsignore
+--- .cvsignore	21 Jul 2004 18:23:43 -0000	1.1
++++ .cvsignore	28 Nov 2005 14:56:28 -0000
+@@ -1 +1,3 @@
+-bin
+\ No newline at end of file
++bin
++Analysis
++org.eclipse.core.runtime.jar
+Index: META-INF/MANIFEST.MF
+===================================================================
+RCS file: /cvsroot/eclipse/equinox-incubator/org.eclipse.core.runtime/META-INF/MANIFEST.MF,v
+retrieving revision 1.1.8.2
+diff -u -r1.1.8.2 MANIFEST.MF
+--- META-INF/MANIFEST.MF	8 Aug 2005 13:41:48 -0000	1.1.8.2
++++ META-INF/MANIFEST.MF	28 Nov 2005 14:56:28 -0000
+@@ -18,5 +18,5 @@
+  org.eclipse.core.runtime.jobs,
+  org.eclipse.core.runtime.preferences,
+  org.osgi.service.prefs;version="1.0"
+-Require-Bundle: 
+- org.eclipse.osgi; visibility:=reexport
++Require-Bundle: org.eclipse.common.secureaction,
++ org.eclipse.osgi;visibility:=reexport
+Index: src/org/eclipse/core/internal/boot/PlatformURLBaseConnection.java
+===================================================================
+RCS file: /cvsroot/eclipse/equinox-incubator/org.eclipse.core.runtime/src/org/eclipse/core/internal/boot/PlatformURLBaseConnection.java,v
+retrieving revision 1.1.8.1
+diff -u -r1.1.8.1 PlatformURLBaseConnection.java
+--- src/org/eclipse/core/internal/boot/PlatformURLBaseConnection.java	8 Aug 2005 13:41:49 -0000	1.1.8.1
++++ src/org/eclipse/core/internal/boot/PlatformURLBaseConnection.java	28 Nov 2005 14:56:28 -0000
+@@ -12,6 +12,10 @@
+ 
+ import java.io.IOException;
+ import java.net.URL;
++import java.security.AccessController;
++import java.security.PrivilegedActionException;
++
++import org.eclipse.common.secureaction.url.SecureURL;
+ import org.eclipse.core.internal.runtime.Messages;
+ import org.eclipse.osgi.util.NLS;
+ 
+@@ -36,6 +40,7 @@
+ 	}
+ 
+ 	protected URL resolve() throws IOException {
++		URL rtvValue = null;
+ 		String spec = url.getFile().trim();
+ 		if (spec.startsWith("/")) //$NON-NLS-1$
+ 			spec = spec.substring(1);
+@@ -43,7 +48,21 @@
+ 			String message = NLS.bind(Messages.url_badVariant, url);
+ 			throw new IOException(message);
+ 		}
+-		return spec.length() == PLATFORM.length() + 1 ? installURL : new URL(installURL, spec.substring(PLATFORM.length() + 1));
++		
++		if(spec.length() == PLATFORM.length() + 1) {
++			rtvValue = installURL;
++		} else {
++			if(System.getSecurityManager() == null) {
++				rtvValue = new URL(installURL, spec.substring(PLATFORM.length() + 1));
++			} else {
++				try {
++					rtvValue = (URL) AccessController.doPrivileged(new SecureURL(installURL, spec.substring(PLATFORM.length() + 1)));
++				} catch (PrivilegedActionException pae) {
++					throw (IOException) new IOException().initCause(pae);
++				}
++			}
++		}
++		return rtvValue;
+ 	}
+ 
+ 	public static void startup(URL url) {
+Index: src/org/eclipse/core/internal/boot/PlatformURLConnection.java
+===================================================================
+RCS file: /cvsroot/eclipse/equinox-incubator/org.eclipse.core.runtime/src/org/eclipse/core/internal/boot/PlatformURLConnection.java,v
+retrieving revision 1.1.8.1
+diff -u -r1.1.8.1 PlatformURLConnection.java
+--- src/org/eclipse/core/internal/boot/PlatformURLConnection.java	8 Aug 2005 13:41:49 -0000	1.1.8.1
++++ src/org/eclipse/core/internal/boot/PlatformURLConnection.java	28 Nov 2005 14:56:28 -0000
+@@ -13,6 +13,9 @@
+ import java.io.*;
+ import java.net.URL;
+ import java.net.URLConnection;
++import java.security.AccessController;
++import java.security.PrivilegedActionException;
++import java.security.PrivilegedExceptionAction;
+ import java.util.Enumeration;
+ import java.util.Properties;
+ import org.eclipse.core.internal.runtime.InternalPlatform;
+@@ -92,11 +95,25 @@
+ 
+ 		if (shouldCache(asLocal)) {
+ 			try {
+-				URL inCache = getURLInCache();
++				
++				// check if the security manager is on.  Wrap the getURLInCache in a doPrivilged,
++				// so the permissions do not get propagated down to the call stack
++				URL inCache;
++				if(System.getSecurityManager() == null) {
++					inCache = getURLInCache();
++				} else {
++					inCache = (URL) AccessController.doPrivileged(new PrivilegedExceptionAction() {
++						public Object run() throws IOException {
++							return getURLInCache();
++						}
++					});
++				}
+ 				if (inCache != null)
+ 					connection = inCache.openConnection();
+ 			} catch (IOException e) {
+ 				// failed to cache ... will use resolved URL instead
++			} catch (PrivilegedActionException e) {
++				// failed to cache ... will use resolved URL instead
+ 			}
+ 		}
+ 
+Index: src/org/eclipse/core/internal/boot/PlatformURLHandler.java
+===================================================================
+RCS file: /cvsroot/eclipse/equinox-incubator/org.eclipse.core.runtime/src/org/eclipse/core/internal/boot/PlatformURLHandler.java,v
+retrieving revision 1.1.8.1
+diff -u -r1.1.8.1 PlatformURLHandler.java
+--- src/org/eclipse/core/internal/boot/PlatformURLHandler.java	8 Aug 2005 13:41:49 -0000	1.1.8.1
++++ src/org/eclipse/core/internal/boot/PlatformURLHandler.java	28 Nov 2005 14:56:28 -0000
+@@ -13,6 +13,9 @@
+ import java.io.IOException;
+ import java.lang.reflect.Constructor;
+ import java.net.*;
++import java.security.AccessController;
++import java.security.PrivilegedActionException;
++import java.security.PrivilegedExceptionAction;
+ import java.util.Hashtable;
+ import org.eclipse.core.internal.runtime.Messages;
+ import org.eclipse.osgi.util.NLS;
+@@ -62,12 +65,23 @@
+ 		return connection;
+ 	}
+ 
+-	public static void register(String type, Class connectionClass) {
++	public static void register(String type, final Class connectionClass) {
+ 		try {
+-			Constructor c = connectionClass.getConstructor(new Class[] {URL.class});
++			Constructor c;
++			if(System.getSecurityManager() == null) {
++				c = connectionClass.getConstructor(new Class[] {URL.class});
++			} else {
++				c = (Constructor) AccessController.doPrivileged(new PrivilegedExceptionAction() {
++					public Object run() throws NoSuchMethodException{
++						return connectionClass.getConstructor(new Class[] {URL.class});
++					}
++				});
++			}
+ 			connectionType.put(type, c);
+ 		} catch (NoSuchMethodException e) {
+ 			//don't register connection classes that don't conform to the spec
++		} catch (PrivilegedActionException e) {
++			//	don't register connection classes that don't conform to the spec
+ 		}
+ 	}
+ 	
+Index: src/org/eclipse/core/internal/jobs/WorkerPool.java
+===================================================================
+RCS file: /cvsroot/eclipse/equinox-incubator/org.eclipse.core.runtime/src/org/eclipse/core/internal/jobs/WorkerPool.java,v
+retrieving revision 1.1.8.2
+diff -u -r1.1.8.2 WorkerPool.java
+--- src/org/eclipse/core/internal/jobs/WorkerPool.java	8 Aug 2005 13:41:19 -0000	1.1.8.2
++++ src/org/eclipse/core/internal/jobs/WorkerPool.java	28 Nov 2005 14:56:28 -0000
+@@ -10,6 +10,9 @@
+  *******************************************************************************/
+ package org.eclipse.core.internal.jobs;
+ 
++import java.security.AccessController;
++import java.security.PrivilegedAction;
++
+ import org.eclipse.core.internal.runtime.Assert;
+ import org.eclipse.core.runtime.IStatus;
+ import org.eclipse.core.runtime.jobs.Job;
+@@ -133,7 +136,17 @@
+ 		//create a thread if all threads are busy and we're under the max size
+ 		//if the job is high priority, we start a thread no matter what
+ 		if (busyThreads >= numThreads) {
+-			Worker worker = new Worker(this);
++			Worker worker;
++			if(System.getSecurityManager() == null) {
++				worker = new Worker(this);
++			} else {
++				final WorkerPool tmpWorkerPool = this;
++				worker = (Worker) AccessController.doPrivileged(new PrivilegedAction() {
++					public Object run() {
++						return new Worker(tmpWorkerPool);
++					}
++				});
++			}
+ 			add(worker);
+ 			if (JobManager.DEBUG)
+ 				JobManager.debug("worker added to pool: " + worker); //$NON-NLS-1$
+Index: src/org/eclipse/core/internal/preferences/DefaultPreferences.java
+===================================================================
+RCS file: /cvsroot/eclipse/equinox-incubator/org.eclipse.core.runtime/src/org/eclipse/core/internal/preferences/DefaultPreferences.java,v
+retrieving revision 1.1.8.2
+diff -u -r1.1.8.2 DefaultPreferences.java
+--- src/org/eclipse/core/internal/preferences/DefaultPreferences.java	8 Aug 2005 13:41:04 -0000	1.1.8.2
++++ src/org/eclipse/core/internal/preferences/DefaultPreferences.java	28 Nov 2005 14:56:28 -0000
+@@ -13,6 +13,8 @@
+ import java.io.*;
+ import java.net.MalformedURLException;
+ import java.net.URL;
++import java.security.AccessController;
++import java.security.PrivilegedAction;
+ import java.util.*;
+ import org.eclipse.core.internal.runtime.*;
+ import org.eclipse.core.runtime.*;
+@@ -314,7 +316,16 @@
+ 	private void loadDefaults() {
+ 		applyRuntimeDefaults();
+ 		applyBundleDefaults();
+-		applyProductDefaults();
++		if(System.getSecurityManager() == null) {
++			applyProductDefaults();
++		} else {
++			AccessController.doPrivileged(new PrivilegedAction() {
++				public Object run() {
++					applyProductDefaults();
++					return null;
++				}
++			});
++		}
+ 		applyCommandLineDefaults();
+ 	}
+ 
+Index: src/org/eclipse/core/internal/preferences/PreferenceForwarder.java
+===================================================================
+RCS file: /cvsroot/eclipse/equinox-incubator/org.eclipse.core.runtime/src/org/eclipse/core/internal/preferences/PreferenceForwarder.java,v
+retrieving revision 1.1.8.2
+diff -u -r1.1.8.2 PreferenceForwarder.java
+--- src/org/eclipse/core/internal/preferences/PreferenceForwarder.java	8 Aug 2005 13:41:04 -0000	1.1.8.2
++++ src/org/eclipse/core/internal/preferences/PreferenceForwarder.java	28 Nov 2005 14:56:28 -0000
+@@ -11,8 +11,12 @@
+ package org.eclipse.core.internal.preferences;
+ 
+ import java.io.*;
++import java.security.AccessController;
++import java.security.PrivilegedActionException;
+ import java.util.Iterator;
+ import java.util.Properties;
++
++import org.eclipse.common.secureaction.property.LoadPropertyFromInputStreamAction;
+ import org.eclipse.core.internal.runtime.InternalPlatform;
+ import org.eclipse.core.runtime.*;
+ import org.eclipse.core.runtime.preferences.DefaultScope;
+@@ -788,7 +792,15 @@
+ 	 */
+ 	public void load(InputStream in) throws IOException {
+ 		Properties result = new Properties();
+-		result.load(in);
++		if(System.getSecurityManager() == null) {
++			result.load(in);
++		} else {
++			try {
++				AccessController.doPrivileged(new LoadPropertyFromInputStreamAction(result, in));
++			} catch (PrivilegedActionException e) {
++				throw (IOException) new IOException().initCause(e);
++			}
++		}
+ 		convertFromProperties(result);
+ 		// We loaded the prefs from a non-default location so now
+ 		// store them to disk. This also clears the dirty flag
+Index: src/org/eclipse/core/internal/preferences/PreferencesService.java
+===================================================================
+RCS file: /cvsroot/eclipse/equinox-incubator/org.eclipse.core.runtime/src/org/eclipse/core/internal/preferences/PreferencesService.java,v
+retrieving revision 1.1.8.2
+diff -u -r1.1.8.2 PreferencesService.java
+--- src/org/eclipse/core/internal/preferences/PreferencesService.java	8 Aug 2005 13:41:04 -0000	1.1.8.2
++++ src/org/eclipse/core/internal/preferences/PreferencesService.java	28 Nov 2005 14:56:29 -0000
+@@ -11,7 +11,11 @@
+ package org.eclipse.core.internal.preferences;
+ 
+ import java.io.*;
++import java.security.AccessController;
++import java.security.PrivilegedActionException;
+ import java.util.*;
++
++import org.eclipse.common.secureaction.property.LoadPropertyFromInputStreamAction;
+ import org.eclipse.core.internal.runtime.*;
+ import org.eclipse.core.runtime.*;
+ import org.eclipse.core.runtime.preferences.*;
+@@ -662,9 +666,15 @@
+ 		// read the file into a properties object
+ 		Properties properties = new Properties();
+ 		try {
+-			properties.load(input);
++			if(System.getSecurityManager() == null) {
++				properties.load(input);
++			} else {
++				AccessController.doPrivileged(new LoadPropertyFromInputStreamAction(properties, input));
++			}
+ 		} catch (IOException e) {
+ 			throw new CoreException(createStatusError(Messages.preferences_importProblems, e));
++		} catch (PrivilegedActionException pae) {
++			throw (CoreException) new CoreException(createStatusError(Messages.preferences_importProblems, pae)).initCause(pae);
+ 		} finally {
+ 			try {
+ 				input.close();
+Index: src/org/eclipse/core/internal/registry/ExtensionRegistry.java
+===================================================================
+RCS file: /cvsroot/eclipse/equinox-incubator/org.eclipse.core.runtime/src/org/eclipse/core/internal/registry/ExtensionRegistry.java,v
+retrieving revision 1.1.8.2
+diff -u -r1.1.8.2 ExtensionRegistry.java
+--- src/org/eclipse/core/internal/registry/ExtensionRegistry.java	8 Aug 2005 13:41:00 -0000	1.1.8.2
++++ src/org/eclipse/core/internal/registry/ExtensionRegistry.java	28 Nov 2005 14:56:29 -0000
+@@ -15,6 +15,8 @@
+ import java.lang.reflect.Array;
+ import java.net.URL;
+ import java.net.URLConnection;
++import java.security.AccessController;
++import java.security.PrivilegedAction;
+ import java.util.*;
+ import org.eclipse.core.internal.runtime.*;
+ import org.eclipse.core.runtime.*;
+@@ -610,6 +612,46 @@
+ 	public ExtensionRegistry() {
+ 		boolean fromCache = false;
+ 		registryObjects = new RegistryObjectManager();
++		
++		if(System.getSecurityManager() == null) {
++			fromCache = readRegistry(fromCache);
++		} else {
++			final boolean tmpFromCache = fromCache;
++			Boolean fromCacheB = (Boolean) AccessController.doPrivileged(new PrivilegedAction() {
++				public Object run() {
++					return new Boolean(readRegistry(tmpFromCache));
++				}
++			});
++			fromCache = fromCacheB.booleanValue();
++		}
++
++		String debugOption = InternalPlatform.getDefault().getOption(OPTION_DEBUG_EVENTS_EXTENSION);
++		DEBUG = debugOption == null ? false : debugOption.equalsIgnoreCase("true"); //$NON-NLS-1$	
++		if (DEBUG)
++			addRegistryChangeListener(new IRegistryChangeListener() {
++				public void registryChanged(IRegistryChangeEvent event) {
++					System.out.println(event);
++				}
++			});
++
++		// register a listener to catch new bundle installations/resolutions.
++		pluginBundleListener = new EclipseBundleListener(this);
++		InternalPlatform.getDefault().getBundleContext().addBundleListener(pluginBundleListener);
++
++		// populate the registry with all the currently installed bundles.
++		// There is a small window here while processBundles is being
++		// called where the pluginBundleListener may receive a BundleEvent 
++		// to add/remove a bundle from the registry.  This is ok since
++		// the registry is a synchronized object and will not add the
++		// same bundle twice.
++		if (!fromCache)
++			pluginBundleListener.processBundles(InternalPlatform.getDefault().getBundleContext().getBundles());
++
++		InternalPlatform.getDefault().getBundleContext().registerService(IExtensionRegistry.class.getName(), this, new Hashtable());
++
++	}
++
++	private boolean readRegistry(boolean fromCache) {
+ 		if (!"true".equals(System.getProperty(InternalPlatform.PROP_NO_REGISTRY_CACHE))) { //$NON-NLS-1$
+ 			// Try to read the registry from the cache first. If that fails, create a new registry
+ 			long start = 0;
+@@ -663,31 +705,7 @@
+ 					System.out.println("Using registry cache..."); //$NON-NLS-1$
+ 			}
+ 		}
+-
+-		String debugOption = InternalPlatform.getDefault().getOption(OPTION_DEBUG_EVENTS_EXTENSION);
+-		DEBUG = debugOption == null ? false : debugOption.equalsIgnoreCase("true"); //$NON-NLS-1$	
+-		if (DEBUG)
+-			addRegistryChangeListener(new IRegistryChangeListener() {
+-				public void registryChanged(IRegistryChangeEvent event) {
+-					System.out.println(event);
+-				}
+-			});
+-
+-		// register a listener to catch new bundle installations/resolutions.
+-		pluginBundleListener = new EclipseBundleListener(this);
+-		InternalPlatform.getDefault().getBundleContext().addBundleListener(pluginBundleListener);
+-
+-		// populate the registry with all the currently installed bundles.
+-		// There is a small window here while processBundles is being
+-		// called where the pluginBundleListener may receive a BundleEvent 
+-		// to add/remove a bundle from the registry.  This is ok since
+-		// the registry is a synchronized object and will not add the
+-		// same bundle twice.
+-		if (!fromCache)
+-			pluginBundleListener.processBundles(InternalPlatform.getDefault().getBundleContext().getBundles());
+-
+-		InternalPlatform.getDefault().getBundleContext().registerService(IExtensionRegistry.class.getName(), this, new Hashtable());
+-
++		return fromCache;
+ 	}
+ 
+ 	public void stop() {
+@@ -702,6 +720,24 @@
+ 			return;
+ 		}
+ 			
++		
++		if(System.getSecurityManager() == null) {
++			createTmpFile();
++		} else {
++			AccessController.doPrivileged(new PrivilegedAction() {
++				public Object run() {
++					createTmpFile();
++					return null;
++				}
++			});
++		}
++
++		
++		if (currentFileManager != InternalPlatform.getDefault().getRuntimeFileManager())
++			currentFileManager.close();
++	}
++
++	private void createTmpFile() {
+ 		File tableFile = null;
+ 		File mainFile = null;
+ 		File extraFile = null;
+@@ -732,10 +768,8 @@
+ 		} catch (IOException e) {
+ 			//Ignore the exception since we can recompute the cache
+ 		}
+-		if (currentFileManager != InternalPlatform.getDefault().getRuntimeFileManager())
+-			currentFileManager.close();
+ 	}
+-
++	
+ 	/*
+ 	 * Clear the registry cache files from the file manager so on next start-up we recompute it.
+ 	 */
+Index: src/org/eclipse/core/internal/registry/RegistryObjectManager.java
+===================================================================
+RCS file: /cvsroot/eclipse/equinox-incubator/org.eclipse.core.runtime/src/org/eclipse/core/internal/registry/RegistryObjectManager.java,v
+retrieving revision 1.1.2.2
+diff -u -r1.1.2.2 RegistryObjectManager.java
+--- src/org/eclipse/core/internal/registry/RegistryObjectManager.java	8 Aug 2005 13:41:00 -0000	1.1.2.2
++++ src/org/eclipse/core/internal/registry/RegistryObjectManager.java	28 Nov 2005 14:56:29 -0000
+@@ -11,6 +11,8 @@
+ package org.eclipse.core.internal.registry;
+ 
+ import java.lang.ref.SoftReference;
++import java.security.AccessController;
++import java.security.PrivilegedAction;
+ import java.util.*;
+ import org.eclipse.core.internal.runtime.InternalPlatform;
+ import org.eclipse.core.runtime.InvalidRegistryObjectException;
+@@ -62,7 +64,20 @@
+ 
+ 	public RegistryObjectManager() {
+ 		extensionPoints = new HashtableOfStringAndInt();
+-		if ("true".equalsIgnoreCase(System.getProperty(InternalPlatform.PROP_NO_REGISTRY_FLUSHING))) { //$NON-NLS-1$
++		
++		// get the noRegistryFlushing value
++		String noRegistryFlushing;
++		if(System.getSecurityManager() == null) {
++			noRegistryFlushing = System.getProperty(InternalPlatform.PROP_NO_REGISTRY_FLUSHING);
++		} else {
++			noRegistryFlushing = (String) AccessController.doPrivileged(new PrivilegedAction() {
++				public Object run() {
++					return System.getProperty(InternalPlatform.PROP_NO_REGISTRY_FLUSHING);
++				}
++			});
++		}
++		
++		if ("true".equalsIgnoreCase(noRegistryFlushing)) { //$NON-NLS-1$
+ 			cache = new ReferenceMap(ReferenceMap.HARD, CACHE_INITIAL_SIZE, DEFAULT_LOADFACTOR);
+ 		} else {
+ 			cache = new ReferenceMap(ReferenceMap.SOFT, CACHE_INITIAL_SIZE, DEFAULT_LOADFACTOR);
+@@ -85,7 +100,20 @@
+ 		nextId = ((Integer) results[2]).intValue();
+ 		fromCache = true;
+ 
+-		if ("true".equalsIgnoreCase(System.getProperty(InternalPlatform.PROP_NO_LAZY_CACHE_LOADING))) { //$NON-NLS-1$
++		// get the noLazyRegistryCacheLoading value
++		String noLazyRegistryCacheLoading;
++		if(System.getSecurityManager() == null) {
++			noLazyRegistryCacheLoading = System.getProperty(InternalPlatform.PROP_NO_LAZY_CACHE_LOADING);
++		} else {
++			noLazyRegistryCacheLoading = (String) AccessController.doPrivileged(new PrivilegedAction() {
++				public Object run() {
++					return System.getProperty(InternalPlatform.PROP_NO_LAZY_CACHE_LOADING);
++				}
++			});
++		}
++
++		
++		if ("true".equalsIgnoreCase(noLazyRegistryCacheLoading)) { //$NON-NLS-1$
+ 			//TODO Here we could grow all the tables to the right size (ReferenceMap)
+ 			reader.setHoldObjects(true);
+ 			markOrphansHasDirty(getOrphans());
+Index: src/org/eclipse/core/internal/runtime/AuthorizationDatabase.java
+===================================================================
+RCS file: /cvsroot/eclipse/equinox-incubator/org.eclipse.core.runtime/src/org/eclipse/core/internal/runtime/AuthorizationDatabase.java,v
+retrieving revision 1.1.8.2
+diff -u -r1.1.8.2 AuthorizationDatabase.java
+--- src/org/eclipse/core/internal/runtime/AuthorizationDatabase.java	8 Aug 2005 13:40:57 -0000	1.1.8.2
++++ src/org/eclipse/core/internal/runtime/AuthorizationDatabase.java	28 Nov 2005 14:56:29 -0000
+@@ -12,6 +12,9 @@
+ 
+ import java.io.*;
+ import java.net.URL;
++import java.security.AccessController;
++import java.security.PrivilegedActionException;
++import java.security.PrivilegedExceptionAction;
+ import java.util.*;
+ import org.eclipse.core.runtime.*;
+ import org.eclipse.osgi.util.NLS;
+@@ -255,9 +258,18 @@
+ 			return;
+ 		}
+ 		try {
+-			InputStream input = new FileInputStream(file);
++			final InputStream input = new FileInputStream(file);
+ 			try {
+-				load(input);
++				if(System.getSecurityManager() == null) {
++					load(input);
++				} else {
++					AccessController.doPrivileged(new PrivilegedExceptionAction() {
++						public Object run() throws IOException, ClassNotFoundException, CoreException {
++							load(input);
++							return null;
++						}
++					});
++				}
+ 			} finally {
+ 				input.close();
+ 			}
+@@ -265,6 +277,8 @@
+ 			throw new CoreException(new Status(IStatus.ERROR, Platform.PI_RUNTIME, Platform.FAILED_READ_METADATA, NLS.bind(Messages.meta_unableToReadAuthorization, file), e));
+ 		} catch (ClassNotFoundException e) {
+ 			throw new CoreException(new Status(IStatus.ERROR, Platform.PI_RUNTIME, Platform.FAILED_READ_METADATA, NLS.bind(Messages.meta_unableToReadAuthorization, file), e));
++		} catch (PrivilegedActionException pae) {
++			throw (CoreException) new CoreException(new Status(IStatus.ERROR, Platform.PI_RUNTIME, Platform.FAILED_READ_METADATA, NLS.bind(Messages.meta_unableToReadAuthorization, file), pae.getException())).initCause(pae);
+ 		}
+ 	}
+ 
+Index: src/org/eclipse/core/internal/runtime/DevClassPathHelper.java
+===================================================================
+RCS file: /cvsroot/eclipse/equinox-incubator/org.eclipse.core.runtime/src/org/eclipse/core/internal/runtime/DevClassPathHelper.java,v
+retrieving revision 1.1.8.1
+diff -u -r1.1.8.1 DevClassPathHelper.java
+--- src/org/eclipse/core/internal/runtime/DevClassPathHelper.java	8 Aug 2005 13:40:57 -0000	1.1.8.1
++++ src/org/eclipse/core/internal/runtime/DevClassPathHelper.java	28 Nov 2005 14:56:29 -0000
+@@ -14,6 +14,10 @@
+ import java.io.InputStream;
+ import java.net.MalformedURLException;
+ import java.net.URL;
++import java.security.AccessController;
++import java.security.PrivilegedAction;
++import java.security.PrivilegedActionException;
++import java.security.PrivilegedExceptionAction;
+ import java.util.*;
+ 
+ public class DevClassPathHelper {
+@@ -23,16 +27,41 @@
+ 
+ 	static {
+ 		// Check the osgi.dev property to see if dev classpath entries have been defined.
+-		String osgiDev = System.getProperty(InternalPlatform.PROP_DEV);
++		String osgiDev;
++		
++		if(System.getSecurityManager() == null) {
++			osgiDev = System.getProperty(InternalPlatform.PROP_DEV);
++		} else {
++			osgiDev = (String) AccessController.doPrivileged(new PrivilegedAction() {
++				public Object run() {
++					return System.getProperty(InternalPlatform.PROP_DEV);
++				}
++			});
++		}
++		
+ 		if (osgiDev != null) {
+ 			try {
+ 				inDevelopmentMode = true;
+-				URL location = new URL(osgiDev);
++				
++				URL location;
++				if(System.getSecurityManager() == null) {
++					location = new URL(osgiDev);
++				} else {
++					final String tmpOSGIdev = osgiDev;
++					location = (URL) AccessController.doPrivileged(new PrivilegedExceptionAction() {
++						public Object run() throws MalformedURLException {
++							return new URL(tmpOSGIdev);
++						}
++					});
++				}
++				
+ 				devProperties = load(location);
+ 				if (devProperties != null)
+ 					devDefaultClasspath = getArrayFromList(devProperties.getProperty("*")); //$NON-NLS-1$
+ 			} catch (MalformedURLException e) {
+ 				devDefaultClasspath = getArrayFromList(osgiDev);
++			} catch (PrivilegedActionException e) {
++				devDefaultClasspath = getArrayFromList(osgiDev);
+ 			}
+ 		}
+ 	}
+Index: src/org/eclipse/core/internal/runtime/InternalPlatform.java
+===================================================================
+RCS file: /cvsroot/eclipse/equinox-incubator/org.eclipse.core.runtime/src/org/eclipse/core/internal/runtime/InternalPlatform.java,v
+retrieving revision 1.1.8.2
+diff -u -r1.1.8.2 InternalPlatform.java
+--- src/org/eclipse/core/internal/runtime/InternalPlatform.java	8 Aug 2005 13:40:57 -0000	1.1.8.2
++++ src/org/eclipse/core/internal/runtime/InternalPlatform.java	28 Nov 2005 14:56:29 -0000
+@@ -13,7 +13,13 @@
+ 
+ import java.io.*;
+ import java.net.*;
++import java.security.AccessController;
++import java.security.PrivilegedAction;
++import java.security.PrivilegedActionException;
++import java.security.PrivilegedExceptionAction;
+ import java.util.*;
++
++import org.eclipse.common.secureaction.property.SetPropertyAction;
+ import org.eclipse.core.internal.boot.*;
+ import org.eclipse.core.internal.content.ContentTypeManager;
+ import org.eclipse.core.internal.jobs.JobManager;
+@@ -511,12 +517,25 @@
+ 		// definition in the install location.
+ 		if (input == null)
+ 			try {
+-				URL url = new URL(PlatformURLBaseConnection.PLATFORM_URL_STRING + PLUGIN_PATH);
++				URL url;
++				
++				if(System.getSecurityManager() == null) {
++					url = new URL(PlatformURLBaseConnection.PLATFORM_URL_STRING + PLUGIN_PATH);
++				} else {
++					url = (URL) AccessController.doPrivileged(new PrivilegedExceptionAction() {
++						public Object run() throws MalformedURLException {
++							return new URL(PlatformURLBaseConnection.PLATFORM_URL_STRING + PLUGIN_PATH);
++						}
++					});
++				}
++				
+ 				input = url.openStream();
+ 			} catch (MalformedURLException e) {
+ 				//fall through
+ 			} catch (IOException e) {
+ 				//fall through
++			} catch (PrivilegedActionException e) {
++				//fall through
+ 			}
+ 
+ 		// nothing was found at the supplied location or in the install location
+@@ -573,7 +592,18 @@
+ 	public IProduct getProduct() {
+ 		if (product != null)
+ 			return product;
+-		String productId = System.getProperty(PROP_PRODUCT);
++		
++		String productId; 
++		if(System.getSecurityManager() == null) {
++			productId = System.getProperty(PROP_PRODUCT);
++		} else {
++			productId = (String) AccessController.doPrivileged(new PrivilegedAction() {
++				public Object run() {
++					return System.getProperty(PROP_PRODUCT);
++				}
++			});
++		}
++		
+ 		if (productId == null)
+ 			return null;
+ 		IConfigurationElement[] entries = getRegistry().getConfigurationElementsFor(Platform.PI_RUNTIME, Platform.PT_PRODUCT, productId);
+@@ -880,7 +910,7 @@
+ 			// look for the no registry cache flag
+ 			if (args[i].equalsIgnoreCase(NO_REGISTRY_CACHE)) {
+ 				// use the long way to set the property to compile against eeminimum
+-				System.getProperties().setProperty(PROP_NO_REGISTRY_CACHE, TRUE);
++				setSystemProperty(PROP_NO_REGISTRY_CACHE, TRUE);
+ 				found = true;
+ 			}
+ 
+@@ -888,7 +918,7 @@
+ 			// This will be processed below.
+ 			if (args[i].equalsIgnoreCase(NO_LAZY_REGISTRY_CACHE_LOADING)) {
+ 				// use the long way to set the property to compile against eeminimum
+-				System.getProperties().setProperty(PROP_NO_LAZY_CACHE_LOADING, TRUE);
++				setSystemProperty(PROP_NO_LAZY_CACHE_LOADING, TRUE);
+ 				found = true;
+ 			}
+ 
+@@ -934,14 +964,14 @@
+ 			// treat -feature as a synonym for -product for compatibility.
+ 			if (args[i - 1].equalsIgnoreCase(PRODUCT) || args[i - 1].equalsIgnoreCase(FEATURE)) {
+ 				// use the long way to set the property to compile against eeminimum
+-				System.getProperties().setProperty(PROP_PRODUCT, arg);
++				setSystemProperty(PROP_PRODUCT, arg);
+ 				found = true;
+ 			}
+ 
+ 			// look for the application to run.  
+ 			if (args[i - 1].equalsIgnoreCase(APPLICATION)) {
+ 				// use the long way to set the property to compile against eeminimum
+-				System.getProperties().setProperty(PROP_APPLICATION, arg);
++				setSystemProperty(PROP_APPLICATION, arg);
+ 				found = true;
+ 			}
+ 
+@@ -984,6 +1014,15 @@
+ 		return appArgs;
+ 	}
+ 
++	private void setSystemProperty(String key, String value) {
++		if(System.getSecurityManager() == null) {
++			System.getProperties().setProperty(key, value);
++		} else {
++			AccessController.doPrivileged(new SetPropertyAction(System.getProperties(), key, value));
++		}
++		
++	}
++	
+ 	private URL[] readPluginPath(InputStream input) {
+ 		Properties ini = new Properties();
+ 		try {
+@@ -991,17 +1030,29 @@
+ 		} catch (IOException e) {
+ 			return null;
+ 		}
+-		Vector result = new Vector(5);
++		final Vector result = new Vector(5);
+ 		for (Enumeration groups = ini.propertyNames(); groups.hasMoreElements();) {
+ 			String group = (String) groups.nextElement();
+ 			for (StringTokenizer entries = new StringTokenizer(ini.getProperty(group), ";"); entries.hasMoreElements();) { //$NON-NLS-1$
+ 				String entry = (String) entries.nextElement();
+ 				if (!entry.equals("")) //$NON-NLS-1$
+ 					try {
+-						result.addElement(new URL(entry));
++						if(System.getSecurityManager() == null) {
++							result.addElement(new URL(entry));
++						} else {
++							final String tmpEntry = entry;
++							AccessController.doPrivileged(new PrivilegedExceptionAction() {
++								public Object run() throws MalformedURLException {
++									result.addElement(new URL(tmpEntry));
++									return null;
++								}
++							});
++						}
+ 					} catch (MalformedURLException e) {
+ 						//intentionally ignore bad URLs
+ 						System.err.println("Ignoring plugin: " + entry); //$NON-NLS-1$
++					} catch (PrivilegedActionException e) {
++						System.err.println("Ignoring plugin: " + entry); //$NON-NLS-1$
+ 					}
+ 			}
+ 		}
+Index: src/org/eclipse/core/internal/runtime/PlatformURLConfigConnection.java
+===================================================================
+RCS file: /cvsroot/eclipse/equinox-incubator/org.eclipse.core.runtime/src/org/eclipse/core/internal/runtime/PlatformURLConfigConnection.java,v
+retrieving revision 1.1.2.1
+diff -u -r1.1.2.1 PlatformURLConfigConnection.java
+--- src/org/eclipse/core/internal/runtime/PlatformURLConfigConnection.java	8 Aug 2005 13:40:57 -0000	1.1.2.1
++++ src/org/eclipse/core/internal/runtime/PlatformURLConfigConnection.java	28 Nov 2005 14:56:29 -0000
+@@ -13,6 +13,10 @@
+ import java.io.*;
+ import java.net.URL;
+ import java.net.UnknownServiceException;
++import java.security.AccessController;
++import java.security.PrivilegedActionException;
++
++import org.eclipse.common.secureaction.url.SecureURL;
+ import org.eclipse.core.internal.boot.PlatformURLConnection;
+ import org.eclipse.core.internal.boot.PlatformURLHandler;
+ import org.eclipse.core.runtime.Platform;
+@@ -43,8 +47,20 @@
+ 		// resolution takes parent configuration into account (if it exists)
+ 		Location localConfig = Platform.getConfigurationLocation();
+ 		Location parentConfig = localConfig.getParentLocation();
+-		// assume we will find the file locally
+-		URL localURL = new URL(localConfig.getURL(), path);
++		
++		// create a local url appropriately assume we will find the file locally
++		URL localURL;
++		
++		if(System.getSecurityManager() == null) {
++			localURL= new URL(localConfig.getURL(), path);
++		} else {
++			try {
++				localURL = (URL) AccessController.doPrivileged(new SecureURL(localConfig.getURL(), path));
++			} catch (PrivilegedActionException e) {
++				throw (IOException) new IOException().initCause(e);
++			}
++		}
++		
+ 		if (!FILE_PROTOCOL.equals(localURL.getProtocol()) || parentConfig == null)
+ 			// we only support cascaded file: URLs
+ 			return localURL;
+@@ -52,8 +68,19 @@
+ 		if (localFile.exists())
+ 			// file exists in local configuration
+ 			return localURL;
++		
+ 		// try to find in the parent configuration
+-		URL parentURL = new URL(parentConfig.getURL(), path);
++		URL parentURL;
++		
++		if(System.getSecurityManager() == null) {
++			parentURL = new URL(parentConfig.getURL(), path);
++		} else {
++			try {
++				parentURL = (URL) AccessController.doPrivileged(new SecureURL(parentConfig.getURL(), path));
++			} catch (PrivilegedActionException e) {
++				throw (IOException) new IOException().initCause(e);
++			}
++		}
+ 		if (FILE_PROTOCOL.equals(parentURL.getProtocol())) {
+ 			// we only support cascaded file: URLs			
+ 			File parentFile = new File(parentURL.getPath());
+Index: src/org/eclipse/core/internal/runtime/PlatformURLFragmentConnection.java
+===================================================================
+RCS file: /cvsroot/eclipse/equinox-incubator/org.eclipse.core.runtime/src/org/eclipse/core/internal/runtime/PlatformURLFragmentConnection.java,v
+retrieving revision 1.1.8.1
+diff -u -r1.1.8.1 PlatformURLFragmentConnection.java
+--- src/org/eclipse/core/internal/runtime/PlatformURLFragmentConnection.java	8 Aug 2005 13:40:57 -0000	1.1.8.1
++++ src/org/eclipse/core/internal/runtime/PlatformURLFragmentConnection.java	28 Nov 2005 14:56:29 -0000
+@@ -17,6 +17,10 @@
+ 
+ import java.io.IOException;
+ import java.net.URL;
++import java.security.AccessController;
++import java.security.PrivilegedActionException;
++
++import org.eclipse.common.secureaction.url.SecureURL;
+ import org.eclipse.core.internal.boot.PlatformURLConnection;
+ import org.eclipse.core.internal.boot.PlatformURLHandler;
+ import org.eclipse.osgi.util.NLS;
+@@ -49,10 +53,20 @@
+ 		if (target == null)
+ 			throw new IOException(NLS.bind(Messages.url_resolveFragment, url));
+ 		URL result = target.getEntry("/"); //$NON-NLS-1$
+-		if (ix == -1 || (ix + 1) >= spec.length())
++		if (ix == -1 || (ix + 1) >= spec.length()) {
+ 			return result;
+-		else
+-			return new URL(result, spec.substring(ix + 1));
++		}
++		else {
++			if(System.getSecurityManager() == null) {
++				return new URL(result, spec.substring(ix + 1));
++			} else {
++				try {
++					return (URL) AccessController.doPrivileged(new SecureURL(result, spec.substring(ix+1)));
++				} catch (PrivilegedActionException e) {
++					throw (IOException) new IOException().initCause(e);
++				}
++			}
++		}
+ 	}
+ 
+ 	public static void startup() {
+Index: src/org/eclipse/core/internal/runtime/PlatformURLMetaConnection.java
+===================================================================
+RCS file: /cvsroot/eclipse/equinox-incubator/org.eclipse.core.runtime/src/org/eclipse/core/internal/runtime/PlatformURLMetaConnection.java,v
+retrieving revision 1.1.2.1
+diff -u -r1.1.2.1 PlatformURLMetaConnection.java
+--- src/org/eclipse/core/internal/runtime/PlatformURLMetaConnection.java	8 Aug 2005 13:40:57 -0000	1.1.2.1
++++ src/org/eclipse/core/internal/runtime/PlatformURLMetaConnection.java	28 Nov 2005 14:56:29 -0000
+@@ -12,6 +12,10 @@
+ 
+ import java.io.*;
+ import java.net.URL;
++import java.security.AccessController;
++import java.security.PrivilegedActionException;
++
++import org.eclipse.common.secureaction.url.URLFromFileAction;
+ import org.eclipse.core.internal.boot.PlatformURLConnection;
+ import org.eclipse.core.internal.boot.PlatformURLHandler;
+ import org.eclipse.core.runtime.IPath;
+@@ -46,7 +50,15 @@
+ 		IPath path = Platform.getStateLocation(target);
+ 		if (ix != -1 || (ix + 1) <= spec.length())
+ 			path = path.append(spec.substring(ix + 1));
+-		return path.toFile().toURL();
++		if(System.getSecurityManager() == null) {
++			return path.toFile().toURL();
++		} else {
++			try {
++				return (URL) AccessController.doPrivileged(new URLFromFileAction(path.toFile()));
++			} catch (PrivilegedActionException e) {
++				throw (IOException) new IOException().initCause(e);
++			}
++		}
+ 	}
+ 
+ 	public static void startup() {
+Index: src/org/eclipse/core/internal/runtime/PlatformURLPluginConnection.java
+===================================================================
+RCS file: /cvsroot/eclipse/equinox-incubator/org.eclipse.core.runtime/src/org/eclipse/core/internal/runtime/PlatformURLPluginConnection.java,v
+retrieving revision 1.1.8.1
+diff -u -r1.1.8.1 PlatformURLPluginConnection.java
+--- src/org/eclipse/core/internal/runtime/PlatformURLPluginConnection.java	8 Aug 2005 13:40:57 -0000	1.1.8.1
++++ src/org/eclipse/core/internal/runtime/PlatformURLPluginConnection.java	28 Nov 2005 14:56:29 -0000
+@@ -17,6 +17,10 @@
+ 
+ import java.io.IOException;
+ import java.net.URL;
++import java.security.AccessController;
++import java.security.PrivilegedActionException;
++
++import org.eclipse.common.secureaction.url.SecureURL;
+ import org.eclipse.core.internal.boot.PlatformURLConnection;
+ import org.eclipse.core.internal.boot.PlatformURLHandler;
+ import org.eclipse.osgi.util.NLS;
+@@ -54,7 +58,15 @@
+ 		if (result != null)
+ 			return result;
+ 		// if the result is null then force the creation of a URL that will throw FileNotFoundExceptions
+-		return new URL(target.getEntry("/"), spec.substring(ix + 1)); //$NON-NLS-1$
++		if(System.getSecurityManager() == null) {
++			return new URL(target.getEntry("/"), spec.substring(ix + 1)); //$NON-NLS-1$
++		} else {
++			try {
++				return (URL) AccessController.doPrivileged(new SecureURL(target.getEntry("/"), spec.substring(ix + 1)));
++			} catch (PrivilegedActionException e) {
++				throw (IOException) e.getException();
++			}
++		}
+ 		
+ 	}
+ 
+Index: src/org/eclipse/core/internal/runtime/ResourceTranslator.java
+===================================================================
+RCS file: /cvsroot/eclipse/equinox-incubator/org.eclipse.core.runtime/src/org/eclipse/core/internal/runtime/ResourceTranslator.java,v
+retrieving revision 1.1.8.1
+diff -u -r1.1.8.1 ResourceTranslator.java
+--- src/org/eclipse/core/internal/runtime/ResourceTranslator.java	8 Aug 2005 13:40:57 -0000	1.1.8.1
++++ src/org/eclipse/core/internal/runtime/ResourceTranslator.java	28 Nov 2005 14:56:29 -0000
+@@ -12,6 +12,8 @@
+ 
+ import java.net.URL;
+ import java.net.URLClassLoader;
++import java.security.AccessController;
++import java.security.PrivilegedAction;
+ import java.util.*;
+ import org.eclipse.osgi.service.localization.BundleLocalization;
+ import org.eclipse.osgi.util.ManifestElement;
+@@ -73,9 +75,17 @@
+ 		localizationServiceReference = null;
+ 	}
+ 
+-	public static ResourceBundle getResourceBundle(Bundle bundle) throws MissingResourceException {
+-		if (hasRuntime21(bundle))
+-			return ResourceBundle.getBundle("plugin", Locale.getDefault(), createTempClassloader(bundle)); //$NON-NLS-1$
++	public static ResourceBundle getResourceBundle(final Bundle bundle) throws MissingResourceException {
++		if (hasRuntime21(bundle)) {
++			if(System.getSecurityManager() == null) {
++				return ResourceBundle.getBundle("plugin", Locale.getDefault(), createTempClassloader(bundle)); //$NON-NLS-1$
++			}
++			return (ResourceBundle) AccessController.doPrivileged(new PrivilegedAction() {
++				public Object run() {
++					return ResourceBundle.getBundle("plugin", Locale.getDefault(), createTempClassloader(bundle)); //$NON-NLS-1$
++				}
++			});
++		}
+ 		return localizationService.getLocalization(bundle, null);
+ 	}
+ 
+Index: src/org/eclipse/core/internal/runtime/URLTool.java
+===================================================================
+RCS file: /cvsroot/eclipse/equinox-incubator/org.eclipse.core.runtime/src/org/eclipse/core/internal/runtime/URLTool.java,v
+retrieving revision 1.1.8.1
+diff -u -r1.1.8.1 URLTool.java
+--- src/org/eclipse/core/internal/runtime/URLTool.java	8 Aug 2005 13:40:57 -0000	1.1.8.1
++++ src/org/eclipse/core/internal/runtime/URLTool.java	28 Nov 2005 14:56:30 -0000
+@@ -12,8 +12,14 @@
+ 
+ import java.net.MalformedURLException;
+ import java.net.URL;
++import java.security.AccessController;
++
++import java.security.PrivilegedActionException;
++import java.security.PrivilegedExceptionAction;
+ import java.util.Vector;
+ 
++import org.eclipse.common.secureaction.url.URLFromAllFour;
++
+ /**
+  * A utility for manipulating <code>URL</code>s.
+  */
+@@ -44,10 +50,10 @@
+ 		if (file.endsWith("/")) //$NON-NLS-1$
+ 			return url;
+ 		try {
+-			return new URL(url.getProtocol(), url.getHost(), url.getPort(), file + "/"); //$NON-NLS-1$
++			return getURL(url.getProtocol(), url.getHost(), url.getPort(), file + "/"); //$NON-NLS-1$
+ 		} catch (MalformedURLException e) {
+ 			Assert.isTrue(false, "internal error"); //$NON-NLS-1$
+-		}
++		} 
+ 		return null;
+ 	}
+ 
+@@ -62,7 +68,7 @@
+ 		if (!file.endsWith("/")) //$NON-NLS-1$
+ 			file = file + "/"; //$NON-NLS-1$
+ 		try {
+-			return new URL(parent.getProtocol(), parent.getHost(), parent.getPort(), file + member);
++			return getURL(parent.getProtocol(), parent.getHost(), parent.getPort(), file + member);
+ 		} catch (MalformedURLException e) {
+ 			Assert.isTrue(false, "internal error"); //$NON-NLS-1$
+ 		}
+@@ -183,7 +189,7 @@
+ 			file = file.substring(0, lastSlashIndex + 1);
+ 
+ 		try {
+-			url = new URL(url.getProtocol(), url.getHost(), url.getPort(), file);
++			url = getURL(url.getProtocol(), url.getHost(), url.getPort(), file);
+ 		} catch (MalformedURLException e) {
+ 			Assert.isTrue(false, e.getMessage());
+ 		}
+@@ -209,8 +215,19 @@
+ 	 * @return          the root url of the given URL
+ 	 * @throws          MalformedURLException if the given URL is malformed
+ 	 */
+-	public static URL getRoot(String urlString) throws MalformedURLException {
+-		return getRoot(new URL(urlString));
++	public static URL getRoot(final String urlString) throws MalformedURLException {
++		if(System.getSecurityManager() == null) {
++			return getRoot(new URL(urlString));
++		}
++		try {
++			return (URL) AccessController.doPrivileged(new PrivilegedExceptionAction() {
++				public Object run() throws MalformedURLException {
++					return getRoot(new URL(urlString));
++				}
++			});
++		} catch (PrivilegedActionException pae) {
++			throw (MalformedURLException) pae.getException();
++		}
+ 	}
+ 
+ 	/**
+@@ -266,7 +283,7 @@
+ 		if (file.endsWith("/")) { //$NON-NLS-1$
+ 			file = file.substring(0, file.length() - 1);
+ 			try {
+-				return new URL(url.getProtocol(), url.getHost(), url.getPort(), file);
++				return getURL(url.getProtocol(), url.getHost(), url.getPort(), file);
+ 			} catch (MalformedURLException e) {
+ 				Assert.isTrue(false, e.getMessage());
+ 			}
+@@ -328,4 +345,21 @@
+ 
+ 		return true;
+ 	}
++	
++	/**
++	 * This method gets URL and is security manager sensitive
++	 * @return
++	 * @throws MalformedURLException 
++	 */
++	private static URL getURL(String protocol, String host, int port, String file) throws MalformedURLException {
++		if(System.getSecurityManager() == null) {
++			return new URL(protocol, host, port, file); 
++		} 
++		try {
++			return (URL) AccessController.doPrivileged(new URLFromAllFour(protocol, host, port, file));
++		} catch (PrivilegedActionException pae) {
++			throw (MalformedURLException) pae.getException();
++		}
++
++	}
+ }
+Index: src/org/eclipse/core/runtime/Platform.java
+===================================================================
+RCS file: /cvsroot/eclipse/equinox-incubator/org.eclipse.core.runtime/src/org/eclipse/core/runtime/Platform.java,v
+retrieving revision 1.1.8.2
+diff -u -r1.1.8.2 Platform.java
+--- src/org/eclipse/core/runtime/Platform.java	8 Aug 2005 13:40:45 -0000	1.1.8.2
++++ src/org/eclipse/core/runtime/Platform.java	28 Nov 2005 14:56:30 -0000
+@@ -13,6 +13,8 @@
+ import java.io.IOException;
+ import java.lang.reflect.Method;
+ import java.net.URL;
++import java.security.AccessController;
++import java.security.PrivilegedAction;
+ import java.util.*;
+ import org.eclipse.core.internal.runtime.*;
+ import org.eclipse.core.runtime.content.IContentTypeManager;
+@@ -511,7 +513,16 @@
+ 	 * Takes down the splash screen if one was put up.
+ 	 */
+ 	public static void endSplash() {
+-		InternalPlatform.getDefault().endSplash();
++		if(System.getSecurityManager() == null) {
++			InternalPlatform.getDefault().endSplash();
++		} else {
++			AccessController.doPrivileged(new PrivilegedAction() {
++				public Object run() {
++					InternalPlatform.getDefault().endSplash();
++					return null;
++				}
++			});
++		}
+ 	}
+ 
+ 	/**
+Index: OSGI-INF/permissions.perm
+===================================================================
+RCS file: OSGI-INF/permissions.perm
+diff -N OSGI-INF/permissions.perm
+--- /dev/null	1 Jan 1970 00:00:00 -0000
++++ OSGI-INF/permissions.perm	1 Jan 1970 00:00:00 -0000
+@@ -0,0 +1,30 @@
++# Generated by SWORD4J on Wed Nov 02 20:54:56 EST 2005
++(java.io.FilePermission "<<ALL FILES>>" "delete")
++(java.io.FilePermission "<<ALL FILES>>" "read")
++(java.io.FilePermission "<<ALL FILES>>" "write")
++(java.io.SerializablePermission "enableSubclassImplementation")
++(java.lang.RuntimePermission "accessDeclaredMembers")
++(java.lang.RuntimePermission "getClassLoader")
++(java.lang.RuntimePermission "modifyThread")
++(java.lang.RuntimePermission "setContextClassLoader")
++(java.net.NetPermission "specifyStreamHandler")
++(java.net.SocketPermission "*" "resolve")
++(java.net.SocketPermission "*:0-" "connect")
++(java.net.SocketPermission "localhost" "resolve")
++(java.net.SocketPermission "localhost:0-" "connect")
++(java.net.SocketPermission "localhost:1024-" "resolve")
++(java.net.SocketPermission "localhost:1024-:0-" "connect")
++(java.security.AllPermission)
++(java.util.PropertyPermission "*" "read,write")
++(java.util.PropertyPermission "eclipse.noRegistryCache" "read")
++(java.util.PropertyPermission "eclipse.noRegistryFlushing" "read")
++(java.util.PropertyPermission "eclipse.product" "read")
++(java.util.PropertyPermission "java.protocol.handler.pkgs" "read")
++(java.util.PropertyPermission "java.vendor.url.bug" "read")
++(java.util.PropertyPermission "osgi.checkConfiguration" "read")
++(org.osgi.framework.ServicePermission "<unknown>" "<unknown>")
++(org.osgi.framework.ServicePermission "<unknown>" "get")
++(org.osgi.framework.ServicePermission "java.net.ContentHandler" "<unknown>")
++(org.osgi.framework.ServicePermission "java.net.ContentHandler" "get")
++(org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService" "<unknown>")
++(org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService" "get")
