@@ -1,0 +1,64 @@
+<html><head><title>Permission Analysis Report</title><script language='javaScript' src='linkUtil.js'></script></head><body>
+<h1>Permission Analysis Report</h1>
+<BR/><H2>Analysis of: org.eclipse.osgi</H2>
+<B>Detail</B><BR/><BR/>
+<pre>
+
+Class: <a href="foo" onClick="return openURLinSrc( 'Application/org/eclipse/osgi/framework/adaptor/core/DefaultClassLoader.html' )">org.eclipse.osgi.framework.adaptor.core.DefaultClassLoader</a> (Application)
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/framework/adaptor/core/DefaultClassLoader.html#L209" , parent.fbot ); return false'>Line# 214</a> org.eclipse.osgi.framework.adaptor.core.BundleFile createBundleFile( java.io.File, org.eclipse.osgi.framework.adaptor.core.AbstractBundleData )
+   Permission: java.io.FilePermission "???file???", "read"
+      Primordial/boolean java.io.File.exists(  )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * Creates a BundleFile object for a classpath entry
+	 * @param file the file object used to create a BundleFile
+	 * @param bundledata the bundle data
+	 * @return a BundleFile object for a classpath entry
+	 */
+	protected BundleFile createBundleFile(File file, AbstractBundleData bundledata) {
+<FONT style="background-color:#F2C553;display;inline">		if (file == null || !file.exists())
+</FONT>			return null;
+		try {
+			return hostdata.getAdaptor().createBundleFile(file, bundledata);
+		} catch (IOException e) {
+			bundledata.getAdaptor().getEventPublisher().publishFrameworkEvent(FrameworkEvent.ERROR, bundledata.getBundle(), e);
+		}
+		return null;
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.io.FilePermission "???file???", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/framework/adaptor/core/DefaultClassLoader.html#L365" , parent.fbot ); return false'>Line# 370</a> java.lang.Class defineClass( java.lang.String, byte[], int, int, org.eclipse.osgi.framework.adaptor.core.DefaultClassLoader$ClasspathEntry )
+   Permission: java.io.SerializablePermission "enableSubclassImplementation"
+      Primordial/java.lang.Class java.lang.ClassLoader.defineClass( java.lang.String, byte[], int, int, java.security.ProtectionDomain )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * Defines a class for this classloader
+	 * @param name the name of the class
+	 * @param classbytes the class bytes
+	 * @param off the offset in the class bytes array
+	 * @param len the legth of the class bytes
+	 * @param classpathEntry the classpath entry used for the class
+	 * @return a loaded Class object
+	 * @throws ClassFormatError if the class has a format error
+	 */
+	protected Class defineClass(String name, byte[] classbytes, int off, int len, ClasspathEntry classpathEntry) throws ClassFormatError {
+		if (name != null && name.startsWith("java.")) { //$NON-NLS-1$
+			// To work around the security issue that prevents any
+			// other classloader except for the bootstrap classloader
+			// from loading packages that start with java.
+			name = null;
+		}
+<FONT style="background-color:#F2C553;display;inline">		return defineClass(name, classbytes, off, len, classpathEntry.getProtectionDomain());
+</FONT>	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.io.SerializablePermission "enableSubclassImplementation";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+</pre>
+</body></html>

@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Permission Analysis Report</title>
+  <script language="javaScript" src="linkUtil.js"></script>
+</head>
+<body>
+<h1>Permission Analysis Report</h1>
+<br>
+<h2>Analysis of: org.eclipse.osgi</h2>
+<b>Detail</b><br>
+<br>
+<pre>
+Class: <a href="foo"
+ onclick="return openURLinSrc( 'Application/org/eclipse/osgi/framework/internal/core/MessageResourceBundle.html' )">org.eclipse.osgi.framework.internal.core.MessageResourceBundle</a> (Application)<br>DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/osgi/framework/internal/core/MessageResourceBundle.html#L182" , parent.fbot ); return false'>Line# 187</a> void load( java.lang.String, java.lang.Class )<br>   Permission: java.lang.RuntimePermission "accessDeclaredMembers"<br>      Primordial/java.lang.reflect.Field[] java.lang.Class.getDeclaredFields(  )<br>   Permission: java.lang.RuntimePermission "getClassLoader"<br>      Primordial/java.lang.reflect.Field[] java.lang.Class.getDeclaredFields(  )<br><br><br><b>CODE</b><br>
+/**
+	 * Load the given resource bundle using the specified class loader.
+	 */
+	public static void load(final String bundleName, Class clazz) {
+		long start = System.currentTimeMillis();
+<font style="background-color: rgb(242, 197, 83);">		final Field[] fieldArray = clazz.getDeclaredFields();<br></font>		ClassLoader loader = clazz.getClassLoader();<br><br>		boolean isAccessible = (clazz.getModifiers() &amp; Modifier.PUBLIC) != 0;<br><br>		//build a map of field names to Field objects<br>		final int len = fieldArray.length;<br>		Map fields = new HashMap(len * 2);<br>		for (int i = 0; i &lt; len; i++)<br>			fields.put(fieldArray[i].getName(), fieldArray[i]);<br><br>		// search the variants from most specific to most general, since<br>		// the MessagesProperties.put method will mark assigned fields<br>		// to prevent them from being assigned twice<br>		final String[] variants = buildVariants(bundleName);<br>		for (int i = 0; i &lt; variants.length; i++) {<br>			final InputStream input = loader.getResourceAsStream(variants[i]);<br>			if (input == null)<br>				continue;<br>			try {<br>				final MessagesProperties properties = new MessagesProperties(fields, bundleName, isAccessible);<br>				properties.load(input);<br>			} catch (IOException e) {<br>				log(SEVERITY_ERROR, "Error loading " + variants[i], e); //$NON-NLS-1$<br>			} finally {<br>				if (input != null)<br>					try {<br>						input.close();<br>					} catch (IOException e) {<br>						// ignore<br>					}<br>			}<br>		}<br>		computeMissingMessages(bundleName, clazz, fields, fieldArray, isAccessible);<br>		if (Debug.DEBUG_MESSAGE_BUNDLES)<br>			System.out.println("Time to load message bundle: " + bundleName + " was " + (System.currentTimeMillis() - start) + "ms."); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.lang.RuntimePermission "accessDeclaredMembers";</li>
+<li>permission java.lang.RuntimePermission "getClassLoader";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>This class is an internal API which is being used by the NLS class.  In this case, the NLS uses it to load the .properties files.  The caller <br>should not require the above permissions to do it.  It would be best to do the doPrivilged within the NLS class as shown in the following:<br><br>	public static void initializeMessages(String bundleName, Class clazz) {<br>		if(System.getSecurityManager() == null) {<br>			MessageResourceBundle.load(bundleName, clazz);<br>		} else {<br>			AccessController.doPrivileged(new MessageResourceLoaderAction(bundleName, clazz));<br>		}<br>	}<br><br><br>Grant the above required permission to this via OSGI-INF/permissions.perm file.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/osgi/framework/internal/core/MessageResourceBundle.html#L183" , parent.fbot ); return false'>Line# 188</a> void load( java.lang.String, java.lang.Class )<br>   Permission: java.lang.RuntimePermission "getClassLoader"<br>      Primordial/java.lang.ClassLoader java.lang.Class.getClassLoader(  )<br><br><br><b>CODE</b><br>
+/**
+	 * Load the given resource bundle using the specified class loader.
+	 */
+	public static void load(final String bundleName, Class clazz) {
+		long start = System.currentTimeMillis();
+		final Field[] fieldArray = clazz.getDeclaredFields();
+<font style="background-color: rgb(242, 197, 83);">		ClassLoader loader = clazz.getClassLoader();<br></font>
+		boolean isAccessible = (clazz.getModifiers() &amp; Modifier.PUBLIC) != 0;
+
+		//build a map of field names to Field objects
+		final int len = fieldArray.length;
+		Map fields = new HashMap(len * 2);
+		for (int i = 0; i &lt; len; i++)
+			fields.put(fieldArray[i].getName(), fieldArray[i]);
+
+		// search the variants from most specific to most general, since
+		// the MessagesProperties.put method will mark assigned fields
+		// to prevent them from being assigned twice
+		final String[] variants = buildVariants(bundleName);
+		for (int i = 0; i &lt; variants.length; i++) {
+			final InputStream input = loader.getResourceAsStream(variants[i]);
+			if (input == null)
+				continue;
+			try {
+				final MessagesProperties properties = new MessagesProperties(fields, bundleName, isAccessible);
+				properties.load(input);
+			} catch (IOException e) {
+				log(SEVERITY_ERROR, "Error loading " + variants[i], e); //$NON-NLS-1$
+			} finally {
+				if (input != null)
+					try {
+						input.close();
+					} catch (IOException e) {
+						// ignore
+					}
+			}
+		}
+		computeMissingMessages(bundleName, clazz, fields, fieldArray, isAccessible);
+		if (Debug.DEBUG_MESSAGE_BUNDLES)
+			System.out.println("Time to load message bundle: " + bundleName + " was " + (System.currentTimeMillis() - start) + "ms."); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+	}
+<br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.lang.RuntimePermission "getClassLoader";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>See prior conclusion.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/osgi/framework/internal/core/MessageResourceBundle.html#L203" , parent.fbot ); return false'>Line# 208</a> void load( java.lang.String, java.lang.Class )<br>   Permission: java.util.PropertyPermission "java.vendor.url.bug", "read"<br>      Primordial/void java.util.Properties.load( java.io.InputStream )<br>   Permission: java.util.PropertyPermission "os.name", "read"<br>      Primordial/void java.util.Properties.load( java.io.InputStream )<br><br><br><b>CODE</b><br>
+/**
+	 * Load the given resource bundle using the specified class loader.
+	 */
+	public static void load(final String bundleName, Class clazz) {
+		long start = System.currentTimeMillis();
+		final Field[] fieldArray = clazz.getDeclaredFields();
+		ClassLoader loader = clazz.getClassLoader();
+
+		boolean isAccessible = (clazz.getModifiers() &amp; Modifier.PUBLIC) != 0;
+
+		//build a map of field names to Field objects
+		final int len = fieldArray.length;
+		Map fields = new HashMap(len * 2);
+		for (int i = 0; i &lt; len; i++)
+			fields.put(fieldArray[i].getName(), fieldArray[i]);
+
+		// search the variants from most specific to most general, since
+		// the MessagesProperties.put method will mark assigned fields
+		// to prevent them from being assigned twice
+		final String[] variants = buildVariants(bundleName);
+		for (int i = 0; i &lt; variants.length; i++) {
+			final InputStream input = loader.getResourceAsStream(variants[i]);
+			if (input == null)
+				continue;
+			try {
+				final MessagesProperties properties = new MessagesProperties(fields, bundleName, isAccessible);
+<font style="background-color: rgb(242, 197, 83);">				properties.load(input);<br></font>			} catch (IOException e) {<br>				log(SEVERITY_ERROR, "Error loading " + variants[i], e); //$NON-NLS-1$<br>			} finally {<br>				if (input != null)<br>					try {<br>						input.close();<br>					} catch (IOException e) {<br>						// ignore<br>					}<br>			}<br>		}<br>		computeMissingMessages(bundleName, clazz, fields, fieldArray, isAccessible);<br>		if (Debug.DEBUG_MESSAGE_BUNDLES)<br>			System.out.println("Time to load message bundle: " + bundleName + " was " + (System.currentTimeMillis() - start) + "ms."); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$<br>	}<br><br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.util.PropertyPermission "java.vendor.url.bug", "read";</li>
+<li>permission java.util.PropertyPermission "os.name", "read";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>See prior conclusion.<br><hr>
+</pre>
+</body>
+</html>

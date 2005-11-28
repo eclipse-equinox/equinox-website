@@ -1,0 +1,469 @@
+<html><head><title>Permission Analysis Report</title><script language='javaScript' src='linkUtil.js'></script></head><body>
+<h1>Permission Analysis Report</h1>
+<BR/><H2>Analysis of: org.eclipse.osgi</H2>
+<B>Detail</B><BR/><BR/>
+<pre>
+
+Class: <a href="foo" onClick="return openURLinSrc( 'Application/org/eclipse/osgi/internal/resolver/StateWriter.html' )">org.eclipse.osgi.internal.resolver.StateWriter</a> (Application)
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/internal/resolver/StateWriter.html#L97" , parent.fbot ); return false'>Line# 102</a> void saveState( org.eclipse.osgi.internal.resolver.StateImpl, java.io.File, java.io.File )
+   Permission: java.io.FilePermission "", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "*", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "-1", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "-2", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "-2147483648", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "-3", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "-9223372036854775808", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission ".", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission ".lazy", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission ".manager", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "0", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "1", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "1.3", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "10", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "13", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "2", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "23", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "3", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "3.0.0", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "4", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "5", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "6", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "7", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "8", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "9", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "???file???", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "Eclipse", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "META-INF/MANIFEST.MF", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "No message available.", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "aix", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "bin", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "bundles", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "carbon", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "false", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "fragment.xml", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "hpux", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "linux", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "macosx", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "manifests", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "motif", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "org.eclipse.osgi", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "permdata", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "photon", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "plugin.xml", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "qnx", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "solaris", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "true", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "unknown", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "win32", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "x86", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "x86_64", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+<BR/><BR/><B>CODE</B><BR/>
+public void saveState(StateImpl state, File stateFile, File lazyFile) throws IOException {
+		DataOutputStream outLazy = null;
+		DataOutputStream outState = null;
+		FileOutputStream fosLazy = null;
+		FileOutputStream fosState = null;
+		try {
+			// first clear the System exports because we don't want to persist them in the system
+			// bundles bundle description data
+			state.setSystemExports(null);
+			BundleDescription[] bundles = state.getBundles();
+			StateHelperImpl.getInstance().sortBundles(bundles);
+			// need to prime the object table with all bundles
+			// this allows us to write only indexes to bundles in the lazy data
+			for (int i = 0; i < bundles.length; i++)
+				addToObjectTable(bundles[i]);
+			// first write the lazy data to get the offsets and sizes to the lazy data
+<FONT style="background-color:#F2C553;display;inline">			fosLazy = new FileOutputStream(lazyFile);
+</FONT>			outLazy = new DataOutputStream(fosLazy);
+			for (int i = 0; i < bundles.length; i++)
+				writeBundleDescriptionLazyData(bundles[i], outLazy);
+			// now write the state data
+			fosState = new FileOutputStream(stateFile);
+			outState = new DataOutputStream(fosState);
+			outState.write(StateReader.STATE_CACHE_VERSION);
+			if (writePrefix(state, outState))
+				return;
+			outState.writeLong(state.getTimeStamp());
+			Dictionary[] propSet = state.getPlatformProperties();
+			outState.writeInt(propSet.length);
+			for (int i = 0; i < propSet.length; i++){
+				Dictionary props = propSet[i];
+				outState.writeInt(StateImpl.PROPS.length);
+				for (int j = 0; j < StateImpl.PROPS.length; j++)
+					writePlatformProp(props.get(StateImpl.PROPS[j]), outState);
+			}
+			outState.writeInt(bundles.length);
+			if (bundles.length == 0)
+				return;
+			for (int i = 0; i < bundles.length; i++)
+				// write out each bundle with the force flag set to make sure
+				// the data is written at least once in the non-lazy state data
+				writeBundleDescription(bundles[i], outState, true);
+			outState.writeBoolean(state.isResolved());
+		} finally {
+			if (outLazy != null)
+				try {
+					outLazy.flush();
+					fosLazy.getFD().sync();
+				} catch (IOException e) {
+					// do nothing, we tried
+				}
+				try {
+					outLazy.close();
+				} catch (IOException e) {
+					// do nothing
+				}
+			if (outState != null)
+				try {
+					outState.flush();
+					fosState.getFD().sync();
+				} catch (IOException e) {
+					// do nothing, we tried
+				}
+				try {
+					outState.close();
+				} catch (IOException e) {
+					// do nothing
+				}
+		}
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.io.FilePermission "", "write";</LI>
+<LI>permission java.io.FilePermission "*", "write";</LI>
+<LI>permission java.io.FilePermission "-1", "write";</LI>
+<LI>permission java.io.FilePermission "-2", "write";</LI>
+<LI>permission java.io.FilePermission "-2147483648", "write";</LI>
+<LI>permission java.io.FilePermission "-3", "write";</LI>
+<LI>permission java.io.FilePermission "-9223372036854775808", "write";</LI>
+<LI>permission java.io.FilePermission ".", "write";</LI>
+<LI>permission java.io.FilePermission ".lazy", "write";</LI>
+<LI>permission java.io.FilePermission ".manager", "write";</LI>
+<LI>permission java.io.FilePermission "0", "write";</LI>
+<LI>permission java.io.FilePermission "1", "write";</LI>
+<LI>permission java.io.FilePermission "1.3", "write";</LI>
+<LI>permission java.io.FilePermission "10", "write";</LI>
+<LI>permission java.io.FilePermission "13", "write";</LI>
+<LI>permission java.io.FilePermission "2", "write";</LI>
+<LI>permission java.io.FilePermission "23", "write";</LI>
+<LI>permission java.io.FilePermission "3", "write";</LI>
+<LI>permission java.io.FilePermission "3.0.0", "write";</LI>
+<LI>permission java.io.FilePermission "4", "write";</LI>
+<LI>permission java.io.FilePermission "5", "write";</LI>
+<LI>permission java.io.FilePermission "6", "write";</LI>
+<LI>permission java.io.FilePermission "7", "write";</LI>
+<LI>permission java.io.FilePermission "8", "write";</LI>
+<LI>permission java.io.FilePermission "9", "write";</LI>
+<LI>permission java.io.FilePermission "???file???", "write";</LI>
+<LI>permission java.io.FilePermission "Eclipse", "write";</LI>
+<LI>permission java.io.FilePermission "META-INF/MANIFEST.MF", "write";</LI>
+<LI>permission java.io.FilePermission "No message available.", "write";</LI>
+<LI>permission java.io.FilePermission "aix", "write";</LI>
+<LI>permission java.io.FilePermission "bin", "write";</LI>
+<LI>permission java.io.FilePermission "bundles", "write";</LI>
+<LI>permission java.io.FilePermission "carbon", "write";</LI>
+<LI>permission java.io.FilePermission "false", "write";</LI>
+<LI>permission java.io.FilePermission "fragment.xml", "write";</LI>
+<LI>permission java.io.FilePermission "hpux", "write";</LI>
+<LI>permission java.io.FilePermission "linux", "write";</LI>
+<LI>permission java.io.FilePermission "macosx", "write";</LI>
+<LI>permission java.io.FilePermission "manifests", "write";</LI>
+<LI>permission java.io.FilePermission "motif", "write";</LI>
+<LI>permission java.io.FilePermission "org.eclipse.osgi", "write";</LI>
+<LI>permission java.io.FilePermission "permdata", "write";</LI>
+<LI>permission java.io.FilePermission "photon", "write";</LI>
+<LI>permission java.io.FilePermission "plugin.xml", "write";</LI>
+<LI>permission java.io.FilePermission "qnx", "write";</LI>
+<LI>permission java.io.FilePermission "solaris", "write";</LI>
+<LI>permission java.io.FilePermission "true", "write";</LI>
+<LI>permission java.io.FilePermission "unknown", "write";</LI>
+<LI>permission java.io.FilePermission "win32", "write";</LI>
+<LI>permission java.io.FilePermission "x86", "write";</LI>
+<LI>permission java.io.FilePermission "x86_64", "write";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/internal/resolver/StateWriter.html#L102" , parent.fbot ); return false'>Line# 107</a> void saveState( org.eclipse.osgi.internal.resolver.StateImpl, java.io.File, java.io.File )
+   Permission: java.io.FilePermission "", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "*", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "-1", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "-2", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "-2147483648", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "-3", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "-9223372036854775808", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission ".", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission ".manager", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission ".state", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "0", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "1", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "1.3", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "10", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "13", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "2", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "23", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "3", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "3.0.0", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "4", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "5", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "6", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "7", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "8", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "9", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "???file???", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "Eclipse", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "META-INF/MANIFEST.MF", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "No message available.", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "aix", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "bin", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "bundles", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "carbon", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "false", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "fragment.xml", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "hpux", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "linux", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "macosx", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "manifests", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "motif", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "org.eclipse.osgi", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "permdata", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "photon", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "plugin.xml", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "qnx", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "solaris", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "true", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "unknown", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "win32", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "x86", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+   Permission: java.io.FilePermission "x86_64", "write"
+      Primordial/void java.io.FileOutputStream.FileOutputStream( java.io.File )
+<BR/><BR/><B>CODE</B><BR/>
+public void saveState(StateImpl state, File stateFile, File lazyFile) throws IOException {
+		DataOutputStream outLazy = null;
+		DataOutputStream outState = null;
+		FileOutputStream fosLazy = null;
+		FileOutputStream fosState = null;
+		try {
+			// first clear the System exports because we don't want to persist them in the system
+			// bundles bundle description data
+			state.setSystemExports(null);
+			BundleDescription[] bundles = state.getBundles();
+			StateHelperImpl.getInstance().sortBundles(bundles);
+			// need to prime the object table with all bundles
+			// this allows us to write only indexes to bundles in the lazy data
+			for (int i = 0; i < bundles.length; i++)
+				addToObjectTable(bundles[i]);
+			// first write the lazy data to get the offsets and sizes to the lazy data
+			fosLazy = new FileOutputStream(lazyFile);
+			outLazy = new DataOutputStream(fosLazy);
+			for (int i = 0; i < bundles.length; i++)
+				writeBundleDescriptionLazyData(bundles[i], outLazy);
+			// now write the state data
+<FONT style="background-color:#F2C553;display;inline">			fosState = new FileOutputStream(stateFile);
+</FONT>			outState = new DataOutputStream(fosState);
+			outState.write(StateReader.STATE_CACHE_VERSION);
+			if (writePrefix(state, outState))
+				return;
+			outState.writeLong(state.getTimeStamp());
+			Dictionary[] propSet = state.getPlatformProperties();
+			outState.writeInt(propSet.length);
+			for (int i = 0; i < propSet.length; i++){
+				Dictionary props = propSet[i];
+				outState.writeInt(StateImpl.PROPS.length);
+				for (int j = 0; j < StateImpl.PROPS.length; j++)
+					writePlatformProp(props.get(StateImpl.PROPS[j]), outState);
+			}
+			outState.writeInt(bundles.length);
+			if (bundles.length == 0)
+				return;
+			for (int i = 0; i < bundles.length; i++)
+				// write out each bundle with the force flag set to make sure
+				// the data is written at least once in the non-lazy state data
+				writeBundleDescription(bundles[i], outState, true);
+			outState.writeBoolean(state.isResolved());
+		} finally {
+			if (outLazy != null)
+				try {
+					outLazy.flush();
+					fosLazy.getFD().sync();
+				} catch (IOException e) {
+					// do nothing, we tried
+				}
+				try {
+					outLazy.close();
+				} catch (IOException e) {
+					// do nothing
+				}
+			if (outState != null)
+				try {
+					outState.flush();
+					fosState.getFD().sync();
+				} catch (IOException e) {
+					// do nothing, we tried
+				}
+				try {
+					outState.close();
+				} catch (IOException e) {
+					// do nothing
+				}
+		}
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.io.FilePermission "", "write";</LI>
+<LI>permission java.io.FilePermission "*", "write";</LI>
+<LI>permission java.io.FilePermission "-1", "write";</LI>
+<LI>permission java.io.FilePermission "-2", "write";</LI>
+<LI>permission java.io.FilePermission "-2147483648", "write";</LI>
+<LI>permission java.io.FilePermission "-3", "write";</LI>
+<LI>permission java.io.FilePermission "-9223372036854775808", "write";</LI>
+<LI>permission java.io.FilePermission ".", "write";</LI>
+<LI>permission java.io.FilePermission ".manager", "write";</LI>
+<LI>permission java.io.FilePermission ".state", "write";</LI>
+<LI>permission java.io.FilePermission "0", "write";</LI>
+<LI>permission java.io.FilePermission "1", "write";</LI>
+<LI>permission java.io.FilePermission "1.3", "write";</LI>
+<LI>permission java.io.FilePermission "10", "write";</LI>
+<LI>permission java.io.FilePermission "13", "write";</LI>
+<LI>permission java.io.FilePermission "2", "write";</LI>
+<LI>permission java.io.FilePermission "23", "write";</LI>
+<LI>permission java.io.FilePermission "3", "write";</LI>
+<LI>permission java.io.FilePermission "3.0.0", "write";</LI>
+<LI>permission java.io.FilePermission "4", "write";</LI>
+<LI>permission java.io.FilePermission "5", "write";</LI>
+<LI>permission java.io.FilePermission "6", "write";</LI>
+<LI>permission java.io.FilePermission "7", "write";</LI>
+<LI>permission java.io.FilePermission "8", "write";</LI>
+<LI>permission java.io.FilePermission "9", "write";</LI>
+<LI>permission java.io.FilePermission "???file???", "write";</LI>
+<LI>permission java.io.FilePermission "Eclipse", "write";</LI>
+<LI>permission java.io.FilePermission "META-INF/MANIFEST.MF", "write";</LI>
+<LI>permission java.io.FilePermission "No message available.", "write";</LI>
+<LI>permission java.io.FilePermission "aix", "write";</LI>
+<LI>permission java.io.FilePermission "bin", "write";</LI>
+<LI>permission java.io.FilePermission "bundles", "write";</LI>
+<LI>permission java.io.FilePermission "carbon", "write";</LI>
+<LI>permission java.io.FilePermission "false", "write";</LI>
+<LI>permission java.io.FilePermission "fragment.xml", "write";</LI>
+<LI>permission java.io.FilePermission "hpux", "write";</LI>
+<LI>permission java.io.FilePermission "linux", "write";</LI>
+<LI>permission java.io.FilePermission "macosx", "write";</LI>
+<LI>permission java.io.FilePermission "manifests", "write";</LI>
+<LI>permission java.io.FilePermission "motif", "write";</LI>
+<LI>permission java.io.FilePermission "org.eclipse.osgi", "write";</LI>
+<LI>permission java.io.FilePermission "permdata", "write";</LI>
+<LI>permission java.io.FilePermission "photon", "write";</LI>
+<LI>permission java.io.FilePermission "plugin.xml", "write";</LI>
+<LI>permission java.io.FilePermission "qnx", "write";</LI>
+<LI>permission java.io.FilePermission "solaris", "write";</LI>
+<LI>permission java.io.FilePermission "true", "write";</LI>
+<LI>permission java.io.FilePermission "unknown", "write";</LI>
+<LI>permission java.io.FilePermission "win32", "write";</LI>
+<LI>permission java.io.FilePermission "x86", "write";</LI>
+<LI>permission java.io.FilePermission "x86_64", "write";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+</pre>
+</body></html>

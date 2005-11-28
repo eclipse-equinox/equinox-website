@@ -1,0 +1,768 @@
+<html><head><title>Permission Analysis Report</title><script language='javaScript' src='linkUtil.js'></script></head><body>
+<h1>Permission Analysis Report</h1>
+<BR/><H2>Analysis of: org.eclipse.osgi</H2>
+<B>Detail</B><BR/><BR/>
+<pre>
+
+Class: <a href="foo" onClick="return openURLinSrc( 'Application/org/eclipse/osgi/framework/internal/core/FrameworkConsole.html' )">org.eclipse.osgi.framework.internal.core.FrameworkConsole</a> (Application)
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/framework/internal/core/FrameworkConsole.html#L42" , parent.fbot ); return false'>Line# 47</a> void &lt;clinit&gt;(  )
+   Permission: java.util.PropertyPermission "file.encoding", "read"
+      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String, java.lang.String )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+ * This class starts OSGi with a console for development use.
+ *
+ * FrameworkConsole provides a printStackTrace method to print Exceptions and their
+ * nested Exceptions.
+ */
+public class FrameworkConsole implements Runnable {
+	/** The stream to receive commands on  */
+	protected Reader in;
+	/** The stream to write command results to */
+	protected PrintWriter out;
+	/** The current bundle context */
+	protected org.osgi.framework.BundleContext context;
+	/** The current osgi instance */
+	protected OSGi osgi;
+	/** The command line arguments passed at launch time*/
+	protected String[] args;
+	/** The OSGi Command Provider */
+	protected CommandProvider osgicp;
+	/** A tracker containing the service object of all registered command providers */
+	protected CommandProviderTracker cptracker;
+
+	/** Default code page which must be supported by all JVMs */
+	static String defaultEncoding = "iso8859-1"; //$NON-NLS-1$
+	/** The current setting for code page */
+<FONT style="background-color:#F2C553;display;inline">	static String encoding = System.getProperty("file.encoding", defaultEncoding); //$NON-NLS-1$
+</FONT>
+	/** set to true if accepting commands from port */
+	protected boolean useSocketStream = false;
+ ... 
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "file.encoding", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/framework/internal/core/FrameworkConsole.html#L250" , parent.fbot ); return false'>Line# 255</a> void console(  )
+   Permission: java.util.PropertyPermission "osgi.dev", "read"
+      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * Command Line Interface for OSGi. The method processes the initial commands
+	 * and then reads and processes commands from the console InputStream.
+	 * Command output is written to the console PrintStream. The method will
+	 * loop reading commands from the console InputStream until end-of-file
+	 * is reached. This method will then return.
+	 * @throws IOException
+	 */
+	protected void console() throws IOException {
+		Object lock = new Object();
+		disconnect = false;
+		// wait to receive commands from console and handle them
+		BufferedReader br = (BufferedReader) in;
+		//cache the console prompt String
+		String consolePrompt = "\r\n" + ConsoleMsg.CONSOLE_PROMPT; //$NON-NLS-1$
+<FONT style="background-color:#F2C553;display;inline">		boolean block = System.getProperty("osgi.dev") != null; //$NON-NLS-1$
+</FONT>		while (!disconnect) {
+			out.print(consolePrompt);
+			out.flush();
+
+			String cmdline = null;
+			if (block) {
+				// bug 40066: avoid waiting on input stream - apparently generates contention with other native calls 
+				try {
+					synchronized (lock) {
+						while (!br.ready())
+							lock.wait(300);
+					}
+					cmdline = br.readLine();
+				} catch (InterruptedException e) {
+					// do nothing; probably got disconnected
+				}
+			} else
+				cmdline = br.readLine();
+
+			if (cmdline == null) {
+				break;
+			}
+
+			docommand(cmdline);
+		}
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "osgi.dev", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/framework/internal/core/FrameworkConsole.html#L252" , parent.fbot ); return false'>Line# 257</a> void console(  )
+   Permission: java.util.PropertyPermission "os.name", "read"
+      Primordial/void java.io.PrintWriter.print( java.lang.String )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * Command Line Interface for OSGi. The method processes the initial commands
+	 * and then reads and processes commands from the console InputStream.
+	 * Command output is written to the console PrintStream. The method will
+	 * loop reading commands from the console InputStream until end-of-file
+	 * is reached. This method will then return.
+	 * @throws IOException
+	 */
+	protected void console() throws IOException {
+		Object lock = new Object();
+		disconnect = false;
+		// wait to receive commands from console and handle them
+		BufferedReader br = (BufferedReader) in;
+		//cache the console prompt String
+		String consolePrompt = "\r\n" + ConsoleMsg.CONSOLE_PROMPT; //$NON-NLS-1$
+		boolean block = System.getProperty("osgi.dev") != null; //$NON-NLS-1$
+		while (!disconnect) {
+<FONT style="background-color:#F2C553;display;inline">			out.print(consolePrompt);
+</FONT>			out.flush();
+
+			String cmdline = null;
+			if (block) {
+				// bug 40066: avoid waiting on input stream - apparently generates contention with other native calls 
+				try {
+					synchronized (lock) {
+						while (!br.ready())
+							lock.wait(300);
+					}
+					cmdline = br.readLine();
+				} catch (InterruptedException e) {
+					// do nothing; probably got disconnected
+				}
+			} else
+				cmdline = br.readLine();
+
+			if (cmdline == null) {
+				break;
+			}
+
+			docommand(cmdline);
+		}
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "os.name", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/framework/internal/core/FrameworkConsole.html#L253" , parent.fbot ); return false'>Line# 258</a> void console(  )
+   Permission: java.util.PropertyPermission "os.name", "read"
+      Primordial/void java.io.PrintWriter.flush(  )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * Command Line Interface for OSGi. The method processes the initial commands
+	 * and then reads and processes commands from the console InputStream.
+	 * Command output is written to the console PrintStream. The method will
+	 * loop reading commands from the console InputStream until end-of-file
+	 * is reached. This method will then return.
+	 * @throws IOException
+	 */
+	protected void console() throws IOException {
+		Object lock = new Object();
+		disconnect = false;
+		// wait to receive commands from console and handle them
+		BufferedReader br = (BufferedReader) in;
+		//cache the console prompt String
+		String consolePrompt = "\r\n" + ConsoleMsg.CONSOLE_PROMPT; //$NON-NLS-1$
+		boolean block = System.getProperty("osgi.dev") != null; //$NON-NLS-1$
+		while (!disconnect) {
+			out.print(consolePrompt);
+<FONT style="background-color:#F2C553;display;inline">			out.flush();
+</FONT>
+			String cmdline = null;
+			if (block) {
+				// bug 40066: avoid waiting on input stream - apparently generates contention with other native calls 
+				try {
+					synchronized (lock) {
+						while (!br.ready())
+							lock.wait(300);
+					}
+					cmdline = br.readLine();
+				} catch (InterruptedException e) {
+					// do nothing; probably got disconnected
+				}
+			} else
+				cmdline = br.readLine();
+
+			if (cmdline == null) {
+				break;
+			}
+
+			docommand(cmdline);
+		}
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "os.name", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/framework/internal/core/FrameworkConsole.html#L260" , parent.fbot ); return false'>Line# 265</a> void console(  )
+   Permission: java.util.PropertyPermission "java.vendor.url.bug", "read"
+      Primordial/boolean java.io.BufferedReader.ready(  )
+   Permission: java.util.PropertyPermission "os.name", "read"
+      Primordial/boolean java.io.BufferedReader.ready(  )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * Command Line Interface for OSGi. The method processes the initial commands
+	 * and then reads and processes commands from the console InputStream.
+	 * Command output is written to the console PrintStream. The method will
+	 * loop reading commands from the console InputStream until end-of-file
+	 * is reached. This method will then return.
+	 * @throws IOException
+	 */
+	protected void console() throws IOException {
+		Object lock = new Object();
+		disconnect = false;
+		// wait to receive commands from console and handle them
+		BufferedReader br = (BufferedReader) in;
+		//cache the console prompt String
+		String consolePrompt = "\r\n" + ConsoleMsg.CONSOLE_PROMPT; //$NON-NLS-1$
+		boolean block = System.getProperty("osgi.dev") != null; //$NON-NLS-1$
+		while (!disconnect) {
+			out.print(consolePrompt);
+			out.flush();
+
+			String cmdline = null;
+			if (block) {
+				// bug 40066: avoid waiting on input stream - apparently generates contention with other native calls 
+				try {
+					synchronized (lock) {
+<FONT style="background-color:#F2C553;display;inline">						while (!br.ready())
+</FONT>							lock.wait(300);
+					}
+					cmdline = br.readLine();
+				} catch (InterruptedException e) {
+					// do nothing; probably got disconnected
+				}
+			} else
+				cmdline = br.readLine();
+
+			if (cmdline == null) {
+				break;
+			}
+
+			docommand(cmdline);
+		}
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "java.vendor.url.bug", "read";</LI>
+<LI>permission java.util.PropertyPermission "os.name", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/framework/internal/core/FrameworkConsole.html#L263" , parent.fbot ); return false'>Line# 268</a> void console(  )
+   Permission: java.util.PropertyPermission "java.vendor.url.bug", "read"
+      Primordial/java.lang.String java.io.BufferedReader.readLine(  )
+   Permission: java.util.PropertyPermission "os.name", "read"
+      Primordial/java.lang.String java.io.BufferedReader.readLine(  )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * Command Line Interface for OSGi. The method processes the initial commands
+	 * and then reads and processes commands from the console InputStream.
+	 * Command output is written to the console PrintStream. The method will
+	 * loop reading commands from the console InputStream until end-of-file
+	 * is reached. This method will then return.
+	 * @throws IOException
+	 */
+	protected void console() throws IOException {
+		Object lock = new Object();
+		disconnect = false;
+		// wait to receive commands from console and handle them
+		BufferedReader br = (BufferedReader) in;
+		//cache the console prompt String
+		String consolePrompt = "\r\n" + ConsoleMsg.CONSOLE_PROMPT; //$NON-NLS-1$
+		boolean block = System.getProperty("osgi.dev") != null; //$NON-NLS-1$
+		while (!disconnect) {
+			out.print(consolePrompt);
+			out.flush();
+
+			String cmdline = null;
+			if (block) {
+				// bug 40066: avoid waiting on input stream - apparently generates contention with other native calls 
+				try {
+					synchronized (lock) {
+						while (!br.ready())
+							lock.wait(300);
+					}
+<FONT style="background-color:#F2C553;display;inline">					cmdline = br.readLine();
+</FONT>				} catch (InterruptedException e) {
+					// do nothing; probably got disconnected
+				}
+			} else
+				cmdline = br.readLine();
+
+			if (cmdline == null) {
+				break;
+			}
+
+			docommand(cmdline);
+		}
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "java.vendor.url.bug", "read";</LI>
+<LI>permission java.util.PropertyPermission "os.name", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/framework/internal/core/FrameworkConsole.html#L268" , parent.fbot ); return false'>Line# 273</a> void console(  )
+   Permission: java.util.PropertyPermission "java.vendor.url.bug", "read"
+      Primordial/java.lang.String java.io.BufferedReader.readLine(  )
+   Permission: java.util.PropertyPermission "os.name", "read"
+      Primordial/java.lang.String java.io.BufferedReader.readLine(  )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * Command Line Interface for OSGi. The method processes the initial commands
+	 * and then reads and processes commands from the console InputStream.
+	 * Command output is written to the console PrintStream. The method will
+	 * loop reading commands from the console InputStream until end-of-file
+	 * is reached. This method will then return.
+	 * @throws IOException
+	 */
+	protected void console() throws IOException {
+		Object lock = new Object();
+		disconnect = false;
+		// wait to receive commands from console and handle them
+		BufferedReader br = (BufferedReader) in;
+		//cache the console prompt String
+		String consolePrompt = "\r\n" + ConsoleMsg.CONSOLE_PROMPT; //$NON-NLS-1$
+		boolean block = System.getProperty("osgi.dev") != null; //$NON-NLS-1$
+		while (!disconnect) {
+			out.print(consolePrompt);
+			out.flush();
+
+			String cmdline = null;
+			if (block) {
+				// bug 40066: avoid waiting on input stream - apparently generates contention with other native calls 
+				try {
+					synchronized (lock) {
+						while (!br.ready())
+							lock.wait(300);
+					}
+					cmdline = br.readLine();
+				} catch (InterruptedException e) {
+					// do nothing; probably got disconnected
+				}
+			} else
+<FONT style="background-color:#F2C553;display;inline">				cmdline = br.readLine();
+</FONT>
+			if (cmdline == null) {
+				break;
+			}
+
+			docommand(cmdline);
+		}
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "java.vendor.url.bug", "read";</LI>
+<LI>permission java.util.PropertyPermission "os.name", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/framework/internal/core/FrameworkConsole.html#L301" , parent.fbot ); return false'>Line# 306</a> void disconnect(  )
+   Permission: java.io.FilePermission "", "read"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "", "write"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "*", "read"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "*", "write"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "-1", "read"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "-1", "write"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "-2", "read"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "-2", "write"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "-2147483648", "read"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "-2147483648", "write"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "-3", "read"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "-3", "write"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "-9223372036854775808", "read"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "-9223372036854775808", "write"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission ".", "read"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission ".", "write"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission ".bundledata", "read"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission ".default", "read"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission ".fileTable", "read"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission ".manager", "read"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission ".manager", "write"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "0", "read"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "0", "write"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "1", "read"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "1", "write"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "1.3", "read"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "1.3", "write"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "10", "read"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "10", "write"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "13", "read"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "13", "write"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "2", "read"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "2", "write"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "23", "read"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "23", "write"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "3", "read"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "3", "write"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "3.0.0", "read"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "3.0.0", "write"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "4", "read"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "4", "write"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "5", "read"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "5", "write"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "6", "read"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "6", "write"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "7", "read"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "7", "write"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "8", "read"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "8", "write"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "9", "read"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "9", "write"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "???file???", "delete"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "???file???", "read"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "???file???", "write"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "Eclipse", "read"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "Eclipse", "write"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "META-INF/MANIFEST.MF", "read"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "META-INF/MANIFEST.MF", "write"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "No message available.", "read"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "No message available.", "write"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "aix", "read"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "aix", "write"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "bin", "read"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "bin", "write"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "bundles", "read"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "bundles", "write"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "carbon", "read"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "carbon", "write"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "false", "read"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "false", "write"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "fragment.xml", "read"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "fragment.xml", "write"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "hpux", "read"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "hpux", "write"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "linux", "read"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "linux", "write"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "macosx", "read"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "macosx", "write"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "manifests", "read"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "manifests", "write"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "motif", "read"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "motif", "write"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "org.eclipse.osgi", "read"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "org.eclipse.osgi", "write"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "permdata", "read"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "permdata", "write"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "photon", "read"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "photon", "write"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "plugin.xml", "read"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "plugin.xml", "write"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "qnx", "read"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "qnx", "write"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "solaris", "read"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "solaris", "write"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "true", "read"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "true", "write"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "unknown", "read"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "unknown", "write"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "win32", "read"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "win32", "write"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "x86", "read"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "x86", "write"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "x86_64", "read"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.io.FilePermission "x86_64", "write"
+      Primordial/void java.io.PrintWriter.close(  )
+   Permission: java.util.PropertyPermission "os.name", "read"
+      Primordial/void java.io.PrintWriter.close(  )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * Disconnects from console if useSocketStream is set to true.  This
+	 * will cause the console to close from a telnet session.
+	 */
+
+	void disconnect() throws IOException {
+		disconnect = true;
+<FONT style="background-color:#F2C553;display;inline">		out.close();
+</FONT>		in.close();
+		s.close();
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.io.FilePermission "", "read";</LI>
+<LI>permission java.io.FilePermission "", "write";</LI>
+<LI>permission java.io.FilePermission "*", "read";</LI>
+<LI>permission java.io.FilePermission "*", "write";</LI>
+<LI>permission java.io.FilePermission "-1", "read";</LI>
+<LI>permission java.io.FilePermission "-1", "write";</LI>
+<LI>permission java.io.FilePermission "-2", "read";</LI>
+<LI>permission java.io.FilePermission "-2", "write";</LI>
+<LI>permission java.io.FilePermission "-2147483648", "read";</LI>
+<LI>permission java.io.FilePermission "-2147483648", "write";</LI>
+<LI>permission java.io.FilePermission "-3", "read";</LI>
+<LI>permission java.io.FilePermission "-3", "write";</LI>
+<LI>permission java.io.FilePermission "-9223372036854775808", "read";</LI>
+<LI>permission java.io.FilePermission "-9223372036854775808", "write";</LI>
+<LI>permission java.io.FilePermission ".", "read";</LI>
+<LI>permission java.io.FilePermission ".", "write";</LI>
+<LI>permission java.io.FilePermission ".bundledata", "read";</LI>
+<LI>permission java.io.FilePermission ".default", "read";</LI>
+<LI>permission java.io.FilePermission ".fileTable", "read";</LI>
+<LI>permission java.io.FilePermission ".manager", "read";</LI>
+<LI>permission java.io.FilePermission ".manager", "write";</LI>
+<LI>permission java.io.FilePermission "0", "read";</LI>
+<LI>permission java.io.FilePermission "0", "write";</LI>
+<LI>permission java.io.FilePermission "1", "read";</LI>
+<LI>permission java.io.FilePermission "1", "write";</LI>
+<LI>permission java.io.FilePermission "1.3", "read";</LI>
+<LI>permission java.io.FilePermission "1.3", "write";</LI>
+<LI>permission java.io.FilePermission "10", "read";</LI>
+<LI>permission java.io.FilePermission "10", "write";</LI>
+<LI>permission java.io.FilePermission "13", "read";</LI>
+<LI>permission java.io.FilePermission "13", "write";</LI>
+<LI>permission java.io.FilePermission "2", "read";</LI>
+<LI>permission java.io.FilePermission "2", "write";</LI>
+<LI>permission java.io.FilePermission "23", "read";</LI>
+<LI>permission java.io.FilePermission "23", "write";</LI>
+<LI>permission java.io.FilePermission "3", "read";</LI>
+<LI>permission java.io.FilePermission "3", "write";</LI>
+<LI>permission java.io.FilePermission "3.0.0", "read";</LI>
+<LI>permission java.io.FilePermission "3.0.0", "write";</LI>
+<LI>permission java.io.FilePermission "4", "read";</LI>
+<LI>permission java.io.FilePermission "4", "write";</LI>
+<LI>permission java.io.FilePermission "5", "read";</LI>
+<LI>permission java.io.FilePermission "5", "write";</LI>
+<LI>permission java.io.FilePermission "6", "read";</LI>
+<LI>permission java.io.FilePermission "6", "write";</LI>
+<LI>permission java.io.FilePermission "7", "read";</LI>
+<LI>permission java.io.FilePermission "7", "write";</LI>
+<LI>permission java.io.FilePermission "8", "read";</LI>
+<LI>permission java.io.FilePermission "8", "write";</LI>
+<LI>permission java.io.FilePermission "9", "read";</LI>
+<LI>permission java.io.FilePermission "9", "write";</LI>
+<LI>permission java.io.FilePermission "???file???", "delete";</LI>
+<LI>permission java.io.FilePermission "???file???", "read";</LI>
+<LI>permission java.io.FilePermission "???file???", "write";</LI>
+<LI>permission java.io.FilePermission "Eclipse", "read";</LI>
+<LI>permission java.io.FilePermission "Eclipse", "write";</LI>
+<LI>permission java.io.FilePermission "META-INF/MANIFEST.MF", "read";</LI>
+<LI>permission java.io.FilePermission "META-INF/MANIFEST.MF", "write";</LI>
+<LI>permission java.io.FilePermission "No message available.", "read";</LI>
+<LI>permission java.io.FilePermission "No message available.", "write";</LI>
+<LI>permission java.io.FilePermission "aix", "read";</LI>
+<LI>permission java.io.FilePermission "aix", "write";</LI>
+<LI>permission java.io.FilePermission "bin", "read";</LI>
+<LI>permission java.io.FilePermission "bin", "write";</LI>
+<LI>permission java.io.FilePermission "bundles", "read";</LI>
+<LI>permission java.io.FilePermission "bundles", "write";</LI>
+<LI>permission java.io.FilePermission "carbon", "read";</LI>
+<LI>permission java.io.FilePermission "carbon", "write";</LI>
+<LI>permission java.io.FilePermission "false", "read";</LI>
+<LI>permission java.io.FilePermission "false", "write";</LI>
+<LI>permission java.io.FilePermission "fragment.xml", "read";</LI>
+<LI>permission java.io.FilePermission "fragment.xml", "write";</LI>
+<LI>permission java.io.FilePermission "hpux", "read";</LI>
+<LI>permission java.io.FilePermission "hpux", "write";</LI>
+<LI>permission java.io.FilePermission "linux", "read";</LI>
+<LI>permission java.io.FilePermission "linux", "write";</LI>
+<LI>permission java.io.FilePermission "macosx", "read";</LI>
+<LI>permission java.io.FilePermission "macosx", "write";</LI>
+<LI>permission java.io.FilePermission "manifests", "read";</LI>
+<LI>permission java.io.FilePermission "manifests", "write";</LI>
+<LI>permission java.io.FilePermission "motif", "read";</LI>
+<LI>permission java.io.FilePermission "motif", "write";</LI>
+<LI>permission java.io.FilePermission "org.eclipse.osgi", "read";</LI>
+<LI>permission java.io.FilePermission "org.eclipse.osgi", "write";</LI>
+<LI>permission java.io.FilePermission "permdata", "read";</LI>
+<LI>permission java.io.FilePermission "permdata", "write";</LI>
+<LI>permission java.io.FilePermission "photon", "read";</LI>
+<LI>permission java.io.FilePermission "photon", "write";</LI>
+<LI>permission java.io.FilePermission "plugin.xml", "read";</LI>
+<LI>permission java.io.FilePermission "plugin.xml", "write";</LI>
+<LI>permission java.io.FilePermission "qnx", "read";</LI>
+<LI>permission java.io.FilePermission "qnx", "write";</LI>
+<LI>permission java.io.FilePermission "solaris", "read";</LI>
+<LI>permission java.io.FilePermission "solaris", "write";</LI>
+<LI>permission java.io.FilePermission "true", "read";</LI>
+<LI>permission java.io.FilePermission "true", "write";</LI>
+<LI>permission java.io.FilePermission "unknown", "read";</LI>
+<LI>permission java.io.FilePermission "unknown", "write";</LI>
+<LI>permission java.io.FilePermission "win32", "read";</LI>
+<LI>permission java.io.FilePermission "win32", "write";</LI>
+<LI>permission java.io.FilePermission "x86", "read";</LI>
+<LI>permission java.io.FilePermission "x86", "write";</LI>
+<LI>permission java.io.FilePermission "x86_64", "read";</LI>
+<LI>permission java.io.FilePermission "x86_64", "write";</LI>
+<LI>permission java.util.PropertyPermission "os.name", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/framework/internal/core/FrameworkConsole.html#L315" , parent.fbot ); return false'>Line# 320</a> java.lang.String getInput(  )
+   Permission: java.util.PropertyPermission "java.vendor.url.bug", "read"
+      Primordial/java.lang.String java.io.BufferedReader.readLine(  )
+   Permission: java.util.PropertyPermission "os.name", "read"
+      Primordial/java.lang.String java.io.BufferedReader.readLine(  )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * Reads a string from standard input until user hits the Enter key.
+	 *
+	 * @return	The string read from the standard input without the newline character.
+	 */
+	public String getInput() {
+		String input;
+		try {
+			/** The buffered input reader on standard in. */
+<FONT style="background-color:#F2C553;display;inline">			input = ((BufferedReader) in).readLine();
+</FONT>			System.out.println("<" + input + ">");  //$NON-NLS-1$//$NON-NLS-2$
+		} catch (IOException e) {
+			input = ""; //$NON-NLS-1$
+		}
+		return input;
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "java.vendor.url.bug", "read";</LI>
+<LI>permission java.util.PropertyPermission "os.name", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/framework/internal/core/FrameworkConsole.html#L106" , parent.fbot ); return false'>Line# 111</a> void getSocketStream( int )
+   Permission: java.net.SocketPermission "localhost:1024-", "listen"
+      Primordial/void java.net.ServerSocket.ServerSocket( int )
+   Permission: java.net.SocketPermission localhost:???port???, "listen"
+      Primordial/void java.net.ServerSocket.ServerSocket( int )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 *  Open a socket and create input and output streams
+	 *
+	 * @param port number to listen on
+	 */
+	private void getSocketStream(int port) {
+		try {
+			System.out.println(NLS.bind(ConsoleMsg.CONSOLE_LISTENING_ON_PORT, String.valueOf(port))); 
+			if (ss == null) {
+<FONT style="background-color:#F2C553;display;inline">				ss = new ServerSocket(port);
+</FONT>				scsg = new ConsoleSocketGetter(ss);
+			}
+			scsg.setAcceptConnections(true);
+			s = scsg.getSocket();
+
+			in = createBufferedReader(s.getInputStream());
+			out = createPrintWriter(s.getOutputStream());
+		} catch (UnknownHostException uhe) {
+			uhe.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.net.SocketPermission "localhost:1024-", "listen";</LI>
+<LI>permission java.net.SocketPermission localhost:???port???, "listen";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+</pre>
+</body></html>

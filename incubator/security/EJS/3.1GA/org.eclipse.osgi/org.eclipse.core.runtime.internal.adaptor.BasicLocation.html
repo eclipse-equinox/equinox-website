@@ -1,0 +1,160 @@
+<html><head><title>Permission Analysis Report</title><script language='javaScript' src='linkUtil.js'></script></head><body>
+<h1>Permission Analysis Report</h1>
+<BR/><H2>Analysis of: org.eclipse.osgi</H2>
+<B>Detail</B><BR/><BR/>
+<pre>
+
+Class: <a href="foo" onClick="return openURLinSrc( 'Application/org/eclipse/core/runtime/internal/adaptor/BasicLocation.html' )">org.eclipse.core.runtime.internal.adaptor.BasicLocation</a> (Application)
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/runtime/internal/adaptor/BasicLocation.html#L52" , parent.fbot ); return false'>Line# 57</a> org.eclipse.core.runtime.internal.adaptor.Locker createLocker( java.io.File, java.lang.String )
+   Permission: java.util.PropertyPermission "*", "read,write"
+      Primordial/java.util.Properties java.lang.System.getProperties(  )
+<BR/><BR/><B>CODE</B><BR/>
+public static Locker createLocker(File lock, String lockMode) {
+		if (lockMode == null)
+<FONT style="background-color:#F2C553;display;inline">			lockMode = System.getProperties().getProperty(PROP_OSGI_LOCKING);
+</FONT>		
+		if ("none".equals(lockMode)) //$NON-NLS-1$
+			return new MockLocker();
+		
+		if ("java.io".equals(lockMode)) //$NON-NLS-1$
+			return new Locker_JavaIo(lock);
+		
+		if ("java.nio".equals(lockMode)) { //$NON-NLS-1$
+			if (isRunningWithNio()) {
+				return new Locker_JavaNio(lock);
+			} else {
+				// TODO should we return null here.  NIO was requested but we could not do it...
+				return new Locker_JavaIo(lock);
+			}
+		} 
+		
+		//	Backup case if an invalid value has been specified
+		if (isRunningWithNio()) {
+			return new Locker_JavaNio(lock);
+		} else {
+			return new Locker_JavaIo(lock);
+		}
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "*", "read,write";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/runtime/internal/adaptor/BasicLocation.html#L147" , parent.fbot ); return false'>Line# 152</a> boolean lock( java.io.File )
+   Permission: java.io.FilePermission "???file???", "read"
+      Primordial/boolean java.io.File.exists(  )
+<BR/><BR/><B>CODE</B><BR/>
+private boolean lock(File lock) throws IOException {
+		if (lock == null || isReadOnly)
+			return false;
+
+		File parentFile = new File(lock.getParent());
+<FONT style="background-color:#F2C553;display;inline">		if (!parentFile.exists())
+</FONT>			if (!parentFile.mkdirs())
+				return false;
+
+		setLocker(lock);
+		if (locker == null)
+			return true;
+		boolean locked = false; 
+		try {
+			locked = locker.lock();
+			return locked;
+		} finally {
+			if (!locked)
+				locker = null;
+		}
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.io.FilePermission "???file???", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/runtime/internal/adaptor/BasicLocation.html#L148" , parent.fbot ); return false'>Line# 153</a> boolean lock( java.io.File )
+   Permission: java.io.FilePermission "???file???", "read"
+      Primordial/boolean java.io.File.mkdirs(  )
+   Permission: java.io.FilePermission "???file???", "write"
+      Primordial/boolean java.io.File.mkdirs(  )
+   Permission: java.util.PropertyPermission "user.dir", "read"
+      Primordial/boolean java.io.File.mkdirs(  )
+<BR/><BR/><B>CODE</B><BR/>
+private boolean lock(File lock) throws IOException {
+		if (lock == null || isReadOnly)
+			return false;
+
+		File parentFile = new File(lock.getParent());
+		if (!parentFile.exists())
+<FONT style="background-color:#F2C553;display;inline">			if (!parentFile.mkdirs())
+</FONT>				return false;
+
+		setLocker(lock);
+		if (locker == null)
+			return true;
+		boolean locked = false; 
+		try {
+			locked = locker.lock();
+			return locked;
+		} finally {
+			if (!locked)
+				locker = null;
+		}
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.io.FilePermission "???file???", "read";</LI>
+<LI>permission java.io.FilePermission "???file???", "write";</LI>
+<LI>permission java.util.PropertyPermission "user.dir", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/runtime/internal/adaptor/BasicLocation.html#L167" , parent.fbot ); return false'>Line# 172</a> void setLocker( java.io.File )
+   Permission: java.util.PropertyPermission "*", "read,write"
+      Primordial/java.util.Properties java.lang.System.getProperties(  )
+<BR/><BR/><B>CODE</B><BR/>
+private void setLocker(File lock) {
+		if (locker != null)
+			return;
+<FONT style="background-color:#F2C553;display;inline">		String lockMode = System.getProperties().getProperty(PROP_OSGI_LOCKING);
+</FONT>		locker = createLocker(lock, lockMode);
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "*", "read,write";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/runtime/internal/adaptor/BasicLocation.html#L128" , parent.fbot ); return false'>Line# 133</a> boolean setURL( java.net.URL, boolean )
+   Permission: java.util.PropertyPermission "*", "read,write"
+      Primordial/java.util.Properties java.lang.System.getProperties(  )
+<BR/><BR/><B>CODE</B><BR/>
+public synchronized boolean setURL(URL value, boolean lock) throws IllegalStateException {
+		if (location != null)
+			throw new IllegalStateException(EclipseAdaptorMsg.ECLIPSE_CANNOT_CHANGE_LOCATION);
+		File file = null;
+		if (value.getProtocol().equalsIgnoreCase("file")) //$NON-NLS-1$
+			file = new File(value.getFile(), LOCK_FILENAME);
+		lock = lock && !isReadOnly;
+		if (lock) {
+			try {
+				if (!lock(file))
+					return false;
+			} catch (IOException e) {
+				return false;
+			}
+		}
+		lockFile = file;
+		location = LocationManager.buildURL(value.toExternalForm(), true);
+		if (property != null)
+<FONT style="background-color:#F2C553;display;inline">			System.getProperties().put(property, location.toExternalForm());
+</FONT>		return lock;
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "*", "read,write";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+</pre>
+</body></html>

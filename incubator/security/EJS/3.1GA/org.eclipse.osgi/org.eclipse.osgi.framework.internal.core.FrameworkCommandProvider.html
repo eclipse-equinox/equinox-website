@@ -1,0 +1,907 @@
+<html><head><title>Permission Analysis Report</title><script language='javaScript' src='linkUtil.js'></script></head><body>
+<h1>Permission Analysis Report</h1>
+<BR/><H2>Analysis of: org.eclipse.osgi</H2>
+<B>Detail</B><BR/><BR/>
+<pre>
+
+Class: <a href="foo" onClick="return openURLinSrc( 'Application/org/eclipse/osgi/framework/internal/core/FrameworkCommandProvider.html' )">org.eclipse.osgi.framework.internal.core.FrameworkCommandProvider</a> (Application)
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/framework/internal/core/FrameworkCommandProvider.html#L1076" , parent.fbot ); return false'>Line# 1081</a> void _close( org.eclipse.osgi.framework.console.CommandInterpreter )
+   Permission: java.lang.RuntimePermission "exitVM"
+      Primordial/void java.lang.System.exit( int )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 *  Handle the close command.  Shutdown and exit.
+	 *
+	 *  @param intp A CommandInterpreter object containing the command and it's arguments.
+	 */
+	public void _close(CommandInterpreter intp) throws Exception {
+		intp.println();
+		osgi.close();
+<FONT style="background-color:#F2C553;display;inline">		System.exit(0);
+</FONT>	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.lang.RuntimePermission "exitVM";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/framework/internal/core/FrameworkCommandProvider.html#L1147" , parent.fbot ); return false'>Line# 1152</a> void _exec( org.eclipse.osgi.framework.console.CommandInterpreter )
+   Permission: java.io.FilePermission "<<ALL FILES>>", "execute"
+      Primordial/java.lang.Process java.lang.Runtime.exec( java.lang.String )
+   Permission: java.io.FilePermission "???file???", "execute"
+      Primordial/java.lang.Process java.lang.Runtime.exec( java.lang.String )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * Executes the given system command in a separate system process
+	 * and waits for it to finish.
+	 *
+	 * @param intp A CommandInterpreter object containing the command and it's arguments.
+	 */
+public void _exec(CommandInterpreter intp) throws Exception {
+		String command = intp.nextArgument();
+		if (command == null) {
+			intp.println(ConsoleMsg.CONSOLE_NO_COMMAND_SPECIFIED_ERROR);
+			return;
+		}
+
+<FONT style="background-color:#F2C553;display;inline">		Process p = Runtime.getRuntime().exec(command);
+</FONT>
+		intp.println(NLS.bind(ConsoleMsg.CONSOLE_STARTED_IN_MESSAGE, command, String.valueOf(p)));
+		int result = p.waitFor();
+		intp.println(NLS.bind(ConsoleMsg.CONSOLE_EXECUTED_RESULT_CODE_MESSAGE, command, String.valueOf(result)));
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.io.FilePermission "<<ALL FILES>>", "execute";</LI>
+<LI>permission java.io.FilePermission "???file???", "execute";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/framework/internal/core/FrameworkCommandProvider.html#L184" , parent.fbot ); return false'>Line# 189</a> void _exit( org.eclipse.osgi.framework.console.CommandInterpreter )
+   Permission: java.lang.RuntimePermission "exitVM"
+      Primordial/void java.lang.System.exit( int )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 *  Handle the exit command.  Exit immediately (System.exit)
+	 *
+	 *  @param intp A CommandInterpreter object containing the command and it's arguments.
+	 */
+	public void _exit(CommandInterpreter intp) throws Exception {
+		intp.println();
+<FONT style="background-color:#F2C553;display;inline">		System.exit(0);
+</FONT>	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.lang.RuntimePermission "exitVM";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/framework/internal/core/FrameworkCommandProvider.html#L1166" , parent.fbot ); return false'>Line# 1171</a> void _fork( org.eclipse.osgi.framework.console.CommandInterpreter )
+   Permission: java.io.FilePermission "<<ALL FILES>>", "execute"
+      Primordial/java.lang.Process java.lang.Runtime.exec( java.lang.String )
+   Permission: java.io.FilePermission "???file???", "execute"
+      Primordial/java.lang.Process java.lang.Runtime.exec( java.lang.String )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * Executes the given system command in a separate system process.  It does
+	 * not wait for a result.
+	 *
+	 * @param intp A CommandInterpreter object containing the command and it's arguments.
+	 */
+public void _fork(CommandInterpreter intp) throws Exception {
+		String command = intp.nextArgument();
+		if (command == null) {
+			intp.println(ConsoleMsg.CONSOLE_NO_COMMAND_SPECIFIED_ERROR);
+			return;
+		}
+
+<FONT style="background-color:#F2C553;display;inline">		Process p = Runtime.getRuntime().exec(command);
+</FONT>		intp.println(NLS.bind(ConsoleMsg.CONSOLE_STARTED_IN_MESSAGE, command, String.valueOf(p))); 
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.io.FilePermission "<<ALL FILES>>", "execute";</LI>
+<LI>permission java.io.FilePermission "???file???", "execute";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/framework/internal/core/FrameworkCommandProvider.html#L1212" , parent.fbot ); return false'>Line# 1217</a> void _props( org.eclipse.osgi.framework.console.CommandInterpreter )
+   Permission: java.util.PropertyPermission "*", "read,write"
+      Primordial/java.util.Properties java.lang.System.getProperties(  )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * Handles the _props command.  Prints the system properties sorted.
+	 *
+	 * @param intp A CommandInterpreter object containing the command and it's arguments.
+	 */
+public void _props(CommandInterpreter intp) throws Exception {
+<FONT style="background-color:#F2C553;display;inline">		intp.printDictionary(System.getProperties(), ConsoleMsg.CONSOLE_SYSTEM_PROPERTIES_TITLE);
+</FONT>	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "*", "read,write";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/framework/internal/core/FrameworkCommandProvider.html#L1236" , parent.fbot ); return false'>Line# 1241</a> void _setprop( org.eclipse.osgi.framework.console.CommandInterpreter )
+   Permission: java.util.PropertyPermission "*", "read,write"
+      Primordial/java.util.Properties java.lang.System.getProperties(  )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * Handles the setprop command.  Sets the CDS property in the given argument.
+	 *
+	 * @param intp A CommandInterpreter object containing the command and it's arguments.
+	 */
+public void _setprop(CommandInterpreter intp) throws Exception {
+		String argument = intp.nextArgument();
+		if (argument == null) {
+			intp.println(ConsoleMsg.CONSOLE_NO_PARAMETERS_SPECIFIED_TITLE);
+			_props(intp);
+		} else {
+			InputStream in = new ByteArrayInputStream(argument.getBytes());
+			try {
+<FONT style="background-color:#F2C553;display;inline">				Properties sysprops = System.getProperties();
+</FONT>				Properties newprops = new Properties();
+				newprops.load(in);
+				intp.println(ConsoleMsg.CONSOLE_SETTING_PROPERTIES_TITLE);
+				Enumeration keys = newprops.propertyNames();
+				while (keys.hasMoreElements()) {
+					String key = (String) keys.nextElement();
+					String value = (String) newprops.get(key);
+					sysprops.put(key, value);
+					intp.println(tab + key + " = " + value); //$NON-NLS-1$
+				}
+			} catch (IOException e) {
+				// ignore
+			} finally {
+				try {
+					in.close();
+				} catch (IOException e) {
+					// ignore
+				}
+			}
+		}
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "*", "read,write";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/framework/internal/core/FrameworkCommandProvider.html#L1238" , parent.fbot ); return false'>Line# 1243</a> void _setprop( org.eclipse.osgi.framework.console.CommandInterpreter )
+   Permission: java.util.PropertyPermission "java.vendor.url.bug", "read"
+      Primordial/void java.util.Properties.load( java.io.InputStream )
+   Permission: java.util.PropertyPermission "os.name", "read"
+      Primordial/void java.util.Properties.load( java.io.InputStream )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * Handles the setprop command.  Sets the CDS property in the given argument.
+	 *
+	 * @param intp A CommandInterpreter object containing the command and it's arguments.
+	 */
+public void _setprop(CommandInterpreter intp) throws Exception {
+		String argument = intp.nextArgument();
+		if (argument == null) {
+			intp.println(ConsoleMsg.CONSOLE_NO_PARAMETERS_SPECIFIED_TITLE);
+			_props(intp);
+		} else {
+			InputStream in = new ByteArrayInputStream(argument.getBytes());
+			try {
+				Properties sysprops = System.getProperties();
+				Properties newprops = new Properties();
+<FONT style="background-color:#F2C553;display;inline">				newprops.load(in);
+</FONT>				intp.println(ConsoleMsg.CONSOLE_SETTING_PROPERTIES_TITLE);
+				Enumeration keys = newprops.propertyNames();
+				while (keys.hasMoreElements()) {
+					String key = (String) keys.nextElement();
+					String value = (String) newprops.get(key);
+					sysprops.put(key, value);
+					intp.println(tab + key + " = " + value); //$NON-NLS-1$
+				}
+			} catch (IOException e) {
+				// ignore
+			} finally {
+				try {
+					in.close();
+				} catch (IOException e) {
+					// ignore
+				}
+			}
+		}
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "java.vendor.url.bug", "read";</LI>
+<LI>permission java.util.PropertyPermission "os.name", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/framework/internal/core/FrameworkCommandProvider.html#L343" , parent.fbot ); return false'>Line# 348</a> void _update( org.eclipse.osgi.framework.console.CommandInterpreter )
+   Permission: java.io.FilePermission "", "delete"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "", "write"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "*", "delete"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "*", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "*", "write"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "-1", "delete"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "-1", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "-1", "write"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "-2", "delete"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "-2", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "-2", "write"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "-2147483648", "delete"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "-2147483648", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "-2147483648", "write"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "-3", "delete"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "-3", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "-3", "write"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "-9223372036854775808", "delete"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "-9223372036854775808", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "-9223372036854775808", "write"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission ".", "delete"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission ".", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission ".", "write"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission ".bundledata", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission ".default", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission ".fileTable", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission ".fileTableLock", "delete"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission ".fileTableLock", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission ".fileTableLock", "write"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission ".manager", "delete"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission ".manager", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission ".manager", "write"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission ".metadata/.lock", "delete"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission ".metadata/.lock", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission ".metadata/.lock", "write"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "0", "delete"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "0", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "0", "write"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "1", "delete"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "1", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "1", "write"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "1.3", "delete"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "1.3", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "1.3", "write"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "10", "delete"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "10", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "10", "write"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "13", "delete"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "13", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "13", "write"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "2", "delete"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "2", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "2", "write"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "23", "delete"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "23", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "23", "write"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "3", "delete"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "3", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "3", "write"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "3.0.0", "delete"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "3.0.0", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "3.0.0", "write"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "4", "delete"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "4", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "4", "write"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "5", "delete"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "5", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "5", "write"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "6", "delete"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "6", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "6", "write"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "7", "delete"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "7", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "7", "write"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "8", "delete"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "8", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "8", "write"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "9", "delete"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "9", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "9", "write"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "???file???", "delete"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "???file???", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "???file???", "write"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "Eclipse", "delete"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "Eclipse", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "Eclipse", "write"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "META-INF/MANIFEST.MF", "delete"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "META-INF/MANIFEST.MF", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "META-INF/MANIFEST.MF", "write"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "No message available.", "delete"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "No message available.", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "No message available.", "write"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "aix", "delete"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "aix", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "aix", "write"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "bin", "delete"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "bin", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "bin", "write"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "bundles", "delete"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "bundles", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "bundles", "write"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "carbon", "delete"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "carbon", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "carbon", "write"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "false", "delete"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "false", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "false", "write"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "fragment.xml", "delete"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "fragment.xml", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "fragment.xml", "write"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "hpux", "delete"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "hpux", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "hpux", "write"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "linux", "delete"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "linux", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "linux", "write"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "macosx", "delete"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "macosx", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "macosx", "write"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "manifests", "delete"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "manifests", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "manifests", "write"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "motif", "delete"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "motif", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "motif", "write"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "org.eclipse.osgi", "delete"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "org.eclipse.osgi", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "org.eclipse.osgi", "write"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "permdata", "delete"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "permdata", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "permdata", "write"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "photon", "delete"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "photon", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "photon", "write"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "plugin.xml", "delete"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "plugin.xml", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "plugin.xml", "write"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "qnx", "delete"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "qnx", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "qnx", "write"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "solaris", "delete"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "solaris", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "solaris", "write"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "true", "delete"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "true", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "true", "write"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "unknown", "delete"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "unknown", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "unknown", "write"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "win32", "delete"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "win32", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "win32", "write"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "x86", "delete"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "x86", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "x86", "write"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "x86_64", "delete"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "x86_64", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.io.FilePermission "x86_64", "write"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.lang.RuntimePermission "exitVM"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.lang.RuntimePermission "getClassLoader"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.lang.RuntimePermission "modifyThread"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.net.NetPermission "specifyStreamHandler"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.net.SocketPermission "???host???", "resolve"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.net.SocketPermission "???host???:???port???", "connect"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.net.SocketPermission "localhost", "resolve"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.net.SocketPermission "localhost:1024-", "resolve"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.net.SocketPermission "localhost:1024-:???port???", "connect"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.net.SocketPermission "localhost:???port???", "connect"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.util.PropertyPermission "*", "read,write"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.util.PropertyPermission "eclipse.buildId", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.util.PropertyPermission "eclipse.consoleLog", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.util.PropertyPermission "eclipse.log.backup.max", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.util.PropertyPermission "eclipse.log.size.max", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.util.PropertyPermission "eclipse.startTime", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.util.PropertyPermission "java.fullversion", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.util.PropertyPermission "java.protocol.handler.pkgs", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.util.PropertyPermission "java.vendor", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.util.PropertyPermission "java.vendor.url.bug", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.util.PropertyPermission "java.version", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.util.PropertyPermission "launch.startMillis", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.util.PropertyPermission "os.arch", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.util.PropertyPermission "os.name", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.util.PropertyPermission "osgi.arch", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.util.PropertyPermission "osgi.debug", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.util.PropertyPermission "osgi.defaultprofile.buffersize", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.util.PropertyPermission "osgi.defaultprofile.logfilename", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.util.PropertyPermission "osgi.defaultprofile.logsynchronously", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.util.PropertyPermission "osgi.logfile", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.util.PropertyPermission "osgi.nl", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.util.PropertyPermission "osgi.os", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.util.PropertyPermission "osgi.ws", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.util.PropertyPermission "user.dir", "read"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: java.util.PropertyPermission "user.language", "write"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: org.osgi.framework.AdminPermission "<unknown>", "<unknown>"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: org.osgi.framework.AdminPermission "<unknown>", "class"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: org.osgi.framework.AdminPermission "<unknown>", "execute"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: org.osgi.framework.AdminPermission "<unknown>", "extensionLifecycle"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: org.osgi.framework.AdminPermission "<unknown>", "lifecycle"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: org.osgi.framework.AdminPermission "<unknown>", "listener"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: org.osgi.framework.AdminPermission "<unknown>", "metadata"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: org.osgi.framework.AdminPermission "<unknown>", "resolve"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: org.osgi.framework.AdminPermission "<unknown>", "resource"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: org.osgi.framework.AdminPermission "<unknown>", "startlevel"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "<unknown>", "<unknown>"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "<unknown>", "get"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", "<unknown>"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "java.net.ContentHandler", "get"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "<unknown>"
+      Primordial/void java.net.URL.URL( java.lang.String )
+   Permission: org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get"
+      Primordial/void java.net.URL.URL( java.lang.String )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 *  Handle the update command.  Update the specified bundle(s).
+	 *
+	 *  @param intp A CommandInterpreter object containing the command and it's arguments.
+	 */
+	public void _update(CommandInterpreter intp) throws Exception {
+		String token = intp.nextArgument();
+		if (token == null) {
+			intp.println(ConsoleMsg.CONSOLE_NO_BUNDLE_SPECIFIED_ERROR);
+		}
+		while (token != null) {
+
+			if ("*".equals(token)) { //$NON-NLS-1$
+				AbstractBundle[] bundles = (AbstractBundle[]) context.getBundles();
+
+				int size = bundles.length;
+
+				if (size > 0) {
+					for (int i = 0; i < size; i++) {
+						AbstractBundle bundle = bundles[i];
+
+						if (bundle.getBundleId() != 0) {
+							try {
+								bundle.update();
+							} catch (BundleException e) {
+								intp.printStackTrace(e);
+							}
+						}
+					}
+				} else {
+					intp.println(ConsoleMsg.CONSOLE_NO_INSTALLED_BUNDLES_ERROR);
+				}
+			} else {
+				AbstractBundle bundle = getBundleFromToken(intp, token, true);
+				if (bundle != null) {
+					String source = intp.nextArgument();
+					try {
+						if (source != null) {
+<FONT style="background-color:#F2C553;display;inline">							bundle.update(new URL(source).openStream());
+</FONT>						} else {
+							bundle.update();
+						}
+					} catch (BundleException e) {
+						intp.printStackTrace(e);
+					}
+				}
+			}
+			token = intp.nextArgument();
+		}
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.io.FilePermission "", "delete";</LI>
+<LI>permission java.io.FilePermission "", "read";</LI>
+<LI>permission java.io.FilePermission "", "write";</LI>
+<LI>permission java.io.FilePermission "*", "delete";</LI>
+<LI>permission java.io.FilePermission "*", "read";</LI>
+<LI>permission java.io.FilePermission "*", "write";</LI>
+<LI>permission java.io.FilePermission "-1", "delete";</LI>
+<LI>permission java.io.FilePermission "-1", "read";</LI>
+<LI>permission java.io.FilePermission "-1", "write";</LI>
+<LI>permission java.io.FilePermission "-2", "delete";</LI>
+<LI>permission java.io.FilePermission "-2", "read";</LI>
+<LI>permission java.io.FilePermission "-2", "write";</LI>
+<LI>permission java.io.FilePermission "-2147483648", "delete";</LI>
+<LI>permission java.io.FilePermission "-2147483648", "read";</LI>
+<LI>permission java.io.FilePermission "-2147483648", "write";</LI>
+<LI>permission java.io.FilePermission "-3", "delete";</LI>
+<LI>permission java.io.FilePermission "-3", "read";</LI>
+<LI>permission java.io.FilePermission "-3", "write";</LI>
+<LI>permission java.io.FilePermission "-9223372036854775808", "delete";</LI>
+<LI>permission java.io.FilePermission "-9223372036854775808", "read";</LI>
+<LI>permission java.io.FilePermission "-9223372036854775808", "write";</LI>
+<LI>permission java.io.FilePermission ".", "delete";</LI>
+<LI>permission java.io.FilePermission ".", "read";</LI>
+<LI>permission java.io.FilePermission ".", "write";</LI>
+<LI>permission java.io.FilePermission ".bundledata", "read";</LI>
+<LI>permission java.io.FilePermission ".default", "read";</LI>
+<LI>permission java.io.FilePermission ".fileTable", "read";</LI>
+<LI>permission java.io.FilePermission ".fileTableLock", "delete";</LI>
+<LI>permission java.io.FilePermission ".fileTableLock", "read";</LI>
+<LI>permission java.io.FilePermission ".fileTableLock", "write";</LI>
+<LI>permission java.io.FilePermission ".manager", "delete";</LI>
+<LI>permission java.io.FilePermission ".manager", "read";</LI>
+<LI>permission java.io.FilePermission ".manager", "write";</LI>
+<LI>permission java.io.FilePermission ".metadata/.lock", "delete";</LI>
+<LI>permission java.io.FilePermission ".metadata/.lock", "read";</LI>
+<LI>permission java.io.FilePermission ".metadata/.lock", "write";</LI>
+<LI>permission java.io.FilePermission "0", "delete";</LI>
+<LI>permission java.io.FilePermission "0", "read";</LI>
+<LI>permission java.io.FilePermission "0", "write";</LI>
+<LI>permission java.io.FilePermission "1", "delete";</LI>
+<LI>permission java.io.FilePermission "1", "read";</LI>
+<LI>permission java.io.FilePermission "1", "write";</LI>
+<LI>permission java.io.FilePermission "1.3", "delete";</LI>
+<LI>permission java.io.FilePermission "1.3", "read";</LI>
+<LI>permission java.io.FilePermission "1.3", "write";</LI>
+<LI>permission java.io.FilePermission "10", "delete";</LI>
+<LI>permission java.io.FilePermission "10", "read";</LI>
+<LI>permission java.io.FilePermission "10", "write";</LI>
+<LI>permission java.io.FilePermission "13", "delete";</LI>
+<LI>permission java.io.FilePermission "13", "read";</LI>
+<LI>permission java.io.FilePermission "13", "write";</LI>
+<LI>permission java.io.FilePermission "2", "delete";</LI>
+<LI>permission java.io.FilePermission "2", "read";</LI>
+<LI>permission java.io.FilePermission "2", "write";</LI>
+<LI>permission java.io.FilePermission "23", "delete";</LI>
+<LI>permission java.io.FilePermission "23", "read";</LI>
+<LI>permission java.io.FilePermission "23", "write";</LI>
+<LI>permission java.io.FilePermission "3", "delete";</LI>
+<LI>permission java.io.FilePermission "3", "read";</LI>
+<LI>permission java.io.FilePermission "3", "write";</LI>
+<LI>permission java.io.FilePermission "3.0.0", "delete";</LI>
+<LI>permission java.io.FilePermission "3.0.0", "read";</LI>
+<LI>permission java.io.FilePermission "3.0.0", "write";</LI>
+<LI>permission java.io.FilePermission "4", "delete";</LI>
+<LI>permission java.io.FilePermission "4", "read";</LI>
+<LI>permission java.io.FilePermission "4", "write";</LI>
+<LI>permission java.io.FilePermission "5", "delete";</LI>
+<LI>permission java.io.FilePermission "5", "read";</LI>
+<LI>permission java.io.FilePermission "5", "write";</LI>
+<LI>permission java.io.FilePermission "6", "delete";</LI>
+<LI>permission java.io.FilePermission "6", "read";</LI>
+<LI>permission java.io.FilePermission "6", "write";</LI>
+<LI>permission java.io.FilePermission "7", "delete";</LI>
+<LI>permission java.io.FilePermission "7", "read";</LI>
+<LI>permission java.io.FilePermission "7", "write";</LI>
+<LI>permission java.io.FilePermission "8", "delete";</LI>
+<LI>permission java.io.FilePermission "8", "read";</LI>
+<LI>permission java.io.FilePermission "8", "write";</LI>
+<LI>permission java.io.FilePermission "9", "delete";</LI>
+<LI>permission java.io.FilePermission "9", "read";</LI>
+<LI>permission java.io.FilePermission "9", "write";</LI>
+<LI>permission java.io.FilePermission "???file???", "delete";</LI>
+<LI>permission java.io.FilePermission "???file???", "read";</LI>
+<LI>permission java.io.FilePermission "???file???", "write";</LI>
+<LI>permission java.io.FilePermission "Eclipse", "delete";</LI>
+<LI>permission java.io.FilePermission "Eclipse", "read";</LI>
+<LI>permission java.io.FilePermission "Eclipse", "write";</LI>
+<LI>permission java.io.FilePermission "META-INF/MANIFEST.MF", "delete";</LI>
+<LI>permission java.io.FilePermission "META-INF/MANIFEST.MF", "read";</LI>
+<LI>permission java.io.FilePermission "META-INF/MANIFEST.MF", "write";</LI>
+<LI>permission java.io.FilePermission "No message available.", "delete";</LI>
+<LI>permission java.io.FilePermission "No message available.", "read";</LI>
+<LI>permission java.io.FilePermission "No message available.", "write";</LI>
+<LI>permission java.io.FilePermission "aix", "delete";</LI>
+<LI>permission java.io.FilePermission "aix", "read";</LI>
+<LI>permission java.io.FilePermission "aix", "write";</LI>
+<LI>permission java.io.FilePermission "bin", "delete";</LI>
+<LI>permission java.io.FilePermission "bin", "read";</LI>
+<LI>permission java.io.FilePermission "bin", "write";</LI>
+<LI>permission java.io.FilePermission "bundles", "delete";</LI>
+<LI>permission java.io.FilePermission "bundles", "read";</LI>
+<LI>permission java.io.FilePermission "bundles", "write";</LI>
+<LI>permission java.io.FilePermission "carbon", "delete";</LI>
+<LI>permission java.io.FilePermission "carbon", "read";</LI>
+<LI>permission java.io.FilePermission "carbon", "write";</LI>
+<LI>permission java.io.FilePermission "false", "delete";</LI>
+<LI>permission java.io.FilePermission "false", "read";</LI>
+<LI>permission java.io.FilePermission "false", "write";</LI>
+<LI>permission java.io.FilePermission "fragment.xml", "delete";</LI>
+<LI>permission java.io.FilePermission "fragment.xml", "read";</LI>
+<LI>permission java.io.FilePermission "fragment.xml", "write";</LI>
+<LI>permission java.io.FilePermission "hpux", "delete";</LI>
+<LI>permission java.io.FilePermission "hpux", "read";</LI>
+<LI>permission java.io.FilePermission "hpux", "write";</LI>
+<LI>permission java.io.FilePermission "linux", "delete";</LI>
+<LI>permission java.io.FilePermission "linux", "read";</LI>
+<LI>permission java.io.FilePermission "linux", "write";</LI>
+<LI>permission java.io.FilePermission "macosx", "delete";</LI>
+<LI>permission java.io.FilePermission "macosx", "read";</LI>
+<LI>permission java.io.FilePermission "macosx", "write";</LI>
+<LI>permission java.io.FilePermission "manifests", "delete";</LI>
+<LI>permission java.io.FilePermission "manifests", "read";</LI>
+<LI>permission java.io.FilePermission "manifests", "write";</LI>
+<LI>permission java.io.FilePermission "motif", "delete";</LI>
+<LI>permission java.io.FilePermission "motif", "read";</LI>
+<LI>permission java.io.FilePermission "motif", "write";</LI>
+<LI>permission java.io.FilePermission "org.eclipse.osgi", "delete";</LI>
+<LI>permission java.io.FilePermission "org.eclipse.osgi", "read";</LI>
+<LI>permission java.io.FilePermission "org.eclipse.osgi", "write";</LI>
+<LI>permission java.io.FilePermission "permdata", "delete";</LI>
+<LI>permission java.io.FilePermission "permdata", "read";</LI>
+<LI>permission java.io.FilePermission "permdata", "write";</LI>
+<LI>permission java.io.FilePermission "photon", "delete";</LI>
+<LI>permission java.io.FilePermission "photon", "read";</LI>
+<LI>permission java.io.FilePermission "photon", "write";</LI>
+<LI>permission java.io.FilePermission "plugin.xml", "delete";</LI>
+<LI>permission java.io.FilePermission "plugin.xml", "read";</LI>
+<LI>permission java.io.FilePermission "plugin.xml", "write";</LI>
+<LI>permission java.io.FilePermission "qnx", "delete";</LI>
+<LI>permission java.io.FilePermission "qnx", "read";</LI>
+<LI>permission java.io.FilePermission "qnx", "write";</LI>
+<LI>permission java.io.FilePermission "solaris", "delete";</LI>
+<LI>permission java.io.FilePermission "solaris", "read";</LI>
+<LI>permission java.io.FilePermission "solaris", "write";</LI>
+<LI>permission java.io.FilePermission "true", "delete";</LI>
+<LI>permission java.io.FilePermission "true", "read";</LI>
+<LI>permission java.io.FilePermission "true", "write";</LI>
+<LI>permission java.io.FilePermission "unknown", "delete";</LI>
+<LI>permission java.io.FilePermission "unknown", "read";</LI>
+<LI>permission java.io.FilePermission "unknown", "write";</LI>
+<LI>permission java.io.FilePermission "win32", "delete";</LI>
+<LI>permission java.io.FilePermission "win32", "read";</LI>
+<LI>permission java.io.FilePermission "win32", "write";</LI>
+<LI>permission java.io.FilePermission "x86", "delete";</LI>
+<LI>permission java.io.FilePermission "x86", "read";</LI>
+<LI>permission java.io.FilePermission "x86", "write";</LI>
+<LI>permission java.io.FilePermission "x86_64", "delete";</LI>
+<LI>permission java.io.FilePermission "x86_64", "read";</LI>
+<LI>permission java.io.FilePermission "x86_64", "write";</LI>
+<LI>permission java.lang.RuntimePermission "exitVM";</LI>
+<LI>permission java.lang.RuntimePermission "getClassLoader";</LI>
+<LI>permission java.lang.RuntimePermission "modifyThread";</LI>
+<LI>permission java.net.NetPermission "specifyStreamHandler";</LI>
+<LI>permission java.net.SocketPermission "???host???", "resolve";</LI>
+<LI>permission java.net.SocketPermission "???host???:???port???", "connect";</LI>
+<LI>permission java.net.SocketPermission "localhost", "resolve";</LI>
+<LI>permission java.net.SocketPermission "localhost:1024-", "resolve";</LI>
+<LI>permission java.net.SocketPermission "localhost:1024-:???port???", "connect";</LI>
+<LI>permission java.net.SocketPermission "localhost:???port???", "connect";</LI>
+<LI>permission java.util.PropertyPermission "*", "read,write";</LI>
+<LI>permission java.util.PropertyPermission "eclipse.buildId", "read";</LI>
+<LI>permission java.util.PropertyPermission "eclipse.consoleLog", "read";</LI>
+<LI>permission java.util.PropertyPermission "eclipse.log.backup.max", "read";</LI>
+<LI>permission java.util.PropertyPermission "eclipse.log.size.max", "read";</LI>
+<LI>permission java.util.PropertyPermission "eclipse.startTime", "read";</LI>
+<LI>permission java.util.PropertyPermission "java.fullversion", "read";</LI>
+<LI>permission java.util.PropertyPermission "java.protocol.handler.pkgs", "read";</LI>
+<LI>permission java.util.PropertyPermission "java.vendor", "read";</LI>
+<LI>permission java.util.PropertyPermission "java.vendor.url.bug", "read";</LI>
+<LI>permission java.util.PropertyPermission "java.version", "read";</LI>
+<LI>permission java.util.PropertyPermission "launch.startMillis", "read";</LI>
+<LI>permission java.util.PropertyPermission "os.arch", "read";</LI>
+<LI>permission java.util.PropertyPermission "os.name", "read";</LI>
+<LI>permission java.util.PropertyPermission "osgi.arch", "read";</LI>
+<LI>permission java.util.PropertyPermission "osgi.debug", "read";</LI>
+<LI>permission java.util.PropertyPermission "osgi.defaultprofile.buffersize", "read";</LI>
+<LI>permission java.util.PropertyPermission "osgi.defaultprofile.logfilename", "read";</LI>
+<LI>permission java.util.PropertyPermission "osgi.defaultprofile.logsynchronously", "read";</LI>
+<LI>permission java.util.PropertyPermission "osgi.logfile", "read";</LI>
+<LI>permission java.util.PropertyPermission "osgi.nl", "read";</LI>
+<LI>permission java.util.PropertyPermission "osgi.os", "read";</LI>
+<LI>permission java.util.PropertyPermission "osgi.ws", "read";</LI>
+<LI>permission java.util.PropertyPermission "user.dir", "read";</LI>
+<LI>permission java.util.PropertyPermission "user.language", "write";</LI>
+<LI>permission org.osgi.framework.AdminPermission "<unknown>", "<unknown>";</LI>
+<LI>permission org.osgi.framework.AdminPermission "<unknown>", "class";</LI>
+<LI>permission org.osgi.framework.AdminPermission "<unknown>", "execute";</LI>
+<LI>permission org.osgi.framework.AdminPermission "<unknown>", "extensionLifecycle";</LI>
+<LI>permission org.osgi.framework.AdminPermission "<unknown>", "lifecycle";</LI>
+<LI>permission org.osgi.framework.AdminPermission "<unknown>", "listener";</LI>
+<LI>permission org.osgi.framework.AdminPermission "<unknown>", "metadata";</LI>
+<LI>permission org.osgi.framework.AdminPermission "<unknown>", "resolve";</LI>
+<LI>permission org.osgi.framework.AdminPermission "<unknown>", "resource";</LI>
+<LI>permission org.osgi.framework.AdminPermission "<unknown>", "startlevel";</LI>
+<LI>permission org.osgi.framework.ServicePermission "<unknown>", "<unknown>";</LI>
+<LI>permission org.osgi.framework.ServicePermission "<unknown>", "get";</LI>
+<LI>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", "<unknown>";</LI>
+<LI>permission org.osgi.framework.ServicePermission "java.net.ContentHandler", "get";</LI>
+<LI>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "<unknown>";</LI>
+<LI>permission org.osgi.framework.ServicePermission "org.osgi.service.url.URLStreamHandlerService", "get";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+</pre>
+</body></html>

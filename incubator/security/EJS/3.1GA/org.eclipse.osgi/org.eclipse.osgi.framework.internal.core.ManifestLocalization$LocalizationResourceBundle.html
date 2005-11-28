@@ -1,0 +1,22 @@
+<html><head><title>Permission Analysis Report</title><script language='javaScript' src='linkUtil.js'></script></head><body>
+<h1>Permission Analysis Report</h1>
+<BR/><H2>Analysis of: org.eclipse.osgi</H2>
+<B>Detail</B><BR/><BR/>
+<pre>
+
+Class: <a href="foo" onClick="return openURLinSrc( 'Application/org/eclipse/osgi/framework/internal/core/ManifestLocalization.html' )">org.eclipse.osgi.framework.internal.core.ManifestLocalization$LocalizationResourceBundle</a> (Application)
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/framework/internal/core/ManifestLocalization.html#L178" , parent.fbot ); return false'>Line# 183</a> void &lt;init&gt;( org.eclipse.osgi.framework.internal.core.ManifestLocalization, java.io.InputStream )
+   Permission: java.util.PropertyPermission "java.vendor.url.bug", "read"
+      Primordial/void java.util.PropertyResourceBundle.PropertyResourceBundle( java.io.InputStream )
+   Permission: java.util.PropertyPermission "os.name", "read"
+      Primordial/void java.util.PropertyResourceBundle.PropertyResourceBundle( java.io.InputStream )
+<BR/><BR/><B>CODE</B><BR/>
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "java.vendor.url.bug", "read";</LI>
+<LI>permission java.util.PropertyPermission "os.name", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+</pre>
+</body></html>

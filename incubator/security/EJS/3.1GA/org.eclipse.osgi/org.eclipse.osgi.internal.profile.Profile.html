@@ -1,0 +1,314 @@
+<html><head><title>Permission Analysis Report</title><script language='javaScript' src='linkUtil.js'></script></head><body>
+<h1>Permission Analysis Report</h1>
+<BR/><H2>Analysis of: org.eclipse.osgi</H2>
+<B>Detail</B><BR/><BR/>
+<pre>
+
+Class: <a href="foo" onClick="return openURLinSrc( 'Application/org/eclipse/osgi/internal/profile/Profile.html' )">org.eclipse.osgi.internal.profile.Profile</a> (Application)
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/internal/profile/Profile.html#L89" , parent.fbot ); return false'>Line# 94</a> void initProps(  )
+   Permission: java.util.PropertyPermission "osgi.debug", "read"
+      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * Initialize/update profiling properties.
+	 * 
+	 * If profiling properties are updated, this method is called to update
+	 * the profile states.
+	 */
+	public static void initProps() {
+		String prop;
+		FrameworkDebugOptions dbgOptions = null;
+
+		// if osgi.debug is not available, don't force DebugOptions
+		//  to init as this variable may be set later on where 
+		//  DebugOptions will succeed.
+<FONT style="background-color:#F2C553;display;inline">		if (System.getProperty("osgi.debug") != null) { //$NON-NLS-1$
+</FONT>			dbgOptions = FrameworkDebugOptions.getDefault();
+			if (dbgOptions != null) {
+				STARTUP = dbgOptions.getBooleanOption(OPTION_STARTUP, false);
+				BENCHMARK = dbgOptions.getBooleanOption(OPTION_BENCHMARK, false);
+				DEBUG = dbgOptions.getBooleanOption(OPTION_DEBUG, false);
+				if (profileLogger == null)
+					profileLoggerClassName = dbgOptions.getOption(OPTION_IMPL);
+			}
+		}
+
+		// System properties will always override anything in .options file
+		if ((prop = System.getProperty(PROP_STARTUP)) != null) {
+			STARTUP = Boolean.valueOf(prop).booleanValue();
+			if (dbgOptions != null)
+				dbgOptions.setOption(OPTION_STARTUP, new Boolean(STARTUP).toString());
+		}
+		if ((prop = System.getProperty(PROP_BENCHMARK)) != null) {
+			BENCHMARK = Boolean.valueOf(prop).booleanValue();
+			if (dbgOptions != null)
+				dbgOptions.setOption(OPTION_BENCHMARK, new Boolean(BENCHMARK).toString());
+		}
+		if ((prop = System.getProperty(PROP_DEBUG)) != null) {
+			DEBUG = Boolean.valueOf(prop).booleanValue();
+			if (dbgOptions != null)
+				dbgOptions.setOption(OPTION_DEBUG, new Boolean(DEBUG).toString());
+		}
+
+		if (profileLogger == null) {
+			if ((prop = System.getProperty(PROP_IMPL)) != null) {
+				profileLoggerClassName = prop;
+				if (dbgOptions != null)
+					dbgOptions.setOption(OPTION_IMPL, profileLoggerClassName);
+			}
+		} else {
+			profileLogger.initProps();
+		}
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "osgi.debug", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/internal/profile/Profile.html#L101" , parent.fbot ); return false'>Line# 106</a> void initProps(  )
+   Permission: java.util.PropertyPermission "osgi.profile.startup", "read"
+      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * Initialize/update profiling properties.
+	 * 
+	 * If profiling properties are updated, this method is called to update
+	 * the profile states.
+	 */
+	public static void initProps() {
+		String prop;
+		FrameworkDebugOptions dbgOptions = null;
+
+		// if osgi.debug is not available, don't force DebugOptions
+		//  to init as this variable may be set later on where 
+		//  DebugOptions will succeed.
+		if (System.getProperty("osgi.debug") != null) { //$NON-NLS-1$
+			dbgOptions = FrameworkDebugOptions.getDefault();
+			if (dbgOptions != null) {
+				STARTUP = dbgOptions.getBooleanOption(OPTION_STARTUP, false);
+				BENCHMARK = dbgOptions.getBooleanOption(OPTION_BENCHMARK, false);
+				DEBUG = dbgOptions.getBooleanOption(OPTION_DEBUG, false);
+				if (profileLogger == null)
+					profileLoggerClassName = dbgOptions.getOption(OPTION_IMPL);
+			}
+		}
+
+		// System properties will always override anything in .options file
+<FONT style="background-color:#F2C553;display;inline">		if ((prop = System.getProperty(PROP_STARTUP)) != null) {
+</FONT>			STARTUP = Boolean.valueOf(prop).booleanValue();
+			if (dbgOptions != null)
+				dbgOptions.setOption(OPTION_STARTUP, new Boolean(STARTUP).toString());
+		}
+		if ((prop = System.getProperty(PROP_BENCHMARK)) != null) {
+			BENCHMARK = Boolean.valueOf(prop).booleanValue();
+			if (dbgOptions != null)
+				dbgOptions.setOption(OPTION_BENCHMARK, new Boolean(BENCHMARK).toString());
+		}
+		if ((prop = System.getProperty(PROP_DEBUG)) != null) {
+			DEBUG = Boolean.valueOf(prop).booleanValue();
+			if (dbgOptions != null)
+				dbgOptions.setOption(OPTION_DEBUG, new Boolean(DEBUG).toString());
+		}
+
+		if (profileLogger == null) {
+			if ((prop = System.getProperty(PROP_IMPL)) != null) {
+				profileLoggerClassName = prop;
+				if (dbgOptions != null)
+					dbgOptions.setOption(OPTION_IMPL, profileLoggerClassName);
+			}
+		} else {
+			profileLogger.initProps();
+		}
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "osgi.profile.startup", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/internal/profile/Profile.html#L106" , parent.fbot ); return false'>Line# 111</a> void initProps(  )
+   Permission: java.util.PropertyPermission "osgi.profile.benchmark", "read"
+      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * Initialize/update profiling properties.
+	 * 
+	 * If profiling properties are updated, this method is called to update
+	 * the profile states.
+	 */
+	public static void initProps() {
+		String prop;
+		FrameworkDebugOptions dbgOptions = null;
+
+		// if osgi.debug is not available, don't force DebugOptions
+		//  to init as this variable may be set later on where 
+		//  DebugOptions will succeed.
+		if (System.getProperty("osgi.debug") != null) { //$NON-NLS-1$
+			dbgOptions = FrameworkDebugOptions.getDefault();
+			if (dbgOptions != null) {
+				STARTUP = dbgOptions.getBooleanOption(OPTION_STARTUP, false);
+				BENCHMARK = dbgOptions.getBooleanOption(OPTION_BENCHMARK, false);
+				DEBUG = dbgOptions.getBooleanOption(OPTION_DEBUG, false);
+				if (profileLogger == null)
+					profileLoggerClassName = dbgOptions.getOption(OPTION_IMPL);
+			}
+		}
+
+		// System properties will always override anything in .options file
+		if ((prop = System.getProperty(PROP_STARTUP)) != null) {
+			STARTUP = Boolean.valueOf(prop).booleanValue();
+			if (dbgOptions != null)
+				dbgOptions.setOption(OPTION_STARTUP, new Boolean(STARTUP).toString());
+		}
+<FONT style="background-color:#F2C553;display;inline">		if ((prop = System.getProperty(PROP_BENCHMARK)) != null) {
+</FONT>			BENCHMARK = Boolean.valueOf(prop).booleanValue();
+			if (dbgOptions != null)
+				dbgOptions.setOption(OPTION_BENCHMARK, new Boolean(BENCHMARK).toString());
+		}
+		if ((prop = System.getProperty(PROP_DEBUG)) != null) {
+			DEBUG = Boolean.valueOf(prop).booleanValue();
+			if (dbgOptions != null)
+				dbgOptions.setOption(OPTION_DEBUG, new Boolean(DEBUG).toString());
+		}
+
+		if (profileLogger == null) {
+			if ((prop = System.getProperty(PROP_IMPL)) != null) {
+				profileLoggerClassName = prop;
+				if (dbgOptions != null)
+					dbgOptions.setOption(OPTION_IMPL, profileLoggerClassName);
+			}
+		} else {
+			profileLogger.initProps();
+		}
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "osgi.profile.benchmark", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/internal/profile/Profile.html#L111" , parent.fbot ); return false'>Line# 116</a> void initProps(  )
+   Permission: java.util.PropertyPermission "osgi.profile.debug", "read"
+      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * Initialize/update profiling properties.
+	 * 
+	 * If profiling properties are updated, this method is called to update
+	 * the profile states.
+	 */
+	public static void initProps() {
+		String prop;
+		FrameworkDebugOptions dbgOptions = null;
+
+		// if osgi.debug is not available, don't force DebugOptions
+		//  to init as this variable may be set later on where 
+		//  DebugOptions will succeed.
+		if (System.getProperty("osgi.debug") != null) { //$NON-NLS-1$
+			dbgOptions = FrameworkDebugOptions.getDefault();
+			if (dbgOptions != null) {
+				STARTUP = dbgOptions.getBooleanOption(OPTION_STARTUP, false);
+				BENCHMARK = dbgOptions.getBooleanOption(OPTION_BENCHMARK, false);
+				DEBUG = dbgOptions.getBooleanOption(OPTION_DEBUG, false);
+				if (profileLogger == null)
+					profileLoggerClassName = dbgOptions.getOption(OPTION_IMPL);
+			}
+		}
+
+		// System properties will always override anything in .options file
+		if ((prop = System.getProperty(PROP_STARTUP)) != null) {
+			STARTUP = Boolean.valueOf(prop).booleanValue();
+			if (dbgOptions != null)
+				dbgOptions.setOption(OPTION_STARTUP, new Boolean(STARTUP).toString());
+		}
+		if ((prop = System.getProperty(PROP_BENCHMARK)) != null) {
+			BENCHMARK = Boolean.valueOf(prop).booleanValue();
+			if (dbgOptions != null)
+				dbgOptions.setOption(OPTION_BENCHMARK, new Boolean(BENCHMARK).toString());
+		}
+<FONT style="background-color:#F2C553;display;inline">		if ((prop = System.getProperty(PROP_DEBUG)) != null) {
+</FONT>			DEBUG = Boolean.valueOf(prop).booleanValue();
+			if (dbgOptions != null)
+				dbgOptions.setOption(OPTION_DEBUG, new Boolean(DEBUG).toString());
+		}
+
+		if (profileLogger == null) {
+			if ((prop = System.getProperty(PROP_IMPL)) != null) {
+				profileLoggerClassName = prop;
+				if (dbgOptions != null)
+					dbgOptions.setOption(OPTION_IMPL, profileLoggerClassName);
+			}
+		} else {
+			profileLogger.initProps();
+		}
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "osgi.profile.debug", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/internal/profile/Profile.html#L118" , parent.fbot ); return false'>Line# 123</a> void initProps(  )
+   Permission: java.util.PropertyPermission "osgi.profile.impl", "read"
+      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * Initialize/update profiling properties.
+	 * 
+	 * If profiling properties are updated, this method is called to update
+	 * the profile states.
+	 */
+	public static void initProps() {
+		String prop;
+		FrameworkDebugOptions dbgOptions = null;
+
+		// if osgi.debug is not available, don't force DebugOptions
+		//  to init as this variable may be set later on where 
+		//  DebugOptions will succeed.
+		if (System.getProperty("osgi.debug") != null) { //$NON-NLS-1$
+			dbgOptions = FrameworkDebugOptions.getDefault();
+			if (dbgOptions != null) {
+				STARTUP = dbgOptions.getBooleanOption(OPTION_STARTUP, false);
+				BENCHMARK = dbgOptions.getBooleanOption(OPTION_BENCHMARK, false);
+				DEBUG = dbgOptions.getBooleanOption(OPTION_DEBUG, false);
+				if (profileLogger == null)
+					profileLoggerClassName = dbgOptions.getOption(OPTION_IMPL);
+			}
+		}
+
+		// System properties will always override anything in .options file
+		if ((prop = System.getProperty(PROP_STARTUP)) != null) {
+			STARTUP = Boolean.valueOf(prop).booleanValue();
+			if (dbgOptions != null)
+				dbgOptions.setOption(OPTION_STARTUP, new Boolean(STARTUP).toString());
+		}
+		if ((prop = System.getProperty(PROP_BENCHMARK)) != null) {
+			BENCHMARK = Boolean.valueOf(prop).booleanValue();
+			if (dbgOptions != null)
+				dbgOptions.setOption(OPTION_BENCHMARK, new Boolean(BENCHMARK).toString());
+		}
+		if ((prop = System.getProperty(PROP_DEBUG)) != null) {
+			DEBUG = Boolean.valueOf(prop).booleanValue();
+			if (dbgOptions != null)
+				dbgOptions.setOption(OPTION_DEBUG, new Boolean(DEBUG).toString());
+		}
+
+		if (profileLogger == null) {
+<FONT style="background-color:#F2C553;display;inline">			if ((prop = System.getProperty(PROP_IMPL)) != null) {
+</FONT>				profileLoggerClassName = prop;
+				if (dbgOptions != null)
+					dbgOptions.setOption(OPTION_IMPL, profileLoggerClassName);
+			}
+		} else {
+			profileLogger.initProps();
+		}
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "osgi.profile.impl", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+</pre>
+</body></html>

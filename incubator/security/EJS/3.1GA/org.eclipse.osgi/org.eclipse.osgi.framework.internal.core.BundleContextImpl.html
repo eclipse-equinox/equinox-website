@@ -1,0 +1,111 @@
+<html><head><title>Permission Analysis Report</title><script language='javaScript' src='linkUtil.js'></script></head><body>
+<h1>Permission Analysis Report</h1>
+<BR/><H2>Analysis of: org.eclipse.osgi</H2>
+<B>Detail</B><BR/><BR/>
+<pre>
+
+Class: <a href="foo" onClick="return openURLinSrc( 'Application/org/eclipse/osgi/framework/internal/core/BundleContextImpl.html' )">org.eclipse.osgi.framework.internal.core.BundleContextImpl</a> (Application)
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/framework/internal/core/BundleContextImpl.html#L30" , parent.fbot ); return false'>Line# 35</a> void &lt;clinit&gt;(  )
+   Permission: java.util.PropertyPermission "osgi.scopeServiceEvents", "read"
+      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String, java.lang.String )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+ * Bundle's execution context.
+ *
+ * This object is given out to bundles and wraps the internal
+ * BundleContext object. It is destroyed when a bundle is stopped.
+ */
+
+public class BundleContextImpl implements BundleContext, EventDispatcher {
+	public static final String PROP_SCOPE_SERVICE_EVENTS = "osgi.scopeServiceEvents"; //$NON-NLS-1$
+<FONT style="background-color:#F2C553;display;inline">	public static final boolean scopeEvents = Boolean.valueOf(System.getProperty(PROP_SCOPE_SERVICE_EVENTS, "true")).booleanValue(); //$NON-NLS-1$
+</FONT>	/** true if the bundle context is still valid */
+	private boolean valid;
+
+	/** Bundle object thi ... 
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "osgi.scopeServiceEvents", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/framework/internal/core/BundleContextImpl.html#L166" , parent.fbot ); return false'>Line# 171</a> java.lang.String getProperty( java.lang.String )
+   Permission: java.util.PropertyPermission "???key???", "read"
+      Primordial/void java.lang.SecurityManager.checkPropertyAccess( java.lang.String )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * Retrieve the value of the named environment property.
+	 *
+	 * @param key The name of the requested property.
+	 * @return The value of the requested property, or <code>null</code> if
+	 * the property is undefined.
+	 */
+	public String getProperty(String key) {
+		SecurityManager sm = System.getSecurityManager();
+
+		if (sm != null) {
+<FONT style="background-color:#F2C553;display;inline">			sm.checkPropertyAccess(key);
+</FONT>		}
+
+		return (framework.getProperty(key));
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "???key???", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/framework/internal/core/BundleContextImpl.html#L1266" , parent.fbot ); return false'>Line# 1271</a> boolean hasListenServicePermission( org.osgi.framework.ServiceEvent )
+   Permission: java.lang.RuntimePermission "getClassLoader"
+      Primordial/boolean java.security.ProtectionDomain.implies( java.security.Permission )
+   Permission: java.net.SocketPermission "???host???", "resolve"
+      Primordial/boolean java.security.ProtectionDomain.implies( java.security.Permission )
+   Permission: java.net.SocketPermission "???host???:???port???", "connect"
+      Primordial/boolean java.security.ProtectionDomain.implies( java.security.Permission )
+   Permission: java.net.SocketPermission "localhost", "resolve"
+      Primordial/boolean java.security.ProtectionDomain.implies( java.security.Permission )
+   Permission: java.net.SocketPermission "localhost:1024-", "resolve"
+      Primordial/boolean java.security.ProtectionDomain.implies( java.security.Permission )
+   Permission: java.net.SocketPermission "localhost:1024-:???port???", "connect"
+      Primordial/boolean java.security.ProtectionDomain.implies( java.security.Permission )
+   Permission: java.net.SocketPermission "localhost:???port???", "connect"
+      Primordial/boolean java.security.ProtectionDomain.implies( java.security.Permission )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * Check for permission to listen to a service.
+	 */
+	protected boolean hasListenServicePermission(ServiceEvent event) {
+		ProtectionDomain domain = bundle.getProtectionDomain();
+
+		if (domain != null) {
+			ServiceReferenceImpl reference = (ServiceReferenceImpl) event.getServiceReference();
+
+			String[] names = reference.registration.clazzes;
+
+			int len = names.length;
+
+			for (int i = 0; i < len; i++) {
+<FONT style="background-color:#F2C553;display;inline">				if (domain.implies(new ServicePermission(names[i], ServicePermission.GET))) {
+</FONT>					return true;
+				}
+			}
+
+			return false;
+		}
+
+		return (true);
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.lang.RuntimePermission "getClassLoader";</LI>
+<LI>permission java.net.SocketPermission "???host???", "resolve";</LI>
+<LI>permission java.net.SocketPermission "???host???:???port???", "connect";</LI>
+<LI>permission java.net.SocketPermission "localhost", "resolve";</LI>
+<LI>permission java.net.SocketPermission "localhost:1024-", "resolve";</LI>
+<LI>permission java.net.SocketPermission "localhost:1024-:???port???", "connect";</LI>
+<LI>permission java.net.SocketPermission "localhost:???port???", "connect";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+</pre>
+</body></html>

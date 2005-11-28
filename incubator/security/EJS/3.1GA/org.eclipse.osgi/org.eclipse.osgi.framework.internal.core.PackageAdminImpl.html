@@ -1,0 +1,134 @@
+<html><head><title>Permission Analysis Report</title><script language='javaScript' src='linkUtil.js'></script></head><body>
+<h1>Permission Analysis Report</h1>
+<BR/><H2>Analysis of: org.eclipse.osgi</H2>
+<B>Detail</B><BR/><BR/>
+<pre>
+
+Class: <a href="foo" onClick="return openURLinSrc( 'Application/org/eclipse/osgi/framework/internal/core/PackageAdminImpl.html' )">org.eclipse.osgi.framework.internal.core.PackageAdminImpl</a> (Application)
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/framework/internal/core/PackageAdminImpl.html#L577" , parent.fbot ); return false'>Line# 582</a> void checkSystemBundle( org.eclipse.osgi.framework.internal.core.SystemBundle )
+   Permission: java.util.PropertyPermission "*", "read,write"
+      Primordial/java.util.Properties java.lang.System.getProperties(  )
+<BR/><BR/><B>CODE</B><BR/>
+private void checkSystemBundle(SystemBundle systemBundle) {
+		try {
+			// first check that the system bundle has not changed since last saved state.
+			State state = framework.adaptor.getState();
+			BundleDescription newSystemBundle = state.getFactory().createBundleDescription(state, systemBundle.getHeaders(""), systemBundle.getLocation(), 0); //$NON-NLS-1$
+			if (newSystemBundle == null)
+				throw new BundleException(Msg.OSGI_SYSTEMBUNDLE_DESCRIPTION_ERROR); //$NON-NLS-1$
+			BundleDescription oldSystemBundle = state.getBundle(0);
+			if (oldSystemBundle != null) {
+				boolean different = false;
+				if (newSystemBundle.getVersion() != null && !newSystemBundle.getVersion().equals(oldSystemBundle.getVersion()))
+					different = true;
+				// need to check to make sure the system bundle description
+				// is up to date in the state.
+				ExportPackageDescription[] oldPackages = oldSystemBundle.getExportPackages();
+				ExportPackageDescription[] newPackages = newSystemBundle.getExportPackages();
+				if (oldPackages.length >= newPackages.length) {
+					for (int i = 0; i < newPackages.length; i++) {
+						if (oldPackages[i].getName().equals(newPackages[i].getName())) {
+							Object oldVersion = oldPackages[i].getVersion();
+							Object newVersion = newPackages[i].getVersion();
+							if (oldVersion == null) {
+								if (newVersion != null) {
+									different = true;
+									break;
+								}
+							} else if (!oldVersion.equals(newVersion)) {
+								different = true;
+								break;
+							}
+						} else {
+							different = true;
+							break;
+						}
+					}
+				} else {
+					different = true;
+				}
+				if (different) {
+					state.removeBundle(0);
+					state.addBundle(newSystemBundle);
+					// force resolution so packages are properly linked
+					state.resolve(false);
+				}
+			} else {
+				state.addBundle(newSystemBundle);
+				// force resolution so packages are properly linked
+				state.resolve(false);
+			}
+			ExportPackageDescription[] packages = newSystemBundle.getExportPackages();
+			if (packages != null) {
+				String[] systemPackages = new String[packages.length];
+				for (int i = 0; i < packages.length; i++) {
+					ExportPackageDescription spec = packages[i];
+					if (spec.getName().equals(Constants.OSGI_FRAMEWORK_PACKAGE)) {
+						String version = spec.getVersion().toString();
+						if (version != null)
+<FONT style="background-color:#F2C553;display;inline">							System.getProperties().put(Constants.FRAMEWORK_VERSION, version);
+</FONT>					}
+					systemPackages[i] = spec.getName();
+				}
+			}
+		} catch (BundleException e) /* fatal error */{
+			e.printStackTrace();
+			throw new RuntimeException(NLS.bind(Msg.OSGI_SYSTEMBUNDLE_CREATE_EXCEPTION, e.getMessage())); //$NON-NLS-1$
+		}
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "*", "read,write";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/framework/internal/core/PackageAdminImpl.html#L482" , parent.fbot ); return false'>Line# 487</a> org.osgi.framework.Bundle getBundlePriv( java.lang.Class )
+   Permission: java.lang.RuntimePermission "getClassLoader"
+      Primordial/java.lang.ClassLoader java.lang.Class.getClassLoader(  )
+<BR/><BR/><B>CODE</B><BR/>
+Bundle getBundlePriv(Class clazz) {
+<FONT style="background-color:#F2C553;display;inline">		ClassLoader cl = clazz.getClassLoader();
+</FONT>		if (cl instanceof BundleClassLoader)
+			return ((BundleLoader) ((BundleClassLoader) cl).getDelegate()).bundle;
+		if (cl == getClass().getClassLoader())
+			return framework.systemBundle;
+		return null;
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.lang.RuntimePermission "getClassLoader";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/framework/internal/core/PackageAdminImpl.html#L415" , parent.fbot ); return false'>Line# 420</a> void restartFramework(  )
+   Permission: java.util.PropertyPermission "*", "read,write"
+      Primordial/java.util.Properties java.lang.System.getProperties(  )
+<BR/><BR/><B>CODE</B><BR/>
+private void restartFramework() {
+<FONT style="background-color:#F2C553;display;inline">		System.getProperties().put("osgi.forcedRestart", "true"); //$NON-NLS-1$ //$NON-NLS-2$
+</FONT>		framework.shutdown();
+		System.exit(23);
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "*", "read,write";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/framework/internal/core/PackageAdminImpl.html#L417" , parent.fbot ); return false'>Line# 422</a> void restartFramework(  )
+   Permission: java.lang.RuntimePermission "exitVM"
+      Primordial/void java.lang.System.exit( int )
+<BR/><BR/><B>CODE</B><BR/>
+private void restartFramework() {
+		System.getProperties().put("osgi.forcedRestart", "true"); //$NON-NLS-1$ //$NON-NLS-2$
+		framework.shutdown();
+<FONT style="background-color:#F2C553;display;inline">		System.exit(23);
+</FONT>	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.lang.RuntimePermission "exitVM";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+</pre>
+</body></html>

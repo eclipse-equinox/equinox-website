@@ -1,0 +1,19 @@
+<html><head><title>Permission Analysis Report</title><script language='javaScript' src='linkUtil.js'></script></head><body>
+<h1>Permission Analysis Report</h1>
+<BR/><H2>Analysis of: org.eclipse.osgi</H2>
+<B>Detail</B><BR/><BR/>
+<pre>
+
+Class: <a href="foo" onClick="return openURLinSrc( 'Application/org/eclipse/osgi/framework/internal/core/SystemPolicy.html' )">org.eclipse.osgi.framework.internal.core.SystemPolicy$ParentClassLoader</a> (Application)
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/framework/internal/core/SystemPolicy.html#L18" , parent.fbot ); return false'>Line# 23</a> void &lt;init&gt;(  )
+   Permission: java.lang.RuntimePermission "createClassLoader"
+      Primordial/void java.lang.ClassLoader.ClassLoader( java.lang.ClassLoader )
+<BR/><BR/><B>CODE</B><BR/>
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.lang.RuntimePermission "createClassLoader";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+</pre>
+</body></html>

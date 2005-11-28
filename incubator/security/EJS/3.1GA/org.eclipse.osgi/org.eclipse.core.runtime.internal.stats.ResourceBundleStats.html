@@ -1,0 +1,49 @@
+<html><head><title>Permission Analysis Report</title><script language='javaScript' src='linkUtil.js'></script></head><body>
+<h1>Permission Analysis Report</h1>
+<BR/><H2>Analysis of: org.eclipse.osgi</H2>
+<B>Detail</B><BR/><BR/>
+<pre>
+
+Class: <a href="foo" onClick="return openURLinSrc( 'Application/org/eclipse/core/runtime/internal/stats/ResourceBundleStats.html' )">org.eclipse.core.runtime.internal.stats.ResourceBundleStats</a> (Application)
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/runtime/internal/stats/ResourceBundleStats.html#L69" , parent.fbot ); return false'>Line# 74</a> void initialize( java.net.URL )
+   Permission: java.util.PropertyPermission "java.vendor.url.bug", "read"
+      Primordial/void java.util.Properties.load( java.io.InputStream )
+   Permission: java.util.PropertyPermission "os.name", "read"
+      Primordial/void java.util.Properties.load( java.io.InputStream )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * Compute the size of stream which represents a property file
+	 */
+	private void initialize(URL url) {
+		InputStream stream = null;
+		Properties props = new Properties();
+		try {
+			try {
+				stream = url.openStream();
+				fileSize = stream.available();
+<FONT style="background-color:#F2C553;display;inline">				props.load(stream);
+</FONT>				for (Iterator iter = props.keySet().iterator(); iter.hasNext();) {
+					String key = (String) iter.next();
+					keySize += sizeOf(key);
+					valueSize += sizeOf(props.getProperty(key));
+					keyCount++;
+				}
+				hashSize = sizeOf(props);
+			} finally {
+				if (stream != null)
+					stream.close();
+			}
+		} catch (IOException e) {
+			// ignore exceptions as they will be handled when the stream 
+			// is loaded for real.   See callers.
+		}
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "java.vendor.url.bug", "read";</LI>
+<LI>permission java.util.PropertyPermission "os.name", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+</pre>
+</body></html>

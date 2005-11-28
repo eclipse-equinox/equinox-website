@@ -1,0 +1,252 @@
+Index: .cvsignore
+===================================================================
+RCS file: /cvsroot/eclipse/equinox-incubator/org.eclipse.osgi/.cvsignore,v
+retrieving revision 1.1.8.1
+diff -u -r1.1.8.1 .cvsignore
+--- .cvsignore	8 Aug 2005 13:40:56 -0000	1.1.8.1
++++ .cvsignore	28 Nov 2005 21:12:12 -0000
+@@ -6,3 +6,5 @@
+ defaultAdaptor.jar
+ eclipseAdaptor.jar
+ resolver.jar
++Analysis
++org.eclipse.osgi.jar
+Index: core/adaptor/org/eclipse/osgi/util/NLS.java
+===================================================================
+RCS file: /cvsroot/eclipse/equinox-incubator/org.eclipse.osgi/core/adaptor/org/eclipse/osgi/util/NLS.java,v
+retrieving revision 1.1.2.1
+diff -u -r1.1.2.1 NLS.java
+--- core/adaptor/org/eclipse/osgi/util/NLS.java	8 Aug 2005 13:41:50 -0000	1.1.2.1
++++ core/adaptor/org/eclipse/osgi/util/NLS.java	28 Nov 2005 21:12:12 -0000
+@@ -10,7 +10,11 @@
+  *******************************************************************************/
+ package org.eclipse.osgi.util;
+ 
++import java.security.AccessController;
++
++
+ import org.eclipse.osgi.framework.internal.core.MessageResourceBundle;
++import org.eclipse.osgi.internal.security.MessageResourceLoaderAction;
+ 
+ /**
+  * Common superclass for all message bundle classes.  Provides convenience
+@@ -85,7 +89,11 @@
+ 	 * @param clazz the class where the constants will exist
+ 	 */
+ 	public static void initializeMessages(String bundleName, Class clazz) {
+-		MessageResourceBundle.load(bundleName, clazz);
++		if(System.getSecurityManager() == null) {
++			MessageResourceBundle.load(bundleName, clazz);
++		} else {
++			AccessController.doPrivileged(new MessageResourceLoaderAction(bundleName, clazz));
++		}
+ 	}
+ 
+ 	/*
+Index: core/framework/org/eclipse/osgi/framework/internal/core/PermissionAdminImpl.java
+===================================================================
+RCS file: /cvsroot/eclipse/equinox-incubator/org.eclipse.osgi/core/framework/org/eclipse/osgi/framework/internal/core/PermissionAdminImpl.java,v
+retrieving revision 1.1.8.1
+diff -u -r1.1.8.1 PermissionAdminImpl.java
+--- core/framework/org/eclipse/osgi/framework/internal/core/PermissionAdminImpl.java	8 Aug 2005 13:40:24 -0000	1.1.8.1
++++ core/framework/org/eclipse/osgi/framework/internal/core/PermissionAdminImpl.java	28 Nov 2005 21:12:13 -0000
+@@ -15,9 +15,12 @@
+ import java.net.URL;
+ import java.security.*;
+ import java.util.Vector;
++
++import org.eclipse.core.runtime.adaptor.LocationManager;
+ import org.eclipse.osgi.framework.adaptor.BundleProtectionDomain;
+ import org.eclipse.osgi.framework.adaptor.PermissionStorage;
+ import org.eclipse.osgi.framework.debug.Debug;
++import org.eclipse.osgi.service.datalocation.Location;
+ import org.osgi.framework.AdminPermission;
+ import org.osgi.framework.FrameworkEvent;
+ import org.osgi.service.condpermadmin.Condition;
+@@ -382,6 +385,12 @@
+ 	protected BundleProtectionDomain createProtectionDomain(AbstractBundle bundle) {
+ 		BundlePermissionCollection implied = getImpliedPermissions(bundle);
+ 
++		// find out the data directory and grant each plug-in w/ all rights on the directory
++		Location loc = LocationManager.getInstanceLocation();
++		if(loc != null) {
++			implied.add(new FilePermission(new File(loc.getURL().getFile()) + File.separator + "-", "read,write,delete"));
++		}
++		
+ 		BundleCombinedPermissions combined = new BundleCombinedPermissions(implied);
+ 
+ 		BundlePermissionCollection assigned = getAssignedPermissions(bundle);
+@@ -421,7 +430,6 @@
+ 				framework.publishFrameworkEvent(FrameworkEvent.ERROR, bundle, e);
+ 			}
+ 		}
+-
+ 		return new BundleProtectionDomainImpl(bundle, combined);
+ 	}
+ 
+Index: core/framework/org/eclipse/osgi/framework/internal/core/implied.permissions
+===================================================================
+RCS file: /cvsroot/eclipse/equinox-incubator/org.eclipse.osgi/core/framework/org/eclipse/osgi/framework/internal/core/implied.permissions,v
+retrieving revision 1.1.8.1
+diff -u -r1.1.8.1 implied.permissions
+--- core/framework/org/eclipse/osgi/framework/internal/core/implied.permissions	8 Aug 2005 13:40:23 -0000	1.1.8.1
++++ core/framework/org/eclipse/osgi/framework/internal/core/implied.permissions	28 Nov 2005 21:12:13 -0000
+@@ -43,6 +43,21 @@
+ (java.util.PropertyPermission "org.osgi.framework.*" "read")
+ (java.io.FilePermission "" "read")
+ (java.io.FilePermission "-" "read,write,delete")
++(java.util.PropertyPermission "user.home" "read")
++(java.util.PropertyPermission "java.io.tmpdir" "read")
++(java.util.PropertyPermission "user.dir" "read")
++(java.util.PropertyPermission "javax.xml.parsers.SAXParserFactory" "read")
++(java.util.PropertyPermission "java.home" "read")
++(java.util.PropertyPermission "javax.xml.parsers.DocumentBuilderFactory" "read")
++(java.util.PropertyPermission "java.version" "read")
++(java.util.PropertyPermission "swt.version" "read")
++(java.util.PropertyPermission "eclipse.startTime" "read")
++(java.util.PropertyPermission "java.protocol.handler.pkgs" "read")
++(java.util.PropertyPermission "eclipse.buildId" "read")
++(java.util.PropertyPermission "osgi.os" "read")
++(java.util.PropertyPermission "osgi.ws" "read")
++(java.util.PropertyPermission "osgi.checkConfiguration" "read")
++(java.util.PropertyPermission "java.vendor.url.bug" "read")
+ 
+ # Added for OSGi SP R3
+ (org.osgi.framework.PackagePermission "java.*" "import")
+Index: core/framework/org/eclipse/osgi/framework/internal/protocol/URLStreamHandlerProxy.java
+===================================================================
+RCS file: /cvsroot/eclipse/equinox-incubator/org.eclipse.osgi/core/framework/org/eclipse/osgi/framework/internal/protocol/URLStreamHandlerProxy.java,v
+retrieving revision 1.1.8.1
+diff -u -r1.1.8.1 URLStreamHandlerProxy.java
+--- core/framework/org/eclipse/osgi/framework/internal/protocol/URLStreamHandlerProxy.java	8 Aug 2005 13:41:03 -0000	1.1.8.1
++++ core/framework/org/eclipse/osgi/framework/internal/protocol/URLStreamHandlerProxy.java	28 Nov 2005 21:12:13 -0000
+@@ -13,6 +13,9 @@
+ 
+ import java.io.IOException;
+ import java.net.*;
++import java.security.AccessController;
++import java.security.PrivilegedAction;
++
+ import org.osgi.framework.*;
+ import org.osgi.service.url.URLConstants;
+ import org.osgi.service.url.URLStreamHandlerService;
+@@ -58,7 +61,16 @@
+ 		setNewHandler(reference, getRank(reference));
+ 
+ 		urlStreamHandlerServiceTracker = new ServiceTracker(context, StreamHandlerFactory.URLSTREAMHANDLERCLASS, this);
+-		urlStreamHandlerServiceTracker.open();
++		if(System.getSecurityManager() == null) {
++			urlStreamHandlerServiceTracker.open();
++		} else {
++			AccessController.doPrivileged(new PrivilegedAction() {
++				public Object run() {
++					urlStreamHandlerServiceTracker.open();
++					return null;
++				}
++			});
++		}
+ 	}
+ 
+ 	private void setNewHandler(ServiceReference reference, int rank) {
+Index: defaultAdaptor/src/org/eclipse/osgi/framework/internal/protocol/reference/ReferenceURLConnection.java
+===================================================================
+RCS file: /cvsroot/eclipse/equinox-incubator/org.eclipse.osgi/defaultAdaptor/src/org/eclipse/osgi/framework/internal/protocol/reference/ReferenceURLConnection.java,v
+retrieving revision 1.1.8.1
+diff -u -r1.1.8.1 ReferenceURLConnection.java
+--- defaultAdaptor/src/org/eclipse/osgi/framework/internal/protocol/reference/ReferenceURLConnection.java	8 Aug 2005 13:41:02 -0000	1.1.8.1
++++ defaultAdaptor/src/org/eclipse/osgi/framework/internal/protocol/reference/ReferenceURLConnection.java	28 Nov 2005 21:12:13 -0000
+@@ -14,6 +14,9 @@
+ import java.io.*;
+ import java.net.URL;
+ import java.net.URLConnection;
++import java.security.AccessController;
++import java.security.PrivilegedAction;
++
+ import org.eclipse.osgi.framework.adaptor.FilePath;
+ import org.eclipse.osgi.framework.internal.core.ReferenceInputStream;
+ 
+@@ -64,7 +67,17 @@
+ 	}
+ 
+ 	private String getInstallPath() {
+-		String installURL = System.getProperty("osgi.install.area"); //$NON-NLS-1$
++		String installURL;
++		if(System.getSecurityManager() == null) {
++			installURL = System.getProperty("osgi.install.area"); //$NON-NLS-1$
++		} else {
++			installURL = (String) AccessController.doPrivileged((new PrivilegedAction() {
++				public Object run() {
++					return System.getProperty("osgi.install.area"); 
++				}
++			}));
++		}
++		
+ 		if (installURL == null)
+ 			return null;
+ 		if (!installURL.startsWith("file:")) //$NON-NLS-1$
+Index: eclipseAdaptor/src/org/eclipse/core/runtime/adaptor/EclipseBundleData.java
+===================================================================
+RCS file: /cvsroot/eclipse/equinox-incubator/org.eclipse.osgi/eclipseAdaptor/src/org/eclipse/core/runtime/adaptor/EclipseBundleData.java,v
+retrieving revision 1.1.8.3
+diff -u -r1.1.8.3 EclipseBundleData.java
+--- eclipseAdaptor/src/org/eclipse/core/runtime/adaptor/EclipseBundleData.java	8 Aug 2005 13:40:27 -0000	1.1.8.3
++++ eclipseAdaptor/src/org/eclipse/core/runtime/adaptor/EclipseBundleData.java	28 Nov 2005 21:12:13 -0000
+@@ -12,6 +12,8 @@
+ 
+ import java.io.*;
+ import java.net.URL;
++import java.security.AccessController;
++import java.security.PrivilegedAction;
+ import java.util.*;
+ import org.eclipse.core.runtime.internal.adaptor.*;
+ import org.eclipse.osgi.framework.adaptor.FrameworkAdaptor;
+@@ -285,7 +287,16 @@
+ 	}
+ 
+ 	private Dictionary generateManifest(Dictionary originalManifest) throws BundleException {
+-		String cacheLocation = System.getProperty(LocationManager.PROP_MANIFEST_CACHE);
++		String cacheLocation;
++		if(System.getSecurityManager() == null) {
++			cacheLocation = System.getProperty(LocationManager.PROP_MANIFEST_CACHE);
++		} else {
++			cacheLocation = (String) AccessController.doPrivileged(new PrivilegedAction() {
++				public Object run() {
++					return System.getProperty(LocationManager.PROP_MANIFEST_CACHE);
++				}
++			});
++		}
+ 		if (getSymbolicName() != null) {
+ 			Headers existingHeaders = checkManifestAndParent(cacheLocation, getSymbolicName(), getVersion().toString(), manifestType);
+ 			if (existingHeaders != null)
+Index: core/adaptor/org/eclipse/osgi/internal/security/MessageResourceLoaderAction.java
+===================================================================
+RCS file: core/adaptor/org/eclipse/osgi/internal/security/MessageResourceLoaderAction.java
+diff -N core/adaptor/org/eclipse/osgi/internal/security/MessageResourceLoaderAction.java
+--- /dev/null	1 Jan 1970 00:00:00 -0000
++++ core/adaptor/org/eclipse/osgi/internal/security/MessageResourceLoaderAction.java	1 Jan 1970 00:00:00 -0000
+@@ -0,0 +1,25 @@
++package org.eclipse.osgi.internal.security;
++
++import java.security.PrivilegedAction;
++
++import org.eclipse.osgi.framework.internal.core.MessageResourceBundle;
++
++public class MessageResourceLoaderAction implements PrivilegedAction {
++
++	private String bundleName;
++	private Class clazz;
++	
++	
++	public MessageResourceLoaderAction(String bundleName, Class clazz) {
++		super();
++		this.bundleName = bundleName;
++		this.clazz = clazz;
++	}
++
++
++	public Object run() {
++		MessageResourceBundle.load(bundleName, clazz);
++		return null;
++	}
++
++}

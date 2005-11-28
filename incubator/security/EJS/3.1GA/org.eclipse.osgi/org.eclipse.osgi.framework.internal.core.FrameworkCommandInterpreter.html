@@ -1,0 +1,472 @@
+<html><head><title>Permission Analysis Report</title><script language='javaScript' src='linkUtil.js'></script></head><body>
+<h1>Permission Analysis Report</h1>
+<BR/><H2>Analysis of: org.eclipse.osgi</H2>
+<B>Detail</B><BR/><BR/>
+<pre>
+
+Class: <a href="foo" onClick="return openURLinSrc( 'Application/org/eclipse/osgi/framework/internal/core/FrameworkCommandInterpreter.html' )">org.eclipse.osgi.framework.internal.core.FrameworkCommandInterpreter</a> (Application)
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/framework/internal/core/FrameworkCommandInterpreter.html#L372" , parent.fbot ); return false'>Line# 377</a> void check4More(  )
+   Permission: java.util.PropertyPermission "os.name", "read"
+      Primordial/void java.io.PrintWriter.print( java.lang.String )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 *  Displays the more... prompt if the max line count has been reached 
+	 *  and waits for the operator to hit enter.
+	 *
+	 */
+	private void check4More() {
+		int max = getMaximumLinesToScroll();
+		if (max > 0) {
+			if (currentLineCount >= max) {
+<FONT style="background-color:#F2C553;display;inline">				out.print(ConsoleMsg.CONSOLE_MORE);
+</FONT>				out.flush();
+				con.getInput(); // wait for user entry
+				resetLineCount(); //Reset the line counter for the 'more' prompt
+			}
+		}
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "os.name", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/framework/internal/core/FrameworkCommandInterpreter.html#L373" , parent.fbot ); return false'>Line# 378</a> void check4More(  )
+   Permission: java.util.PropertyPermission "os.name", "read"
+      Primordial/void java.io.PrintWriter.flush(  )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 *  Displays the more... prompt if the max line count has been reached 
+	 *  and waits for the operator to hit enter.
+	 *
+	 */
+	private void check4More() {
+		int max = getMaximumLinesToScroll();
+		if (max > 0) {
+			if (currentLineCount >= max) {
+				out.print(ConsoleMsg.CONSOLE_MORE);
+<FONT style="background-color:#F2C553;display;inline">				out.flush();
+</FONT>				con.getInput(); // wait for user entry
+				resetLineCount(); //Reset the line counter for the 'more' prompt
+			}
+		}
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "os.name", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/framework/internal/core/FrameworkCommandInterpreter.html#L157" , parent.fbot ); return false'>Line# 162</a> java.lang.Object execute( java.lang.String )
+   Permission: java.util.PropertyPermission "os.name", "read"
+      Primordial/void java.io.PrintWriter.print( java.lang.String )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 Execute a command line as if it came from the end user.
+	 
+	 Searches the list of command providers using introspection until
+	 it finds one that contains a matching method.  It searches for a method
+	 with the name "_cmd" where cmd is the command to execute.  For example,
+	 for a command of "launch" execute searches for a method called "_launch".
+	 
+	 @param cmd The name of the command to execute.
+	 @return The object returned by the method executed.
+	 */
+	public Object execute(String cmd) {
+		if (!firstCommand)
+			return innerExecute(cmd);
+		firstCommand = false;
+		resetLineCount();
+		Object retval = null;
+		// handle "more" command here
+		if (cmd.equalsIgnoreCase("more")) { //$NON-NLS-1$
+			try {
+				_more();
+			} catch (Exception e) {
+				printStackTrace(e);
+			}
+			return retval;
+		}
+		// handle "disconnect" command here
+		if (cmd.equalsIgnoreCase("disconnect") && con.getUseSocketStream()) { //$NON-NLS-1$
+			try {
+				_disconnect();
+			} catch (Exception e) {
+				printStackTrace(e);
+			}
+			return retval;
+		}
+		Class[] parameterTypes = new Class[] {CommandInterpreter.class};
+		Object[] parameters = new Object[] {this};
+		boolean executed = false;
+		int size = commandProviders.length;
+		for (int i = 0; !executed && (i < size); i++) {
+			try {
+				Object target = commandProviders[i];
+				Method method = target.getClass().getMethod("_" + cmd, parameterTypes); //$NON-NLS-1$
+				retval = method.invoke(target, parameters);
+				executed = true; // stop after the command has been found
+			} catch (NoSuchMethodException ite) {
+				// keep going - maybe another command provider will be able to execute this command
+			} catch (InvocationTargetException ite) {
+				executed = true; // don't want to keep trying - we found the method but got an error
+				printStackTrace(ite.getTargetException());
+			} catch (Exception ee) {
+				executed = true; // don't want to keep trying - we got an error we don't understand
+				printStackTrace(ee);
+			}
+		}
+		// if no command was found to execute, display help for all registered command providers
+		if (!executed) {
+			for (int i = 0; i < size; i++) {
+				try {
+					CommandProvider commandProvider = (CommandProvider) commandProviders[i];
+<FONT style="background-color:#F2C553;display;inline">					out.print(commandProvider.getHelp());
+</FONT>					out.flush();
+				} catch (Exception ee) {
+					printStackTrace(ee);
+				}
+			}
+			// call help for the more command provided by this class
+			out.print(getHelp());
+			out.flush();
+		}
+		return retval;
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "os.name", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/framework/internal/core/FrameworkCommandInterpreter.html#L158" , parent.fbot ); return false'>Line# 163</a> java.lang.Object execute( java.lang.String )
+   Permission: java.util.PropertyPermission "os.name", "read"
+      Primordial/void java.io.PrintWriter.flush(  )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 Execute a command line as if it came from the end user.
+	 
+	 Searches the list of command providers using introspection until
+	 it finds one that contains a matching method.  It searches for a method
+	 with the name "_cmd" where cmd is the command to execute.  For example,
+	 for a command of "launch" execute searches for a method called "_launch".
+	 
+	 @param cmd The name of the command to execute.
+	 @return The object returned by the method executed.
+	 */
+	public Object execute(String cmd) {
+		if (!firstCommand)
+			return innerExecute(cmd);
+		firstCommand = false;
+		resetLineCount();
+		Object retval = null;
+		// handle "more" command here
+		if (cmd.equalsIgnoreCase("more")) { //$NON-NLS-1$
+			try {
+				_more();
+			} catch (Exception e) {
+				printStackTrace(e);
+			}
+			return retval;
+		}
+		// handle "disconnect" command here
+		if (cmd.equalsIgnoreCase("disconnect") && con.getUseSocketStream()) { //$NON-NLS-1$
+			try {
+				_disconnect();
+			} catch (Exception e) {
+				printStackTrace(e);
+			}
+			return retval;
+		}
+		Class[] parameterTypes = new Class[] {CommandInterpreter.class};
+		Object[] parameters = new Object[] {this};
+		boolean executed = false;
+		int size = commandProviders.length;
+		for (int i = 0; !executed && (i < size); i++) {
+			try {
+				Object target = commandProviders[i];
+				Method method = target.getClass().getMethod("_" + cmd, parameterTypes); //$NON-NLS-1$
+				retval = method.invoke(target, parameters);
+				executed = true; // stop after the command has been found
+			} catch (NoSuchMethodException ite) {
+				// keep going - maybe another command provider will be able to execute this command
+			} catch (InvocationTargetException ite) {
+				executed = true; // don't want to keep trying - we found the method but got an error
+				printStackTrace(ite.getTargetException());
+			} catch (Exception ee) {
+				executed = true; // don't want to keep trying - we got an error we don't understand
+				printStackTrace(ee);
+			}
+		}
+		// if no command was found to execute, display help for all registered command providers
+		if (!executed) {
+			for (int i = 0; i < size; i++) {
+				try {
+					CommandProvider commandProvider = (CommandProvider) commandProviders[i];
+					out.print(commandProvider.getHelp());
+<FONT style="background-color:#F2C553;display;inline">					out.flush();
+</FONT>				} catch (Exception ee) {
+					printStackTrace(ee);
+				}
+			}
+			// call help for the more command provided by this class
+			out.print(getHelp());
+			out.flush();
+		}
+		return retval;
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "os.name", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/framework/internal/core/FrameworkCommandInterpreter.html#L164" , parent.fbot ); return false'>Line# 169</a> java.lang.Object execute( java.lang.String )
+   Permission: java.util.PropertyPermission "os.name", "read"
+      Primordial/void java.io.PrintWriter.print( java.lang.String )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 Execute a command line as if it came from the end user.
+	 
+	 Searches the list of command providers using introspection until
+	 it finds one that contains a matching method.  It searches for a method
+	 with the name "_cmd" where cmd is the command to execute.  For example,
+	 for a command of "launch" execute searches for a method called "_launch".
+	 
+	 @param cmd The name of the command to execute.
+	 @return The object returned by the method executed.
+	 */
+	public Object execute(String cmd) {
+		if (!firstCommand)
+			return innerExecute(cmd);
+		firstCommand = false;
+		resetLineCount();
+		Object retval = null;
+		// handle "more" command here
+		if (cmd.equalsIgnoreCase("more")) { //$NON-NLS-1$
+			try {
+				_more();
+			} catch (Exception e) {
+				printStackTrace(e);
+			}
+			return retval;
+		}
+		// handle "disconnect" command here
+		if (cmd.equalsIgnoreCase("disconnect") && con.getUseSocketStream()) { //$NON-NLS-1$
+			try {
+				_disconnect();
+			} catch (Exception e) {
+				printStackTrace(e);
+			}
+			return retval;
+		}
+		Class[] parameterTypes = new Class[] {CommandInterpreter.class};
+		Object[] parameters = new Object[] {this};
+		boolean executed = false;
+		int size = commandProviders.length;
+		for (int i = 0; !executed && (i < size); i++) {
+			try {
+				Object target = commandProviders[i];
+				Method method = target.getClass().getMethod("_" + cmd, parameterTypes); //$NON-NLS-1$
+				retval = method.invoke(target, parameters);
+				executed = true; // stop after the command has been found
+			} catch (NoSuchMethodException ite) {
+				// keep going - maybe another command provider will be able to execute this command
+			} catch (InvocationTargetException ite) {
+				executed = true; // don't want to keep trying - we found the method but got an error
+				printStackTrace(ite.getTargetException());
+			} catch (Exception ee) {
+				executed = true; // don't want to keep trying - we got an error we don't understand
+				printStackTrace(ee);
+			}
+		}
+		// if no command was found to execute, display help for all registered command providers
+		if (!executed) {
+			for (int i = 0; i < size; i++) {
+				try {
+					CommandProvider commandProvider = (CommandProvider) commandProviders[i];
+					out.print(commandProvider.getHelp());
+					out.flush();
+				} catch (Exception ee) {
+					printStackTrace(ee);
+				}
+			}
+			// call help for the more command provided by this class
+<FONT style="background-color:#F2C553;display;inline">			out.print(getHelp());
+</FONT>			out.flush();
+		}
+		return retval;
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "os.name", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/framework/internal/core/FrameworkCommandInterpreter.html#L165" , parent.fbot ); return false'>Line# 170</a> java.lang.Object execute( java.lang.String )
+   Permission: java.util.PropertyPermission "os.name", "read"
+      Primordial/void java.io.PrintWriter.flush(  )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 Execute a command line as if it came from the end user.
+	 
+	 Searches the list of command providers using introspection until
+	 it finds one that contains a matching method.  It searches for a method
+	 with the name "_cmd" where cmd is the command to execute.  For example,
+	 for a command of "launch" execute searches for a method called "_launch".
+	 
+	 @param cmd The name of the command to execute.
+	 @return The object returned by the method executed.
+	 */
+	public Object execute(String cmd) {
+		if (!firstCommand)
+			return innerExecute(cmd);
+		firstCommand = false;
+		resetLineCount();
+		Object retval = null;
+		// handle "more" command here
+		if (cmd.equalsIgnoreCase("more")) { //$NON-NLS-1$
+			try {
+				_more();
+			} catch (Exception e) {
+				printStackTrace(e);
+			}
+			return retval;
+		}
+		// handle "disconnect" command here
+		if (cmd.equalsIgnoreCase("disconnect") && con.getUseSocketStream()) { //$NON-NLS-1$
+			try {
+				_disconnect();
+			} catch (Exception e) {
+				printStackTrace(e);
+			}
+			return retval;
+		}
+		Class[] parameterTypes = new Class[] {CommandInterpreter.class};
+		Object[] parameters = new Object[] {this};
+		boolean executed = false;
+		int size = commandProviders.length;
+		for (int i = 0; !executed && (i < size); i++) {
+			try {
+				Object target = commandProviders[i];
+				Method method = target.getClass().getMethod("_" + cmd, parameterTypes); //$NON-NLS-1$
+				retval = method.invoke(target, parameters);
+				executed = true; // stop after the command has been found
+			} catch (NoSuchMethodException ite) {
+				// keep going - maybe another command provider will be able to execute this command
+			} catch (InvocationTargetException ite) {
+				executed = true; // don't want to keep trying - we found the method but got an error
+				printStackTrace(ite.getTargetException());
+			} catch (Exception ee) {
+				executed = true; // don't want to keep trying - we got an error we don't understand
+				printStackTrace(ee);
+			}
+		}
+		// if no command was found to execute, display help for all registered command providers
+		if (!executed) {
+			for (int i = 0; i < size; i++) {
+				try {
+					CommandProvider commandProvider = (CommandProvider) commandProviders[i];
+					out.print(commandProvider.getHelp());
+					out.flush();
+				} catch (Exception ee) {
+					printStackTrace(ee);
+				}
+			}
+			// call help for the more command provided by this class
+			out.print(getHelp());
+<FONT style="background-color:#F2C553;display;inline">			out.flush();
+</FONT>		}
+		return retval;
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "os.name", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/framework/internal/core/FrameworkCommandInterpreter.html#L236" , parent.fbot ); return false'>Line# 241</a> void print( java.lang.Object )
+   Permission: java.util.PropertyPermission "os.name", "read"
+      Primordial/void java.io.PrintWriter.print( java.lang.Object )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * Prints an object to the outputstream
+	 *
+	 * @param o	the object to be printed
+	 */
+	public void print(Object o) {
+		synchronized (out) {
+			check4More();
+<FONT style="background-color:#F2C553;display;inline">			out.print(o);
+</FONT>			out.flush();
+		}
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "os.name", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/framework/internal/core/FrameworkCommandInterpreter.html#L237" , parent.fbot ); return false'>Line# 242</a> void print( java.lang.Object )
+   Permission: java.util.PropertyPermission "os.name", "read"
+      Primordial/void java.io.PrintWriter.flush(  )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * Prints an object to the outputstream
+	 *
+	 * @param o	the object to be printed
+	 */
+	public void print(Object o) {
+		synchronized (out) {
+			check4More();
+			out.print(o);
+<FONT style="background-color:#F2C553;display;inline">			out.flush();
+</FONT>		}
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "os.name", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/framework/internal/core/FrameworkCommandInterpreter.html#L268" , parent.fbot ); return false'>Line# 273</a> void printStackTrace( java.lang.Throwable )
+   Permission: java.util.PropertyPermission "os.name", "read"
+      Primordial/void java.io.PrintWriter.println( java.lang.String )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * Print a stack trace including nested exceptions.
+	 * @param t The offending exception
+	 */
+	public void printStackTrace(Throwable t) {
+		t.printStackTrace(out);
+
+		Method[] methods = t.getClass().getMethods();
+
+		int size = methods.length;
+		Class throwable = Throwable.class;
+
+		for (int i = 0; i < size; i++) {
+			Method method = methods[i];
+
+			if (Modifier.isPublic(method.getModifiers()) && method.getName().startsWith("get") && throwable.isAssignableFrom(method.getReturnType()) && (method.getParameterTypes().length == 0)) { //$NON-NLS-1$
+				try {
+					Throwable nested = (Throwable) method.invoke(t, null);
+
+					if ((nested != null) && (nested != t)) {
+<FONT style="background-color:#F2C553;display;inline">						out.println(ConsoleMsg.CONSOLE_NESTED_EXCEPTION);
+</FONT>						printStackTrace(nested);
+					}
+				} catch (IllegalAccessException e) {
+				} catch (InvocationTargetException e) {
+				}
+			}
+		}
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "os.name", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+</pre>
+</body></html>

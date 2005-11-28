@@ -1,0 +1,114 @@
+<html><head><title>Permission Analysis Report</title><script language='javaScript' src='linkUtil.js'></script></head><body>
+<h1>Permission Analysis Report</h1>
+<BR/><H2>Analysis of: org.eclipse.osgi</H2>
+<B>Detail</B><BR/><BR/>
+<pre>
+
+Class: <a href="foo" onClick="return openURLinSrc( 'Application/org/osgi/service/url/AbstractURLStreamHandlerService.html' )">org.osgi.service.url.AbstractURLStreamHandlerService</a> (Application)
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/osgi/service/url/AbstractURLStreamHandlerService.html#L66" , parent.fbot ); return false'>Line# 71</a> boolean equals( java.net.URL, java.net.URL )
+   Permission: java.net.SocketPermission "???host???", "resolve"
+      Primordial/boolean java.net.URLStreamHandler.equals( java.net.URL, java.net.URL )
+   Permission: java.net.SocketPermission "???host???:???port???", "connect"
+      Primordial/boolean java.net.URLStreamHandler.equals( java.net.URL, java.net.URL )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * This method calls <code>super.equals(URL,URL)</code>.
+	 * 
+	 * @see "java.net.URLStreamHandler.equals(URL,URL)"
+	 */
+	public boolean equals(URL u1, URL u2) {
+<FONT style="background-color:#F2C553;display;inline">		return super.equals(u1, u2);
+</FONT>	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.net.SocketPermission "???host???", "resolve";</LI>
+<LI>permission java.net.SocketPermission "???host???:???port???", "connect";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/osgi/service/url/AbstractURLStreamHandlerService.html#L84" , parent.fbot ); return false'>Line# 89</a> java.net.InetAddress getHostAddress( java.net.URL )
+   Permission: java.net.SocketPermission "???host???", "resolve"
+      Primordial/java.net.InetAddress java.net.URLStreamHandler.getHostAddress( java.net.URL )
+   Permission: java.net.SocketPermission "???host???:???port???", "connect"
+      Primordial/java.net.InetAddress java.net.URLStreamHandler.getHostAddress( java.net.URL )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * This method calls <code>super.getHostAddress</code>.
+	 * 
+	 * @see "java.net.URLStreamHandler.getHostAddress"
+	 */
+	public InetAddress getHostAddress(URL u) {
+<FONT style="background-color:#F2C553;display;inline">		return super.getHostAddress(u);
+</FONT>	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.net.SocketPermission "???host???", "resolve";</LI>
+<LI>permission java.net.SocketPermission "???host???:???port???", "connect";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/osgi/service/url/AbstractURLStreamHandlerService.html#L93" , parent.fbot ); return false'>Line# 98</a> int hashCode( java.net.URL )
+   Permission: java.net.SocketPermission "???host???", "resolve"
+      Primordial/int java.net.URLStreamHandler.hashCode( java.net.URL )
+   Permission: java.net.SocketPermission "???host???:???port???", "connect"
+      Primordial/int java.net.URLStreamHandler.hashCode( java.net.URL )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * This method calls <code>super.hashCode(URL)</code>.
+	 * 
+	 * @see "java.net.URLStreamHandler.hashCode(URL)"
+	 */
+	public int hashCode(URL u) {
+<FONT style="background-color:#F2C553;display;inline">		return super.hashCode(u);
+</FONT>	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.net.SocketPermission "???host???", "resolve";</LI>
+<LI>permission java.net.SocketPermission "???host???:???port???", "connect";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/osgi/service/url/AbstractURLStreamHandlerService.html#L102" , parent.fbot ); return false'>Line# 107</a> boolean hostsEqual( java.net.URL, java.net.URL )
+   Permission: java.net.SocketPermission "???host???", "resolve"
+      Primordial/boolean java.net.URLStreamHandler.hostsEqual( java.net.URL, java.net.URL )
+   Permission: java.net.SocketPermission "???host???:???port???", "connect"
+      Primordial/boolean java.net.URLStreamHandler.hostsEqual( java.net.URL, java.net.URL )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * This method calls <code>super.hostsEqual</code>.
+	 * 
+	 * @see "java.net.URLStreamHandler.hostsEqual"
+	 */
+	public boolean hostsEqual(URL u1, URL u2) {
+<FONT style="background-color:#F2C553;display;inline">		return super.hostsEqual(u1, u2);
+</FONT>	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.net.SocketPermission "???host???", "resolve";</LI>
+<LI>permission java.net.SocketPermission "???host???:???port???", "connect";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/osgi/service/url/AbstractURLStreamHandlerService.html#L111" , parent.fbot ); return false'>Line# 116</a> boolean sameFile( java.net.URL, java.net.URL )
+   Permission: java.net.SocketPermission "???host???", "resolve"
+      Primordial/boolean java.net.URLStreamHandler.sameFile( java.net.URL, java.net.URL )
+   Permission: java.net.SocketPermission "???host???:???port???", "connect"
+      Primordial/boolean java.net.URLStreamHandler.sameFile( java.net.URL, java.net.URL )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * This method calls <code>super.sameFile</code>.
+	 * 
+	 * @see "java.net.URLStreamHandler.sameFile"
+	 */
+	public boolean sameFile(URL u1, URL u2) {
+<FONT style="background-color:#F2C553;display;inline">		return super.sameFile(u1, u2);
+</FONT>	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.net.SocketPermission "???host???", "resolve";</LI>
+<LI>permission java.net.SocketPermission "???host???:???port???", "connect";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+</pre>
+</body></html>

@@ -1,0 +1,30 @@
+<html><head><title>Permission Analysis Report</title><script language='javaScript' src='linkUtil.js'></script></head><body>
+<h1>Permission Analysis Report</h1>
+<BR/><H2>Analysis of: org.eclipse.osgi</H2>
+<B>Detail</B><BR/><BR/>
+<pre>
+
+Class: <a href="foo" onClick="return openURLinSrc( 'Application/org/eclipse/osgi/framework/internal/core/ConditionalPermissionInfoImpl.html' )">org.eclipse.osgi.framework.internal.core.ConditionalPermissionInfoImpl</a> (Application)
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/framework/internal/core/ConditionalPermissionInfoImpl.html#L186" , parent.fbot ); return false'>Line# 191</a> void delete(  )
+   Permission: java.security.AllPermission 
+      Primordial/void java.lang.SecurityManager.checkPermission( java.security.Permission )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * 
+	 * @see org.osgi.service.condpermadmin.ConditionalPermissionInfo#delete()
+	 */
+	public void delete() {
+		SecurityManager sm = System.getSecurityManager();
+		if (sm != null)
+<FONT style="background-color:#F2C553;display;inline">			sm.checkPermission(new AllPermission());
+</FONT>		deleted = true;
+		condAdmin.deleteConditionalPermissionInfo(this);
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.security.AllPermission ;</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+</pre>
+</body></html>

@@ -1,0 +1,229 @@
+<html><head><title>Permission Analysis Report</title><script language='javaScript' src='linkUtil.js'></script></head><body>
+<h1>Permission Analysis Report</h1>
+<BR/><H2>Analysis of: org.eclipse.osgi</H2>
+<B>Detail</B><BR/><BR/>
+<pre>
+
+Class: <a href="foo" onClick="return openURLinSrc( 'Application/org/eclipse/osgi/framework/internal/core/AbstractBundle.html' )">org.eclipse.osgi.framework.internal.core.AbstractBundle</a> (Application)
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/framework/internal/core/AbstractBundle.html#L1068" , parent.fbot ); return false'>Line# 1073</a> boolean hasPermission( java.lang.Object )
+   Permission: java.lang.RuntimePermission "getClassLoader"
+      Primordial/void java.lang.SecurityManager.checkPermission( java.security.Permission, java.lang.Object )
+   Permission: java.net.SocketPermission "???host???", "resolve"
+      Primordial/void java.lang.SecurityManager.checkPermission( java.security.Permission, java.lang.Object )
+   Permission: java.net.SocketPermission "???host???:???port???", "connect"
+      Primordial/void java.lang.SecurityManager.checkPermission( java.security.Permission, java.lang.Object )
+   Permission: java.net.SocketPermission "localhost", "resolve"
+      Primordial/void java.lang.SecurityManager.checkPermission( java.security.Permission, java.lang.Object )
+   Permission: java.net.SocketPermission "localhost:1024-", "resolve"
+      Primordial/void java.lang.SecurityManager.checkPermission( java.security.Permission, java.lang.Object )
+   Permission: java.net.SocketPermission "localhost:1024-:???port???", "connect"
+      Primordial/void java.lang.SecurityManager.checkPermission( java.security.Permission, java.lang.Object )
+   Permission: java.net.SocketPermission "localhost:???port???", "connect"
+      Primordial/void java.lang.SecurityManager.checkPermission( java.security.Permission, java.lang.Object )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * Determine whether the bundle has the requested permission.
+	 * 
+	 * <p>
+	 * If the Java runtime environment does not supports permissions this
+	 * method always returns <code>true</code>. The permission parameter is
+	 * of type <code>Object</code> to avoid referencing the <code>java.security.Permission</code>
+	 * class directly. This is to allow the framework to be implemented in Java
+	 * environments which do not support permissions.
+	 * 
+	 * @param permission
+	 *            The requested permission.
+	 * @return <code>true</code> if the bundle has the requested permission
+	 *         or <code>false</code> if the bundle does not have the
+	 *         permission or the permission parameter is not an <code>instanceof java.security.Permission</code>.
+	 * @exception java.lang.IllegalStateException
+	 *                If the bundle has been uninstalled.
+	 */
+	public boolean hasPermission(Object permission) {
+		checkValid();
+		if (domain != null) {
+			if (permission instanceof Permission) {
+				SecurityManager sm = System.getSecurityManager();
+				if (sm instanceof FrameworkSecurityManager) {
+					/*
+					 * If the FrameworkSecurityManager is active, we need to do checks the "right" way.
+					 * We can exploit our knowledge that the security context of FrameworkSecurityManager
+					 * is an AccessControlContext to invoke it properly with the ProtectionDomain.
+					 */
+					AccessControlContext acc = new AccessControlContext(new ProtectionDomain[] {domain});
+					try {
+<FONT style="background-color:#F2C553;display;inline">						sm.checkPermission((Permission) permission, acc);
+</FONT>						return true;
+					} catch (Exception e) {
+						return false;
+					}
+				}
+				return domain.implies((Permission) permission);
+			}
+			return false;
+		}
+		return true;
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.lang.RuntimePermission "getClassLoader";</LI>
+<LI>permission java.net.SocketPermission "???host???", "resolve";</LI>
+<LI>permission java.net.SocketPermission "???host???:???port???", "connect";</LI>
+<LI>permission java.net.SocketPermission "localhost", "resolve";</LI>
+<LI>permission java.net.SocketPermission "localhost:1024-", "resolve";</LI>
+<LI>permission java.net.SocketPermission "localhost:1024-:???port???", "connect";</LI>
+<LI>permission java.net.SocketPermission "localhost:???port???", "connect";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/framework/internal/core/AbstractBundle.html#L1074" , parent.fbot ); return false'>Line# 1079</a> boolean hasPermission( java.lang.Object )
+   Permission: java.lang.RuntimePermission "getClassLoader"
+      Primordial/boolean java.security.ProtectionDomain.implies( java.security.Permission )
+   Permission: java.net.SocketPermission "???host???", "resolve"
+      Primordial/boolean java.security.ProtectionDomain.implies( java.security.Permission )
+   Permission: java.net.SocketPermission "???host???:???port???", "connect"
+      Primordial/boolean java.security.ProtectionDomain.implies( java.security.Permission )
+   Permission: java.net.SocketPermission "localhost", "resolve"
+      Primordial/boolean java.security.ProtectionDomain.implies( java.security.Permission )
+   Permission: java.net.SocketPermission "localhost:1024-", "resolve"
+      Primordial/boolean java.security.ProtectionDomain.implies( java.security.Permission )
+   Permission: java.net.SocketPermission "localhost:1024-:???port???", "connect"
+      Primordial/boolean java.security.ProtectionDomain.implies( java.security.Permission )
+   Permission: java.net.SocketPermission "localhost:???port???", "connect"
+      Primordial/boolean java.security.ProtectionDomain.implies( java.security.Permission )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * Determine whether the bundle has the requested permission.
+	 * 
+	 * <p>
+	 * If the Java runtime environment does not supports permissions this
+	 * method always returns <code>true</code>. The permission parameter is
+	 * of type <code>Object</code> to avoid referencing the <code>java.security.Permission</code>
+	 * class directly. This is to allow the framework to be implemented in Java
+	 * environments which do not support permissions.
+	 * 
+	 * @param permission
+	 *            The requested permission.
+	 * @return <code>true</code> if the bundle has the requested permission
+	 *         or <code>false</code> if the bundle does not have the
+	 *         permission or the permission parameter is not an <code>instanceof java.security.Permission</code>.
+	 * @exception java.lang.IllegalStateException
+	 *                If the bundle has been uninstalled.
+	 */
+	public boolean hasPermission(Object permission) {
+		checkValid();
+		if (domain != null) {
+			if (permission instanceof Permission) {
+				SecurityManager sm = System.getSecurityManager();
+				if (sm instanceof FrameworkSecurityManager) {
+					/*
+					 * If the FrameworkSecurityManager is active, we need to do checks the "right" way.
+					 * We can exploit our knowledge that the security context of FrameworkSecurityManager
+					 * is an AccessControlContext to invoke it properly with the ProtectionDomain.
+					 */
+					AccessControlContext acc = new AccessControlContext(new ProtectionDomain[] {domain});
+					try {
+						sm.checkPermission((Permission) permission, acc);
+						return true;
+					} catch (Exception e) {
+						return false;
+					}
+				}
+<FONT style="background-color:#F2C553;display;inline">				return domain.implies((Permission) permission);
+</FONT>			}
+			return false;
+		}
+		return true;
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.lang.RuntimePermission "getClassLoader";</LI>
+<LI>permission java.net.SocketPermission "???host???", "resolve";</LI>
+<LI>permission java.net.SocketPermission "???host???:???port???", "connect";</LI>
+<LI>permission java.net.SocketPermission "localhost", "resolve";</LI>
+<LI>permission java.net.SocketPermission "localhost:1024-", "resolve";</LI>
+<LI>permission java.net.SocketPermission "localhost:1024-:???port???", "connect";</LI>
+<LI>permission java.net.SocketPermission "localhost:???port???", "connect";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/framework/internal/core/AbstractBundle.html#L711" , parent.fbot ); return false'>Line# 716</a> void updateWorkerPrivileged( java.net.URLConnection, java.security.AccessControlContext )
+   Permission: java.security.AllPermission 
+      Application/boolean org.eclipse.osgi.framework.internal.core.AbstractBundle.hasPermission( java.lang.Object )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * Update worker. Assumes the caller has the state change lock.
+	 */
+	protected void updateWorkerPrivileged(URLConnection source, AccessControlContext callerContext) throws BundleException {
+		AbstractBundle oldBundle = AbstractBundle.createBundle(bundledata, framework);
+		boolean reloaded = false;
+		BundleOperation storage = framework.adaptor.updateBundle(this.bundledata, source);
+		BundleRepository bundles = framework.getBundles();
+		try {
+			BundleData newBundleData = storage.begin();
+			// Must call framework createBundle to check execution environment.
+			final AbstractBundle newBundle = framework.createAndVerifyBundle(newBundleData);
+			String[] nativepaths = framework.selectNativeCode(newBundle);
+			if (nativepaths != null) {
+				bundledata.installNativeCode(nativepaths);
+			}
+			boolean exporting;
+			int st = getState();
+			synchronized (bundles) {
+				exporting = reload(newBundle);
+				manifestLocalization = null;
+			}
+			// indicate we have loaded from the new version of the bundle
+			reloaded = true;
+			if (System.getSecurityManager() != null) {
+				final boolean extension = (bundledata.getType() & (BundleData.TYPE_BOOTCLASSPATH_EXTENSION | BundleData.TYPE_FRAMEWORK_EXTENSION)) != 0;
+				// must check for AllPermission before allow a bundle extension to be updated
+<FONT style="background-color:#F2C553;display;inline">				if (extension && !hasPermission(new AllPermission()))
+</FONT>					throw new BundleException(Msg.BUNDLE_EXTENSION_PERMISSION, new SecurityException(Msg.BUNDLE_EXTENSION_PERMISSION));
+				try {
+					AccessController.doPrivileged(new PrivilegedExceptionAction() {
+						public Object run() throws Exception {
+							framework.checkAdminPermission(newBundle, AdminPermission.LIFECYCLE);
+							if (extension) // need special permission to update extension bundles
+								framework.checkAdminPermission(newBundle, AdminPermission.EXTENSIONLIFECYCLE);
+							return null;
+						}
+					}, callerContext);
+				} catch (PrivilegedActionException e) {
+					throw e.getException();
+				}
+			}
+			// send out unresolved events outside synch block (defect #80610)
+			if (st == RESOLVED)
+				framework.publishBundleEvent(BundleEvent.UNRESOLVED, this);
+			storage.commit(exporting);
+		} catch (Throwable t) {
+			try {
+				storage.undo();
+				if (reloaded) /*
+				 * if we loaded from the new version of the
+				 * bundle
+				 */{
+					synchronized (bundles) {
+						reload(oldBundle); /* revert to old version */
+					}
+				}
+			} catch (BundleException ee) {
+				/* if we fail to revert then we are in big trouble */
+				framework.publishFrameworkEvent(FrameworkEvent.ERROR, this, ee);
+			}
+			if (t instanceof SecurityException)
+				throw (SecurityException) t;
+			if (t instanceof BundleException)
+				throw (BundleException) t;
+			throw new BundleException(t.getMessage(), t);
+		}
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.security.AllPermission ;</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+</pre>
+</body></html>

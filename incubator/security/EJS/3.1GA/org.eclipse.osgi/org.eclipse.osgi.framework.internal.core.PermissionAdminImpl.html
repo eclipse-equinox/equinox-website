@@ -1,0 +1,201 @@
+<html><head><title>Permission Analysis Report</title><script language='javaScript' src='linkUtil.js'></script></head><body>
+<h1>Permission Analysis Report</h1>
+<BR/><H2>Analysis of: org.eclipse.osgi</H2>
+<B>Detail</B><BR/><BR/>
+<pre>
+
+Class: <a href="foo" onClick="return openURLinSrc( 'Application/org/eclipse/osgi/framework/internal/core/PermissionAdminImpl.html' )">org.eclipse.osgi.framework.internal.core.PermissionAdminImpl</a> (Application)
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/framework/internal/core/PermissionAdminImpl.html#L518" , parent.fbot ); return false'>Line# 523</a> org.osgi.service.permissionadmin.PermissionInfo[] getPermissionInfos( java.lang.String )
+   Permission: java.util.PropertyPermission "java.vendor.url.bug", "read"
+      Primordial/java.lang.String java.io.BufferedReader.readLine(  )
+   Permission: java.util.PropertyPermission "os.name", "read"
+      Primordial/java.lang.String java.io.BufferedReader.readLine(  )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * Read the permissions from the specified resource.
+	 *
+	 * @return An array of PermissionInfo objects from the specified
+	 * resource.
+	 */
+	protected PermissionInfo[] getPermissionInfos(String resource) {
+		PermissionInfo[] info = null;
+
+		InputStream in = getClass().getResourceAsStream(resource);
+
+		if (in != null) {
+			try {
+				Vector permissions = new Vector();
+
+				BufferedReader reader;
+				try {
+					reader = new BufferedReader(new InputStreamReader(in, "UTF8")); //$NON-NLS-1$
+				} catch (UnsupportedEncodingException e) {
+					reader = new BufferedReader(new InputStreamReader(in));
+				}
+
+				while (true) {
+<FONT style="background-color:#F2C553;display;inline">					String line = reader.readLine();
+</FONT>
+					if (line == null) /* EOF */{
+						break;
+					}
+
+					line = line.trim();
+
+					if ((line.length() == 0) || line.startsWith("#") || line.startsWith("//")) /* comments */{ //$NON-NLS-1$ //$NON-NLS-2$
+						continue;
+					}
+
+					try {
+						permissions.addElement(new PermissionInfo(line));
+					} catch (IllegalArgumentException iae) {
+						/* incorrectly encoded permission */
+
+						framework.publishFrameworkEvent(FrameworkEvent.ERROR, framework.systemBundle, iae);
+					}
+				}
+
+				int size = permissions.size();
+
+				if (size > 0) {
+					info = new PermissionInfo[size];
+
+					permissions.copyInto(info);
+				}
+			} catch (IOException e) {
+			} finally {
+				try {
+					in.close();
+				} catch (IOException ee) {
+				}
+			}
+		}
+
+		return info;
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "java.vendor.url.bug", "read";</LI>
+<LI>permission java.util.PropertyPermission "os.name", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/framework/internal/core/PermissionAdminImpl.html#L301" , parent.fbot ); return false'>Line# 306</a> void setDefaultPermissions( org.osgi.service.permissionadmin.PermissionInfo[] )
+   Permission: java.security.AllPermission 
+      Primordial/void java.lang.SecurityManager.checkPermission( java.security.Permission )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * Sets the default permissions.
+	 *
+	 * <p>These are the permissions granted to any bundle that does not
+	 * have permissions assigned to its location.
+	 *
+	 * @param permissions The default permissions.
+	 * @exception SecurityException if the caller does not have the
+	 * <tt>AllPermission</tt>.
+	 */
+	public void setDefaultPermissions(PermissionInfo[] permissions) {
+		SecurityManager sm = System.getSecurityManager();
+		if (sm != null)
+<FONT style="background-color:#F2C553;display;inline">			sm.checkPermission(new AllPermission());
+</FONT>		PermissionStorage storage = new org.eclipse.osgi.framework.internal.core.SecurePermissionStorage(this.storage);
+
+		try {
+			String[] data = makePermissionData(permissions);
+
+			if (Debug.DEBUG && Debug.DEBUG_SECURITY) {
+				Debug.println("Setting default permissions"); //$NON-NLS-1$
+				if (data == null) {
+					Debug.println("  <none>"); //$NON-NLS-1$
+				} else {
+					for (int i = 0; i < data.length; i++) {
+						Debug.println("  " + data[i]); //$NON-NLS-1$
+					}
+				}
+			}
+
+			storage.setPermissionData(null, data);
+		} catch (IOException e) {
+			framework.publishFrameworkEvent(FrameworkEvent.ERROR, framework.systemBundle, e);
+
+			return;
+		}
+
+		defaultAssignedPermissions.setAssignedPermissions(createDefaultAssignedPermissions(permissions), true);
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.security.AllPermission ;</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/framework/internal/core/PermissionAdminImpl.html#L187" , parent.fbot ); return false'>Line# 192</a> void setPermissions( java.lang.String, org.osgi.service.permissionadmin.PermissionInfo[] )
+   Permission: java.security.AllPermission 
+      Primordial/void java.lang.SecurityManager.checkPermission( java.security.Permission )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * Assigns the specified permissions to the bundle with the specified
+	 * location.
+	 *
+	 * @param location The location of the bundle that will be assigned the
+	 *                 permissions.
+	 * @param permissions The permissions to be assigned, or <tt>null</tt>
+	 * if the specified location is to be removed from the permission table.
+	 * @exception SecurityException if the caller does not have the
+	 * <tt>AllPermission</tt>.
+	 */
+	public void setPermissions(String location, PermissionInfo[] permissions) {
+		SecurityManager sm = System.getSecurityManager();
+		if (sm != null)
+<FONT style="background-color:#F2C553;display;inline">			sm.checkPermission(new AllPermission());
+</FONT>		if (location == null) {
+			throw new NullPointerException();
+		}
+
+		PermissionStorage storage = new org.eclipse.osgi.framework.internal.core.SecurePermissionStorage(this.storage);
+
+		try {
+			String[] data = makePermissionData(permissions);
+
+			if (Debug.DEBUG && Debug.DEBUG_SECURITY) {
+				Debug.println("Setting permissions for location: " + location); //$NON-NLS-1$
+				if (data == null) {
+					Debug.println("  <none>"); //$NON-NLS-1$
+				} else {
+					for (int i = 0; i < data.length; i++) {
+						Debug.println("  " + data[i]); //$NON-NLS-1$
+					}
+				}
+			}
+
+			storage.setPermissionData(location, data);
+		} catch (IOException e) {
+			framework.publishFrameworkEvent(FrameworkEvent.ERROR, framework.systemBundle, e);
+
+			return;
+		}
+
+		AbstractBundle bundle = framework.getBundleByLocation(location);
+
+		if ((bundle != null) && (bundle.getBundleId() != 0)) {
+			ProtectionDomain domain = bundle.getProtectionDomain();
+
+			if (domain != null) {
+				BundleCombinedPermissions combined = (BundleCombinedPermissions) domain.getPermissions();
+
+				if (permissions == null) {
+					combined.setAssignedPermissions(defaultAssignedPermissions, true);
+				} else {
+					combined.setAssignedPermissions(createPermissions(permissions, bundle), false);
+				}
+			}
+		}
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.security.AllPermission ;</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+</pre>
+</body></html>

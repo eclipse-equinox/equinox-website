@@ -1,0 +1,40 @@
+<html><head><title>Permission Analysis Report</title><script language='javaScript' src='linkUtil.js'></script></head><body>
+<h1>Permission Analysis Report</h1>
+<BR/><H2>Analysis of: org.eclipse.osgi</H2>
+<B>Detail</B><BR/><BR/>
+<pre>
+
+Class: <a href="foo" onClick="return openURLinSrc( 'Application/org/eclipse/core/runtime/internal/adaptor/ContextFinder.html' )">org.eclipse.core.runtime.internal.adaptor.ContextFinder</a> (Application)
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/runtime/internal/adaptor/ContextFinder.html#L29" , parent.fbot ); return false'>Line# 34</a> void &lt;init&gt;( java.lang.ClassLoader )
+   Permission: java.lang.RuntimePermission "createClassLoader"
+      Primordial/void java.lang.ClassLoader.ClassLoader( java.lang.ClassLoader )
+<BR/><BR/><B>CODE</B><BR/>
+public ContextFinder(ClassLoader contextClassLoader) {
+<FONT style="background-color:#F2C553;display;inline">		super(contextClassLoader);
+</FONT>	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.lang.RuntimePermission "createClassLoader";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/runtime/internal/adaptor/ContextFinder.html#L51" , parent.fbot ); return false'>Line# 56</a> boolean checkClassLoader( java.lang.ClassLoader )
+   Permission: java.lang.RuntimePermission "getClassLoader"
+      Primordial/java.lang.ClassLoader java.lang.ClassLoader.getParent(  )
+<BR/><BR/><B>CODE</B><BR/>
+private boolean checkClassLoader(ClassLoader classloader) {
+<FONT style="background-color:#F2C553;display;inline">		if (classloader == null || classloader == getParent())
+</FONT>			return false;
+		for (ClassLoader parent = classloader.getParent(); parent != null; parent = parent.getParent())
+			if (parent == this)
+				return false;
+		return true;
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.lang.RuntimePermission "getClassLoader";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+</pre>
+</body></html>

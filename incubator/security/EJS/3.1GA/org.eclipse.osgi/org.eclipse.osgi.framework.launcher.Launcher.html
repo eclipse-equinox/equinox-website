@@ -1,0 +1,54 @@
+<html><head><title>Permission Analysis Report</title><script language='javaScript' src='linkUtil.js'></script></head><body>
+<h1>Permission Analysis Report</h1>
+<BR/><H2>Analysis of: org.eclipse.osgi</H2>
+<B>Detail</B><BR/><BR/>
+<pre>
+
+Class: <a href="foo" onClick="return openURLinSrc( 'Application/org/eclipse/osgi/framework/launcher/Launcher.html' )">org.eclipse.osgi.framework.launcher.Launcher</a> (Application)
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/framework/launcher/Launcher.html#L336" , parent.fbot ); return false'>Line# 341</a> void doConsole( org.eclipse.osgi.framework.internal.core.OSGi, java.lang.String[] )
+   Permission: java.lang.RuntimePermission "modifyThread"
+      Primordial/void java.lang.Thread.Thread( java.lang.Runnable, java.lang.String )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 *  Invokes the OSGi Console on another thread
+	 *
+	 * @param osgi The current OSGi instance for the console to attach to
+	 * @param consoleArgs An String array containing commands from the command line
+	 * for the console to execute
+	 */
+	private void doConsole(OSGi osgi, String[] consoleArgs) {
+
+		Constructor consoleConstructor;
+		Object osgiconsole;
+		Class[] parameterTypes;
+		Object[] parameters;
+
+		try {
+			Class osgiconsoleClass = Class.forName(osgiConsoleClazz);
+			if (consolePort.length() == 0) {
+				parameterTypes = new Class[] {OSGi.class, String[].class};
+				parameters = new Object[] {osgi, consoleArgs};
+			} else {
+				parameterTypes = new Class[] {OSGi.class, int.class, String[].class};
+				parameters = new Object[] {osgi, new Integer(consolePort), consoleArgs};
+			}
+			consoleConstructor = osgiconsoleClass.getConstructor(parameterTypes);
+			osgiconsole = consoleConstructor.newInstance(parameters);
+
+<FONT style="background-color:#F2C553;display;inline">			Thread t = new Thread(((Runnable) osgiconsole), OSGI_CONSOLE_COMPONENT_NAME);
+</FONT>			t.start();
+		} catch (NumberFormatException nfe) {
+			System.err.println(NLS.bind(Msg.LAUNCHER_INVALID_PORT, consolePort)); //$NON-NLS-1$
+		} catch (Exception ex) {
+			informAboutMissingComponent(OSGI_CONSOLE_COMPONENT_NAME, OSGI_CONSOLE_COMPONENT);
+		}
+
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.lang.RuntimePermission "modifyThread";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+</pre>
+</body></html>

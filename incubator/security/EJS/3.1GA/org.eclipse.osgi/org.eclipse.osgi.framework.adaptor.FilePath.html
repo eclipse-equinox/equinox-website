@@ -1,0 +1,31 @@
+<html><head><title>Permission Analysis Report</title><script language='javaScript' src='linkUtil.js'></script></head><body>
+<h1>Permission Analysis Report</h1>
+<BR/><H2>Analysis of: org.eclipse.osgi</H2>
+<B>Detail</B><BR/><BR/>
+<pre>
+
+Class: <a href="foo" onClick="return openURLinSrc( 'Application/org/eclipse/osgi/framework/adaptor/FilePath.html' )">org.eclipse.osgi.framework.adaptor.FilePath</a> (Application)
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/framework/adaptor/FilePath.html#L44" , parent.fbot ); return false'>Line# 49</a> void &lt;init&gt;( java.io.File )
+   Permission: java.io.FilePermission "???file???", "read"
+      Primordial/boolean java.io.File.isDirectory(  )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * Constructs a new file path from the given File object.
+	 * 
+	 * @param location
+	 */
+	public FilePath(File location) {
+		initialize(location.getPath());
+<FONT style="background-color:#F2C553;display;inline">		if (location.isDirectory())
+</FONT>			flags |= HAS_TRAILING;
+		else
+			flags &= ~HAS_TRAILING;
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.io.FilePermission "???file???", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+</pre>
+</body></html>

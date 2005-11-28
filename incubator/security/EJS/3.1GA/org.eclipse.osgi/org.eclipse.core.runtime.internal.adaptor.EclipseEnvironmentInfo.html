@@ -1,0 +1,1043 @@
+<html><head><title>Permission Analysis Report</title><script language='javaScript' src='linkUtil.js'></script></head><body>
+<h1>Permission Analysis Report</h1>
+<BR/><H2>Analysis of: org.eclipse.osgi</H2>
+<B>Detail</B><BR/><BR/>
+<pre>
+
+Class: <a href="foo" onClick="return openURLinSrc( 'Application/org/eclipse/core/runtime/internal/adaptor/EclipseEnvironmentInfo.html' )">org.eclipse.core.runtime.internal.adaptor.EclipseEnvironmentInfo</a> (Application)
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/runtime/internal/adaptor/EclipseEnvironmentInfo.html#L59" , parent.fbot ); return false'>Line# 64</a> boolean inDebugMode(  )
+   Permission: java.util.PropertyPermission "osgi.debug", "read"
+      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )
+<BR/><BR/><B>CODE</B><BR/>
+public boolean inDebugMode() {
+<FONT style="background-color:#F2C553;display;inline">		return System.getProperty("osgi.debug") != null; //$NON-NLS-1$
+</FONT>	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "osgi.debug", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/runtime/internal/adaptor/EclipseEnvironmentInfo.html#L55" , parent.fbot ); return false'>Line# 60</a> boolean inDevelopmentMode(  )
+   Permission: java.util.PropertyPermission "osgi.dev", "read"
+      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )
+<BR/><BR/><B>CODE</B><BR/>
+public boolean inDevelopmentMode() {
+<FONT style="background-color:#F2C553;display;inline">		return System.getProperty("osgi.dev") != null; //$NON-NLS-1$
+</FONT>	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "osgi.dev", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/runtime/internal/adaptor/EclipseEnvironmentInfo.html#L100" , parent.fbot ); return false'>Line# 105</a> void setupSystemContext(  )
+   Permission: java.util.PropertyPermission "osgi.nl", "read"
+      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * Initializes the execution context for this run of the platform.  The context
+	 * includes information about the locale, operating system and window system.
+	 * 
+	 * NOTE: The OS, WS, and ARCH values should never be null. The executable should
+	 * be setting these values and therefore this code path is obsolete for Eclipse
+	 * when run from the executable.
+	 */
+	private static void setupSystemContext() {
+		// if the user didn't set the locale with a command line argument then use the default.
+<FONT style="background-color:#F2C553;display;inline">		nl = System.getProperty("osgi.nl"); //$NON-NLS-1$
+</FONT>		if (nl != null) {
+			StringTokenizer tokenizer = new StringTokenizer(nl, "_"); //$NON-NLS-1$
+			int segments = tokenizer.countTokens();
+			try {
+				Locale userLocale = null;
+				switch (segments) {
+					case 1 :
+						// use the 2 arg constructor to maintain compatibility with 1.3.1
+						userLocale = new Locale(tokenizer.nextToken(), ""); //$NON-NLS-1$
+						break;
+					case 2 :
+						userLocale = new Locale(tokenizer.nextToken(), tokenizer.nextToken());
+						break;
+					case 3 :
+						userLocale = new Locale(tokenizer.nextToken(), tokenizer.nextToken(), tokenizer.nextToken());
+						break;
+					default :
+						// if the user passed us in a bogus value then log a message and use the default
+						System.err.println(NLS.bind(EclipseAdaptorMsg.error_badNL, nl)); 
+						userLocale = Locale.getDefault();
+						break;
+				}
+				Locale.setDefault(userLocale);
+				System.getProperties().put("osgi.nl.user", nl); //$NON-NLS-1$
+			} catch (NoSuchElementException e) {
+				// fall through and use the default
+			}
+		}
+		nl = Locale.getDefault().toString();
+		System.getProperties().put("osgi.nl", nl); //$NON-NLS-1$
+
+		// if the user didn't set the operating system with a command line 
+		// argument then use the default.
+		os = System.getProperty("osgi.os"); //$NON-NLS-1$
+		if (os == null) {
+			os = guessOS(System.getProperty("os.name"));//$NON-NLS-1$);
+			System.getProperties().put("osgi.os", os); //$NON-NLS-1$
+		}
+
+		// if the user didn't set the window system with a command line 
+		// argument then use the default.
+		ws = System.getProperty("osgi.ws"); //$NON-NLS-1$
+		if (ws == null) {
+			ws = guessWS(os);
+			System.getProperties().put("osgi.ws", ws); //$NON-NLS-1$
+		}
+
+		// if the user didn't set the system architecture with a command line 
+		// argument then use the default.
+		arch = System.getProperty("osgi.arch"); //$NON-NLS-1$
+		if (arch == null) {
+			String name = System.getProperty("os.arch");//$NON-NLS-1$
+			// Map i386 architecture to x86
+			if (name.equalsIgnoreCase(INTERNAL_ARCH_I386))
+				arch = Constants.ARCH_X86;
+			// Map amd64 architecture to x86_64
+			else if (name.equalsIgnoreCase(INTERNAL_AMD64))
+				arch = Constants.ARCH_X86_64;
+			else
+				arch = name;
+			System.getProperties().put("osgi.arch", arch); //$NON-NLS-1$			
+		}
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "osgi.nl", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/runtime/internal/adaptor/EclipseEnvironmentInfo.html#L123" , parent.fbot ); return false'>Line# 128</a> void setupSystemContext(  )
+   Permission: java.util.PropertyPermission "user.language", "write"
+      Primordial/void java.util.Locale.setDefault( java.util.Locale )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * Initializes the execution context for this run of the platform.  The context
+	 * includes information about the locale, operating system and window system.
+	 * 
+	 * NOTE: The OS, WS, and ARCH values should never be null. The executable should
+	 * be setting these values and therefore this code path is obsolete for Eclipse
+	 * when run from the executable.
+	 */
+	private static void setupSystemContext() {
+		// if the user didn't set the locale with a command line argument then use the default.
+		nl = System.getProperty("osgi.nl"); //$NON-NLS-1$
+		if (nl != null) {
+			StringTokenizer tokenizer = new StringTokenizer(nl, "_"); //$NON-NLS-1$
+			int segments = tokenizer.countTokens();
+			try {
+				Locale userLocale = null;
+				switch (segments) {
+					case 1 :
+						// use the 2 arg constructor to maintain compatibility with 1.3.1
+						userLocale = new Locale(tokenizer.nextToken(), ""); //$NON-NLS-1$
+						break;
+					case 2 :
+						userLocale = new Locale(tokenizer.nextToken(), tokenizer.nextToken());
+						break;
+					case 3 :
+						userLocale = new Locale(tokenizer.nextToken(), tokenizer.nextToken(), tokenizer.nextToken());
+						break;
+					default :
+						// if the user passed us in a bogus value then log a message and use the default
+						System.err.println(NLS.bind(EclipseAdaptorMsg.error_badNL, nl)); 
+						userLocale = Locale.getDefault();
+						break;
+				}
+<FONT style="background-color:#F2C553;display;inline">				Locale.setDefault(userLocale);
+</FONT>				System.getProperties().put("osgi.nl.user", nl); //$NON-NLS-1$
+			} catch (NoSuchElementException e) {
+				// fall through and use the default
+			}
+		}
+		nl = Locale.getDefault().toString();
+		System.getProperties().put("osgi.nl", nl); //$NON-NLS-1$
+
+		// if the user didn't set the operating system with a command line 
+		// argument then use the default.
+		os = System.getProperty("osgi.os"); //$NON-NLS-1$
+		if (os == null) {
+			os = guessOS(System.getProperty("os.name"));//$NON-NLS-1$);
+			System.getProperties().put("osgi.os", os); //$NON-NLS-1$
+		}
+
+		// if the user didn't set the window system with a command line 
+		// argument then use the default.
+		ws = System.getProperty("osgi.ws"); //$NON-NLS-1$
+		if (ws == null) {
+			ws = guessWS(os);
+			System.getProperties().put("osgi.ws", ws); //$NON-NLS-1$
+		}
+
+		// if the user didn't set the system architecture with a command line 
+		// argument then use the default.
+		arch = System.getProperty("osgi.arch"); //$NON-NLS-1$
+		if (arch == null) {
+			String name = System.getProperty("os.arch");//$NON-NLS-1$
+			// Map i386 architecture to x86
+			if (name.equalsIgnoreCase(INTERNAL_ARCH_I386))
+				arch = Constants.ARCH_X86;
+			// Map amd64 architecture to x86_64
+			else if (name.equalsIgnoreCase(INTERNAL_AMD64))
+				arch = Constants.ARCH_X86_64;
+			else
+				arch = name;
+			System.getProperties().put("osgi.arch", arch); //$NON-NLS-1$			
+		}
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "user.language", "write";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/runtime/internal/adaptor/EclipseEnvironmentInfo.html#L124" , parent.fbot ); return false'>Line# 129</a> void setupSystemContext(  )
+   Permission: java.util.PropertyPermission "*", "read,write"
+      Primordial/java.util.Properties java.lang.System.getProperties(  )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * Initializes the execution context for this run of the platform.  The context
+	 * includes information about the locale, operating system and window system.
+	 * 
+	 * NOTE: The OS, WS, and ARCH values should never be null. The executable should
+	 * be setting these values and therefore this code path is obsolete for Eclipse
+	 * when run from the executable.
+	 */
+	private static void setupSystemContext() {
+		// if the user didn't set the locale with a command line argument then use the default.
+		nl = System.getProperty("osgi.nl"); //$NON-NLS-1$
+		if (nl != null) {
+			StringTokenizer tokenizer = new StringTokenizer(nl, "_"); //$NON-NLS-1$
+			int segments = tokenizer.countTokens();
+			try {
+				Locale userLocale = null;
+				switch (segments) {
+					case 1 :
+						// use the 2 arg constructor to maintain compatibility with 1.3.1
+						userLocale = new Locale(tokenizer.nextToken(), ""); //$NON-NLS-1$
+						break;
+					case 2 :
+						userLocale = new Locale(tokenizer.nextToken(), tokenizer.nextToken());
+						break;
+					case 3 :
+						userLocale = new Locale(tokenizer.nextToken(), tokenizer.nextToken(), tokenizer.nextToken());
+						break;
+					default :
+						// if the user passed us in a bogus value then log a message and use the default
+						System.err.println(NLS.bind(EclipseAdaptorMsg.error_badNL, nl)); 
+						userLocale = Locale.getDefault();
+						break;
+				}
+				Locale.setDefault(userLocale);
+<FONT style="background-color:#F2C553;display;inline">				System.getProperties().put("osgi.nl.user", nl); //$NON-NLS-1$
+</FONT>			} catch (NoSuchElementException e) {
+				// fall through and use the default
+			}
+		}
+		nl = Locale.getDefault().toString();
+		System.getProperties().put("osgi.nl", nl); //$NON-NLS-1$
+
+		// if the user didn't set the operating system with a command line 
+		// argument then use the default.
+		os = System.getProperty("osgi.os"); //$NON-NLS-1$
+		if (os == null) {
+			os = guessOS(System.getProperty("os.name"));//$NON-NLS-1$);
+			System.getProperties().put("osgi.os", os); //$NON-NLS-1$
+		}
+
+		// if the user didn't set the window system with a command line 
+		// argument then use the default.
+		ws = System.getProperty("osgi.ws"); //$NON-NLS-1$
+		if (ws == null) {
+			ws = guessWS(os);
+			System.getProperties().put("osgi.ws", ws); //$NON-NLS-1$
+		}
+
+		// if the user didn't set the system architecture with a command line 
+		// argument then use the default.
+		arch = System.getProperty("osgi.arch"); //$NON-NLS-1$
+		if (arch == null) {
+			String name = System.getProperty("os.arch");//$NON-NLS-1$
+			// Map i386 architecture to x86
+			if (name.equalsIgnoreCase(INTERNAL_ARCH_I386))
+				arch = Constants.ARCH_X86;
+			// Map amd64 architecture to x86_64
+			else if (name.equalsIgnoreCase(INTERNAL_AMD64))
+				arch = Constants.ARCH_X86_64;
+			else
+				arch = name;
+			System.getProperties().put("osgi.arch", arch); //$NON-NLS-1$			
+		}
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "*", "read,write";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/runtime/internal/adaptor/EclipseEnvironmentInfo.html#L130" , parent.fbot ); return false'>Line# 135</a> void setupSystemContext(  )
+   Permission: java.util.PropertyPermission "*", "read,write"
+      Primordial/java.util.Properties java.lang.System.getProperties(  )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * Initializes the execution context for this run of the platform.  The context
+	 * includes information about the locale, operating system and window system.
+	 * 
+	 * NOTE: The OS, WS, and ARCH values should never be null. The executable should
+	 * be setting these values and therefore this code path is obsolete for Eclipse
+	 * when run from the executable.
+	 */
+	private static void setupSystemContext() {
+		// if the user didn't set the locale with a command line argument then use the default.
+		nl = System.getProperty("osgi.nl"); //$NON-NLS-1$
+		if (nl != null) {
+			StringTokenizer tokenizer = new StringTokenizer(nl, "_"); //$NON-NLS-1$
+			int segments = tokenizer.countTokens();
+			try {
+				Locale userLocale = null;
+				switch (segments) {
+					case 1 :
+						// use the 2 arg constructor to maintain compatibility with 1.3.1
+						userLocale = new Locale(tokenizer.nextToken(), ""); //$NON-NLS-1$
+						break;
+					case 2 :
+						userLocale = new Locale(tokenizer.nextToken(), tokenizer.nextToken());
+						break;
+					case 3 :
+						userLocale = new Locale(tokenizer.nextToken(), tokenizer.nextToken(), tokenizer.nextToken());
+						break;
+					default :
+						// if the user passed us in a bogus value then log a message and use the default
+						System.err.println(NLS.bind(EclipseAdaptorMsg.error_badNL, nl)); 
+						userLocale = Locale.getDefault();
+						break;
+				}
+				Locale.setDefault(userLocale);
+				System.getProperties().put("osgi.nl.user", nl); //$NON-NLS-1$
+			} catch (NoSuchElementException e) {
+				// fall through and use the default
+			}
+		}
+		nl = Locale.getDefault().toString();
+<FONT style="background-color:#F2C553;display;inline">		System.getProperties().put("osgi.nl", nl); //$NON-NLS-1$
+</FONT>
+		// if the user didn't set the operating system with a command line 
+		// argument then use the default.
+		os = System.getProperty("osgi.os"); //$NON-NLS-1$
+		if (os == null) {
+			os = guessOS(System.getProperty("os.name"));//$NON-NLS-1$);
+			System.getProperties().put("osgi.os", os); //$NON-NLS-1$
+		}
+
+		// if the user didn't set the window system with a command line 
+		// argument then use the default.
+		ws = System.getProperty("osgi.ws"); //$NON-NLS-1$
+		if (ws == null) {
+			ws = guessWS(os);
+			System.getProperties().put("osgi.ws", ws); //$NON-NLS-1$
+		}
+
+		// if the user didn't set the system architecture with a command line 
+		// argument then use the default.
+		arch = System.getProperty("osgi.arch"); //$NON-NLS-1$
+		if (arch == null) {
+			String name = System.getProperty("os.arch");//$NON-NLS-1$
+			// Map i386 architecture to x86
+			if (name.equalsIgnoreCase(INTERNAL_ARCH_I386))
+				arch = Constants.ARCH_X86;
+			// Map amd64 architecture to x86_64
+			else if (name.equalsIgnoreCase(INTERNAL_AMD64))
+				arch = Constants.ARCH_X86_64;
+			else
+				arch = name;
+			System.getProperties().put("osgi.arch", arch); //$NON-NLS-1$			
+		}
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "*", "read,write";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/runtime/internal/adaptor/EclipseEnvironmentInfo.html#L134" , parent.fbot ); return false'>Line# 139</a> void setupSystemContext(  )
+   Permission: java.util.PropertyPermission "osgi.os", "read"
+      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * Initializes the execution context for this run of the platform.  The context
+	 * includes information about the locale, operating system and window system.
+	 * 
+	 * NOTE: The OS, WS, and ARCH values should never be null. The executable should
+	 * be setting these values and therefore this code path is obsolete for Eclipse
+	 * when run from the executable.
+	 */
+	private static void setupSystemContext() {
+		// if the user didn't set the locale with a command line argument then use the default.
+		nl = System.getProperty("osgi.nl"); //$NON-NLS-1$
+		if (nl != null) {
+			StringTokenizer tokenizer = new StringTokenizer(nl, "_"); //$NON-NLS-1$
+			int segments = tokenizer.countTokens();
+			try {
+				Locale userLocale = null;
+				switch (segments) {
+					case 1 :
+						// use the 2 arg constructor to maintain compatibility with 1.3.1
+						userLocale = new Locale(tokenizer.nextToken(), ""); //$NON-NLS-1$
+						break;
+					case 2 :
+						userLocale = new Locale(tokenizer.nextToken(), tokenizer.nextToken());
+						break;
+					case 3 :
+						userLocale = new Locale(tokenizer.nextToken(), tokenizer.nextToken(), tokenizer.nextToken());
+						break;
+					default :
+						// if the user passed us in a bogus value then log a message and use the default
+						System.err.println(NLS.bind(EclipseAdaptorMsg.error_badNL, nl)); 
+						userLocale = Locale.getDefault();
+						break;
+				}
+				Locale.setDefault(userLocale);
+				System.getProperties().put("osgi.nl.user", nl); //$NON-NLS-1$
+			} catch (NoSuchElementException e) {
+				// fall through and use the default
+			}
+		}
+		nl = Locale.getDefault().toString();
+		System.getProperties().put("osgi.nl", nl); //$NON-NLS-1$
+
+		// if the user didn't set the operating system with a command line 
+		// argument then use the default.
+<FONT style="background-color:#F2C553;display;inline">		os = System.getProperty("osgi.os"); //$NON-NLS-1$
+</FONT>		if (os == null) {
+			os = guessOS(System.getProperty("os.name"));//$NON-NLS-1$);
+			System.getProperties().put("osgi.os", os); //$NON-NLS-1$
+		}
+
+		// if the user didn't set the window system with a command line 
+		// argument then use the default.
+		ws = System.getProperty("osgi.ws"); //$NON-NLS-1$
+		if (ws == null) {
+			ws = guessWS(os);
+			System.getProperties().put("osgi.ws", ws); //$NON-NLS-1$
+		}
+
+		// if the user didn't set the system architecture with a command line 
+		// argument then use the default.
+		arch = System.getProperty("osgi.arch"); //$NON-NLS-1$
+		if (arch == null) {
+			String name = System.getProperty("os.arch");//$NON-NLS-1$
+			// Map i386 architecture to x86
+			if (name.equalsIgnoreCase(INTERNAL_ARCH_I386))
+				arch = Constants.ARCH_X86;
+			// Map amd64 architecture to x86_64
+			else if (name.equalsIgnoreCase(INTERNAL_AMD64))
+				arch = Constants.ARCH_X86_64;
+			else
+				arch = name;
+			System.getProperties().put("osgi.arch", arch); //$NON-NLS-1$			
+		}
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "osgi.os", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/runtime/internal/adaptor/EclipseEnvironmentInfo.html#L136" , parent.fbot ); return false'>Line# 141</a> void setupSystemContext(  )
+   Permission: java.util.PropertyPermission "os.name", "read"
+      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * Initializes the execution context for this run of the platform.  The context
+	 * includes information about the locale, operating system and window system.
+	 * 
+	 * NOTE: The OS, WS, and ARCH values should never be null. The executable should
+	 * be setting these values and therefore this code path is obsolete for Eclipse
+	 * when run from the executable.
+	 */
+	private static void setupSystemContext() {
+		// if the user didn't set the locale with a command line argument then use the default.
+		nl = System.getProperty("osgi.nl"); //$NON-NLS-1$
+		if (nl != null) {
+			StringTokenizer tokenizer = new StringTokenizer(nl, "_"); //$NON-NLS-1$
+			int segments = tokenizer.countTokens();
+			try {
+				Locale userLocale = null;
+				switch (segments) {
+					case 1 :
+						// use the 2 arg constructor to maintain compatibility with 1.3.1
+						userLocale = new Locale(tokenizer.nextToken(), ""); //$NON-NLS-1$
+						break;
+					case 2 :
+						userLocale = new Locale(tokenizer.nextToken(), tokenizer.nextToken());
+						break;
+					case 3 :
+						userLocale = new Locale(tokenizer.nextToken(), tokenizer.nextToken(), tokenizer.nextToken());
+						break;
+					default :
+						// if the user passed us in a bogus value then log a message and use the default
+						System.err.println(NLS.bind(EclipseAdaptorMsg.error_badNL, nl)); 
+						userLocale = Locale.getDefault();
+						break;
+				}
+				Locale.setDefault(userLocale);
+				System.getProperties().put("osgi.nl.user", nl); //$NON-NLS-1$
+			} catch (NoSuchElementException e) {
+				// fall through and use the default
+			}
+		}
+		nl = Locale.getDefault().toString();
+		System.getProperties().put("osgi.nl", nl); //$NON-NLS-1$
+
+		// if the user didn't set the operating system with a command line 
+		// argument then use the default.
+		os = System.getProperty("osgi.os"); //$NON-NLS-1$
+		if (os == null) {
+<FONT style="background-color:#F2C553;display;inline">			os = guessOS(System.getProperty("os.name"));//$NON-NLS-1$);
+</FONT>			System.getProperties().put("osgi.os", os); //$NON-NLS-1$
+		}
+
+		// if the user didn't set the window system with a command line 
+		// argument then use the default.
+		ws = System.getProperty("osgi.ws"); //$NON-NLS-1$
+		if (ws == null) {
+			ws = guessWS(os);
+			System.getProperties().put("osgi.ws", ws); //$NON-NLS-1$
+		}
+
+		// if the user didn't set the system architecture with a command line 
+		// argument then use the default.
+		arch = System.getProperty("osgi.arch"); //$NON-NLS-1$
+		if (arch == null) {
+			String name = System.getProperty("os.arch");//$NON-NLS-1$
+			// Map i386 architecture to x86
+			if (name.equalsIgnoreCase(INTERNAL_ARCH_I386))
+				arch = Constants.ARCH_X86;
+			// Map amd64 architecture to x86_64
+			else if (name.equalsIgnoreCase(INTERNAL_AMD64))
+				arch = Constants.ARCH_X86_64;
+			else
+				arch = name;
+			System.getProperties().put("osgi.arch", arch); //$NON-NLS-1$			
+		}
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "os.name", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/runtime/internal/adaptor/EclipseEnvironmentInfo.html#L137" , parent.fbot ); return false'>Line# 142</a> void setupSystemContext(  )
+   Permission: java.util.PropertyPermission "*", "read,write"
+      Primordial/java.util.Properties java.lang.System.getProperties(  )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * Initializes the execution context for this run of the platform.  The context
+	 * includes information about the locale, operating system and window system.
+	 * 
+	 * NOTE: The OS, WS, and ARCH values should never be null. The executable should
+	 * be setting these values and therefore this code path is obsolete for Eclipse
+	 * when run from the executable.
+	 */
+	private static void setupSystemContext() {
+		// if the user didn't set the locale with a command line argument then use the default.
+		nl = System.getProperty("osgi.nl"); //$NON-NLS-1$
+		if (nl != null) {
+			StringTokenizer tokenizer = new StringTokenizer(nl, "_"); //$NON-NLS-1$
+			int segments = tokenizer.countTokens();
+			try {
+				Locale userLocale = null;
+				switch (segments) {
+					case 1 :
+						// use the 2 arg constructor to maintain compatibility with 1.3.1
+						userLocale = new Locale(tokenizer.nextToken(), ""); //$NON-NLS-1$
+						break;
+					case 2 :
+						userLocale = new Locale(tokenizer.nextToken(), tokenizer.nextToken());
+						break;
+					case 3 :
+						userLocale = new Locale(tokenizer.nextToken(), tokenizer.nextToken(), tokenizer.nextToken());
+						break;
+					default :
+						// if the user passed us in a bogus value then log a message and use the default
+						System.err.println(NLS.bind(EclipseAdaptorMsg.error_badNL, nl)); 
+						userLocale = Locale.getDefault();
+						break;
+				}
+				Locale.setDefault(userLocale);
+				System.getProperties().put("osgi.nl.user", nl); //$NON-NLS-1$
+			} catch (NoSuchElementException e) {
+				// fall through and use the default
+			}
+		}
+		nl = Locale.getDefault().toString();
+		System.getProperties().put("osgi.nl", nl); //$NON-NLS-1$
+
+		// if the user didn't set the operating system with a command line 
+		// argument then use the default.
+		os = System.getProperty("osgi.os"); //$NON-NLS-1$
+		if (os == null) {
+			os = guessOS(System.getProperty("os.name"));//$NON-NLS-1$);
+<FONT style="background-color:#F2C553;display;inline">			System.getProperties().put("osgi.os", os); //$NON-NLS-1$
+</FONT>		}
+
+		// if the user didn't set the window system with a command line 
+		// argument then use the default.
+		ws = System.getProperty("osgi.ws"); //$NON-NLS-1$
+		if (ws == null) {
+			ws = guessWS(os);
+			System.getProperties().put("osgi.ws", ws); //$NON-NLS-1$
+		}
+
+		// if the user didn't set the system architecture with a command line 
+		// argument then use the default.
+		arch = System.getProperty("osgi.arch"); //$NON-NLS-1$
+		if (arch == null) {
+			String name = System.getProperty("os.arch");//$NON-NLS-1$
+			// Map i386 architecture to x86
+			if (name.equalsIgnoreCase(INTERNAL_ARCH_I386))
+				arch = Constants.ARCH_X86;
+			// Map amd64 architecture to x86_64
+			else if (name.equalsIgnoreCase(INTERNAL_AMD64))
+				arch = Constants.ARCH_X86_64;
+			else
+				arch = name;
+			System.getProperties().put("osgi.arch", arch); //$NON-NLS-1$			
+		}
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "*", "read,write";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/runtime/internal/adaptor/EclipseEnvironmentInfo.html#L142" , parent.fbot ); return false'>Line# 147</a> void setupSystemContext(  )
+   Permission: java.util.PropertyPermission "osgi.ws", "read"
+      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * Initializes the execution context for this run of the platform.  The context
+	 * includes information about the locale, operating system and window system.
+	 * 
+	 * NOTE: The OS, WS, and ARCH values should never be null. The executable should
+	 * be setting these values and therefore this code path is obsolete for Eclipse
+	 * when run from the executable.
+	 */
+	private static void setupSystemContext() {
+		// if the user didn't set the locale with a command line argument then use the default.
+		nl = System.getProperty("osgi.nl"); //$NON-NLS-1$
+		if (nl != null) {
+			StringTokenizer tokenizer = new StringTokenizer(nl, "_"); //$NON-NLS-1$
+			int segments = tokenizer.countTokens();
+			try {
+				Locale userLocale = null;
+				switch (segments) {
+					case 1 :
+						// use the 2 arg constructor to maintain compatibility with 1.3.1
+						userLocale = new Locale(tokenizer.nextToken(), ""); //$NON-NLS-1$
+						break;
+					case 2 :
+						userLocale = new Locale(tokenizer.nextToken(), tokenizer.nextToken());
+						break;
+					case 3 :
+						userLocale = new Locale(tokenizer.nextToken(), tokenizer.nextToken(), tokenizer.nextToken());
+						break;
+					default :
+						// if the user passed us in a bogus value then log a message and use the default
+						System.err.println(NLS.bind(EclipseAdaptorMsg.error_badNL, nl)); 
+						userLocale = Locale.getDefault();
+						break;
+				}
+				Locale.setDefault(userLocale);
+				System.getProperties().put("osgi.nl.user", nl); //$NON-NLS-1$
+			} catch (NoSuchElementException e) {
+				// fall through and use the default
+			}
+		}
+		nl = Locale.getDefault().toString();
+		System.getProperties().put("osgi.nl", nl); //$NON-NLS-1$
+
+		// if the user didn't set the operating system with a command line 
+		// argument then use the default.
+		os = System.getProperty("osgi.os"); //$NON-NLS-1$
+		if (os == null) {
+			os = guessOS(System.getProperty("os.name"));//$NON-NLS-1$);
+			System.getProperties().put("osgi.os", os); //$NON-NLS-1$
+		}
+
+		// if the user didn't set the window system with a command line 
+		// argument then use the default.
+<FONT style="background-color:#F2C553;display;inline">		ws = System.getProperty("osgi.ws"); //$NON-NLS-1$
+</FONT>		if (ws == null) {
+			ws = guessWS(os);
+			System.getProperties().put("osgi.ws", ws); //$NON-NLS-1$
+		}
+
+		// if the user didn't set the system architecture with a command line 
+		// argument then use the default.
+		arch = System.getProperty("osgi.arch"); //$NON-NLS-1$
+		if (arch == null) {
+			String name = System.getProperty("os.arch");//$NON-NLS-1$
+			// Map i386 architecture to x86
+			if (name.equalsIgnoreCase(INTERNAL_ARCH_I386))
+				arch = Constants.ARCH_X86;
+			// Map amd64 architecture to x86_64
+			else if (name.equalsIgnoreCase(INTERNAL_AMD64))
+				arch = Constants.ARCH_X86_64;
+			else
+				arch = name;
+			System.getProperties().put("osgi.arch", arch); //$NON-NLS-1$			
+		}
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "osgi.ws", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/runtime/internal/adaptor/EclipseEnvironmentInfo.html#L145" , parent.fbot ); return false'>Line# 150</a> void setupSystemContext(  )
+   Permission: java.util.PropertyPermission "*", "read,write"
+      Primordial/java.util.Properties java.lang.System.getProperties(  )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * Initializes the execution context for this run of the platform.  The context
+	 * includes information about the locale, operating system and window system.
+	 * 
+	 * NOTE: The OS, WS, and ARCH values should never be null. The executable should
+	 * be setting these values and therefore this code path is obsolete for Eclipse
+	 * when run from the executable.
+	 */
+	private static void setupSystemContext() {
+		// if the user didn't set the locale with a command line argument then use the default.
+		nl = System.getProperty("osgi.nl"); //$NON-NLS-1$
+		if (nl != null) {
+			StringTokenizer tokenizer = new StringTokenizer(nl, "_"); //$NON-NLS-1$
+			int segments = tokenizer.countTokens();
+			try {
+				Locale userLocale = null;
+				switch (segments) {
+					case 1 :
+						// use the 2 arg constructor to maintain compatibility with 1.3.1
+						userLocale = new Locale(tokenizer.nextToken(), ""); //$NON-NLS-1$
+						break;
+					case 2 :
+						userLocale = new Locale(tokenizer.nextToken(), tokenizer.nextToken());
+						break;
+					case 3 :
+						userLocale = new Locale(tokenizer.nextToken(), tokenizer.nextToken(), tokenizer.nextToken());
+						break;
+					default :
+						// if the user passed us in a bogus value then log a message and use the default
+						System.err.println(NLS.bind(EclipseAdaptorMsg.error_badNL, nl)); 
+						userLocale = Locale.getDefault();
+						break;
+				}
+				Locale.setDefault(userLocale);
+				System.getProperties().put("osgi.nl.user", nl); //$NON-NLS-1$
+			} catch (NoSuchElementException e) {
+				// fall through and use the default
+			}
+		}
+		nl = Locale.getDefault().toString();
+		System.getProperties().put("osgi.nl", nl); //$NON-NLS-1$
+
+		// if the user didn't set the operating system with a command line 
+		// argument then use the default.
+		os = System.getProperty("osgi.os"); //$NON-NLS-1$
+		if (os == null) {
+			os = guessOS(System.getProperty("os.name"));//$NON-NLS-1$);
+			System.getProperties().put("osgi.os", os); //$NON-NLS-1$
+		}
+
+		// if the user didn't set the window system with a command line 
+		// argument then use the default.
+		ws = System.getProperty("osgi.ws"); //$NON-NLS-1$
+		if (ws == null) {
+			ws = guessWS(os);
+<FONT style="background-color:#F2C553;display;inline">			System.getProperties().put("osgi.ws", ws); //$NON-NLS-1$
+</FONT>		}
+
+		// if the user didn't set the system architecture with a command line 
+		// argument then use the default.
+		arch = System.getProperty("osgi.arch"); //$NON-NLS-1$
+		if (arch == null) {
+			String name = System.getProperty("os.arch");//$NON-NLS-1$
+			// Map i386 architecture to x86
+			if (name.equalsIgnoreCase(INTERNAL_ARCH_I386))
+				arch = Constants.ARCH_X86;
+			// Map amd64 architecture to x86_64
+			else if (name.equalsIgnoreCase(INTERNAL_AMD64))
+				arch = Constants.ARCH_X86_64;
+			else
+				arch = name;
+			System.getProperties().put("osgi.arch", arch); //$NON-NLS-1$			
+		}
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "*", "read,write";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/runtime/internal/adaptor/EclipseEnvironmentInfo.html#L150" , parent.fbot ); return false'>Line# 155</a> void setupSystemContext(  )
+   Permission: java.util.PropertyPermission "osgi.arch", "read"
+      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * Initializes the execution context for this run of the platform.  The context
+	 * includes information about the locale, operating system and window system.
+	 * 
+	 * NOTE: The OS, WS, and ARCH values should never be null. The executable should
+	 * be setting these values and therefore this code path is obsolete for Eclipse
+	 * when run from the executable.
+	 */
+	private static void setupSystemContext() {
+		// if the user didn't set the locale with a command line argument then use the default.
+		nl = System.getProperty("osgi.nl"); //$NON-NLS-1$
+		if (nl != null) {
+			StringTokenizer tokenizer = new StringTokenizer(nl, "_"); //$NON-NLS-1$
+			int segments = tokenizer.countTokens();
+			try {
+				Locale userLocale = null;
+				switch (segments) {
+					case 1 :
+						// use the 2 arg constructor to maintain compatibility with 1.3.1
+						userLocale = new Locale(tokenizer.nextToken(), ""); //$NON-NLS-1$
+						break;
+					case 2 :
+						userLocale = new Locale(tokenizer.nextToken(), tokenizer.nextToken());
+						break;
+					case 3 :
+						userLocale = new Locale(tokenizer.nextToken(), tokenizer.nextToken(), tokenizer.nextToken());
+						break;
+					default :
+						// if the user passed us in a bogus value then log a message and use the default
+						System.err.println(NLS.bind(EclipseAdaptorMsg.error_badNL, nl)); 
+						userLocale = Locale.getDefault();
+						break;
+				}
+				Locale.setDefault(userLocale);
+				System.getProperties().put("osgi.nl.user", nl); //$NON-NLS-1$
+			} catch (NoSuchElementException e) {
+				// fall through and use the default
+			}
+		}
+		nl = Locale.getDefault().toString();
+		System.getProperties().put("osgi.nl", nl); //$NON-NLS-1$
+
+		// if the user didn't set the operating system with a command line 
+		// argument then use the default.
+		os = System.getProperty("osgi.os"); //$NON-NLS-1$
+		if (os == null) {
+			os = guessOS(System.getProperty("os.name"));//$NON-NLS-1$);
+			System.getProperties().put("osgi.os", os); //$NON-NLS-1$
+		}
+
+		// if the user didn't set the window system with a command line 
+		// argument then use the default.
+		ws = System.getProperty("osgi.ws"); //$NON-NLS-1$
+		if (ws == null) {
+			ws = guessWS(os);
+			System.getProperties().put("osgi.ws", ws); //$NON-NLS-1$
+		}
+
+		// if the user didn't set the system architecture with a command line 
+		// argument then use the default.
+<FONT style="background-color:#F2C553;display;inline">		arch = System.getProperty("osgi.arch"); //$NON-NLS-1$
+</FONT>		if (arch == null) {
+			String name = System.getProperty("os.arch");//$NON-NLS-1$
+			// Map i386 architecture to x86
+			if (name.equalsIgnoreCase(INTERNAL_ARCH_I386))
+				arch = Constants.ARCH_X86;
+			// Map amd64 architecture to x86_64
+			else if (name.equalsIgnoreCase(INTERNAL_AMD64))
+				arch = Constants.ARCH_X86_64;
+			else
+				arch = name;
+			System.getProperties().put("osgi.arch", arch); //$NON-NLS-1$			
+		}
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "osgi.arch", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/runtime/internal/adaptor/EclipseEnvironmentInfo.html#L152" , parent.fbot ); return false'>Line# 157</a> void setupSystemContext(  )
+   Permission: java.util.PropertyPermission "os.arch", "read"
+      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * Initializes the execution context for this run of the platform.  The context
+	 * includes information about the locale, operating system and window system.
+	 * 
+	 * NOTE: The OS, WS, and ARCH values should never be null. The executable should
+	 * be setting these values and therefore this code path is obsolete for Eclipse
+	 * when run from the executable.
+	 */
+	private static void setupSystemContext() {
+		// if the user didn't set the locale with a command line argument then use the default.
+		nl = System.getProperty("osgi.nl"); //$NON-NLS-1$
+		if (nl != null) {
+			StringTokenizer tokenizer = new StringTokenizer(nl, "_"); //$NON-NLS-1$
+			int segments = tokenizer.countTokens();
+			try {
+				Locale userLocale = null;
+				switch (segments) {
+					case 1 :
+						// use the 2 arg constructor to maintain compatibility with 1.3.1
+						userLocale = new Locale(tokenizer.nextToken(), ""); //$NON-NLS-1$
+						break;
+					case 2 :
+						userLocale = new Locale(tokenizer.nextToken(), tokenizer.nextToken());
+						break;
+					case 3 :
+						userLocale = new Locale(tokenizer.nextToken(), tokenizer.nextToken(), tokenizer.nextToken());
+						break;
+					default :
+						// if the user passed us in a bogus value then log a message and use the default
+						System.err.println(NLS.bind(EclipseAdaptorMsg.error_badNL, nl)); 
+						userLocale = Locale.getDefault();
+						break;
+				}
+				Locale.setDefault(userLocale);
+				System.getProperties().put("osgi.nl.user", nl); //$NON-NLS-1$
+			} catch (NoSuchElementException e) {
+				// fall through and use the default
+			}
+		}
+		nl = Locale.getDefault().toString();
+		System.getProperties().put("osgi.nl", nl); //$NON-NLS-1$
+
+		// if the user didn't set the operating system with a command line 
+		// argument then use the default.
+		os = System.getProperty("osgi.os"); //$NON-NLS-1$
+		if (os == null) {
+			os = guessOS(System.getProperty("os.name"));//$NON-NLS-1$);
+			System.getProperties().put("osgi.os", os); //$NON-NLS-1$
+		}
+
+		// if the user didn't set the window system with a command line 
+		// argument then use the default.
+		ws = System.getProperty("osgi.ws"); //$NON-NLS-1$
+		if (ws == null) {
+			ws = guessWS(os);
+			System.getProperties().put("osgi.ws", ws); //$NON-NLS-1$
+		}
+
+		// if the user didn't set the system architecture with a command line 
+		// argument then use the default.
+		arch = System.getProperty("osgi.arch"); //$NON-NLS-1$
+		if (arch == null) {
+<FONT style="background-color:#F2C553;display;inline">			String name = System.getProperty("os.arch");//$NON-NLS-1$
+</FONT>			// Map i386 architecture to x86
+			if (name.equalsIgnoreCase(INTERNAL_ARCH_I386))
+				arch = Constants.ARCH_X86;
+			// Map amd64 architecture to x86_64
+			else if (name.equalsIgnoreCase(INTERNAL_AMD64))
+				arch = Constants.ARCH_X86_64;
+			else
+				arch = name;
+			System.getProperties().put("osgi.arch", arch); //$NON-NLS-1$			
+		}
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "os.arch", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/core/runtime/internal/adaptor/EclipseEnvironmentInfo.html#L161" , parent.fbot ); return false'>Line# 166</a> void setupSystemContext(  )
+   Permission: java.util.PropertyPermission "*", "read,write"
+      Primordial/java.util.Properties java.lang.System.getProperties(  )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * Initializes the execution context for this run of the platform.  The context
+	 * includes information about the locale, operating system and window system.
+	 * 
+	 * NOTE: The OS, WS, and ARCH values should never be null. The executable should
+	 * be setting these values and therefore this code path is obsolete for Eclipse
+	 * when run from the executable.
+	 */
+	private static void setupSystemContext() {
+		// if the user didn't set the locale with a command line argument then use the default.
+		nl = System.getProperty("osgi.nl"); //$NON-NLS-1$
+		if (nl != null) {
+			StringTokenizer tokenizer = new StringTokenizer(nl, "_"); //$NON-NLS-1$
+			int segments = tokenizer.countTokens();
+			try {
+				Locale userLocale = null;
+				switch (segments) {
+					case 1 :
+						// use the 2 arg constructor to maintain compatibility with 1.3.1
+						userLocale = new Locale(tokenizer.nextToken(), ""); //$NON-NLS-1$
+						break;
+					case 2 :
+						userLocale = new Locale(tokenizer.nextToken(), tokenizer.nextToken());
+						break;
+					case 3 :
+						userLocale = new Locale(tokenizer.nextToken(), tokenizer.nextToken(), tokenizer.nextToken());
+						break;
+					default :
+						// if the user passed us in a bogus value then log a message and use the default
+						System.err.println(NLS.bind(EclipseAdaptorMsg.error_badNL, nl)); 
+						userLocale = Locale.getDefault();
+						break;
+				}
+				Locale.setDefault(userLocale);
+				System.getProperties().put("osgi.nl.user", nl); //$NON-NLS-1$
+			} catch (NoSuchElementException e) {
+				// fall through and use the default
+			}
+		}
+		nl = Locale.getDefault().toString();
+		System.getProperties().put("osgi.nl", nl); //$NON-NLS-1$
+
+		// if the user didn't set the operating system with a command line 
+		// argument then use the default.
+		os = System.getProperty("osgi.os"); //$NON-NLS-1$
+		if (os == null) {
+			os = guessOS(System.getProperty("os.name"));//$NON-NLS-1$);
+			System.getProperties().put("osgi.os", os); //$NON-NLS-1$
+		}
+
+		// if the user didn't set the window system with a command line 
+		// argument then use the default.
+		ws = System.getProperty("osgi.ws"); //$NON-NLS-1$
+		if (ws == null) {
+			ws = guessWS(os);
+			System.getProperties().put("osgi.ws", ws); //$NON-NLS-1$
+		}
+
+		// if the user didn't set the system architecture with a command line 
+		// argument then use the default.
+		arch = System.getProperty("osgi.arch"); //$NON-NLS-1$
+		if (arch == null) {
+			String name = System.getProperty("os.arch");//$NON-NLS-1$
+			// Map i386 architecture to x86
+			if (name.equalsIgnoreCase(INTERNAL_ARCH_I386))
+				arch = Constants.ARCH_X86;
+			// Map amd64 architecture to x86_64
+			else if (name.equalsIgnoreCase(INTERNAL_AMD64))
+				arch = Constants.ARCH_X86_64;
+			else
+				arch = name;
+<FONT style="background-color:#F2C553;display;inline">			System.getProperties().put("osgi.arch", arch); //$NON-NLS-1$			
+</FONT>		}
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "*", "read,write";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+</pre>
+</body></html>

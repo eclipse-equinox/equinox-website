@@ -1,0 +1,89 @@
+<html><head><title>Permission Analysis Report</title><script language='javaScript' src='linkUtil.js'></script></head><body>
+<h1>Permission Analysis Report</h1>
+<BR/><H2>Analysis of: org.eclipse.osgi</H2>
+<B>Detail</B><BR/><BR/>
+<pre>
+
+Class: <a href="foo" onClick="return openURLinSrc( 'Application/org/eclipse/osgi/framework/util/Headers.html' )">org.eclipse.osgi.framework.util.Headers</a> (Application)
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/framework/util/Headers.html#L218" , parent.fbot ); return false'>Line# 223</a> org.eclipse.osgi.framework.util.Headers parseManifest( java.io.InputStream )
+   Permission: java.util.PropertyPermission "java.vendor.url.bug", "read"
+      Primordial/java.lang.String java.io.BufferedReader.readLine(  )
+   Permission: java.util.PropertyPermission "os.name", "read"
+      Primordial/java.lang.String java.io.BufferedReader.readLine(  )
+<BR/><BR/><B>CODE</B><BR/>
+public static Headers parseManifest(InputStream in) throws BundleException {
+		try {
+			Headers headers = new Headers(10);
+			BufferedReader br;
+			try {
+				br = new BufferedReader(new InputStreamReader(in, "UTF8")); //$NON-NLS-1$
+			} catch (UnsupportedEncodingException e) {
+				br = new BufferedReader(new InputStreamReader(in));
+			}
+
+			String header = null;
+			StringBuffer value = new StringBuffer(256);
+			boolean firstLine = true;
+
+			while (true) {
+<FONT style="background-color:#F2C553;display;inline">				String line = br.readLine();
+</FONT>				/* The java.util.jar classes in JDK 1.3 use the value of the last
+				 * encountered manifest header. So we do the same to emulate
+				 * this behavior. We no longer throw a BundleException
+				 * for duplicate manifest headers.
+				 */
+
+				if ((line == null) || (line.length() == 0)) /* EOF or empty line */
+				{
+					if (!firstLine) /* flush last line */
+					{
+						headers.set(header, null); /* remove old attribute,if present */
+						headers.set(header, value.toString().trim());
+					}
+					break; /* done processing main attributes */
+				}
+
+				if (line.charAt(0) == ' ') /* continuation */
+				{
+					if (firstLine) /* if no previous line */
+					{
+						throw new BundleException(NLS.bind(Msg.MANIFEST_INVALID_SPACE, line));
+					}
+					value.append(line.substring(1));
+					continue;
+				}
+
+				if (!firstLine) {
+					headers.set(header, null); /* remove old attribute,if present */
+					headers.set(header, value.toString().trim());
+					value.setLength(0); /* clear StringBuffer */
+				}
+
+				int colon = line.indexOf(':');
+				if (colon == -1) /* no colon */
+				{
+					throw new BundleException(NLS.bind(Msg.MANIFEST_INVALID_LINE_NOCOLON, line));
+				}
+				header = line.substring(0, colon).trim();
+				value.append(line.substring(colon + 1));
+				firstLine = false;
+			}
+			return headers;
+		} catch (IOException e) {
+			throw new BundleException(Msg.MANIFEST_IOEXCEPTION, e);
+		} finally {
+			try {
+				in.close();
+			} catch (IOException ee) {
+			}
+		}
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "java.vendor.url.bug", "read";</LI>
+<LI>permission java.util.PropertyPermission "os.name", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+</pre>
+</body></html>

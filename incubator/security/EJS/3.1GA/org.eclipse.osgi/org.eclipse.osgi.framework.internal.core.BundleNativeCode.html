@@ -1,0 +1,33 @@
+<html><head><title>Permission Analysis Report</title><script language='javaScript' src='linkUtil.js'></script></head><body>
+<h1>Permission Analysis Report</h1>
+<BR/><H2>Analysis of: org.eclipse.osgi</H2>
+<B>Detail</B><BR/><BR/>
+<pre>
+
+Class: <a href="foo" onClick="return openURLinSrc( 'Application/org/eclipse/osgi/framework/internal/core/BundleNativeCode.html' )">org.eclipse.osgi.framework.internal.core.BundleNativeCode</a> (Application)
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/framework/internal/core/BundleNativeCode.html#L353" , parent.fbot ); return false'>Line# 358</a> boolean matchFilter(  )
+   Permission: java.util.PropertyPermission "*", "read,write"
+      Primordial/java.util.Properties java.lang.System.getProperties(  )
+<BR/><BR/><B>CODE</B><BR/>
+public boolean matchFilter() {
+		if (filterString == null) {
+			return true;
+		}
+		FilterImpl filter;
+		try {
+			filter = new FilterImpl(filterString);
+		} catch (InvalidSyntaxException e) {
+			BundleException be = new BundleException(Msg.BUNDLE_NATIVECODE_INVALID_FILTER, e); //$NON-NLS-1$
+			bundle.framework.publishFrameworkEvent(FrameworkEvent.ERROR, bundle, be);
+			return false;
+		}
+<FONT style="background-color:#F2C553;display;inline">		return filter.match(System.getProperties());
+</FONT>	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "*", "read,write";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+</pre>
+</body></html>

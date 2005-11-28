@@ -1,0 +1,648 @@
+<html><head><title>Permission Analysis Report</title><script language='javaScript' src='linkUtil.js'></script></head><body>
+<h1>Permission Analysis Report</h1>
+<BR/><H2>Analysis of: org.eclipse.osgi</H2>
+<B>Detail</B><BR/><BR/>
+<pre>
+
+Class: <a href="foo" onClick="return openURLinSrc( 'Application/org/eclipse/osgi/internal/profile/DefaultProfileLogger.html' )">org.eclipse.osgi.internal.profile.DefaultProfileLogger</a> (Application)
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/internal/profile/DefaultProfileLogger.html#L78" , parent.fbot ); return false'>Line# 83</a> long getLaunchTime(  )
+   Permission: java.util.PropertyPermission "launch.startMillis", "read"
+      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )
+<BR/><BR/><B>CODE</B><BR/>
+protected long getLaunchTime() {
+<FONT style="background-color:#F2C553;display;inline">		String launchTimeString = System.getProperty("launch.startMillis"); //$NON-NLS-1$
+</FONT>		if (launchTimeString != null) {
+			return Long.parseLong(launchTimeString);
+		}
+		return -1L;
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "launch.startMillis", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/internal/profile/DefaultProfileLogger.html#L86" , parent.fbot ); return false'>Line# 91</a> long getMainStartTime(  )
+   Permission: java.util.PropertyPermission "eclipse.startTime", "read"
+      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )
+<BR/><BR/><B>CODE</B><BR/>
+protected long getMainStartTime() {
+<FONT style="background-color:#F2C553;display;inline">		String timeString = System.getProperty("eclipse.startTime"); //$NON-NLS-1$
+</FONT>		if (timeString != null)
+			return Long.parseLong(timeString);
+
+		return System.currentTimeMillis();
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "eclipse.startTime", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/internal/profile/DefaultProfileLogger.html#L99" , parent.fbot ); return false'>Line# 104</a> void initProps(  )
+   Permission: java.util.PropertyPermission "osgi.debug", "read"
+      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )
+<BR/><BR/><B>CODE</B><BR/>
+public void initProps() {
+		String prop;
+		FrameworkDebugOptions dbgOptions = null;
+		// if osgi.debug is not available, don't force DebugOptions
+		//  to init as this variable may be set later on where 
+		//  DebugOptions will succeed.
+<FONT style="background-color:#F2C553;display;inline">		if (System.getProperty("osgi.debug") != null) { //$NON-NLS-1$
+</FONT>			dbgOptions = FrameworkDebugOptions.getDefault();
+			if (dbgOptions != null) {
+				logFileName = dbgOptions.getOption(OPTION_FILENAME);
+				logSynchronously = dbgOptions.getBooleanOption(OPTION_LOGSYNCHRONOUSLY, false);
+				int size = dbgOptions.getIntegerOption(OPTION_BUFFERSIZE, 0);
+				if (size > 0)
+					bufferSize = size;
+			}
+		}
+
+		if ((prop = System.getProperty(PROP_FILENAME)) != null) {
+			logFileName = prop;
+			if (dbgOptions != null)
+				dbgOptions.setOption(OPTION_FILENAME, logFileName);
+		}
+		if ((prop = System.getProperty(PROP_LOGSYNCHRONOUSLY)) != null) {
+			logSynchronously = Boolean.valueOf(prop).booleanValue();
+			if (dbgOptions != null)
+				dbgOptions.setOption(OPTION_LOGSYNCHRONOUSLY, new Boolean(logSynchronously).toString());
+		}
+		if ((prop = System.getProperty(PROP_BUFFERSIZE)) != null) {
+			try {
+				int value = Integer.parseInt(prop);
+				if (value > 0) {
+					bufferSize = value;
+					if (dbgOptions != null)
+						dbgOptions.setOption(OPTION_BUFFERSIZE, Integer.toString(bufferSize));
+				}
+			} catch (NumberFormatException e) {
+				// do nothing
+			}
+		}
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "osgi.debug", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/internal/profile/DefaultProfileLogger.html#L110" , parent.fbot ); return false'>Line# 115</a> void initProps(  )
+   Permission: java.util.PropertyPermission "osgi.defaultprofile.logfilename", "read"
+      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )
+<BR/><BR/><B>CODE</B><BR/>
+public void initProps() {
+		String prop;
+		FrameworkDebugOptions dbgOptions = null;
+		// if osgi.debug is not available, don't force DebugOptions
+		//  to init as this variable may be set later on where 
+		//  DebugOptions will succeed.
+		if (System.getProperty("osgi.debug") != null) { //$NON-NLS-1$
+			dbgOptions = FrameworkDebugOptions.getDefault();
+			if (dbgOptions != null) {
+				logFileName = dbgOptions.getOption(OPTION_FILENAME);
+				logSynchronously = dbgOptions.getBooleanOption(OPTION_LOGSYNCHRONOUSLY, false);
+				int size = dbgOptions.getIntegerOption(OPTION_BUFFERSIZE, 0);
+				if (size > 0)
+					bufferSize = size;
+			}
+		}
+
+<FONT style="background-color:#F2C553;display;inline">		if ((prop = System.getProperty(PROP_FILENAME)) != null) {
+</FONT>			logFileName = prop;
+			if (dbgOptions != null)
+				dbgOptions.setOption(OPTION_FILENAME, logFileName);
+		}
+		if ((prop = System.getProperty(PROP_LOGSYNCHRONOUSLY)) != null) {
+			logSynchronously = Boolean.valueOf(prop).booleanValue();
+			if (dbgOptions != null)
+				dbgOptions.setOption(OPTION_LOGSYNCHRONOUSLY, new Boolean(logSynchronously).toString());
+		}
+		if ((prop = System.getProperty(PROP_BUFFERSIZE)) != null) {
+			try {
+				int value = Integer.parseInt(prop);
+				if (value > 0) {
+					bufferSize = value;
+					if (dbgOptions != null)
+						dbgOptions.setOption(OPTION_BUFFERSIZE, Integer.toString(bufferSize));
+				}
+			} catch (NumberFormatException e) {
+				// do nothing
+			}
+		}
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "osgi.defaultprofile.logfilename", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/internal/profile/DefaultProfileLogger.html#L115" , parent.fbot ); return false'>Line# 120</a> void initProps(  )
+   Permission: java.util.PropertyPermission "osgi.defaultprofile.logsynchronously", "read"
+      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )
+<BR/><BR/><B>CODE</B><BR/>
+public void initProps() {
+		String prop;
+		FrameworkDebugOptions dbgOptions = null;
+		// if osgi.debug is not available, don't force DebugOptions
+		//  to init as this variable may be set later on where 
+		//  DebugOptions will succeed.
+		if (System.getProperty("osgi.debug") != null) { //$NON-NLS-1$
+			dbgOptions = FrameworkDebugOptions.getDefault();
+			if (dbgOptions != null) {
+				logFileName = dbgOptions.getOption(OPTION_FILENAME);
+				logSynchronously = dbgOptions.getBooleanOption(OPTION_LOGSYNCHRONOUSLY, false);
+				int size = dbgOptions.getIntegerOption(OPTION_BUFFERSIZE, 0);
+				if (size > 0)
+					bufferSize = size;
+			}
+		}
+
+		if ((prop = System.getProperty(PROP_FILENAME)) != null) {
+			logFileName = prop;
+			if (dbgOptions != null)
+				dbgOptions.setOption(OPTION_FILENAME, logFileName);
+		}
+<FONT style="background-color:#F2C553;display;inline">		if ((prop = System.getProperty(PROP_LOGSYNCHRONOUSLY)) != null) {
+</FONT>			logSynchronously = Boolean.valueOf(prop).booleanValue();
+			if (dbgOptions != null)
+				dbgOptions.setOption(OPTION_LOGSYNCHRONOUSLY, new Boolean(logSynchronously).toString());
+		}
+		if ((prop = System.getProperty(PROP_BUFFERSIZE)) != null) {
+			try {
+				int value = Integer.parseInt(prop);
+				if (value > 0) {
+					bufferSize = value;
+					if (dbgOptions != null)
+						dbgOptions.setOption(OPTION_BUFFERSIZE, Integer.toString(bufferSize));
+				}
+			} catch (NumberFormatException e) {
+				// do nothing
+			}
+		}
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "osgi.defaultprofile.logsynchronously", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/internal/profile/DefaultProfileLogger.html#L120" , parent.fbot ); return false'>Line# 125</a> void initProps(  )
+   Permission: java.util.PropertyPermission "osgi.defaultprofile.buffersize", "read"
+      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )
+<BR/><BR/><B>CODE</B><BR/>
+public void initProps() {
+		String prop;
+		FrameworkDebugOptions dbgOptions = null;
+		// if osgi.debug is not available, don't force DebugOptions
+		//  to init as this variable may be set later on where 
+		//  DebugOptions will succeed.
+		if (System.getProperty("osgi.debug") != null) { //$NON-NLS-1$
+			dbgOptions = FrameworkDebugOptions.getDefault();
+			if (dbgOptions != null) {
+				logFileName = dbgOptions.getOption(OPTION_FILENAME);
+				logSynchronously = dbgOptions.getBooleanOption(OPTION_LOGSYNCHRONOUSLY, false);
+				int size = dbgOptions.getIntegerOption(OPTION_BUFFERSIZE, 0);
+				if (size > 0)
+					bufferSize = size;
+			}
+		}
+
+		if ((prop = System.getProperty(PROP_FILENAME)) != null) {
+			logFileName = prop;
+			if (dbgOptions != null)
+				dbgOptions.setOption(OPTION_FILENAME, logFileName);
+		}
+		if ((prop = System.getProperty(PROP_LOGSYNCHRONOUSLY)) != null) {
+			logSynchronously = Boolean.valueOf(prop).booleanValue();
+			if (dbgOptions != null)
+				dbgOptions.setOption(OPTION_LOGSYNCHRONOUSLY, new Boolean(logSynchronously).toString());
+		}
+<FONT style="background-color:#F2C553;display;inline">		if ((prop = System.getProperty(PROP_BUFFERSIZE)) != null) {
+</FONT>			try {
+				int value = Integer.parseInt(prop);
+				if (value > 0) {
+					bufferSize = value;
+					if (dbgOptions != null)
+						dbgOptions.setOption(OPTION_BUFFERSIZE, Integer.toString(bufferSize));
+				}
+			} catch (NumberFormatException e) {
+				// do nothing
+			}
+		}
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "osgi.defaultprofile.buffersize", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/internal/profile/DefaultProfileLogger.html#L256" , parent.fbot ); return false'>Line# 261</a> void writeToProfileLogFile( java.lang.String )
+   Permission: java.io.FilePermission "???file???", "read"
+      Primordial/java.lang.String java.io.File.getAbsolutePath(  )
+   Permission: java.io.FilePermission "???file???", "write"
+      Primordial/void java.io.FileWriter.FileWriter( java.lang.String, boolean )
+   Permission: java.util.PropertyPermission "user.dir", "read"
+      Primordial/java.lang.String java.io.File.getAbsolutePath(  )
+<BR/><BR/><B>CODE</B><BR/>
+protected void writeToProfileLogFile(String log) {
+		File profileLog = getProfileLogFile();
+		if (profileLog == null)
+			return;
+		FileWriter fw = null;
+		try {
+<FONT style="background-color:#F2C553;display;inline">			fw = new FileWriter(profileLog.getAbsolutePath(), true);
+</FONT>			fw.write(log);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (fw != null)
+				try {
+					fw.close();
+				} catch (IOException e) {
+					// do nothing
+				}
+		}
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.io.FilePermission "???file???", "read";</LI>
+<LI>permission java.io.FilePermission "???file???", "write";</LI>
+<LI>permission java.util.PropertyPermission "user.dir", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/internal/profile/DefaultProfileLogger.html#L257" , parent.fbot ); return false'>Line# 262</a> void writeToProfileLogFile( java.lang.String )
+   Permission: java.util.PropertyPermission "os.name", "read"
+      Primordial/void java.io.Writer.write( java.lang.String )
+<BR/><BR/><B>CODE</B><BR/>
+protected void writeToProfileLogFile(String log) {
+		File profileLog = getProfileLogFile();
+		if (profileLog == null)
+			return;
+		FileWriter fw = null;
+		try {
+			fw = new FileWriter(profileLog.getAbsolutePath(), true);
+<FONT style="background-color:#F2C553;display;inline">			fw.write(log);
+</FONT>		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (fw != null)
+				try {
+					fw.close();
+				} catch (IOException e) {
+					// do nothing
+				}
+		}
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "os.name", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/internal/profile/DefaultProfileLogger.html#L263" , parent.fbot ); return false'>Line# 268</a> void writeToProfileLogFile( java.lang.String )
+   Permission: java.io.FilePermission "", "read"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "", "write"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "*", "read"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "*", "write"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "-1", "read"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "-1", "write"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "-2", "read"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "-2", "write"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "-2147483648", "read"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "-2147483648", "write"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "-3", "read"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "-3", "write"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "-9223372036854775808", "read"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "-9223372036854775808", "write"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission ".", "read"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission ".", "write"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission ".bundledata", "read"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission ".default", "read"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission ".fileTable", "read"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission ".manager", "read"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission ".manager", "write"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "0", "read"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "0", "write"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "1", "read"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "1", "write"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "1.3", "read"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "1.3", "write"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "10", "read"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "10", "write"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "13", "read"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "13", "write"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "2", "read"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "2", "write"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "23", "read"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "23", "write"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "3", "read"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "3", "write"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "3.0.0", "read"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "3.0.0", "write"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "4", "read"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "4", "write"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "5", "read"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "5", "write"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "6", "read"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "6", "write"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "7", "read"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "7", "write"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "8", "read"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "8", "write"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "9", "read"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "9", "write"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "???file???", "delete"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "???file???", "read"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "???file???", "write"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "Eclipse", "read"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "Eclipse", "write"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "META-INF/MANIFEST.MF", "read"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "META-INF/MANIFEST.MF", "write"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "No message available.", "read"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "No message available.", "write"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "aix", "read"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "aix", "write"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "bin", "read"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "bin", "write"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "bundles", "read"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "bundles", "write"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "carbon", "read"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "carbon", "write"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "false", "read"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "false", "write"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "fragment.xml", "read"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "fragment.xml", "write"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "hpux", "read"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "hpux", "write"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "linux", "read"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "linux", "write"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "macosx", "read"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "macosx", "write"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "manifests", "read"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "manifests", "write"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "motif", "read"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "motif", "write"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "org.eclipse.osgi", "read"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "org.eclipse.osgi", "write"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "permdata", "read"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "permdata", "write"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "photon", "read"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "photon", "write"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "plugin.xml", "read"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "plugin.xml", "write"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "qnx", "read"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "qnx", "write"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "solaris", "read"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "solaris", "write"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "true", "read"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "true", "write"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "unknown", "read"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "unknown", "write"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "win32", "read"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "win32", "write"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "x86", "read"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "x86", "write"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "x86_64", "read"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.io.FilePermission "x86_64", "write"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+   Permission: java.util.PropertyPermission "os.name", "read"
+      Primordial/void java.io.OutputStreamWriter.close(  )
+<BR/><BR/><B>CODE</B><BR/>
+protected void writeToProfileLogFile(String log) {
+		File profileLog = getProfileLogFile();
+		if (profileLog == null)
+			return;
+		FileWriter fw = null;
+		try {
+			fw = new FileWriter(profileLog.getAbsolutePath(), true);
+			fw.write(log);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (fw != null)
+				try {
+<FONT style="background-color:#F2C553;display;inline">					fw.close();
+</FONT>				} catch (IOException e) {
+					// do nothing
+				}
+		}
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.io.FilePermission "", "read";</LI>
+<LI>permission java.io.FilePermission "", "write";</LI>
+<LI>permission java.io.FilePermission "*", "read";</LI>
+<LI>permission java.io.FilePermission "*", "write";</LI>
+<LI>permission java.io.FilePermission "-1", "read";</LI>
+<LI>permission java.io.FilePermission "-1", "write";</LI>
+<LI>permission java.io.FilePermission "-2", "read";</LI>
+<LI>permission java.io.FilePermission "-2", "write";</LI>
+<LI>permission java.io.FilePermission "-2147483648", "read";</LI>
+<LI>permission java.io.FilePermission "-2147483648", "write";</LI>
+<LI>permission java.io.FilePermission "-3", "read";</LI>
+<LI>permission java.io.FilePermission "-3", "write";</LI>
+<LI>permission java.io.FilePermission "-9223372036854775808", "read";</LI>
+<LI>permission java.io.FilePermission "-9223372036854775808", "write";</LI>
+<LI>permission java.io.FilePermission ".", "read";</LI>
+<LI>permission java.io.FilePermission ".", "write";</LI>
+<LI>permission java.io.FilePermission ".bundledata", "read";</LI>
+<LI>permission java.io.FilePermission ".default", "read";</LI>
+<LI>permission java.io.FilePermission ".fileTable", "read";</LI>
+<LI>permission java.io.FilePermission ".manager", "read";</LI>
+<LI>permission java.io.FilePermission ".manager", "write";</LI>
+<LI>permission java.io.FilePermission "0", "read";</LI>
+<LI>permission java.io.FilePermission "0", "write";</LI>
+<LI>permission java.io.FilePermission "1", "read";</LI>
+<LI>permission java.io.FilePermission "1", "write";</LI>
+<LI>permission java.io.FilePermission "1.3", "read";</LI>
+<LI>permission java.io.FilePermission "1.3", "write";</LI>
+<LI>permission java.io.FilePermission "10", "read";</LI>
+<LI>permission java.io.FilePermission "10", "write";</LI>
+<LI>permission java.io.FilePermission "13", "read";</LI>
+<LI>permission java.io.FilePermission "13", "write";</LI>
+<LI>permission java.io.FilePermission "2", "read";</LI>
+<LI>permission java.io.FilePermission "2", "write";</LI>
+<LI>permission java.io.FilePermission "23", "read";</LI>
+<LI>permission java.io.FilePermission "23", "write";</LI>
+<LI>permission java.io.FilePermission "3", "read";</LI>
+<LI>permission java.io.FilePermission "3", "write";</LI>
+<LI>permission java.io.FilePermission "3.0.0", "read";</LI>
+<LI>permission java.io.FilePermission "3.0.0", "write";</LI>
+<LI>permission java.io.FilePermission "4", "read";</LI>
+<LI>permission java.io.FilePermission "4", "write";</LI>
+<LI>permission java.io.FilePermission "5", "read";</LI>
+<LI>permission java.io.FilePermission "5", "write";</LI>
+<LI>permission java.io.FilePermission "6", "read";</LI>
+<LI>permission java.io.FilePermission "6", "write";</LI>
+<LI>permission java.io.FilePermission "7", "read";</LI>
+<LI>permission java.io.FilePermission "7", "write";</LI>
+<LI>permission java.io.FilePermission "8", "read";</LI>
+<LI>permission java.io.FilePermission "8", "write";</LI>
+<LI>permission java.io.FilePermission "9", "read";</LI>
+<LI>permission java.io.FilePermission "9", "write";</LI>
+<LI>permission java.io.FilePermission "???file???", "delete";</LI>
+<LI>permission java.io.FilePermission "???file???", "read";</LI>
+<LI>permission java.io.FilePermission "???file???", "write";</LI>
+<LI>permission java.io.FilePermission "Eclipse", "read";</LI>
+<LI>permission java.io.FilePermission "Eclipse", "write";</LI>
+<LI>permission java.io.FilePermission "META-INF/MANIFEST.MF", "read";</LI>
+<LI>permission java.io.FilePermission "META-INF/MANIFEST.MF", "write";</LI>
+<LI>permission java.io.FilePermission "No message available.", "read";</LI>
+<LI>permission java.io.FilePermission "No message available.", "write";</LI>
+<LI>permission java.io.FilePermission "aix", "read";</LI>
+<LI>permission java.io.FilePermission "aix", "write";</LI>
+<LI>permission java.io.FilePermission "bin", "read";</LI>
+<LI>permission java.io.FilePermission "bin", "write";</LI>
+<LI>permission java.io.FilePermission "bundles", "read";</LI>
+<LI>permission java.io.FilePermission "bundles", "write";</LI>
+<LI>permission java.io.FilePermission "carbon", "read";</LI>
+<LI>permission java.io.FilePermission "carbon", "write";</LI>
+<LI>permission java.io.FilePermission "false", "read";</LI>
+<LI>permission java.io.FilePermission "false", "write";</LI>
+<LI>permission java.io.FilePermission "fragment.xml", "read";</LI>
+<LI>permission java.io.FilePermission "fragment.xml", "write";</LI>
+<LI>permission java.io.FilePermission "hpux", "read";</LI>
+<LI>permission java.io.FilePermission "hpux", "write";</LI>
+<LI>permission java.io.FilePermission "linux", "read";</LI>
+<LI>permission java.io.FilePermission "linux", "write";</LI>
+<LI>permission java.io.FilePermission "macosx", "read";</LI>
+<LI>permission java.io.FilePermission "macosx", "write";</LI>
+<LI>permission java.io.FilePermission "manifests", "read";</LI>
+<LI>permission java.io.FilePermission "manifests", "write";</LI>
+<LI>permission java.io.FilePermission "motif", "read";</LI>
+<LI>permission java.io.FilePermission "motif", "write";</LI>
+<LI>permission java.io.FilePermission "org.eclipse.osgi", "read";</LI>
+<LI>permission java.io.FilePermission "org.eclipse.osgi", "write";</LI>
+<LI>permission java.io.FilePermission "permdata", "read";</LI>
+<LI>permission java.io.FilePermission "permdata", "write";</LI>
+<LI>permission java.io.FilePermission "photon", "read";</LI>
+<LI>permission java.io.FilePermission "photon", "write";</LI>
+<LI>permission java.io.FilePermission "plugin.xml", "read";</LI>
+<LI>permission java.io.FilePermission "plugin.xml", "write";</LI>
+<LI>permission java.io.FilePermission "qnx", "read";</LI>
+<LI>permission java.io.FilePermission "qnx", "write";</LI>
+<LI>permission java.io.FilePermission "solaris", "read";</LI>
+<LI>permission java.io.FilePermission "solaris", "write";</LI>
+<LI>permission java.io.FilePermission "true", "read";</LI>
+<LI>permission java.io.FilePermission "true", "write";</LI>
+<LI>permission java.io.FilePermission "unknown", "read";</LI>
+<LI>permission java.io.FilePermission "unknown", "write";</LI>
+<LI>permission java.io.FilePermission "win32", "read";</LI>
+<LI>permission java.io.FilePermission "win32", "write";</LI>
+<LI>permission java.io.FilePermission "x86", "read";</LI>
+<LI>permission java.io.FilePermission "x86", "write";</LI>
+<LI>permission java.io.FilePermission "x86_64", "read";</LI>
+<LI>permission java.io.FilePermission "x86_64", "write";</LI>
+<LI>permission java.util.PropertyPermission "os.name", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+</pre>
+</body></html>

@@ -1,0 +1,74 @@
+<html><head><title>Permission Analysis Report</title><script language='javaScript' src='linkUtil.js'></script></head><body>
+<h1>Permission Analysis Report</h1>
+<BR/><H2>Analysis of: org.eclipse.osgi</H2>
+<B>Detail</B><BR/><BR/>
+<pre>
+
+Class: <a href="foo" onClick="return openURLinSrc( 'Application/org/eclipse/osgi/framework/internal/core/AliasMapper.html' )">org.eclipse.osgi.framework.internal.core.AliasMapper</a> (Application)
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/framework/internal/core/AliasMapper.html#L107" , parent.fbot ); return false'>Line# 112</a> java.util.Hashtable initAliases( java.io.InputStream )
+   Permission: java.util.PropertyPermission "java.vendor.url.bug", "read"
+      Primordial/java.lang.String java.io.BufferedReader.readLine(  )
+   Permission: java.util.PropertyPermission "os.name", "read"
+      Primordial/java.lang.String java.io.BufferedReader.readLine(  )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * Read alias data and populate a Hashtable.
+	 *
+	 * @param in InputStream from which to read alias data.
+	 * @return Hashtable of aliases.
+	 */
+	protected static Hashtable initAliases(InputStream in) {
+		Hashtable aliases = new Hashtable(37);
+		try {
+			BufferedReader br;
+			try {
+				br = new BufferedReader(new InputStreamReader(in, "UTF8")); //$NON-NLS-1$
+			} catch (UnsupportedEncodingException e) {
+				br = new BufferedReader(new InputStreamReader(in));
+			}
+			while (true) {
+<FONT style="background-color:#F2C553;display;inline">				String line = br.readLine();
+</FONT>				if (line == null) /* EOF */{
+					break; /* done */
+				}
+				Tokenizer tokenizer = new Tokenizer(line);
+				String master = tokenizer.getString("# \t"); //$NON-NLS-1$
+				if (master != null) {
+					aliases.put(master.toLowerCase(), master);
+					parseloop: while (true) {
+						String alias = tokenizer.getString("# \t"); //$NON-NLS-1$
+						if (alias == null) {
+							break parseloop;
+						}
+						String lowerCaseAlias = alias.toLowerCase();
+						Object storedMaster = aliases.get(lowerCaseAlias);
+						if (storedMaster == null) {
+							aliases.put(lowerCaseAlias, master);
+						} else if (storedMaster instanceof String) {
+							Vector newMaster = new Vector();
+							newMaster.add(storedMaster);
+							newMaster.add(master);
+							aliases.put(lowerCaseAlias, newMaster);
+						} else {
+							((Vector) storedMaster).add(master);
+							aliases.put(lowerCaseAlias, storedMaster);
+						}
+					}
+				}
+			}
+		} catch (IOException e) {
+			if (Debug.DEBUG && Debug.DEBUG_GENERAL) {
+				Debug.printStackTrace(e);
+			}
+		}
+		return (aliases);
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "java.vendor.url.bug", "read";</LI>
+<LI>permission java.util.PropertyPermission "os.name", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+</pre>
+</body></html>

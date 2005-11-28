@@ -1,0 +1,642 @@
+	USELESS CALLS TO java.security.AccessController.doPrivileged()
+
+
+Site # 2891
+Method invoked: java.security.AccessController.doPrivileged(Ljava.security.PrivilegedExceptionAction;)Ljava.lang.Object;
+Invoked by:
+	Site # 263
+		org.eclipse.osgi.framework.internal.core.AbstractBundle.uninstallWorker(Ljava.security.PrivilegedExceptionAction;)V
+		Class loader: Application
+		Line number: 843
+Site # 2895
+Method invoked: java.security.AccessController.doPrivileged(Ljava.security.PrivilegedAction;Ljava.security.AccessControlContext;)Ljava.lang.Object;
+Invoked by:
+	Site # 264
+		org.eclipse.osgi.framework.util.SecureAction.length(Ljava.io.File;)J
+		Class loader: Application
+		Line number: 144
+Site # 2920
+Method invoked: java.security.AccessController.doPrivileged(Ljava.security.PrivilegedExceptionAction;)Ljava.lang.Object;
+Invoked by:
+	Site # 273
+		org.eclipse.osgi.framework.internal.core.AbstractBundle.updateWorker(Ljava.security.PrivilegedExceptionAction;)V
+		Class loader: Application
+		Line number: 672
+Site # 3174
+Method invoked: java.security.AccessController.doPrivileged(Ljava.security.PrivilegedAction;)Ljava.lang.Object;
+Invoked by:
+	Site # 385
+		org.eclipse.osgi.framework.internal.core.AbstractBundle.getEntryPaths(Ljava.lang.String;)Ljava.util.Enumeration;
+		Class loader: Application
+		Line number: 1264
+Site # 3582
+Method invoked: java.security.AccessController.doPrivileged(Ljava.security.PrivilegedExceptionAction;)Ljava.lang.Object;
+Invoked by:
+	Site # 1275
+		org.eclipse.osgi.framework.internal.core.SecurePermissionStorage.getLocations()[Ljava.lang.String;
+		Class loader: Application
+		Line number: 73
+	Site # 1249
+		org.eclipse.osgi.framework.internal.core.SecurePermissionStorage.setPermissionData(Ljava.lang.String;[Ljava.lang.String;)V
+		Class loader: Application
+		Line number: 85
+	Site # 514
+		org.eclipse.osgi.framework.internal.core.SecurePermissionStorage.getPermissionData(Ljava.lang.String;)[Ljava.lang.String;
+		Class loader: Application
+		Line number: 63
+	Site # 1091
+		org.eclipse.osgi.framework.internal.core.SecurePermissionStorage.serializeConditionalPermissionInfos(Ljava.util.Vector;)V
+		Class loader: Application
+		Line number: 95
+	Site # 2186
+		org.eclipse.osgi.framework.internal.core.SecurePermissionStorage.deserializeConditionalPermissionInfos()Ljava.util.Vector;
+		Class loader: Application
+		Line number: 105
+Site # 3837
+Method invoked: java.security.AccessController.doPrivileged(Ljava.security.PrivilegedExceptionAction;)Ljava.lang.Object;
+Invoked by:
+	Site # 621
+		org.eclipse.osgi.framework.internal.core.Framework.installWorker(Ljava.lang.String;Ljava.security.PrivilegedExceptionAction;)Lorg.eclipse.osgi.framework.internal.core.AbstractBundle;
+		Class loader: Application
+		Line number: 790
+Site # 3883
+Method invoked: java.security.AccessController.doPrivileged(Ljava.security.PrivilegedAction;)Ljava.lang.Object;
+Invoked by:
+	Site # 636
+		org.eclipse.osgi.framework.internal.core.ServiceUse.releaseService()V
+		Class loader: Application
+		Line number: 227
+	Site # 119710
+		org.eclipse.osgi.framework.internal.core.ServiceUse.releaseService()V
+		Class loader: Application
+		Line number: 227
+Site # 3999
+Method invoked: java.security.AccessController.doPrivileged(Ljava.security.PrivilegedAction;)Ljava.lang.Object;
+Invoked by:
+	Site # 34385
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Unknown(ILjava.lang.Object;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1247
+	Site # 69760
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Unknown(ILjava.lang.Object;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1247
+	Site # 691
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Unknown(ILjava.lang.Object;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1247
+	Site # 108431
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Unknown(ILjava.lang.Object;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1247
+	Site # 51170
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Unknown(ILjava.lang.Object;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1247
+	Site # 93961
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Unknown(ILjava.lang.Object;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1247
+	Site # 50929
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Unknown(ILjava.lang.Object;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1247
+	Site # 119443
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Unknown(ILjava.lang.Object;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1247
+	Site # 18623
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Unknown(ILjava.lang.Object;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1247
+	Site # 51337
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Unknown(ILjava.lang.Object;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1247
+	Site # 119329
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Unknown(ILjava.lang.Object;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1247
+	Site # 52703
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Unknown(ILjava.lang.Object;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1247
+	Site # 93976
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Unknown(ILjava.lang.Object;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1247
+	Site # 71942
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Unknown(ILjava.lang.Object;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1247
+	Site # 40057
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Unknown(ILjava.lang.Object;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1247
+	Site # 118968
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Unknown(ILjava.lang.Object;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1247
+	Site # 108325
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Unknown(ILjava.lang.Object;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1247
+	Site # 169014
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Unknown(ILjava.lang.Object;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1247
+	Site # 93802
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Unknown(ILjava.lang.Object;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1247
+	Site # 172058
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Unknown(ILjava.lang.Object;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1247
+	Site # 51287
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Unknown(ILjava.lang.Object;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1247
+	Site # 64451
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Unknown(ILjava.lang.Object;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1247
+	Site # 37617
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Unknown(ILjava.lang.Object;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1247
+	Site # 9246
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Unknown(ILjava.lang.Object;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1247
+	Site # 100809
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Unknown(ILjava.lang.Object;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1247
+	Site # 86915
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Unknown(ILjava.lang.Object;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1247
+	Site # 92891
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Unknown(ILjava.lang.Object;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1247
+	Site # 30051
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Unknown(ILjava.lang.Object;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1247
+	Site # 3423
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Unknown(ILjava.lang.Object;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1247
+	Site # 57480
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Unknown(ILjava.lang.Object;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1247
+	Site # 52584
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Unknown(ILjava.lang.Object;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1247
+	Site # 52688
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Unknown(ILjava.lang.Object;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1247
+	Site # 119609
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Unknown(ILjava.lang.Object;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1247
+	Site # 29818
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Unknown(ILjava.lang.Object;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1247
+	Site # 118859
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Unknown(ILjava.lang.Object;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1247
+	Site # 16743
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Unknown(ILjava.lang.Object;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1247
+	Site # 119096
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Unknown(ILjava.lang.Object;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1247
+	Site # 13967
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Unknown(ILjava.lang.Object;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1247
+Site # 4288
+Method invoked: java.security.AccessController.doPrivileged(Ljava.security.PrivilegedAction;)Ljava.lang.Object;
+Invoked by:
+	Site # 799
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Comparable(ILjava.lang.Comparable;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1180
+	Site # 118942
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Comparable(ILjava.lang.Comparable;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1180
+	Site # 40044
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Comparable(ILjava.lang.Comparable;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1180
+	Site # 9233
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Comparable(ILjava.lang.Comparable;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1180
+	Site # 52675
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Comparable(ILjava.lang.Comparable;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1180
+	Site # 52571
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Comparable(ILjava.lang.Comparable;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1180
+	Site # 57467
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Comparable(ILjava.lang.Comparable;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1180
+	Site # 51324
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Comparable(ILjava.lang.Comparable;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1180
+	Site # 34372
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Comparable(ILjava.lang.Comparable;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1180
+	Site # 108418
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Comparable(ILjava.lang.Comparable;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1180
+	Site # 51274
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Comparable(ILjava.lang.Comparable;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1180
+	Site # 86902
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Comparable(ILjava.lang.Comparable;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1180
+	Site # 119430
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Comparable(ILjava.lang.Comparable;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1180
+	Site # 119083
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Comparable(ILjava.lang.Comparable;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1180
+	Site # 30038
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Comparable(ILjava.lang.Comparable;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1180
+	Site # 119596
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Comparable(ILjava.lang.Comparable;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1180
+	Site # 93776
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Comparable(ILjava.lang.Comparable;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1180
+	Site # 16727
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Comparable(ILjava.lang.Comparable;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1180
+	Site # 119303
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Comparable(ILjava.lang.Comparable;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1180
+	Site # 13954
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Comparable(ILjava.lang.Comparable;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1180
+	Site # 71929
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Comparable(ILjava.lang.Comparable;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1180
+	Site # 69738
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Comparable(ILjava.lang.Comparable;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1180
+	Site # 51157
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Comparable(ILjava.lang.Comparable;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1180
+	Site # 108312
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Comparable(ILjava.lang.Comparable;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1180
+	Site # 18610
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Comparable(ILjava.lang.Comparable;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1180
+	Site # 52690
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Comparable(ILjava.lang.Comparable;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1180
+	Site # 29805
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Comparable(ILjava.lang.Comparable;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1180
+	Site # 3407
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Comparable(ILjava.lang.Comparable;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1180
+	Site # 93948
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Comparable(ILjava.lang.Comparable;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1180
+	Site # 169001
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Comparable(ILjava.lang.Comparable;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1180
+	Site # 64438
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Comparable(ILjava.lang.Comparable;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1180
+	Site # 50916
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Comparable(ILjava.lang.Comparable;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1180
+	Site # 92869
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Comparable(ILjava.lang.Comparable;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1180
+	Site # 37604
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Comparable(ILjava.lang.Comparable;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1180
+	Site # 118846
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Comparable(ILjava.lang.Comparable;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1180
+	Site # 93963
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Comparable(ILjava.lang.Comparable;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1180
+	Site # 100796
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Comparable(ILjava.lang.Comparable;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1180
+	Site # 172045
+		org.eclipse.osgi.framework.internal.core.FilterImpl.compare_Comparable(ILjava.lang.Comparable;Ljava.lang.Object;)Z
+		Class loader: Application
+		Line number: 1180
+Site # 4662
+Method invoked: java.security.AccessController.doPrivileged(Ljava.security.PrivilegedAction;)Ljava.lang.Object;
+Invoked by:
+	Site # 119662
+		org.eclipse.osgi.framework.internal.core.ServiceUse.ungetService()Z
+		Class loader: Application
+		Line number: 188
+	Site # 941
+		org.eclipse.osgi.framework.internal.core.ServiceUse.ungetService()Z
+		Class loader: Application
+		Line number: 188
+Site # 4784
+Method invoked: java.security.AccessController.doPrivileged(Ljava.security.PrivilegedExceptionAction;)Ljava.lang.Object;
+Invoked by:
+	Site # 962
+		org.eclipse.osgi.framework.util.SecureAction.forName(Ljava.lang.String;)Ljava.lang.Class;
+		Class loader: Application
+		Line number: 310
+	Site # 5175
+		org.eclipse.osgi.framework.util.SecureAction.forName(Ljava.lang.String;)Ljava.lang.Class;
+		Class loader: Application
+		Line number: 310
+Site # 5661
+Method invoked: java.security.AccessController.doPrivileged(Ljava.security.PrivilegedAction;)Ljava.lang.Object;
+Invoked by:
+	Site # 241485
+		org.eclipse.osgi.framework.internal.core.AbstractBundle.getEntry(Ljava.lang.String;)Ljava.net.URL;
+		Class loader: Application
+		Line number: 1287
+	Site # 1235
+		org.eclipse.osgi.framework.internal.core.AbstractBundle.getEntry(Ljava.lang.String;)Ljava.net.URL;
+		Class loader: Application
+		Line number: 1287
+	Site # 168275
+		org.eclipse.osgi.framework.internal.core.AbstractBundle.getEntry(Ljava.lang.String;)Ljava.net.URL;
+		Class loader: Application
+		Line number: 1287
+	Site # 168339
+		org.eclipse.osgi.framework.internal.core.AbstractBundle.getEntry(Ljava.lang.String;)Ljava.net.URL;
+		Class loader: Application
+		Line number: 1287
+	Site # 37599
+		org.eclipse.osgi.framework.internal.core.AbstractBundle.getEntry(Ljava.lang.String;)Ljava.net.URL;
+		Class loader: Application
+		Line number: 1287
+	Site # 17875
+		org.eclipse.osgi.framework.internal.core.AbstractBundle.getEntry(Ljava.lang.String;)Ljava.net.URL;
+		Class loader: Application
+		Line number: 1287
+	Site # 38451
+		org.eclipse.osgi.framework.internal.core.AbstractBundle.getEntry(Ljava.lang.String;)Ljava.net.URL;
+		Class loader: Application
+		Line number: 1287
+	Site # 38429
+		org.eclipse.osgi.framework.internal.core.AbstractBundle.getEntry(Ljava.lang.String;)Ljava.net.URL;
+		Class loader: Application
+		Line number: 1287
+Site # 6264
+Method invoked: java.security.AccessController.doPrivileged(Ljava.security.PrivilegedAction;)Ljava.lang.Object;
+Invoked by:
+	Site # 1420
+		org.eclipse.osgi.framework.internal.core.ServiceUse.getService()Ljava.lang.Object;
+		Class loader: Application
+		Line number: 106
+	Site # 3517
+		org.eclipse.osgi.framework.internal.core.ServiceUse.getService()Ljava.lang.Object;
+		Class loader: Application
+		Line number: 106
+Site # 6306
+Method invoked: java.security.AccessController.doPrivileged(Ljava.security.PrivilegedExceptionAction;)Ljava.lang.Object;
+Invoked by:
+	Site # 88432
+		org.eclipse.osgi.framework.internal.core.BundleContextImpl.stop()V
+		Class loader: Application
+		Line number: 1031
+	Site # 1441
+		org.eclipse.osgi.framework.internal.core.BundleContextImpl.stop()V
+		Class loader: Application
+		Line number: 1031
+Site # 6578
+Method invoked: java.security.AccessController.doPrivileged(Ljava.security.PrivilegedAction;)Ljava.lang.Object;
+Invoked by:
+	Site # 37892
+		org.eclipse.osgi.framework.internal.core.Framework.getDataFile(Lorg.eclipse.osgi.framework.internal.core.AbstractBundle;Ljava.lang.String;)Ljava.io.File;
+		Class loader: Application
+		Line number: 1242
+	Site # 1552
+		org.eclipse.osgi.framework.internal.core.Framework.getDataFile(Lorg.eclipse.osgi.framework.internal.core.AbstractBundle;Ljava.lang.String;)Ljava.io.File;
+		Class loader: Application
+		Line number: 1242
+	Site # 41841
+		org.eclipse.osgi.framework.internal.core.Framework.getDataFile(Lorg.eclipse.osgi.framework.internal.core.AbstractBundle;Ljava.lang.String;)Ljava.io.File;
+		Class loader: Application
+		Line number: 1242
+	Site # 241546
+		org.eclipse.osgi.framework.internal.core.Framework.getDataFile(Lorg.eclipse.osgi.framework.internal.core.AbstractBundle;Ljava.lang.String;)Ljava.io.File;
+		Class loader: Application
+		Line number: 1242
+	Site # 41796
+		org.eclipse.osgi.framework.internal.core.Framework.getDataFile(Lorg.eclipse.osgi.framework.internal.core.AbstractBundle;Ljava.lang.String;)Ljava.io.File;
+		Class loader: Application
+		Line number: 1242
+Site # 6771
+Method invoked: java.security.AccessController.doPrivileged(Ljava.security.PrivilegedExceptionAction;Ljava.security.AccessControlContext;)Ljava.lang.Object;
+Invoked by:
+	Site # 1623
+		org.eclipse.osgi.framework.internal.core.AbstractBundle.updateWorkerPrivileged(Ljava.net.URLConnection;Ljava.security.AccessControlContext;)V
+		Class loader: Application
+		Line number: 719
+Site # 7239
+Method invoked: java.security.AccessController.doPrivileged(Ljava.security.PrivilegedExceptionAction;)Ljava.lang.Object;
+Invoked by:
+	Site # 1710
+		org.eclipse.osgi.framework.internal.core.StartLevelManager.setBundleStartLevel(Lorg.osgi.framework.Bundle;I)V
+		Class loader: Application
+		Line number: 390
+Site # 7728
+Method invoked: java.security.AccessController.doPrivileged(Ljava.security.PrivilegedAction;)Ljava.lang.Object;
+Invoked by:
+	Site # 1908
+		org.eclipse.osgi.framework.internal.core.BundleLoader.findLibrary(Ljava.lang.String;)Ljava.lang.String;
+		Class loader: Application
+		Line number: 593
+Site # 8032
+Method invoked: java.security.AccessController.doPrivileged(Ljava.security.PrivilegedAction;)Ljava.lang.Object;
+Invoked by:
+	Site # 1995
+		org.osgi.service.condpermadmin.BundleLocationCondition.getCondition(Lorg.osgi.framework.Bundle;Lorg.osgi.service.condpermadmin.ConditionInfo;)Lorg.osgi.service.condpermadmin.Condition;
+		Class loader: Application
+		Line number: 48
+Site # 8138
+Method invoked: java.security.AccessController.doPrivileged(Ljava.security.PrivilegedExceptionAction;)Ljava.lang.Object;
+Invoked by:
+	Site # 54921
+		org.eclipse.osgi.framework.internal.core.AbstractBundle.setStatus(IZ)V
+		Class loader: Application
+		Line number: 432
+	Site # 168505
+		org.eclipse.osgi.framework.internal.core.AbstractBundle.setStatus(IZ)V
+		Class loader: Application
+		Line number: 432
+	Site # 2485
+		org.eclipse.osgi.framework.internal.core.AbstractBundle.setStatus(IZ)V
+		Class loader: Application
+		Line number: 432
+	Site # 2037
+		org.eclipse.osgi.framework.internal.core.AbstractBundle.setStatus(IZ)V
+		Class loader: Application
+		Line number: 432
+Site # 9231
+Method invoked: java.security.AccessController.doPrivileged(Ljava.security.PrivilegedExceptionAction;)Ljava.lang.Object;
+Invoked by:
+	Site # 2570
+		org.eclipse.osgi.framework.internal.core.SecurePermissionStorage.getLocations()[Ljava.lang.String;
+		Class loader: Application
+		Line number: 73
+Site # 11762
+Method invoked: java.security.AccessController.doPrivileged(Ljava.security.PrivilegedExceptionAction;)Ljava.lang.Object;
+Invoked by:
+	Site # 12553
+		org.eclipse.osgi.framework.internal.core.SecurePermissionStorage.getPermissionData(Ljava.lang.String;)[Ljava.lang.String;
+		Class loader: Application
+		Line number: 63
+	Site # 4548
+		org.eclipse.osgi.framework.internal.core.SecurePermissionStorage.getPermissionData(Ljava.lang.String;)[Ljava.lang.String;
+		Class loader: Application
+		Line number: 63
+Site # 11916
+Method invoked: java.security.AccessController.doPrivileged(Ljava.security.PrivilegedAction;)Ljava.lang.Object;
+Invoked by:
+	Site # 4696
+		org.eclipse.osgi.framework.internal.core.BundleContextImpl.checkServiceClass([Ljava.lang.String;Ljava.lang.Object;)Ljava.lang.String;
+		Class loader: Application
+		Line number: 606
+	Site # 10530
+		org.eclipse.osgi.framework.internal.core.BundleContextImpl.checkServiceClass([Ljava.lang.String;Ljava.lang.Object;)Ljava.lang.String;
+		Class loader: Application
+		Line number: 606
+	Site # 107781
+		org.eclipse.osgi.framework.internal.core.BundleContextImpl.checkServiceClass([Ljava.lang.String;Ljava.lang.Object;)Ljava.lang.String;
+		Class loader: Application
+		Line number: 606
+	Site # 107768
+		org.eclipse.osgi.framework.internal.core.BundleContextImpl.checkServiceClass([Ljava.lang.String;Ljava.lang.Object;)Ljava.lang.String;
+		Class loader: Application
+		Line number: 606
+	Site # 6267
+		org.eclipse.osgi.framework.internal.core.BundleContextImpl.checkServiceClass([Ljava.lang.String;Ljava.lang.Object;)Ljava.lang.String;
+		Class loader: Application
+		Line number: 606
+	Site # 10781
+		org.eclipse.osgi.framework.internal.core.BundleContextImpl.checkServiceClass([Ljava.lang.String;Ljava.lang.Object;)Ljava.lang.String;
+		Class loader: Application
+		Line number: 606
+Site # 14796
+Method invoked: java.security.AccessController.doPrivileged(Ljava.security.PrivilegedExceptionAction;)Ljava.lang.Object;
+Invoked by:
+	Site # 6852
+		org.eclipse.osgi.framework.internal.core.SecurePermissionStorage.setPermissionData(Ljava.lang.String;[Ljava.lang.String;)V
+		Class loader: Application
+		Line number: 85
+Site # 15312
+Method invoked: java.security.AccessController.doPrivileged(Ljava.security.PrivilegedExceptionAction;)Ljava.lang.Object;
+Invoked by:
+	Site # 7313
+		org.eclipse.osgi.framework.internal.core.SecurePermissionStorage.setPermissionData(Ljava.lang.String;[Ljava.lang.String;)V
+		Class loader: Application
+		Line number: 85
+Site # 15828
+Method invoked: java.security.AccessController.doPrivileged(Ljava.security.PrivilegedExceptionAction;)Ljava.lang.Object;
+Invoked by:
+	Site # 7791
+		org.eclipse.osgi.framework.internal.core.SecurePermissionStorage.getPermissionData(Ljava.lang.String;)[Ljava.lang.String;
+		Class loader: Application
+		Line number: 63
+Site # 17457
+Method invoked: java.security.AccessController.doPrivileged(Ljava.security.PrivilegedAction;)Ljava.lang.Object;
+Invoked by:
+	Site # 8943
+		org.eclipse.osgi.framework.internal.core.MessageResourceBundle.makeAccessible(Ljava.lang.reflect.Field;)V
+		Class loader: Application
+		Line number: 143
+	Site # 17431
+		org.eclipse.osgi.framework.internal.core.MessageResourceBundle.makeAccessible(Ljava.lang.reflect.Field;)V
+		Class loader: Application
+		Line number: 143
+Site # 25171
+Method invoked: java.security.AccessController.doPrivileged(Ljava.security.PrivilegedAction;)Ljava.lang.Object;
+Invoked by:
+	Site # 18015
+		org.eclipse.osgi.framework.internal.core.BundleLoader.getParentPrivileged(Lorg.eclipse.osgi.framework.adaptor.BundleClassLoader;)Ljava.lang.ClassLoader;
+		Class loader: Application
+		Line number: 933
+	Site # 105925
+		org.eclipse.osgi.framework.internal.core.BundleLoader.getParentPrivileged(Lorg.eclipse.osgi.framework.adaptor.BundleClassLoader;)Ljava.lang.ClassLoader;
+		Class loader: Application
+		Line number: 933
+	Site # 53574
+		org.eclipse.osgi.framework.internal.core.BundleLoader.getParentPrivileged(Lorg.eclipse.osgi.framework.adaptor.BundleClassLoader;)Ljava.lang.ClassLoader;
+		Class loader: Application
+		Line number: 933
+Site # 33230
+Method invoked: java.security.AccessController.doPrivileged(Ljava.security.PrivilegedExceptionAction;Ljava.security.AccessControlContext;)Ljava.lang.Object;
+Invoked by:
+	Site # 28104
+		org.eclipse.osgi.framework.internal.core.AbstractBundle.updateWorkerPrivileged(Ljava.net.URLConnection;Ljava.security.AccessControlContext;)V
+		Class loader: Application
+		Line number: 719
+	Site # 27615
+		org.eclipse.osgi.framework.internal.core.AbstractBundle.updateWorkerPrivileged(Ljava.net.URLConnection;Ljava.security.AccessControlContext;)V
+		Class loader: Application
+		Line number: 719
+Site # 55203
+Method invoked: java.security.AccessController.doPrivileged(Ljava.security.PrivilegedAction;Ljava.security.AccessControlContext;)Ljava.lang.Object;
+Invoked by:
+	Site # 55200
+		org.eclipse.osgi.framework.util.SecureAction.length(Ljava.io.File;)J
+		Class loader: Application
+		Line number: 144
+

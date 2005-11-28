@@ -1,0 +1,248 @@
+<html><head><title>Permission Analysis Report</title><script language='javaScript' src='linkUtil.js'></script></head><body>
+<h1>Permission Analysis Report</h1>
+<BR/><H2>Analysis of: org.eclipse.osgi</H2>
+<B>Detail</B><BR/><BR/>
+<pre>
+
+Class: <a href="foo" onClick="return openURLinSrc( 'Application/org/eclipse/osgi/framework/adaptor/core/StateManager.html' )">org.eclipse.osgi.framework.adaptor.core.StateManager</a> (Application)
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/framework/adaptor/core/StateManager.html#L150" , parent.fbot ); return false'>Line# 155</a> boolean initializeSystemState(  )
+   Permission: java.util.PropertyPermission "*", "read,write"
+      Primordial/java.util.Properties java.lang.System.getProperties(  )
+<BR/><BR/><B>CODE</B><BR/>
+private boolean initializeSystemState() {
+		systemState.setResolver(getResolver(System.getSecurityManager() != null));
+		lastTimeStamp = systemState.getTimeStamp();
+<FONT style="background-color:#F2C553;display;inline">		return !systemState.setPlatformProperties(System.getProperties());
+</FONT>	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "*", "read,write";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/framework/adaptor/core/StateManager.html#L105" , parent.fbot ); return false'>Line# 110</a> void readSystemState( java.io.File, java.io.File, long )
+   Permission: java.io.FilePermission ".state", "read"
+      Primordial/boolean java.io.File.isFile(  )
+   Permission: java.io.FilePermission "???file???", "read"
+      Primordial/boolean java.io.File.isFile(  )
+<BR/><BR/><B>CODE</B><BR/>
+private void readSystemState(File stateFile, File lazyFile, long expectedTimeStamp) {
+<FONT style="background-color:#F2C553;display;inline">		if (stateFile == null || !stateFile.isFile())
+</FONT>			return;
+		if (DEBUG_READER)
+			readStartupTime = System.currentTimeMillis();
+		try {
+			boolean lazyLoad = !Boolean.valueOf(System.getProperty(PROP_NO_LAZY_LOADING)).booleanValue();
+			systemState = factory.readSystemState(stateFile, lazyFile, lazyLoad, expectedTimeStamp);
+			// problems in the cache (corrupted/stale), don't create a state object
+			if (systemState == null || !initializeSystemState()) {
+				systemState = null;
+				return;
+			}
+			cachedState = true;
+			try {
+				expireTime = Long.parseLong(System.getProperty(PROP_LAZY_UNLOADING_TIME, Long.toString(expireTime)));
+			} catch (NumberFormatException nfe) {
+				// default to not expire
+				expireTime = 0;
+			}
+			if (lazyLoad && expireTime > 0) {
+				Thread t = new Thread(this, "State Data Manager"); //$NON-NLS-1$
+				t.setDaemon(true);
+				t.start();
+			}
+		} catch (IOException ioe) {
+			// TODO: how do we log this?
+			ioe.printStackTrace();
+		} finally {
+			if (DEBUG_READER)
+				System.out.println("Time to read state: " + (System.currentTimeMillis() - readStartupTime)); //$NON-NLS-1$
+		}
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.io.FilePermission ".state", "read";</LI>
+<LI>permission java.io.FilePermission "???file???", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/framework/adaptor/core/StateManager.html#L110" , parent.fbot ); return false'>Line# 115</a> void readSystemState( java.io.File, java.io.File, long )
+   Permission: java.util.PropertyPermission "???key???", "read"
+      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )
+   Permission: java.util.PropertyPermission "osgi.noLazyStateLoading", "read"
+      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )
+<BR/><BR/><B>CODE</B><BR/>
+private void readSystemState(File stateFile, File lazyFile, long expectedTimeStamp) {
+		if (stateFile == null || !stateFile.isFile())
+			return;
+		if (DEBUG_READER)
+			readStartupTime = System.currentTimeMillis();
+		try {
+<FONT style="background-color:#F2C553;display;inline">			boolean lazyLoad = !Boolean.valueOf(System.getProperty(PROP_NO_LAZY_LOADING)).booleanValue();
+</FONT>			systemState = factory.readSystemState(stateFile, lazyFile, lazyLoad, expectedTimeStamp);
+			// problems in the cache (corrupted/stale), don't create a state object
+			if (systemState == null || !initializeSystemState()) {
+				systemState = null;
+				return;
+			}
+			cachedState = true;
+			try {
+				expireTime = Long.parseLong(System.getProperty(PROP_LAZY_UNLOADING_TIME, Long.toString(expireTime)));
+			} catch (NumberFormatException nfe) {
+				// default to not expire
+				expireTime = 0;
+			}
+			if (lazyLoad && expireTime > 0) {
+				Thread t = new Thread(this, "State Data Manager"); //$NON-NLS-1$
+				t.setDaemon(true);
+				t.start();
+			}
+		} catch (IOException ioe) {
+			// TODO: how do we log this?
+			ioe.printStackTrace();
+		} finally {
+			if (DEBUG_READER)
+				System.out.println("Time to read state: " + (System.currentTimeMillis() - readStartupTime)); //$NON-NLS-1$
+		}
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "???key???", "read";</LI>
+<LI>permission java.util.PropertyPermission "osgi.noLazyStateLoading", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/framework/adaptor/core/StateManager.html#L119" , parent.fbot ); return false'>Line# 124</a> void readSystemState( java.io.File, java.io.File, long )
+   Permission: java.util.PropertyPermission "???key???", "read"
+      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String, java.lang.String )
+   Permission: java.util.PropertyPermission "osgi.lazyStateUnloadingTime", "read"
+      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String, java.lang.String )
+<BR/><BR/><B>CODE</B><BR/>
+private void readSystemState(File stateFile, File lazyFile, long expectedTimeStamp) {
+		if (stateFile == null || !stateFile.isFile())
+			return;
+		if (DEBUG_READER)
+			readStartupTime = System.currentTimeMillis();
+		try {
+			boolean lazyLoad = !Boolean.valueOf(System.getProperty(PROP_NO_LAZY_LOADING)).booleanValue();
+			systemState = factory.readSystemState(stateFile, lazyFile, lazyLoad, expectedTimeStamp);
+			// problems in the cache (corrupted/stale), don't create a state object
+			if (systemState == null || !initializeSystemState()) {
+				systemState = null;
+				return;
+			}
+			cachedState = true;
+			try {
+<FONT style="background-color:#F2C553;display;inline">				expireTime = Long.parseLong(System.getProperty(PROP_LAZY_UNLOADING_TIME, Long.toString(expireTime)));
+</FONT>			} catch (NumberFormatException nfe) {
+				// default to not expire
+				expireTime = 0;
+			}
+			if (lazyLoad && expireTime > 0) {
+				Thread t = new Thread(this, "State Data Manager"); //$NON-NLS-1$
+				t.setDaemon(true);
+				t.start();
+			}
+		} catch (IOException ioe) {
+			// TODO: how do we log this?
+			ioe.printStackTrace();
+		} finally {
+			if (DEBUG_READER)
+				System.out.println("Time to read state: " + (System.currentTimeMillis() - readStartupTime)); //$NON-NLS-1$
+		}
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.util.PropertyPermission "???key???", "read";</LI>
+<LI>permission java.util.PropertyPermission "osgi.lazyStateUnloadingTime", "read";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/framework/adaptor/core/StateManager.html#L125" , parent.fbot ); return false'>Line# 130</a> void readSystemState( java.io.File, java.io.File, long )
+   Permission: java.lang.RuntimePermission "modifyThread"
+      Primordial/void java.lang.Thread.Thread( java.lang.Runnable, java.lang.String )
+<BR/><BR/><B>CODE</B><BR/>
+private void readSystemState(File stateFile, File lazyFile, long expectedTimeStamp) {
+		if (stateFile == null || !stateFile.isFile())
+			return;
+		if (DEBUG_READER)
+			readStartupTime = System.currentTimeMillis();
+		try {
+			boolean lazyLoad = !Boolean.valueOf(System.getProperty(PROP_NO_LAZY_LOADING)).booleanValue();
+			systemState = factory.readSystemState(stateFile, lazyFile, lazyLoad, expectedTimeStamp);
+			// problems in the cache (corrupted/stale), don't create a state object
+			if (systemState == null || !initializeSystemState()) {
+				systemState = null;
+				return;
+			}
+			cachedState = true;
+			try {
+				expireTime = Long.parseLong(System.getProperty(PROP_LAZY_UNLOADING_TIME, Long.toString(expireTime)));
+			} catch (NumberFormatException nfe) {
+				// default to not expire
+				expireTime = 0;
+			}
+			if (lazyLoad && expireTime > 0) {
+<FONT style="background-color:#F2C553;display;inline">				Thread t = new Thread(this, "State Data Manager"); //$NON-NLS-1$
+</FONT>				t.setDaemon(true);
+				t.start();
+			}
+		} catch (IOException ioe) {
+			// TODO: how do we log this?
+			ioe.printStackTrace();
+		} finally {
+			if (DEBUG_READER)
+				System.out.println("Time to read state: " + (System.currentTimeMillis() - readStartupTime)); //$NON-NLS-1$
+		}
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.lang.RuntimePermission "modifyThread";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/framework/adaptor/core/StateManager.html#L126" , parent.fbot ); return false'>Line# 131</a> void readSystemState( java.io.File, java.io.File, long )
+   Permission: java.lang.RuntimePermission "modifyThread"
+      Primordial/void java.lang.Thread.setDaemon( boolean )
+<BR/><BR/><B>CODE</B><BR/>
+private void readSystemState(File stateFile, File lazyFile, long expectedTimeStamp) {
+		if (stateFile == null || !stateFile.isFile())
+			return;
+		if (DEBUG_READER)
+			readStartupTime = System.currentTimeMillis();
+		try {
+			boolean lazyLoad = !Boolean.valueOf(System.getProperty(PROP_NO_LAZY_LOADING)).booleanValue();
+			systemState = factory.readSystemState(stateFile, lazyFile, lazyLoad, expectedTimeStamp);
+			// problems in the cache (corrupted/stale), don't create a state object
+			if (systemState == null || !initializeSystemState()) {
+				systemState = null;
+				return;
+			}
+			cachedState = true;
+			try {
+				expireTime = Long.parseLong(System.getProperty(PROP_LAZY_UNLOADING_TIME, Long.toString(expireTime)));
+			} catch (NumberFormatException nfe) {
+				// default to not expire
+				expireTime = 0;
+			}
+			if (lazyLoad && expireTime > 0) {
+				Thread t = new Thread(this, "State Data Manager"); //$NON-NLS-1$
+<FONT style="background-color:#F2C553;display;inline">				t.setDaemon(true);
+</FONT>				t.start();
+			}
+		} catch (IOException ioe) {
+			// TODO: how do we log this?
+			ioe.printStackTrace();
+		} finally {
+			if (DEBUG_READER)
+				System.out.println("Time to read state: " + (System.currentTimeMillis() - readStartupTime)); //$NON-NLS-1$
+		}
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.lang.RuntimePermission "modifyThread";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+</pre>
+</body></html>

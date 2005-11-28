@@ -1,0 +1,32 @@
+<html><head><title>Permission Analysis Report</title><script language='javaScript' src='linkUtil.js'></script></head><body>
+<h1>Permission Analysis Report</h1>
+<BR/><H2>Analysis of: org.eclipse.osgi</H2>
+<B>Detail</B><BR/><BR/>
+<pre>
+
+Class: <a href="foo" onClick="return openURLinSrc( 'Application/org/eclipse/osgi/framework/adaptor/core/AbstractClassLoader.html' )">org.eclipse.osgi.framework.adaptor.core.AbstractClassLoader</a> (Application)
+DoPrivileged location: <a href="foo" onClick='return openURLinFrame( "Application/org/eclipse/osgi/framework/adaptor/core/AbstractClassLoader.html#L51" , parent.fbot ); return false'>Line# 56</a> void &lt;init&gt;( org.eclipse.osgi.framework.adaptor.ClassLoaderDelegate, java.security.ProtectionDomain, java.lang.String[], java.lang.ClassLoader )
+   Permission: java.lang.RuntimePermission "createClassLoader"
+      Primordial/void java.lang.ClassLoader.ClassLoader( java.lang.ClassLoader )
+<BR/><BR/><B>CODE</B><BR/>
+/**
+	 * BundleClassLoader constructor.
+	 * @param delegate The ClassLoaderDelegate for this bundle.
+	 * @param domain The ProtectionDomain for this bundle.
+	 * @param parent The parent classloader to use.  Must not be null.
+	 * @param classpath The classpath entries to use for the host.
+	 */
+	public AbstractClassLoader(ClassLoaderDelegate delegate, ProtectionDomain domain, String[] classpath, ClassLoader parent) {
+<FONT style="background-color:#F2C553;display;inline">		super(parent);
+</FONT>		this.delegate = delegate;
+		this.hostdomain = domain;
+		this.hostclasspath = classpath;
+	}
+<BR/>
+<B>Tainted variable reference trace:</B><BR/><BR/>
+<B>Permission Requirements:</B><BR/><BR/><UL>
+<LI>permission java.lang.RuntimePermission "createClassLoader";</LI>
+</UL><BR/><BR/>
+<B>Conclusion:</B><BR/><BR/><HR/>
+</pre>
+</body></html>
