@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Permission Analysis Report</title>
+  <script language="javaScript" src="linkUtil.js"></script>
+</head>
+<body>
+<h1>Permission Analysis Report</h1>
+<br>
+<h2>Analysis of: org.eclipse.swt.win32.win32.x86</h2>
+<b>Detail</b><br>
+<br>
+<pre>
+Class: <a href="foo"
+ onclick="return openURLinSrc( 'Application/org/eclipse/swt/internal/Library.html' )">org.eclipse.swt.internal.Library</a> (Application)<br>DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/swt/internal/Library.html#L33" , parent.fbot ); return false'>Line# 38</a> void &lt;clinit&gt;(  )<br>   Permission: java.util.PropertyPermission "java.version", "read"<br>      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )<br><br><br><b>CODE</b><br><br>static {<br><span
+ style="color: rgb(255, 0, 0);">	JAVA_VERSION = parseVersion(System.getProperty("java.version"));</span><br>	SWT_VERSION = SWT_VERSION(MAJOR_VERSION, MINOR_VERSION);<br>}<br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.util.PropertyPermission "java.version", "read";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>This property seems very common, add it to the OSGI's implied file.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/swt/internal/Library.html#L102" , parent.fbot ); return false'>Line# 107</a> void loadLibrary( java.lang.String )<br>   Permission: java.util.PropertyPermission "swt.version", "read"<br>      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )<br><br><br><b>CODE</b><br><br>public static void loadLibrary (String name) {<br>	/*<br>     * Include platform name to support different windowing systems<br>     * on same operating system.<br>	 */<br>	String platform = Platform.PLATFORM;<br>	<br>	/*<br>	 * Get version qualifier.<br>	 */<br><span
+ style="color: rgb(255, 0, 0);">	String version = System.getProperty ("swt.version"); //$NON-NLS-1$</span><br>	if (version == null) {<br>		version = "" + MAJOR_VERSION; //$NON-NLS-1$<br>		/* Force 3 digits in minor version number */<br>		if (MINOR_VERSION &lt; 10) {<br>			version += "00"; //$NON-NLS-1$<br>		} else {<br>			if (MINOR_VERSION &lt; 100) version += "0"; //$NON-NLS-1$<br>		}<br>		version += MINOR_VERSION;		<br>		/* No "r" until first revision */<br>		if (REVISION &gt; 0) version += "r" + REVISION; //$NON-NLS-1$<br>	}<br><br>	try {<br>		String newName = name + "-" + platform + "-" + version; //$NON-NLS-1$ //$NON-NLS-2$<br>		System.loadLibrary (newName);<br>		return;<br>	} catch (UnsatisfiedLinkError e1) {		<br>		try {<br>			String newName = name + "-" + platform; //$NON-NLS-1$<br>			System.loadLibrary (newName);<br>			return;<br>		} catch (UnsatisfiedLinkError e2) {<br>			throw e1;<br>		}<br>	}<br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.util.PropertyPermission "swt.version", "read";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>This property seems very common, add it to the OSGI's implied file.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/swt/internal/Library.html#L118" , parent.fbot ); return false'>Line# 123</a> void loadLibrary( java.lang.String )<br>   Permission: java.io.FilePermission "???file???", "read"<br>      Primordial/void java.lang.System.loadLibrary( java.lang.String )<br>   Permission: java.lang.RuntimePermission "loadLibrary.???library???"<br>      Primordial/void java.lang.System.loadLibrary( java.lang.String )<br>   Permission: java.util.PropertyPermission "java.execsuffix", "read"<br>      Primordial/void java.lang.System.loadLibrary( java.lang.String )<br>   Permission: java.util.PropertyPermission "java.library.path", "read"<br>      Primordial/void java.lang.System.loadLibrary( java.lang.String )<br>   Permission: java.util.PropertyPermission "os.name", "read"<br>      Primordial/void java.lang.System.loadLibrary( java.lang.String )<br>   Permission: java.util.PropertyPermission "sun.boot.library.path", "read"<br>      Primordial/void java.lang.System.loadLibrary( java.lang.String )<br>   Permission: java.util.PropertyPermission "user.dir", "read"<br>      Primordial/void java.lang.System.loadLibrary( java.lang.String )<br><br><br><b>CODE</b><br><br>public static void loadLibrary (String name) {<br>	/*<br>     * Include platform name to support different windowing systems<br>     * on same operating system.<br>	 */<br>	String platform = Platform.PLATFORM;<br>	<br>	/*<br>	 * Get version qualifier.<br>	 */<br>	String version = System.getProperty ("swt.version"); //$NON-NLS-1$<br>	if (version == null) {<br>		version = "" + MAJOR_VERSION; //$NON-NLS-1$<br>		/* Force 3 digits in minor version number */<br>		if (MINOR_VERSION &lt; 10) {<br>			version += "00"; //$NON-NLS-1$<br>		} else {<br>			if (MINOR_VERSION &lt; 100) version += "0"; //$NON-NLS-1$<br>		}<br>		version += MINOR_VERSION;		<br>		/* No "r" until first revision */<br>		if (REVISION &gt; 0) version += "r" + REVISION; //$NON-NLS-1$<br>	}<br><br>	try {<br>		String newName = name + "-" + platform + "-" + version; //$NON-NLS-1$ //$NON-NLS-2$<br>		System.loadLibrary (newName);<br>		return;<br>	} catch (UnsatisfiedLinkError e1) {		<br>		try {<br>			String newName = name + "-" + platform; //$NON-NLS-1$<br><span
+ style="color: rgb(255, 0, 0);">			System.loadLibrary (newName);</span><br>			return;<br>		} catch (UnsatisfiedLinkError e2) {<br>			throw e1;<br>		}<br>	}<br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.io.FilePermission "???file???", "read";</li>
+<li>permission java.lang.RuntimePermission "loadLibrary.???library???";</li>
+<li>permission java.util.PropertyPermission "java.execsuffix", "read";</li>
+<li>permission java.util.PropertyPermission "java.library.path", "read";</li>
+<li>permission java.util.PropertyPermission "os.name", "read";</li>
+<li>permission java.util.PropertyPermission "sun.boot.library.path", "read";</li>
+<li>permission java.util.PropertyPermission "user.dir", "read";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>Grant the above required permissions to this plug-in via OSGI-INF/permissions.perm file.  It prevents the caller to <br>load any random DLLs.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/swt/internal/Library.html#L123" , parent.fbot ); return false'>Line# 128</a> void loadLibrary( java.lang.String )<br>   Permission: java.io.FilePermission "???file???", "read"<br>      Primordial/void java.lang.System.loadLibrary( java.lang.String )<br>   Permission: java.lang.RuntimePermission "loadLibrary.???library???"<br>      Primordial/void java.lang.System.loadLibrary( java.lang.String )<br>   Permission: java.util.PropertyPermission "java.execsuffix", "read"<br>      Primordial/void java.lang.System.loadLibrary( java.lang.String )<br>   Permission: java.util.PropertyPermission "java.library.path", "read"<br>      Primordial/void java.lang.System.loadLibrary( java.lang.String )<br>   Permission: java.util.PropertyPermission "os.name", "read"<br>      Primordial/void java.lang.System.loadLibrary( java.lang.String )<br>   Permission: java.util.PropertyPermission "sun.boot.library.path", "read"<br>      Primordial/void java.lang.System.loadLibrary( java.lang.String )<br>   Permission: java.util.PropertyPermission "user.dir", "read"<br>      Primordial/void java.lang.System.loadLibrary( java.lang.String )<br><br><br><b>CODE</b><br>public static void loadLibrary (String name) {<br>	/*<br>     * Include platform name to support different windowing systems<br>     * on same operating system.<br>	 */<br>	String platform = Platform.PLATFORM;<br>	<br>	/*<br>	 * Get version qualifier.<br>	 */<br>	String version = System.getProperty ("swt.version"); //$NON-NLS-1$<br>	if (version == null) {<br>		version = "" + MAJOR_VERSION; //$NON-NLS-1$<br>		/* Force 3 digits in minor version number */<br>		if (MINOR_VERSION &lt; 10) {<br>			version += "00"; //$NON-NLS-1$<br>		} else {<br>			if (MINOR_VERSION &lt; 100) version += "0"; //$NON-NLS-1$<br>		}<br>		version += MINOR_VERSION;		<br>		/* No "r" until first revision */<br>		if (REVISION &gt; 0) version += "r" + REVISION; //$NON-NLS-1$<br>	}<br><br>	try {<br>		String newName = name + "-" + platform + "-" + version; //$NON-NLS-1$ //$NON-NLS-2$<br>		System.loadLibrary (newName);<br>		return;<br>	} catch (UnsatisfiedLinkError e1) {		<br>		try {<br>			String newName = name + "-" + platform; //$NON-NLS-1$<br><span
+ style="color: rgb(255, 0, 0);">			System.loadLibrary (newName);</span><br>			return;<br>		} catch (UnsatisfiedLinkError e2) {<br>			throw e1;<br>		}<br>	}<br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.io.FilePermission "???file???", "read";</li>
+<li>permission java.lang.RuntimePermission "loadLibrary.???library???";</li>
+<li>permission java.util.PropertyPermission "java.execsuffix", "read";</li>
+<li>permission java.util.PropertyPermission "java.library.path", "read";</li>
+<li>permission java.util.PropertyPermission "os.name", "read";</li>
+<li>permission java.util.PropertyPermission "sun.boot.library.path", "read";</li>
+<li>permission java.util.PropertyPermission "user.dir", "read";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>Grant the above required permissions to this plug-in via OSGI-INF/permissions.perm file.  It prevents the caller to <br>load any random DLLs<br><hr>
+</pre>
+</body>
+</html>

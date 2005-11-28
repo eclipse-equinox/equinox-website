@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Permission Analysis Report</title>
+  <script language="javaScript" src="linkUtil.js"></script>
+</head>
+<body>
+<h1>Permission Analysis Report</h1>
+<br>
+<h2>Analysis of: org.eclipse.swt.win32.win32.x86</h2>
+<b>Detail</b><br>
+<br>
+<pre>
+Class: <a href="foo"
+ onclick="return openURLinSrc( 'Application/org/eclipse/swt/dnd/URLTransfer.html' )">org.eclipse.swt.dnd.URLTransfer</a> (Application)<br>DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/swt/dnd/URLTransfer.html#L134" , parent.fbot ); return false'>Line# 139</a> boolean checkURL( java.lang.Object )<br>   Permission: java.lang.RuntimePermission "getClassLoader"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br>   Permission: java.net.NetPermission "specifyStreamHandler"<br>      Primordial/void java.net.URL.URL( java.lang.String )<br><br><br><b>CODE</b><br>boolean checkURL(Object object) {<br>	if (object == null  || !(object instanceof String[]) || ((String[])object).length == 0) return false;<br>	String[] strings = (String[])object;<br>	if (strings[0] == null || strings[0].length() == 0) return false;<br>	try {<br><span
+ style="color: rgb(255, 0, 0);">		new URL(strings[0]);</span><br>	} catch (java.net.MalformedURLException e) {<br>		return false;<br>	}<br>	return true;<br>}<br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.lang.RuntimePermission "getClassLoader";</li>
+<li>permission java.net.NetPermission "specifyStreamHandler";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>A typical url construction problem.  Patch the line as the following:<br><br>boolean checkURL(Object object) {<br>	if (object == null  || !(object instanceof String[]) || ((String[])object).length == 0) return false;<br>	String[] strings = (String[])object;<br>	if (strings[0] == null || strings[0].length() == 0) return false;<br><span
+ style="color: rgb(255, 0, 0);">	try {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">		if(System.getSecurityManager() == null) {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">		new URL(strings[0]);</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">		} else {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			AccessController.doPrivileged(new URLFromStringAction(strings[0]));</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">		}</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">	} catch (java.net.MalformedURLException e) {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">		return false;</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">	} catch (PrivilegedActionException e) {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">		return false;</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">	}</span><br>	return true;<br>}<br><hr>
+</pre>
+</body>
+</html>

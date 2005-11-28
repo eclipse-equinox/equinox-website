@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Permission Analysis Report</title>
+  <script language="javaScript" src="linkUtil.js"></script>
+</head>
+<body>
+<h1>Permission Analysis Report</h1>
+<br>
+<h2>Analysis of: org.eclipse.swt.win32.win32.x86</h2>
+<b>Detail</b><br>
+<br>
+<pre>
+Class: <a href="foo"
+ onclick="return openURLinSrc( 'Application/org/eclipse/swt/custom/StyledText.html' )">org.eclipse.swt.custom.StyledText$RTFWriter</a> (Application)<br>DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/swt/custom/StyledText.html#L710" , parent.fbot ); return false'>Line# 715</a> void setUnicode(  )<br>   Permission: java.util.PropertyPermission "os.name", "read"<br>      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )<br><br><br><b>CODE</b><br><br>	void setUnicode() {<br>		final String Win95 = "windows 95";<br>		final String Win98 = "windows 98";<br>		final String WinME = "windows me";		<br>		final String WinNT = "windows nt";<br><span
+ style="color: rgb(255, 0, 0);">		String osName = System.getProperty("os.name").toLowerCase();</span><br>		String osVersion = System.getProperty("os.version");<br>		int majorVersion = 0;<br>		<br>		if (osName.startsWith(WinNT) &amp;&amp; osVersion != null) {<br>			int majorIndex = osVersion.indexOf('.');<br>			if (majorIndex != -1) {<br>				osVersion = osVersion.substring(0, majorIndex);<br>				try {<br>					majorVersion = Integer.parseInt(osVersion);<br>				}<br>				catch (NumberFormatException exception) {<br>					// ignore exception. version number remains unknown.<br>					// will write without Unicode<br>				}<br>			}<br>		}<br>		if (osName.startsWith(Win95) == false &amp;&amp;<br>			osName.startsWith(Win98) == false &amp;&amp;<br>			osName.startsWith(WinME) == false &amp;&amp;<br>			(osName.startsWith(WinNT) == false || majorVersion &gt; 4)) {<br>			WriteUnicode = true;<br>		}<br>		else {<br>			WriteUnicode = false;<br>		}<br>	}<br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.util.PropertyPermission "os.name", "read";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>By default, each plug-in has the above permission.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/swt/custom/StyledText.html#L711" , parent.fbot ); return false'>Line# 716</a> void setUnicode(  )<br>   Permission: java.util.PropertyPermission "os.version", "read"<br>      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )<br><br><br><b>CODE</b><br><br>	void setUnicode() {<br>		final String Win95 = "windows 95";<br>		final String Win98 = "windows 98";<br>		final String WinME = "windows me";		<br>		final String WinNT = "windows nt";<br>		String osName = System.getProperty("os.name").toLowerCase();<br><span
+ style="color: rgb(255, 0, 0);">		String osVersion = System.getProperty("os.version");</span><br>		int majorVersion = 0;<br>		<br>		if (osName.startsWith(WinNT) &amp;&amp; osVersion != null) {<br>			int majorIndex = osVersion.indexOf('.');<br>			if (majorIndex != -1) {<br>				osVersion = osVersion.substring(0, majorIndex);<br>				try {<br>					majorVersion = Integer.parseInt(osVersion);<br>				}<br>				catch (NumberFormatException exception) {<br>					// ignore exception. version number remains unknown.<br>					// will write without Unicode<br>				}<br>			}<br>		}<br>		if (osName.startsWith(Win95) == false &amp;&amp;<br>			osName.startsWith(Win98) == false &amp;&amp;<br>			osName.startsWith(WinME) == false &amp;&amp;<br>			(osName.startsWith(WinNT) == false || majorVersion &gt; 4)) {<br>			WriteUnicode = true;<br>		}<br>		else {<br>			WriteUnicode = false;<br>		}<br>	}<br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.util.PropertyPermission "os.version", "read";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>By default, each plug-in has the above permission.<br><hr>
+DoPrivileged location: <a
+ href="foo"
+ onclick='return openURLinFrame( "Application/org/eclipse/swt/custom/StyledText.html#L788" , parent.fbot ); return false'>Line# 793</a> void writeHeader(  )<br>   Permission: java.util.PropertyPermission "file.encoding", "read"<br>      Primordial/java.lang.String java.lang.System.getProperty( java.lang.String )<br><br><br><b>CODE</b><br><br>	void writeHeader() {<br>		StringBuffer header = new StringBuffer();<br>		FontData fontData = getFont().getFontData()[0];<br>		header.append("{\\rtf1\\ansi");<br>		// specify code page, necessary for copy to work in bidi <br>		// systems that don't support Unicode RTF.<br><span
+ style="color: rgb(255, 0, 0);">		String cpg = System.getProperty("file.encoding").toLowerCase();</span><br>		if (cpg.startsWith("cp") || cpg.startsWith("ms")) {<br>			cpg = cpg.substring(2, cpg.length());<br>			header.append("\\ansicpg");<br>			header.append(cpg);<br>		}<br>		header.append("\\uc0\\deff0{\\fonttbl{\\f0\\fnil ");<br>		header.append(fontData.getName());<br>		header.append(";}}\n{\\colortbl");<br>		for (int i = 0; i &lt; colorTable.size(); i++) {<br>			Color color = (Color) colorTable.elementAt(i);<br>			header.append("\\red");<br>			header.append(color.getRed());<br>			header.append("\\green");<br>			header.append(color.getGreen());<br>			header.append("\\blue");<br>			header.append(color.getBlue());<br>			header.append(";");<br>		} <br>		// some RTF readers ignore the deff0 font tag. Explicitly <br>		// set the font for the whole document to work around this.<br>		header.append("}\n{\\f0\\fs");<br>		// font size is specified in half points<br>		header.append(fontData.getHeight() * 2);<br>		header.append(" ");<br>		write(header.toString(), 0);<br>	}<br>
+<b>Tainted variable reference trace:</b><br><br>
+<b>Permission Requirements:</b><br><br><ul>
+<li>permission java.util.PropertyPermission "file.encoding", "read";</li>
+</ul><br><br>
+<b>Conclusion:</b><br><br>It tries to write the RTF header, therefore, the caller should need the above permission.<br><br>	void writeHeader() {<br>		StringBuffer header = new StringBuffer();<br>		FontData fontData = getFont().getFontData()[0];<br>		header.append("{\\rtf1\\ansi");<br>		// specify code page, necessary for copy to work in bidi <br>		// systems that don't support Unicode RTF.<br>		String cpg = null;<br><span
+ style="color: rgb(255, 0, 0);">		if(System.getSecurityManager() == null) {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			cpg = System.getProperty("file.encoding").toLowerCase();</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">		} else {</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">			cpg = ((String) AccessController.doPrivileged(new SecurePropertyAction("file.encoding"))).toLowerCase();</span><br
+ style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">		}</span><br
+ style="color: rgb(255, 0, 0);">		if (cpg.startsWith("cp") || cpg.startsWith("ms")) {<br>			cpg = cpg.substring(2, cpg.length());<br>			header.append("\\ansicpg");<br>			header.append(cpg);<br>		}<br>		header.append("\\uc0\\deff0{\\fonttbl{\\f0\\fnil ");<br>		header.append(fontData.getName());<br>		header.append(";}}\n{\\colortbl");<br>		for (int i = 0; i &lt; colorTable.size(); i++) {<br>			Color color = (Color) colorTable.elementAt(i);<br>			header.append("\\red");<br>			header.append(color.getRed());<br>			header.append("\\green");<br>			header.append(color.getGreen());<br>			header.append("\\blue");<br>			header.append(color.getBlue());<br>			header.append(";");<br>		} <br>		// some RTF readers ignore the deff0 font tag. Explicitly <br>		// set the font for the whole document to work around this.<br>		header.append("}\n{\\f0\\fs");<br>		// font size is specified in half points<br>		header.append(fontData.getHeight() * 2);<br>		header.append(" ");<br>		write(header.toString(), 0);<br>	}<br><hr>
+</pre>
+</body>
+</html>

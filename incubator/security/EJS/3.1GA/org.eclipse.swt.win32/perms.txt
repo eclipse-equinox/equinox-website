@@ -1,0 +1,436 @@
+		*********PERMISSIONS BY CLASS*********
+
+
+** Class: com.ibm.security.eclipse.SecurityManagerSetter$1
+	java.lang.RuntimePermission "setSecurityManager"
+
+** Class: org.eclipse.swt.awt.SWT_AWT
+	java.io.FilePermission "???file???", "read"
+	java.lang.RuntimePermission "loadLibrary.???library???"
+	java.lang.RuntimePermission "loadLibrary.jawt"
+	java.util.PropertyPermission "file.encoding", "read"
+	java.util.PropertyPermission "java.execsuffix", "read"
+	java.util.PropertyPermission "java.library.path", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "os.version", "read"
+	java.util.PropertyPermission "sun.boot.library.path", "read"
+	java.util.PropertyPermission "swt.version", "read"
+	java.util.PropertyPermission "user.dir", "read"
+
+** Class: org.eclipse.swt.browser.Browser$1
+	java.util.PropertyPermission "file.encoding", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "os.version", "read"
+
+** Class: org.eclipse.swt.custom.CCombo
+	java.util.PropertyPermission "file.encoding", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "os.version", "read"
+
+** Class: org.eclipse.swt.custom.CCombo$1
+	java.util.PropertyPermission "file.encoding", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "os.version", "read"
+
+** Class: org.eclipse.swt.custom.CTabFolder
+	java.util.PropertyPermission "file.encoding", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "os.version", "read"
+
+** Class: org.eclipse.swt.custom.CTabFolder$1
+	java.util.PropertyPermission "file.encoding", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "os.version", "read"
+
+** Class: org.eclipse.swt.custom.CTabFolder$2
+	java.util.PropertyPermission "file.encoding", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "os.version", "read"
+
+** Class: org.eclipse.swt.custom.CTabFolder$7
+	java.util.PropertyPermission "file.encoding", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "os.version", "read"
+
+** Class: org.eclipse.swt.custom.DefaultContent
+	java.util.PropertyPermission "file.encoding", "read"
+	java.util.PropertyPermission "line.separator", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "os.version", "read"
+
+** Class: org.eclipse.swt.custom.DisplayRenderer
+	java.util.PropertyPermission "file.encoding", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "os.version", "read"
+
+** Class: org.eclipse.swt.custom.PopupList
+	java.util.PropertyPermission "file.encoding", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "os.version", "read"
+
+** Class: org.eclipse.swt.custom.PopupList$1
+	java.util.PropertyPermission "file.encoding", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "os.version", "read"
+
+** Class: org.eclipse.swt.custom.PopupList$3
+	java.util.PropertyPermission "file.encoding", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "os.version", "read"
+
+** Class: org.eclipse.swt.custom.PopupList$4
+	java.util.PropertyPermission "file.encoding", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "os.version", "read"
+
+** Class: org.eclipse.swt.custom.SashForm
+	java.util.PropertyPermission "file.encoding", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "os.version", "read"
+
+** Class: org.eclipse.swt.custom.ScrolledComposite
+	java.util.PropertyPermission "file.encoding", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "os.version", "read"
+
+** Class: org.eclipse.swt.custom.ScrolledCompositeLayout
+	java.util.PropertyPermission "file.encoding", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "os.version", "read"
+
+** Class: org.eclipse.swt.custom.StyledText
+	java.util.PropertyPermission "file.encoding", "read"
+	java.util.PropertyPermission "line.separator", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "os.version", "read"
+
+** Class: org.eclipse.swt.custom.StyledText$6
+	java.util.PropertyPermission "file.encoding", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "os.version", "read"
+
+** Class: org.eclipse.swt.custom.StyledText$7
+	java.util.PropertyPermission "file.encoding", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "os.version", "read"
+
+** Class: org.eclipse.swt.custom.StyledText$8
+	java.util.PropertyPermission "file.encoding", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "os.version", "read"
+
+** Class: org.eclipse.swt.custom.StyledText$9
+	java.util.PropertyPermission "file.encoding", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "os.version", "read"
+
+** Class: org.eclipse.swt.custom.StyledText$ContentWidthCache
+	java.util.PropertyPermission "file.encoding", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "os.version", "read"
+
+** Class: org.eclipse.swt.custom.StyledText$Printing
+	java.util.PropertyPermission "file.encoding", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "os.version", "read"
+
+** Class: org.eclipse.swt.custom.StyledText$RTFWriter
+	java.util.PropertyPermission "file.encoding", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "os.version", "read"
+
+** Class: org.eclipse.swt.custom.StyledText$WordWrapCache
+	java.util.PropertyPermission "file.encoding", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "os.version", "read"
+
+** Class: org.eclipse.swt.custom.StyledTextListener
+	java.util.PropertyPermission "file.encoding", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "os.version", "read"
+
+** Class: org.eclipse.swt.custom.StyledTextRenderer
+	java.util.PropertyPermission "file.encoding", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "os.version", "read"
+
+** Class: org.eclipse.swt.custom.TableCursor
+	java.util.PropertyPermission "file.encoding", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "os.version", "read"
+
+** Class: org.eclipse.swt.custom.TableCursor$1
+	java.util.PropertyPermission "file.encoding", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "os.version", "read"
+
+** Class: org.eclipse.swt.custom.TableTree
+	java.util.PropertyPermission "file.encoding", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "os.version", "read"
+
+** Class: org.eclipse.swt.custom.TableTree$1
+	java.util.PropertyPermission "file.encoding", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "os.version", "read"
+
+** Class: org.eclipse.swt.custom.WrappedContent
+	java.util.PropertyPermission "file.encoding", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "os.version", "read"
+
+** Class: org.eclipse.swt.dnd.DropTarget
+	java.util.PropertyPermission "file.encoding", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "os.version", "read"
+
+** Class: org.eclipse.swt.dnd.URLTransfer
+	java.lang.RuntimePermission "getClassLoader"
+	java.net.NetPermission "specifyStreamHandler"
+
+** Class: org.eclipse.swt.graphics.Device
+	java.util.PropertyPermission "file.encoding", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "os.version", "read"
+
+** Class: org.eclipse.swt.graphics.Image
+	java.io.FilePermission "???file???", "read"
+
+** Class: org.eclipse.swt.graphics.ImageData
+	java.io.FilePermission "???file???", "read"
+
+** Class: org.eclipse.swt.graphics.ImageDataLoader
+	java.io.FilePermission "???file???", "read"
+
+** Class: org.eclipse.swt.graphics.ImageLoader
+	java.io.FilePermission "???file???", "read"
+	java.io.FilePermission "???file???", "write"
+
+** Class: org.eclipse.swt.internal.Callback
+	java.io.FilePermission "???file???", "read"
+	java.lang.RuntimePermission "loadLibrary.???library???"
+	java.util.PropertyPermission "java.execsuffix", "read"
+	java.util.PropertyPermission "java.library.path", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "sun.boot.library.path", "read"
+	java.util.PropertyPermission "swt.version", "read"
+	java.util.PropertyPermission "user.dir", "read"
+
+** Class: org.eclipse.swt.internal.Compatibility
+	java.io.FilePermission "<<ALL FILES>>", "execute"
+	java.io.FilePermission "???file???", "read"
+	java.io.FilePermission "???file???", "write"
+
+** Class: org.eclipse.swt.internal.Library
+	java.io.FilePermission "???file???", "read"
+	java.lang.RuntimePermission "loadLibrary.???library???"
+	java.util.PropertyPermission "java.execsuffix", "read"
+	java.util.PropertyPermission "java.library.path", "read"
+	java.util.PropertyPermission "java.version", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "sun.boot.library.path", "read"
+	java.util.PropertyPermission "swt.version", "read"
+	java.util.PropertyPermission "user.dir", "read"
+
+** Class: org.eclipse.swt.internal.gdip.Gdip
+	java.io.FilePermission "???file???", "read"
+	java.lang.RuntimePermission "loadLibrary.???library???"
+	java.util.PropertyPermission "java.execsuffix", "read"
+	java.util.PropertyPermission "java.library.path", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "sun.boot.library.path", "read"
+	java.util.PropertyPermission "swt.version", "read"
+	java.util.PropertyPermission "user.dir", "read"
+
+** Class: org.eclipse.swt.internal.win32.OS
+	java.io.FilePermission "???file???", "read"
+	java.lang.RuntimePermission "loadLibrary.???library???"
+	java.util.PropertyPermission "java.execsuffix", "read"
+	java.util.PropertyPermission "java.library.path", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "sun.boot.library.path", "read"
+	java.util.PropertyPermission "swt.version", "read"
+	java.util.PropertyPermission "user.dir", "read"
+
+** Class: org.eclipse.swt.ole.win32.OleClientSite
+	java.io.FilePermission "???file???", "read"
+	java.io.FilePermission "???file???", "write"
+
+** Class: org.eclipse.swt.program.Program
+	java.io.FilePermission "<<ALL FILES>>", "execute"
+
+** Class: org.eclipse.swt.widgets.Caret
+	java.util.PropertyPermission "file.encoding", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "os.version", "read"
+
+** Class: org.eclipse.swt.widgets.Combo
+	java.util.PropertyPermission "file.encoding", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "os.version", "read"
+
+** Class: org.eclipse.swt.widgets.Composite
+	java.util.PropertyPermission "file.encoding", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "os.version", "read"
+
+** Class: org.eclipse.swt.widgets.Control
+	java.util.PropertyPermission "file.encoding", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "os.version", "read"
+
+** Class: org.eclipse.swt.widgets.Decorations
+	java.util.PropertyPermission "file.encoding", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "os.version", "read"
+
+** Class: org.eclipse.swt.widgets.Display
+	java.util.PropertyPermission "file.encoding", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "os.version", "read"
+
+** Class: org.eclipse.swt.widgets.EventTable
+	java.util.PropertyPermission "file.encoding", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "os.version", "read"
+
+** Class: org.eclipse.swt.widgets.Menu
+	java.util.PropertyPermission "file.encoding", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "os.version", "read"
+
+** Class: org.eclipse.swt.widgets.ScrollBar
+	java.util.PropertyPermission "file.encoding", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "os.version", "read"
+
+** Class: org.eclipse.swt.widgets.Shell
+	java.util.PropertyPermission "file.encoding", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "os.version", "read"
+
+** Class: org.eclipse.swt.widgets.Spinner
+	java.util.PropertyPermission "file.encoding", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "os.version", "read"
+
+** Class: org.eclipse.swt.widgets.TabFolder
+	java.util.PropertyPermission "file.encoding", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "os.version", "read"
+
+** Class: org.eclipse.swt.widgets.Table
+	java.util.PropertyPermission "file.encoding", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "os.version", "read"
+
+** Class: org.eclipse.swt.widgets.TableColumn
+	java.util.PropertyPermission "file.encoding", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "os.version", "read"
+
+** Class: org.eclipse.swt.widgets.TableItem
+	java.util.PropertyPermission "file.encoding", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "os.version", "read"
+
+** Class: org.eclipse.swt.widgets.Text
+	java.util.PropertyPermission "file.encoding", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "os.version", "read"
+
+** Class: org.eclipse.swt.widgets.Tracker
+	java.util.PropertyPermission "file.encoding", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "os.version", "read"
+
+** Class: org.eclipse.swt.widgets.Tray
+	java.util.PropertyPermission "file.encoding", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "os.version", "read"
+
+** Class: org.eclipse.swt.widgets.TrayItem
+	java.util.PropertyPermission "file.encoding", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "os.version", "read"
+
+** Class: org.eclipse.swt.widgets.TypedListener
+	java.util.PropertyPermission "file.encoding", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "os.version", "read"
+
+** Class: org.eclipse.swt.widgets.Widget
+	java.util.PropertyPermission "file.encoding", "read"
+	java.util.PropertyPermission "os.name", "read"
+	java.util.PropertyPermission "os.version", "read"
+
+
+
+		*********PERMISSIONS BY CODE SOURCE*********
+
+
+
+========================================
+
+
+** CodeSource:
+	CodeBase: file:C:/wp/rcpanalysis/org.eclipse.swt.win32.win32.x86/org.eclipse.swt.win32.win32.x86.jar
+	Certificates:
+
+
+PERMISSIONS ALREADY GRANTED
+java.util.PropertyPermission "java.version" "read"
+java.util.PropertyPermission "java.vm.name" "read"
+java.util.PropertyPermission "java.vm.vendor" "read"
+java.util.PropertyPermission "os.name" "read"
+java.util.PropertyPermission "java.vendor.url" "read"
+java.util.PropertyPermission "java.vm.specification.vendor" "read"
+java.util.PropertyPermission "java.specification.vendor" "read"
+java.util.PropertyPermission "os.version" "read"
+java.util.PropertyPermission "java.specification.name" "read"
+java.util.PropertyPermission "java.class.version" "read"
+java.util.PropertyPermission "file.separator" "read"
+java.util.PropertyPermission "java.vm.version" "read"
+java.util.PropertyPermission "os.arch" "read"
+java.util.PropertyPermission "java.vm.specification.name" "read"
+java.util.PropertyPermission "java.vm.specification.version" "read"
+java.util.PropertyPermission "java.specification.version" "read"
+java.util.PropertyPermission "java.vendor" "read"
+java.util.PropertyPermission "path.separator" "read"
+java.util.PropertyPermission "line.separator" "read"
+java.net.SocketPermission "localhost:1024-" "listen,resolve"
+java.lang.RuntimePermission "stopThread" ""
+
+PERMISSIONS REQUIRED
+java.io.FilePermission "<<ALL FILES>>", "execute"
+java.io.FilePermission "???file???", "read"
+java.io.FilePermission "???file???", "write"
+java.lang.RuntimePermission "getClassLoader"
+java.lang.RuntimePermission "loadLibrary.???library???"
+java.lang.RuntimePermission "loadLibrary.jawt"
+java.net.NetPermission "specifyStreamHandler"
+java.util.PropertyPermission "file.encoding", "read"
+java.util.PropertyPermission "java.execsuffix", "read"
+java.util.PropertyPermission "java.library.path", "read"
+java.util.PropertyPermission "java.version", "read"
+java.util.PropertyPermission "line.separator", "read"
+java.util.PropertyPermission "os.name", "read"
+java.util.PropertyPermission "os.version", "read"
+java.util.PropertyPermission "sun.boot.library.path", "read"
+java.util.PropertyPermission "swt.version", "read"
+java.util.PropertyPermission "user.dir", "read"
+
+PERMISSIONS REQUIRED AND NOT ALREADY GRANTED
+java.io.FilePermission "<<ALL FILES>>", "execute"
+java.io.FilePermission "???file???", "read"
+java.io.FilePermission "???file???", "write"
+java.lang.RuntimePermission "getClassLoader"
+java.lang.RuntimePermission "loadLibrary.???library???"
+java.lang.RuntimePermission "loadLibrary.jawt"
+java.net.NetPermission "specifyStreamHandler"
+java.util.PropertyPermission "file.encoding", "read"
+java.util.PropertyPermission "java.execsuffix", "read"
+java.util.PropertyPermission "java.library.path", "read"
+java.util.PropertyPermission "sun.boot.library.path", "read"
+java.util.PropertyPermission "swt.version", "read"
+java.util.PropertyPermission "user.dir", "read"

@@ -1,0 +1,117 @@
+		*********DOPRIVILEGED ANALYSIS*********
+
+org.eclipse.swt.awt.SWT_AWT
+static
+synchronized
+ void loadLibrary(  ) #67
+java.io.FilePermission "???file???", "read"
+java.lang.RuntimePermission "loadLibrary.jawt"
+java.util.PropertyPermission "java.execsuffix", "read"
+java.util.PropertyPermission "java.library.path", "read"
+java.util.PropertyPermission "os.name", "read"
+java.util.PropertyPermission "sun.boot.library.path", "read"
+java.util.PropertyPermission "user.dir", "read"
+
+org.eclipse.swt.custom.DefaultContent
+static
+ void <clinit>(  ) #19
+java.util.PropertyPermission "line.separator", "read"
+
+org.eclipse.swt.custom.StyledText
+static
+ void <clinit>(  ) #82
+java.util.PropertyPermission "line.separator", "read"
+
+org.eclipse.swt.custom.StyledText$RTFWriter
+ void setUnicode(  ) #715
+java.util.PropertyPermission "os.name", "read"
+
+org.eclipse.swt.custom.StyledText$RTFWriter
+ void setUnicode(  ) #716
+java.util.PropertyPermission "os.version", "read"
+
+org.eclipse.swt.custom.StyledText$RTFWriter
+ void writeHeader(  ) #793
+java.util.PropertyPermission "file.encoding", "read"
+
+org.eclipse.swt.dnd.URLTransfer
+ boolean checkURL( java.lang.Object ) #139
+java.lang.RuntimePermission "getClassLoader"
+java.net.NetPermission "specifyStreamHandler"
+
+org.eclipse.swt.internal.Compatibility
+public
+static
+ void exec( java.lang.String ) #224
+java.io.FilePermission "<<ALL FILES>>", "execute"
+java.io.FilePermission "???file???", "execute"
+
+org.eclipse.swt.internal.Compatibility
+public
+static
+ void exec( java.lang.String[] ) #242
+java.io.FilePermission "<<ALL FILES>>", "execute"
+java.io.FilePermission "???file???", "execute"
+
+org.eclipse.swt.internal.Compatibility
+public
+static
+ java.io.InputStream newFileInputStream( java.lang.String ) #155
+java.io.FilePermission "???file???", "read"
+
+org.eclipse.swt.internal.Compatibility
+public
+static
+ java.io.OutputStream newFileOutputStream( java.lang.String ) #166
+java.io.FilePermission "???file???", "write"
+
+org.eclipse.swt.internal.Library
+static
+ void <clinit>(  ) #38
+java.util.PropertyPermission "java.version", "read"
+
+org.eclipse.swt.internal.Library
+public
+static
+ void loadLibrary( java.lang.String ) #107
+java.util.PropertyPermission "swt.version", "read"
+
+org.eclipse.swt.internal.Library
+public
+static
+ void loadLibrary( java.lang.String ) #123
+java.io.FilePermission "???file???", "read"
+java.lang.RuntimePermission "loadLibrary.???library???"
+java.util.PropertyPermission "java.execsuffix", "read"
+java.util.PropertyPermission "java.library.path", "read"
+java.util.PropertyPermission "os.name", "read"
+java.util.PropertyPermission "sun.boot.library.path", "read"
+java.util.PropertyPermission "user.dir", "read"
+
+org.eclipse.swt.internal.Library
+public
+static
+ void loadLibrary( java.lang.String ) #128
+java.io.FilePermission "???file???", "read"
+java.lang.RuntimePermission "loadLibrary.???library???"
+java.util.PropertyPermission "java.execsuffix", "read"
+java.util.PropertyPermission "java.library.path", "read"
+java.util.PropertyPermission "os.name", "read"
+java.util.PropertyPermission "sun.boot.library.path", "read"
+java.util.PropertyPermission "user.dir", "read"
+
+org.eclipse.swt.ole.win32.OleClientSite
+public
+ void <init>( org.eclipse.swt.widgets.Composite, int, java.lang.String, java.io.File ) #334
+java.io.FilePermission "???file???", "read"
+
+org.eclipse.swt.ole.win32.OleClientSite
+private
+ boolean saveFromContents( int, java.io.File ) #1080
+java.io.FilePermission "???file???", "write"
+
+org.eclipse.swt.ole.win32.OleClientSite
+private
+ boolean saveFromOle10Native( int, java.io.File ) #1128
+java.io.FilePermission "???file???", "write"
+
