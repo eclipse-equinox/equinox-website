@@ -52,7 +52,7 @@ major releases. The various other bundles developed here may ship independently
 <p>
   <b>Nov 21</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14"> The
   refactored Runtime has been contributed to this week's Integration builds.
-  See the <a href="../documents/3.2-migration.php">migration doc</a> and the
+  See the <a href="documents/3.2-migration.php">migration doc</a> and the
   <a href="bundles">bundles component</a> for more details.</p>
 <p><b>Oct 12</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14"> Two
     presentations on Eclipse and OSGi at OSGi Congress in Paris now available
