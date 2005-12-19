@@ -50,20 +50,22 @@ major releases. The various other bundles developed here may ship independently
   of Equinox.</p>
   <p class=bar>What's New</p>
 <p>
-  <b>Nov 21</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14"> The
+<p><b>Dec 15</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14"> 
+  8 new OSGi services are now available. Check out the <a href="http://www.eclipse.org/equinox/bundles">bundles page</a>.</p>
+<p><b>Nov 21</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14"> The
   refactored Runtime has been contributed to this week's Integration builds.
   See the <a href="documents/3.2-migration.php">migration doc</a> and the
   <a href="bundles">bundles component</a> for more details.</p>
-<p><b>Oct 12</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14"> Two
+<p><b>Oct 12</b> - Two
     presentations on Eclipse and OSGi at OSGi Congress in Paris now available
   on the <a href="documents">documents page</a>.</p>
-<p> <b></b><b>Oct 2</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14"> Track
+<p> <b></b><b>Oct 2</b> - Track
 the transition details in <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=110486">bugzilla</a>.</p>
-<p><b>Sept 23</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14"> Equinox
+<p><b>Sept 23</b> -  Equinox
   transition approved!! The infrastructure transition should begin presently.</p>
-<p><b>Sept 16</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14"> Transition
+<p><b>Sept 16</b> - Transition
     call scheduled for September 23, 2005 at 1800UTC (1400 EST).</p>
-<p><b>Sept 5</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14"> <a href="documents/transition.html">Proposal</a> to
+<p><b>Sept 5</b> - <a href="documents/transition.html">Proposal</a> to
   transition Equinox from the Technology PMC to the Eclipse PMC and have it be
   the official home of OSGi at Eclipse.</p>
 <p>&nbsp;</p>
