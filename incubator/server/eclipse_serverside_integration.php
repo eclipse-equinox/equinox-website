@@ -8,33 +8,32 @@
 </head>
 <body>
 <?php include("nav-include.html") ?>
-<p class=bar>Improving Eclipse / Server-Side Integration - Overview</p>
-<p>The Eclipse runtime was originally designed to run an IDE. It's a
-testament to the runtime's versatility that Eclipse is now used in a
-wide variety of RCP applications. Running on the server pushes this further and
-raises issues such as:</p>
-<ol>
-	<li>The OSGi URL Handlers Service requires two singleton operations be
-	set with an OSGi aware version
-	<ul>
-		<li>URL.setURLStreamHandlerFactory(…)</li>
-		<li>URLConnection.setContentHandlerFactory(…)</li>
-	</ul>
-	</li>
-	<li>The OSGi Conditional Permission Admin Specification requires the
-	SecurityManager be set to an OSGi aware version</li>
-	<li>Equinox uses System Properties for configuration properties, and as
-	the container for BundleContext properties.</li>
-</ol>
-<p>For the first two items, a key challenge to be managed is the fact
-that in many cases, J2EE app servers set these singletons before
-Equinox starts. This makes it dangerous or impossible for Eclipse
-to set them. The third item prevents Equinox from being
-instantiated multiple times. </p>
-<p>Tackling these issues will result in fairly large,
-cross-cutting changes in Equinox that are very difficult to
-resolve with individual patches. The goal for this area is to find a way to
-make these changes without compromising compatibility with existing Eclipse
-applications. Any changes will trace the HEAD very closely to facilitate integration.
-Ideally these changes would occur in the 3.2 timeframe.</p>
+<p class="bar">Improving Eclipse / Server-Side Integration - Overview</p>
+<p>As mentioned in the original proposal, the Eclipse runtime was originally designed to
+support a desktop IDE but has proven to be useful in  other contexts. One of the key goals
+of this incubator is to look at ways to improve server-side integration of Eclipse.</p> 
+
+<p>As much as possible activity occurs directly on the main Eclipse HEAD through bug reports 
+and conversation on the equinox-dev mailing list. <br /><i>Note: Should a sufficiently large
+sets of changes be considered the equinox-incubator "server" branch will be used however it
+is not currently active.</i></p>
+
+<p class="bar">Current Activity</p>
+<p><strong>OSGi URL Handler Service</strong>
+<ul>
+<li><i>singleton factory operations - RESOLVED - see <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=107909">bug 107909</a></i></li>
+<li><i>multiplexed factories - IN PROGRESS - see <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=121472">bug 121472</a></i></li>
+</ul> 
+</p>
+<p><strong>Framework Configuration</strong>
+<ul>
+<li><i>use of system properties - IN PROGRESS - see <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=105851">bug 105851</a></i></li>
+</ul>
+</p>
+<p><strong>Conditional Permission Admin</strong>
+<ul>
+<li><i>requires control of security manager - not currently logged</i></li>
+</li>
+</ul>
+
 </body>

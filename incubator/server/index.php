@@ -14,7 +14,7 @@
   there is significant interest in Equinox on the server. The Apache Geronimo
   folks are interested. Several &quot;people shipping server-based products today&quot;
   are also wanting to move to OSGi. This incubator project is targetted at eliminating
-  barriers to using and integrating OSGi (and Equinox more specificially) on
+  barriers to using and integrating OSGi (and Equinox more specifically) on
   the server.</p>
 <p>See the <a href="proposal.php">incubator proposal</a> for more detail.</p>
 <p class="bar">Working With the Server-side Incubator</p>
