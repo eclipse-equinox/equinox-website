@@ -25,15 +25,18 @@ is not currently active.</i></p>
 <li><i>multiplexed factories - IN PROGRESS - see <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=121472">bug 121472</a></i></li>
 </ul> 
 </p>
+<hr />
 <p><strong>Framework Configuration</strong>
 <ul>
 <li><i>use of system properties - IN PROGRESS - see <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=105851">bug 105851</a></i></li>
 </ul>
 </p>
+<hr />
 <p><strong>Conditional Permission Admin</strong>
 <ul>
 <li><i>requires control of security manager - not currently logged</i></li>
 </li>
 </ul>
-
+</p>
+<hr />
 </body>
