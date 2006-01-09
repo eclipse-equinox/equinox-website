@@ -13,16 +13,6 @@
 and interacting with various server-side containers. Currently, there is active work in the
 equinox-incubator CVS looking at embedding in a servlet container.</p>
 
-<!-- someday
-<p class=bar>Quickstart</p>
-<p>This set of instructions should get you up and running in a just a few minutes.</p>
-<ol>
-<li>Install a servlet container (e.g. <a href="tomcat.apache.org/">Tomcat</a>, <a href="jetty.mortbay.org/jetty/">Jetty</a>, or whatever is handy)</li>
-<li>Download and deploy this web application archive. (<a href="bridge.war">bridge.war</a>)</li>
-</ol>
--->
-
-
 <p>There are three Eclipse projects involved:
 <ul>
 <li><b>org.eclipse.equinox.servlet.bridge (Java)</b><br />
@@ -36,33 +26,19 @@ equinox-incubator CVS looking at embedding in a servlet container.</p>
 </li>
 </ul>
 </p>
-
-<p class="bar">Build Information</p>
-<p><i>The current build tools do not directly support building this style of application so for the time being build instructions
-are just descriptive. (A bug should be opened to track this once a stronger notion is developed for what sort of build infrastructure is required.)</i> 
-</p>
+<p>These three project can be downloaded from the equinox incubator CVS depot. <br /> 
+(e.g. cvsroot/eclipse/equinox-incubator/org.eclipse.equinox.servlet.bridge)
 <p><i>Note: To build and use these projects you'll need to be running Eclipse 3.2M4 or later.</i></p>
-<p>At a high-level the idea is to create a WAR file structured as follows:
-<ul style="list-style-type: none">
-<li>/WEB-INF
- <ul style="list-style-type: none">
- <li>/web.xml (with one servlet entry assigning all incoming requests to the BridgeServlet)</li>
- <li>/lib/servletbridge.jar (the classes associated with the equinox.servlet.bridge)</li>
- <li><b>/platform (the eclipse dir)</b>
-  <ul style="list-style-type: none">
-  <li>/configuration (contains config.ini which lists the bundles you want to have available)</li>
-  <li>/features</li>
-  <li>/plugins</li>
-  </ul>
- </li>
- </ul>
-</li>
-</ul>
-<p>The above structure is meant to be very close to an RCP application with the /platform directory
-holding something similar to an RCP application (but naturally containing components more sutitable
-for server side interaction). As with RCP applications there are a wide variety of possible
-configurations and what's given in org.eclipse.equinox.servlet is just one possibility.</p>
 
+<p class=bar>Quickstart</p>
+<p>This set of instructions should get you up and running in a just a few minutes.
+<ol>
+<li>Install a servlet container (e.g. <a href="tomcat.apache.org/">Tomcat</a>, <a href="jetty.mortbay.org/jetty/">Jetty</a>, or whatever is handy)</li>
+<li>Download and deploy this pre-built web application archive. (<a href="bridge.war">bridge.war</a>)</li>
+<li>Start the web container and verify things are installed correctly by going to "/sp_test". (e.g. http://localhost:8080/bridge/sp_test)
+</ol>
+At this point you should begin familiarizing yourself with the use of the OSGi console to manage the platform.
+</p>
 
 <p class="bar">Configuration</p>
 <p>The servlet.bridge web.xml provides a couple of initial parameters:
@@ -87,4 +63,55 @@ These commands are available at http://yourhost/yourcontext/sp_command. ( for ex
 </ul>
 </p>
 
-<p class="bar">Getting Started</p>
+<p class="bar">Extending</p>
+<p>Currently there are two approaches for extending the basic installation:
+<ol>
+<li>Write a bundle that uses the OSGi HttpService registered by org.eclipse.eqinox.servlet.httpservice</li>
+<li>Write a bundle that adds extensions from org.eclipse.equinox.servlet.ext</li>
+</ol>
+The functionality offered by either approach is very similar. The extension points in org.eclipse.equinox.servlet.ext are 
+simply a mapping of the OSGi HttpService.
+</p>
+
+<p class="bar">Build Information</p>
+<p><i>The current build tools do not directly support building this style of application so for the time being build instructions
+are just descriptive. (A bug should be opened to track this once a stronger notion is developed for what sort of build infrastructure is required.)</i> 
+</p>
+
+<p>At a high-level the idea is to create a WAR file structured as follows:
+<ul style="list-style-type: none">
+<li>/WEB-INF
+ <ul style="list-style-type: none">
+ <li>/web.xml (with one servlet entry assigning all incoming requests to the BridgeServlet)</li>
+ <li>/lib/servletbridge.jar (the classes associated with the equinox.servlet.bridge)</li>
+ <li><b>/platform (the eclipse dir)</b>
+  <ul style="list-style-type: none">
+  <li>/configuration (contains config.ini which lists the bundles you want to have available)</li>
+  <li>/features</li>
+  <li>/plugins</li>
+  </ul>
+ </li>
+ </ul>
+</li>
+</ul>
+<p>The above structure is meant to be very close to an RCP application with the /platform directory
+holding something similar to an RCP application (but naturally containing components more suitable
+for server side interaction). </p>
+
+A reasonable way to think of the build is to divide into two initial pieces:
+<ol>
+<li>The web-app portion (based on the servlet.bridge)</li>
+<li>The eclipse portion</li>
+</ol>
+These two pieces should then be combined by placing the eclipse portion in the "/platform"
+directory. 
+<p>For example, org.eclipse.equinox.servlet.bridge has a simple ant script "projectbuilder.xml" that will create 
+the war file structure above under org.eclipse.equinox.servlet.bridge/build/bridge. If you then create a 
+feature project and matchup the bundles in config.ini you can export to /platform and have a working web-app identical
+to the download in Quickstart.
+</p>
+
+As with RCP applications there are a wide variety of possible configurations. What's given
+in org.eclipse.equinox.servlet is just one possibility.</p>
+<hr />
+
