@@ -37,7 +37,8 @@ equinox-incubator CVS looking at embedding in a servlet container.</p>
 <li>Download and deploy this pre-built web application archive. (<a href="bridge.war">bridge.war</a>)</li>
 <li>Start the web container and verify things are installed correctly by going to "/sp_test". (e.g. http://localhost:8080/bridge/sp_test)
 </ol>
-At this point you should begin familiarizing yourself with the use of the OSGi console to manage the platform.
+At this point you should begin familiarizing yourself with the use of the OSGi console to manage the platform.<br />
+Why not see if you can install and start the http-console bundle described <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=122911">here</a>.
 </p>
 
 <p class="bar">Configuration</p>
