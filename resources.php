@@ -11,14 +11,19 @@
 
 <p class=bar>Resources</p>
 <table BORDER=0 CELLSPACING=5 CELLPADDING=2 WIDTH="100%" >
-	<tr>
-      <td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-      <td width="98%"><a href="news://news.eclipse.org/eclipse.technology.equinox" target="_top"><b>Newsgroup</b></a><br>
-    Talk to the people using Equinox</td>
+  <tr>
+    <td align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+    <td><a href="http://wiki.eclipse.org/index.php/Equinox" target="_top"><b>Wiki</b></a><br>
+    The Equinox project Wiki.</td>
   </tr>
 	<tr>
       <td align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-      <td><a href="http://dev.eclipse.org/mailman/listinfo/equinox-dev" target="_top"><b>Mailing
+      <td><a href="news://news.eclipse.org/eclipse.technology.equinox" target="_top"><b>Newsgroup</b></a><br>
+    Talk to the people using Equinox</td>
+  </tr>
+	<tr>
+      <td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+      <td width="98%"><a href="http://dev.eclipse.org/mailman/listinfo/equinox-dev" target="_top"><b>Mailing
             list </b></a><br>
     Talk to the people working on Equinox</td>
   </tr>
