@@ -17,7 +17,7 @@
   let the tools do their work.</p>
 <p class="subbar">Legal</p>
 <ul>
-<li> <strong>All non-committer contributions must be tracked.</strong> The easiest way is to put
+<li> <strong>All committed contributions from non-committers must be tracked.</strong> The easiest way is to put
   &quot;[contributed patch applied]&quot; in a comment in the bug report that contains
   the patch/contribution.</li>
   <li>All classes MUST have the correct copyright notice. See XXX for a template.</li>
