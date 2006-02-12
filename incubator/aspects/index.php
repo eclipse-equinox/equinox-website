@@ -16,7 +16,26 @@
   of aspects and OSGi.</p>
 <p>The first step will be implement load-time aspect weaving for the platform runtime
   to allow bundles to contribute aspects to the running system. Those aspects would be
-  woven into other bundles if required and defined at class-loading time.</p>
+  woven into other bundles (if required and defined) at class-loading time.</p>
+<p>The goal is to allow developers to use the OSGi runtime of Eclipse together with
+  AspectJ by combining the benefits of both worlds. Using the load-time weaving extension
+  you are able to add AspectJ aspects to your bundle-based system just by putting them
+  into general OSGi bndles. It does not matter if the pointcuts you defined inside the
+  aspects contain join points that are defined by classes within the same bundle or any
+  other bundle in your installation. The load-time weaving extension will take care that
+  your aspects are woven with the appropriate classes at load-time.<br>
+  To illustrate this lets assume the following situation: You would like to write an
+  aspect that traces something within the JDT plug-ins of Eclipse. Without some kind of
+  load-time aspect weaving you would somehow need to recompile those JDT plug-ins using
+  AJDT (for example) together with your aspect. By using the load-time aspect weaving
+  extension all you need is to implement your aspect and add that bundle to your system.
+  The load-time aspect weaving extension takes care of weaving your aspect with the
+  JDT code as it is loaded. And it doesn?t matter if a new JDT is installed by the user
+  later on. The next time your application is started the load-time aspect weaving will
+  take care of weaving your aspect into these bundles as well, if necessary.<br>
+  With this technology is becomes possible to modularize crosscutting concerns across
+  different plug-ins while keeping the idea of separate compilation for bundles.</p>
+
 <p class=bar>Working With the Aspects Incubator</p>
 <p>The Aspects incubator uses the main <a href="../resources.php">incubator resources</a> with
   the following refinements.</p>
