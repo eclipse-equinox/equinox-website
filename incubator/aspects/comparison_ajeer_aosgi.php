@@ -65,7 +65,7 @@ caching. Enhancments to the existing AspectJ WeavingAdaptor will be
 required to override the use of aop.xml files.</p>
 
 <p>
-AOSGi - Supporting AspectJ Load-Time Weaving in OSGi</p>
+<b>AOSGi - Supporting AspectJ Load-Time Weaving in OSGi</b></p>
 
 <p>
 Byte-code weaving is achieved by replacing the default Framework Adaptor
@@ -112,7 +112,7 @@ additional attributes have the following syntax and semantics:</p
 
 <p>
 Supplement-Importer: PackageSpecificationPattern [,
-PackageSpecificationPattern]*
+PackageSpecificationPattern]*<br>
    Where PackageSpecificationPattern is any valid OSGi package
    specification (as used in an Import-Package attribute) but with the
    addition that wild cards are allowed (*,..) in the package name.</p>
@@ -136,7 +136,7 @@ to its classpath. The semantics are the same as if the supplemented bundle
 specified a Require-Bundle header naming the supplementing bundle.</p>
 
 <p>
-Supplement-Bundle: BundleNamePattern [, BundleNamePattern]*
+Supplement-Bundle: BundleNamePattern [, BundleNamePattern]*<br>
    Where BundleNamePattern is the name of an OSGi bundle (as used in the
    Require-Bundle: attribute) but with the addition that wild cards are
    allowed (.,..,*) at the end of bundle names only (e.g.
