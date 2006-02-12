@@ -14,7 +14,9 @@
   aspects by supplying them in bundles and directing their application to particular
   sets of bundles. This incubator work area is dedicated to the investigation
   of aspects and OSGi.</p>
-<p>&lt;more here&gt;</p>
+<p>The first step will be implement load-time aspect weaving for the platform runtime
+  to allow bundles to contribute aspects to the running system. Those aspects would be
+  woven into other bundles if required and defined at class-loading time.</p>
 <p class=bar>Working With the Aspects Incubator</p>
 <p>The Aspects incubator uses the main <a href="../resources.php">incubator resources</a> with
   the following refinements.</p>
@@ -29,12 +31,22 @@
     <td width="59%"><strong>Branch</strong></td>
   </tr>
   <tr>
-    <td>org.eclipse.osgi</td>
+    <td>(current activity uses the main Eclipse 3.2 HEAD)</td>
     <td>aspects</td>
   </tr>
 </table>
+<p class="bar">Current Activities</p>
+<ul>
+<li><b>Building a load-time weaving runtime extension</b><br/>
+  We are currently trying to unify two slightly different implementautions of load-time aspect
+  weaving for the Eclipse runtime: <a href="http://sourceforge.net/projects/ajeer">AJEER</a> and AOSGi (internal IBM implementation).
+  Read more about <a href="comparison_ajeer_aosgi.php">how these two approaches relate to each other</a>.
+</li>
+</ul>
+</p>
 <p class=bar>Active investigators</p>
-<ul><li>Martin Lippert (it-agile)</li>
+<ul>
+  <li>Martin Lippert (it-agile)</li>
   <li>Matthew Webster (IBM)</li>
 </ul>
 </body>
