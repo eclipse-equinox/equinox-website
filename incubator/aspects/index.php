@@ -23,8 +23,8 @@
   into general OSGi bndles. It does not matter if the pointcuts you defined inside the
   aspects contain join points that are defined by classes within the same bundle or any
   other bundle in your installation. The load-time weaving extension will take care that
-  your aspects are woven with the appropriate classes at load-time.<br>
-  To illustrate this lets assume the following situation: You would like to write an
+  your aspects are woven with the appropriate classes at load-time.</p>
+<p>To illustrate this lets assume the following situation: You would like to write an
   aspect that traces something within the JDT plug-ins of Eclipse. Without some kind of
   load-time aspect weaving you would somehow need to recompile those JDT plug-ins using
   AJDT (for example) together with your aspect. By using the load-time aspect weaving
@@ -32,8 +32,8 @@
   The load-time aspect weaving extension takes care of weaving your aspect with the
   JDT code as it is loaded. And it doesn?t matter if a new JDT is installed by the user
   later on. The next time your application is started the load-time aspect weaving will
-  take care of weaving your aspect into these bundles as well, if necessary.<br>
-  With this technology is becomes possible to modularize crosscutting concerns across
+  take care of weaving your aspect into these bundles as well, if necessary.</p>
+<p>With this technology is becomes possible to modularize crosscutting concerns across
   different plug-ins while keeping the idea of separate compilation for bundles.</p>
 
 <p class=bar>Working With the Aspects Incubator</p>
