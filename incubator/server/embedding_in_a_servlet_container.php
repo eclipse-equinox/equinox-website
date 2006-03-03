@@ -28,7 +28,7 @@ equinox-incubator CVS looking at embedding in a servlet container.</p>
 </p>
 <p>These three project can be downloaded from the equinox incubator CVS depot. <br /> 
 (e.g. cvsroot/eclipse/equinox-incubator/org.eclipse.equinox.servlet.bridge)
-<p><i>Note: To build and use these projects you'll need to be running Eclipse 3.2M4 or later.</i></p>
+<p><i>Note: To build and use these projects you'll need to be running Eclipse 3.2M5 or later.</i></p>
 
 <p class=bar>Quickstart</p>
 <p>This set of instructions should get you up and running in a just a few minutes.
