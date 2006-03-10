@@ -36,6 +36,12 @@
 <p>With this technology is becomes possible to modularize crosscutting concerns across
   different plug-ins while keeping the idea of separate compilation for bundles.</p>
 
+<p class=bar>Goals</p>
+<p><b>Provide Runtime Modularity and Versioning for Cross-Cutting Concerns:</b> Aspects are used to
+implement crosscutting concerns. However such concerns usually comprise of interfaces, classes and 
+configurations as well as at least one aspect. OSGi bundles provide an ideal mechanism for packaging 
+and applying crosscutting concerns.
+
 <p class=bar>Working With the Aspects Incubator</p>
 <p>The Aspects incubator uses the main <a href="../resources.php">incubator resources</a> with
   the following refinements.</p>
