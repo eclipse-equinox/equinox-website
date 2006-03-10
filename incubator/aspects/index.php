@@ -36,6 +36,7 @@
 <p>With this technology is becomes possible to modularize crosscutting concerns across
   different plug-ins while keeping the idea of separate compilation for bundles.</p>
 
+<p class=bar>Goals</p>
 <p><b>Provide Runtime Modularity and Versioning for Crosscutting Concerns:</b> Aspects are used to implement crosscutting concerns. However such concerns usually comprise of interfaces, classes and configurations as well as at least one aspect. OSGi bundles provide an ideal mechanism for packaging and applying crosscutting concerns. Aspects can also provide a new interface to existing functionality: rather than explicitly invoking a security API methods that require authorization can be selected using pointcut or identified using an annotation.
 <p><b>Facilitate the Independent Delivery of Crosscutting Capability:</b> Traditionally AspectJ applications have been compiled and woven at the same time. This produces a complete application with no special requirements other than a dependence on the AspectJ runtime which can be executed on any JVM. However this monolithic approach prevents elements of the application and the aspects themselves from evolving separately. An aspect-enabled OSGi allows an application to be deployed and maintained as a set of components which implement both core and crosscutting capability.
 
