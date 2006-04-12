@@ -18,23 +18,23 @@ and conversation on the equinox-dev mailing list. <br /><i>Note: Should a suffic
 sets of changes be considered the equinox-incubator "server" branch will be used however it
 is not currently active.</i></p>
 
-<p class="bar">Current Activity</p>
+<p class="bar">Current Activity (Completed for 3.2)</p>
 <p><strong>OSGi URL Handler Service</strong>
 <ul>
 <li><i>singleton factory operations - RESOLVED - see <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=107909">bug 107909</a></i></li>
-<li><i>multiplexed factories - IN PROGRESS - see <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=121472">bug 121472</a></i></li>
+<li><i>multiplexed factories - RESOLVED - see <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=121472">bug 121472</a></i></li>
 </ul> 
 </p>
 <hr />
 <p><strong>Framework Configuration</strong>
 <ul>
-<li><i>use of system properties - IN PROGRESS - see <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=105851">bug 105851</a></i></li>
+<li><i>use of system properties - RESOLVED - see <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=105851">bug 105851</a></i></li>
 </ul>
 </p>
-<hr />
+<p class="bar">Future Activity</p>
 <p><strong>Conditional Permission Admin</strong>
 <ul>
-<li><i>requires control of security manager - not currently logged</i></li>
+<li><i>requires control of security manager - not currently logged (Planned Activity for 3.3)</i></li>
 </li>
 </ul>
 </p>
