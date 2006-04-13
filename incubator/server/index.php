@@ -48,6 +48,17 @@
 </ul>
 </p>
 
+<p class="bar">Resources / Articles</p>
+<ul>
+<li><a href="http://www.abo.fi/~mbuechi/publications/EclipsePlugins.html">Eclipse Plugin-Based Applications and J2EE Components</a> (Martin Büchi) <br />
+<i>Martin was integrating with pre-OSGi Eclipse but nonetheless ran into many similar problems. Very interesting stuff.</i></li>
+<li><a href="http://www.infonoia.com/en/content.jsp?d=inf.05.07">Eclipse goes Server-side!</a> and 
+<a href="http://www.infonoia.com/en/content.jsp?d=inf.05.09">Developing Eclipse/OSGi component webapps</a> (Wolfgang Gehner) <br />
+<i>An early adopter of this technology, in these articles Wolfgang motivates the building of Web UI components with OSGi.</i>
+</li>
+</ul>
+
+
 <p class="bar">Active investigators</p>
 <ul>
 <li>Simon Kaegi (Cognos)</li>
