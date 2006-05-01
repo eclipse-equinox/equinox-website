@@ -42,6 +42,9 @@
 
 <p class=bar>Events</p>
 <p>Both investigators will be at EclipseCon 2006. See the special <a href="http://www.eclipsecon.org/2006/Sub.do?id=522"/>Aspect-Oriented Programming Track</a> for details of how to learn more about AOP, AspectJ and the Aspect Equinox Incubator.
+<ul>
+<li>Demo: Integrating Load-Time Weaving into OSGi (<a href="EclipseCon2006-DemoIntegratingLoadTimeWeavingIntoOSGi.ppt">slides, ppt</a>)</li>
+</ul>
 
 <p class=bar>Working With the Aspects Incubator</p>
 <p>The Aspects incubator uses the main <a href="../resources.php">incubator resources</a> with
