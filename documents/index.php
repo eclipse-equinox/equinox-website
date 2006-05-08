@@ -30,7 +30,10 @@
 	    <li><a href="osgicongress2005/debugging.html">Remote debugging on the Slug</a> (demo
 	      movie)</li>
       </ul>
-  </li>
+    </li>
+    <li><a href="http://eclipsecon.com">EclipseCon 2006</a> (March)
+      - <a href="TutorialEclipseCon06.ppt">OSGi Component Programming Tutorial</a> - Tom Watson &amp; Peter Kriens</li>
+    </li>
 </ul>
 
 
