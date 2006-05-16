@@ -30,7 +30,51 @@ as a single object or something as abstract as an OSGI bundle.</p>
   </tr>
   <tr>
     <td>HEAD</td>
-    <td><i>(current activity uses the main Eclipse 3.2 HEAD)</i></td>    
+    <td><tt>org.eclipse.equinox.jmx.client.feature</tt></td>    
+  </tr>
+  <tr>
+    <td>HEAD</td>
+    <td><tt>org.eclipse.equinox.jmx.server.feature</tt></td>    
+  </tr>
+  <tr>
+    <td>HEAD</td>
+    <td><tt>org.eclipse.core.resources.jmx</tt></td>    
+  </tr>
+  <tr>
+    <td>HEAD</td>
+    <td><tt>org.eclipse.equinox.jmx.client</tt></td>    
+  </tr>
+  <tr>
+    <td>HEAD</td>
+    <td><tt>org.eclipse.equinox.jmx.common</tt></td>    
+  </tr>
+  <tr>
+    <td>HEAD</td>
+    <td><tt>org.eclipse.equinox.jmx.rmi</tt></td>    
+  </tr>
+  <tr>
+    <td>HEAD</td>
+    <td><tt>org.eclipse.equinox.jmx.server</tt></td>    
+  </tr>
+  <tr>
+    <td>HEAD</td>
+    <td><tt>org.eclipse.equinox.jmx.vm</tt></td>    
+  </tr>
+  <tr>
+    <td>HEAD</td>
+    <td><tt>org.eclipse.equinox.preferences.jmx</tt></td>    
+  </tr>
+  <tr>
+    <td>HEAD</td>
+    <td><tt>org.eclipse.osgi.jmx</tt></td>    
+  </tr>
+  <tr>
+    <td>HEAD</td>
+    <td><tt>org.eclipse.swt.jmx</tt></td>    
+  </tr>
+  <tr>
+    <td>HEAD</td>
+    <td><tt>org.eclipse.equinox.incubator.releng</tt></td>    
   </tr>
 </table>
 <br/>
