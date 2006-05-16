@@ -33,7 +33,7 @@ The goal of the Equinox Incubator is to experiment with techniques for
   <tr>
       <td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
       <td width="98%"><a href="monitoring/index.php" target="_top"><b>Remote Resource Monitoring</b></a><br>
-    Connect to a remotely running Eclipse and monitor its resources.</td>
+	Its a cool, lightweight, infrastructure for monitoring running OSGi based systems.</td>
   </tr>
 	<tr>
       <td align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
@@ -57,7 +57,7 @@ The goal of the Equinox Incubator is to experiment with techniques for
 
 <P class="bar">What's New</P>
 <p><b>May 16, 2006</b> - <IMG src="http://www.eclipse.org/images/new.gif"
-	width="31" height="14"> Added Remote Resource Monitoring work area.</p>
+	width="31" height="14"> Added <a href="monitoring/index.php">Remote Resource Monitoring</a> work area.</p>
 <P><B>Nov 11, 2005</B> - Created the <a href="server">Server-side incubator</a>.</P>
 <P><B>Oct 12, 2005</B> - Presentation on SWORD4J at OSGi Congress in Paris now
 available on the <A href="security/documents/index.html" target="_parent">documents
