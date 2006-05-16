@@ -29,50 +29,62 @@ as a single object or something as abstract as an OSGI bundle.</p>
     <td width="59%"><strong>Project</strong></td>
   </tr>
   <tr>
+  	<td> </td>
     <td>HEAD</td>
     <td><tt>org.eclipse.equinox.jmx.client.feature</tt></td>    
   </tr>
   <tr>
+  	<td> </td>
     <td>HEAD</td>
     <td><tt>org.eclipse.equinox.jmx.server.feature</tt></td>    
   </tr>
   <tr>
+  	<td> </td>
     <td>HEAD</td>
     <td><tt>org.eclipse.core.resources.jmx</tt></td>    
   </tr>
   <tr>
+  	<td> </td>
     <td>HEAD</td>
     <td><tt>org.eclipse.equinox.jmx.client</tt></td>    
   </tr>
   <tr>
+  	<td> </td>
     <td>HEAD</td>
     <td><tt>org.eclipse.equinox.jmx.common</tt></td>    
   </tr>
   <tr>
+  	<td> </td>
     <td>HEAD</td>
     <td><tt>org.eclipse.equinox.jmx.rmi</tt></td>    
   </tr>
   <tr>
+  	<td> </td>
     <td>HEAD</td>
     <td><tt>org.eclipse.equinox.jmx.server</tt></td>    
   </tr>
   <tr>
+  	<td> </td>
     <td>HEAD</td>
     <td><tt>org.eclipse.equinox.jmx.vm</tt></td>    
   </tr>
   <tr>
+  	<td> </td>
     <td>HEAD</td>
     <td><tt>org.eclipse.equinox.preferences.jmx</tt></td>    
   </tr>
   <tr>
+  	<td> </td>
     <td>HEAD</td>
     <td><tt>org.eclipse.osgi.jmx</tt></td>    
   </tr>
   <tr>
+  	<td> </td>
     <td>HEAD</td>
     <td><tt>org.eclipse.swt.jmx</tt></td>    
   </tr>
   <tr>
+  	<td> </td>
     <td>HEAD</td>
     <td><tt>org.eclipse.equinox.incubator.releng</tt></td>    
   </tr>
