@@ -29,7 +29,6 @@ as a single object or something as abstract as an OSGI bundle.</p>
     <td width="59%"><strong>Project</strong></td>
   </tr>
   <tr>
-  	<td> </td>
     <td>HEAD</td>
     <td><tt>org.eclipse.equinox.jmx.client.feature</tt></td>    
   </tr>
