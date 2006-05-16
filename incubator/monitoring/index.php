@@ -120,9 +120,12 @@ Running:
 <li>Load the projects from the repository (see above) and then run a Runtime Workbench
 with the project as part of your plug-in set.</li>
 </ul>
-or
+<blockquote>or</blockquote>
 <ul>
 <li>Unzip the client and/or the server feature(s) into an existing Eclipse install.
+</ul>
+<blockquote>then</blockquote>
+<ul>
 <li>Start the Eclipse application which contains the installed server feature (starting Eclipse by default starts 
 the jmx server).
 <li>Start the Eclipse application (if not already running) which contains the installed client feature and switch 
