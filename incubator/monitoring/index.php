@@ -9,13 +9,13 @@
 <body>
 <?php include("nav-include.html") ?>
 <p class="bar">Mission Statement</p>
-<p>To provide Eclipse users with the ability to leverage the advantages of jmx by providing
+<p>To provide 
 a framework for monitoring resources remotely that are contributed by bundles installed
 on the host machine.  The term 'resources' is used to describe something as specific
 as a single object or something as abstract as an OSGI bundle.</p>
 <p>See the <a href="http://www.eclipse.org/equinox/documents/tools-proposal.php">incubator proposal</a> for more detail.</p>
 <p class="bar">Working With the remote monitoring framework</p>
-<p>The jmx incubator uses the main <a href="../resources.php">incubator
+<p>The monitoring incubator uses the main <a href="../resources.php">incubator
     resources</a> with the following refinements.</p>
 <table width="100%" border="0">
   <tr>
