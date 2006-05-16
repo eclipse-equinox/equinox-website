@@ -103,11 +103,16 @@ Requirements:
 Development:
 <ul>
 <li>Check out the <tt>org.eclipse.equinox.incubator.releng</tt> project from the repository.</li>
-<li>Navigate to the <em>monitoring</em> sub-folder.</li>
-<li>Select the appropriate project-set files and import them.</li>
+<li>Navigate to the <tt>monitoring</tt> sub-folder.</li>
+<li>Select the appropriate project-set file(s) and import them.</li>
 </ul>
 
 Running:
+<ul>
+<li>Load the projects from the repository (see above) and then run a Runtime Workbench
+with the project as part of your plug-in set.</li>
+</ul>
+or
 <ul>
 <li>Unzip the client and/or the server feature(s) into an existing Eclipse install.
 <li>Start the Eclipse application which contains the installed server feature (starting Eclipse by default starts 
