@@ -13,7 +13,7 @@
 a framework for monitoring resources remotely that are contributed by bundles installed
 on the host machine.  The term 'resources' is used to describe something as specific
 as a single object or something as abstract as an OSGI bundle.</p>
-<p>See the <a href="proposal.php">incubator proposal</a> for more detail.</p>
+<p>See the <a href="http://www.eclipse.org/equinox/documents/tools-proposal.php">incubator proposal</a> for more detail.</p>
 <p class="bar">Working With the remote monitoring framework</p>
 <p>The jmx incubator uses the main <a href="../resources.php">incubator
     resources</a> with the following refinements.</p>
