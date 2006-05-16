@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<title>Equinox OSGi incubator</title>
+<title>Equinox OSGi incubator - Remote Resource Monitoring</title>
 <link rel="stylesheet" href="http://dev.eclipse.org/default_style.css" type="text/css">
 <link rel="stylesheet" href="../../equinox.css" type="text/css">
 </head>
