@@ -33,7 +33,8 @@ as a single object or something as abstract as an OSGI bundle.</p>
     <td><i>(current activity uses the main Eclipse 3.2 HEAD)</i></td>    
   </tr>
 </table>
-<br/><IMG height="14"	src="http://www.eclipse.org/images/new.gif" width="31"><a href="./devel.html">Developer resources</a>
+<br/>
+
 <p class="bar">Current Activity</p>
 The current implementation consists of a set of features and bundles that are intended to be placed
 in your eclipse install.  <br/>
