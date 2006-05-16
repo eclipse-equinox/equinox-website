@@ -10,14 +10,13 @@
 <?php include("nav-include.html") ?>
 <p class="bar">Mission Statement</p>
 <p>To provide Eclipse users with the ability to leverage the advantages of jmx by providing
-a framework for managing resources remotely that are contributed by plugins installed
+a framework for monitoring resources remotely that are contributed by plug-ins installed
 on the host machine.  The term 'resources' is used to describe something as specific
 as a single object or something as abstract as an OSGI bundle.</p>
 <p>See the <a href="proposal.php">incubator proposal</a> for more detail.</p>
-<p class="bar">Working With the remote management framework</p>
+<p class="bar">Working With the remote monitoring framework</p>
 <p>The jmx incubator uses the main <a href="../resources.php">incubator
-    resources</a> with
-  the following refinements.</p>
+    resources</a> with the following refinements.</p>
 <table width="100%" border="0">
   <tr>
     <td><strong>Bugs</strong></td>
@@ -30,16 +29,14 @@ as a single object or something as abstract as an OSGI bundle.</p>
     <td width="59%"><strong>Project</strong></td>
   </tr>
   <tr>
-    <td>jmx</td>
+    <td>HEAD</td>
     <td><i>(current activity uses the main Eclipse 3.2 HEAD)</i></td>    
   </tr>
 </table>
 <br/><IMG height="14"	src="http://www.eclipse.org/images/new.gif" width="31"><a href="./devel.html">Developer resources</a>
 <p class="bar">Current Activity</p>
 The current implementation consists of a set of features and plug-ins that are intended to be placed
-in your eclipse install.  Note, included is a patched version of the <tt>org.eclipse.osgi</tt> plugin which
-is required in order to function correctly; it is recommended that you replace the current <tt>org.eclipse.osgi</tt> plugin
-with the patched version.</br></br>
+in your eclipse install.  <br/>
 Requirements:
 <ul>
 <li>Java runtime version 1.4 or 1.5 depending on which plugins are to be used.
