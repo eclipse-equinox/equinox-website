@@ -93,11 +93,20 @@ as a single object or something as abstract as an OSGI bundle.</p>
 <p class="bar">Current Activity</p>
 The current implementation consists of a set of features and bundles that are intended to be placed
 in your eclipse install.  <br/>
+
 Requirements:
 <ul>
 <li>Java runtime version 1.4 or 1.5 depending on which plugins are to be used.
 <li>Tested with Eclipse 3.2RC1.
 </ul>
+
+Development:
+<ul>
+<li>Check out the <tt>org.eclipse.equinox.incubator.releng</tt> project from the repository.</li>
+<li>Navigate to the <em>monitoring</em> sub-folder.</li>
+<li>Select the appropriate project-set files and import them.</li>
+</ul>
+
 Running:
 <ul>
 <li>Unzip the client and/or the server feature(s) into an existing Eclipse install.
