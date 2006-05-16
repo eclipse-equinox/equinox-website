@@ -90,6 +90,12 @@ as a single object or something as abstract as an OSGI bundle.</p>
 </table>
 <br/>
 
+<p class="bar">Latest Zips</p>
+If you don't want to check the code out of the repository and export your own plug-ins and 
+features, here are some zip files for the client and server.<br>
+org.eclipse.equinox.monitoring.client<a href="downloads/org.eclipse.equinox.monitoring.client_1.0.0.200605161524.zip">1.0.0.200605161524</a><br>
+org.eclipse.equinox.monitoring.server <a href="downloads/org.eclipse.equinox.monitoring.server_1.0.0.200605161524.zip">1.0.0.200605161524</a><br>
+
 <p class="bar">Current Activity</p>
 The current implementation consists of a set of features and bundles that are intended to be placed
 in your eclipse install.  <br/>
@@ -129,7 +135,6 @@ Navigating the tree view allows you to inspect and invoke operations exposed by 
 contributed as mbeans.</li>
 <li>To disconnect, select 'Disconnect' from the 'JMX Server' menu in the toolbar.</li>
 </ul>
-Note: The client and server archives both contain the <font face="bold">org.eclipse.jmx.common plugin as it is a requirement for both.
 </p>
 <p class="bar">Active investigators</p>
 <ul>
