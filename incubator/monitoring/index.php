@@ -50,6 +50,11 @@ as a single object or something as abstract as an OSGI bundle.</p>
   <tr>
   	<td> </td>
     <td>HEAD</td>
+    <td><tt>org.eclipse.equinox.jmx.client.rmi</tt></td>    
+  </tr>
+  <tr>
+  	<td> </td>
+    <td>HEAD</td>
     <td><tt>org.eclipse.equinox.jmx.common</tt></td>    
   </tr>
   <tr>
