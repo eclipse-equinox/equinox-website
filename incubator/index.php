@@ -32,7 +32,7 @@ The goal of the Equinox Incubator is to experiment with techniques for
   </tr>
   <tr>
       <td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-      <td width="98%"><a href="monitoring/index.php" target="_top"><b>Remote Resource Monitoring</b></a><br>
+      <td width="98%"><a href="monitoring/index.php" target="_top"><b>Resource Monitoring</b></a><br>
 	A cool, lightweight, infrastructure for monitoring running OSGi based systems.</td>
   </tr>
 	<tr>
