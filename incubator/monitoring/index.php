@@ -29,6 +29,17 @@ as a single object or something as abstract as an OSGI bundle.</p>
     <td width="59%"><strong>Project</strong></td>
   </tr>
   <tr>
+    <td>HEAD</td>
+    <td><tt>org.eclipse.equinox.incubator.releng</tt></td>    
+  </tr>
+  
+<tr>
+  	<td> </td>
+  	<td> </td>
+  	<td> </td>
+</tr>
+  
+  <tr>
   	<td> </td>
     <td>HEAD</td>
     <td><tt>org.eclipse.equinox.jmx.common</tt></td>
@@ -141,11 +152,6 @@ as a single object or something as abstract as an OSGI bundle.</p>
   	<td> </td>
     <td>HEAD</td>
     <td><tt>org.eclipse.swt.jmx</tt></td>    
-  </tr>
-  <tr>
-  	<td> </td>
-    <td>HEAD</td>
-    <td><tt>org.eclipse.equinox.incubator.releng</tt></td>    
   </tr>
 </table>
 <br/>
