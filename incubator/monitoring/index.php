@@ -29,6 +29,45 @@ as a single object or something as abstract as an OSGI bundle.</p>
     <td width="59%"><strong>Project</strong></td>
   </tr>
   <tr>
+  	<td> </td>
+    <td>HEAD</td>
+    <td><tt>org.eclipse.equinox.jmx.common</tt></td>
+  </tr>
+  <tr>
+  	<td> </td>
+    <td>HEAD</td>
+    <td><tt>org.apache.commons.codec</tt></td>
+  </tr>
+  <tr>
+  	<td> </td>
+    <td>HEAD</td>
+    <td><tt>org.apache.commons.httpclient</tt></td>
+  </tr>
+  <tr>
+  	<td> </td>
+    <td>HEAD</td>
+    <td><tt>org.apache.commons.logging</tt></td>
+  </tr>
+  <tr>
+  	<td> </td>
+    <td>HEAD</td>
+    <td><tt>org.apache.ws.commons.util</tt></td>
+  </tr>
+  <tr>
+  	<td> </td>
+    <td>HEAD</td>
+    <td><tt>org.apache.ws.jaxme</tt></td>
+  </tr>
+  <tr>
+  	<td> </td>
+    <td>HEAD</td>
+    <td><tt>org.apache.xmlrpc</tt></td>
+  </tr>
+  
+  <tr/>
+  
+  <tr>
+  	<td> </td>
     <td>HEAD</td>
     <td><tt>org.eclipse.equinox.jmx.client.feature</tt></td>    
   </tr>
@@ -45,8 +84,11 @@ as a single object or something as abstract as an OSGI bundle.</p>
   <tr>
   	<td> </td>
     <td>HEAD</td>
-    <td><tt>org.eclipse.equinox.jmx.common</tt></td>    
+    <td><tt>org.eclipse.equinox.jmx.client.xmlrpc</tt></td>    
   </tr>
+
+  <tr/>
+  
   <tr>
   	<td> </td>
     <td>HEAD</td>
@@ -61,6 +103,11 @@ as a single object or something as abstract as an OSGI bundle.</p>
   	<td> </td>
     <td>HEAD</td>
     <td><tt>org.eclipse.equinox.jmx.server.rmi</tt></td>    
+  </tr>
+  <tr>
+  	<td> </td>
+    <td>HEAD</td>
+    <td><tt>org.eclipse.equinox.jmx.server.xmlrpc</tt></td>    
   </tr>
   <tr>
   	<td> </td>
