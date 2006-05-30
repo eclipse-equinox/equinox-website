@@ -64,7 +64,11 @@ as a single object or something as abstract as an OSGI bundle.</p>
     <td><tt>org.apache.xmlrpc</tt></td>
   </tr>
   
-  <tr/>
+<tr>
+  	<td> </td>
+  	<td> </td>
+  	<td> </td>
+</tr>
   
   <tr>
   	<td> </td>
@@ -87,7 +91,11 @@ as a single object or something as abstract as an OSGI bundle.</p>
     <td><tt>org.eclipse.equinox.jmx.client.xmlrpc</tt></td>    
   </tr>
 
-  <tr/>
+<tr>
+  	<td> </td>
+  	<td> </td>
+  	<td> </td>
+</tr>
   
   <tr>
   	<td> </td>
