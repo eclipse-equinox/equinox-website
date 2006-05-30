@@ -116,17 +116,17 @@ as a single object or something as abstract as an OSGI bundle.</p>
   <tr>
   	<td> </td>
     <td>HEAD</td>
+    <td><tt>org.eclipse.equinox.jmx.server</tt></td>    
+  </tr>
+  <tr>
+  	<td> </td>
+    <td>HEAD</td>
     <td><tt>org.eclipse.equinox.jmx.server.rmi</tt></td>    
   </tr>
   <tr>
   	<td> </td>
     <td>HEAD</td>
     <td><tt>org.eclipse.equinox.jmx.server.xmlrpc</tt></td>    
-  </tr>
-  <tr>
-  	<td> </td>
-    <td>HEAD</td>
-    <td><tt>org.eclipse.equinox.jmx.server</tt></td>    
   </tr>
   <tr>
   	<td> </td>
