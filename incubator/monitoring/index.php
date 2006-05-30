@@ -35,16 +35,6 @@ as a single object or something as abstract as an OSGI bundle.</p>
   <tr>
   	<td> </td>
     <td>HEAD</td>
-    <td><tt>org.eclipse.equinox.jmx.server.feature</tt></td>    
-  </tr>
-  <tr>
-  	<td> </td>
-    <td>HEAD</td>
-    <td><tt>org.eclipse.core.resources.jmx</tt></td>    
-  </tr>
-  <tr>
-  	<td> </td>
-    <td>HEAD</td>
     <td><tt>org.eclipse.equinox.jmx.client</tt></td>    
   </tr>
   <tr>
@@ -60,7 +50,17 @@ as a single object or something as abstract as an OSGI bundle.</p>
   <tr>
   	<td> </td>
     <td>HEAD</td>
-    <td><tt>org.eclipse.equinox.jmx.rmi</tt></td>    
+    <td><tt>org.eclipse.equinox.jmx.server.feature</tt></td>    
+  </tr>
+  <tr>
+  	<td> </td>
+    <td>HEAD</td>
+    <td><tt>org.eclipse.core.resources.jmx</tt></td>    
+  </tr>
+  <tr>
+  	<td> </td>
+    <td>HEAD</td>
+    <td><tt>org.eclipse.equinox.jmx.server.rmi</tt></td>    
   </tr>
   <tr>
   	<td> </td>
