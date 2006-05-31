@@ -94,7 +94,7 @@ as a single object or something as abstract as an OSGI bundle.</p>
 
 <tr>
 	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-	<td width="98%"><b>Apache XML RPC
+	<td width="98%"><b>Apache XML-RPC
         (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.apache.xmlrpc">org.apache.xmlrpc</a>)</b><br>
     This bundle contains the code for Apache XML-RPC. This is an alternative transport for the resource monitoring
     framework.</td>
@@ -128,7 +128,7 @@ as a single object or something as abstract as an OSGI bundle.</p>
 
 <tr>
 	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-	<td width="98%"><b>Client XML RPC
+	<td width="98%"><b>Client XML-RPC
         (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.eclipse.equinox.jmx.client.xmlrpc">org.eclipse.equinox.jmx.client.xmlrpc</a>)</b><br>
     This project contains the client portion of the code which contributes XML-RPC as a transport.</td>
 </tr>
@@ -162,7 +162,7 @@ as a single object or something as abstract as an OSGI bundle.</p>
 
 <tr>
 	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-	<td width="98%"><b>Server XML RPC
+	<td width="98%"><b>Server XML-RPC
         (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.eclipse.equinox.jmx.server.xmlrpc">org.eclipse.equinox.jmx.server.xmlrpc</a>)</b><br>
     This comment contains the server-specific code which contributes XML-RPC as a transport. To enable XML-RPC
     as the default transport for the server, you need to set the following system property:<br>
@@ -225,26 +225,17 @@ features, here are some zip files for the client and server.
 <li>org.eclipse.equinox.monitoring.server <a href="downloads/org.eclipse.equinox.monitoring.server_1.0.0.200605301257.zip">v1.0.0.200605301257</a></li>
 </ul>
 
-<p class="bar">Current Activity</p>
+<p class="bar">Running the framework</p>
 The current implementation consists of a set of features and bundles that are intended to be placed
 in your eclipse install.  <br/>
 
 Requirements:
 <ul>
 <li>Java runtime version 1.4 or 1.5 depending on which plugins are to be used.
-<li>Tested with Eclipse 3.2RC1.
+<li>Tested with Eclipse 3.2RC6.
 </ul>
 
 Running:
-<ul>
-<li>Load the projects from the repository (see above) and then run a Runtime Workbench
-with the project as part of your plug-in set.</li>
-</ul>
-<blockquote>or</blockquote>
-<ul>
-<li>Unzip the client and/or the server feature(s) into an existing Eclipse install.
-</ul>
-<blockquote>then</blockquote>
 <ul>
 <li>Start the Eclipse application which contains the installed server feature (starting Eclipse by default starts 
 the jmx server).
