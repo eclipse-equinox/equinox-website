@@ -156,14 +156,17 @@ as a single object or something as abstract as an OSGI bundle.</p>
 	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
 	<td width="98%"><b>Server RMI
         (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.eclipse.equinox.jmx.server.rmi">org.eclipse.equinox.jmx.server.rmi</a>)</b><br>
-    This project contains the server-specific code which contributes RMI as a transport.</td>
+    This project contains the server-specific code which contributes RMI as a transport. By default, RMI is the
+    default transport for the resource monitoring server.</td>
 </tr>
 
 <tr>
 	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
 	<td width="98%"><b>Server XML RPC
         (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.eclipse.equinox.jmx.server.xmlrpc">org.eclipse.equinox.jmx.server.xmlrpc</a>)</b><br>
-    This comment contains the server-specific code which contributes XML-RPC as a transport.</td>
+    This comment contains the server-specific code which contributes XML-RPC as a transport. To enable XML-RPC
+    as the default transport for the server, you need to set the following system property:<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;<em>org.eclipse.equinox.jmx.server.protocol=xmlrpc</em></td>
 </tr>
 
 <tr>
