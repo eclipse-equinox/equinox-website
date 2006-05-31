@@ -29,6 +29,11 @@ as a single object or something as abstract as an OSGI bundle.</p>
 	<td> </td>
 </tr>
 
+<tr>
+	<td><strong>RelEng</strong></td>
+	<td> </td>
+</tr>
+
   <tr>
     <td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
     <td width="98%"><b>Equinox Incubator Release Engineering
@@ -40,6 +45,11 @@ as a single object or something as abstract as an OSGI bundle.</p>
     </td>
   </tr>
   
+<tr>
+	<td><strong>Common</strong></td>
+	<td> </td>
+</tr>
+
 <tr>
 	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
 	<td width="98%"><b>Common
@@ -91,6 +101,11 @@ as a single object or something as abstract as an OSGI bundle.</p>
 </tr>
 
 <tr>
+	<td><strong>Client</strong></td>
+	<td> </td>
+</tr>
+
+<tr>
 	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
 	<td width="98%"><b>Client Feature
         (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.eclipse.equinox.jmx.client.feature">org.eclipse.equinox.jmx.client.feature</a>)</b><br>
@@ -119,6 +134,11 @@ as a single object or something as abstract as an OSGI bundle.</p>
 </tr>
 
 <tr>
+	<td><strong>Server</strong></td>
+	<td> </td>
+</tr>
+
+<tr>
 	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
 	<td width="98%"><b>Server Feature
         (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.eclipse.equinox.jmx.server.feature">org.eclipse.equinox.jmx.server.feature</a>)</b><br>
@@ -144,6 +164,11 @@ as a single object or something as abstract as an OSGI bundle.</p>
 	<td width="98%"><b>Server XML RPC
         (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.eclipse.equinox.jmx.server.xmlrpc">org.eclipse.equinox.jmx.server.xmlrpc</a>)</b><br>
     This comment contains the server-specific code which contributes XML-RPC as a transport.</td>
+</tr>
+
+<tr>
+	<td><strong>Extensions</strong></td>
+	<td> </td>
 </tr>
 
 <tr>
