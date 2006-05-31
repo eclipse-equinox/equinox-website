@@ -18,6 +18,13 @@ as a single object or something as abstract as an OSGI bundle.</p>
 <p>The monitoring incubator uses the main <a href="../resources.php">incubator
     resources</a> with the following refinements.</p>
 
+<table width="100%" border="0">
+  <tr>
+    <td><strong>Bugs</strong></td>
+    <td colspan="2">Summaries start with <strong><a href="https://bugs.eclipse.org/bugs/buglist.cgi?query_format=advanced&short_desc_type=allwordssubstr&short_desc=%5Bmonitoring%5D&classification=Eclipse&product=Equinox&component=Incubator&long_desc_type=allwordssubstr&long_desc=&bug_file_loc_type=allwordssubstr&bug_file_loc=&status_whiteboard_type=allwordssubstr&status_whiteboard=&keywords_type=allwords&keywords=&bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED&emailtype1=substring&email1=&emailtype2=substring&email2=&bugidtype=include&bug_id=&votes=&chfieldfrom=&chfieldto=Now&chfieldvalue=&cmdtype=doit&order=Reuse+same+sort+as+last+time&field0-0-0=noop&type0-0-0=noop&value0-0-0=">[monitoring]</a></strong></td>
+  </tr>
+</table>
+
 <table BORDER=0 CELLSPACING=5 CELLPADDING=2 WIDTH="100%" >
   <tr>
     <td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
@@ -25,145 +32,149 @@ as a single object or something as abstract as an OSGI bundle.</p>
         (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.eclipse.equinox.incubator.releng">org.eclipse.equinox.incubator.releng</a>)</b><br>
     The releng engineering project that contains the Team Project Set files to aid in loading the client and the server.</td>
   </tr>
+  
+<tr>
+	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+	<td width="98%"><b>Common
+        (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.eclipse.equinox.jmx.common">org.eclipse.equinox.jmx.common</a>)</b><br>
+    The Common project contains code which is common to both the client and the server.</td>
+</tr>
+  
+<tr>
+	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+	<td width="98%"><b>Apache Commons Codec
+        (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.apache.commons.codec">org.apache.commons.codec</a>)</b><br>
+    comment</td>
+</tr>
+  
+<tr>
+	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+	<td width="98%"><b>Apache Commons HTTP Client
+        (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.apache.commons.httpclient">org.apache.commons.httpclient</a>)</b><br>
+    comment</td>
+</tr>
+  
+<tr>
+	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+	<td width="98%"><b>Apache Commons Logging
+        (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.apache.commons.logging">org.apache.commons.logging</a>)</b><br>
+    comment</td>
+</tr>
+
+<tr>
+	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+	<td width="98%"><b>Apache Web Services Common Utils
+        (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.apache.ws.commons.util">org.apache.ws.commons.util</a>)</b><br>
+    comment</td>
+</tr>
+
+<tr>
+	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+	<td width="98%"><b>Apache Web Services JaxME
+        (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.apache.ws.jaxme">org.apache.ws.jaxme</a>)</b><br>
+    comment</td>
+</tr>
+
+<tr>
+	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+	<td width="98%"><b>Apache XML RPC
+        (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.apache.xmlrpc">org.apache.xmlrpc</a>)</b><br>
+    comment</td>
+</tr>
+
+<tr>
+	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+	<td width="98%"><b>Client Feature
+        (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.eclipse.equinox.jmx.client.feature">org.eclipse.equinox.jmx.client.feature</a>)</b><br>
+    comment</td>
+</tr>
+
+<tr>
+	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+	<td width="98%"><b>Client
+        (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.eclipse.equinox.jmx.client">org.eclipse.equinox.jmx.client</a>)</b><br>
+    comment</td>
+</tr>
+
+<tr>
+	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+	<td width="98%"><b>Client RMI
+        (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.eclipse.equinox.jmx.client.rmi">org.eclipse.equinox.jmx.client.rmi</a>)</b><br>
+    comment</td>
+</tr>
+
+<tr>
+	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+	<td width="98%"><b>Client XML RPC
+        (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.eclipse.equinox.jmx.client.xmlrpc">org.eclipse.equinox.jmx.client.xmlrpc</a>)</b><br>
+    comment</td>
+</tr>
+
+<tr>
+	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+	<td width="98%"><b>Server Feature
+        (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.eclipse.equinox.jmx.server.feature">org.eclipse.equinox.jmx.server.feature</a>)</b><br>
+    comment</td>
+</tr>
+
+<tr>
+	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+	<td width="98%"><b>Server
+        (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.eclipse.equinox.jmx.server">org.eclipse.equinox.jmx.server</a>)</b><br>
+    comment</td>
+</tr>
+
+<tr>
+	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+	<td width="98%"><b>Server RMI
+        (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.eclipse.equinox.jmx.server.rmi">org.eclipse.equinox.jmx.server.rmi</a>)</b><br>
+    comment</td>
+</tr>
+
+<tr>
+	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+	<td width="98%"><b>Server XML RPC
+        (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.eclipse.equinox.jmx.server.xmlrpc">org.eclipse.equinox.jmx.server.xmlrpc</a>)</b><br>
+    comment</td>
+</tr>
+
+<tr>
+	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+	<td width="98%"><b>VM Extension
+        (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.eclipse.equinox.jmx.vm">org.eclipse.equinox.jmx.vm</a>)</b><br>
+    comment</td>
+</tr>
+
+<tr>
+	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+	<td width="98%"><b>Preferences Extension
+        (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.eclipse.equinox.preferences.jmx">org.eclipse.equinox.preferences.jmx</a>)</b><br>
+    comment</td>
+</tr>
+
+<tr>
+	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+	<td width="98%"><b>Resources Extension
+        (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.eclipse.core.resources.jmx">org.eclipse.core.resources.jmx</a>)</b><br>
+    comment</td>
+</tr>
+
+<tr>
+	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+	<td width="98%"><b>OSGi Extension
+        (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.eclipse.osgi.jmx">org.eclipse.osgi.jmx</a>)</b><br>
+    comment</td>
+</tr>
+
+<tr>
+	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+	<td width="98%"><b>SWT Extension
+        (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.eclipse.swt.jmx">org.eclipse.swt.jmx</a>)</b><br>
+    comment</td>
+</tr>
+
 </table>
 
-<table width="100%" border="0">
-  <tr>
-    <td><strong>Bugs</strong></td>
-    <td colspan="2">Summaries start with <strong><a href="https://bugs.eclipse.org/bugs/buglist.cgi?query_format=advanced&short_desc_type=allwordssubstr&short_desc=%5Bmonitoring%5D&classification=Eclipse&product=Equinox&component=Incubator&long_desc_type=allwordssubstr&long_desc=&bug_file_loc_type=allwordssubstr&bug_file_loc=&status_whiteboard_type=allwordssubstr&status_whiteboard=&keywords_type=allwords&keywords=&bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED&emailtype1=substring&email1=&emailtype2=substring&email2=&bugidtype=include&bug_id=&votes=&chfieldfrom=&chfieldto=Now&chfieldvalue=&cmdtype=doit&order=Reuse+same+sort+as+last+time&field0-0-0=noop&type0-0-0=noop&value0-0-0=">[monitoring]</a></strong></td>
-  </tr>
-
-  <tr>
-    <td width="11%" rowspan="2" valign="top"><strong>CVS</strong></td>
-    <td width="30%"><strong>Branch</strong></td>
-    <td width="59%"><strong>Project</strong></td>
-  </tr>
-  <tr>
-    <td>HEAD</td>
-    <td><tt>org.eclipse.equinox.incubator.releng</tt></td>    
-  </tr>
-  
-<tr>
-  	<td> </td>
-  	<td> </td>
-  	<td> </td>
-</tr>
-  
-  <tr>
-  	<td> </td>
-    <td>HEAD</td>
-    <td><tt>org.eclipse.equinox.jmx.common</tt></td>
-  </tr>
-  <tr>
-  	<td> </td>
-    <td>HEAD</td>
-    <td><tt>org.apache.commons.codec</tt></td>
-  </tr>
-  <tr>
-  	<td> </td>
-    <td>HEAD</td>
-    <td><tt>org.apache.commons.httpclient</tt></td>
-  </tr>
-  <tr>
-  	<td> </td>
-    <td>HEAD</td>
-    <td><tt>org.apache.commons.logging</tt></td>
-  </tr>
-  <tr>
-  	<td> </td>
-    <td>HEAD</td>
-    <td><tt>org.apache.ws.commons.util</tt></td>
-  </tr>
-  <tr>
-  	<td> </td>
-    <td>HEAD</td>
-    <td><tt>org.apache.ws.jaxme</tt></td>
-  </tr>
-  <tr>
-  	<td> </td>
-    <td>HEAD</td>
-    <td><tt>org.apache.xmlrpc</tt></td>
-  </tr>
-  
-<tr>
-  	<td> </td>
-  	<td> </td>
-  	<td> </td>
-</tr>
-  
-  <tr>
-  	<td> </td>
-    <td>HEAD</td>
-    <td><tt>org.eclipse.equinox.jmx.client.feature</tt></td>    
-  </tr>
-  <tr>
-  	<td> </td>
-    <td>HEAD</td>
-    <td><tt>org.eclipse.equinox.jmx.client</tt></td>    
-  </tr>
-  <tr>
-  	<td> </td>
-    <td>HEAD</td>
-    <td><tt>org.eclipse.equinox.jmx.client.rmi</tt></td>    
-  </tr>
-  <tr>
-  	<td> </td>
-    <td>HEAD</td>
-    <td><tt>org.eclipse.equinox.jmx.client.xmlrpc</tt></td>    
-  </tr>
-
-<tr>
-  	<td> </td>
-  	<td> </td>
-  	<td> </td>
-</tr>
-  
-  <tr>
-  	<td> </td>
-    <td>HEAD</td>
-    <td><tt>org.eclipse.equinox.jmx.server.feature</tt></td>    
-  </tr>
-  <tr>
-  	<td> </td>
-    <td>HEAD</td>
-    <td><tt>org.eclipse.equinox.jmx.server</tt></td>    
-  </tr>
-  <tr>
-  	<td> </td>
-    <td>HEAD</td>
-    <td><tt>org.eclipse.equinox.jmx.server.rmi</tt></td>    
-  </tr>
-  <tr>
-  	<td> </td>
-    <td>HEAD</td>
-    <td><tt>org.eclipse.equinox.jmx.server.xmlrpc</tt></td>    
-  </tr>
-  <tr>
-  	<td> </td>
-    <td>HEAD</td>
-    <td><tt>org.eclipse.equinox.jmx.vm</tt></td>    
-  </tr>
-  <tr>
-  	<td> </td>
-    <td>HEAD</td>
-    <td><tt>org.eclipse.equinox.preferences.jmx</tt></td>    
-  </tr>
-  <tr>
-  	<td> </td>
-    <td>HEAD</td>
-    <td><tt>org.eclipse.core.resources.jmx</tt></td>    
-  </tr>
-  <tr>
-  	<td> </td>
-    <td>HEAD</td>
-    <td><tt>org.eclipse.osgi.jmx</tt></td>    
-  </tr>
-  <tr>
-  	<td> </td>
-    <td>HEAD</td>
-    <td><tt>org.eclipse.swt.jmx</tt></td>    
-  </tr>
-</table>
 <br/>
 
 <p class="bar">Latest Pre-Built Zips</p>
