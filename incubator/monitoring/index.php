@@ -10,22 +10,20 @@
 <?php include("nav-include.html") ?>
 <p class="bar">Mission Statement</p>
 <p>To provide 
-a framework for monitoring resources remotely that are contributed by bundles installed
+a framework for monitoring resources that are contributed by bundles installed
 on the host machine.  The term 'resources' is used to describe something as specific
 as a single object or something as abstract as an OSGI bundle.</p>
 <p>See the <a href="http://www.eclipse.org/equinox/documents/tools-proposal.php">incubator proposal</a> for more detail.</p>
-<p class="bar">Working With the remote monitoring framework</p>
+<p class="bar">Working With the resource monitoring framework</p>
 <p>The monitoring incubator uses the main <a href="../resources.php">incubator
     resources</a> with the following refinements.</p>
 
 <table width="100%" border="0">
   <tr>
     <td><strong>Bugs</strong></td>
-    <td colspan="2">Summaries start with <strong><a href="https://bugs.eclipse.org/bugs/buglist.cgi?query_format=advanced&short_desc_type=allwordssubstr&short_desc=%5Bmonitoring%5D&classification=Eclipse&product=Equinox&component=Incubator&long_desc_type=allwordssubstr&long_desc=&bug_file_loc_type=allwordssubstr&bug_file_loc=&status_whiteboard_type=allwordssubstr&status_whiteboard=&keywords_type=allwords&keywords=&bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED&emailtype1=substring&email1=&emailtype2=substring&email2=&bugidtype=include&bug_id=&votes=&chfieldfrom=&chfieldto=Now&chfieldvalue=&cmdtype=doit&order=Reuse+same+sort+as+last+time&field0-0-0=noop&type0-0-0=noop&value0-0-0=">[monitoring]</a></strong></td>
+    <td>Summaries start with <strong><a href="https://bugs.eclipse.org/bugs/buglist.cgi?query_format=advanced&short_desc_type=allwordssubstr&short_desc=%5Bmonitoring%5D&classification=Eclipse&product=Equinox&component=Incubator&long_desc_type=allwordssubstr&long_desc=&bug_file_loc_type=allwordssubstr&bug_file_loc=&status_whiteboard_type=allwordssubstr&status_whiteboard=&keywords_type=allwords&keywords=&bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED&emailtype1=substring&email1=&emailtype2=substring&email2=&bugidtype=include&bug_id=&votes=&chfieldfrom=&chfieldto=Now&chfieldvalue=&cmdtype=doit&order=Reuse+same+sort+as+last+time&field0-0-0=noop&type0-0-0=noop&value0-0-0=">[monitoring]</a></strong></td>
   </tr>
-</table>
 
-<table BORDER=0 CELLSPACING=5 CELLPADDING=2 WIDTH="100%" >
   <tr>
     <td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
     <td width="98%"><b>Equinox Incubator Release Engineering
@@ -201,13 +199,6 @@ Requirements:
 <ul>
 <li>Java runtime version 1.4 or 1.5 depending on which plugins are to be used.
 <li>Tested with Eclipse 3.2RC1.
-</ul>
-
-Development:
-<ul>
-<li>Check out the <tt>org.eclipse.equinox.incubator.releng</tt> project from the repository.</li>
-<li>Navigate to the <tt>monitoring</tt> sub-folder.</li>
-<li>Select the appropriate project-set file(s) and import them.</li>
 </ul>
 
 Running:
