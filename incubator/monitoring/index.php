@@ -24,11 +24,16 @@ as a single object or something as abstract as an OSGI bundle.</p>
     <td>Summaries start with <strong><a href="https://bugs.eclipse.org/bugs/buglist.cgi?query_format=advanced&short_desc_type=allwordssubstr&short_desc=%5Bmonitoring%5D&classification=Eclipse&product=Equinox&component=Incubator&long_desc_type=allwordssubstr&long_desc=&bug_file_loc_type=allwordssubstr&bug_file_loc=&status_whiteboard_type=allwordssubstr&status_whiteboard=&keywords_type=allwords&keywords=&bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED&emailtype1=substring&email1=&emailtype2=substring&email2=&bugidtype=include&bug_id=&votes=&chfieldfrom=&chfieldto=Now&chfieldvalue=&cmdtype=doit&order=Reuse+same+sort+as+last+time&field0-0-0=noop&type0-0-0=noop&value0-0-0=">[monitoring]</a></strong></td>
   </tr>
 
+<tr>
+	<td><strong>Projects</strong></td>
+	<td> </td>
+</tr>
+
   <tr>
     <td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
     <td width="98%"><b>Equinox Incubator Release Engineering
         (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.eclipse.equinox.incubator.releng">org.eclipse.equinox.incubator.releng</a>)</b><br>
-    The releng engineering project that contains the Team Project Set files to aid in loading the client and the server.
+    This project contains the Team Project Set files to aid developers in loading the projects into their workspace.
     Developers interested in loading the monitoring projects into their workspace should load this project, navigate 
     to the <em>monitoring</em> folder, selecting the project set file (<em>.psf</em>) that they are interested 
     in, and then choose <em>Import Project Set...</em> from the context menu.
@@ -39,49 +44,50 @@ as a single object or something as abstract as an OSGI bundle.</p>
 	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
 	<td width="98%"><b>Common
         (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.eclipse.equinox.jmx.common">org.eclipse.equinox.jmx.common</a>)</b><br>
-    The Common project contains code which is common to both the client and the server.</td>
+    This bundle contains the resource monitoring code which is common to both the client and the server.</td>
 </tr>
   
 <tr>
 	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
 	<td width="98%"><b>Apache Commons Codec
         (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.apache.commons.codec">org.apache.commons.codec</a>)</b><br>
-    comment</td>
+    This bundle contains Apache Common Codec code which is a requirement of the Apache XML-RPC bundle.</td>
 </tr>
   
 <tr>
 	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
 	<td width="98%"><b>Apache Commons HTTP Client
         (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.apache.commons.httpclient">org.apache.commons.httpclient</a>)</b><br>
-    comment</td>
+    This bundle contains Apache Commons HTTP Client code which is a requirement of the Apache XML-RPC bundle.</td>
 </tr>
   
 <tr>
 	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
 	<td width="98%"><b>Apache Commons Logging
         (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.apache.commons.logging">org.apache.commons.logging</a>)</b><br>
-    comment</td>
+    This bundle contains Apache Commons Logging code which is a requirement for the Apache XML-RPC bundle.</td>
 </tr>
 
 <tr>
 	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
 	<td width="98%"><b>Apache Web Services Common Utils
         (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.apache.ws.commons.util">org.apache.ws.commons.util</a>)</b><br>
-    comment</td>
+    This bundle contains Apache Web Services Common Utils code which is a requirement for the Apache XML-RPC bundle.</td>
 </tr>
 
 <tr>
 	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
 	<td width="98%"><b>Apache Web Services JaxME
         (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.apache.ws.jaxme">org.apache.ws.jaxme</a>)</b><br>
-    comment</td>
+    This bundle contains Apache Web Services JaxME code which is a requirement for the Apache XML-RPC bundle.</td>
 </tr>
 
 <tr>
 	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
 	<td width="98%"><b>Apache XML RPC
         (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.apache.xmlrpc">org.apache.xmlrpc</a>)</b><br>
-    comment</td>
+    This bundle contains the code for Apache XML-RPC. This is an alternative transport for the resource monitoring
+    framework.</td>
 </tr>
 
 <tr>
@@ -130,21 +136,21 @@ as a single object or something as abstract as an OSGI bundle.</p>
 	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
 	<td width="98%"><b>Server RMI
         (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.eclipse.equinox.jmx.server.rmi">org.eclipse.equinox.jmx.server.rmi</a>)</b><br>
-    This project contains the server-side code which contributes RMI as a transport.</td>
+    This project contains the server-specific code which contributes RMI as a transport.</td>
 </tr>
 
 <tr>
 	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
 	<td width="98%"><b>Server XML RPC
         (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.eclipse.equinox.jmx.server.xmlrpc">org.eclipse.equinox.jmx.server.xmlrpc</a>)</b><br>
-    This comment contains the server-side code which contributes XML-RPC as a transport.</td>
+    This comment contains the server-specific code which contributes XML-RPC as a transport.</td>
 </tr>
 
 <tr>
 	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
 	<td width="98%"><b>VM Extension
         (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.eclipse.equinox.jmx.vm">org.eclipse.equinox.jmx.vm</a>)</b><br>
-    This project provides the server-side code that contributes information about the VM such as the number of classes
+    This project provides the server-specific code that contributes information about the VM such as the number of classes
     loaded, the amount of memory used, etc.</td>
 </tr>
 
@@ -152,7 +158,7 @@ as a single object or something as abstract as an OSGI bundle.</p>
 	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
 	<td width="98%"><b>Preferences Extension
         (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.eclipse.equinox.preferences.jmx">org.eclipse.equinox.preferences.jmx</a>)</b><br>
-    This project contributes the server-side code which contributes information about the preferences.</td>
+    This project contributes the server-specific code which contributes information about the preferences.</td>
 </tr>
 
 <tr>
