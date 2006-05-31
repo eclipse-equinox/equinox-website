@@ -14,7 +14,7 @@ a framework for monitoring resources that are contributed by bundles installed
 on the host machine.  The term 'resources' is used to describe something as specific
 as a single object or something as abstract as an OSGI bundle.</p>
 <p>See the <a href="http://www.eclipse.org/equinox/documents/tools-proposal.php">incubator proposal</a> for more detail.</p>
-<p class="bar">Working With the resource monitoring framework</p>
+<p class="bar">Working with the resource monitoring framework</p>
 <p>The monitoring incubator uses the main <a href="../resources.php">incubator
     resources</a> with the following refinements.</p>
 
@@ -25,8 +25,8 @@ as a single object or something as abstract as an OSGI bundle.</p>
   </tr>
 
 <tr>
-	<td><strong>Projects</strong></td>
 	<td> </td>
+	<td><center><strong>Projects</strong></center></td>
 </tr>
 
 <tr>
