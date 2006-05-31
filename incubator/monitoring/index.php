@@ -30,7 +30,11 @@ as a single object or something as abstract as an OSGI bundle.</p>
     <td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
     <td width="98%"><b>Equinox Incubator Release Engineering
         (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.eclipse.equinox.incubator.releng">org.eclipse.equinox.incubator.releng</a>)</b><br>
-    The releng engineering project that contains the Team Project Set files to aid in loading the client and the server.</td>
+    The releng engineering project that contains the Team Project Set files to aid in loading the client and the server.
+    Developers interested in loading the monitoring projects into their workspace should load this project, navigate 
+    to the <em>monitoring</em> folder, selecting the project set file (<em>.psf</em>) that they are interested 
+    in, and then choose <em>Import Project Set...</em> from the context menu.
+    </td>
   </tr>
   
 <tr>
@@ -86,91 +90,95 @@ as a single object or something as abstract as an OSGI bundle.</p>
 	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
 	<td width="98%"><b>Client Feature
         (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.eclipse.equinox.jmx.client.feature">org.eclipse.equinox.jmx.client.feature</a>)</b><br>
-    comment</td>
+    This is the feature project for the client.</td>
 </tr>
 
 <tr>
 	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
 	<td width="98%"><b>Client
         (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.eclipse.equinox.jmx.client">org.eclipse.equinox.jmx.client</a>)</b><br>
-    comment</td>
+    This project contains the client-specific code.</td>
 </tr>
 
 <tr>
 	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
 	<td width="98%"><b>Client RMI
         (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.eclipse.equinox.jmx.client.rmi">org.eclipse.equinox.jmx.client.rmi</a>)</b><br>
-    comment</td>
+    This project contains the client portion of the code which contributes RMI as a transport.</td>
 </tr>
 
 <tr>
 	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
 	<td width="98%"><b>Client XML RPC
         (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.eclipse.equinox.jmx.client.xmlrpc">org.eclipse.equinox.jmx.client.xmlrpc</a>)</b><br>
-    comment</td>
+    This project contains the client portion of the code which contributes XML-RPC as a transport.</td>
 </tr>
 
 <tr>
 	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
 	<td width="98%"><b>Server Feature
         (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.eclipse.equinox.jmx.server.feature">org.eclipse.equinox.jmx.server.feature</a>)</b><br>
-    comment</td>
+    This is the feature project for the server.</td>
 </tr>
 
 <tr>
 	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
 	<td width="98%"><b>Server
         (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.eclipse.equinox.jmx.server">org.eclipse.equinox.jmx.server</a>)</b><br>
-    comment</td>
+    This project contains the server-specific code.</td>
 </tr>
 
 <tr>
 	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
 	<td width="98%"><b>Server RMI
         (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.eclipse.equinox.jmx.server.rmi">org.eclipse.equinox.jmx.server.rmi</a>)</b><br>
-    comment</td>
+    This project contains the server-side code which contributes RMI as a transport.</td>
 </tr>
 
 <tr>
 	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
 	<td width="98%"><b>Server XML RPC
         (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.eclipse.equinox.jmx.server.xmlrpc">org.eclipse.equinox.jmx.server.xmlrpc</a>)</b><br>
-    comment</td>
+    This comment contains the server-side code which contributes XML-RPC as a transport.</td>
 </tr>
 
 <tr>
 	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
 	<td width="98%"><b>VM Extension
         (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.eclipse.equinox.jmx.vm">org.eclipse.equinox.jmx.vm</a>)</b><br>
-    comment</td>
+    This project provides the server-side code that contributes information about the VM such as the number of classes
+    loaded, the amount of memory used, etc.</td>
 </tr>
 
 <tr>
 	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
 	<td width="98%"><b>Preferences Extension
         (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.eclipse.equinox.preferences.jmx">org.eclipse.equinox.preferences.jmx</a>)</b><br>
-    comment</td>
+    This project contributes the server-side code which contributes information about the preferences.</td>
 </tr>
 
 <tr>
 	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
 	<td width="98%"><b>Resources Extension
         (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.eclipse.core.resources.jmx">org.eclipse.core.resources.jmx</a>)</b><br>
-    comment</td>
+    This project contributes information and methods for manipulation of workspace resources. (as defined by
+    the <em>org.eclipse.core.resources</em> bundle.</td>
 </tr>
 
 <tr>
 	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
 	<td width="98%"><b>OSGi Extension
         (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.eclipse.osgi.jmx">org.eclipse.osgi.jmx</a>)</b><br>
-    comment</td>
+    This project contributes information about OSGi bundles and services.</td>
 </tr>
 
 <tr>
 	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
 	<td width="98%"><b>SWT Extension
         (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.eclipse.swt.jmx">org.eclipse.swt.jmx</a>)</b><br>
-    comment</td>
+    This project contributes informatioin about SWT resources by exposing the 
+    <a href="http://www.eclipse.org/swt/tools.php">Sleak</a>
+    tool and the information it provides.</td>
 </tr>
 
 </table>
