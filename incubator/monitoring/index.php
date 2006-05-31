@@ -17,6 +17,16 @@ as a single object or something as abstract as an OSGI bundle.</p>
 <p class="bar">Working With the remote monitoring framework</p>
 <p>The monitoring incubator uses the main <a href="../resources.php">incubator
     resources</a> with the following refinements.</p>
+
+<table BORDER=0 CELLSPACING=5 CELLPADDING=2 WIDTH="100%" >
+  <tr>
+    <td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+    <td width="98%"><b>Equinox Incubator Release Engineering
+        (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.eclipse.equinox.incubator.releng">org.eclipse.equinox.incubator.releng</a>)</b><br>
+    The releng engineering project that contains the Team Project Set files to aid in loading the client and the server.</td>
+  </tr>
+</table>
+
 <table width="100%" border="0">
   <tr>
     <td><strong>Bugs</strong></td>
