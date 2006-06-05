@@ -63,7 +63,7 @@
   <tr>
     <td align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
     <td><b> <a name="event"></a>Event Admin Service
-        (<a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox.event">org.eclipse.equinox.event</a>)</b><A HREF="#legend" style="color:yellow;"> status:yellow</a><br>
+        (<a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox.event">org.eclipse.equinox.event</a>)</b><A HREF="#legend" style="color:green;"> status:green</a><br>
     An implementation of the OSGi R4 Event Admin Service. This service provides
     an inter-bundle communication mechanism based on an event publish and
     subscribe model,
@@ -85,7 +85,7 @@
   <tr>
     <td align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
     <td><b> <a name="metatype"></a>Metatype Service
-        (<a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox.metatype">org.eclipse.equinox.metatype</a>)</b><A HREF="#legend" style="color:yellow;"> status:yellow</a><br>
+        (<a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox.metatype">org.eclipse.equinox.metatype</a>)</b><A HREF="#legend" style="color:green;"> status:green</a><br>
     An implementation of the OSGi R4 Metatype service. This service defines interfaces
     that allow bundle developers to describe attribute types in a computer readable
     form using so-called metadata. It allows services to specify the type of
@@ -151,7 +151,6 @@
   </tr>
 </table>
 <p> <A name="legend"> </A><b>Status key</b><br><FONT COLOR="GREEN">green</font> - bundle is production ready.
-<br><FONT COLOR="yellow">yellow</font> - bundle is planned to be production ready by the Eclipse 3.2 release.
 <br><FONT COLOR="red">red</font> - bundle is currently not planned to be production ready by the Eclipse 3.2 release.
 <p>The Framework team typically develops using Eclipse itself so getting and
   managing the projects is quite straightforward. Simply start Eclipse, and use <strong>Import &gt; CVS &gt; Projects
