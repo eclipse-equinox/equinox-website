@@ -19,10 +19,17 @@ as a single object or something as abstract as an OSGI bundle.</p>
 <table width="100%" border="0">
 <tr>
 	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-	<td width="98%">June 6, 2006 - Added a new feature for the common code and removed duplicate bundles
+	<td width="98%"><img src="http://eclipse.org/images/new.gif">June 6, 2006 - Added a new feature for the common code and removed duplicate bundles
 		from the client and server.
     </td>
 </tr>
+
+<tr>
+	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+	<td width="98%">May, 2006 - Initial release.
+    </td>
+</tr>
+
 </table>
 
 <p class="bar">Working with the resource monitoring framework</p>
