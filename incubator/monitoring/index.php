@@ -14,6 +14,17 @@ a framework for monitoring resources that are contributed by bundles installed
 on the host machine.  The term 'resources' is used to describe something as specific
 as a single object or something as abstract as an OSGI bundle.</p>
 <p>See the <a href="http://www.eclipse.org/equinox/documents/tools-proposal.php">incubator proposal</a> for more detail.</p>
+
+<p class="bar">Latest News</p>
+<table width="100%" border="0">
+<tr>
+	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+	<td width="98%">June 6, 2006 - Added a new feature for the common code and removed duplicate bundles
+		from the client and server.
+    </td>
+</tr>
+</table>
+
 <p class="bar">Working with the resource monitoring framework</p>
 <p>The monitoring incubator uses the main <a href="../resources.php">incubator
     resources</a> with the following refinements.</p>
@@ -50,6 +61,13 @@ as a single object or something as abstract as an OSGI bundle.</p>
 	<td> </td>
 </tr>
 
+<tr>
+	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+	<td width="98%"><b>Common Feature
+        (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.eclipse.equinox.jmx.common.feature">org.eclipse.equinox.jmx.common.feature</a>)</b><br>
+    This is the feature project for the common code.</td>
+</tr>
+  
 <tr>
 	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
 	<td width="98%"><b>Common
@@ -221,8 +239,8 @@ as a single object or something as abstract as an OSGI bundle.</p>
 If you don't want to check the code out of the repository and export your own plug-ins and 
 features, here are some zip files for the client and server.
 <ul>
-<li>org.eclipse.equinox.monitoring.client <a href="downloads/org.eclipse.equinox.monitoring.client_1.0.0.200605301257.zip">v1.0.0.200605301257</a></li>
-<li>org.eclipse.equinox.monitoring.server <a href="downloads/org.eclipse.equinox.monitoring.server_1.0.0.200605301257.zip">v1.0.0.200605301257</a></li>
+<li>org.eclipse.equinox.monitoring.client <a href="downloads/org.eclipse.equinox.monitoring.client_1.0.0.200606061044.zip">v1.0.0.200606061044</a></li>
+<li>org.eclipse.equinox.monitoring.server <a href="downloads/org.eclipse.equinox.monitoring.server_1.0.0.200606061044.zip">v1.0.0.200606061044</a></li>
 </ul>
 
 <p class="bar">Running the framework</p>
