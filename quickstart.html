@@ -26,8 +26,9 @@ Equinox download site. </p>
   common configuration scenarios is to have the framework automatically install
   and run a set of bundles when it is started. You do this every time you run
 Eclipse the IDE. Here's how it works and how you can use it in your situation.</p>
-<p>Say you have bundles B1 and B2 that you want to have installed and started
-  on startup. As with other OSGi implementations, you can run the framework (see
+<p>Say you have bundles B1.jar and B2.jar that you want to have installed and
+  started on startup. As with other OSGi implementations, you can run the framework
+  (see
 above) and install and start B1 and B2 using the console. This is a manual process
   but you need only do it the first time you setup Equinox.  To do something
     completely automated, create a <em>configuration</em> that
@@ -35,21 +36,27 @@ above) and install and start B1 and B2 using the console. This is a manual proce
   something like</p>
 <pre>somedir/
   org.eclipse.osgi_3.1.0.jar
-  B1_1.0.0.jar
-  B2_1.0.0.jar
+  B1.jar
+  B2.jar
   configuration/
     config.ini</pre>
 <p>Where config.ini is a Java properties file that contains the following line.
   Note
 that the osgi.bundles property is quite powerful. See the doc for details. </p>
-<pre>  osgi.bundles=B1@start, B2@start
+<pre>  osgi.bundles=B1.jar@start, B2.jar@start
+  eclipse.ignoreApp=true
 </pre>
 <p>When Equinox is started using the command line above, B1 and B2
   are installed and started. If you want to specify a different configuration,
   just
-  add -configuration &lt;location&gt; to the command line. For more information
-  on the set of command-line args and system properties available to set things
-up, see</p>
+  add -configuration &lt;location&gt; to the command line. Notice that since
+  you are just running your bundles, we added a line to tell Equinox to skip
+  trying to start an Eclipse application. This setting is not critical but without
+  it a scary but otherwise inoccuous message appears in your log. For more information
+    on the set of command-line args and system properties available
+    to set things
+  up, see (note that several options have been added to 3.2 and that doc is currently
+  only available in the full Eclipse SDK downloads).</p>
 <blockquote>
   <p>  <a href="http://help.eclipse.org/help31/topic/org.eclipse.platform.doc.isv/reference/misc/runtime-options.html">http://help.eclipse.org/help31/topic/org.eclipse.platform.doc.isv/reference/misc/runtime-options.html</a></br>
   <a href="http://help.eclipse.org/help31/topic/org.eclipse.platform.doc.isv/reference/misc/index.html">http://help.eclipse.org/help31/topic/org.eclipse.platform.doc.isv/reference/misc/index.html</a></p>
