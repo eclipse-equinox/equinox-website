@@ -1,20 +1,41 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<title>Equinox OSGi framework</title>
-<link rel="stylesheet" href="http://dev.eclipse.org/default_style.css" type="text/css">
-<link rel="stylesheet" href="../equinox.css" type="text/css">
-</head>
-<body>
-<?php include("nav-include.html") ?>
-<p class=bar>Mission Statement</p>
-<p>The Equinox Framework component is tasked with being a full implementation
-  to the OSGi Core Framework R4 specification. In addition, the Framework component
-  produces launchers, bootstrap infrastructure and application models that facilitate
-  the use of Equinox OSGi in end-user product scenarios.</p>
+<?php require_once($_SERVER['DOCUMENT_ROOT'] . "/eclipse.org-common/system/app.class.php");	require_once($_SERVER['DOCUMENT_ROOT'] . "/eclipse.org-common/system/nav.class.php"); 	require_once($_SERVER['DOCUMENT_ROOT'] . "/eclipse.org-common/system/menu.class.php"); 	$App 	= new App();	$Nav	= new Nav();	$Menu 	= new Menu();		include($App->getProjectCommon());    # All on the same line to unclutter the user's desktop'
 
-<p class=bar><a name="frameworkprojects"></a>Framework Projects</p>
+	#*****************************************************************************
+	#
+	#
+	#****************************************************************************
+	
+	#
+	# Begin: page-specific settings.  Change these. 
+	$pageTitle 		= "Equinox Framework";
+	$pageKeywords	= "equinox, osgi, framework, runtime";
+	
+	# Add page-specific Nav bars here
+	# Format is Link text, link URL (can be http://www.someothersite.com/), target (_self, _blank), level (1, 2 or 3)
+	# $Nav->addNavSeparator("My Page Links", 	"downloads.php");
+	# $Nav->addCustomNav("My Link", "mypage.php", "_self", 3);
+	# $Nav->addCustomNav("Google", "http://www.google.com/", "_blank", 3);
+
+	# End: page-specific settings
+	#
+		
+	# Paste your HTML content between the markers!	
+ob_start();
+?>		
+
+	<div id="midcolumn">
+		<h1><?= $pageTitle ?></h1>
+
+		<div class="homeitem3col">
+			<h3>Mission Statement</h3>
+				<p>The Equinox Framework component is tasked with being a full implementation
+					to the OSGi Core Framework R4 specification. In addition, the Framework component
+					produces launchers, bootstrap infrastructure and application models that facilitate
+					the use of Equinox OSGi in end-user product scenarios.</p>
+	    </div>
+		</p>
+		<div class="homeitem3col">
+		  <h3>Framework Projects</h3>
 <p>The Framework component consists of several &quot;projects&quot; in the Eclipse CVS
   repository (see the <a href="resources.php">resources</a> page for information on repository location and
   access).</p>
@@ -49,18 +70,46 @@
 information and choose the projects you want to load into the workspace. </p>
 <p>If you are working without Eclipse (gads! :-) then use your favorite CVS client
   and check out the relevant projects.</p>
-<p class=bar>What's New</p>
+		</div>
+		<div class="homeitem3col">
+		  <h3>What's New</h3>
+		</div>
+		<div class="homeitem3col">
+		  <h3>Committers</h3>
+			<p>The following people are committers on the Equinox Framework component:</p>
+			<ul>
+				<li>Jennifer Fogell, IBM PvC</li>
+				<li>BJ Hargrave, IBM PvC</li>
+				<li>DJ Houghton, IBM Rational</li>
+				<li>Jeff McAffer, IBM Rational (Project lead)</li>
+				<li>Pascal Rapicault, IBM Rational</li>
+				<li>Tom Watson, IBM PvC</li>
+			</ul>
+		</div>
+	</div>
 
-<p class=bar>Committers</p>
-      <p>The following people are committers on the Equinox Framework component:</p>
-      <ul>
-        <li>Jennifer Fogell, IBM PvC</li>
-        <li>BJ Hargrave, IBM PvC</li>
-        <li>DJ Houghton, IBM Rational</li>
-        <li>Jeff McAffer, IBM Rational (Project lead)</li>
-        <li>Pascal Rapicault, IBM Rational</li>
-        <li>Tom Watson, IBM PvC</li>
-      </ul>
+	<div id="rightcolumn">
+		<div class="sideitem">
+			<h6>Equinox links</h6>
+			<ul>
+				<li><a href="http://www.eclipse.org/equinox">home</a></li>
+				<li><a href="http://www.eclipse.org/equinox/framework">framework</a></li>
+				<li><a href="http://www.eclipse.org/equinox/bundles">bundles</a></li>
+				<li><a href="http://www.eclipse.org/equinox/incubator">incubator</a></li>
+				<li><a href="http://wiki.eclipse.org/index.php/Equinox">wiki</a></li>
+				<li><a href="http://www.eclipse.org/equinox/documents">documents</a></li>
+				<li><a href="http://download.eclipse.org/eclipse/equinox">downloads</a></li>
+				<li><a href="http://www.eclipse.org/equinox/resources.php">resources</a></li>
+				<li><a href="http://www.eclipse.org/equinox/framework/planning">planning</a></li>
+				<li><a href="http://www.eclipse.org/equinox/faq.php">faq</a></li>
+			</ul>
+		</div>
+	</div>
 
-</body>
-</html>
+<?php
+	$html = ob_get_contents();
+	ob_end_clean();
+
+	# Generate the web page
+	$App->generatePage($theme, $Menu, $Nav, $pageAuthor, $pageKeywords, $pageTitle, $html);
+?>
