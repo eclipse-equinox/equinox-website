@@ -326,6 +326,7 @@ contributed as mbeans.</li>
 				<li><a href="http://www.eclipse.org/equinox/resources.php">resources</a></li>
 				<li><a href="http://www.eclipse.org/equinox/framework/planning">planning</a></li>
 				<li><a href="http://www.eclipse.org/equinox/faq.php">faq</a></li>
+				<li><a href="http://www.eclipse.org/equinox/incubator/monitoring/doc.php">monitoring - documents</a></li>
 			</ul>
 		</div>
 	</div>
