@@ -213,6 +213,8 @@ ob_start();
 				<li><a href="http://download.eclipse.org/eclipse/equinox">downloads</a></li>
 				<li><a href="http://www.eclipse.org/equinox/resources.php">resources</a></li>
 				<li><a href="http://www.eclipse.org/equinox/faq.php">faq</a></li>
+				<li><a href="http://www.eclipse.org/equinox/bundles/resources.php">bundles - resources</a></li>
+				<li><a href="http://www.eclipse.org/equinox/bundles/planning">bundles - planning</a></li>
 			</ul>
 		</div>
 	</div>

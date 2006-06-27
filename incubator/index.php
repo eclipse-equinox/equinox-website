@@ -1,15 +1,33 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<title>Equinox OSGi incubator</title>
-<link rel="stylesheet" href="http://dev.eclipse.org/default_style.css" type="text/css">
-<link rel="stylesheet" href="../equinox.css" type="text/css">
-</head>
-<body>
-<?php include("nav-include.html") ?>
-<p class=bar>Mission Statement</p>
+<?php require_once($_SERVER['DOCUMENT_ROOT'] . "/eclipse.org-common/system/app.class.php");	require_once($_SERVER['DOCUMENT_ROOT'] . "/eclipse.org-common/system/nav.class.php"); 	require_once($_SERVER['DOCUMENT_ROOT'] . "/eclipse.org-common/system/menu.class.php"); 	$App 	= new App();	$Nav	= new Nav();	$Menu 	= new Menu();		include($App->getProjectCommon());    # All on the same line to unclutter the user's desktop'
 
+	#*****************************************************************************
+	#
+	#
+	#****************************************************************************
+	
+	#
+	# Begin: page-specific settings.  Change these. 
+	$pageTitle 		= "Equinox Incubator";
+	$pageKeywords	= "equinox, osgi, framework, runtime, incubator";
+	
+	# Add page-specific Nav bars here
+	# Format is Link text, link URL (can be http://www.someothersite.com/), target (_self, _blank), level (1, 2 or 3)
+	# $Nav->addNavSeparator("My Page Links", 	"downloads.php");
+	# $Nav->addCustomNav("My Link", "mypage.php", "_self", 3);
+	# $Nav->addCustomNav("Google", "http://www.google.com/", "_blank", 3);
+
+	# End: page-specific settings
+	#
+		
+	# Paste your HTML content between the markers!	
+ob_start();
+?>		
+
+	<div id="midcolumn">
+		<h1><?= $pageTitle ?></h1>
+
+		<div class="homeitem3col">
+			<h3>Mission Statement</h3>
 <p>
 The goal of the Equinox Incubator is to experiment with techniques for 
       broadening the range of Eclipse platform runtime configurations. For example, 
@@ -22,8 +40,10 @@ The goal of the Equinox Incubator is to experiment with techniques for
         applications, servers, etc.). The Incubator project will investigate such issues and 
         develop approaches which are practical and applicable to the main Equinox
         code base. </p>
+		</div>
 
-<p class=bar><a name="workareas"></a>Work Areas</p>
+		<div class="homeitem3col">
+			<h3>Work Areas</h3>
 <table BORDER=0 CELLSPACING=5 CELLPADDING=2 WIDTH="100%" >
 	<tr>
       <td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
@@ -51,11 +71,16 @@ The goal of the Equinox Incubator is to experiment with techniques for
 
 <p>For an understanding of how work is carried out in the incubators, check out
   the <a href="howto.php">How to Incubate</a> guide.</p>
-<p class=bar>Old work areas</p>
+		</div>
+
+		<div class="homeitem3col">
+			<h3>Old Work Areas</h3>
 <p>See the <a href="archive">Equinox Incubator Archive</a> for details of previous
   work areas.</p>
+		</div>
 
-<P class="bar">What's New</P>
+		<div class="homeitem3col">
+			<h3>What's New</h3>
 <p><b>May 16, 2006</b> - <IMG src="http://www.eclipse.org/images/new.gif"
 	width="31" height="14"> Added <a href="monitoring/index.php">Remote Resource Monitoring</a> work area.</p>
 <P><B>Nov 11, 2005</B> - Created the <a href="server">Server-side incubator</a>.</P>
@@ -72,7 +97,10 @@ page</A>.<BR>
   This tool was used to <A
 	href="http://www.eclipse.org/equinox/incubator/security/EJS/ejs.html"
 	target="_parent">analyze the RCP plug-ins</A> within the equinox project.</P>
-<p class=bar>Committers</p>
+		</div>
+
+		<div class="homeitem3col">
+			<h3>Committers</h3>
       <p>The following people are committers on the Equinox Incubator:</p>
       <ul>
         <li>Jennifer Fogell, IBM PvC</li>
@@ -87,6 +115,32 @@ page</A>.<BR>
         <li>Tom Watson, IBM PvC</li>
         <li>Matthew Webster, IBM Hursley</li>
       </ul>
+		</div>
+	</div>
 
-</body>
-</html>
+	<div id="rightcolumn">
+		<div class="sideitem">
+			<h6>Equinox links</h6>
+			<ul>
+				<li><a href="http://www.eclipse.org/equinox">home</a></li>
+				<li><a href="http://www.eclipse.org/equinox/framework">framework</a></li>
+				<li><a href="http://www.eclipse.org/equinox/bundles">bundles</a></li>
+				<li><a href="http://www.eclipse.org/equinox/incubator">incubator</a></li>
+				<li><a href="http://wiki.eclipse.org/index.php/Equinox">wiki</a></li>
+				<li><a href="http://www.eclipse.org/equinox/documents">documents</a></li>
+				<li><a href="http://download.eclipse.org/eclipse/equinox">downloads</a></li>
+				<li><a href="http://www.eclipse.org/equinox/resources.php">resources</a></li>
+				<li><a href="http://www.eclipse.org/equinox/framework/planning">planning</a></li>
+				<li><a href="http://www.eclipse.org/equinox/faq.php">faq</a></li>
+				<li><a href="http://www.eclipse.org/equinox/incubator/resources.php">incubator - resources</a></li>
+			</ul>
+		</div>
+	</div>
+
+<?php
+	$html = ob_get_contents();
+	ob_end_clean();
+
+	# Generate the web page
+	$App->generatePage($theme, $Menu, $Nav, $pageAuthor, $pageKeywords, $pageTitle, $html);
+?>
