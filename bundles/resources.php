@@ -7,7 +7,7 @@
 	
 	#
 	# Begin: page-specific settings.  Change these. 
-	$pageTitle 		= "Equinox Resources";
+	$pageTitle 		= "Equinox Bundles - Resources";
 	$pageKeywords	= "equinox, osgi, framework, runtime";
 	
 	# Add page-specific Nav bars here
