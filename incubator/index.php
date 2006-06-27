@@ -126,13 +126,13 @@ page</A>.<BR>
 				<li><a href="http://www.eclipse.org/equinox/framework">framework</a></li>
 				<li><a href="http://www.eclipse.org/equinox/bundles">bundles</a></li>
 				<li><a href="http://www.eclipse.org/equinox/incubator">incubator</a></li>
+				<li><a href="http://www.eclipse.org/equinox/incubator/resources.php">incubator - resources</a></li>
 				<li><a href="http://wiki.eclipse.org/index.php/Equinox">wiki</a></li>
 				<li><a href="http://www.eclipse.org/equinox/documents">documents</a></li>
 				<li><a href="http://download.eclipse.org/eclipse/equinox">downloads</a></li>
 				<li><a href="http://www.eclipse.org/equinox/resources.php">resources</a></li>
 				<li><a href="http://www.eclipse.org/equinox/framework/planning">planning</a></li>
 				<li><a href="http://www.eclipse.org/equinox/faq.php">faq</a></li>
-				<li><a href="http://www.eclipse.org/equinox/incubator/resources.php">incubator - resources</a></li>
 			</ul>
 		</div>
 	</div>
