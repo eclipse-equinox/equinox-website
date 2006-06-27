@@ -7,7 +7,7 @@
 	
 	#
 	# Begin: page-specific settings.  Change these. 
-	$pageTitle 		= "Equinox Incubator - Resource Monitorign";
+	$pageTitle 		= "Equinox Incubator - Resource Monitoring";
 	$pageKeywords	= "equinox, osgi, framework, runtime, incubator, monitor";
 	
 	# Add page-specific Nav bars here
