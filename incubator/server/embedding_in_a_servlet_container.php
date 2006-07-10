@@ -1,14 +1,32 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<title>Container Specific Launchers</title>
-<link rel="stylesheet" href="http://dev.eclipse.org/default_style.css" type="text/css">
-<link rel="stylesheet" href="../../equinox.css" type="text/css">
-</head>
-<body>
-<?php include("nav-include.html") ?>
-<p class="bar">Embedding in a Servlet Container - Overview</p>
+<?php require_once($_SERVER['DOCUMENT_ROOT'] . "/eclipse.org-common/system/app.class.php");	require_once($_SERVER['DOCUMENT_ROOT'] . "/eclipse.org-common/system/nav.class.php"); 	require_once($_SERVER['DOCUMENT_ROOT'] . "/eclipse.org-common/system/menu.class.php"); 	$App 	= new App();	$Nav	= new Nav();	$Menu 	= new Menu();		include($App->getProjectCommon());    # All on the same line to unclutter the user's desktop'
+
+	#*****************************************************************************
+	#
+	#
+	#****************************************************************************
+	
+	#
+	# Begin: page-specific settings.  Change these. 
+	$pageTitle 		= "Equinox Incubator - Server-Side";
+	$pageKeywords	= "equinox, osgi, framework, runtime, incubator, server";
+	
+	# Add page-specific Nav bars here
+	# Format is Link text, link URL (can be http://www.someothersite.com/), target (_self, _blank), level (1, 2 or 3)
+	# $Nav->addNavSeparator("My Page Links", 	"downloads.php");
+	# $Nav->addCustomNav("My Link", "mypage.php", "_self", 3);
+	# $Nav->addCustomNav("Google", "http://www.google.com/", "_blank", 3);
+
+	# End: page-specific settings
+	#
+		
+	# Paste your HTML content between the markers!	
+ob_start();
+?>	
+<div id="midcolumn">
+<h1><?= $pageTitle ?></h1>
+
+<div class="homeitem3col">
+<h3>Embedding in a Servlet Container - Overview</h3>
 <p>One of the objectives in the initial proposal was to look at what's involved in launching
 and interacting with various server-side containers. Currently, there is active work in the
 equinox-incubator CVS looking at embedding in a servlet container.</p>
@@ -38,22 +56,28 @@ See bugs
 </ul>
 </i></p> 
 
-<p class=bar>Quickstart</p>
+</div>
+
+<div class="homeitem3col">
+<h3>Quickstart</h3>
 <p>This set of instructions should get you up and running in a just a few minutes.
 <ol>
 <li>Install a servlet container (e.g. <a href="tomcat.apache.org/">Tomcat</a>, <a href="jetty.mortbay.org/jetty/">Jetty</a>, or whatever is handy)</li>
-<li>Download and deploy this pre-built web application archive. (<a href="bridge.war">bridge.war</a>) <i>[built from v20060412]</i></li>
+<li>Download and deploy this pre-built web application archive. (<a href="downloads/bridge.war">bridge.war</a>) <i>[built from v20060412]</i></li>
 <li>Start the web container and verify things are installed correctly by going to "/sp_test". (e.g. http://localhost:8080/bridge/sp_test)
 </ol>
 At this point you should begin familiarizing yourself with the use of the OSGi console to manage the platform.<br />
 <p>Here are a couple of Eclipse projects that might help get you started using the OSGi Http Service:
 <ul>
-<li><a href="sample-http.zip">sample.http</a> - demonstrates basic Hello World type use of the OSGi Http Service</li>
-<li><a href="sample-http-reg.zip">sample.http.registry</a> - same as sample.http but instead uses extension points from org.eclipse.equinox.http.registry</li>
+<li><a href="downloads/sample-http.zip">sample.http</a> - demonstrates basic Hello World type use of the OSGi Http Service</li>
+<li><a href="downloads/sample-http-reg.zip">sample.http.registry</a> - same as sample.http but instead uses extension points from org.eclipse.equinox.http.registry</li>
 </ul>
 </p>
 
-<p class="bar">Configuration</p>
+</div>
+
+<div class="homeitem3col">
+<h3>Configuration</h3>
 <p>The servlet.bridge web.xml provides a couple of initial parameters:
 
 <ul>
@@ -76,7 +100,10 @@ These commands are available at http://yourhost/yourcontext/sp_command. ( for ex
 </ul>
 </p>
 
-<p class="bar">Extending</p>
+</div>
+
+<div class="homeitem3col">
+<h3>Extending</h3>
 <p>Currently there are two approaches for extending the basic installation:
 <ol>
 <li>Write a bundle that uses the OSGi HttpService registered by org.eclipse.eqinox.servlet.bridge.http</li>
@@ -86,7 +113,10 @@ The functionality offered by either approach is very similar. The extension poin
 simply a mapping of the OSGi HttpService.
 </p>
 
-<p class="bar">Build Information</p>
+</div>
+
+<div class="homeitem3col">
+<h3>Build Information</h3>
 <p><i>The current eclipse build tools and wizards do not directly support building this style of application so for the time being the
 build is performed with a series of Ant scripts and resource templates</i> 
 </p>
@@ -144,4 +174,32 @@ Additionally "/tempates" provides the resource content like the web.xml, launch.
 As with RCP applications there are a wide variety of possible configurations. What's given
 in org.eclipse.equinox.servlet.bridge.feature is just one possibility.</p>
 <hr />
+</div>
+
+</div>
+
+<div id="rightcolumn">
+	<div class="sideitem">
+		<h6>Equinox links</h6>
+		<ul>
+			<li><a href="http://www.eclipse.org/equinox">home</a></li>
+			<li><a href="http://www.eclipse.org/equinox/framework">framework</a></li>
+			<li><a href="http://www.eclipse.org/equinox/bundles">bundles</a></li>
+			<li><a href="http://www.eclipse.org/equinox/incubator">incubator</a></li>
+			<li><a href="http://wiki.eclipse.org/index.php/Equinox">wiki</a></li>
+			<li><a href="http://www.eclipse.org/equinox/documents">documents</a></li>
+			<li><a href="http://download.eclipse.org/eclipse/equinox">downloads</a></li>
+			<li><a href="http://www.eclipse.org/equinox/resources.php">resources</a></li>
+			<li><a href="http://www.eclipse.org/equinox/framework/planning">planning</a></li>
+			<li><a href="http://www.eclipse.org/equinox/faq.php">faq</a></li>
+		</ul>
+	</div>
+</div>
+<?php
+	$html = ob_get_contents();
+	ob_end_clean();
+
+	# Generate the web page
+	$App->generatePage($theme, $Menu, $Nav, $pageAuthor, $pageKeywords, $pageTitle, $html);
+?>
 
