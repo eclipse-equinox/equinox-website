@@ -29,7 +29,7 @@ equinox-incubator CVS looking at embedding in a servlet container.</p>
 <p>These three project can be downloaded from the equinox incubator CVS depot. <br /> 
 (e.g. cvsroot/eclipse/equinox-incubator/org.eclipse.equinox.servlet.bridge.launcher)
 <p><b>Additional Notes: </b><ul style="list-style-type: none"><i>
-<li>To build and use these projects you'll need to be running Eclipse 3.2M6 or later. </li>
+<li>To build and use these projects you'll need to be running Eclipse 3.2 or later. </li>
 <li>Since M5 there have been a number of naming changes and the extension schema is now more attribute based. 
 See bugs 
 <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=128059">128059</a> and 
@@ -46,7 +46,11 @@ See bugs
 <li>Start the web container and verify things are installed correctly by going to "/sp_test". (e.g. http://localhost:8080/bridge/sp_test)
 </ol>
 At this point you should begin familiarizing yourself with the use of the OSGi console to manage the platform.<br />
-Why not see if you can install and start the http-console bundle described <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=122911">here</a>.
+<p>Here are a couple of Eclipse projects that might help get you started using the OSGi Http Service:
+<ul>
+<li><a href="sample-http.zip">sample.http</a> - demonstrates basic Hello World type use of the OSGi Http Service</li>
+<li><a href="sample-http-reg.zip">sample.http.registry</a> - same as sample.http but instead uses extension points from org.eclipse.equinox.http.registry</li>
+</ul>
 </p>
 
 <p class="bar">Configuration</p>
