@@ -63,14 +63,14 @@ See bugs
 <p>This set of instructions should get you up and running in a just a few minutes.
 <ol>
 <li>Install a servlet container (e.g. <a href="tomcat.apache.org/">Tomcat</a>, <a href="jetty.mortbay.org/jetty/">Jetty</a>, or whatever is handy)</li>
-<li>Download and deploy this pre-built web application archive. (<a href="downloads/bridge.war">bridge.war</a>) <i>[built from v20060412]</i></li>
+<li>Download and deploy this pre-built web application archive. (<b><a href="downloads/bridge.war">bridge.war</a></b>) <i>[built from v20060412]</i></li>
 <li>Start the web container and verify things are installed correctly by going to "/sp_test". (e.g. http://localhost:8080/bridge/sp_test)
 </ol>
 At this point you should begin familiarizing yourself with the use of the OSGi console to manage the platform.<br />
 <p>Here are a couple of Eclipse projects that might help get you started using the OSGi Http Service:
 <ul>
-<li><a href="downloads/sample-http.zip">sample.http</a> - demonstrates basic Hello World type use of the OSGi Http Service</li>
-<li><a href="downloads/sample-http-reg.zip">sample.http.registry</a> - same as sample.http but instead uses extension points from org.eclipse.equinox.http.registry</li>
+<li><b><a href="downloads/sample-http.zip">sample.http</a></b> - demonstrates basic Hello World type use of the OSGi Http Service</li>
+<li><b><a href="downloads/sample-http-reg.zip">sample.http.registry</a></b> - same as sample.http but instead uses extension points from org.eclipse.equinox.http.registry</li>
 </ul>
 </p>
 
