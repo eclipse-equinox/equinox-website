@@ -73,7 +73,7 @@ At this point you should begin familiarizing yourself with the use of the OSGi c
 <li><b><a href="downloads/sample-http-reg.zip">sample.http.registry</a></b> - same as sample.http but instead uses extension points from org.eclipse.equinox.http.registry</li>
 </ul>
 </p>
-
+You might also see if you can install and start the http-console bundle described <b><a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=122911">here</a></b>.
 </div>
 
 <div class="homeitem3col">
