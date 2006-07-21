@@ -35,6 +35,13 @@ ob_start();
 				to OSGi systems and programmers. For example, the Bundles team is responsible
 				for the Extenstion registry used throughout Eclipse.</p>
 		</div>
+
+		<div class="homeitem3col">
+			<h3>Specifications</h3>
+				<p>The specifications for the services are available from the <a href="http://osgi.org">OSGi</a> web site. Click
+				<a href="http://osgi.org/osgi_technology/download_specs2.asp?section=2">here</a> to download them.</p>
+		</div>
+
 		<div class="homeitem3col">
 			<h3>Bundle Projects</h3>
 <p>The Bundles component consists of several &quot;projects&quot; in the Eclipse
