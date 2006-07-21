@@ -63,7 +63,7 @@ See bugs
 <p>This set of instructions should get you up and running in a just a few minutes.
 <ol>
 <li>Install a servlet container (e.g. <a href="tomcat.apache.org/">Tomcat</a>, <a href="jetty.mortbay.org/jetty/">Jetty</a>, or whatever is handy)</li>
-<li>Download and deploy this pre-built web application archive. (<b><a href="downloads/bridge.war">bridge.war</a></b>) <i>[built from v20060412]</i></li>
+<li>Download and deploy this pre-built web application archive. (<b><a href="downloads/bridge.war">bridge.war</a></b>) <i>[built 2006.07.21]</i></li>
 <li>Start the web container and verify things are installed correctly by going to "/sp_test". (e.g. http://localhost:8080/bridge/sp_test)
 </ol>
 At this point you should begin familiarizing yourself with the use of the OSGi console to manage the platform.<br />
