@@ -26,42 +26,43 @@ ob_start();
 <h1><?= $pageTitle ?></h1>
 
 <div class="homeitem3col">
-<h3>HTTP Server</h3>
-<p>Setting up an HTTP server using Equinox bundles is simple and this page will explain to you how to do that.</p>
+	<h3>HTTP Server</h3>
+	<p>Setting up an HTTP server using Equinox bundles is simple and this page will explain to you how to do that.</p>
 </div>
 
 <div class="homeitem3col">
-<h3>Dependancies</h3>
-<p>This is the minimal plug-in set that you will need to run an HTTP server.</p>
-<ul>
-<li><b>Incubator Bundles</b> - These bundles are available from the Equinox Incubator repository.
+	<h3>Dependancies</h3>
+	<p>This is the minimal plug-in set that you will need to run an HTTP server.</p>
 	<ul>
-		<li>org.eclipse.equinox.http</li>	
-		<li>org.eclipse.equinox.http.registry</li>
+		<li><b>Incubator Bundles</b> - These bundles are available from the Equinox Incubator repository.
+			<ul>
+				<li>org.eclipse.equinox.http</li>	
+				<li>org.eclipse.equinox.http.registry</li>
+			</ul>
+		</li>
+		<li><b>Regular Bundles</b> - These bundles are available from the eclipse repository.
+			<ul>
+				<li>org.eclipse.core.jobs</li>
+				<li>org.eclipse.core.runtime.compatibility.registry</li>
+				<li>org.eclipse.equinox.common</li>
+				<li>org.eclipse.equinox.registry</li>
+				<li>org.eclipse.equinox.servlet.api</li>
+				<li>org.eclipse.osgi</li>
+				<li>org.eclipse.osgi.services</li>
+			</ul>
+		</li>
 	</ul>
-</li>
-<li><b>Regular Bundles</b> - These bundles are available from the eclipse repository.
-	<ul>
-		<li>org.eclipse.core.jobs</li>
-		<li>org.eclipse.core.runtime.compatibility.registry</li>
-		<li>org.eclipse.equinox.common</li>
-		<li>org.eclipse.equinox.registry</li>
-		<li>org.eclipse.equinox.servlet.api</li>
-		<li>org.eclipse.osgi</li>
-		<li>org.eclipse.osgi.services</li>
-	</ul>
-</li>
-</ul>
 </div>
 
 <div class="homeitem3col">
-<h3>Your Bundle Project</h3>
-<li><b>Create a new project</b> - Next you need to create a bundle project that will supply the resources that will be served up
-	by the server. In this example, we will create a new bundle project called <code>org.eclipse.equinox.example.http</code>.</li>
-<li><b>Add resources to your project</b> - The HTTP server will server up resources from your bundle so you will now add files
-	to your bundle. In our example we will create a folder in our project called <code>web_files</code>.</li>
-<li><b>Create an extension</b> - This is the key part to the example. Now we create an extension to the server to tell it
-	where to get our files.
+	<h3>Your Bundle Project</h3>
+	<ul>
+		<li><b>Create a new project</b> - Next you need to create a bundle project that will supply the resources that will be served up
+			by the server. In this example, we will create a new bundle project called <code>org.eclipse.equinox.example.http</code>.</li>
+		<li><b>Add resources to your project</b> - The HTTP server will server up resources from your bundle so you will now add files
+			to your bundle. In our example we will create a folder in our project called <code>web_files</code>.</li>
+		<li><b>Create an extension</b> - This is the key part to the example. Now we create an extension to the server to tell it
+			where to get our files.
 <pre><code>
 	&lt;extension point="org.eclipse.equinox.http.registry.resources"&gt;
 		&lt;resource
@@ -69,9 +70,8 @@ ob_start();
 			base-name="/web_files"&gt;
 	&lt;/extension&gt;
 </code></pre>
-</li>
-</ul>
-</p>
+		</li>
+	</ul>
 </div>
 
 <div id="rightcolumn">
