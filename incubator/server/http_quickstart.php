@@ -71,6 +71,10 @@ ob_start();
 	&lt;/extension&gt;
 </code></pre>
 		</li>
+		<li><b>Explanation</b> - In the extension above, the <code>alias</code> attribute refers to the part of the URL that will be
+			used to access the files and the <code>base-name</code> attribute describes where (in your bundle) the resources can be 
+			found. So in our example we would access an index file via the following URL <code>http://localhost/files/index.php</code>
+			and it would live inside our <code>org.eclipse.equinox.example.http</code> project in the <code>web_files</code> folder.</li>
 	</ul>
 </div>
 
