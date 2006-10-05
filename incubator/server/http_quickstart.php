@@ -77,6 +77,7 @@ ob_start();
 			and it would live inside our <code>org.eclipse.equinox.example.http</code> project in the <code>web_files</code> folder.</li>
 	</ul>
 </div>
+</div>
 
 <div id="rightcolumn">
 	<div class="sideitem">

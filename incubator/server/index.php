@@ -82,6 +82,9 @@ ob_start();
 <a href="http://www.infonoia.com/en/content.jsp?d=inf.05.09">Developing Eclipse/OSGi component webapps</a> (Wolfgang Gehner) <br />
 <i>An early adopter of this technology, in these articles Wolfgang motivates the building of Web UI components with OSGi.</i>
 </li>
+<li><a href="http_quickstart.php">Quickstart Guide to Setting up an HTTP Server</a><br/>
+<i>An easy set of steps to set up an HTTP server using the Equinox bundles.</i>
+</li>
 </ul>
 </div>
 
