@@ -40,7 +40,7 @@ ob_start();
 		<li>org.eclipse.equinox.http.registry</li>
 	</ul>
 </li>
-<li><b>Regular Bundles</b> - 
+<li><b>Regular Bundles</b> - These bundles are available from the eclipse repository.
 	<ul>
 		<li>org.eclipse.core.jobs</li>
 		<li>org.eclipse.core.runtime.compatibility.registry</li>
@@ -55,7 +55,7 @@ ob_start();
 </div>
 
 <div class="homeitem3col">
-<h3>HTTP Server</h3>
+<h3>Your Bundle Project</h3>
 <li><b>Create a new project</b> - Next you need to create a bundle project that will supply the resources that will be served up
 	by the server. In this example, we will create a new bundle project called <code>org.eclipse.equinox.example.http</code>.</li>
 <li><b>Add resources to your project</b> - The HTTP server will server up resources from your bundle so you will now add files
@@ -63,10 +63,10 @@ ob_start();
 <li><b>Create an extension</b> - This is the key part to the example. Now we create an extension to the server to tell it
 	where to get our files.
 <pre><code>
-	&lt;extension point=&quo;org.eclipse.equinox.http.registry.resources&quo;&gt;
+	&lt;extension point="org.eclipse.equinox.http.registry.resources"&gt;
 		&lt;resource
-			alias=&quo;/files&quo;
-			base-name=&quo;/web_files&quo;/&gt;
+			alias="/files"
+			base-name="/web_files"&gt;
 	&lt;/extension&gt;
 </code></pre>
 </li>
