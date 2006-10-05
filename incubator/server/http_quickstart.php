@@ -77,6 +77,20 @@ ob_start();
 			and it would live inside our <code>org.eclipse.equinox.example.http</code> project in the <code>web_files</code> folder.</li>
 	</ul>
 </div>
+
+<div class="homeitem3col">
+	<h3>Running Your Server</h3>
+	<p>You can create an OSGi Framework Launch configuration to run the server.
+	<ul>
+		<li>Create a new OSGi Framework launch configuration.</li>
+		<li>In the Plug-ins tab, de-select all the bundles.</li>
+		<li>Select the bundles listed above to be part of your launch config.</li>
+		<li>Set <code>start=true</code> for the <code>org.eclipse.equinox.http</code> and <code>org.eclipse.equinox.http.registry</code> bundles.</li>
+		<li>Run the launch config.</li>
+	</ul>
+	</p>
+</div>
+
 </div>
 
 <div id="rightcolumn">
