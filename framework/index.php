@@ -78,42 +78,19 @@ information and choose the projects you want to load into the workspace. </p>
 		  <h3>Committers</h3>
 			<p>The following people are committers on the Equinox Framework component:</p>
 			<ul>
-				<li>Jennifer Fogell, IBM PvC</li>
-				<li>BJ Hargrave, IBM PvC</li>
+				<li>Jennifer Fogell, IBM Lotus</li>
+				<li>BJ Hargrave, IBM Lotus</li>
 				<li>DJ Houghton, IBM Rational</li>
 				<li>Jeff McAffer, IBM Rational (Project lead)</li>
 				<li>Pascal Rapicault, IBM Rational</li>
-				<li>Tom Watson, IBM PvC</li>
+				<li>Tom Watson, IBM Lotus</li>
 			</ul>
 		</div>
 	</div>
 
-	<div id="rightcolumn">
-		<div class="sideitem">
-			<h6>Equinox links</h6>
-			<ul>
-				<li><a href="http://www.eclipse.org/equinox">home</a></li>
-				<li><a href="http://www.eclipse.org/equinox/framework">framework</a></li>
-				<li><a href="http://www.eclipse.org/equinox/bundles">bundles</a></li>
-				<li><a href="http://www.eclipse.org/equinox/incubator">incubator</a></li>
-				<li><a href="http://wiki.eclipse.org/index.php/Equinox">wiki</a></li>
-				<li><a href="http://www.eclipse.org/equinox/documents">documents</a></li>
-				<li><a href="http://download.eclipse.org/eclipse/equinox">downloads</a></li>
-				<li><a href="http://www.eclipse.org/equinox/resources.php">resources</a></li>
-				<li><a href="http://www.eclipse.org/equinox/faq.php">faq</a></li>
-		    </ul>
-		</div>
-	</div>
-	<div id="rightcolumn">
-		<div class="sideitem">
-		    <h6>Framework links</h6>
-		    <ul>
-              <li><a href="http://www.eclipse.org/equinox/framework/resources.php">resources</a></li>
-              <li><a href="http://www.eclipse.org/equinox/framework/planning">planning</a></li>
-	      </ul>
-		</div>
-	</div>
-
+<?php include("http://eclipse.org/equinox/links.html") ?>
+<?php include("http://eclipse.org/equinox/framework/links.html") ?>
+<?php include("dir-links.html") ?>
 <?php
 	$html = ob_get_contents();
 	ob_end_clean();
