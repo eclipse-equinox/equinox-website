@@ -42,7 +42,12 @@ ob_start();
 	<p>While Equinox can be setup to run servlets and JSPs in a variety of ways, the technique for writing the applications is the same.
 	Use the steps outlined in 
 	<a href="http://eclipse.org/equinox/documents/http_writing_application.php">Writing a bundle-based server application</a>
-	to create your application and then consult the details for the appropriate server setup
+	to create your application.</p>
+</div>
+
+<div class="homeitem3col">
+	<h3>Running the server application</h3>
+	<p>Once you have setup your server and written your application, consult the details for the appropriate server setup
 	to configure and run your server.</p>
 </div>
 

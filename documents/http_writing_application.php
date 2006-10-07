@@ -7,7 +7,7 @@
 	
 	#
 	# Begin: page-specific settings.  Change these. 
-	$pageTitle 		= "Writing a bundle-based web application";
+	$pageTitle 		= "Writing a bundle-based server application";
 	$pageKeywords	= "equinox, osgi, framework, runtime, incubator, server, servlet, http";
 	
 	# Add page-specific Nav bars here
