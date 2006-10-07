@@ -31,7 +31,7 @@ ob_start();
 	need to setup an HTTP server and then configure it with the appropriate content.  There are two basic ways of running an 
 	HTTP server in Equinox;
 	<ul>
-		<li><a href="http_in_equinox.php>embed a server in Equinox</a></li>
+		<li><a href="http_in_equinox.php">embed a server in Equinox</a></li>
 		<li><a href="http_in_container.php">embed Equinox in an existing servlet container</a> and surface the server's functionality</li>
 	</ul>
 	Follow the steps for the configuration best suited to your scenario then return here to write your bundle based web application..</p>

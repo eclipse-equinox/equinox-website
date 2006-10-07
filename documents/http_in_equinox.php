@@ -44,7 +44,7 @@ ob_start();
 	<ul>
 	<li>org.eclipse.equinox.http</li>
 	</ul>
-or
+<p>or</p>
 	<ul>
 	<li>org.mortbay.jetty</li>
 	<li>org.eclipse.equinox.http.jetty</li>
@@ -57,8 +57,8 @@ or
 
 <div class="homeitem3col">
 	<h3>Writing the server application</h3>
-	See the <a href="http://www.eclipse.org/equinox/documents/http_quickstart.php">Server-side quick start guide</a>
-	 for information on how to write a bundle based web application.
+	<p>See the <a href="http://www.eclipse.org/equinox/documents/http_quickstart.php">Server-side quick start guide</a>
+	 for information on how to write a bundle based web application.</p>
 </div>
 
 <div class="homeitem3col">
