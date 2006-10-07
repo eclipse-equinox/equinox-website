@@ -33,9 +33,11 @@ ob_start();
   folks are interested. Several &quot;people shipping server-based products today&quot;
   are also wanting to move to OSGi. This incubator project is targetted at eliminating
   barriers to using and integrating OSGi (and Equinox more specifically) on
-  the server.</p>
-<p>See the <a href="proposal.php">incubator proposal</a> for more detail.</p>
+  the server.  See the <a href="proposal.php">incubator proposal</a> for more detail.</p>
+ <p><b>Note that most of the work here has graduated. See <a href="http://eclipse.org/equinox/server">Server-side Equinox</a> 
+ for more information.
 </div>
+
 
 <div class="homeitem3col">
 <h3>Working With the Server-side Incubator</h3>
@@ -66,26 +68,8 @@ ob_start();
 <li><b><a href="eclipse_serverside_integration.php">Improving Eclipse / Server-Side Integration</a></b><br />
 <i>Helping to make Eclipse a stronger platform for server-side integration.</i>
 </li>
-<li><b><a href="embedding_in_a_servlet_container.php">Embedding in a Servlet Container</a></b><br />
-<i>Building common infrastructure for launching eclipse from a servlet container and creating OSGi based servlet applications.</i>
-</li>
 </ul>
 </p>
-</div>
-
-<div class="homeitem3col">
-<h3>Resources / Articles</h3>
-<ul>
-<li><a href="http://www.abo.fi/~mbuechi/publications/EclipsePlugins.html">Eclipse Plugin-Based Applications and J2EE Components</a> (Martin Büchi) <br />
-<i>Martin was integrating with pre-OSGi Eclipse but nonetheless ran into many similar problems. Very interesting stuff.</i></li>
-<li><a href="http://www.infonoia.com/en/content.jsp?d=inf.05.07">Eclipse goes Server-side!</a> and 
-<a href="http://www.infonoia.com/en/content.jsp?d=inf.05.09">Developing Eclipse/OSGi component webapps</a> (Wolfgang Gehner) <br />
-<i>An early adopter of this technology, in these articles Wolfgang motivates the building of Web UI components with OSGi.</i>
-</li>
-<li><a href="http_quickstart.php">Quickstart Guide to Setting up an HTTP Server</a><br/>
-<i>An easy set of steps to set up an HTTP server using the Equinox bundles.</i>
-</li>
-</ul>
 </div>
 
 <div class="homeitem3col">
