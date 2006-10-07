@@ -74,22 +74,11 @@ ob_start();
 		</div>
 	</div>
 
-	<div id="rightcolumn">
-		<div class="sideitem">
-			<h6>Equinox links</h6>
-			<ul>
-				<li><a href="index.php">home</a></li>
-				<li><a href="framework">framework</a></li>
-				<li><a href="bundles">bundles</a></li>
-				<li><a href="incubator">incubator</a></li>
-				<li><a href="http://wiki.eclipse.org/index.php/Equinox">wiki</a></li>
-				<li><a href="documents">documents</a></li>
-				<li><a href="http://download.eclipse.org/eclipse/equinox">downloads</a></li>
-				<li><a href="resources.php">resources</a></li>
-				<li><a href="faq.php">faq</a></li>
-			</ul>
-		</div>
-	</div>
+<?php
+	include "global-links.html";
+	include "dir-links.html";
+?>
+
 
 <?php
 	$html = ob_get_contents();
