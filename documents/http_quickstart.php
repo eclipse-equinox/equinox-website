@@ -31,40 +31,10 @@ ob_start();
 	need to setup an HTTP server and then configure it with the appropriate content.  There are two basic ways of running an 
 	HTTP server in Equinox;
 	<ul>
-		<li>embed an HTTP server in Equinox</li>
-		<li>embed Equinox in and existing application server and surface the server's functionality</li>
+		<li><a href="http_in_equinox.php>embed a server in Equinox</a></li>
+		<li><a href="http_in_container.php">embed Equinox in an existing servlet container</a> and surface the server's functionality</li>
 	</ul>
-	Both techniques are detailed here.</p>
-</div>
-
-<div class="homeitem3col">
-	<h3>Embedding an HTTP server in Equinox</h3>
-		<p>As a minimum you will need the following bundles.  All are available from the Eclipse repository.
-			<ul>
-				<li>org.eclipse.osgi</li>
-				<li>org.eclipse.osgi.services</li>
-				<li>org.eclipse.equinox.common</li>
-				<li>org.eclipse.equinox.registry</li>
-				<li>org.eclipse.equinox.http.registry</li>
-				<li>javax.servlet <b>or</b> org.eclipse.equinox.servlet.api (deprecated)</li>
-			</ul>
-			</p>
-
-	<p>To embedd an HTTP server in Equinox you first need an embedable HTTP implementation.  This can be 
-	the Equinox HTTP service implementation (org.eclipse.equinox.http), embedded Jetty or any other server configured 
-	to run as an OSGi bundle.  So, for example you could get:
-	<ul>
-	<li>org.eclipse.equinox.http</li>
-	</ul>
-or
-	<ul>
-	<li>org.mortbay.jetty</li>
-	<li>org.eclipse.equinox.http.jetty</li>
-	</ul>
-	</p>
-
-	<h4>Installing JSP support</h4>
-	<p>TBD</p>
+	Follow the steps for the configuration best suited to your scenario then return here to write your bundle based web application..</p>
 </div>
 
 <div class="homeitem3col">

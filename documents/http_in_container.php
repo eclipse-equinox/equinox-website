@@ -7,7 +7,7 @@
 	
 	#
 	# Begin: page-specific settings.  Change these. 
-	$pageTitle 		= "Equinox Incubator - Server-Side";
+	$pageTitle 		= "Equinox in a Servlet Container";
 	$pageKeywords	= "equinox, osgi, framework, runtime, incubator, server";
 	
 	# Add page-specific Nav bars here
@@ -26,7 +26,7 @@ ob_start();
 <h1><?= $pageTitle ?></h1>
 
 <div class="homeitem3col">
-<h3>Embedding in a Servlet Container - Overview</h3>
+<h3>Overview</h3>
 <p>One of the objectives in the initial proposal was to look at what's involved in launching
 and interacting with various server-side containers. Currently, there is active work in the
 equinox-incubator CVS looking at embedding in a servlet container.</p>
