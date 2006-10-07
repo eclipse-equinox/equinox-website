@@ -71,6 +71,7 @@ ob_start();
                           Wolfgang motivates the building of Web UI components
                           with OSGi.</i></li>
 		  </ul>
+	  </div>
 			<h3>Related Documents</h3>
 			<ul>
 				<li> <a href="http://osgi.org/osgi_technology/download_specs.asp?section=2">OSGi specifications</a></li>
