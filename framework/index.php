@@ -12,7 +12,9 @@
 	
 	# Add page-specific Nav bars here
 	# Format is Link text, link URL (can be http://www.someothersite.com/), target (_self, _blank), level (1, 2 or 3)
-	# $Nav->addNavSeparator("My Page Links", 	"downloads.php");
+	$Nav->addNavSeparator("My Page Links", 	"links.html");
+	$Nav->addNavSeparator("My Page dir links2", "dir-links.html");
+	$Nav->addNavSeparator("My Page dparent links2", "../links.html");
 	# $Nav->addCustomNav("My Link", "mypage.php", "_self", 3);
 	# $Nav->addCustomNav("Google", "http://www.google.com/", "_blank", 3);
 
@@ -89,12 +91,6 @@ information and choose the projects you want to load into the workspace. </p>
 		</div>
 	</div>
 
-<?php 
-  $BASE_PATH = dirname(__FILE__);
-  include realpath($BASE . "/" . "../links.html";
-  include realpath($BASE . "/" . "links.html";
-  include "dir-links.html";
-?>
 <?php
 	$html = ob_get_contents();
 	ob_end_clean();
