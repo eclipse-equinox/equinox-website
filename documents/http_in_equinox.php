@@ -57,7 +57,7 @@ ob_start();
 
 <div class="homeitem3col">
 	<h3>Writing the server application</h3>
-	<p>See the <a href="http://www.eclipse.org/equinox/documents/http_quickstart.php">Server-side quick start guide</a>
+	<p>See the <a href="http://eclipse.org/equinox/documents/http_writing_application.php">Writing a bundle-based server application</a>
 	 for information on how to write a bundle based web application.</p>
 </div>
 
@@ -67,7 +67,7 @@ ob_start();
 	<ul>
 		<li>Create an OSGi Framework launch configuration <b>Run &gt; Run... &gt; OSGi Framework</b></li>
 		<li>In the Plug-ins tab, de-select all the bundles</li>
-		<li>Select the bundles listed above and your application (com.example.http.application)</li>
+		<li>Select the bundles listed above and your application (e.g., com.example.http.application)</li>
 		<li>Run the launch configuration</li>
 		<li>Launch your favorite web browser and access the URLs</li>
 	</ul>

@@ -39,56 +39,11 @@ ob_start();
 
 <div class="homeitem3col">
 	<h3>Writing the server application</h3>
-	<p>The server application takes the form of static content, servlets and JSPs.  You can use any combination of these.
-	<ul>
-		<li><b>Create a new project</b> - Next you need to create a bundle to contain the application.  Your application can be made up
-		of many bundles but here we create just one.  Create a new bundle project in the Eclipse IDE called <code>com.example.http.application</code>.</li>
-		<li><b>Add resources to your project</b> - Add all of the static content files, servlets and JSPs you need for your application.  For 
-		the static content, create a folder called <code>web_files</code> and put your files there.</li>
-		<li><b>Place the resources</b> - This is the key part to the example. You need to tell the server where your static
-		content lives within the bundle and where it should be placed in URL space.  Create an extension by creating a plugin.xml 
-		file with following content.
-<pre><code>
-&lt;plugin&gt;
-  &lt;extension point="org.eclipse.equinox.http.registry.resources"&gt;
-    &lt;resource
-      alias="/files"
-      base-name="/web_files"/&gt;
-  &lt;/extension&gt;
-&lt;/plugin&gt;
-</code></pre>
-		</li>
-		<p>In the extension above, the <code>alias</code> attribute locates the resources in URL space and the <code>base-name</code> 
-			attribute describes where (in your bundle) the resources are located. So for example the file index.html would 
-			live inside the <code>com.example.http.application</code> bundle in the <code>web_files</code> folder and would be accessed
-			using the URL <code>http://localhost/files/index.html</code>.
-			</p></li>
-
-		<li><b>Add some servlets</b> - You can also add servlets by implementing classes that extent javax.serlvet.http.HttpServlet. Implement 
-		these in the example project as you would any class.
-		<li><b>Place the servlets</b> - As with the resources, you need to tell the server where the servlets are and where they 
-		should show up in URL space.  Add the following XML to the plugin.xml file you created earlier.  Ensure that this new element is placed within
-		the &lt;plugin&gt; element.  Note that you can add any number of &lt;resource&gt; elements in the
-			one extension.
-<pre><code>
-  &lt;extension point="org.eclipse.equinox.http.registry.servlets"&gt;
-    &lt;servlet
-      alias="/test"
-      class="com.example.servlet.MyServlet"/&gt;
-  &lt;/extension&gt;
-</code></pre>
-		<p>In the extension above, the <code>alias</code> attribute locates the servlet in URL space and the <code>class</code> 
-			attribute identifies the class that implements the servlet.  So for example the servlet MyServlet would be accessed
-			using the URL <code>http://localhost/test</code>.  Note that you can add any number of &lt;servlet&gt; elements in the
-			one extension.
-			</p></li>
-	</ul>
-</div>
-
-<div class="homeitem3col">
-	<h3>Running the server</h3>
-	<p>See the instructions specific to the server configuration you are running.
-	</p>
+	<p>While Equinox can be setup to run servlets and JSPs in a variety of ways, the technique for writing the applications is the same.
+	Use the steps outlined in 
+	<a href="http://eclipse.org/equinox/documents/http_writing_application.php">Writing a bundle-based server application</a>
+	to create your application and then consult the details for the appropriate server setup
+	to configure and run your server.</p>
 </div>
 
 </div>
