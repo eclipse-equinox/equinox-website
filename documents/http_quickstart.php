@@ -34,7 +34,7 @@ ob_start();
 		<li><a href="http_in_equinox.php">embed a server in Equinox</a></li>
 		<li><a href="http_in_container.php">embed Equinox in an existing servlet container</a> and surface the server's functionality</li>
 	</ul>
-	<p>Follow the steps for the configuration best suited to your scenario then return here to write your bundle based web application..</p>
+	<p>Follow the steps for the configuration best suited to your scenario then return here to write your bundle based web application.</p>
 </div>
 
 <div class="homeitem3col">
