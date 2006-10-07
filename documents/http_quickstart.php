@@ -29,12 +29,12 @@ ob_start();
 	<h3>Overview</h3>
 	<p>Equinox can be used on the server to serve up static content and to run servlets or JSPs.  In each of these cases you 
 	need to setup an HTTP server and then configure it with the appropriate content.  There are two basic ways of running an 
-	HTTP server in Equinox;</p>
+	HTTP server in Equinox;
 	<ul>
 		<li>embed an HTTP server in Equinox</li>
 		<li>embed Equinox in and existing application server and surface the server's functionality</li>
 	</ul>
-	Both techniques are detailed here.
+	Both techniques are detailed here.</p>
 </div>
 
 <div class="homeitem3col">
@@ -64,7 +64,7 @@ or
 	</p>
 
 	<h4>Installing JSP support</h4>
-	TBD
+	<p>TBD</p>
 </div>
 
 <div class="homeitem3col">
@@ -83,7 +83,7 @@ or
   &lt;extension point="org.eclipse.equinox.http.registry.resources"&gt;
     &lt;resource
       alias="/files"
-      base-name="/web_files"&gt;
+      base-name="/web_files"/&gt;
   &lt;/extension&gt;
 &lt;/plugin&gt;
 </code></pre>
@@ -104,7 +104,7 @@ or
   &lt;extension point="org.eclipse.equinox.http.registry.servlets"&gt;
     &lt;servlet
       alias="/test"
-      class="com.example.servlet.MyServlet"&gt;
+      class="com.example.servlet.MyServlet"/&gt;
   &lt;/extension&gt;
 </code></pre>
 		<p>In the extension above, the <code>alias</code> attribute locates the servlet in URL space and the <code>class</code> 

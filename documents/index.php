@@ -72,6 +72,7 @@ ob_start();
                           with OSGi.</i></li>
 		  </ul>
 	  </div>
+		<div class="homeitem3col">
 			<h3>Related Documents</h3>
 			<ul>
 				<li> <a href="http://osgi.org/osgi_technology/download_specs.asp?section=2">OSGi specifications</a></li>
