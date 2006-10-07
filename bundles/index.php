@@ -35,16 +35,16 @@ ob_start();
 				to OSGi systems and programmers. For example, the Bundles team is responsible
 				for the Extenstion registry used throughout Eclipse.</p>
 		</div>
+	  <div class="homeitem3col">
+		  <h3>What's New</h3>
+		  <p><b>Sep 28</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14"> The
+		    Equiox server-side support has graduated from the incubator into the Bundles
+		    component.</p>
+		  <h3>Bundle Projects</h3>
+	  </div>
 
 		<div class="homeitem3col">
-			<h3>Specifications</h3>
-				<p>The specifications for the services are available from the <a href="http://osgi.org">OSGi</a> web site. Click
-				<a href="http://osgi.org/osgi_technology/download_specs2.asp?section=2">here</a> to download them.</p>
-		</div>
-
-		<div class="homeitem3col">
-			<h3>Bundle Projects</h3>
-<p>The Bundles component consists of several &quot;projects&quot; in the Eclipse
+		  <p>The Bundles component consists of several &quot;projects&quot; in the Eclipse
   CVS repository (see the <a href="resources.php">resources</a> page for information
   on repository location and access). In general the name of the project matches
   the symbolic name of the resultant bundle.</p>
@@ -189,13 +189,15 @@ ob_start();
   you want to load into the workspace. </p>
 <p>If you are working without Eclipse (gads! :-) then use your favorite CVS client
   and check out the relevant projects.</p>
-		</div>
+	  </div>
 		<div class="homeitem3col">
-			<h3>What's New</h3>
-				<p><b>Sep 28</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14"> The
-				  Equiox server-side support has graduated from the incubator
-				  into the Bundles component.</p>
-		</div>
+			<div class="homeitem3col">
+			  <h3>Specifications</h3>
+			  <p>The specifications for the services are available from the <a href="http://osgi.org">OSGi</a> web
+			    site. Click <a href="http://osgi.org/osgi_technology/download_specs2.asp?section=2">here</a> to
+			    download them.</p>
+		  </div>
+		  </div>
 		<div class="homeitem3col">
 			<h3>Committers</h3>
 				<p>The following people are committers on the Equinox bundles component:</p>
