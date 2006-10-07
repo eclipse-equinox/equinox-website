@@ -48,6 +48,8 @@ ob_start();
   CVS repository (see the <a href="resources.php">resources</a> page for information
   on repository location and access). In general the name of the project matches
   the symbolic name of the resultant bundle.</p>
+<p>See also the bundles supplied by the <a href="http://eclipse.org/equinox/server">server
+    side</a> work</p>
 <table BORDER=0 CELLSPACING=5 CELLPADDING=2 WIDTH="100%" >
   <tr>
     <td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
@@ -179,8 +181,9 @@ ob_start();
   </tr>
 </table>
 <p> <A name="legend"> </A><b>Status key</b><br><FONT COLOR="GREEN">green</font> - bundle is production ready.
-<br><FONT COLOR="red">red</font> - bundle is currently not planned to be production ready by the Eclipse 3.2 release.
-<p>The Framework team typically develops using Eclipse itself so getting and
+<br>
+<FONT COLOR="red">red</font> - bundle development is in progress.
+<p>The  team typically develops using Eclipse itself so getting and
   managing the projects is quite straightforward. Simply start Eclipse, and use <strong>Import &gt; CVS &gt; Projects
   from CVS</strong>. Enter the repo access information and choose the projects
   you want to load into the workspace. </p>
@@ -189,20 +192,29 @@ ob_start();
 		</div>
 		<div class="homeitem3col">
 			<h3>What's New</h3>
-				<p><b>Feb 3</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14"> A
- 				<a href="#servlet">servlet API bundle</a> is introduced in support of the using and developing with
-				the HTTP Service.</p>
+				<p><b>Sep 28</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14"> The
+				  Equiox server-side support has graduated from the incubator
+				  into the Bundles component.</p>
 		</div>
 		<div class="homeitem3col">
 			<h3>Committers</h3>
 				<p>The following people are committers on the Equinox bundles component:</p>
 				<ul>
-					<li>Jennifer Fogell, IBM PvC</li>
-					<li>BJ Hargrave, IBM PvC</li>
+					<li>Oleg Besedin, IBM Rational</li>
+					<li>Jennifer Fogell, IBM Lotus</li>
+					<li>
+					  <div id="midcolumn">
+					    <div class="homeitem3col">Simon Kaegi, Cognos</div>
+				      </div>
+					  <div id="rightcolumn">
+                        <div class="sideitem">                          </div>
+				      </div>
+					</li>
+					<li>BJ Hargrave, IBM Lotus</li>
 					<li>DJ Houghton, IBM Rational</li>
 					<li>Jeff McAffer, IBM Rational (Project lead)</li>
 					<li>Pascal Rapicault, IBM Rational</li>
-					<li>Tom Watson, IBM PvC</li>
+					<li>Tom Watson, IBM Lotus</li>
 				</ul>
 		</div>
 	</div>
