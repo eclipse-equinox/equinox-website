@@ -88,8 +88,8 @@ information and choose the projects you want to load into the workspace. </p>
 		</div>
 	</div>
 
-<?php include("http://eclipse.org/equinox/links.html") ?>
-<?php include("http://eclipse.org/equinox/framework/links.html") ?>
+<?php include("/equinox/links.html") ?>
+<?php include("/equinox/framework/links.html") ?>
 <?php include("dir-links.html") ?>
 <?php
 	$html = ob_get_contents();
