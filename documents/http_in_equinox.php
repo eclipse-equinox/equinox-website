@@ -7,8 +7,8 @@
 	
 	#
 	# Begin: page-specific settings.  Change these. 
-	$pageTitle 		= "Servlets etc. in Equinox";
-	$pageKeywords	= "equinox, osgi, framework, runtime, incubator, server, http";
+	$pageTitle 		= "Servlets and JSPs in Equinox";
+	$pageKeywords	= "equinox, osgi, framework, runtime, incubator, server, servlet, http";
 	
 	# Add page-specific Nav bars here
 	# Format is Link text, link URL (can be http://www.someothersite.com/), target (_self, _blank), level (1, 2 or 3)
