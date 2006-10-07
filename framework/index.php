@@ -33,7 +33,11 @@ ob_start();
 					produces launchers, bootstrap infrastructure and application models that facilitate
 					the use of Equinox OSGi in end-user product scenarios.</p>
 	    </div>
-		</p>
+
+		<div class="homeitem3col">
+		  <h3>What's New</h3>
+		</div>
+
 		<div class="homeitem3col">
 		  <h3>Framework Projects</h3>
 <p>The Framework component consists of several &quot;projects&quot; in the Eclipse CVS
@@ -70,9 +74,6 @@ ob_start();
 information and choose the projects you want to load into the workspace. </p>
 <p>If you are working without Eclipse (gads! :-) then use your favorite CVS client
   and check out the relevant projects.</p>
-		</div>
-		<div class="homeitem3col">
-		  <h3>What's New</h3>
 		</div>
 		<div class="homeitem3col">
 		  <h3>Committers</h3>
