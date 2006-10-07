@@ -31,12 +31,13 @@ ob_start();
 	need to setup an HTTP server and then configure it with the appropriate content.  There are two basic ways of running an 
 	HTTP server in Equinox;</p>
 	<ul>
-		<li><a href="http_in_equinox.php">embed a server in Equinox</a> <b>(recommended)</b></li>
-		<li><a href="http_in_container.php">embed Equinox in an existing servlet container</a> and surface the server's functionality</li>
+		<li><a href="http_in_equinox.php">Embed a server in Equinox</a> <b>(recommended)</b></li>
+		<li><a href="http_in_container.php">Embed Equinox in an existing servlet container</a></li>
 	</ul>
 	<p>Follow the steps for the configuration best suited to your scenario then return here to write your bundle based web application.</p>
-	<p><b>Hint</b> Embedding the server in Equinox is the easiest configuration to setup and run. This will allow you to do all your
-	development and debugging and it is only when you go to production or in special circumstances that you will need to embed
+	<p><b>Hint</b> <a href="http_in_equinox.php">Embed a server in Equinox</a> is the easiest configuration to setup 
+	and run. This will allow you to do all your
+	development and debugging.  Only when you go to production or in special circumstances will you need to embed
 	Equinox in an existing servlet container.</p>
 </div>
 
