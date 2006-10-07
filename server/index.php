@@ -7,7 +7,7 @@
 	
 	#
 	# Begin: page-specific settings.  Change these. 
-	$pageTitle 		= "Equinox - Server-Side";
+	$pageTitle 		= "Server-Side Equinox";
 	$pageKeywords	= "equinox, osgi, framework, runtime, incubator, server";
 	
 	# Add page-specific Nav bars here
@@ -42,10 +42,14 @@ ob_start();
     of third-party libraries such as Jetty and Jasper as well as various API
     packages. These bundles are all maintained as part of the <a href="http://eclipse.org/orbit">Orbit</a> project.</p>
 </div>
+
 <div class="homeitem3col">
 <h3>Working with the server-side Equinox</h3>
 <p><strong><a href="http://eclipse.org/equinox/documents/http_quickstart.php">Quick Start</a></strong> - See the quick start guide for getting up and running with Equinox
   on the server.</p>
+</div>
+
+<div class="homeitem3col">
 <h3>Server-side Bundles</h3>
 <p>The Server-side work component consists of several bundles maintained in Eclipse
   CVS repository projects. See the <a href="../bundles/resources.php">resources</a> page
@@ -121,6 +125,9 @@ ob_start();
   you want to load into the workspace. </p>
 <p>If you are working without Eclipse (gads! :-) then use your favorite CVS client
   and check out the relevant projects.</p>
+</div>
+
+<div class="homeitem3col">
 <h3>Incubation</h3>
 <p>From time to time new server side work will be incubated in the general Equinox
   incubator.</p>

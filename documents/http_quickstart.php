@@ -7,7 +7,7 @@
 	
 	#
 	# Begin: page-specific settings.  Change these. 
-	$pageTitle 		= "Equinox Incubator - HTTP Server Quickstart";
+	$pageTitle 		= "Equinox Server-side Quickstart";
 	$pageKeywords	= "equinox, osgi, framework, runtime, incubator, server, http";
 	
 	# Add page-specific Nav bars here
@@ -26,32 +26,42 @@ ob_start();
 <h1><?= $pageTitle ?></h1>
 
 <div class="homeitem3col">
-	<h3>HTTP Server</h3>
-	<p>Setting up an HTTP server using Equinox bundles is simple and this page will explain to you how to do that.</p>
+	<h3>Overview</h3>
+	<p>Equinox can be used on the server to serve up static content and to run servlets or JSPs.  In each of these cases you 
+	need to setup an HTTP server and then configure it with the appropriate content.  There are two basic ways of running an 
+	HTTP server in Equinox;</p>
+	<ul>
+		<li>embed an HTTP server in Equinox</li>
+		<li>embed Equinox in and existing application server and surface the server's functionality</li>
+	</ul>
+	Both techniques are detailed here.
 </div>
 
 <div class="homeitem3col">
-	<h3>Dependancies</h3>
-	<p>This is the minimal plug-in set that you will need to run an HTTP server.</p>
-	<ul>
-		<li><b>Incubator Bundles</b> - These bundles are available from the Equinox Incubator repository.
+	<h3>Embedding an HTTP server in Equinox</h3>
+		<p>As a minimum you will need the following bundles.  All are available from the Eclipse repository.
 			<ul>
-				<li>org.eclipse.equinox.http</li>	
-				<li>org.eclipse.equinox.http.registry</li>
-			</ul>
-		</li>
-		<li><b>Regular Bundles</b> - These bundles are available from the eclipse repository.
-			<ul>
-				<li>org.eclipse.core.jobs</li>
-				<li>org.eclipse.core.runtime.compatibility.registry</li>
-				<li>org.eclipse.equinox.common</li>
-				<li>org.eclipse.equinox.registry</li>
-				<li>org.eclipse.equinox.servlet.api</li>
 				<li>org.eclipse.osgi</li>
 				<li>org.eclipse.osgi.services</li>
+				<li>org.eclipse.equinox.common</li>
+				<li>org.eclipse.equinox.registry</li>
+				<li>org.eclipse.equinox.http.registry</li>
+				<li>javax.servlet <b>or</b> org.eclipse.equinox.servlet.api (deprecated)</li>
 			</ul>
-		</li>
+			</p>
+
+	<p>To embedd an HTTP server in Equinox you first need an embedable HTTP implementation.  This can be 
+	the Equinox HTTP service implementation (org.eclipse.equinox.http), embedded Jetty or any other server configured 
+	to run as an OSGi bundle.  So, for example you could get:
+	<ul>
+	<li>org.eclipse.equinox.http</li>
 	</ul>
+or
+	<ul>
+	<li>org.mortbay.jetty</li>
+	<li>org.eclipse.equinox.http.jetty</li>
+	</ul>
+	</p>
 </div>
 
 <div class="homeitem3col">
@@ -93,23 +103,10 @@ ob_start();
 
 </div>
 
-<div id="rightcolumn">
-	<div class="sideitem">
-		<h6>Equinox links</h6>
-		<ul>
-			<li><a href="http://www.eclipse.org/equinox">home</a></li>
-			<li><a href="http://www.eclipse.org/equinox/framework">framework</a></li>
-			<li><a href="http://www.eclipse.org/equinox/bundles">bundles</a></li>
-			<li><a href="http://www.eclipse.org/equinox/incubator">incubator</a></li>
-			<li><a href="http://wiki.eclipse.org/index.php/Equinox">wiki</a></li>
-			<li><a href="http://www.eclipse.org/equinox/documents">documents</a></li>
-			<li><a href="http://download.eclipse.org/eclipse/equinox">downloads</a></li>
-			<li><a href="http://www.eclipse.org/equinox/resources.php">resources</a></li>
-			<li><a href="http://www.eclipse.org/equinox/framework/planning">planning</a></li>
-			<li><a href="http://www.eclipse.org/equinox/faq.php">faq</a></li>
-		</ul>
-	</div>
-</div>
+<?php
+	include "global-links.html";
+	include "dir-links.html";
+?>
 <?php
 	$html = ob_get_contents();
 	ob_end_clean();
