@@ -7,7 +7,7 @@
 	
 	#
 	# Begin: page-specific settings.  Change these. 
-	$pageTitle 		= "Equinox Incubator - Server-Side";
+	$pageTitle 		= "Equinox - Server-Side";
 	$pageKeywords	= "equinox, osgi, framework, runtime, incubator, server";
 	
 	# Add page-specific Nav bars here
@@ -27,7 +27,7 @@ ob_start();
 
 <div class="homeitem3col">
 <h3>Mission Statement</h3>
-<p>Eclipse is in use on the desktop in tools and RCP applications. The <a href="http://eclipse.org/ercp">eRCP</a> and
+<p>Eclipse is in use on the desktop in tools and <a href="http://eclipse.org/rcp">RCP</a> applications. The <a href="http://eclipse.org/ercp">eRCP</a> and
   other projects are pushing it into mobile phones and handheld devices. Now
   there is significant interest in Equinox on the server. This incubator project
   is targetted at eliminating barriers to using and integrating OSGi (and Equinox
@@ -48,7 +48,7 @@ ob_start();
   on the server.</p>
 <h3>Server-side Bundles</h3>
 <p>The Server-side work component consists of several bundles maintained in Eclipse
-  CVS repository projects. See the <a href="resources.php">resources</a> page
+  CVS repository projects. See the <a href="../bundles/resources.php">resources</a> page
   for information on repository location and access. Note that some of the
   bundles listed here are actually part of other projects (e.g., Orbit). In general
   the name of the project matches the symbolic name of the resultant bundle.</p>

@@ -202,14 +202,7 @@ ob_start();
 				<ul>
 					<li>Oleg Besedin, IBM Rational</li>
 					<li>Jennifer Fogell, IBM Lotus</li>
-					<li>
-					  <div id="midcolumn">
-					    <div class="homeitem3col">Simon Kaegi, Cognos</div>
-				      </div>
-					  <div id="rightcolumn">
-                        <div class="sideitem">                          </div>
-				      </div>
-					</li>
+					<li>Simon Kaegi, Cognos</li>
 					<li>BJ Hargrave, IBM Lotus</li>
 					<li>DJ Houghton, IBM Rational</li>
 					<li>Jeff McAffer, IBM Rational (Project lead)</li>
@@ -226,15 +219,22 @@ ob_start();
 				<li><a href="http://www.eclipse.org/equinox">home</a></li>
 				<li><a href="http://www.eclipse.org/equinox/framework">framework</a></li>
 				<li><a href="http://www.eclipse.org/equinox/bundles">bundles</a></li>
-				<li><a href="http://www.eclipse.org/equinox/bundles/resources.php">bundles - resources</a></li>
-				<li><a href="http://www.eclipse.org/equinox/bundles/planning">bundles - planning</a></li>
 				<li><a href="http://www.eclipse.org/equinox/incubator">incubator</a></li>
 				<li><a href="http://wiki.eclipse.org/index.php/Equinox">wiki</a></li>
 				<li><a href="http://www.eclipse.org/equinox/documents">documents</a></li>
 				<li><a href="http://download.eclipse.org/eclipse/equinox">downloads</a></li>
 				<li><a href="http://www.eclipse.org/equinox/resources.php">resources</a></li>
 				<li><a href="http://www.eclipse.org/equinox/faq.php">faq</a></li>
-			</ul>
+		    </ul>
+		</div>
+	</div>
+	<div id="rightcolumn">
+		<div class="sideitem">
+			<h6>Bundles links</h6>
+			<ul>
+		      <li><a href="http://www.eclipse.org/equinox/bundles/resources.php">resources</a></li>
+		      <li><a href="http://www.eclipse.org/equinox/bundles/planning">planning</a></li>
+	      </ul>
 		</div>
 	</div>
 

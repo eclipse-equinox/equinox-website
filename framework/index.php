@@ -94,8 +94,6 @@ information and choose the projects you want to load into the workspace. </p>
 			<ul>
 				<li><a href="http://www.eclipse.org/equinox">home</a></li>
 				<li><a href="http://www.eclipse.org/equinox/framework">framework</a></li>
-				<li><a href="http://www.eclipse.org/equinox/framework/planning">framework - planning</a></li>
-				<li><a href="http://www.eclipse.org/equinox/framework/resources.php">framework - resources</a></li>
 				<li><a href="http://www.eclipse.org/equinox/bundles">bundles</a></li>
 				<li><a href="http://www.eclipse.org/equinox/incubator">incubator</a></li>
 				<li><a href="http://wiki.eclipse.org/index.php/Equinox">wiki</a></li>
@@ -103,7 +101,16 @@ information and choose the projects you want to load into the workspace. </p>
 				<li><a href="http://download.eclipse.org/eclipse/equinox">downloads</a></li>
 				<li><a href="http://www.eclipse.org/equinox/resources.php">resources</a></li>
 				<li><a href="http://www.eclipse.org/equinox/faq.php">faq</a></li>
-			</ul>
+		    </ul>
+		</div>
+	</div>
+	<div id="rightcolumn">
+		<div class="sideitem">
+		    <h6>Framework links</h6>
+		    <ul>
+              <li><a href="http://www.eclipse.org/equinox/framework/resources.php">resources</a></li>
+              <li><a href="http://www.eclipse.org/equinox/framework/planning">planning</a></li>
+	      </ul>
 		</div>
 	</div>
 
