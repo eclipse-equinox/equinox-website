@@ -29,12 +29,12 @@ ob_start();
 	<h3>Overview</h3>
 	<p>Equinox can be used on the server to serve up static content and to run servlets or JSPs.  In each of these cases you 
 	need to setup an HTTP server and then configure it with the appropriate content.  There are two basic ways of running an 
-	HTTP server in Equinox;
+	HTTP server in Equinox;</p>
 	<ul>
 		<li><a href="http_in_equinox.php">embed a server in Equinox</a></li>
 		<li><a href="http_in_container.php">embed Equinox in an existing servlet container</a> and surface the server's functionality</li>
 	</ul>
-	Follow the steps for the configuration best suited to your scenario then return here to write your bundle based web application..</p>
+	<p>Follow the steps for the configuration best suited to your scenario then return here to write your bundle based web application..</p>
 </div>
 
 <div class="homeitem3col">
@@ -87,14 +87,7 @@ ob_start();
 
 <div class="homeitem3col">
 	<h3>Running the server</h3>
-	<p>To run the server and your application, carry out the following steps:
-	<ul>
-		<li>Create an OSGi Framework launch configuration <b>Run &gt; Run... &gt; OSGi Framework</b></li>
-		<li>In the Plug-ins tab, de-select all the bundles</li>
-		<li>Select the bundles listed above and your application (com.example.http.application)</li>
-		<li>Run the launch configuration</li>
-		<li>Launch your favorite web browser and access the URLs</li>
-	</ul>
+	<p>See the instructions specific to the server configuration you are running.
 	</p>
 </div>
 

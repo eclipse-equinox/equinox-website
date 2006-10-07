@@ -8,7 +8,7 @@
 	#
 	# Begin: page-specific settings.  Change these. 
 	$pageTitle 		= "Equinox in a Servlet Container";
-	$pageKeywords	= "equinox, osgi, framework, runtime, incubator, server";
+	$pageKeywords	= "equinox, osgi, framework, runtime, incubator, server, servlet, http";
 	
 	# Add page-specific Nav bars here
 	# Format is Link text, link URL (can be http://www.someothersite.com/), target (_self, _blank), level (1, 2 or 3)
@@ -178,23 +178,11 @@ in org.eclipse.equinox.servlet.bridge.feature is just one possibility.</p>
 
 </div>
 
-<div id="rightcolumn">
-	<div class="sideitem">
-		<h6>Equinox links</h6>
-		<ul>
-			<li><a href="http://www.eclipse.org/equinox">home</a></li>
-			<li><a href="http://www.eclipse.org/equinox/framework">framework</a></li>
-			<li><a href="http://www.eclipse.org/equinox/bundles">bundles</a></li>
-			<li><a href="http://www.eclipse.org/equinox/incubator">incubator</a></li>
-			<li><a href="http://wiki.eclipse.org/index.php/Equinox">wiki</a></li>
-			<li><a href="http://www.eclipse.org/equinox/documents">documents</a></li>
-			<li><a href="http://download.eclipse.org/eclipse/equinox">downloads</a></li>
-			<li><a href="http://www.eclipse.org/equinox/resources.php">resources</a></li>
-			<li><a href="http://www.eclipse.org/equinox/framework/planning">planning</a></li>
-			<li><a href="http://www.eclipse.org/equinox/faq.php">faq</a></li>
-		</ul>
-	</div>
-</div>
+<?php
+	include "global-links.html";
+	include "dir-links.html";
+?>
+
 <?php
 	$html = ob_get_contents();
 	ob_end_clean();
