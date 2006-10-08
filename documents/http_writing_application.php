@@ -44,7 +44,7 @@ ob_start();
 		<li><b>Place the resources</b> - Now tell the server where your static
 		content lives within the bundle and where it should be placed in URL space.  Create an extension by creating a plugin.xml 
 		file with following content.
-</pre><code>
+<pre><code>
 &lt;plugin&gt;
   &lt;extension point="org.eclipse.equinox.http.registry.resources"&gt;
     &lt;resource
