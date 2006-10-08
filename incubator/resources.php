@@ -78,7 +78,8 @@ ob_start();
 	</div>
 
 <?php
-	include "global-links.html";
+	include $_SERVER['DOCUMENT_ROOT'] . "/equinox/global-links.html";
+	include $_SERVER['DOCUMENT_ROOT'] . "/equinox/incubator/component-links.html";
 	include "dir-links.html";
 ?>
 
