@@ -76,8 +76,8 @@ ob_start();
 			<ul>
 				<li> <a href="http://osgi.org/osgi_technology/download_specs.asp?section=2">OSGi specifications</a></li>
 			</ul>
-	</div>
 <p>&nbsp;</p>
+	</div>
 <?php
 	include $_SERVER['DOCUMENT_ROOT'] . "/equinox/global-links.html";
 	include $_SERVER['DOCUMENT_ROOT'] . "/equinox/documents/component-links.html";
