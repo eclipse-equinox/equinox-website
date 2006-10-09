@@ -26,8 +26,7 @@ ob_start();
 	<div id="midcolumn">
 		<h1><?= $pageTitle ?></h1>
 
-		<div class="homeitem3col">
-			<h3>Mission Statement</h3>
+			<p class=bar>Mission Statement</p>
 				<p>From a code point of view, Equinox is an implementation of the <a href="http://osgi.org/osgi_technology/download_specs.asp?section=2#Release4">OSGi
 					R4 core framework specification</a>, a set of bundles that implement
 					various optional OSGi services and other infrastructure for running OSGi-based
@@ -52,10 +51,8 @@ ob_start();
 				</p>
 				<p>Did you come here expecting to find the Equinox Technology project? It has
 					been transitioned. See the <a href="documents/transition.html">transition documentation</a> for more details.</p>
-	    </div>
-		</p>
-		<div class="homeitem3col">
-		  <h3>Getting Started and Getting Involved</h3>
+
+		  <p class=bar>Getting Started and Getting Involved</p>
 			<p>The easiest way to get involved in Equinox is to try it out. See the <a href="quickstart.html">Quick
 				Start Guide</a> for how to get up and running with the standalone
 				Equinox OSGi framework and  the <a href="http://download.eclipse.org/eclipse/equinox">downloads</a> page
@@ -65,13 +62,11 @@ ob_start();
 				resources</a> and look into the work going on in the <a href="framework">framework</a>, 
 				<a href="bundles">bundles</a> or <a href="incubator">incubator</a> components
 				of Equinox.</p>
-		</div>
-		<div class="homeitem3col">
-		  <h3>What's New</h3>
+
+		  <p class=bar>What's New</p>
 		    <p><b>Oct 3</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14">
 		       Five bundles from the server side incubator have been graduated (org.eclipse.equinox.http.* and org.eclipse.equinox.servletbridge). Those bundles are available in all the build dated after october 3rd.
 			<p>&nbsp;</p>
-		</div>
 	</div>
 
 <?php

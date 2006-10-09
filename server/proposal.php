@@ -25,8 +25,7 @@ ob_start();
 <div id="midcolumn">
 <h1><?= $pageTitle ?></h1>
 
-<div class="homeitem3col">
-<h3>Server-Side Environment</h3>
+<p class=bar>Server-Side Environment</p>
 
 <p>Increasingly, developers are thinking about how they might use
 Eclipse's powerful component model and extension mechanisms in
@@ -56,10 +55,8 @@ emphasis is on J2EE implementations but more specifically the following issues
 	<li>Container specific launchers</li>
 	<li>Application Server Integration</li>
 </ul>
-</div>
 
-<div class="homeitem3col">
-<h3>Eclipse Changes for Server-Side Operation</h3>
+<p class=bar>Eclipse Changes for Server-Side Operation</p>
 
 <p>The Eclipse runtime was originally designed to run an IDE. It's a
 testament to the runtime's versatility that Eclipse is now used in a
@@ -89,10 +86,8 @@ resolve with individual patches. The goal for this area is to find a way to
 make these changes without compromising compatibility with existing Eclipse
 applications. Any changes will trace the HEAD very closely to facilitate integration.
 Ideally these changes would occur in the 3.2 timeframe.</p>
-</div>
 
-<div class="homeitem3col">
-<h3>Container Specific Launchers</h3>
+<p class=bar>Container Specific Launchers</p>
 
 <p>One way to think of the Eclipse IDE and RCP applications (in general) is that they
 are started by the native executable launcher. For server-side environments,
@@ -105,44 +100,25 @@ are addressed, other scenarios should be far easier to tackle.</p>
 The code, build instructions, and usage instructions for the servlet
 launcher will be part of the initial contribution for the incubator.
 </p>
-</div>
 
-<div class="homeitem3col">
-<h3>Application Server Integration</h3>
+<p class=bar>Application Server Integration</p>
 The Geronimo community has expressed some interest in OSGi. This incubator intends
 to investigate what it means to integrate OSGi and Geronimo as well as any changes
 to Equinox that might be required to support Geronimo. Integration with other
 application servers is also of interest.
-</div>
 
-<div class="homeitem3col">
-<h3>Resources</h3>
-
+<p class=bar>Resources</p>
 <p>Please direct comments or questions to <a
 	href="mailto:equinox-dev@eclipse.org">equinox-dev@eclipse.org</a>.</p>
 <br />
-</div>
-<br />
 
 </div>
 
-<div id="rightcolumn">
-	<div class="sideitem">
-		<h6>Equinox links</h6>
-		<ul>
-			<li><a href="http://www.eclipse.org/equinox">home</a></li>
-			<li><a href="http://www.eclipse.org/equinox/framework">framework</a></li>
-			<li><a href="http://www.eclipse.org/equinox/bundles">bundles</a></li>
-			<li><a href="http://www.eclipse.org/equinox/incubator">incubator</a></li>
-			<li><a href="http://wiki.eclipse.org/index.php/Equinox">wiki</a></li>
-			<li><a href="http://www.eclipse.org/equinox/documents">documents</a></li>
-			<li><a href="http://download.eclipse.org/eclipse/equinox">downloads</a></li>
-			<li><a href="http://www.eclipse.org/equinox/resources.php">resources</a></li>
-			<li><a href="http://www.eclipse.org/equinox/framework/planning">planning</a></li>
-			<li><a href="http://www.eclipse.org/equinox/faq.php">faq</a></li>
-		</ul>
-	</div>
-</div>
+<?php
+	include $_SERVER['DOCUMENT_ROOT'] . "/equinox/global-links.html";
+	include $_SERVER['DOCUMENT_ROOT'] . "/equinox/server/component-links.html";
+	include "dir-links.html";
+?>
 <?php
 	$html = ob_get_contents();
 	ob_end_clean();

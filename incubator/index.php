@@ -105,7 +105,6 @@ page</A>.<BR>
         <li>Tom Watson, IBM PvC</li>
         <li>Matthew Webster, IBM Hursley</li>
       </ul>
-		</div>
 	</div>
 
 <?php

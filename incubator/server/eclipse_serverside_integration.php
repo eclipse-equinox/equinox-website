@@ -25,8 +25,7 @@ ob_start();
 <div id="midcolumn">
 <h1><?= $pageTitle ?></h1>
 
-<div class="homeitem3col">
-<h3>Improving Eclipse / Server-Side Integration - Overview</h3>
+<p class=bar>Improving Eclipse / Server-Side Integration - Overview</p>
 <p>As mentioned in the original proposal, the Eclipse runtime was originally designed to
 support a desktop IDE but has proven to be useful in  other contexts. One of the key goals
 of this incubator is to look at ways to improve server-side integration of Eclipse.</p>
@@ -40,10 +39,8 @@ Activity for 3.3 is still in the planning phase however as issues arise they'll 
 and conversation on the equinox-dev mailing list. <br /><i>Note: Should a sufficiently large
 sets of changes be considered the equinox-incubator "server" branch will be used however it
 is not currently active.</i></p>
-</div>
 
-<div class="homeitem3col">
-<h3>Current Activity (3.2)</h3>
+<p class=bar>Current Activity (3.2)</p>
 <p><strong>OSGi URL Handler Service</strong>
 <ul>
 <li><i>singleton factory operations - RESOLVED - see <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=107909">bug 107909</a></i></li>
@@ -56,38 +53,22 @@ is not currently active.</i></p>
 <li><i>use of system properties - RESOLVED - see <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=105851">bug 105851</a></i></li>
 </ul>
 </p>
-</div>
 
-<div class="homeitem3col">
-<h3>Future Activity (3.3+)</h3>
+<p class=bar>Future Activity (3.3+)</p>
 <p><strong>Conditional Permission Admin</strong>
 <ul>
 <li><i>requires control of security manager - not currently logged</i></li>
 </li>
 </ul>
 </p>
-</div>
-<hr />
-
+<p>&nbsp;</p>
 </div>
 
-<div id="rightcolumn">
-	<div class="sideitem">
-		<h6>Equinox links</h6>
-		<ul>
-			<li><a href="http://www.eclipse.org/equinox">home</a></li>
-			<li><a href="http://www.eclipse.org/equinox/framework">framework</a></li>
-			<li><a href="http://www.eclipse.org/equinox/bundles">bundles</a></li>
-			<li><a href="http://www.eclipse.org/equinox/incubator">incubator</a></li>
-			<li><a href="http://wiki.eclipse.org/index.php/Equinox">wiki</a></li>
-			<li><a href="http://www.eclipse.org/equinox/documents">documents</a></li>
-			<li><a href="http://download.eclipse.org/eclipse/equinox">downloads</a></li>
-			<li><a href="http://www.eclipse.org/equinox/resources.php">resources</a></li>
-			<li><a href="http://www.eclipse.org/equinox/framework/planning">planning</a></li>
-			<li><a href="http://www.eclipse.org/equinox/faq.php">faq</a></li>
-		</ul>
-	</div>
-</div>
+<?php
+	include $_SERVER['DOCUMENT_ROOT'] . "/equinox/global-links.html";
+	include $_SERVER['DOCUMENT_ROOT'] . "/equinox/incubator/component-links.html";
+	include "dir-links.html";
+?>
 <?php
 	$html = ob_get_contents();
 	ob_end_clean();

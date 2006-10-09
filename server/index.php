@@ -25,8 +25,7 @@ ob_start();
 <div id="midcolumn">
 <h1><?= $pageTitle ?></h1>
 
-<div class="homeitem3col">
-<h3>Mission Statement</h3>
+<p class=bar>Mission Statement</p>
 <p>Eclipse is in use on the desktop in tools and <a href="http://eclipse.org/rcp">RCP</a> applications. The <a href="http://eclipse.org/ercp">eRCP</a> and
   other projects are pushing it into mobile phones and handheld devices. Now
   there is significant interest in Equinox on the server. This incubator project
@@ -41,16 +40,12 @@ ob_start();
     of the main Equinox components. Note also that this work makes heavy use
     of third-party libraries such as Jetty and Jasper as well as various API
     packages. These bundles are all maintained as part of the <a href="http://eclipse.org/orbit">Orbit</a> project.</p>
-</div>
 
-<div class="homeitem3col">
-<h3>Working with the server-side Equinox</h3>
+<p class=bar>Working with the server-side Equinox</p>
 <p><strong><a href="http://eclipse.org/equinox/documents/http_quickstart.php">Quick Start</a></strong> - See the quick start guide for getting up and running with Equinox
   on the server.</p>
-</div>
 
-<div class="homeitem3col">
-<h3>Server-side Bundles</h3>
+<p class=bar>Server-side Bundles</p>
 <p>The Server-side work component consists of several bundles maintained in Eclipse
   CVS repository projects. See the <a href="../bundles/resources.php">resources</a> page
   for information on repository location and access. Note that some of the
@@ -125,16 +120,12 @@ ob_start();
   you want to load into the workspace. </p>
 <p>If you are working without Eclipse (gads! :-) then use your favorite CVS client
   and check out the relevant projects.</p>
-</div>
 
-<div class="homeitem3col">
-<h3>Incubation</h3>
+<p class=bar>Incubation</p>
 <p>From time to time new server side work will be incubated in the general Equinox
   incubator.</p>
-</div>
 
-<div class="homeitem3col">
-<h3>Current Activity</h3>
+<p class=bar>Current Activity</p>
 <ul>
 <li><b><a href="eclipse_serverside_integration.php">Improving Eclipse / Server-Side Integration</a></b><br />
 <i>Helping to make Eclipse a stronger platform for server-side integration.</i>
@@ -143,8 +134,6 @@ ob_start();
 <i>Building common infrastructure for launching eclipse from a servlet container and creating OSGi based servlet applications.</i>
 </li>
 </ul>
-</div>
-
 
 </div>
 
