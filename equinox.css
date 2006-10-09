@@ -1,24 +1,4 @@
-p.bar {
-margin-left: 0;
-margin-right: 0;
-padding-top: 1px;
-padding-bottom: 1px;
-padding-left: 5px;
-padding-right: 1px;color: #FFFFFF;
-background-color: #0080C0;
-font-weight: bold;
-}
 
-p.subbar {
-margin-left: 0;
-margin-right: 0;
-padding-top: 1px;
-padding-bottom: 1px;
-padding-left: 5px;
-padding-right: 1px;color: #FFFFFF;
-background-color: #808080;
-font-weight: bold;
-}
 #main-title {
 margin-bottom: 5px;
 margin-left: 0;
