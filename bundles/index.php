@@ -26,24 +26,20 @@ ob_start();
 	<div id="midcolumn">
 		<h1><?= $pageTitle ?></h1>
 
-		<div class="homeitem3col">
-			<h3>Mission Statement</h3>
+			<p class=bar>Mission Statement</p>
 				<p>The Equinox Bundles component is tasked with implementing all add-on services
 				detailed in the OSGi specifications including the output of Mobile Expert Group
 				(MEG) and the Vehicle Expert Group (VEG). In addition, the bundles component
 				team defines and produces bundles and services that are of general utility
 				to OSGi systems and programmers. For example, the Bundles team is responsible
 				for the Extenstion registry used throughout Eclipse.</p>
-		</div>
-	  <div class="homeitem3col">
-		  <h3>What's New</h3>
+
+		  <p class=bar>What's New</p>
 		  <p><b>Sep 28</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14"> The
 		    Equiox server-side support has graduated from the incubator into the Bundles
 		    component.</p>
-		  <h3>Bundle Projects</h3>
-	  </div>
 
-		<div class="homeitem3col">
+		  <p class=bar>Bundle Projects</p>
 		  <p>The Bundles component consists of several &quot;projects&quot; in the Eclipse
   CVS repository (see the <a href="resources.php">resources</a> page for information
   on repository location and access). In general the name of the project matches
@@ -189,17 +185,12 @@ ob_start();
   you want to load into the workspace. </p>
 <p>If you are working without Eclipse (gads! :-) then use your favorite CVS client
   and check out the relevant projects.</p>
-	  </div>
-		<div class="homeitem3col">
-			<div class="homeitem3col">
-			  <h3>Specifications</h3>
+			  <p class=bar>Specifications</p>
 			  <p>The specifications for the services are available from the <a href="http://osgi.org">OSGi</a> web
 			    site. Click <a href="http://osgi.org/osgi_technology/download_specs2.asp?section=2">here</a> to
 			    download them.</p>
-		  </div>
-		  </div>
-		<div class="homeitem3col">
-			<h3>Committers</h3>
+
+			<p class=bar>Committers</p>
 				<p>The following people are committers on the Equinox bundles component:</p>
 				<ul>
 					<li>Oleg Besedin, IBM Rational</li>
@@ -211,7 +202,6 @@ ob_start();
 					<li>Pascal Rapicault, IBM Rational</li>
 					<li>Tom Watson, IBM Lotus</li>
 				</ul>
-		</div>
 	</div>
 
 <?php

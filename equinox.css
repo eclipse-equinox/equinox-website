@@ -27,10 +27,6 @@ p.bar {
 	font-weight: bold;
 	margin-left: 0;
 	margin-right: 0;	
-	padding-top: 1px;
-	padding-bottom: 1px;
-	padding-left: 5px;
-	padding-right: 1px;
 }
 
 p.subbar {
@@ -44,8 +40,4 @@ p.subbar {
 	font-weight: bold;
 	margin-left: 0;
 	margin-right: 0;
-	padding-top: 1px;
-	padding-bottom: 1px;
-	padding-left: 5px;
-	padding-right: 1px;
 }
