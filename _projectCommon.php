@@ -18,4 +18,4 @@
 	$Nav->addNavSeparator("Development", "http://www.eclipse.org/eclipse/development/", "_self", 1);
 
 ?>
-   <link rel=stylesheet type="text/css" href="equinox.css">
+   <link rel=stylesheet type="text/css" href="http://eclipse.org/equinox/equinox.css">
