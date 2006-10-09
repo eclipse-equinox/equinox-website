@@ -35,3 +35,35 @@ font-size: 1.2em;
 letter-spacing: 5px;
 text-align: left;
 }
+
+.midcolumn p.bar {
+	background-image: url(/eclipse.org-common/themes/Phoenix/images/header_bg.gif);
+	background-position: top left;
+	background-repeat: repeat-x;
+	background-color: #669;
+	color: #fff;
+	/*  font-size: 1.1em;  */
+	font-size: 110%;
+	margin-left: 0;
+	margin-right: 0;	
+	padding-top: 1px;
+	padding-bottom: 1px;
+	padding-left: 5px;
+	padding-right: 1px;
+}
+
+.midcolumn p.subbar {
+	background-image: url(/eclipse.org-common/themes/Phoenix/images/header_bg.gif);
+	background-position: top left;
+	background-repeat: repeat-x;
+	background-color: #595791;
+	color: #fff;
+	/*  font-size: 1.1em;  */
+	font-size: 110%;
+	margin-left: 0;
+	margin-right: 0;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	padding-left: 5px;
+	padding-right: 1px;
+}
