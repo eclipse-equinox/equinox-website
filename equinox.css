@@ -16,7 +16,7 @@ letter-spacing: 5px;
 text-align: left;
 }
 
-.midcolumn p.bar {
+p.bar {
 	background-image: url(/eclipse.org-common/themes/Phoenix/images/header_bg.gif);
 	background-position: top left;
 	background-repeat: repeat-x;
@@ -32,7 +32,7 @@ text-align: left;
 	padding-right: 1px;
 }
 
-.midcolumn p.subbar {
+p.subbar {
 	background-image: url(/eclipse.org-common/themes/Phoenix/images/header_bg.gif);
 	background-position: top left;
 	background-repeat: repeat-x;
