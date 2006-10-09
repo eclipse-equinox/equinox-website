@@ -33,7 +33,7 @@ p.bar {
 }
 
 p.subbar {
-	background-image: url(/eclipse.org-common/themes/Phoenix/images/header_bg.gif);
+	background-image: url(/eclipse.org-common/themes/Phoenix/images/searchbar_bg.gif);
 	background-position: top left;
 	background-repeat: repeat-x;
 	background-color: #595791;
