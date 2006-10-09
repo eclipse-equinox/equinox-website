@@ -25,7 +25,7 @@ ob_start();
 <div id="midcolumn">
 <h1><?= $pageTitle ?></h1>
 
-	<h3>Overview</h3>
+	<h2>Overview</h2>
 	<p>Equinox can be used on the server to serve up static content and to run servlets or JSPs.  In each of these cases you 
 	need to setup an HTTP server and then configure it with the appropriate content.  There are two basic ways of running an 
 	HTTP server in Equinox;</p>
@@ -51,10 +51,6 @@ ob_start();
 
 </div>
 
-<?php
-	include "global-links.html";
-	include "dir-links.html";
-?>
 <?php
 	$html = ob_get_contents();
 	ob_end_clean();
