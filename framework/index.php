@@ -80,6 +80,7 @@ information and choose the projects you want to load into the workspace. </p>
 				<li>Pascal Rapicault, IBM Rational</li>
 				<li>Tom Watson, IBM Lotus</li>
 			</ul>
+<p>&nbsp;</p>
 	</div>
 
 <?php

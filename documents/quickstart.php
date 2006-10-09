@@ -105,8 +105,8 @@ related problems.</p>
   <li>Questions and comments should go in the <a href="news://news.eclipse.org/eclipse.technology.equinox">equinox</a> newsgroup.</li>
   <li>Development questions can go to <a href="mailto:equinox-dev@eclipse.org">equinox-dev@eclipse.org</a>.</li>
 </ul>
-	</div>
 <p>&nbsp;</p>
+	</div>
 
 <?php
 	include $_SERVER['DOCUMENT_ROOT'] . "/equinox/global-links.html";

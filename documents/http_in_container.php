@@ -159,10 +159,10 @@ Additionally "/tempates" provides the resource content like the web.xml, launch.
 </ol>
 </p>
 
-As with RCP applications there are a wide variety of possible configurations. What's given
+<p>As with RCP applications there are a wide variety of possible configurations. What's given
 in org.eclipse.equinox.servlet.bridge.feature is just one possibility.</p>
-<hr />
 
+<p>&nbsp;</p>
 </div>
 
 <?php

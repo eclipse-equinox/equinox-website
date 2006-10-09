@@ -78,6 +78,7 @@ ob_start();
 		<li><b>Place the JSPs</b> - TBD</li>
 	</ul>
 
+<p>&nbsp;</p>
 </div>
 
 <?php

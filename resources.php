@@ -86,6 +86,7 @@ ob_start();
         site.</p></td>
   </tr>
 </table>
+<p>&nbsp;</p>
 	</div>
 
 <?php

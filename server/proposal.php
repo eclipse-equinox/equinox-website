@@ -110,8 +110,9 @@ application servers is also of interest.
 <p class=bar>Resources</p>
 <p>Please direct comments or questions to <a
 	href="mailto:equinox-dev@eclipse.org">equinox-dev@eclipse.org</a>.</p>
-<br />
 
+
+<p>&nbsp;</p>
 </div>
 
 <?php

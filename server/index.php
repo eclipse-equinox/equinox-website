@@ -135,6 +135,7 @@ ob_start();
 </li>
 </ul>
 
+<p>&nbsp;</p>
 </div>
 
 <?php

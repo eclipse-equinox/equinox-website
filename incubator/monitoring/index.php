@@ -298,6 +298,7 @@ contributed as mbeans.</li>
 					<li>DJ Houghton (IBM)</li>
 					<li>Robert Connell (UNB)</li>
 				</ul>
+<p>&nbsp;</p>
 	</div>
 
 <?php

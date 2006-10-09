@@ -77,6 +77,7 @@ ob_start();
 					<li>Investigate exceptions w.r.t installing/uninstalling contribution providers during runtime - was 
 						unable to reproduce (Rob 04/28/2006).</li>
 				</ul>
+<p>&nbsp;</p>
 	</div>
 
 <?php

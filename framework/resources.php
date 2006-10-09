@@ -63,6 +63,7 @@ ob_start();
   </tr>
 </table>
 
+<p>&nbsp;</p>
 	</div>
 
 <?php

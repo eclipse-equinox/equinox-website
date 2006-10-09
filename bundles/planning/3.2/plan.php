@@ -57,6 +57,7 @@ ob_start();
     </td>
   </tr>
 </table>
+<p>&nbsp;</p>
 	</div>
 
 <?php

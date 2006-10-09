@@ -62,6 +62,7 @@ ob_start();
       projects</a>.</p></td>
   </tr>
 </table>
+<p>&nbsp;</p>
 	</div>
 
 <?php

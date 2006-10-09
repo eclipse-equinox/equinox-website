@@ -69,6 +69,7 @@ ob_start();
 <ul>
 <li>Simon Kaegi (Cognos)</li>
 </ul>
+<p>&nbsp;</p>
 </div>
 
 <?php

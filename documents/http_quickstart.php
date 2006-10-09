@@ -49,6 +49,7 @@ ob_start();
 	<p>Once you have setup your server and written your application, consult the details for the appropriate server setup
 	to configure and run your server.</p>
 
+<p>&nbsp;</p>
 </div>
 
 <?php

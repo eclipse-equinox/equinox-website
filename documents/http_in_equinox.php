@@ -67,7 +67,7 @@ ob_start();
 		<li>Launch your favorite web browser and access the URLs</li>
 	</ul>
 	</p>
-
+<p>&nbsp;</p>
 </div>
 
 <?php
