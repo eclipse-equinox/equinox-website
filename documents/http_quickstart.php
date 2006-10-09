@@ -25,7 +25,6 @@ ob_start();
 <div id="midcolumn">
 <h1><?= $pageTitle ?></h1>
 
-<div class="homeitem3col">
 	<h3>Overview</h3>
 	<p>Equinox can be used on the server to serve up static content and to run servlets or JSPs.  In each of these cases you 
 	need to setup an HTTP server and then configure it with the appropriate content.  There are two basic ways of running an 
@@ -39,28 +38,25 @@ ob_start();
 	and run. This will allow you to do all your
 	development and debugging.  Only when you go to production or in special circumstances will you need to embed
 	Equinox in an existing servlet container.</p>
-</div>
 
-<div class="homeitem3col">
 	<h3>Writing the server application</h3>
 	<p>While Equinox can be setup to run servlets and JSPs in a variety of ways, the technique for writing the applications is the same.
 	Use the steps outlined in 
 	<a href="http://eclipse.org/equinox/documents/http_writing_application.php">Writing a bundle-based server application</a>
 	to create your application.</p>
-</div>
 
-<div class="homeitem3col">
 	<h3>Running the server application</h3>
 	<p>Once you have setup your server and written your application, consult the details for the appropriate server setup
 	to configure and run your server.</p>
-</div>
 
 </div>
 
 <?php
-	include "global-links.html";
+	include $_SERVER['DOCUMENT_ROOT'] . "/equinox/global-links.html";
+	include $_SERVER['DOCUMENT_ROOT'] . "/equinox/documents/component-links.html";
 	include "dir-links.html";
 ?>
+
 <?php
 	$html = ob_get_contents();
 	ob_end_clean();
