@@ -24,6 +24,7 @@ p.bar {
 	color: #fff;
 	/*  font-size: 1.1em;  */
 	font-size: 110%;
+	font-weight: bold;
 	margin-left: 0;
 	margin-right: 0;	
 	padding-top: 1px;
@@ -40,6 +41,7 @@ p.subbar {
 	color: #000;
 	/*  font-size: 1.1em;  */
 	font-size: 110%;
+	font-weight: bold;
 	margin-left: 0;
 	margin-right: 0;
 	padding-top: 1px;
