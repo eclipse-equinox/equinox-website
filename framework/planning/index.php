@@ -26,8 +26,6 @@ ob_start();
 	<div id="midcolumn">
 		<h1><?= $pageTitle ?></h1>
 
-		<div class="homeitem3col">
-			<h3>Planning</h3>
 <table BORDER=0 CELLPADDING=2 WIDTH="100%" >
   <tr>
     <td WIDTH="2%" ALIGN=RIGHT VALIGN=TOP><img SRC=../../images/Adarrow.gif BORDER=0 height=16 width=16></td>
@@ -41,25 +39,13 @@ ob_start();
     </td>
   </tr>
 </table>
-		</div>
 	</div>
 
-	<div id="rightcolumn">
-		<div class="sideitem">
-			<h6>Equinox links</h6>
-			<ul>
-				<li><a href="http://www.eclipse.org/equinox">home</a></li>
-				<li><a href="http://www.eclipse.org/equinox/framework">framework</a></li>
-				<li><a href="http://www.eclipse.org/equinox/bundles">bundles</a></li>
-				<li><a href="http://www.eclipse.org/equinox/incubator">incubator</a></li>
-				<li><a href="http://wiki.eclipse.org/index.php/Equinox">wiki</a></li>
-				<li><a href="http://www.eclipse.org/equinox/documents">documents</a></li>
-				<li><a href="http://download.eclipse.org/eclipse/equinox">downloads</a></li>
-				<li><a href="http://www.eclipse.org/equinox/resources.php">resources</a></li>
-				<li><a href="http://www.eclipse.org/equinox/faq.php">faq</a></li>
-			</ul>
-		</div>
-	</div>
+<?php
+	include $_SERVER['DOCUMENT_ROOT'] . "/equinox/global-links.html";
+	include $_SERVER['DOCUMENT_ROOT'] . "/equinox/framework/component-links.html";
+	include "dir-links.html";
+?>
 
 <?php
 	$html = ob_get_contents();

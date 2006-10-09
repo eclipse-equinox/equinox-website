@@ -26,16 +26,14 @@ ob_start();
 	<div id="midcolumn">
 		<h1><?= $pageTitle ?></h1>
 
-		<div class="homeitem3col">
-			<h3>Documents</h3>
+			<p class=bar>Documents</p>
 				<ul>
 					<li><a href="plugin-versioning.html">Recommendation to version plug-ins</a></li>
 					<li><a href="coding.php">Equinox Coding Practices</a></li>
     				<li><a href="3.2-migration.php">3.2 Migration Guide</a></li>
 				</ul>
-		</div>
-		<div class="homeitem3col">
-			<h3>Presentations</h3>
+
+			<p class=bar>Presentations</p>
 				<ul>
 					<li><a href="http://osgicongress.com">OSGi Developer Forum 2005</a> (October)
 					  - <a href="osgicongress2005/mcaffer_1012_1530.pdf">Eclipse the Rich Client Platform</a> - Jeff McAffer</li>
@@ -51,9 +49,8 @@ ob_start();
      				 - <a href="TutorialEclipseCon06.ppt">OSGi Component Programming Tutorial</a> - Tom Watson &amp; Peter Kriens</li>
     			</li>
 			</ul>
-		</div>
-		<div class="homeitem3col">
-			<h3><a name="server"></a>Server-side</h3>
+
+			<p class=bar><a name="server"></a>Server-side</p>
 			<ul>
               <li><a href="http_quickstart.php">Quickstart Guide to Setting up
                   an HTTP Server</a><br/>
@@ -71,13 +68,11 @@ ob_start();
                           Wolfgang motivates the building of Web UI components
                           with OSGi.</i></li>
 		  </ul>
-	  </div>
-		<div class="homeitem3col">
-			<h3>Related Documents</h3>
+
+			<p class=bar>Related Documents</p>
 			<ul>
 				<li> <a href="http://osgi.org/osgi_technology/download_specs.asp?section=2">OSGi specifications</a></li>
 			</ul>
-	  </div>
 	</div>
 
 <?php

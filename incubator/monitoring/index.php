@@ -26,17 +26,14 @@ ob_start();
 	<div id="midcolumn">
 		<h1><?= $pageTitle ?></h1>
 
-		<div class="homeitem3col">
-			<h3>Mission Statement</h3>
+			<p class=bar>Mission Statement</p>
 <p>To provide 
 a framework for monitoring resources that are contributed by bundles installed
 on the host machine.  The term 'resources' is used to describe something as specific
 as a single object or something as abstract as an OSGI bundle.</p>
 <p>See the <a href="http://www.eclipse.org/equinox/documents/tools-proposal.php">incubator proposal</a> for more detail.</p>
-		</div>
 
-		<div class="homeitem3col">
-			<h3>Latest News</h3>
+			<p class=bar>Latest News</p>
 <table width="100%" border="0">
 <tr>
 	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
@@ -50,10 +47,8 @@ as a single object or something as abstract as an OSGI bundle.</p>
     </td>
 </tr>
 </table>
-		</div>
 
-		<div class="homeitem3col">
-			<h3>Working with the resource monitoring framework</h3>
+			<p class=bar>Working with the resource monitoring framework</p>
 <p>The monitoring incubator uses the main <a href="../resources.php">incubator
     resources</a> with the following refinements.</p>
 
@@ -260,20 +255,16 @@ as a single object or something as abstract as an OSGI bundle.</p>
 </tr>
 
 </table>
-		</div>
 
-		<div class="homeitem3col">
-			<h3>Latest Pre-Built Zips</h3>
+			<p class=bar>Latest Pre-Built Zips</p>
 If you don't want to check the code out of the repository and export your own plug-ins and 
 features, here are some zip files for the client and server.
 <ul>
 <li>org.eclipse.equinox.monitoring.client <a href="downloads/org.eclipse.equinox.monitoring.client_1.0.0.200606061044.zip">v1.0.0.200606061044</a></li>
 <li>org.eclipse.equinox.monitoring.server <a href="downloads/org.eclipse.equinox.monitoring.server_1.0.0.200606061044.zip">v1.0.0.200606061044</a></li>
 </ul>
-		</div>
 
-		<div class="homeitem3col">
-			<h3>Running the Framework</h3>
+			<p class=bar>Running the Framework</p>
 The current implementation consists of a set of features and bundles that are intended to be placed
 in your eclipse install.  <br/>
 
@@ -300,37 +291,20 @@ contributed as mbeans.</li>
 <li>To disconnect, select 'Disconnect' from the 'JMX Server' menu in the toolbar.</li>
 </ul>
 </p>
-		</div>
 
-		<div class="homeitem3col">
-			<h3>Active Investigators</h3>
+			<p class=bar>Active Investigators</p>
 				<ul>
 					<li>Jeff McAffer (IBM)</li>
 					<li>DJ Houghton (IBM)</li>
 					<li>Robert Connell (UNB)</li>
 				</ul>
-		</div>
 	</div>
 
-	<div id="rightcolumn">
-		<div class="sideitem">
-			<h6>Equinox links</h6>
-			<ul>
-				<li><a href="http://www.eclipse.org/equinox">home</a></li>
-				<li><a href="http://www.eclipse.org/equinox/framework">framework</a></li>
-				<li><a href="http://www.eclipse.org/equinox/bundles">bundles</a></li>
-				<li><a href="http://www.eclipse.org/equinox/incubator">incubator</a></li>
-				<li><a href="http://wiki.eclipse.org/index.php/Equinox">wiki</a></li>
-				<li><a href="http://www.eclipse.org/equinox/documents">documents</a></li>
-				<li><a href="http://download.eclipse.org/eclipse/equinox">downloads</a></li>
-				<li><a href="http://www.eclipse.org/equinox/resources.php">resources</a></li>
-				<li><a href="http://www.eclipse.org/equinox/framework/planning">planning</a></li>
-				<li><a href="http://www.eclipse.org/equinox/faq.php">faq</a></li>
-				<li><a href="http://www.eclipse.org/equinox/incubator/monitoring/doc.php">monitoring - documents</a></li>
-			</ul>
-		</div>
-	</div>
-
+<?php
+	include $_SERVER['DOCUMENT_ROOT'] . "/equinox/global-links.html";
+	include $_SERVER['DOCUMENT_ROOT'] . "/equinox/incubator/component-links.html";
+	include "dir-links.html";
+?>
 <?php
 	$html = ob_get_contents();
 	ob_end_clean();

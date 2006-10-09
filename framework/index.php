@@ -26,20 +26,15 @@ ob_start();
 	<div id="midcolumn">
 		<h1><?= $pageTitle ?></h1>
 
-		<div class="homeitem3col">
-			<h3>Mission Statement</h3>
+			<p class=bar>Mission Statement</p>
 				<p>The Equinox Framework component is tasked with being a full implementation
 					to the OSGi Core Framework R4 specification. In addition, the Framework component
 					produces launchers, bootstrap infrastructure and application models that facilitate
 					the use of Equinox OSGi in end-user product scenarios.</p>
-	    </div>
 
-		<div class="homeitem3col">
-		  <h3>What's New</h3>
-		</div>
-
-		<div class="homeitem3col">
-		  <h3>Framework Projects</h3>
+		  <p class=bar>What's New</p>
+<p>&nbsp;</p>
+		  <p class=bar>Framework Projects</p>
 <p>The Framework component consists of several &quot;projects&quot; in the Eclipse CVS
   repository (see the <a href="resources.php">resources</a> page for information on repository location and
   access).</p>
@@ -74,9 +69,8 @@ ob_start();
 information and choose the projects you want to load into the workspace. </p>
 <p>If you are working without Eclipse (gads! :-) then use your favorite CVS client
   and check out the relevant projects.</p>
-		</div>
-		<div class="homeitem3col">
-		  <h3>Committers</h3>
+
+		  <p class=bar>Committers</p>
 			<p>The following people are committers on the Equinox Framework component:</p>
 			<ul>
 				<li>Jennifer Fogell, IBM Lotus</li>
@@ -86,7 +80,6 @@ information and choose the projects you want to load into the workspace. </p>
 				<li>Pascal Rapicault, IBM Rational</li>
 				<li>Tom Watson, IBM Lotus</li>
 			</ul>
-		</div>
 	</div>
 
 <?php

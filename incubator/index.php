@@ -26,8 +26,7 @@ ob_start();
 	<div id="midcolumn">
 		<h1><?= $pageTitle ?></h1>
 
-		<div class="homeitem3col">
-			<h3>Mission Statement</h3>
+			<p class=bar>Mission Statement</p>
 <p>
 The goal of the Equinox Incubator is to experiment with techniques for 
       broadening the range of Eclipse platform runtime configurations. For example, 
@@ -40,10 +39,8 @@ The goal of the Equinox Incubator is to experiment with techniques for
         applications, servers, etc.). The Incubator project will investigate such issues and 
         develop approaches which are practical and applicable to the main Equinox
         code base. </p>
-		</div>
 
-		<div class="homeitem3col">
-			<h3>Work Areas</h3>
+			<p class=bar>Work Areas</p>
 <table BORDER=0 CELLSPACING=5 CELLPADDING=2 WIDTH="100%" >
 	<tr>
       <td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
@@ -70,16 +67,12 @@ The goal of the Equinox Incubator is to experiment with techniques for
 
 <p>For an understanding of how work is carried out in the incubators, check out
   the <a href="howto.php">How to Incubate</a> guide.</p>
-		</div>
 
-		<div class="homeitem3col">
-			<h3>Old Work Areas</h3>
+			<p class=bar>Old Work Areas</p>
 <p>See the <a href="archive">Equinox Incubator Archive</a> for details of previous
   work areas.</p>
-		</div>
 
-		<div class="homeitem3col">
-			<h3>What's New</h3>
+			<p class=bar>What's New</p>
 <p><b>May 16, 2006</b> - <IMG src="http://www.eclipse.org/images/new.gif"
 	width="31" height="14"> Added <a href="monitoring/index.php">Remote Resource Monitoring</a> work area.</p>
 <P><B>Nov 11, 2005</B> - Created the <a href="server">Server-side incubator</a>.</P>
@@ -96,10 +89,8 @@ page</A>.<BR>
   This tool was used to <A
 	href="http://www.eclipse.org/equinox/incubator/security/EJS/ejs.html"
 	target="_parent">analyze the RCP plug-ins</A> within the equinox project.</P>
-		</div>
 
-		<div class="homeitem3col">
-			<h3>Committers</h3>
+			<p class=bar>Committers</p>
       <p>The following people are committers on the Equinox Incubator:</p>
       <ul>
         <li>Jennifer Fogell, IBM PvC</li>

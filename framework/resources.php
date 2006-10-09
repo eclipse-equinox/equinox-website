@@ -26,8 +26,6 @@ ob_start();
 	<div id="midcolumn">
 		<h1><?= $pageTitle ?></h1>
 
-		<div class="homeitem3col">
-			<h3>Resources</h3>
 <table BORDER=0 CELLSPACING=5 CELLPADDING=2 WIDTH="100%" >
 	<tr>
       <td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
@@ -65,7 +63,6 @@ ob_start();
   </tr>
 </table>
 
-	    </div>
 	</div>
 
 <?php

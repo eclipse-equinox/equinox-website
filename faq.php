@@ -25,8 +25,6 @@ ob_start();
 
 	<div id="midcolumn">
 		<h1><?= $pageTitle ?></h1>
-		<div class="homeitem3col">
-			<h3>Frequently Asked Questions</h3>
 <table border=0 cellspacing=5 cellpadding=2 width="100%" >
   <tr>
     <td align=RIGHT valign=TOP><b>Q.</b></td>
@@ -103,7 +101,6 @@ ob_start();
   </tr>
 -->
 </table>
-	    </div>
 	</div>
 
 <?php
