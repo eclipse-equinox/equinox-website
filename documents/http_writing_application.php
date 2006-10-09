@@ -25,15 +25,12 @@ ob_start();
 <div id="midcolumn">
 <h1><?= $pageTitle ?></h1>
 
-<div class="homeitem3col">
 	<h3>Overview</h3>
 	<p>While Equinox can be setup to run servlets and JSPs in a variety of ways, the technique for writing the applications is the same.
 	Use the steps here to create your application and then one of the server setups detailed in the 
 	<a href="http://www.eclipse.org/equinox/documents/http_quickstart.php">Server-side quick start guide</a>
 	to configure and run your server.</p>
-	</div>
 
-<div class="homeitem3col">
 	<h3>Writing the server application</h3>
 	<p>The server application takes the form of static content, servlets and JSPs.  You can use any combination of these.
 	<ul>
@@ -80,14 +77,15 @@ ob_start();
 		<li><b>Add some JSPs</b> - TBD</li>
 		<li><b>Place the JSPs</b> - TBD</li>
 	</ul>
-</div>
 
 </div>
 
 <?php
-	include "global-links.html";
+	include $_SERVER['DOCUMENT_ROOT'] . "/equinox/global-links.html";
+	include $_SERVER['DOCUMENT_ROOT'] . "/equinox/documents/component-links.html";
 	include "dir-links.html";
 ?>
+
 <?php
 	$html = ob_get_contents();
 	ob_end_clean();

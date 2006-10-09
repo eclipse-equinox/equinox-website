@@ -25,7 +25,6 @@ ob_start();
 <div id="midcolumn">
 <h1><?= $pageTitle ?></h1>
 
-<div class="homeitem3col">
 	<h3>Embedding an HTTP server in Equinox</h3>
 		<p>As a minimum you will need the following bundles.  All are available from the Eclipse repository.
 			<ul>
@@ -53,15 +52,11 @@ ob_start();
 
 	<h4>Installing JSP support</h4>
 	<p>TBD</p>
-</div>
 
-<div class="homeitem3col">
 	<h3>Writing the server application</h3>
 	<p>See the <a href="http://eclipse.org/equinox/documents/http_writing_application.php">Writing a bundle-based server application</a>
 	 for information on how to write a bundle based web application.</p>
-</div>
 
-<div class="homeitem3col">
 	<h3>Running the server</h3>
 	<p>To run the server and your application, carry out the following steps:
 	<ul>
@@ -72,14 +67,15 @@ ob_start();
 		<li>Launch your favorite web browser and access the URLs</li>
 	</ul>
 	</p>
-</div>
 
 </div>
 
 <?php
-	include "global-links.html";
+	include $_SERVER['DOCUMENT_ROOT'] . "/equinox/global-links.html";
+	include $_SERVER['DOCUMENT_ROOT'] . "/equinox/documents/component-links.html";
 	include "dir-links.html";
 ?>
+
 <?php
 	$html = ob_get_contents();
 	ob_end_clean();

@@ -25,7 +25,6 @@ ob_start();
 <div id="midcolumn">
 <h1><?= $pageTitle ?></h1>
 
-<div class="homeitem3col">
 <h3>Overview</h3>
 <p>One of the objectives in the initial proposal was to look at what's involved in launching
 and interacting with various server-side containers. Currently, there is active work in the
@@ -56,9 +55,6 @@ See bugs
 </ul>
 </i></p> 
 
-</div>
-
-<div class="homeitem3col">
 <h3>Quickstart</h3>
 <p>This set of instructions should get you up and running in a just a few minutes.
 <ol>
@@ -74,9 +70,7 @@ At this point you should begin familiarizing yourself with the use of the OSGi c
 </ul>
 </p>
 You might also see if you can install and start the http-console bundle described <b><a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=122911">here</a></b>.
-</div>
 
-<div class="homeitem3col">
 <h3>Configuration</h3>
 <p>The servlet.bridge web.xml provides a couple of initial parameters:
 
@@ -100,9 +94,6 @@ These commands are available at http://yourhost/yourcontext/sp_command. ( for ex
 </ul>
 </p>
 
-</div>
-
-<div class="homeitem3col">
 <h3>Extending</h3>
 <p>Currently there are two approaches for extending the basic installation:
 <ol>
@@ -113,9 +104,6 @@ The functionality offered by either approach is very similar. The extension poin
 simply a mapping of the OSGi HttpService.
 </p>
 
-</div>
-
-<div class="homeitem3col">
 <h3>Build Information</h3>
 <p><i>The current eclipse build tools and wizards do not directly support building this style of application so for the time being the
 build is performed with a series of Ant scripts and resource templates</i> 
@@ -174,12 +162,12 @@ Additionally "/tempates" provides the resource content like the web.xml, launch.
 As with RCP applications there are a wide variety of possible configurations. What's given
 in org.eclipse.equinox.servlet.bridge.feature is just one possibility.</p>
 <hr />
-</div>
 
 </div>
 
 <?php
-	include "global-links.html";
+	include $_SERVER['DOCUMENT_ROOT'] . "/equinox/global-links.html";
+	include $_SERVER['DOCUMENT_ROOT'] . "/equinox/documents/component-links.html";
 	include "dir-links.html";
 ?>
 
