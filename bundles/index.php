@@ -202,7 +202,8 @@ ob_start();
 					<li>Pascal Rapicault, IBM Rational</li>
 					<li>Tom Watson, IBM Lotus</li>
 				</ul>
-	</div>
+	<p>&nbsp;</p>
+</div>
 
 <?php
 	include $_SERVER['DOCUMENT_ROOT'] . "/equinox/global-links.html";

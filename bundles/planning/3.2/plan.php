@@ -26,7 +26,6 @@ ob_start();
 	<div id="midcolumn">
 		<h1><?= $pageTitle ?></h1>
 
-			<p class=bar>Planning</p>
 <table BORDER=0 CELLPADDING=2 WIDTH="100%" >
   <tr>
     <td ALIGN=RIGHT VALIGN=TOP><img SRC="../../../images/Adarrow.gif" BORDER=0 height=16 width=16></td>
