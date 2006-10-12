@@ -56,7 +56,7 @@ and interacting with various server-side containers. Currently, there is active 
 <h3>Quickstart</h3>
 <p>This set of instructions should get you up and running in a just a few minutes.
 <ol>
-<li>Install a servlet container (e.g. <a href="tomcat.apache.org/">Tomcat</a>, <a href="jetty.mortbay.org/jetty/">Jetty</a>, or whatever is handy)</li>
+<li>Install a servlet container (e.g. <a href="http://tomcat.apache.org/">Tomcat</a>, <a href="http://jetty.mortbay.org/jetty/">Jetty</a>, or whatever is handy)</li>
 <li>Download and deploy this pre-built web application archive. (<b><a href="/equinox/server/downloads/bridge.war">bridge.war</a></b>) <i>[built 2006.10.12]</i></li>
 <li>Start the web container and verify things are installed correctly by going to "/sp_test". (e.g. http://localhost:8080/bridge/sp_test)
 </ol>
