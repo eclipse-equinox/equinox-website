@@ -28,22 +28,28 @@ ob_start();
 <p class=bar>Mission Statement</p>
 <p>Eclipse is in use on the desktop in tools and <a href="http://eclipse.org/rcp">RCP</a> applications. The <a href="http://eclipse.org/ercp">eRCP</a> and
   other projects are pushing it into mobile phones and handheld devices. Now
-  there is significant interest in Equinox on the server. This incubator project
+  there is significant interest in Equinox on the server. This project
   is targetted at eliminating barriers to using and integrating OSGi (and Equinox
   more specifically) on
   the server.</p>
-<p>The work detailed here as evolved out of the server-side work in the <a href="http://eclipse.org/equinox/incubator">Equinox
+<p>The work detailed here evolved out of the server-side work in the <a href="http://eclipse.org/equinox/incubator">Equinox
   Incubator</a>. See the <a href="proposal.php">incubator
     proposal</a> for
-  some historical perspective. Note that there will continue to be, from time
-    to time, some additional work that is incubated before being moved to one
+  some historical perspective. From time to time there will continue to be
+    some additional work that is incubated before being moved to one
     of the main Equinox components. Note also that this work makes heavy use
     of third-party libraries such as Jetty and Jasper as well as various API
     packages. These bundles are all maintained as part of the <a href="http://eclipse.org/orbit">Orbit</a> project.</p>
 
-<p class=bar>Working with the server-side Equinox</p>
-<p><strong><a href="http://eclipse.org/equinox/documents/http_quickstart.php">Quick Start</a></strong> - See the quick start guide for getting up and running with Equinox
-  on the server.</p>
+<p class=bar>Working with server-side Equinox</p>
+<p><strong><a href="/equinox/documents/http_quickstart.php">Quick Start</a></strong> - 
+See the quick start guide for getting up and running with Equinox on the server.</p>
+<p><strong><a href="/equinox/documents/http_in_container.php">Embedding Equinox in a Servlet Container</a></strong> - 
+Using the servletbridge to allow us to run OSGi based web applications in a servlet container.</p>
+<p><strong><a href="/equinox/documents/http_in_equinox.php">Embedding an HTTP server in Equinox</a></strong> - 
+Looking at what options there are for embedding an HttpService implementation in Equinox.</p>  
+
+
 
 <p class=bar>Server-side Bundles</p>
 <p>The Server-side work component consists of several bundles maintained in Eclipse
@@ -121,17 +127,16 @@ ob_start();
 <p>If you are working without Eclipse (gads! :-) then use your favorite CVS client
   and check out the relevant projects.</p>
 
-<p class=bar>Incubation</p>
+<p class=bar>Incubator - Current Activity</p>
 <p>From time to time new server side work will be incubated in the general Equinox
   incubator.</p>
 
-<p class=bar>Current Activity</p>
 <ul>
-<li><b><a href="eclipse_serverside_integration.php">Improving Eclipse / Server-Side Integration</a></b><br />
+<li><b><a href="/equinox/incubator/server/eclipse_serverside_integration.php">Improving Eclipse / Server-Side Integration</a></b><br />
 <i>Helping to make Eclipse a stronger platform for server-side integration.</i>
 </li>
-<li><b><a href="embedding_in_a_servlet_container.php">Embedding in a Servlet Container</a></b><br />
-<i>Building common infrastructure for launching eclipse from a servlet container and creating OSGi based servlet applications.</i>
+<li><b><a href="">JSP Support (doc in progress)</a></b><br />
+<i>Enabling the use of JSP Support while retaining the modularity benefits of OSGi</i>
 </li>
 </ul>
 
@@ -141,7 +146,7 @@ ob_start();
 <?php
 	include $_SERVER['DOCUMENT_ROOT'] . "/equinox/global-links.html";
 	include $_SERVER['DOCUMENT_ROOT'] . "/equinox/server/component-links.html";
-	include "dir-links.html";
+	#include "dir-links.html";
 ?>
 
 <?php
