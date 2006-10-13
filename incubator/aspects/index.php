@@ -8,6 +8,18 @@
 </head>
 <body>
 <?php include("nav-include.html") ?>
+<p class=bar>News</p>
+<p>The Aspects project is pleased to announce the availability of Phase I. This code 
+  comprises an OSGi Framework extension, tests and demos that allow you to create flexible
+  aspect-oriented applications using Eclipse and AJDT. These can be deployed as bundles, 
+  Eclipse plug-ins or an RCP application using a seemless AspectJ load-time weaving 
+  environment. Phase I supports the "opt-in" model of weaving 
+  (http://dev.eclipse.org/mhonarc/lists/equinox-dev/msg00444.html) and will be followed 
+  shortly by Phase II that will introduce the "co-opt" model then Phase III with byte-code 
+  caching. The next stage of the project will integrate the AJEER programming model into a 
+  aspect-oriented runtime.</p>
+<p>Please read <a href="getting_started.php">Getting Started</a>.
+  
 <p class=bar>Mission Statement</p>
 <p>Aspect-oriented computing is continuing to increase in popularity. The modularity
   inherent in OSGi and Eclipse offers unique opportunities for managing and applying
@@ -61,7 +73,7 @@
   </tr>
   <tr>
     <td>(current activity uses the main Eclipse 3.2 HEAD)</td>
-    <td>aspects</td>
+    <td>equinox-incubator/aspects</td>
   </tr>
 </table>
 <p class="bar">Current Activities</p>
