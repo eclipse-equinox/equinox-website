@@ -21,12 +21,13 @@
   Unfortunatley because of <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=143696">Bug 143696</a>
   you also need to use the source version of OSGi that matches the one in your Eclipse SDK.</li>
   <li>Check out all the projects in the "aspects/tests" folder and see the readme.txt in the 
-  org.eclipse.osgi.aspectj.tests project.</li>
+  org.eclipse.osgi.aspectj.tests project for instructions on how to run the basic tests.</li>
   <li>Check out all the projects in the "aspects/demo" folder.</li>
 </ol>
 </p>
 
 <p class=bar>Troubleshooting</p>
-<p>
+<p>When running the tests or or a demo using the supplied config.ini you 
+  should see console output similar to this:</p>
 </body>
 </html>

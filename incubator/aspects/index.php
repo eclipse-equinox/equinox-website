@@ -12,9 +12,10 @@
 <p>The Aspects project is pleased to announce the availability of Phase I. This code 
   comprises an OSGi Framework extension, tests and demos that allow you to create flexible
   aspect-oriented applications using Eclipse and AJDT. These can be deployed as bundles, 
-  Eclipse plug-ins or an RCP application using a seemless AspectJ load-time weaving 
+  Eclipse plug-ins or an RCP application using a seemless 
+  <a href="http://www.eclipse.org/aspectj/">AspectJ</a> load-time weaving 
   environment. Phase I supports the "opt-in" model of weaving described previously on the
-  <a href="(http://dev.eclipse.org/mhonarc/lists/equinox-dev/msg00444.html)">equinox-dev<a>
+  <a href="http://dev.eclipse.org/mhonarc/lists/equinox-dev/msg00444.html">equinox-dev<a>
   mailing list and will be followed 
   shortly by Phase II that will introduce the "co-opt" model then Phase III with byte-code 
   caching. The next stage of the project will integrate the AJEER programming model into a 
