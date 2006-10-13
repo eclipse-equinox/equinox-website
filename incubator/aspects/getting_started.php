@@ -27,8 +27,8 @@
 </p>
 
 <p class=bar>Troubleshooting</p>
-<p>When running the tests or or a demo using the supplied config.ini you 
-  should see console output similar to this:</p>
+<p>When running the tests or or a demo using the AO runtime you 
+  should see console output similar to this:
 <pre>
 info adding AspectJ hooks ...
 info Starting AspectJ weaving service ...
@@ -40,5 +40,10 @@ info not weaving bundle 'org.eclipse.osgi.aspectj.tests.bundles.spareBundle'
 info not weaving bundle 'org.eclipse.osgi.aspectj.tests.bundles.aspectWeaving'
 ...
 </pre>
+If you don't see the messages that show the AspectJ Framework Extension starting 
+then make sure you are using the config.ini provided. To control the amount of 
+diagnostic information use the various system properties declared in that file.
+You can also use the diagnostic configuration provided by 
+<a href="http://www.eclipse.org/aspectj/doc/released/devguide/ltw-configuration.html#weaver-options">AspectJ LTW</a>.
 </body>
 </html>
