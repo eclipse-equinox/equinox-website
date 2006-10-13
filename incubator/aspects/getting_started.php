@@ -29,5 +29,16 @@
 <p class=bar>Troubleshooting</p>
 <p>When running the tests or or a demo using the supplied config.ini you 
   should see console output similar to this:</p>
+<pre>
+info adding AspectJ hooks ...
+info Starting AspectJ weaving service ...
+info not weaving bundle 'org.eclipse.pde.junit.runtime'
+info not weaving bundle 'org.eclipse.jdt.junit.runtime'
+info not weaving bundle 'org.junit'
+info weaving bundle 'org.eclipse.osgi.aspectj.tests'
+info not weaving bundle 'org.eclipse.osgi.aspectj.tests.bundles.spareBundle'
+info not weaving bundle 'org.eclipse.osgi.aspectj.tests.bundles.aspectWeaving'
+...
+</pre>
 </body>
 </html>
