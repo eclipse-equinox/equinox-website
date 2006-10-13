@@ -13,12 +13,13 @@
   comprises an OSGi Framework extension, tests and demos that allow you to create flexible
   aspect-oriented applications using Eclipse and AJDT. These can be deployed as bundles, 
   Eclipse plug-ins or an RCP application using a seemless AspectJ load-time weaving 
-  environment. Phase I supports the "opt-in" model of weaving 
-  (http://dev.eclipse.org/mhonarc/lists/equinox-dev/msg00444.html) and will be followed 
+  environment. Phase I supports the "opt-in" model of weaving described previously on the
+  <a href="(http://dev.eclipse.org/mhonarc/lists/equinox-dev/msg00444.html)">equinox-dev<a>
+  mailing list and will be followed 
   shortly by Phase II that will introduce the "co-opt" model then Phase III with byte-code 
   caching. The next stage of the project will integrate the AJEER programming model into a 
   aspect-oriented runtime.</p>
-<p>Please read <a href="getting_started.php">Getting Started</a>.
+<p>Please read <a href="getting_started.php">Getting Started</a> guide.
   
 <p class=bar>Mission Statement</p>
 <p>Aspect-oriented computing is continuing to increase in popularity. The modularity
