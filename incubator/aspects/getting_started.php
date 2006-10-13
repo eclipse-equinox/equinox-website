@@ -13,11 +13,11 @@
 <ol>
   <li>Install <a href="http://fullmoon.torolab.ibm.com/downloads/drops/R-3.2-200606291905/index.php">Eclipse 3.2 SDK</a>.</li>
   <li>Install <a href="http://www.eclipse.org/ajdt/downloads/">AspectJ Development Tools (AJDT) 1.4.1</a>.</li>
-  <li>Check out the org.aspectj.osgi, org.aspectj.osgi.service.weaving and org.eclipse.osgi bundles
+  <li>Check out the org.aspectj.osgi, org.aspectj.osgi.service.weaving and org.eclipse.osgi_3.2.0 bundles
   from the "aspects" folder in the <a href="http://www.eclipse.org/equinox/incubator/howto.php">incubator repository</a>
-  and see the readme.txt in the org.osgi.osgi project.
+  and see the readme.txt in the org.aspectj.osgi project.
   Until we have a regular build and update site you will need to 
-  use the org.aspectj.osgi Framework Extension bundle fragment in source from.
+  use the org.aspectj.osgi Framework Extension bundle fragment in source form.
   Unfortunatley because of <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=143696">Bug 143696</a>
   you also need to use the source version of OSGi that matches the one in your Eclipse SDK.</li>
   <li>Check out all the projects in the "aspects/tests" folder and see the readme.txt in the 
@@ -27,7 +27,7 @@
 </p>
 
 <p class=bar>Troubleshooting</p>
-<p>When running the tests or or a demo using the AO runtime you 
+<p>When running the tests or a demo using the AO runtime you 
   should see console output similar to this:
 <pre>
 info adding AspectJ hooks ...

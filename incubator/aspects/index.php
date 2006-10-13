@@ -18,7 +18,7 @@
   <a href="http://dev.eclipse.org/mhonarc/lists/equinox-dev/msg00444.html">equinox-dev<a>
   mailing list and will be followed 
   shortly by Phase II that will introduce the "co-opt" model then Phase III with byte-code 
-  caching. The next stage of the project will integrate the AJEER programming model into a 
+  caching. The next stage of the project will integrate the AJEER programming model into this 
   aspect-oriented runtime.</p>
 <p>Please read <a href="getting_started.php">Getting Started</a> guide.
   
