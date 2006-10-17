@@ -5,12 +5,12 @@
 	# https://dev.eclipse.org/committers/
 	# Optional: defaults to system theme 
 	$theme = "";
-	$App->ExtraHtmlHeaders = '<link rel="stylesheet" type="text/css" href="http://eclipse.org/equinox/equinox.css">';
+	$App->ExtraHtmlHeaders = '<link rel="stylesheet" type="text/css" href="/equinox/equinox.css">';
 	# Define your project-wide Nav bars here.
 	# Format is Link text, link URL (can be http://www.someothersite.com/), target (_self, _blank), level (1, 2 or 3)
 	# these are optional
-	$Nav->addCustomNav("Mailing Lists", 	"http://www.eclipse.org/mail/", "_self", 1);
-	$Nav->addNavSeparator("Components", 	"index.php");
+	$Nav->addCustomNav("Mailing Lists", "http://www.eclipse.org/mail/", "_self", 1);
+	$Nav->addNavSeparator("Components", "index.php");
 	$Nav->addCustomNav("Platform", "http://www.eclipse.org/platform/", "_self", 1);
 	$Nav->addCustomNav("Equinox", "http://www.eclipse.org/equinox/", "_self", 1);
 	$Nav->addCustomNav("JDT", "http://www.eclipse.org/jdt/", "_self", 1);
