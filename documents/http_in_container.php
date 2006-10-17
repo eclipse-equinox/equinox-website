@@ -47,7 +47,8 @@ and interacting with various server-side containers. Currently, there is active 
 </p>
 <p>These four project can be downloaded from the equinox CVS depot. <br /> 
 (e.g. cvsroot/eclipse/org.eclipse.equinox.servletbridge)</p>
-<p>Alternately, if you're using Eclipse it might be far simpler to "import" a team project set with everything needed. (<a href="/equinox/server/servletbridge-anon.psf">regular</a>) or (<a href="/equinox/server/servletbridge-anon-proxy.psf">proxied</a>)</p>
+<p>Alternately, if you're using Eclipse it might be far simpler to "import" a team project set with everything needed. 
+(<a href="/equinox/server/downloads/servletbridge-anon.psf">regular</a>) or (<a href="/equinox/server/downloads/servletbridge-anon-proxy.psf">proxied</a>)</p>
 <p><b>Additional Notes: </b><ul style="list-style-type: none"><i>
 <li>To build and use these projects you'll need to be running Eclipse 3.2 or later. </li>
 </ul>
