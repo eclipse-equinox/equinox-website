@@ -7,7 +7,7 @@
 	
 	#
 	# Begin: page-specific settings.  Change these. 
-	$pageTitle 		= "Equinox Incubator - Server-Side Proposal";
+	$pageTitle 		= "Equinox Incubator - Server-side Proposal";
 	$pageKeywords	= "equinox, osgi, framework, runtime, incubator, server, proposal";
 	
 	# Add page-specific Nav bars here
@@ -25,7 +25,7 @@ ob_start();
 <div id="midcolumn">
 <h1><?= $pageTitle ?></h1>
 
-<p class=bar>Server-Side Environment</p>
+<p class=bar>Server-side Environment</p>
 
 <p>Increasingly, developers are thinking about how they might use
 Eclipse's powerful component model and extension mechanisms in
@@ -56,7 +56,7 @@ emphasis is on J2EE implementations but more specifically the following issues
 	<li>Application Server Integration</li>
 </ul>
 
-<p class=bar>Eclipse Changes for Server-Side Operation</p>
+<p class=bar>Eclipse Changes for Server-side Operation</p>
 
 <p>The Eclipse runtime was originally designed to run an IDE. It's a
 testament to the runtime's versatility that Eclipse is now used in a

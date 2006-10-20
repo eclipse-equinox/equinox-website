@@ -7,7 +7,7 @@
 	
 	#
 	# Begin: page-specific settings.  Change these. 
-	$pageTitle 		= "Equinox Incubator - Server-Side";
+	$pageTitle 		= "Equinox Incubator - Server-side";
 	$pageKeywords	= "equinox, osgi, framework, runtime, incubator, server";
 	
 	# Add page-specific Nav bars here
@@ -75,7 +75,7 @@ ob_start();
 <?php
 	include $_SERVER['DOCUMENT_ROOT'] . "/equinox/global-links.html";
 	include $_SERVER['DOCUMENT_ROOT'] . "/equinox/incubator/component-links.html";
-	include "dir-links.html";
+	# include "dir-links.html";
 ?>
 
 <?php

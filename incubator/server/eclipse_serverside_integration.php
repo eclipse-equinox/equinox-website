@@ -26,21 +26,21 @@ ob_start();
 <h1><?= $pageTitle ?></h1>
 
 <p class=bar>Improving Eclipse / Server-Side Integration - Overview</p>
-<p>As mentioned in the original proposal, the Eclipse runtime was originally designed to
+<p>As mentioned in the proposal, the Eclipse runtime was originally designed to
 support a desktop IDE but has proven to be useful in  other contexts. One of the key goals
 of this incubator is to look at ways to improve server-side integration of Eclipse.</p>
 
 <p>Many of the larger integration problems have been handled for Eclipse 3.2 and no new
-activity is planned for this release.<br /> 
-Activity for 3.3 is still in the planning phase however as issues arise they'll be added here.</p> 
- 
+activity is planned for this release. Activity for 3.3 is still in the planning phase 
+however as issues arise they'll be added here.</p> 
 
 <p>As much as possible activity occurs directly on the main Eclipse HEAD through bug reports 
-and conversation on the equinox-dev mailing list. <br /><i>Note: Should a sufficiently large
+and conversation on the equinox-dev mailing list. </p>
+<p><i>Note: Should a sufficiently large
 sets of changes be considered the equinox-incubator "server" branch will be used however it
 is not currently active.</i></p>
 
-<p class=bar>Current Activity (3.2)</p>
+<p class=bar>Past Activity (3.2)</p>
 <p><strong>OSGi URL Handler Service</strong>
 <ul>
 <li><i>singleton factory operations - RESOLVED - see <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=107909">bug 107909</a></i></li>
@@ -67,7 +67,7 @@ is not currently active.</i></p>
 <?php
 	include $_SERVER['DOCUMENT_ROOT'] . "/equinox/global-links.html";
 	include $_SERVER['DOCUMENT_ROOT'] . "/equinox/incubator/component-links.html";
-	include "dir-links.html";
+	# include "dir-links.html";
 ?>
 <?php
 	$html = ob_get_contents();

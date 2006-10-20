@@ -7,7 +7,7 @@
 	
 	#
 	# Begin: page-specific settings.  Change these. 
-	$pageTitle 		= "Servlets and JSPs in Equinox";
+	$pageTitle 		= "Embedding an HTTP server in Equinox";
 	$pageKeywords	= "equinox, osgi, framework, runtime, incubator, server, servlet, http";
 	
 	# Add page-specific Nav bars here
@@ -25,19 +25,23 @@ ob_start();
 <div id="midcolumn">
 <h1><?= $pageTitle ?></h1>
 
-	<h3>Embedding an HTTP server in Equinox</h3>
+	<h3></h3>
 		<p>As a minimum you will need the following bundles.  All are available from the Eclipse repository.
 			<ul>
 				<li>org.eclipse.osgi</li>
 				<li>org.eclipse.osgi.services</li>
-				<li>org.eclipse.equinox.common</li>
-				<li>org.eclipse.equinox.registry</li>
-				<li>org.eclipse.equinox.http.registry</li>
-				<li>javax.servlet <b>or</b> org.eclipse.equinox.servlet.api (deprecated)</li>
+				<li>javax.servlet [or org.eclipse.equinox.servlet.api (deprecated)]</li>
 			</ul>
-			</p>
+		</p>
+		<p>
+			<ul>
+				<li>org.eclipse.equinox.http.registry</li>
+				<li>org.eclipse.equinox.registry</li>
+				<li>org.eclipse.equinox.common</li>
+			</ul>
+		</p>
 
-	<p>To embedd an HTTP server in Equinox you first need an embedable HTTP implementation.  This can be 
+	<p>To embedd an HTTP server in Equinox you first need an embeddable HTTP Service implementation.  This can be 
 	the Equinox HTTP service implementation (org.eclipse.equinox.http), embedded Jetty or any other server configured 
 	to run as an OSGi bundle.  So, for example you could get:
 	<ul>
