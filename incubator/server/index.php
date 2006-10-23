@@ -33,7 +33,7 @@ ob_start();
   are also wanting to move to OSGi. This incubator project is targetted at eliminating
   barriers to using and integrating OSGi (and Equinox more specifically) on
   the server.  See the <a href="proposal.php">incubator proposal</a> for more detail.</p>
- <p><b>Note that most of the work here has graduated. See <a href="http://eclipse.org/equinox/server">Server-side Equinox</a> 
+ <p><b>Note that most of the work here has graduated. See <a href="/equinox/server">Server-side Equinox</a> 
  for more information.
 
 <p class=bar>Working With the Server-side Incubator</p>
@@ -61,6 +61,9 @@ ob_start();
 <ul>
 <li><b><a href="eclipse_serverside_integration.php">Improving Eclipse / Server-Side Integration</a></b><br />
 <i>Helping to make Eclipse a stronger platform for server-side integration.</i>
+</li>
+<li><b><a href="/equinox/incubator/server/jsp_support.php">JSP Support</a></b><br />
+<i>Enabling the use of JSP Support while retaining the modularity benefits of OSGi</i>
 </li>
 </ul>
 </p>

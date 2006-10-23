@@ -54,6 +54,9 @@ ob_start();
 	</ul>
 	</p>
 
+<p><i>[Suggested]</i> If you're using Eclipse it might be far simpler to "import" a team project set with everything needed. 
+(<a href="/equinox/server/downloads/jettyhttp-anon.psf">Jetty-based Http Service -- regular</a>) or (<a href="/equinox/server/downloads/jettyhttp-anon-proxy.psf">Jetty-based Http Service -- proxied</a>)</p>
+
 	<h4>Installing JSP support</h4>
 	<p>TBD</p>
 

@@ -25,7 +25,7 @@ ob_start();
 <div id="midcolumn">
 <h1><?= $pageTitle ?></h1>
 
-<p class=bar>Mission Statement</p>
+<p class=bar>Overview</p>
 <p>Eclipse is in use on the desktop in tools and <a href="http://eclipse.org/rcp">RCP</a> applications. The <a href="http://eclipse.org/ercp">eRCP</a> and
   other projects are pushing it into mobile phones and handheld devices. Now
   there is significant interest in Equinox on the server. This project
@@ -135,7 +135,7 @@ Looking at what options there are for embedding an HttpService implementation in
 <li><b><a href="/equinox/incubator/server/eclipse_serverside_integration.php">Improving Eclipse / Server-Side Integration</a></b><br />
 <i>Helping to make Eclipse a stronger platform for server-side integration.</i>
 </li>
-<li><b><a href="">JSP Support (doc in progress)</a></b><br />
+<li><b><a href="/equinox/incubator/server/jsp_support.php">JSP Support</a></b><br />
 <i>Enabling the use of JSP Support while retaining the modularity benefits of OSGi</i>
 </li>
 </ul>

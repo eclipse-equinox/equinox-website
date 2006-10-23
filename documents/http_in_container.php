@@ -25,36 +25,41 @@ ob_start();
 <div id="midcolumn">
 <h1><?= $pageTitle ?></h1>
 
-<h3>Overview</h3>
+<p class=bar>Overview</p>
 <p>One of the original objectives for the server-side work was to look at what's involved in launching
 and interacting with various server-side containers. Currently, there is active work in looking at embedding in a servlet container.</p>
 
+<p class=bar>Bundles</p>
 <p>There are four Eclipse projects involved:
 <ul>
-<li><b>org.eclipse.equinox.servletbridge (Bundle)</b><br />
+<li><b>org.eclipse.equinox.servletbridge</b><br />
 <i>Launches the framework and provides a place for the framework to hook back into the servlet container.</i>
 </li>
-<li><b>org.eclipse.equinox.servletbridge.http (Bundle)</b><br />
+<li><b>org.eclipse.equinox.servletbridge.http</b><br />
 <i>Hooks back into the servlet bridge and proxies requests through to the servlet container to provide an OSGi Http Service.</i>
 </li>
-<li><b>org.eclipse.equinox.http.servlet (Bundle)</b><br />
+<li><b>org.eclipse.equinox.http.servlet</b><br />
 <i>Provides the HttpServiceServlet used by http.servletbridge that when initialized registers an OSGi Http Service.</i>
 </li>
-<li><b>org.eclipse.equinox.http.registry (Bundle)</b><br />
+<li><b>org.eclipse.equinox.http.registry</b><br />
 <i>Provides a servlet, resource, and httpcontext extension points based on an OSGi HttpService.</i>
 </li>
 </ul>
 </p>
 <p>These four project can be downloaded from the equinox CVS depot. <br /> 
 (e.g. cvsroot/eclipse/org.eclipse.equinox.servletbridge)</p>
-<p>Alternately, if you're using Eclipse it might be far simpler to "import" a team project set with everything needed. 
+<p>
+To develop web applications you'll also need the "javax.servlet" bundle from the Orbit CVS depot. <br/>
+(e.g. cvsroot/tools/org.eclipse.orbit/javax.servlet [branch v2_3 or v2_4])]
+</p>
+<p><i>[Suggested]</i> If you're using Eclipse it might be far simpler to "import" a team project set with everything needed. 
 (<a href="/equinox/server/downloads/servletbridge-anon.psf">regular</a>) or (<a href="/equinox/server/downloads/servletbridge-anon-proxy.psf">proxied</a>)</p>
 <p><b>Additional Notes: </b><ul style="list-style-type: none"><i>
 <li>To build and use these projects you'll need to be running Eclipse 3.2 or later. </li>
 </ul>
 </i></p> 
 
-<h3>Quickstart</h3>
+<p class=bar>Quickstart</p>
 <p>This set of instructions should get you up and running in a just a few minutes.
 <ol>
 <li>Install a servlet container (e.g. <a href="http://tomcat.apache.org/">Tomcat</a>, <a href="http://jetty.mortbay.org/jetty/">Jetty</a>, or whatever is handy)</li>
@@ -70,7 +75,7 @@ At this point you should begin familiarizing yourself with the use of the OSGi c
 </p>
 You might also see if you can install and start the http-console bundle described <b><a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=122911">here</a></b>.
 
-<h3>Configuration</h3>
+<p class=bar>Configuration</p>
 <p>The servletbridge web.xml provides a couple of initial parameters:
 
 <ul>
@@ -94,7 +99,7 @@ These commands are available at http://yourhost/yourcontext/sp_command. ( for ex
 </ul>
 </p>
 
-<h3>Extending</h3>
+<p class=bar>Extending</p>
 <p>Currently there are two approaches for extending the basic installation:
 <ol>
 <li>Write a bundle that uses the OSGi HttpService registered by org.eclipse.eqinox.servletbridge.http</li>
@@ -104,7 +109,7 @@ The functionality offered by either approach is very similar. The extension poin
 simply a mapping of the OSGi HttpService.
 </p>
 
-<h3>Build Information</h3>
+<p class=bar>Build Information</p>
 <p><i>The current eclipse build tools and wizards do not directly support building this style of application so for the time being the
 build is performed with a series of Ant scripts and resource templates</i> 
 </p>
