@@ -57,17 +57,6 @@ ob_start();
   </tr>
 </table>
 
-<p class=bar>Current Activity</p>
-<ul>
-<li><b><a href="eclipse_serverside_integration.php">Improving Eclipse / Server-Side Integration</a></b><br />
-<i>Helping to make Eclipse a stronger platform for server-side integration.</i>
-</li>
-<li><b><a href="/equinox/incubator/server/jsp_support.php">JSP Support</a></b><br />
-<i>Enabling the use of JSP Support while retaining the modularity benefits of OSGi</i>
-</li>
-</ul>
-</p>
-
 <p class=bar>Active investigators</p>
 <ul>
 <li>Simon Kaegi (Cognos)</li>

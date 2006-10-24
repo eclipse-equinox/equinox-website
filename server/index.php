@@ -44,9 +44,9 @@ ob_start();
 <p class=bar>Working with server-side Equinox</p>
 <p><strong><a href="/equinox/documents/http_quickstart.php">Quick Start</a></strong> - 
 See the quick start guide for getting up and running with Equinox on the server.</p>
-<p><strong><a href="/equinox/documents/http_in_container.php">Embedding Equinox in a Servlet Container</a></strong> - 
+<p><strong><a href="http_in_container.php">Embedding Equinox in a Servlet Container</a></strong> - 
 Using the servletbridge to allow us to run OSGi based web applications in a servlet container.</p>
-<p><strong><a href="/equinox/documents/http_in_equinox.php">Embedding an HTTP server in Equinox</a></strong> - 
+<p><strong><a href="http_in_equinox.php">Embedding an HTTP server in Equinox</a></strong> - 
 Looking at what options there are for embedding an HttpService implementation in Equinox.</p>  
 
 
@@ -112,7 +112,7 @@ Looking at what options there are for embedding an HttpService implementation in
   </tr>
   <tr>
     <td align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-    <td><b><a name="http.jetty" id="http.jetty"></a>Jetty HTTP (<a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox.jetty.http">org.eclipse.equinox.http.jetty</a>)</b> <A HREF="#legend" style="color:green;"> status:green</a><br>
+    <td><b><a name="http.jetty" id="http.jetty"></a>HTTP Jetty (<a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox.jetty.http">org.eclipse.equinox.http.jetty</a>)</b> <A HREF="#legend" style="color:green;"> status:green</a><br>
     A thin layer that exposes an embedded Jetty server as a compliant OSGi HTTP
       service.</td>
   </tr>
@@ -132,10 +132,10 @@ Looking at what options there are for embedding an HttpService implementation in
   incubator.</p>
 
 <ul>
-<li><b><a href="/equinox/incubator/server/eclipse_serverside_integration.php">Improving Eclipse / Server-Side Integration</a></b><br />
+<li><b><a href="eclipse_serverside_integration.php">Improving Eclipse / Server-Side Integration</a></b><br />
 <i>Helping to make Eclipse a stronger platform for server-side integration.</i>
 </li>
-<li><b><a href="/equinox/incubator/server/jsp_support.php">JSP Support</a></b><br />
+<li><b><a href="jsp_support.php">JSP Support</a></b><br />
 <i>Enabling the use of JSP Support while retaining the modularity benefits of OSGi</i>
 </li>
 </ul>

@@ -27,7 +27,7 @@ ob_start();
 
 <p class=bar>Overview</p>
 <p>One of the original objectives for the server-side work was to look at what's involved in launching
-and interacting with various server-side containers. Currently, there is active work in looking at embedding in a servlet container.</p>
+and interacting with various server-side containers. Currently, there is actively maintained work in support of embedding in a servlet container.</p>
 
 <p class=bar>Bundles</p>
 <p>There are four Eclipse projects involved:
@@ -41,21 +41,21 @@ and interacting with various server-side containers. Currently, there is active 
 <li><b>org.eclipse.equinox.http.servlet</b><br />
 <i>Provides the HttpServiceServlet used by http.servletbridge that when initialized registers an OSGi Http Service.</i>
 </li>
-<li><b>org.eclipse.equinox.http.registry</b><br />
-<i>Provides a servlet, resource, and httpcontext extension points based on an OSGi HttpService.</i>
+<li><b>[optional] org.eclipse.equinox.http.registry</b><br />
+<i>Provides servlet, resource, and httpcontext extension points based on an OSGi HttpService.</i>
 </li>
 </ul>
 </p>
 <p>These four project can be downloaded from the equinox CVS depot. <br /> 
 (e.g. cvsroot/eclipse/org.eclipse.equinox.servletbridge)</p>
 <p>
-To develop web applications you'll also need the "javax.servlet" bundle from the Orbit CVS depot. <br/>
+To develop web applications you'll also need the <b>javax.servlet</b> bundle from the Orbit CVS depot. <br/>
 (e.g. cvsroot/tools/org.eclipse.orbit/javax.servlet [branch v2_3 or v2_4])]
 </p>
 <p><i>[Suggested]</i> If you're using Eclipse it might be far simpler to "import" a team project set with everything needed. 
-(<a href="/equinox/server/downloads/servletbridge-anon.psf">regular</a>) or (<a href="/equinox/server/downloads/servletbridge-anon-proxy.psf">proxied</a>)</p>
+(<a href="downloads/servletbridge-anon.psf">regular</a>) or (<a href="downloads/servletbridge-anon-proxy.psf">proxied</a>)</p>
 <p><b>Additional Notes: </b><ul style="list-style-type: none"><i>
-<li>To build and use these projects you'll need to be running Eclipse 3.2 or later. </li>
+<li>To build and use these projects you'll need to be running the Eclipse SDK 3.2 or later. </li>
 </ul>
 </i></p> 
 
@@ -63,14 +63,14 @@ To develop web applications you'll also need the "javax.servlet" bundle from the
 <p>This set of instructions should get you up and running in a just a few minutes.
 <ol>
 <li>Install a servlet container (e.g. <a href="http://tomcat.apache.org/">Tomcat</a>, <a href="http://jetty.mortbay.org/jetty/">Jetty</a>, or whatever is handy)</li>
-<li>Download and deploy this pre-built web application archive. (<b><a href="/equinox/server/downloads/bridge.war">bridge.war</a></b>) <i>[built 2006.10.12]</i></li>
+<li>Download and deploy this pre-built web application archive. (<b><a href="downloads/bridge.war">bridge.war</a></b>) <i>[built 2006.10.12]</i></li>
 <li>Start the web container and verify things are installed correctly by going to "/sp_test". (e.g. http://localhost:8080/bridge/sp_test)
 </ol>
 At this point you should begin familiarizing yourself with the use of the OSGi console to manage the platform.<br />
 <p>Here are a couple of Eclipse projects that might help get you started using the OSGi Http Service:
 <ul>
-<li><b><a href="/equinox/server/downloads/sample-http.zip">sample.http</a></b> - demonstrates basic Hello World type use of the OSGi Http Service</li>
-<li><b><a href="/equinox/server/downloads/sample-http-reg.zip">sample.http.registry</a></b> - same as sample.http but instead uses extension points from org.eclipse.equinox.http.registry</li>
+<li><b><a href="downloads/sample-http.zip">sample.http</a></b> - demonstrates basic Hello World type use of the OSGi Http Service</li>
+<li><b><a href="downloads/sample-http-reg.zip">sample.http.registry</a></b> - same as sample.http but instead uses extension points from org.eclipse.equinox.http.registry</li>
 </ul>
 </p>
 You might also see if you can install and start the http-console bundle described <b><a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=122911">here</a></b>.
@@ -169,7 +169,7 @@ in org.eclipse.equinox.servletbridge.feature is just one possibility.</p>
 
 <?php
 	include $_SERVER['DOCUMENT_ROOT'] . "/equinox/global-links.html";
-	include $_SERVER['DOCUMENT_ROOT'] . "/equinox/documents/component-links.html";
+	include $_SERVER['DOCUMENT_ROOT'] . "/equinox/server/component-links.html";
 	#include "dir-links.html";
 ?>
 
