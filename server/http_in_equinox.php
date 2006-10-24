@@ -41,7 +41,6 @@ Implemented using <a href="http://jetty.mortbay.org">Jetty</a> as the underlying
 <p class=bar>Bundles</p>
 <p>The following bundles are involved in putting together an Http Service environment:
 <br />
-<div style="border: 1px solid gray">
 <ul>
 	<li><b>org.eclipse.equinox.http</b></li>
 </ul>
@@ -52,7 +51,6 @@ OR<br />
 	<li><b>org.mortbay.jetty</b> <i>(v5_1_11 - from Orbit Depot)</i></li>
 	<li><b>org.apache.commons.logging</b> <i>(v1_0_4 - from Orbit Depot)</i></li>
 </ul>
-</div>
 <br />
 <ul>
 	<li><b>javax.servlet</b> <i>(v2_4 - from Orbit Depot)</i></li>
