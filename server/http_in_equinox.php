@@ -69,8 +69,9 @@ The 3rd party bundles can be retrieved from the Orbit CVS Depott. <br/>
 (e.g. cvsroot/tools/org.eclipse.orbit/javax.servlet [branch v2_4])]
 </p>
 
-<p><i>[Suggested]</i> If you're using Eclipse it might be far simpler to "import" a team project set with everything needed. 
-(<a href="/equinox/server/downloads/jettyhttp-anon.psf">Jetty-based Http Service -- regular</a>) or (<a href="/equinox/server/downloads/jettyhttp-anon-proxy.psf">Jetty-based Http Service -- proxied</a>)</p>
+<p><i>[Suggested]</i> If you're using Eclipse it might be far simpler to "import" a team project set with everything needed. <br />
+<i>Equinox Http Service:</i> (<a href="downloads/equinoxhttp-anon.psf">regular</a>) or (<a href="downloads/equinoxhttp-anon-proxy.psf">proxied</a>)<br />
+<i>Jetty-based Http Service:</i> (<a href="downloads/jettyhttp-anon.psf">regular</a>) or (<a href="downloads/jettyhttp-anon-proxy.psf">proxied</a>)</p>
 
 <p><b>Additional Notes: </b><ul style="list-style-type: none"><i>
 <li>To build and use these projects you'll need to be running the Eclipse SDK 3.2 or later.</li>
