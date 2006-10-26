@@ -42,7 +42,7 @@ ob_start();
     packages. These bundles are all maintained as part of the <a href="http://eclipse.org/orbit">Orbit</a> project.</p>
 
 <p class=bar>Working with server-side Equinox</p>
-<p><strong><a href="/equinox/documents/http_quickstart.php">Quick Start</a></strong> - 
+<p><strong><a href="http_quickstart.php">Quick Start</a></strong> - 
 See the quick start guide for getting up and running with Equinox on the server.</p>
 <p><strong><a href="http_in_container.php">Embedding Equinox in a Servlet Container</a></strong> - 
 Using the servletbridge to allow us to run OSGi based web applications in a servlet container.</p>

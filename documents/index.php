@@ -30,7 +30,7 @@ ob_start();
 				<ul>
               <li><a href="quickstart.php">Equinox Quickstart Guide </a><br/>
                           <i>An easy set of steps for running Equinox.</i> </li>
-              <li><a href="http_quickstart.php">Equinox Server Quickstart Guide</a><br/>
+              <li><a href="/equinox/server/http_quickstart.php">Equinox Server Quickstart Guide</a><br/>
                           <i>An easy set of steps for running Equinox to serve web content, serlvets and JSPs.</i> </li>
 					<li><a href="plugin-versioning.html">Recommendation to version plug-ins</a></li>
 					<li><a href="coding.php">Equinox Coding Practices</a></li>
@@ -56,7 +56,7 @@ ob_start();
 
 			<p class=bar><a name="server"></a>Server-side</p>
 			<ul>
-              <li><a href="http_quickstart.php">Quickstart Guide to Setting up an HTTP Server</a><br/>
+              <li><a href="/equinox/server/http_quickstart.php">Quickstart Guide to Setting up an HTTP Server</a><br/>
                           <i>An easy set of steps to set up an HTTP server using
                           the Equinox bundles.</i> </li>
               <li><a href="http://www.abo.fi/~mbuechi/publications/EclipsePlugins.html">Eclipse
