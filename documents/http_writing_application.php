@@ -28,7 +28,7 @@ ob_start();
 	<h3>Overview</h3>
 	<p>While Equinox can be setup to run servlets and JSPs in a variety of ways, the technique for writing the applications is the same.
 	Use the steps here to create your application and then one of the server setups detailed in the 
-	<a href="http://www.eclipse.org/equinox/documents/http_quickstart.php">Server-side quick start guide</a>
+	<a href="http_quickstart.php">Server-side quick start guide</a>
 	to configure and run your server.</p>
 
 	<h3>Writing the server application</h3>

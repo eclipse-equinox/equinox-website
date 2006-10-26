@@ -30,11 +30,11 @@ ob_start();
 	need to setup an HTTP server and then configure it with the appropriate content.  There are two basic ways of running an 
 	HTTP server in Equinox;</p>
 	<ul>
-		<li><a href="http_in_equinox.php">Embed a server in Equinox</a> <b>(recommended)</b></li>
-		<li><a href="http_in_container.php">Embed Equinox in an existing servlet container</a></li>
+		<li><a href="/equinox/server/http_in_equinox.php">Embed a server in Equinox</a> <b>(recommended)</b></li>
+		<li><a href="/equinox/server/http_in_container.php">Embed Equinox in an existing servlet container</a></li>
 	</ul>
 	<p>Follow the steps for the configuration best suited to your scenario then return here to write your bundle based web application.</p>
-	<p><b>Hint</b> <a href="http_in_equinox.php">Embed a server in Equinox</a> is the easiest configuration to setup 
+	<p><b>Hint</b> <a href="/equinox/server/http_in_equinox.php">Embed a server in Equinox</a> is the easiest configuration to setup 
 	and run. This will allow you to do all your
 	development and debugging.  Only when you go to production or in special circumstances will you need to embed
 	Equinox in an existing servlet container.</p>
@@ -42,7 +42,7 @@ ob_start();
 	<h3>Writing the server application</h3>
 	<p>While Equinox can be setup to run servlets and JSPs in a variety of ways, the technique for writing the applications is the same.
 	Use the steps outlined in 
-	<a href="http://eclipse.org/equinox/documents/http_writing_application.php">Writing a bundle-based server application</a>
+	<a href="http_writing_application.php">Writing a bundle-based server application</a>
 	to create your application.</p>
 
 	<h3>Running the server application</h3>
