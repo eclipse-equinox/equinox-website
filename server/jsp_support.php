@@ -76,7 +76,7 @@ In addition a number of third party bundles are required to provide JSP support.
 <li>To build and use these projects you'll need to be running Eclipse 3.2 or later. </li>
 <li>The JSP Support requires an HTTP Service that provides support for the Servlet 2.4 API. 
 (See Jetty in <strong><a href="http_in_container.php">Embedding Equinox in a Servlet Container</a></strong>
- or <strong><a href="http_in_equinox.php">Embedding an HTTP server in Equinox</a></strong> -- Note: modification of the servletbridge is no longer needed.)/li>
+ or <strong><a href="http_in_equinox.php">Embedding an HTTP server in Equinox</a></strong> -- Note: modification of the servletbridge is no longer needed.)</li>
 </ul>
 </i></p> 
 
