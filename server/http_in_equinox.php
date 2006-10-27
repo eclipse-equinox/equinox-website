@@ -77,7 +77,7 @@ The 3rd party bundles can be retrieved from the Orbit CVS Depott. <br/>
 </i></p>
 
 <p class=bar>Writing the server application</p>
-<p>See the <a href="http://eclipse.org/equinox/documents/http_writing_application.php">Writing a bundle-based server application</a>
+<p>See the <a href="http_writing_application.php">Writing a bundle-based server application</a>
  for information on how to write a bundle based web application.</p>
 
 <p class=bar>Running the server</p>
