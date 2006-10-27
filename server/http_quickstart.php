@@ -25,7 +25,7 @@ ob_start();
 <div id="midcolumn">
 <h1><?= $pageTitle ?></h1>
 
-	<h3>Overview</h3>
+	<p class=bar>Overview</p>
 	<p>Equinox can be used on the server to serve up static content and to run servlets or JSPs.  In each of these cases you 
 	need to setup an HTTP server and then configure it with the appropriate content.  There are two basic ways of running an 
 	HTTP server in Equinox;</p>
@@ -39,13 +39,13 @@ ob_start();
 	development and debugging.  Only when you go to production or in special circumstances will you need to embed
 	Equinox in an existing servlet container.</p>
 
-	<h3>Writing the server application</h3>
+	<p class=bar>Writing the server application</p>
 	<p>While Equinox can be setup to run servlets and JSPs in a variety of ways, the technique for writing the applications is the same.
 	Use the steps outlined in 
 	<a href="http_writing_application.php">Writing a bundle-based server application</a>
 	to create your application.</p>
 
-	<h3>Running the server application</h3>
+	<p class=bar>Running the server application</p>
 	<p>Once you have setup your server and written your application, consult the details for the appropriate server setup
 	to configure and run your server.</p>
 

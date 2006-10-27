@@ -25,13 +25,13 @@ ob_start();
 <div id="midcolumn">
 <h1><?= $pageTitle ?></h1>
 
-	<h3>Overview</h3>
+	<p class=bar>Overview</p>
 	<p>While Equinox can be setup to run servlets and JSPs in a variety of ways, the technique for writing the applications is the same.
 	Use the steps here to create your application and then one of the server setups detailed in the 
 	<a href="http_quickstart.php">Server-side quick start guide</a>
 	to configure and run your server.</p>
 
-	<h3>Writing the server application</h3>
+	<p class=bar>Writing the server application</p>
 	<p>The server application takes the form of static content, servlets and JSPs.  You can use any combination of these.
 	<ul>
 		<li><b>Create a new project</b> - Next you need to create a bundle to contain the application.  Your application can be made up
@@ -74,8 +74,10 @@ ob_start();
 			using the URL <code>http://localhost/test</code>.  Note that you can add any number of &lt;servlet&gt; elements in the
 			one extension.
 			</p></li>
+<!--
 		<li><b>Add some JSPs</b> - TBD</li>
 		<li><b>Place the JSPs</b> - TBD</li>
+-->
 	</ul>
 
 <p>&nbsp;</p>
