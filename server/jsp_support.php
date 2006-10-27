@@ -82,10 +82,10 @@ In addition a number of third party bundles are required to provide JSP support.
 
 <p class=bar>Examples</p>
 <ul>
-<li><i>JSTL bundle (required by other examples) - see <a href="downloads/org.eclipse.equinox.jsp.jstl-proj.zip">Plug-in project</a></i></li>
-<li><i>JSP Examples Bundle - see <a href="downloads/org.eclipse.equinox.jsp.examples-proj.zip">Plug-in project</a></i></li>
-<li><i>JSTL Examples Bundle - see <a href="downloads/org.eclipse.equinox.jsp.jstl.examples-proj.zip">Plug-in project</a></i></li>
-<li><i>Struts Examples Bundle - see <a href="downloads/org.eclipse.equinox.struts.examples-proj.zip">Plug-in project</a></i></li>
+<li><i>JSTL bundle (required by other examples) - see <a href="http://prdownloads.sourceforge.net/sse-examples/org.eclipse.equinox.jsp.jstl-proj.zip?download">Plug-in project</a></i></li>
+<li><i>JSP Examples Bundle - see <a href="http://prdownloads.sourceforge.net/sse-examples/org.eclipse.equinox.jsp.examples-proj.zip?download">Plug-in project</a></i></li>
+<li><i>JSTL Examples Bundle - see <a href="http://prdownloads.sourceforge.net/sse-examples/org.eclipse.equinox.jsp.jstl.examples-proj.zip?download">Plug-in project</a></i></li>
+<li><i>Struts Examples Bundle - see <a href="http://prdownloads.sourceforge.net/sse-examples/org.eclipse.equinox.struts.examples-proj.zip?download">Plug-in project</a></i></li>
 </ul> 
 
 <p>&nbsp;</p>
