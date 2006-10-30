@@ -45,7 +45,7 @@ ob_start();
 <?php
 	include $_SERVER['DOCUMENT_ROOT'] . "/equinox/global-links.html";
 	include $_SERVER['DOCUMENT_ROOT'] . "/equinox/bundles/component-links.html";
-	include "dir-links.html";
+	if (file_exists("dir-links.html")) {include "dir-links.html";}
 ?>
 
 <?php

@@ -96,7 +96,7 @@ The 3rd party bundles can be retrieved from the Orbit CVS Depott. <br/>
 <?php
 	include $_SERVER['DOCUMENT_ROOT'] . "/equinox/global-links.html";
 	include $_SERVER['DOCUMENT_ROOT'] . "/equinox/server/component-links.html";
-	#include "dir-links.html";
+	if (file_exists("dir-links.html")) {include "dir-links.html";}
 ?>
 
 <?php
