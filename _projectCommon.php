@@ -5,6 +5,7 @@
 	# https://dev.eclipse.org/committers/
 	# Optional: defaults to system theme 
 	$theme = "";
+	$pageAuthor="Equinox Committers";
 	$App->ExtraHtmlHeaders = '<link rel="stylesheet" type="text/css" href="/equinox/equinox.css">';
 	# Define your project-wide Nav bars here.
 	# Format is Link text, link URL (can be http://www.someothersite.com/), target (_self, _blank), level (1, 2 or 3)
