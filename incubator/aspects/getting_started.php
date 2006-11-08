@@ -22,7 +22,7 @@
   you also need to use the source version of OSGi that matches the one in your Eclipse SDK.</li>
   <li>Check out all the projects in the "aspects/tests" folder and see the readme.txt in the 
   org.eclipse.osgi.aspectj.tests project for instructions on how to run the basic tests.</li>
-  <li>Check out all the projects in the "aspects/demo" folder.</li>
+  <li>Check out all the projects in the "aspects/demos" folder.</li>
 </ol>
 </p>
 
