@@ -17,7 +17,7 @@
   environment. Phase I supports the "opt-in" model of aspect weaving described previously on the
   <a href="http://dev.eclipse.org/mhonarc/lists/equinox-dev/msg00444.html">equinox-dev<a>
   mailing list.
-  Phase II that will introduces the "co-opt" model and includes an Eclipse "Tooltip" demo.
+  Phase II introduces the "co-opt" model and includes an Eclipse "Tooltip" demo.
   Phase III will follow shortly and include byte-code 
   caching. The next stage of the project will integrate the AJEER programming model into this 
   aspect-oriented runtime.</p>
