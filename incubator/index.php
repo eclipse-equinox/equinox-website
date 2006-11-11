@@ -73,22 +73,10 @@ The goal of the Equinox Incubator is to experiment with techniques for
   work areas.</p>
 
 			<p class=bar>What's New</p>
-<p><b>May 16, 2006</b> - <IMG src="http://www.eclipse.org/images/new.gif"
-	width="31" height="14"> Added <a href="monitoring/index.php">Remote Resource Monitoring</a> work area.</p>
-<P><B>Nov 11, 2005</B> - Created the <a href="server">Server-side incubator</a>.</P>
-<P><B>Oct 12, 2005</B> - Presentation on SWORD4J at OSGi Congress in Paris now
-available on the <A href="security/documents/index.html" target="_parent">documents
-page</A>.<BR>
-  <BR>
-  <B>Sept 30, 2005</B> - A collection of Eclipse plug-ins designed to
-  aid in performing security related development tasks for Java, Eclipse,
-  and OSGi bundle developers has been released on the IBM alphaWorks
-  website. The download is called, <B>IBM Security Workbench Development
-  Evnironment for Java</B> ( <A
-	href="http://www.alphaworks.ibm.com/tech/sword4j" target="_blank">SWORD4J</A> ).
-  This tool was used to <A
-	href="http://www.eclipse.org/equinox/incubator/security/EJS/ejs.html"
-	target="_parent">analyze the RCP plug-ins</A> within the equinox project.</P>
+<p><b>Nov 10, 2006</b> - <IMG src="http://www.eclipse.org/images/new.gif"
+	width="31" height="14"> Andrew Niefer has been added as a committer and has started working on a new launcher story for Eclipse.  
+	See the <a href="http://wiki.eclipse.org/index.php/Equinox_Launcher">wiki</a> for more information.</p>
+</p>
 
 			<p class=bar>Committers</p>
       <p>The following people are committers on the Equinox Incubator:</p>
@@ -101,6 +89,7 @@ page</A>.<BR>
         <li>Peter Kriens, aQute</li>
         <li>Martin Lippert, it-agile</li>
         <li>Jeff McAffer, IBM Rational (Project lead)</li>
+        <li>Andrew Niefer, IBM Rational</li>
         <li>Pascal Rapicault, IBM Rational</li>
         <li>Tom Watson, IBM PvC</li>
         <li>Matthew Webster, IBM Hursley</li>
