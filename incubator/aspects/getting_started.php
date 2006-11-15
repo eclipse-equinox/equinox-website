@@ -16,7 +16,7 @@
   <li>Install the AspectJ framework extension and replacement Equinox implementation features using
   either the update site <code>http://download.eclipse.org/tools/aspectj/dev/update</code> or by
   downloading and unzipping <a href="http://download.eclipse.org/tools/aspectj/dev/update/org.aspectj.osgi_1.0.0.200611141456_archive.zip">
-  <code>org.aspectj.osgi_1.0.0.200611141456_archive.zip<code></a>.
+  <code>org.aspectj.osgi_1.0.0.200611141456_archive.zip</code></a>.
   In either case you <b>must</b> restart Eclipse twice to pick up the replacement 
   <code>org.eclipse.osgi</code> system bundle.</li>
 <!--  
@@ -34,7 +34,10 @@
   to run the basic tests.</li>
   <li>Check out all the projects in the "aspects/demos" folder 
   in the <a href="http://www.eclipse.org/equinox/incubator/howto.php">incubator repository</a> 
-  to see the OSGi and Eclipse demos.</li>
+  to see the OSGi and Eclipse demos.
+  Alternatively you can download and unzipping <a href="http://download.eclipse.org/tools/aspectj/dev/update/demo.aspectj.osgi_archive.zip">
+  <code>download.eclipse.org/tools/aspectj/dev/update/demo.aspectj.osgi_archive.zip</code></a>
+  and use "Import > Existing Projects into Workspace".</li>
 </ol>
 </p>
 
