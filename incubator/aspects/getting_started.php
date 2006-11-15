@@ -13,6 +13,11 @@
 <ol>
   <li>Install <a href="http://fullmoon.torolab.ibm.com/downloads/drops/R-3.2-200606291905/index.php">Eclipse 3.2 SDK</a>.</li>
   <li>Install <a href="http://www.eclipse.org/ajdt/downloads/">AspectJ Development Tools (AJDT) 1.4.1</a>.</li>
+  <li>Install the AspectJ framework extension and replacement Equinox implementation features using
+  either the update site <code>http://download.eclipse.org/tools/aspectj/dev/update</code> or by
+  downloading and unzipping <a href="http://download.eclipse.org/tools/aspectj/dev/update/org.aspectj.osgi_1.0.0.200611141456_archive.zip">
+  <code>org.aspectj.osgi_1.0.0.200611141456_archive.zip<code></a>.</li>
+<!--  
   <li>Check out the org.aspectj.osgi, org.aspectj.osgi.service.weaving and org.eclipse.osgi_3.2.0 bundles
   from the "aspects" folder in the <a href="http://www.eclipse.org/equinox/incubator/howto.php">incubator repository</a>
   and see the readme.txt in the org.aspectj.osgi project.
@@ -20,9 +25,14 @@
   use the org.aspectj.osgi Framework Extension bundle fragment in source form.
   Unfortunatley because of <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=143696">Bug 143696</a>
   you also need to use the source version of OSGi that matches the one in your Eclipse SDK.</li>
-  <li>Check out all the projects in the "aspects/tests" folder and see the readme.txt in the 
-  org.eclipse.osgi.aspectj.tests project for instructions on how to run the basic tests.</li>
-  <li>Check out all the projects in the "aspects/demos" folder.</li>
+-->  
+  <li>Check out all the projects in the "aspects/tests" folder
+  in the <a href="http://www.eclipse.org/equinox/incubator/howto.php">incubator repository</a> 
+  and see the readme.txt in the org.eclipse.osgi.aspectj.tests project for instructions on how 
+  to run the basic tests.</li>
+  <li>Check out all the projects in the "aspects/demos" folder 
+  in the <a href="http://www.eclipse.org/equinox/incubator/howto.php">incubator repository</a> 
+  to see the OSGi and Eclipse demos.</li>
 </ol>
 </p>
 
