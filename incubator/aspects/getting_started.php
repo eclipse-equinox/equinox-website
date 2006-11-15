@@ -36,7 +36,7 @@
   in the <a href="http://www.eclipse.org/equinox/incubator/howto.php">incubator repository</a> 
   to see the OSGi and Eclipse demos.
   Alternatively you can download and unzipping <a href="http://download.eclipse.org/tools/aspectj/dev/update/demo.aspectj.osgi_archive.zip">
-  <code>download.eclipse.org/tools/aspectj/dev/update/demo.aspectj.osgi_archive.zip</code></a>
+  <code>demo.aspectj.osgi_archive.zip</code></a>
   and use "Import > Existing Projects into Workspace".</li>
 </ol>
 </p>
