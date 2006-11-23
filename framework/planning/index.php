@@ -29,6 +29,7 @@ ob_start();
 <table BORDER=0 CELLPADDING=2 WIDTH="100%" >
   <tr>
     <td WIDTH="2%" ALIGN=RIGHT VALIGN=TOP><img SRC=../../images/Adarrow.gif BORDER=0 height=16 width=16></td>
+
     <td><b>3.2 Release</b>
         <ul>
           <li><a href="3.2/plan.php">General 3.2 Equinox Framework Plan</a></li>
@@ -36,6 +37,14 @@ ob_start();
             to some of the major items that we are working on.</li>
         </ul>
         <p>&nbsp;</p>
+    </td>
+
+    <td><b>3.3 Release</b>
+        <ul>
+          <li>We've moved the plan to the <a href="http://wiki.eclipse.org/index.php/Equinox_Planning">wiki</a>. Check it out!</li>
+        </ul>
+        <p>&nbsp;</p>
+
     </td>
   </tr>
 </table>
