@@ -38,13 +38,15 @@ ob_start();
         </ul>
         <p>&nbsp;</p>
     </td>
+  </tr>
 
+  <tr>
+    <td WIDTH="2%" ALIGN=RIGHT VALIGN=TOP><img SRC=../../images/Adarrow.gif BORDER=0 height=16 width=16></td>
     <td><b>3.3 Release</b>
         <ul>
           <li>We've moved the plan to the <a href="http://wiki.eclipse.org/index.php/Equinox_Planning">wiki</a>. Check it out!</li>
         </ul>
         <p>&nbsp;</p>
-
     </td>
   </tr>
 </table>
