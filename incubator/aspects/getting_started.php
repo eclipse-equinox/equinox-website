@@ -16,7 +16,7 @@
   <li>Install the AspectJ Equinox Framework Extension using
   either the update site <code>http://download.eclipse.org/tools/aspectj/dev/update</code> or by
   downloading and unzipping <a href="http://download.eclipse.org/tools/aspectj/dev/update/org.aspectj.osgi_1.0.1.200611231122_archive.zip">
-  <code>org.aspectj.osgi_1.0.1.200611231122_archive.zip</code></a>.</li>
+  <code>org.aspectj.osgi_1.0.1.200612081547_archive.zip</code></a>.</li>
 <!--  
   <li>Check out the org.aspectj.osgi, org.aspectj.osgi.service.weaving and org.eclipse.osgi_3.2.0 bundles
   from the "aspects" folder in the <a href="http://www.eclipse.org/equinox/incubator/howto.php">incubator repository</a>
