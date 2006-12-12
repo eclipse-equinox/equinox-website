@@ -9,7 +9,10 @@
 <body>
 <?php include("nav-include.html") ?>
 <p class=bar>News</p>
-<p>The Aspects project is pleased to announce the availability of Phase I. This code 
+<p>The Aspects project is pleased to announce the availability of Version 1.0.1.
+  This release, which is available from the update site or as a download, includes Phase I
+  and Phase II of the project. Most importantly the co-opt programming model no longer
+  requires a replacement system bundle. This code 
   comprises an OSGi Framework extension, tests and demos that allow you to create flexible
   aspect-oriented applications using Eclipse and AJDT. These can be deployed as bundles, 
   Eclipse plug-ins or an RCP application using a seemless 
@@ -35,7 +38,7 @@
 <p>The goal is to allow developers to use the OSGi runtime of Eclipse together with
   AspectJ by combining the benefits of both worlds. Using the load-time weaving extension
   you are able to add AspectJ aspects to your bundle-based system just by putting them
-  into general OSGi bndles. It does not matter if the pointcuts you defined inside the
+  into general OSGi bundles. It does not matter if the pointcuts you defined inside the
   aspects contain join points that are defined by classes within the same bundle or any
   other bundle in your installation. The load-time weaving extension will take care that
   your aspects are woven with the appropriate classes at load-time.</p>
