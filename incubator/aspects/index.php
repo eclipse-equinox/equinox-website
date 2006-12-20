@@ -24,6 +24,8 @@
   Phase III will follow shortly and include byte-code 
   caching. The next stage of the project will integrate the AJEER programming model into this 
   aspect-oriented runtime.</p>
+<p>There is an expanded set of demos available for download including several that show how 
+to implement and deploy new or modified extension points for existing plug-ins.
 <p>Please read <a href="getting_started.php">Getting Started</a> guide.
   
 <p class=bar>Mission Statement</p>
@@ -59,7 +61,11 @@
 <p><b>Facilitate the Independent Delivery of Crosscutting Capability:</b> Traditionally AspectJ applications have been compiled and woven at the same time. This produces a complete application with no special requirements other than a dependence on the AspectJ runtime which can be executed on any JVM. However this monolithic approach prevents elements of the application and the aspects themselves from evolving separately. An aspect-enabled OSGi allows an application to be deployed and maintained as a set of components which implement both core and crosscutting capability.
 
 <p class=bar>Events</p>
-<p>Both investigators will be at EclipseCon 2006. See the special <a href="http://www.eclipsecon.org/2006/Sub.do?id=522"/>Aspect-Oriented Programming Track</a> for details of how to learn more about AOP, AspectJ and the Aspect Equinox Incubator.
+<p>Both investigators plan to be at EclipseCon 2007. If you want to learn more 
+about AspectJ please register for the <a href="http://www.eclipsecon.org/2007/index.php?page=sub/&id=3575"/>tutorial</a>.
+Also why not vote for the proposed long talk: <a href="http://eclipsezilla.eclipsecon.org/show_bug.cgi?id=3848"/>
+AOP and OSGi - A Marriage Made in Heaven</a>.
+<p>Here are the slides from EclipseCon 2006:
 <ul>
 <li>Demo: Integrating Load-Time Weaving into OSGi (<a href="EclipseCon2006-DemoIntegratingLoadTimeWeavingIntoOSGi.ppt">slides, ppt</a>)</li>
 </ul>
