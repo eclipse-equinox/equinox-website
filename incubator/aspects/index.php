@@ -9,22 +9,19 @@
 <body>
 <?php include("nav-include.html") ?>
 <p class=bar>News</p>
-<p>The Aspects project is pleased to announce the availability of Version 1.0.1.
-  This release, which is available from the update site or as a download, includes Phase I
-  and Phase II of the project. Most importantly the co-opt programming model no longer
-  requires a replacement system bundle. This code 
-  comprises an OSGi Framework extension, tests and demos that allow you to create flexible
+<p>The Aspects project is pleased to announce the availability of Version 1.0.3.
+  This release, which is available from the update site or as a download, includes Phase I,
+  <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=161020"> Phase II<a> and
+  <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=161023"> Phase III<a> 
+  completing the first stage of the inubator. This code 
+  comprises an OSGi framework extension, tests and demos that allow you to create flexible
   aspect-oriented applications using Eclipse and AJDT. These can be deployed as bundles, 
   Eclipse plug-ins or an RCP application using a seemless 
   <a href="http://www.eclipse.org/aspectj/">AspectJ</a> load-time weaving 
-  environment. Phase I supports the "opt-in" model of aspect weaving described previously on the
-  <a href="http://dev.eclipse.org/mhonarc/lists/equinox-dev/msg00444.html">equinox-dev<a>
-  mailing list.
-  Phase II introduces the "co-opt" model and includes an Eclipse "Tooltip" demo.
-  Phase III will follow shortly and include byte-code 
-  caching. The next stage of the project will integrate the AJEER programming model into this 
+  environment. The next stage of the project will integrate the AJEER programming model into this 
   aspect-oriented runtime.</p>
-<p>There is an expanded set of demos available for download including several that show how 
+<p>Of particular interest to Eclipse developers is the latest set of demos available for download. 
+  As well as simple introductions to project there several examples of how 
 to implement and deploy new or modified extension points for existing plug-ins.
 <p>Please read <a href="getting_started.php">Getting Started</a> guide.
   
