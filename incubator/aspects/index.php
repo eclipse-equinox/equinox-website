@@ -13,7 +13,7 @@
   This release, which is available from the update site or as a download, includes Phase I,
   <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=161020"> Phase II<a> and
   <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=161023"> Phase III<a> 
-  completing the first stage of the inubator. This code 
+  completing the first stage of the incubator. This code 
   comprises an OSGi framework extension, tests and demos that allow you to create flexible
   aspect-oriented applications using Eclipse and AJDT. These can be deployed as bundles, 
   Eclipse plug-ins or an RCP application using a seemless 
