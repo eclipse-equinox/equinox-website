@@ -63,7 +63,7 @@ To develop web applications you'll also need the <b>javax.servlet</b> bundle fro
 <p>This set of instructions should get you up and running in a just a few minutes.
 <ol>
 <li>Install a servlet container (e.g. <a href="http://tomcat.apache.org/">Tomcat</a>, <a href="http://jetty.mortbay.org/jetty/">Jetty</a>, or whatever is handy)</li>
-<li>Download and deploy this pre-built web application archive. (<b><a href="downloads/bridge.war">bridge.war</a></b>) <i>[built 2006.10.12]</i></li>
+<li>Download and deploy this pre-built web application archive. (<b><a href="downloads/bridge.war">bridge.war</a></b>) <i>[built 2007.01.09]</i></li>
 <li>Start the web container and verify things are installed correctly by going to "/sp_test". (e.g. http://localhost:8080/bridge/sp_test)
 </ol>
 At this point you should begin familiarizing yourself with the use of the OSGi console to manage the platform.<br />
