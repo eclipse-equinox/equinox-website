@@ -52,7 +52,7 @@ Differences will be tracked here.</p>
 
 
 <p>This project can be downloaded from the equinox-incubator CVS depot. <br /> 
-(e.g. cvsroot/eclipse/equinox-incubator/org.eclipse.equinox.jasp.jasper)</p>
+(e.g. cvsroot/eclipse/equinox-incubator/org.eclipse.equinox.jsp.jasper)</p>
 <p>
 In addition a number of third party bundles are required to provide JSP support. These are all available as bundle proect for the Orbit CVS depot. <br/>
 <ul>
