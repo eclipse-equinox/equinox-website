@@ -48,7 +48,7 @@ Differences will be tracked here.</p>
 <i>Provides an OSGi friendly JSPServlet based on the use of the Jasper 2 compiler and runtime.</i>
 </li>
 </ul>
-<p><i>(TBD) add http.registry support (coming soon)</i></p>
+<p><i>(In progress) add http.registry support (see equinox-incubator/org.eclipse.equinox.jsp.jasper.registry)</i></p>
 
 
 <p>This project can be downloaded from the equinox-incubator CVS depot. <br /> 
