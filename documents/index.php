@@ -39,6 +39,10 @@ ob_start();
 
 			<p class=bar>Presentations</p>
 				<ul>
+					<li><a href="http://jaoo.org">JAOO 2006</a> (October)
+					  - <a href="jaoo2006/JAOO06-equinox.pdf">Equinox OSGi: Pervasive Componentization</a> - Thomas Watson and Jeff McAffer</li>
+					<li><a href="http://jaoo.org">JAOO 2006</a> (October)
+					  - <a href="jaoo2006/JAOO06-OSGi_Tutorial.pdf">Programming with Equinox</a> - Thomas Watson and Jeff McAffer</li>
 					<li><a href="http://osgicongress.com">OSGi Developer Forum 2005</a> (October)
 					  - <a href="osgicongress2005/mcaffer_1012_1530.pdf">Eclipse the Rich Client Platform</a> - Jeff McAffer</li>
 					<li><a href="http://osgicongress.com">OSGi Developer Forum 2005</a> (October)
