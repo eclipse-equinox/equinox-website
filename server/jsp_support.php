@@ -42,14 +42,15 @@ Differences will be tracked here.</p>
 <p>For a look at the earlier work on JSP Support see <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=140430">bug 140430</a>.</p>
 
 <p class=bar>Bundles</p>
-<p>There's really only one bundle that handles integration:
 <ul>
 <li><b>org.eclipse.equinox.jsp.jasper (Bundle)</b><br />
 <i>Provides an OSGi friendly JSPServlet based on the use of the Jasper 2 compiler and runtime.</i>
 </li>
-</ul>
-<p><i>(In progress) add http.registry support (see equinox-incubator/org.eclipse.equinox.jsp.jasper.registry)</i></p>
+<li><b>org.eclipse.equinox.jsp.jasper.registry (Bundle)</b><br />
+<i>Provides a JSPFactory that allows JSP usage with the org.eclipse.equinox.http.registry.servlets extension-point..</i>
+</li>
 
+</ul>
 
 <p>This project can be downloaded from the equinox-incubator CVS depot. <br /> 
 (e.g. cvsroot/eclipse/equinox-incubator/org.eclipse.equinox.jsp.jasper)</p>
@@ -81,6 +82,7 @@ In addition a number of third party bundles are required to provide JSP support.
 </i></p> 
 
 <p class=bar>Examples</p>
+<p><b>Note:</b> The examples require org.eclipse.equinox.http.helper from the equinox-incubator CVS depot</p>
 <ul>
 <li><i>JSTL bundle (required by other examples) - see <a href="http://prdownloads.sourceforge.net/sse-examples/org.eclipse.equinox.jsp.jstl-proj.zip?download">Plug-in project</a></i></li>
 <li><i>JSP Examples Bundle - see <a href="http://prdownloads.sourceforge.net/sse-examples/org.eclipse.equinox.jsp.examples-proj.zip?download">Plug-in project</a></i></li>
