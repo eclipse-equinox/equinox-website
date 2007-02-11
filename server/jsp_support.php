@@ -47,7 +47,7 @@ Differences will be tracked here.</p>
 <i>Provides an OSGi friendly JSPServlet based on the use of the Jasper 2 compiler and runtime.</i>
 </li>
 <li><b>org.eclipse.equinox.jsp.jasper.registry (Bundle)</b><br />
-<i>Provides a JSPFactory that allows JSP usage with the org.eclipse.equinox.http.registry.servlets extension-point..</i>
+<i>Provides a JSPFactory that allows JSP usage with the org.eclipse.equinox.http.registry.servlets extension-point.</i>
 </li>
 
 </ul>
