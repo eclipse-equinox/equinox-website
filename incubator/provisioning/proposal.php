@@ -28,7 +28,7 @@ ob_start();
 <p class=bar>Introduction</p>
 Eclipse has advanced quite quickly with new use-cases (RCP, Equinox, server side, etc.) and new technologies. However, to date Update Manager has not been enhanced to support or exploit these changes thus limiting the applications being developed.
 <p/>
-Even though the <a href="http://www.eclipse.org/eclipse/development/eclipse_project_plan_3_3.html">3.3 plan</a> has items to overcome these limitations, nothing has been done due to time and resource constraints.
+Even though the <a href="http://www.eclipse.org/eclipse/development/eclipse_project_plan_3_3.html">3.3 plan</a> has items to overcome these limitations, no new work has been done due to time and resource constraints.
 <p/>
 In order to ensure Update Manager receives appropriate attention in the next release of Eclipse, we are proposing the creation of a provisioning work area to develop new technologies and explore existing ones. The goal is for this
 work to graduate to be a replacement for Update Manager.
@@ -51,7 +51,7 @@ Pluggability and flexibility goes without saying since it should be our underlyi
 
 
 <p class=bar>Community</p>
-To ensure the suitability of the solution to a wide set of use cases, we are actively looking for interested parties with or without technology but with definite interest in this area to contribute time and resources.
+To ensure the suitability of the solution to a wide set of use cases, we are actively looking for interested parties (with or without technology) with definite interest in this area who are willing to contribute time and resources.
 
 
 <p class=bar>Timeline</p>
