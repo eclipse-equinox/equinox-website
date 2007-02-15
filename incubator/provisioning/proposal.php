@@ -7,8 +7,8 @@
 	
 	#
 	# Begin: page-specific settings.  Change these. 
-	$pageTitle 		= "Equinox Incubator - Server-side Proposal";
-	$pageKeywords	= "equinox, osgi, framework, runtime, incubator, server, proposal";
+	$pageTitle 		= "Equinox Incubator - Provisioning proposal";
+	$pageKeywords	= "equinox, osgi, udpate manager, install, provisioning, proposal";
 	
 	# Add page-specific Nav bars here
 	# Format is Link text, link URL (can be http://www.someothersite.com/), target (_self, _blank), level (1, 2 or 3)
@@ -29,9 +29,9 @@ ob_start();
 
 <p class=bar>Introduction</p>
 Eclipse has advanced quite quickly with new use-cases (RCP, Equinox, server side, etc.) and new technologies. However to date Update Manager has not been enhanced to support or exploit these changes thus limiting the applications being developed.
-</p>
+<p/>
 Even though the 3.3 plan (http://www.eclipse.org/eclipse/development/eclipse_project_plan_3_3.html) had plans to overcome these limitations, nothing has been done.
-</p>
+<p/>
 In order to ensure update manager receives appropriate attention in the next release of eclipse, we are proposing the creation of a provisioning incubator to develop new technologies and explore the existing ones. The outcome of this work will graduate as a replacement for update manager.
 
 
