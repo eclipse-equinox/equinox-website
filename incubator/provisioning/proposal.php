@@ -25,8 +25,6 @@ ob_start();
 <div id="midcolumn">
 <h1><?= $pageTitle ?></h1>
 
-<h1>Equinox Incubator - Provisioning proposal</h1>
-
 <p class=bar>Introduction</p>
 Eclipse has advanced quite quickly with new use-cases (RCP, Equinox, server side, etc.) and new technologies. However to date Update Manager has not been enhanced to support or exploit these changes thus limiting the applications being developed.
 <p/>
@@ -37,7 +35,7 @@ In order to ensure update manager receives appropriate attention in the next rel
 
 <p class=bar>Scope of the proposal</p>
 In order to increase our chance of success, the scope of this incubator will be limited to the creation of a client-side provisioning platform and a new update manager based on this platform.
-
+<p/>
 The key characteristics researched by this work are:
 <ul>
 <li>Sharing of plug-ins across multiple installations</li>
@@ -47,6 +45,7 @@ The key characteristics researched by this work are:
 <li>Support for the OSGi constructs</li>
 <li>Transactional installs</li>
 </ul>
+<p/>
 Pluggability and flexibility goes without saying since it should be our underlying motto to enable things like pluggable transports, pluggable repositories (maven, OBR, etc.), flexible mirror choice, decision as to what to install, etc.
 
 
