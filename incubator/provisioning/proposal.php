@@ -26,27 +26,28 @@ ob_start();
 <h1><?= $pageTitle ?></h1>
 
 <p class=bar>Introduction</p>
-Eclipse has advanced quite quickly with new use-cases (RCP, Equinox, server side, etc.) and new technologies. However to date Update Manager has not been enhanced to support or exploit these changes thus limiting the applications being developed.
+Eclipse has advanced quite quickly with new use-cases (RCP, Equinox, server side, etc.) and new technologies. However, to date Update Manager has not been enhanced to support or exploit these changes thus limiting the applications being developed.
 <p/>
-Even though the <a href="http://www.eclipse.org/eclipse/development/eclipse_project_plan_3_3.html">3.3 plan</a> had plans to overcome these limitations, nothing has been done.
+Even though the <a href="http://www.eclipse.org/eclipse/development/eclipse_project_plan_3_3.html">3.3 plan</a> has items to overcome these limitations, nothing has been done due to time and resource constraints.
 <p/>
-In order to ensure update manager receives appropriate attention in the next release of eclipse, we are proposing the creation of a provisioning incubator to develop new technologies and explore the existing ones. The outcome of this work will graduate as a replacement for update manager.
+In order to ensure Update Manager receives appropriate attention in the next release of Eclipse, we are proposing the creation of a provisioning work area to develop new technologies and explore existing ones. The goal is for this
+work to graduate to be a replacement for Update Manager.
 
 
 <p class=bar>Scope of the proposal</p>
-In order to increase our chance of success, the scope of this incubator will be limited to the creation of a client-side provisioning platform and a new update manager based on this platform.
+In order to increase our chance of success, the scope of this incubator will be limited to the creation of a client-side provisioning platform and a new Update Manager based on this platform.
 <p/>
 The key characteristics researched by this work are:
 <ul>
-<li>Sharing of plug-ins across multiple installations</li>
-<li>Configuration of non running eclipse and management of multiple configurations</li>
-<li>Separation of the metadata servers from the byte servers (in update manager lingua, have site.xml on one server and the jars on another one)</li>
-<li>Integration with the OS (desktop shortcuts, registry entries, etc.)</li>
-<li>Support for the OSGi constructs</li>
-<li>Transactional installs</li>
+<li>sharing of plug-ins across multiple installations</li>
+<li>configuration of non-running Eclipse and management of multiple configurations</li>
+<li>separation of metadata and data to allow hosting on different servers (in Update Manager terminology, have site.xml on one server and the jars on another one)</li>
+<li>integration with the OS (desktop shortcuts, registry entries, etc.)</li>
+<li>support for the OSGi constructs</li>
+<li>transactional installs</li>
 </ul>
 <p/>
-Pluggability and flexibility goes without saying since it should be our underlying motto to enable things like pluggable transports, pluggable repositories (maven, OBR, etc.), flexible mirror choice, decision as to what to install, etc.
+Pluggability and flexibility goes without saying since it should be our underlying motto to enable things like pluggable transports, pluggable repositories (maven, OBR, etc.), flexible mirror choices, decision as to what to install, etc.
 
 
 <p class=bar>Community</p>
@@ -54,7 +55,7 @@ To ensure the suitability of the solution to a wide set of use cases, we are act
 
 
 <p class=bar>Timeline</p>
-Given the foreseen impact of the work, we will have to operate under an aggressive schedule to make the rest of the platform team comfortable with the new work before it gets completely integrated into the builds. This means that we will have to have something for integration as early as september and show completion in december, then leaving us early 2008 to polish everything.
+Given the foreseen impact of this work, we will have to operate under an aggressive schedule to make the rest of the platform team comfortable with the new work before it gets completely integrated into the builds. This means that we will have to have something for integration as early as september and show completion in december, then leaving us early 2008 to polish everything.
 
 
 <p class=bar>Resources</p>
