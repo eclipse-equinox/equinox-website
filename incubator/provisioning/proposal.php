@@ -35,7 +35,7 @@ work to graduate to be a replacement for Update Manager.
 
 
 <p class=bar>Scope of the proposal</p>
-In order to increase our chance of success, the scope of this incubator will be limited to the creation of a client-side provisioning framework that is functionally equivalent to the current Update Manager.
+In order to increase our chance of success, the scope of this incubator will be limited to the creation of a client-side provisioning framework that is functionally equivalent to the current Update Manager yet is more flexible and extensible.
 <p/>
 The key characteristics researched by this work are:
 <ul>
