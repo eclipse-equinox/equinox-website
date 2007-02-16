@@ -35,19 +35,19 @@ work to graduate to be a replacement for Update Manager.
 
 
 <p class=bar>Scope of the proposal</p>
-In order to increase our chance of success, the scope of this incubator will be limited to the creation of a client-side provisioning platform and a new Update Manager based on this platform.
+In order to increase our chance of success, the scope of this incubator will be limited to the creation of a client-side provisioning framework that is functionally equivalent to the current Update Manager.
 <p/>
 The key characteristics researched by this work are:
 <ul>
 <li>sharing of plug-ins across multiple installations</li>
 <li>configuration of non-running Eclipse and management of multiple configurations</li>
 <li>separation of metadata and data to allow hosting on different servers (in Update Manager terminology, have site.xml on one server and the jars on another one)</li>
-<li>integration with the OS (desktop shortcuts, registry entries, etc.)</li>
+<li>integration with the OS prerequisites (e.g. JREs, registry entries, etc.)</li>
 <li>support for the OSGi constructs</li>
-<li>transactional installs</li>
+<li>transactional operations (install, update, etc.)</li>
 </ul>
 <p/>
-Pluggability and flexibility goes without saying since it should be our underlying motto to enable things like pluggable transports, pluggable repositories (maven, OBR, etc.), flexible mirror choices, decision as to what to install, etc.
+Pluggability and flexibility goes without saying since it should be our underlying motto to enable things like pluggable transports, pluggable repositories (maven, OBR, etc.), flexible mirror choices, decision as to what to install / update, etc.
 
 
 <p class=bar>Community</p>
