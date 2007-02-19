@@ -57,7 +57,7 @@ To ensure the suitability of the solution to a wide set of use cases, we are act
 <p class=bar>Timeline</p>
 Given the foreseen impact of this work, we will have to operate under an aggressive schedule to be able to quickly produce a stable result. This will allow 
 the platform team and interested parties ample time to review and buy in to this new provisioning story before integration into the Eclipse platform. 
-If accepted, we intend to start integration of the new provisioning story as early as September and reach completion in December, thus leaving us the rest of the release cycle for polish.
+If accepted, we intend to start integration of the new provisioning story as early as September 2007 and reach completion in December 2007, thus leaving us the rest of the release cycle for polish.
 
 
 <p class=bar>Resources</p>
