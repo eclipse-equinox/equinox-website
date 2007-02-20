@@ -93,6 +93,7 @@ The goal of the Equinox Incubator is to experiment with techniques for
         <li>Pascal Rapicault, IBM Rational</li>
         <li>Tom Watson, IBM PvC</li>
         <li>Matthew Webster, IBM Hursley</li>
+        <li>Ikuo Yamasaki, NTT Corporation</li>
       </ul>
       
 <p>&nbsp;</p>
