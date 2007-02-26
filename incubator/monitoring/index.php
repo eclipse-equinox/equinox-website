@@ -292,14 +292,18 @@ contributed as mbeans.</li>
 </ul>
 </p>
 
-			<p class=bar>Active Investigators</p>
-				<ul>
-					<li>Jeff McAffer (IBM)</li>
-					<li>DJ Houghton (IBM)</li>
-					<li>Robert Connell (UNB)</li>
-				</ul>
+<p class=bar>Documentation</p>
+<p>Here is some <a href="doc.php">documentation</a> to get you started.
+</p>
+
+<p class=bar>Active Investigators</p>
+	<ul>
+		<li>Jeff McAffer (IBM)</li>
+		<li>DJ Houghton (IBM)</li>
+		<li>Robert Connell (UNB)</li>
+	</ul>
 <p>&nbsp;</p>
-	</div>
+</div>
 
 <?php
 	include $_SERVER['DOCUMENT_ROOT'] . "/equinox/global-links.html";
