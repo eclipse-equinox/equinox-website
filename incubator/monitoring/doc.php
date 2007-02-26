@@ -28,9 +28,9 @@ ob_start();
 
 			<p class=bar>Terminology</p>
 			<ul>
-				<li><em>ContributionProvider</em>: Class which extends the server plugins' <code>org.eclipse.jmx.server.contribution</code> extension point.</li>
-				<li><em>Contribution</em>: Classes that are instantiated by a ContributionProvider. Instances of Contribution reside solely on the server 
-					and are registered with the server's mbean registry as dynamic mbeans.</li>
+				<li><b>ContributionProvider</b>: Class which extends the server plugins' <tt>org.eclipse.jmx.server.contribution</tt> extension point.</li>
+				<li><b>Contribution</b>: Classes that are instantiated by a <tt>ContributionProvider</tt>. Instances of <tt>Contribution</tt> 
+					reside solely on the server and are registered with the server's mbean registry as dynamic mbeans.</li>
 			</ul>
 
 			<p class=bar>Server Side - Creating your own Contributor (Contribution Provider) plugin and Transport Layer</p>
