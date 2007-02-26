@@ -28,32 +28,32 @@ ob_start();
 
 			<p class=bar>Terminology</p>
 			<ul>
-				<li><b>ContributionProvider</b>: Class which extends the server plugins' <tt>org.eclipse.jmx.server.contribution</tt> extension point.</li>
-				<li><b>Contribution</b>: Classes that are instantiated by a <tt>ContributionProvider</tt>. Instances of <tt>Contribution</tt> 
+				<li><b>ContributionProvider</b>: Class which extends the server plugins' <code>org.eclipse.jmx.server.contribution</code> extension point.</li>
+				<li><b>Contribution</b>: Classes that are instantiated by a <i>ContributionProvider</i>. Instances of <i>Contribution</i> 
 					reside solely on the server and are registered with the server's mbean registry as dynamic mbeans.</li>
 			</ul>
 
 			<p class=bar>Server Side - Creating your own Contributor (Contribution Provider) plugin and Transport Layer</p>
 			<p>
 			Simple, create a plugin and extend the <code>org.eclipse.equinox.jmx.server.contribution</code> extension point.  Extending 
-			this extension point requires you to define a class that is derived from ContributionProvider (more explanation 
+			this extension point requires you to define a class that is derived from <i>ContributionProvider</i> (more explanation 
 			about deriving from this class will follow) and optionally declaring any classes which this contribution provider 
 			knows how to 'extend'.
 			</p>
 			<p>
-			The methods of note when deriving from ContributionProvider are the providesType(Object o) and 
-			contributesType(Object o); together these methods define what objects (children) of itself and/or other 
+			The methods of note when deriving from <i>ContributionProvider</i> are the <i>providesType(Object)</i> and 
+			<i>contributesType(Object)</i>; together these methods define what objects (children) of itself and/or other 
 			contribution providers children (or contributions' children) it knows how to expose for remote management.
 			</p>
 			<p>
-			By returning true for providesType(Object o), it is assumed that createProvider(Object o) returns a 
-			ContributionProvider that has been specialized with the object.  By returning true for contributesType(Object o), 
+			By returning true for <i>providesType(Object)</i>, it is assumed that <i>createProvider(Object)</i> returns a 
+			<i>ContributionProvider</i> that has been specialized with the object.  By returning true for <i>contributesType(Object)</i>, 
 			it is assumed that the provider knows how to expose the particular object for remote management but has no 
 			interest in extending that object for its own purposes.
 			</p>
 			<p>
 			Pluggable transport providers provide a means for users to provide their own network transport layer 
-			implementation and can be utilized by extending the org.eclipse.equinox.jmx.server.provider extension point. 
+			implementation and can be utilized by extending the <code>org.eclipse.equinox.jmx.server.provider</code> extension point. 
 			 Currently, the project includes two transport plugins that users may use: apache xml-rpc (tested using jdk 1.4 
 			 on equinox foundation) or jdk5rmi (requires server to be running on jre 1.5+).  The protocol that the transports 
 			 use is what distinguishes them, and is a required field of the server's transport extension point.  By default 
