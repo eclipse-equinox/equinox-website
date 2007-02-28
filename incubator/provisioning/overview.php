@@ -113,7 +113,7 @@ and setting any related/described settings.  The set of touchpoints is open-ende
 </dl>
 
 <p>
-The interactions between some of these concepts are depicted in the 1000ft view diagram.
+The interactions between some of these concepts are depicted in the <a href="1000ft.jpg">1000ft</a> view diagram.
 </p>
 </div>
 
