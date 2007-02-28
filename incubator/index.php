@@ -63,6 +63,12 @@ The goal of the Equinox Incubator is to experiment with techniques for
     This incubator project is targetted at eliminating barriers to using and integrating OSGi (and Equinox more specificially) on
   the server.  Note that some of this work has graduated.  See the <a href="http://eclipse.org/equinox/server">server-side</a> website.</td>
   </tr>
+	<tr>
+      <td align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+      <td><a href="server" target="_top"><b>Provisioning</b></a> <br>
+    This incubator project is targetted at investigating the 3.3 plan item around provisioning support.  
+    See the <a href="http://eclipse.org/equinox/provisioning">provisioning</a> website.</td>
+  </tr>
 </table>
 
 <p>For an understanding of how work is carried out in the incubators, check out
