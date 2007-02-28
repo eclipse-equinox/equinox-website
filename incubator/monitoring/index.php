@@ -37,7 +37,13 @@ as a single object or something as abstract as an OSGI bundle.</p>
 <table width="100%" border="0">
 <tr>
 	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-	<td width="98%"><img src="http://eclipse.org/images/new.gif">June 6, 2006 - Added a new feature for the common code and removed duplicate bundles
+	<td width="98%"><img src="http://eclipse.org/images/new.gif">February 28, 2007- Added Extension Registry extension. Moved
+		XMLRPC server code to use JeTTY.
+    </td>
+</tr>
+<tr>
+	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+	<td width="98%">June 6, 2006 - Added a new feature for the common code and removed duplicate bundles
 		from the client and server.
     </td>
 </tr>
@@ -269,36 +275,68 @@ as a single object or something as abstract as an OSGI bundle.</p>
 If you don't want to check the code out of the repository and export your own plug-ins and 
 features, here are some zip files for the client and server.
 <ul>
-<li>org.eclipse.equinox.monitoring.client - <a href="downloads/org.eclipse.equinox.monitoring.client_1.0.0.200606061044.zip">v1.0.0.200606061044</a></li>
-<li>org.eclipse.equinox.monitoring.server - <a href="downloads/org.eclipse.equinox.monitoring.server_1.0.0.200606061044.zip">v1.0.0.200606061044</a></li>
+<li>org.eclipse.equinox.monitoring.client - <a href="downloads/org.eclipse.equinox.monitoring.client_1.0.0.200702281547.zip">v1.0.0.200702281547</a></li>
+<li>org.eclipse.equinox.monitoring.server - <a href="downloads/org.eclipse.equinox.monitoring.server_1.0.0.200702281547.zip">v1.0.0.200702281547</a></li>
 </ul>
 
 			<p class=bar>Running the Framework</p>
 The current implementation consists of a set of features and bundles that are intended to be placed
 in your eclipse install.  <br/>
+<table width="100%" border="0">
 
-Requirements:
-<ul>
-<li>Java runtime version 1.4 or 1.5 depending on which plugins are to be used.
-<li>Tested with Eclipse 3.2RC6.
-</ul>
+<tr>
+	<td><strong>Requirements:</strong></td>
+	<td> </td>
+</tr>
+<tr>
+	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+	<td width="98%">Java runtime version 1.4 or 1.5 depending on which plugins are to be used.</td>
+</tr>
+<tr>
+	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+	<td width="98%">Tested with Eclipse 3.3 (build I20070228).</td>
+</tr>
 
-Running:
-<ul>
-<li>Start the Eclipse application which contains the installed server feature (starting Eclipse by default starts 
-the jmx server).
-<li>Start the Eclipse application (if not already running) which contains the installed client feature and switch 
-to the 'JMX Resource Management' perspective.</li>
-<li>Select 'Open Connection' from the 'JMX Server' menu in the toolbar and enter the host and 
+<tr>
+	<td><strong>Running the server:</strong></td>
+	<td> </td>
+</tr>
+<tr>
+	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+	<td width="98%">Start the Eclipse application which contains the installed server feature (starting Eclipse by default starts 
+		the jmx server).</td>
+</tr>
+
+<tr>
+	<td><strong>Running the client:</strong></td>
+	<td> </td>
+</tr>
+<tr>
+	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+	<td width="98%">Start the Eclipse application (if not already running) which contains the installed client feature and switch 
+to the <em>JMX Resource Management</em> perspective.</td>
+</tr>
+<tr>
+	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+	<td width="98%">Select <em>Open Connection</em> from the <em>JMX Server</em> menu in the toolbar and enter the host and 
 protocol to use to connect to the server.  Note, if a server's resources (objects) are found to exist 
 in the same virtual machine as the one which the client is running, a dialog will notify you of this 
 and give you the option of bypassing the setup of a tranport layer to facilitate communication between the 
-client and server.</li>
-<li>Once connected, the list of available 'contributions' (mbeans) registered with the server are shown in a tree view.  
+client and server.</td>
+</tr>
+<tr>
+	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+	<td width="98%">Once connected, the list of available 'contributions' (mbeans) registered with the server are shown in a tree view.  
 Navigating the tree view allows you to inspect and invoke operations exposed by the resources 
-contributed as mbeans.</li>
-<li>To disconnect, select 'Disconnect' from the 'JMX Server' menu in the toolbar.</li>
-</ul>
+contributed as mbeans.</td>
+</tr>
+<tr>
+	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+	<td width="98%">To disconnect, select <em>Disconnect</em> from the <em>JMX Server</em> menu in the toolbar.</td>
+</tr>
+
+</table>
+
 </p>
 
 <p class=bar>Documentation</p>
