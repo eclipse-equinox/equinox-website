@@ -39,6 +39,13 @@ high level concepts.
 </p>
 
 <dl>
+
+<dt><b>Agent</b></dt>
+<dd>The provisioning infrastructure on client machines is generally referred to as the agent.  The agent may run
+separate from any other Eclipse system being managed or may be embedded inside of another Eclipse system.
+Agents can manage many profiles (see below) and indeed, a given system may have many agents running on it.
+</dd>
+
 <dt><b>Profile</b></dt>
 <dd>Profiles are the unit of management in the system.  That is, the provisioning infrastructure can manage 
 individual (or collections of) profiles.  Profiles are analogous to Eclipse <i>configuration</i> in some situations.  
@@ -81,18 +88,19 @@ of that profile and metadata describing the available IUs, a director produces a
 of provisioning operations (e.g., install, update or uninstall) to perform on the related IUs.
 Directors are also able to validate profiles and assist in the diagnosis of configuration errors.  Note that directors
 may range in complexity from very simple (e.g., reading a list of bundles from a static file) to very complex.  In this 
-incubaor we will create a director sufficient to achieve Update Manager-like function.
+incubator we will create a director sufficient to achieve Update Manager-like function.
 </dd>
 
 <dt><b>Engine</b></dt>
-<dd>Engines are responsible for determining <b>how</b> to achieve te desired provisioning operations as determined 
+<dd>Engines are responsible for determining <b>how</b> to achieve the desired provisioning operations as determined 
 by a director.  Whereas the subject of the director's work is metadata, the subject of the engine's work is the artifacts and 
 configuration information contained in the IUs selected by the director.  Engines cooperate with repositories and transport
 mechanisms to ensure that the required artifacts are available in the desired locations.
 </dd>
 
 <dt><b>Phase</b></dt>
-<dd>During execution the engine traverses through a set of phases.  At each phase all the IUs being operated on have an 
+<dd>During execution the engine traverses through a set of phases (e.g., fetch, install, configurre). 
+At each phase all the IUs being operated on have an 
 opportunity to participate in the lifecycle.  The mechanism by which they specify their participation is undecided at this point.
 </dd>
 
