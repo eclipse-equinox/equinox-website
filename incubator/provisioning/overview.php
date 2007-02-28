@@ -41,8 +41,9 @@ high level concepts.
 <dl>
 
 <dt><b>Agent</b></dt>
-<dd>The provisioning infrastructure on client machines is generally referred to as the agent.  The agent may run
-separate from any other Eclipse system being managed or may be embedded inside of another Eclipse system.
+<dd>The provisioning infrastructure on client machines is generally referred to as the agent.  Agents
+can manage themselves as well as other profiles.  An agent may run
+separate from any other Eclipse system being managed or may be embedded inside of another Eclipse system.  
 Agents can manage many profiles (see below) and indeed, a given system may have many agents running on it.
 </dd>
 
@@ -113,8 +114,9 @@ and setting any related/described settings.  The set of touchpoints is open-ende
 </dl>
 
 <p>
-The interactions between some of these concepts are depicted in the <a href="1000ft.jpg">1000ft</a> view diagram.
+The interactions between some of these concepts are depicted in the view diagram shown below.
 </p>
+<img src="1000ft.jpg"/>
 </div>
 
 <?php
