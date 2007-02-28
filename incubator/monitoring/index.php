@@ -298,8 +298,7 @@ in your eclipse install.  <br/>
 </tr>
 
 <tr>
-	<td><strong>Running the server:</strong></td>
-	<td> </td>
+	<td colspan="2"><strong>Running the server:</strong></td>
 </tr>
 <tr>
 	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
@@ -308,8 +307,7 @@ in your eclipse install.  <br/>
 </tr>
 
 <tr>
-	<td><strong>Running the client:</strong></td>
-	<td> </td>
+	<td colspan="2"><strong>Running the client:</strong></td>
 </tr>
 <tr>
 	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
