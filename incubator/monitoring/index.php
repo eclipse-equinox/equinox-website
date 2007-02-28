@@ -217,17 +217,25 @@ as a single object or something as abstract as an OSGI bundle.</p>
 
 <tr>
 	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-	<td width="98%"><b>VM Extension
-        (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.eclipse.equinox.jmx.vm">org.eclipse.equinox.jmx.vm</a>)</b><br>
-    This project provides the server-specific code that contributes information about the VM such as the number of classes
-    loaded, the amount of memory used, etc.</td>
+	<td width="98%"><b>Extension Registry Extension
+        (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.eclipse.equinox.registry.jmx">org.eclipse.equinox.registry.jmx</a>)</b><br>
+    This project contributes information about the Equinox Extension Registry and its contributions.
+	</td>
+</tr>
+
+<tr>
+	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+	<td width="98%"><b>OSGi Extension
+        (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.eclipse.osgi.jmx">org.eclipse.osgi.jmx</a>)</b><br>
+    This project contributes information about OSGi bundles and services.</td>
 </tr>
 
 <tr>
 	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
 	<td width="98%"><b>Preferences Extension
         (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.eclipse.equinox.preferences.jmx">org.eclipse.equinox.preferences.jmx</a>)</b><br>
-    This project contributes the server-specific code which contributes information about the preferences.</td>
+    This project contributes the server-specific code which contributes information about the preferences including the different scopes
+    and defined key/value pairs.</td>
 </tr>
 
 <tr>
@@ -240,18 +248,19 @@ as a single object or something as abstract as an OSGI bundle.</p>
 
 <tr>
 	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-	<td width="98%"><b>OSGi Extension
-        (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.eclipse.osgi.jmx">org.eclipse.osgi.jmx</a>)</b><br>
-    This project contributes information about OSGi bundles and services.</td>
+	<td width="98%"><b>SWT Extension
+        (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.eclipse.swt.jmx">org.eclipse.swt.jmx</a>)</b><br>
+    This project contributes information about SWT resources by exposing the 
+    <a href="http://www.eclipse.org/swt/tools.php">Sleak</a>
+    tool and the information it provides.</td>
 </tr>
 
 <tr>
 	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-	<td width="98%"><b>SWT Extension
-        (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.eclipse.swt.jmx">org.eclipse.swt.jmx</a>)</b><br>
-    This project contributes informatioin about SWT resources by exposing the 
-    <a href="http://www.eclipse.org/swt/tools.php">Sleak</a>
-    tool and the information it provides.</td>
+	<td width="98%"><b>VM Extension
+        (<a href="http://dev.eclipse.org/viewcvs/index.cgi/equinox-incubator/org.eclipse.equinox.jmx.vm">org.eclipse.equinox.jmx.vm</a>)</b><br>
+    This project provides the server-specific code that contributes information about the VM such as the number of classes
+    loaded, the amount of memory used, etc.</td>
 </tr>
 
 </table>
@@ -260,8 +269,8 @@ as a single object or something as abstract as an OSGI bundle.</p>
 If you don't want to check the code out of the repository and export your own plug-ins and 
 features, here are some zip files for the client and server.
 <ul>
-<li>org.eclipse.equinox.monitoring.client <a href="downloads/org.eclipse.equinox.monitoring.client_1.0.0.200606061044.zip">v1.0.0.200606061044</a></li>
-<li>org.eclipse.equinox.monitoring.server <a href="downloads/org.eclipse.equinox.monitoring.server_1.0.0.200606061044.zip">v1.0.0.200606061044</a></li>
+<li>org.eclipse.equinox.monitoring.client - <a href="downloads/org.eclipse.equinox.monitoring.client_1.0.0.200606061044.zip">v1.0.0.200606061044</a></li>
+<li>org.eclipse.equinox.monitoring.server - <a href="downloads/org.eclipse.equinox.monitoring.server_1.0.0.200606061044.zip">v1.0.0.200606061044</a></li>
 </ul>
 
 			<p class=bar>Running the Framework</p>
