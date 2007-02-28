@@ -27,7 +27,37 @@ ob_start();
 
 <p class=bar>Requirements</p>
 <p>
-The set of requirements to be addressed by this workarea will evolve over time.  
+While there are many possible requirements one could place on a provisioning system, the work here 
+is focused on creating a robust, extensible provisioning base for Eclipse-based systems on client machines.
+We will purposely keep the scope of this work quite narrow but allow for potential extensions and 
+improvements as we are incrementally successful.  Of course, the set of requirements 
+to be addressed by this workarea will evolve over time.  The following is an initial set:
+
+<dl>
+<dt><b>Multiple Configurations</b></dt>
+<dd>
+Many users or systems contain multiple configurations of Eclipse bundles.  The provisioning
+infrastructure must be able to manage these configurations
+</dd>
+<dt><b>Stand-alone operation</b></dt>
+<dd>
+The provisioning system must be able to run as a standalone application and manage/configure Eclipse
+systems that are not running at the time.
+</dd>
+<dt><b>Sharing</b></dt>
+<dd>
+Given multiple configurations of bundles on a single machine, the provisioning system should
+take every opportunity to shared the physical and inmemory storage associated with bundles.
+</dd>
+<dt><b>JRE and root files</b></dt>
+<dd>
+We must be able to update the JRE, root files and all other aspects of an Eclipse configuration
+</dd>
+<dt><b>Self-aware</b></dt>
+<dd>
+The provisioning system itself is an Eclipse-based system and must be able to operate on itself.
+</dd>
+</dl>
 
 </p>
 
@@ -39,7 +69,6 @@ high level concepts.
 </p>
 
 <dl>
-
 <dt><b>Agent</b></dt>
 <dd>The provisioning infrastructure on client machines is generally referred to as the agent.  Agents
 can manage themselves as well as other profiles.  An agent may run
@@ -93,7 +122,7 @@ incubator we will create a director sufficient to achieve Update Manager-like fu
 </dd>
 
 <dt><b>Engine</b></dt>
-<dd>Engines are responsible for determining <b>how</b> to achieve the desired provisioning operations as determined 
+<dd>The engine is responsible for determining <b>how</b> to achieve the desired provisioning operations as determined 
 by a director.  Whereas the subject of the director's work is metadata, the subject of the engine's work is the artifacts and 
 configuration information contained in the IUs selected by the director.  Engines cooperate with repositories and transport
 mechanisms to ensure that the required artifacts are available in the desired locations.
