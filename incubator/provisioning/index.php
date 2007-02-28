@@ -31,7 +31,8 @@ Eclipse has advanced quite quickly with new use-cases (RCP, Equinox, server side
 However, to date Update Manager has not been enhanced to support or exploit these changes thus limiting the 
 applications being developed.  This incubator project is targetted at refreshing the client-side provisioning infrastructure
 in Eclipse.  The refresh while not providing substantially more out-of-the-box functionality than Update Manager, will 
-provide an open and extensibile provisioning platform.  See the <a href="proposal.php">incubator proposal</a> for additional detail.</p>
+provide an open and extensibile provisioning platform.  See the <a href="proposal.php">incubator proposal</a> 
+and the <a href="proposal.php">overview</a> for additional detail.</p>
 
 <p class=bar>Working With the Provisioning Incubator</p>
 <p>The Provisioning incubator uses the main <a href="../resources.php">incubator resources</a> with

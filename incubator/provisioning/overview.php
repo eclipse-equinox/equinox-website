@@ -39,18 +39,18 @@ high level concepts.
 </p>
 
 <dl>
-<dt>Profile</dt>
+<dt><b>Profile</b></dt>
 <dd>Profiles are the unit of management in the system.  That is, the provisioning infrastructure can manage 
 individual (or collections of) profiles.  Profiles are analogous to Eclipse <i>configuration</i> in some situations.  
 For now we have chosen to introduce this new term to separate the conceptual profile from the implementation 
 configuration.
 </dd>
 
-<dt>Artifact</dt>
+<dt><b>Artifact</b></dt>
 <dd>Artifacts are the elements that are ultimately provisioned to a profile.  For example, Eclipse bundles are artifacts.
 </dd>
 
-<dt>Metadata</dt>
+<dt><b>Metadata</b></dt>
 <dd>As with the original Update Manager, there is a need for metadata that describes artifacts separate from the actual 
 artifacts themselves.  This allows the provisioning system to reason about profiles hypothetically without 
 having to actually incur the cost of downloading all the content.  Broadly speaking the provisioning metadata envisioned here 
@@ -60,21 +60,21 @@ version numbers, dependencies, etc).  The metadata should allow dependencies to 
 without forcing containment relationships between nodes.
 </dd>
 
-<dt>Repository</dt>
+<dt><b>Repository</b></dt>
 <dd>Both metadata and artifacts are organized into repositories.  Repository structure, layout and access has long been the source
 of much debate and discussion.  We do not intend to fight that battle here. Rather, the provisioning system
 must be extensible and thus allow for a wide range of repository formats to be represented.  The pervasive notion of downloading
 or managing repository content is <i>mirroring</i>.  Rather than downloading artifacts etc, they are mirrored locally.
 </dd>
 
-<dt>Transports</dt>
+<dt><b>Transports</b></dt>
 <dd>As the name implies transports are the mechanisms by which artifacts, metadata etc are mirrored around the system.  
 The set of available transports must be extensible and the programmatic interface to transports should allow for progress
 monitoring, cancellation and restart as appropriate.  The incubator work will focus on a small set of transports (e.g., HTTP)
 sufficient to do standard Eclipse install management.
 </dd>
 
-<dt>Director</dt>
+<dt><b>Director</b></dt>
 <dd>Directors are responsible for determining <b>what</b> should be done to a given profile to reshape it as requested. 
 That is, given the current state of a profile, a description of the desired end state
 of that profile and metadata describing the available IUs, a director produces a list 
@@ -84,18 +84,19 @@ may range in complexity from very simple (e.g., reading a list of bundles from a
 incubaor we will create a director sufficient to achieve Update Manager-like function.
 </dd>
 
-<dt>Engine</dt>
+<dt><b>Engine</b></dt>
 <dd>Engines are responsible for determining <b>how</b> to achieve te desired provisioning operations as determined 
 by a director.  Whereas the subject of the director's work is metadata, the subject of the engine's work is the artifacts and 
 configuration information contained in the IUs selected by the director.  Engines cooperate with repositories and transport
 mechanisms to ensure that the required artifacts are available in the desired locations.
 </dd>
 
-<dt>Phase</dt>
+<dt><b>Phase</b></dt>
 <dd>During execution the engine traverses through a set of phases.  At each phase all the IUs being operated on have an 
 opportunity to participate in the lifecycle.  The mechanism by which they specify their participation is undecided at this point.
 </dd>
-<dt>Touchpoints</dt>
+
+<dt><b>Touchpoints</b></dt>
 <dd>IUs can be stamped with a <i>type</i>.  Using this type the engine identifies the touchpoint responsible for marrying 
 the IU with the related system.  For example, an IU of type "Eclipse bundle" would be handled by the Eclipse Touchpoint.  
 That touchpoint is responsible for putting the bundle in the appropriate spot, adding it to the Eclipse configuration files
