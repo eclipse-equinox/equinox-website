@@ -116,7 +116,9 @@ and setting any related/described settings.  The set of touchpoints is open-ende
 <p>
 The interactions between some of these concepts are depicted in the view diagram shown below.
 </p>
-<img src="1000ft.jpg">
+<p>
+<img src="1000.gif">
+</p>
 </div>
 
 <?php
