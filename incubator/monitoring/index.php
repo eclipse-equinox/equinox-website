@@ -298,7 +298,8 @@ in your eclipse install.  <br/>
 </tr>
 <tr>
 	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-	<td width="98%"><em>Note:</em> .</td>
+	<td width="98%"><em>Note:</em> The XMLRPC server code was recently changed from using the default web server that
+		comes with XMLRPC, to use JeTTY. Because of this, we are still in the process of getting the server code to run on a Foundation VM.</td>
 </tr>
 
 <tr>
