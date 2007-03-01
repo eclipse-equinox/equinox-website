@@ -30,7 +30,7 @@ ob_start();
 While there are many possible requirements one could place on a provisioning system, the work here 
 is focused on creating a robust, extensible provisioning base for Eclipse-based systems on client machines.
 We will purposely keep the scope of this work quite narrow but allow for potential extensions and 
-improvements as we are incrementally successful.  Of course, the set of requirements 
+improvements as we are incrementally successful.  Of course, the set of high-level requirements 
 to be addressed by this workarea will evolve over time.  The following is an initial set:
 
 <dl>
@@ -57,6 +57,16 @@ We must be able to update the JRE, root files and all other aspects of an Eclips
 <dd>
 The provisioning system itself is an Eclipse-based system and must be able to operate on itself.
 </dd>
+<dt><b>Simple workflows</b></dt>
+<dd>
+End-users should follow a set of simple workflows when doing simple operations
+</dd>
+<dt><b>Standards</b></dt>
+<dd>
+The provisioning work should use existing standards as much as possible and where new designs, 
+approaches, formats or APIs are developed, they should be suitable candidates for standardization.
+</dd>
+
 </dl>
 
 </p>
