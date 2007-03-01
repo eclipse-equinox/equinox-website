@@ -296,6 +296,10 @@ in your eclipse install.  <br/>
 	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
 	<td width="98%">Tested with Eclipse 3.3 (build I20070228).</td>
 </tr>
+<tr>
+	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+	<td width="98%"><em>Note:</em> .</td>
+</tr>
 
 <tr>
 	<td colspan="2"><strong>Running the server:</strong></td>
@@ -316,7 +320,7 @@ to the <em>JMX Resource Management</em> perspective.</td>
 </tr>
 <tr>
 	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-	<td width="98%">Select <em>Open Connection</em> from the <em>JMX Server</em> menu in the toolbar and enter the host and 
+	<td width="98%">Select <em>JMX Server -> Open Connection</em> and enter the host and 
 protocol to use to connect to the server.  Note, if a server's resources (objects) are found to exist 
 in the same virtual machine as the one which the client is running, a dialog will notify you of this 
 and give you the option of bypassing the setup of a tranport layer to facilitate communication between the 
@@ -330,7 +334,7 @@ contributed as mbeans.</td>
 </tr>
 <tr>
 	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-	<td width="98%">To disconnect, select <em>Disconnect</em> from the <em>JMX Server</em> menu in the toolbar.</td>
+	<td width="98%">To disconnect, select <em>JMX Server -> Disconnect</em>.</td>
 </tr>
 
 </table>
