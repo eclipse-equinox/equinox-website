@@ -314,9 +314,9 @@ in your eclipse install.  <br/>
 	<td width="98%">Start the Eclipse application which contains the installed server feature (starting Eclipse by default starts 
 		the JMX server).</td>
 	<td width="98%">Use the <code>org.eclipse.equinox.jmx.server.protocol</code> system property to specify 
-		which protocol to use. (rmi is the default)</td>
+		which protocol to use. (<em>rmi</em> is the default)</td>
 	<td width="98%">Use the <code>org.eclipse.equinox.jmx.server.port</code> system property to specify 
-		which port to use. (8118 is the default)</td>
+		which port to use. (<em>8118</em> is the default)</td>
 </tr>
 
 <tr>
