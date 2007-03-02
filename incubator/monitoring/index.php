@@ -313,8 +313,14 @@ in your eclipse install.  <br/>
 	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
 	<td width="98%">Start the Eclipse application which contains the installed server feature (starting Eclipse by default starts 
 		the JMX server).</td>
+</tr>
+<tr>
+	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
 	<td width="98%">Use the <code>org.eclipse.equinox.jmx.server.protocol</code> system property to specify 
 		which protocol to use. (<em>rmi</em> is the default)</td>
+</tr>
+<tr>
+	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
 	<td width="98%">Use the <code>org.eclipse.equinox.jmx.server.port</code> system property to specify 
 		which port to use. (<em>8118</em> is the default)</td>
 </tr>
