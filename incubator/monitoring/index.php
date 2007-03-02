@@ -54,7 +54,11 @@ as a single object or something as abstract as an OSGI bundle.</p>
 </tr>
 </table>
 
-			<p class=bar>Working with the resource monitoring framework</p>
+<p class=bar>Documentation</p>
+<p>Here is some <a href="doc.php">documentation</a> to get you started.
+</p>
+
+<p class=bar>Working with the resource monitoring framework</p>
 <p>The monitoring incubator uses the main <a href="../resources.php">incubator
     resources</a> with the following refinements.</p>
 
@@ -308,7 +312,11 @@ in your eclipse install.  <br/>
 <tr>
 	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
 	<td width="98%">Start the Eclipse application which contains the installed server feature (starting Eclipse by default starts 
-		the jmx server).</td>
+		the JMX server).</td>
+	<td width="98%">Use the <code>org.eclipse.equinox.jmx.server.protocol</code> system property to specify 
+		which protocol to use. (rmi is the default)</td>
+	<td width="98%">Use the <code>org.eclipse.equinox.jmx.server.port</code> system property to specify 
+		which port to use. (8118 is the default)</td>
 </tr>
 
 <tr>
@@ -340,10 +348,6 @@ contributed as mbeans.</td>
 
 </table>
 
-</p>
-
-<p class=bar>Documentation</p>
-<p>Here is some <a href="doc.php">documentation</a> to get you started.
 </p>
 
 <p class=bar>Active Investigators</p>
