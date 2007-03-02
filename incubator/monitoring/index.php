@@ -279,8 +279,8 @@ as a single object or something as abstract as an OSGI bundle.</p>
 If you don't want to check the code out of the repository and export your own plug-ins and 
 features, here are some zip files for the client and server.
 <ul>
-<li>org.eclipse.equinox.monitoring.client - <a href="downloads/org.eclipse.equinox.monitoring.client_1.0.0.200702281547.zip">v1.0.0.200702281547</a></li>
-<li>org.eclipse.equinox.monitoring.server - <a href="downloads/org.eclipse.equinox.monitoring.server_1.0.0.200702281547.zip">v1.0.0.200702281547</a></li>
+<li>org.eclipse.equinox.monitoring.client - <a href="downloads/org.eclipse.equinox.monitoring.client_1.0.0.200703021335.zip">v1.0.0.200703021335</a></li>
+<li>org.eclipse.equinox.monitoring.server - <a href="downloads/org.eclipse.equinox.monitoring.server_1.0.0.200703021335.zip">v1.0.0.200703021335</a></li>
 </ul>
 
 			<p class=bar>Running the Framework</p>
