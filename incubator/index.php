@@ -90,7 +90,7 @@ The goal of the Equinox Incubator is to experiment with techniques for
         <li>Olivier Gruber, IBM Research</li>
 		<li>Ted Habeck, IBM Research</li>
         <li>BJ Hargrave, IBM PvC</li>
-        <li>Simon Kaegi, Cognos</li>
+        <li>Simon Kaegi, IBM Rational</li>
         <li>Peter Kriens, aQute</li>
         <li>Martin Lippert, it-agile</li>
         <li>Jeff McAffer, IBM Rational (Project lead)</li>

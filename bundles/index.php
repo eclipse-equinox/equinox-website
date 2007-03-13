@@ -195,7 +195,7 @@ ob_start();
 				<ul>
 					<li>Oleg Besedin, IBM Rational</li>
 					<li>Jennifer Fogell, IBM Lotus</li>
-					<li>Simon Kaegi, Cognos</li>
+					<li>Simon Kaegi, IBM Rational</li>
 					<li>BJ Hargrave, IBM Lotus</li>
 					<li>DJ Houghton, IBM Rational</li>
 					<li>Jeff McAffer, IBM Rational (Project lead)</li>

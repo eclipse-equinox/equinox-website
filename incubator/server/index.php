@@ -59,7 +59,7 @@ ob_start();
 
 <p class=bar>Active investigators</p>
 <ul>
-<li>Simon Kaegi (Cognos)</li>
+<li>Simon Kaegi (IBM Rational)</li>
 </ul>
 <p>&nbsp;</p>
 </div>
