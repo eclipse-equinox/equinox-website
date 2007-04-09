@@ -104,11 +104,20 @@ The goal of the Equinox Incubator is to experiment with techniques for
 <p>&nbsp;</p>
 	</div>
 
-<?php
-	include $_SERVER['DOCUMENT_ROOT'] . "/equinox/global-links.html";
-	include $_SERVER['DOCUMENT_ROOT'] . "/equinox/incubator/component-links.html";
-	if (file_exists("dir-links.html")) {include "dir-links.html";}
-?>
+<div id="rightcolumn">
+	<?php
+			include $_SERVER['DOCUMENT_ROOT'] . "/equinox/global-links.html";
+			include $_SERVER['DOCUMENT_ROOT'] . "/equinox/incubator/component-links.html";
+			if (file_exists("dir-links.html")) {include "dir-links.html";}
+	?>
+	<div class="sideitem">
+		<h6>Incubation</h6>
+		<div align="center"><a href="/projects/what-is-incubation.php">
+			<img align="center" src="/images/egg-incubation.png" border="0" alt="Incubation" /></a>
+		</div>
+	</div>
+</div>
+
 <?php
 	$html = ob_get_contents();
 	ob_end_clean();
