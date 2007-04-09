@@ -50,7 +50,7 @@ ob_start();
   <tr>
     <td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
     <td width="98%"><b><a name="app"></a>Application Container
-        (<a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox.app">org.eclipse.equinox.app</a>)</b> <A HREF="#legend" style="color:red;"> status:red</a><br>
+        (<a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox.app">org.eclipse.equinox.app</a>)</b> <A HREF="#legend" style="color:green;"> status:green</a><br>
        
     An implementation of the OSGi R4 MEG Application Container service.</td>
   </tr>
@@ -130,14 +130,6 @@ ob_start();
       using declarative markup and lazy instantiation. The extension mechanism
       is similar to OSGi services and declarative services but has some different
       contractual and management characteristics.</td>
-  </tr>
-  <tr>
-    <td align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-    <td><b><a name="servlet"></a> <img src="../images/new.gif" width="31" height="14">Servlet API (<a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox.servlet.api">org.eclipse.equinox.servlet.api</a>)</b><A HREF="#legend" style="color:green;"> status:green</a><br>
-    A convenience bundle that contains the javax servlet related APIs. Essentially
-      these APIs are copied out of the Tomcat implementation and made available
-      here in support of the HTTP service bundle. There may well be multiple
-      versions of this bundle to address different versions of the servlet API.</td>
   </tr>
   <tr>
     <td align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
