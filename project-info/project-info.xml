@@ -1,0 +1,15 @@
+<project>
+  <bugzilla>
+    <product name="Equinox"/>
+  </bugzilla>
+  <cvs repository="/cvsroot/eclipse/" />
+  <getting-started url="http://www.eclipse.org/documentation/main.html"/>
+  <ip-log />
+  <mailing-lists>
+    <list name="equinox-dev"/>
+  </mailing-lists>
+  <newsgroups>
+  	<newsgroup name="eclipse.technology.equinox"/>
+  </newsgroups>
+  <project-plan url="/eclipse/development/eclipse_project_plan_3_3.html"/>
+</project>
