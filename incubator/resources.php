@@ -29,6 +29,11 @@ ob_start();
 <table BORDER=0 CELLSPACING=5 CELLPADDING=2 WIDTH="100%" >
 	<tr>
       <td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+      <td width="98%"><a href="http://eclipse.org/equinox/incubator/downloads.php" target="_top"><b>Downloads</b></a><br>
+    Get involved early by downloading pre-built versions of the incubation work before it graduates and is released.</td>
+  </tr>
+	<tr>
+      <td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
       <td width="98%"><a href="news://news.eclipse.org/eclipse.technology.equinox" target="_top"><b>Newsgroup</b></a><br>
     Talk to the people using any part of Equinox</td>
   </tr>
