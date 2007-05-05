@@ -39,6 +39,8 @@ ob_start();
 
 			<p class=bar>Presentations</p>
 				<ul>
+					<li><a href="http://www.eclipsist.org">EclipsIST 2007 (Turkish Eclipse Summit 2007)</a> (April)
+					  - <a href="eclipsist2007/EclipseSummitTurkey2007-OSGiEquinoxExplained.pdf">OSGi and Eclipse Equinox Explained</a> - Martin Lippert</li>
 					<li><a href="http://jaoo.org">JAOO 2006</a> (October)
 					  - <a href="jaoo2006/JAOO06-equinox.pdf">Equinox OSGi: Pervasive Componentization</a> - Thomas Watson and Jeff McAffer</li>
 					<li><a href="http://jaoo.org">JAOO 2006</a> (October)
