@@ -275,13 +275,10 @@ as a single object or something as abstract as an OSGI bundle.</p>
 
 </table>
 
-			<p class=bar>Latest Pre-Built Zips</p>
+			<p class=bar>Downloads</p>
 If you don't want to check the code out of the repository and export your own plug-ins and 
-features, here are some zip files for the client and server.
-<ul>
-<li>org.eclipse.equinox.monitoring.client - <a href="downloads/org.eclipse.equinox.monitoring.client_1.0.0.200703021335.zip">v1.0.0.200703021335</a></li>
-<li>org.eclipse.equinox.monitoring.server - <a href="downloads/org.eclipse.equinox.monitoring.server_1.0.0.200703021335.zip">v1.0.0.200703021335</a></li>
-</ul>
+features, there are some pre-built zip files for the client and server on the 
+<a href="http://download.eclipse.org/eclipse/equinox">Equinox download page</a> in the Incubator section.
 
 			<p class=bar>Running the Framework</p>
 The current implementation consists of a set of features and bundles that are intended to be placed
