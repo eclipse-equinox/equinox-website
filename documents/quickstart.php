@@ -141,12 +141,12 @@ To use the full power of Eclipse, look at how the Eclipse IDE and RCP applicatio
 check out the Help system links above as well as</p> 
 <blockquote>
   <p>
-    <a href="http://help.eclipse.org/help32/topic/org.eclipse.platform.doc.isv/reference/misc/multi_user_installs.html">http://help.eclipse.org/help31/topic/org.eclipse.platform.doc.isv/reference/misc/multi_user_installs.html</a>
+    <a href="http://help.eclipse.org/help32/topic/org.eclipse.platform.doc.isv/reference/misc/multi_user_installs.html">http://help.eclipse.org/help32/topic/org.eclipse.platform.doc.isv/reference/misc/multi_user_installs.html</a>
   </p>
 </blockquote>
   <p>For those who are interested in some of the Eclipse extensions to OSGi, see</p>
 <blockquote>
-  <p><a href="http://help.eclipse.org/help32/topic/org.eclipse.platform.doc.isv/reference/misc/bundle_manifest.html">http://help.eclipse.org/help31/topic/org.eclipse.platform.doc.isv/reference/misc/bundle_manifest.html</a></p>
+  <p><a href="http://help.eclipse.org/help32/topic/org.eclipse.platform.doc.isv/reference/misc/bundle_manifest.html">http://help.eclipse.org/help32/topic/org.eclipse.platform.doc.isv/reference/misc/bundle_manifest.html</a></p>
 </blockquote>
 <p>Most of these facilities are experimental. Some general and have been proposed
       for inclusion in the OSGi R4.1 or R5 specifications while others are Eclipse-specific. All were put in place to solve
