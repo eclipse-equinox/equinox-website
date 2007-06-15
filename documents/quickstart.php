@@ -62,11 +62,11 @@ above) and install and start B1 and B2 using the console. This is a manual proce
     lists B1 and B2 as bundles to be installed and started. Set up
   something like</p>
 <pre>somedir/
+  configuration/
+    config.ini
   org.eclipse.osgi_3.2.0.jar
   B1.jar
-  B2.jar
-  configuration/
-    config.ini</pre>
+  B2.jar</pre>
 <p>Where config.ini is a Java properties file that contains the following line.
   Note that the osgi.bundles property is quite powerful. See the doc for details. </p>
 <pre>  osgi.bundles=B1.jar@start, B2.jar@start
@@ -89,11 +89,51 @@ above) and install and start B1 and B2 using the console. This is a manual proce
 </blockquote>
 <p>Now, if you want to make things even easier, you can add in a few Eclipse
   bundles (i.e., org.eclipse.equinox.common and org.eclipse.update.configurator).
-  This gives you automatic bundle discovery/install.  Add these bundles on the osgi.bundles
-  list in your config.ini as follows:</p>
+  This gives you automatic bundle discovery/install.  Set up something like</p>
+<pre>somedir/
+  configuration/
+    config.ini
+  org.eclipse.osgi_3.3.0.jar
+  org.eclipse.equinox.common_3.3.0.jar
+  org.eclipse.update.configurator_3.2.100.jar
+  plugins/
+    B1.jar
+    B2.jar</pre>
+<p>Add these bundles on the osgi.bundles list in your config.ini as follows:</p>
 <pre>  osgi.bundles=org.eclipse.equinox.common@2:start, org.eclipse.update.configurator@3:start</pre>
 <p>When the Update configurator bundle starts, it automatically discovers and installs all the bundles in the <em>plugins</em>
 directory that is beside the Equinox JAR.  Note that the configurator does not automatically start these bundles.</p>
+<p>Finally, if version 3.3 is used, you can add the equinox launcher to your configuration.  The equinox launcher comes in 3 pieces: the native
+executable (eclipse.exe), a shared library (eclipse_1017.dll) and the launcher jar (org.eclipse.equinox.launcher_1.0.0.jar).  
+The executable lives in the root of the eclipse install.  The shared library is in a platform specific fragment 
+(i.e. org.eclipse.equinox.launcher.win32.win32.x86).  The shared library and the launcher jar live in the <em>plugins</em> directory. 
+Set up something like</p>
+<pre>somedir/
+  configuration/
+    config.ini
+  eclipse.exe
+  plugins/
+    org.eclipse.equinox.common_3.3.0.jar
+    org.eclipse.equinox.launcher.win32.win32.x86_1.0.0/
+      eclipse_1017a.dll
+      [other launcher fragment content]
+    org.eclipse.equinox.launcher_1.0.0.jar
+    org.eclipse.osgi_3.3.0.jar
+    org.eclipse.update.configurator_3.2.100.jar
+    B1.jar
+    B2.jar</pre>
+<p>When the equinox launcher is used all bundles (including the framework org.eclipse.osgi) must be placed in the
+plugins directory which is beside the native executable (eclipse.exe).  The equinox launcher is configured by default to 
+run an eclipse application.  If an eclipse application is not found then the OSGi framework is shutdown and equinox will exit.  
+To prevent this another property must be added to the config.ini (osgi.noShutdown=true).  The final config.ini will look like this.</p>
+<pre>  osgi.bundles=org.eclipse.equinox.common@2:start, org.eclipse.update.configurator@3:start
+  eclipse.ignoreApp=true
+  osgi.noShutdown=true
+</pre>
+<p>
+Once this is set up you can start equinox with the console using the following command line:
+</p>
+<pre>  eclipse -console</pre>
 <p>The steps above should get you running with a reasonably flexible configuration of Equinox and a collection of bundles.  
 Eclipse and Equinox offer a significant set of extensibilty and configuration options that are beyond the scope 
 of a getting started document (e.g., extension registry, application model, shared installs, ...).  
@@ -101,12 +141,12 @@ To use the full power of Eclipse, look at how the Eclipse IDE and RCP applicatio
 check out the Help system links above as well as</p> 
 <blockquote>
   <p>
-    <a href="http://help.eclipse.org/help31/topic/org.eclipse.platform.doc.isv/reference/misc/multi_user_installs.html">http://help.eclipse.org/help31/topic/org.eclipse.platform.doc.isv/reference/misc/multi_user_installs.html</a>
+    <a href="http://help.eclipse.org/help32/topic/org.eclipse.platform.doc.isv/reference/misc/multi_user_installs.html">http://help.eclipse.org/help31/topic/org.eclipse.platform.doc.isv/reference/misc/multi_user_installs.html</a>
   </p>
 </blockquote>
   <p>For those who are interested in some of the Eclipse extensions to OSGi, see</p>
 <blockquote>
-  <p><a href="http://help.eclipse.org/help31/topic/org.eclipse.platform.doc.isv/reference/misc/bundle_manifest.html">http://help.eclipse.org/help31/topic/org.eclipse.platform.doc.isv/reference/misc/bundle_manifest.html</a></p>
+  <p><a href="http://help.eclipse.org/help32/topic/org.eclipse.platform.doc.isv/reference/misc/bundle_manifest.html">http://help.eclipse.org/help31/topic/org.eclipse.platform.doc.isv/reference/misc/bundle_manifest.html</a></p>
 </blockquote>
 <p>Most of these facilities are experimental. Some general and have been proposed
       for inclusion in the OSGi R4.1 or R5 specifications while others are Eclipse-specific. All were put in place to solve
@@ -121,7 +161,7 @@ check out the Help system links above as well as</p>
     suitable for coding OSGi bundles. The &quot;Plugin Editor&quot; is really a bundle
     editor with some extra support for Eclipse constructs such as the Extension
     registry.</li>
-  <li>Log bug reports in the <a href="https://bugs.eclipse.org/bugs/enter_bug.cgi?product=Equinox&version=3.1&component=Framework&priority=P3&bug_severity=normal&bug_status=NEW&assigned_to=&cc=&bug_file_loc=&short_desc=&comment=&form_name=enter_bug">Equinox/Framework
+  <li>Log bug reports in the <a href="https://bugs.eclipse.org/bugs/enter_bug.cgi?product=Equinox&version=3.3&component=Framework&priority=P3&bug_severity=normal&bug_status=NEW&assigned_to=&cc=&bug_file_loc=&short_desc=&comment=&form_name=enter_bug">Equinox/Framework
       component</a></li>
   <li>Questions and comments should go in the <a href="news://news.eclipse.org/eclipse.technology.equinox">equinox</a> newsgroup.</li>
   <li>Development questions can go to <a href="mailto:equinox-dev@eclipse.org">equinox-dev@eclipse.org</a>.</li>
