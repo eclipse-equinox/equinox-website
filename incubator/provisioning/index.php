@@ -38,7 +38,7 @@ and the <a href="overview.php">overview</a> for additional detail.</p>
 <p>Currently there exists only a very limited prototype implementation of some of the design ideas that have been 
 bounced around.  To get the code and start playing with it, navigate to the dev.eclipse.org/cvsroot/eclipse 
 repository and navigate to equinox-incubator/provisioning/org.eclipse.equinox.prov.releng.  Check this project
-out iand nto your workspace and import the .psf file included there. Then follow the instructions in the file "how to run.txt".</br>
+out iand nto your workspace and import the .psf file included there. Then follow the <a href="http://wiki.eclipse.org/Equinox_Provisioning_Getting_Started">getting started</a> instructions.</br>
 </p>
 <p class=bar>Working With the Provisioning Incubator</p>
 <p>The Provisioning incubator uses the main <a href="../resources.php">incubator resources</a> with
