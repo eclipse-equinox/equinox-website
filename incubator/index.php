@@ -79,8 +79,9 @@ The goal of the Equinox Incubator is to experiment with techniques for
 
 			<p class=bar>What's New</p>
 <p><b>June 5, 2007</b> - <IMG src="http://www.eclipse.org/images/new.gif"
-	width="31" height="14"> Matt Flaherty and Eric Li of the Lotus division of IBM have joined as committers. They will be working
-	on enabling security functionality for the Eclipse platform. More info on the <a href="http://wiki.eclipse.org/Category:Security">Eclipse Wiki</a>.
+	width="31" height="14"> Matt Flaherty and Eric Li from the Lotus division of IBM have joined as committers. They will be working
+	on enabling security functionality for the Eclipse platform. More info in the <a href="http://wiki.eclipse.org/Category:Security">security</a>
+	category of the wiki.
 </p>
 <p><b>Nov 10, 2006</b> - Andrew Niefer has been added as a committer and has started working on a new launcher story for Eclipse.  
 	See the <a href="http://wiki.eclipse.org/index.php/Equinox_Launcher">wiki</a> for more information.</p>
