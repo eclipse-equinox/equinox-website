@@ -79,7 +79,7 @@ The goal of the Equinox Incubator is to experiment with techniques for
 
 			<p class=bar>What's New</p>
 <p><b>June 5, 2007</b> - <IMG src="http://www.eclipse.org/images/new.gif"
-	width="31" height="14"> Matt Flaherty and Eric Li from the Lotus division of IBM have joined as committers. They will be working
+	width="31" height="14"> Matt Flaherty and Eric W Li from the Lotus division of IBM have joined as committers. They will be working
 	on enabling security functionality for the Eclipse platform. More info in the <a href="http://wiki.eclipse.org/Category:Security">security</a>
 	category of the wiki.
 </p>
@@ -104,7 +104,7 @@ The goal of the Equinox Incubator is to experiment with techniques for
         <li>Matthew Webster, IBM Hursley</li>
         <li>Ikuo Yamasaki, NTT Corporation</li>
         <li>Matt Flaherty, IBM Lotus</li>
-        <li>Eric Li, IBM Lotus</li>
+        <li>Eric W Li, IBM Lotus</li>
       </ul>
       
 <p>&nbsp;</p>
