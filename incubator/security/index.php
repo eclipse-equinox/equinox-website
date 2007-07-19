@@ -43,17 +43,29 @@
       </table>
 
       <p class=bar>Goals</p>
-      <p><b>Provide mechanisms for <i>contributing crypto implementations</i> for JCA from plug-ins:</b> Java provides
+      <p><b>Provide mechanisms for <i>contributing crypto provider implementations</i> from plug-ins:</b> Java provides
       the <a href="http://java.sun.com/j2se/1.4.2/docs/guide/security/CryptoSpec.html">Java Cryptography Architecture (JCA)</a>
       as a mechanism for installing implementations of several interfaces usedfor security, including
       <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/security/MessageDigestSpi.html">MessageDigest</a>,
       <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/security/SignatureSpi.html">Signature</a>,
       <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/security/KeyStoreSpi.html">KeyStore</a>,
-      <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/security/cert/CertStoreSpi.html">Certstore</a>,
-      and <a href="http://java.sun.com/j2se/1.4.2/docs/guide/security/CryptoSpec.html">more</a>. In a typical Java application,
+      <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/security/cert/CertStoreSpi.html">Certstore</a>, and
+      <a href="http://java.sun.com/j2se/1.4.2/docs/guide/security/CryptoSpec.html">more</a>. In a typical Java application,
       these implementations reside in the extensions directory of the JRE. In a dynamic Eclipse application, the appropriate
       packaging mechanism is in Eclipse plug-ins. The intention is to allow JCA to be used in an Eclipse environment while
       maintaining the programming model of the JCA subsystem.
+      </p>
+      
+      <p><b>Natively support the Java KeyStore and CertStore interfaces for <i>credential management</i></b>: JCA provides several
+      interfaces that are used for credential management, including
+      <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/security/KeyStoreSpi.html">KeyStore</a>,
+      <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/security/cert/CertStoreSpi.html">CertStore</a>,
+      <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/security/KeyFactorySpi.html">KeyFactory</a> and
+      <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/security/cert/CertificateFactorySpi.html">CertificateFactory</a>.
+      These interfaces are widely documented, and widely supported by applications like
+      <a href="http://www.lazgosoftware.com/kse/">KeyStore Explorer</a>. Both KeyStore and CertStore have applicability to the
+      Eclipse environment, and serve as a valuable integration point for 3rd party Java libraries. The goal is to provide native
+      support for these interfaces, such as building UI and tooling that complement them.
       </p>
       
       <p class=bar>Plan</p>
