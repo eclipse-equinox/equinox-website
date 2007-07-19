@@ -57,13 +57,13 @@
       system via an Eclipse-based user interface.
       </p>
       
-      <p><b>Natively support the Java KeyStore and CertStore interfaces for <u>credential management</u></b>: JCA provides several
+      <p><b>Natively support the Java KeyStore and CertStore interfaces for <u>user credential management</u></b>: JCA provides several
       interfaces that are used for credential management, including
       <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/security/KeyStoreSpi.html">KeyStore</a>,
       <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/security/cert/CertStoreSpi.html">CertStore</a>,
       <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/security/KeyFactorySpi.html">KeyFactory</a> and
       <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/security/cert/CertificateFactorySpi.html">CertificateFactory</a>.
-      These interfaces are widely documented, and supported by applications like <a href="http://java.sun.com/j2se/1.3/docs/tooldocs/win32/keytool.html">keytool</a>
+      These interfaces are widely documented, and supported by applications like <a href="http://java.sun.com/j2se/1.3/docs/tooldocs/win32/keytool.html">keytool</a> and 
       <a href="http://www.lazgosoftware.com/kse/">KeyStore Explorer</a>. Both KeyStore and CertStore have various uses in the
       Eclipse environment, including acting as a valuable integration point for 3rd party Java libraries. The goal is to provide
       native support for these interfaces, such as building UI and tooling that complement them.
@@ -71,12 +71,12 @@
       <table width="100%" border="0">
          <tr>
             <td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-            <td width="98%"><a href="http://wiki.eclipse.org/Security:_KeyStore_support_for_Eclipse">KeyStore</a> discussion on the wiki.</td>
+            <td width="98%">A <a href="http://wiki.eclipse.org/Security:_KeyStore_support_for_Eclipse">KeyStore</a> discussion on the wiki.</td>
          </tr>
       </table>
       
       
-      <p><b>Provide an extensible <u>login framework</u> based on Java's JAAS subsystem:</b> In corporate environments, there
+      <p><b>Provide an extensible <u>user login framework</u> based on Java's JAAS subsystem:</b> In corporate environments, there
       are many applications which require that the user perform a login to interact with the system. The Eclipse RCP does not
       yet support login, and the goal is to provide a framework that will manage the lifecycle of login for an RCP application.
       Java provides a pluggable system called the
@@ -84,6 +84,30 @@
       similar to the <a href="http://www.kernel.org/pub/linux/libs/pam/">pluggable authentication module (PAM)</a> systems used
       in many Linux distributions. JAAS will serve as a basis for this login framework.
       </p>
+      
+      <p><b>Enable mechanisms for <u>code authorization</u> of signed Java plug-ins:<b> As the Eclipse platform grows as a basis for
+      rich desktop applications, it will become more of a target for authors of malicious viruses. Java provides mechanisms for
+      cryptographically signing Jar files, and ships with a powerful architecture for fine-grained code authorization through enabling
+      a <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/lang/SecurityManager.html">SecurityManager</a> and granting
+      <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/security/Permission.html">Permissions</a> to application code. Eclipse should
+      provide the ability to enable a SecurityManager and manage Permissions granted to plug-in code via integrated UI. In addition to the
+      fine-grained but resource intensive mechanisms enabled by Java, Eclipse should also explore less granular but potentially more
+      performant authorization mechanisms - such as checking signatures as plug-ins are installed, or are loaded by OSGi.
+      </p>
+      <table width="100%" border="0">
+         <tr>
+            <td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+            <td width="98%"><a href="http://wiki.eclipse.org/Security:_Signed_Java_support_for_Eclipse_Platform_and_IDE">Signed Java support for Eclipse Platform and IDE</a></td>
+         </tr>
+         <tr>
+            <td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+            <td width="98%"><a href="http://wiki.eclipse.org/Trusted_Bundles">Checking signatures at plug-in load</a></td>
+         </tr>
+         <tr>
+            <td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+            <td width="98%"><a href="http://wiki.eclipse.org/Security:_Privileged_instructions">Coding for least-privilege</a></td>
+         </tr>         
+      </table>
       
       <p class=bar>Plan</p>
       <p>Coming soon.
@@ -109,7 +133,8 @@
          <li>Eric W Li (IBM Lotus)</li>
          <li>Ted Habeck (IBM Research)</li>
       </ul>
-	  <p/>
+	  <p>
+	  <p>
    </div>
 
 <?php
