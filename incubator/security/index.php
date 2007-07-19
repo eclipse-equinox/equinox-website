@@ -57,10 +57,10 @@
 
       <p class=bar>Resources</p>
       <p>The security initiative will be using the <a href="../resources.php">incubator resources</a> with
-      the following changes:</p>
+      the following details:</p>
       
-      <strong>Bugs:</strong> prefixed with <pre>[security]</pre>
-      <strong>CVS:</strong> branch is <pre>security</pre>
+      <strong>Bugs:</strong> prefixed with <font face="monospace">[security]</font>.
+      <strong>CVS:</strong> branch is <font face="monospace">security</font>
       
       
       <p class=bar>Active Investigators</p>
