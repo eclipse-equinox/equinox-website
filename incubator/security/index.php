@@ -85,7 +85,7 @@
       in many Linux distributions. JAAS will serve as a basis for this login framework.
       </p>
       
-      <p><b>Enable mechanisms for <u>code authorization</u> of signed Java plug-ins:<b> As the Eclipse platform grows as a basis for
+      <p><b>Enable mechanisms for <u>code authorization</u> of signed Java plug-ins:</b> As the Eclipse platform grows as a basis for
       rich desktop applications, it will become more of a target for authors of malicious viruses. Java provides mechanisms for
       cryptographically signing Jar files, and ships with a powerful architecture for fine-grained code authorization through enabling
       a <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/lang/SecurityManager.html">SecurityManager</a> and granting
