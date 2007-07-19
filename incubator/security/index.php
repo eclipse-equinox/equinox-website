@@ -43,7 +43,7 @@
       </table>
 
       <p class=bar>Goals</p>
-      <p><b>Provide mechanisms for <i>contributing crypto provider implementations</i> from plug-ins:</b> Java provides
+      <p><b>Provide mechanisms for <u>contributing crypto providers</u> implementations from plug-ins:</b> Java provides
       the <a href="http://java.sun.com/j2se/1.4.2/docs/guide/security/CryptoSpec.html">Java Cryptography Architecture (JCA)</a>
       as a mechanism for installing implementations of several interfaces usedfor security, including
       <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/security/MessageDigestSpi.html">MessageDigest</a>,
@@ -56,7 +56,7 @@
       maintaining the programming model of the JCA subsystem.
       </p>
       
-      <p><b>Natively support the Java KeyStore and CertStore interfaces for <i>credential management</i></b>: JCA provides several
+      <p><b>Natively support the Java KeyStore and CertStore interfaces for <u>credential management</u></b>: JCA provides several
       interfaces that are used for credential management, including
       <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/security/KeyStoreSpi.html">KeyStore</a>,
       <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/security/cert/CertStoreSpi.html">CertStore</a>,
@@ -66,6 +66,15 @@
       <a href="http://www.lazgosoftware.com/kse/">KeyStore Explorer</a>. Both KeyStore and CertStore have applicability to the
       Eclipse environment, and serve as a valuable integration point for 3rd party Java libraries. The goal is to provide native
       support for these interfaces, such as building UI and tooling that complement them.
+      </p>
+      
+      <p><b>Provide an extensible <u>login framework</u> based on Java's JAAS subsystem:</b> In corporate environments, there
+      are many applications which require that the user perform a login to interact with the system. The Eclipse RCP does not
+      yet support login, and the goal is to provide a framework that will manage the lifecycle of login for an RCP application.
+      Java provides a pluggable system called the
+      <a href="http://java.sun.com/j2se/1.4.2/docs/guide/security/jaas/JAASRefGuide.html">Java Authentication and Authorization Service (JAAS)</a>, 
+      similar to the <a href="http://www.kernel.org/pub/linux/libs/pam/">pluggable authentication module (PAM)</a> systems used
+      in many Linux distributions. JAAS will serve as a basis for this login framework.
       </p>
       
       <p class=bar>Plan</p>
@@ -81,7 +90,8 @@
       <p>The security initiative will be using the <a href="../resources.php">incubator resources</a> with
       the following details:</p>
       
-      <strong>Bugs:</strong> prefixed with <font face="monospace">[security]</font>.<br>
+      <strong>Wiki:</strong> the security wiki is available <a href="http://wiki.eclipse.org/Category:Security">here</a>.<br>
+      <strong>Bugs:</strong> prefixed with <font face="monospace">[security]</font>. A current list is <a href="">here</a>.<br>
       <strong>CVS:</strong> branch name is <font face="monospace">security</font>
       
       
@@ -91,7 +101,7 @@
          <li>Eric W Li (IBM Lotus)</li>
          <li>Ted Habeck (IBM Research)</li>
       </ul>
-
+	  <p/>
    </div>
 
 <?php
