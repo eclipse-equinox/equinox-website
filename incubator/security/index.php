@@ -53,7 +53,8 @@
       <a href="http://java.sun.com/j2se/1.4.2/docs/guide/security/CryptoSpec.html">more</a>. In a typical Java application,
       these implementations reside in the extensions directory of the JRE. In a dynamic Eclipse application, the appropriate
       packaging mechanism is in Eclipse plug-ins. The goal is to allow JCA to be used in an Eclipse environment while
-      maintaining the programming model of the JCA subsystem.
+      maintaining the programming model of the JCA subsystem. A related goal is to expose the configuration of the JCA
+      system via an Eclipse-based user interface.
       </p>
       
       <p><b>Natively support the Java KeyStore and CertStore interfaces for <u>credential management</u></b>: JCA provides several
