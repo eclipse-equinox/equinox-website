@@ -28,8 +28,7 @@
       <h1><?= $pageTitle ?></h1>
 
       <p class=bar>Mission Statement</p>
-      <p>
-      To enable Java's standard security mechanisms within the Eclipse platform, and define new functionality
+      <p>To enable Java's standard security mechanisms within the Eclipse platform, and define new functionality
       where there are gaps in the available standards. Extending Eclipse to support security will ensure that
       mission critical applications will have the functionality needed to protect their data, and prevent against
       malicious code masquerading as Eclipse plug-ins.
@@ -43,7 +42,27 @@
          </tr>
       </table>
 
+      <p class=bar>Goals</p>
+      <p>Coming soon.
+      </p>
+      
+      <p class=bar>Plan</p>
+      <p>Coming soon.
+      </p>
 
+      <p class=bar>Community</p>
+      <p>We are actively looking for contributors (with or without technology) with interest in this area who are
+      willing to contribute time and resources. 
+      </p>
+
+      <p class=bar>Resources</p>
+      <p>The security initiative will be using the <a href="../resources.php">incubator resources</a> with
+      the following changes:</p>
+      
+      <strong>Bugs:</strong> prefixed with <pre>[security]</pre>
+      <strong>CVS:</strong> branch is <pre>security</pre>
+      
+      
       <p class=bar>Active Investigators</p>
       <ul>
          <li>Matt Flaherty (IBM Lotus)</li>
