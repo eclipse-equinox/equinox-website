@@ -55,7 +55,7 @@ The goal of the Equinox Incubator is to experiment with techniques for
 	<tr>
       <td align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
       <td><a href="security/index.html" target="_top"><b>Security</b></a><br>
-    Seeking to enable and integrate Java security mechanisms with Eclipse. See the <a href="http://wiki.eclipse.org/Category:Security" target="_top">wiki</a> as well.</td>
+    Seeking to enable and integrate Java security mechanisms with Eclipse. See the <a href="http://wiki.eclipse.org/Category:Security" target="_top">wiki</a> for additional info.</td>
   </tr>
 	<tr>
       <td align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
