@@ -43,7 +43,17 @@
       </table>
 
       <p class=bar>Goals</p>
-      <p>Coming soon.
+      <p><b>Provide mechanisms for <i>contributing crypto implementations</i> for JCA from plug-ins:</b> Java provides
+      the <a href="http://java.sun.com/j2se/1.4.2/docs/guide/security/CryptoSpec.html">Java Cryptography Architecture (JCA)</a>
+      as a mechanism for installing implementations of several interfaces usedfor security, including
+      <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/security/MessageDigestSpi.html">MessageDigest</a>,
+      <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/security/SignatureSpi.html">Signature</a>,
+      <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/security/KeyStoreSpi.html">KeyStore</a>,
+      <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/security/cert/CertStoreSpi.html">Certstore</a>,
+      and <a href="http://java.sun.com/j2se/1.4.2/docs/guide/security/CryptoSpec.html">more</a>. In a typical Java application,
+      these implementations reside in the extensions directory of the JRE. In a dynamic Eclipse application, the appropriate
+      packaging mechanism is in Eclipse plug-ins. The intention is to allow JCA to be used in an Eclipse environment while
+      maintaining the programming model of the JCA subsystem.
       </p>
       
       <p class=bar>Plan</p>
@@ -59,8 +69,8 @@
       <p>The security initiative will be using the <a href="../resources.php">incubator resources</a> with
       the following details:</p>
       
-      <strong>Bugs:</strong> prefixed with <font face="monospace">[security]</font>.
-      <strong>CVS:</strong> branch is <font face="monospace">security</font>
+      <strong>Bugs:</strong> prefixed with <font face="monospace">[security]</font>.<br>
+      <strong>CVS:</strong> branch name is <font face="monospace">security</font>
       
       
       <p class=bar>Active Investigators</p>
