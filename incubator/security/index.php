@@ -55,9 +55,15 @@
       these implementations reside in the extensions directory of the JRE. In a dynamic Eclipse application, the appropriate
       packaging mechanism is in Eclipse plug-ins. The goal is to allow JCA to be used in an Eclipse environment while
       maintaining the programming model of the JCA subsystem. A related goal is to expose the configuration of the JCA
-      system via an Eclipse-based user interface, allowing users to inspect and modify the 
+      system via an Eclipse-based user interface, allowing authorized users to inspect and modify the 
       <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/security/Security.html">Security</a> object.
       </p>
+      <table width="100%" border="0">
+         <tr>
+            <td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+            <td width="98%"><a href="http://wiki.eclipse.org/Security:_JCA/JAAS_framework_contribution">JCA/JAAS framework for Eclipse</a></td>
+         </tr>
+      </table>
       
       <p><b>Natively support the Java KeyStore and CertStore interfaces for <u>user credential management</u></b>: JCA provides several
       interfaces that are used for credential management, including
@@ -85,7 +91,13 @@
       similar to the <a href="http://www.kernel.org/pub/linux/libs/pam/">pluggable authentication module (PAM)</a> systems used
       in many Linux distributions. JAAS will serve as a basis for this login framework.
       </p>
-      
+      <table width="100%" border="0">
+         <tr>
+            <td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+            <td width="98%"><a href="http://wiki.eclipse.org/Security:_JCA/JAAS_framework_contribution">JCA/JAAS framework for Eclipse</a></td>
+         </tr>
+      </table>
+            
       <p><b>Enable mechanisms for <u>code authorization</u> of signed Java plug-ins:</b> As the Eclipse platform grows as a basis for
       rich desktop applications, it will become more of a target for authors of malicious viruses. Java provides mechanisms for
       cryptographically signing Jar files, and ships with a powerful architecture for fine-grained code authorization through enabling
