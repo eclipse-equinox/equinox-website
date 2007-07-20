@@ -104,8 +104,8 @@
       a <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/lang/SecurityManager.html">SecurityManager</a> and granting
       <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/security/Permission.html">Permissions</a> to application code. Eclipse should
       provide the ability to enable a SecurityManager and manage Permissions granted to plug-in code via integrated UI. In addition to the
-      fine-grained but resource intensive mechanisms enabled by Java, Eclipse should also explore less granular but potentially more
-      performant and manageable authorization mechanisms - such as checking signatures at bundle <u>install-time,</u>, or bundle <u>load-time</u>.
+      fine-grained <u>run-time</u> but resource intensive mechanisms enabled by Java, Eclipse should also explore less granular but potentially more
+      performant and manageable authorization mechanisms - such as checking signatures at bundle <u>install-time</u>, or bundle <u>load-time</u>.
       </p>
       <table width="100%" border="0">
          <tr>
