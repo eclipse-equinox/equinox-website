@@ -126,7 +126,7 @@
          </tr>         
       </table>
       
-      <p><b>Integrate with and <u>support security-aware projects</u> like Higgins and ECF<b>: Several Eclipse projects have already
+      <p><b>Integrate with and <u>support security-aware projects</u> like Higgins and ECF</b>: Several Eclipse projects have already
       expressed interest in standardized solutions for security fundamentals like the ones listed above. Integrating well with projects 
       like <a href="http://www.eclipse.org/higgins/">Higgins</a> and the <a href="http://www.eclipse.org/ecf/">Eclipse Communications Framework</a> 
       is a core goal of the platform security initiative.  
