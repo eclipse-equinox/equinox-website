@@ -73,7 +73,7 @@
       <table width="100%" border="0">
          <tr>
             <td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-            <td width="98%">A <a href="http://wiki.eclipse.org/Security:_KeyStore_support_for_Eclipse">KeyStore support for Eclipse</a></td>
+            <td width="98%"><a href="http://wiki.eclipse.org/Security:_KeyStore_support_for_Eclipse">KeyStore support for Eclipse</a></td>
          </tr>
       </table>
       
