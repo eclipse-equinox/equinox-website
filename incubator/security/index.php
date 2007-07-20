@@ -39,7 +39,11 @@
       <table width="100%" border="0">
          <tr>
             <td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-            <td width="98%">June, 2007 - Initial contribution of <a href="http://wiki.eclipse.org/Security:_JCA/JAAS_framework_contribution">JCA/JAAS framework</a>.</td>
+            <td width="98%">July 16, 2007 - Initial contribution of <a href="http://wiki.eclipse.org/Security:_JCA/JAAS_framework_contribution">JCA/JAAS framework</a> is approved. Announcement <a href="http://dev.eclipse.org/mhonarc/lists/equinox-dev/msg02598.html">here</a>.</td>
+         </tr>
+         <tr>
+            <td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+            <td width="98%">May 17th, 2007 - A <a href="http://wiki.eclipse.org/Category:Security">security category</a> is launched on the wiki. Announcement <a href="http://dev.eclipse.org/mhonarc/lists/equinox-dev/msg02306.html">here</a>.</td>
          </tr>
       </table>
 
