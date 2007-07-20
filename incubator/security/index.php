@@ -31,7 +31,8 @@
       <p>To enable Java's standard security mechanisms within the Eclipse platform, and define new functionality
       where there are gaps in the available standards. Extending Eclipse to support security will ensure that
       mission critical applications will have the functionality needed to protect their data, and prevent against
-      malicious code masquerading as Eclipse plug-ins.
+      malicious code masquerading as Eclipse plug-ins. Striving to adhere to the usage of Java's core standards where
+      appropriate will enable wider integration with code available throughout the Java community.   
       </p>
 
       <p class=bar>Latest News</p>
@@ -43,7 +44,7 @@
       </table>
 
       <p class=bar>Goals</p>
-      <p><b>Provide mechanisms for <u>contributing crypto providers</u> from plug-ins:</b> Java provides
+      <p><b>Provide mechanisms for <u>integrating crypto providers</u> into Eclipse:</b> Java provides
       the <a href="http://java.sun.com/j2se/1.4.2/docs/guide/security/CryptoSpec.html">Java Cryptography Architecture (JCA)</a>
       as a mechanism for installing implementations of several interfaces used for security, including
       <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/security/MessageDigestSpi.html">MessageDigest</a>,
@@ -54,7 +55,8 @@
       these implementations reside in the extensions directory of the JRE. In a dynamic Eclipse application, the appropriate
       packaging mechanism is in Eclipse plug-ins. The goal is to allow JCA to be used in an Eclipse environment while
       maintaining the programming model of the JCA subsystem. A related goal is to expose the configuration of the JCA
-      system via an Eclipse-based user interface.
+      system via an Eclipse-based user interface, allowing users to inspect and modify the 
+      <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/security/Security.html">Security</a> object.
       </p>
       
       <p><b>Natively support the Java KeyStore and CertStore interfaces for <u>user credential management</u></b>: JCA provides several
@@ -71,10 +73,9 @@
       <table width="100%" border="0">
          <tr>
             <td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-            <td width="98%">A <a href="http://wiki.eclipse.org/Security:_KeyStore_support_for_Eclipse">KeyStore</a> discussion on the wiki.</td>
+            <td width="98%">A <a href="http://wiki.eclipse.org/Security:_KeyStore_support_for_Eclipse">KeyStore support for Eclipse</a></td>
          </tr>
       </table>
-      
       
       <p><b>Provide an extensible <u>user login framework</u> based on Java's JAAS subsystem:</b> In corporate environments, there
       are many applications which require that the user perform a login to interact with the system. The Eclipse RCP does not
@@ -92,7 +93,7 @@
       <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/security/Permission.html">Permissions</a> to application code. Eclipse should
       provide the ability to enable a SecurityManager and manage Permissions granted to plug-in code via integrated UI. In addition to the
       fine-grained but resource intensive mechanisms enabled by Java, Eclipse should also explore less granular but potentially more
-      performant authorization mechanisms - such as checking signatures as plug-ins are installed, or are loaded by OSGi.
+      performant and manageable authorization mechanisms - such as checking signatures at bundle <u>install-time,</u>, or bundle <u>load-time</u>.
       </p>
       <table width="100%" border="0">
          <tr>
@@ -101,7 +102,7 @@
          </tr>
          <tr>
             <td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-            <td width="98%"><a href="http://wiki.eclipse.org/Trusted_Bundles">Checking signatures at plug-in load</a></td>
+            <td width="98%"><a href="http://wiki.eclipse.org/Trusted_Bundles">Checking bundle signatures at load-time</a></td>
          </tr>
          <tr>
             <td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
