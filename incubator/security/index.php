@@ -29,10 +29,10 @@
 
       <p class=bar>Mission Statement</p>
       <p>To enable Java's standard security mechanisms within the Eclipse platform, and define new functionality
-      where there are gaps in the available standards. Extending Eclipse to support security will ensure that
-      mission critical applications will have the functionality needed to protect their data, and prevent against
-      malicious code masquerading as Eclipse plug-ins. Striving to adhere to the usage of Java's core standards where
-      appropriate will enable wider integration with code available throughout the Java community.   
+      where there are gaps in the available standards. Extending the platform to support security will ensure that
+      Eclipse applications will have the functionality needed to protect their data, and prevent against
+      malicious code masquerading as plug-ins. Striving to adhere to the usage of Java's core standards where
+      appropriate will enable wider integration with code available throughout the Java community.
       </p>
 
       <p class=bar>Latest News</p>
@@ -44,7 +44,7 @@
       </table>
 
       <p class=bar>Goals</p>
-      <p><b>Provide mechanisms for <u>integrating crypto providers</u> into Eclipse:</b> Java provides
+      <p><b>Provide mechanisms for <u>integrating cryptographic providers</u> into Eclipse:</b> Java provides
       the <a href="http://java.sun.com/j2se/1.4.2/docs/guide/security/CryptoSpec.html">Java Cryptography Architecture (JCA)</a>
       as a mechanism for installing implementations of several interfaces used for security, including
       <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/security/MessageDigestSpi.html">MessageDigest</a>,
@@ -110,6 +110,10 @@
       <table width="100%" border="0">
          <tr>
             <td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+            <td width="98%"><a href="http://wiki.eclipse.org/JAR_Signing">Jar Signing</a></td>
+         </tr>
+         <tr>
+            <td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
             <td width="98%"><a href="http://wiki.eclipse.org/Security:_Signed_Java_support_for_Eclipse_Platform_and_IDE">Signed Java support for Eclipse Platform and IDE</a></td>
          </tr>
          <tr>
@@ -121,6 +125,12 @@
             <td width="98%"><a href="http://wiki.eclipse.org/Security:_Privileged_instructions">Coding for least-privilege</a></td>
          </tr>         
       </table>
+      
+      <p><b>Integrate with and <u>support security-aware projects</u> like Higgins and ECF<b>: Several Eclipse projects have already
+      expressed interest in standardized solutions for security fundamentals like the ones listed above. Integrating well with projects 
+      like <a href="http://www.eclipse.org/higgins/">Higgins</a> and the <a href="http://www.eclipse.org/ecf/">Eclipse Communications Framework</a> 
+      is a core goal of the platform security initiative.  
+      </p>
       
       <p class=bar>Plan</p>
       <p>Coming soon.
@@ -135,7 +145,7 @@
       <p>The security initiative will be using the <a href="../resources.php">incubator resources</a> with
       the following details:</p>
       
-      <strong>Wiki:</strong> the security wiki is available <a href="http://wiki.eclipse.org/Category:Security">here</a>.<br>
+      <strong>Wiki:</strong> the security wiki category is available <a href="http://wiki.eclipse.org/Category:Security">here</a>.<br>
       <strong>Bugs:</strong> prefixed with <font face="monospace">[security]</font>. A current list is <a href="">here</a>.<br>
       <strong>CVS:</strong> branch name is <font face="monospace">security</font>
       
