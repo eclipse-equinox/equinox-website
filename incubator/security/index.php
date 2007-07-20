@@ -83,7 +83,7 @@
          </tr>
       </table>
       
-      <p><b>Provide an extensible <u>user login framework</u> based on Java's JAAS subsystem:</b> In corporate environments, there
+      <p><b>Provide an extensible <u>user authentication framework</u> based on Java's JAAS subsystem:</b> In corporate environments, there
       are many applications which require that the user perform a login to interact with the system. The Eclipse RCP does not
       yet support login, and the goal is to provide a framework that will manage the lifecycle of login for an RCP application.
       Java provides a pluggable system called the
