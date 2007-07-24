@@ -12,7 +12,7 @@
 	
    # Add page-specific Nav bars here
    # Format is Link text, link URL (can be http://www.someothersite.com/), target (_self, _blank), level (1, 2 or 3)
-   $Nav->addNavSeparator("Security Links", 	"downloads.php");
+   # $Nav->addNavSeparator("Security Links", 	"downloads.php");
    $Nav->addCustomNav("A Link", "mypage.php", "_self", 3);
    # $Nav->addCustomNav("Google", "http://www.google.com/", "_blank", 3);
 
@@ -170,9 +170,7 @@
    </div>
 
 <?php
-   #include $_SERVER['DOCUMENT_ROOT'] . "/equinox/global-links.html";
    include $_SERVER['DOCUMENT_ROOT'] . "/equinox/incubator/security/sidebar.html";
-   #if (file_exists("dir-links.html")) {include "dir-links.html";}
 ?>
 <?php
    $html = ob_get_contents();
