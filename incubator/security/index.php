@@ -28,11 +28,15 @@
       <h1><?= $pageTitle ?></h1>
 
       <p class=bar>Mission Statement</p>
-      <p>To enable Java's standard security mechanisms within the Eclipse platform, and define new functionality
-      where there are gaps in the available standards. Extending the platform to support security will ensure that
-      Eclipse applications will have the functionality needed to protect their data, and prevent against
-      malicious code masquerading as plug-ins. Striving to adhere to the usage of Java's core standards where
-      appropriate will enable wider integration with code available throughout the Java community.
+      <p>To ensure Eclipse is a secure runtime, enabling users and administrators to confidently
+      work with the Eclipse client in potentially hostile environments. Providing integrated security
+      functionality will allow Eclipse applications to protect their data, to authenticate and authorize
+      valid users, and to protect against malicious code masquerading as plug-ins.
+      </p>
+      <p>
+      This will be done by enabling Java's  standard security mechanisms within the Eclipse platform, defining
+      new functionality where there are gaps in the available standard interfaces. Striving to use Java's
+      core standard interfaces will enable wider integration with code available throughout the Java community.
       </p>
 
       <p class=bar>Latest News</p>
