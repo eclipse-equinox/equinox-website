@@ -171,8 +171,8 @@
 
 <?php
    #include $_SERVER['DOCUMENT_ROOT'] . "/equinox/global-links.html";
-   #include $_SERVER['DOCUMENT_ROOT'] . "/equinox/incubator/component-links.html";
-   if (file_exists("dir-links.html")) {include "dir-links.html";}
+   include $_SERVER['DOCUMENT_ROOT'] . "/equinox/incubator/security/sidebar.html";
+   #if (file_exists("dir-links.html")) {include "dir-links.html";}
 ?>
 <?php
    $html = ob_get_contents();
