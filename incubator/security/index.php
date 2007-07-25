@@ -29,16 +29,15 @@
 
       <p class=bar>Mission Statement</p>
       <p>To ensure Eclipse is a secure runtime, enabling users and administrators to confidently
-      work with the Eclipse client in environments where not all users and code sources are friendly.
+      work with the Eclipse client in environments where not all users and/or code sources are friendly.
       Providing integrated security functionality will allow Eclipse applications to protect their data,
       to authenticate and authorize valid users, and to protect against potentially malicious code packaged
       and distributed as plug-ins.
       </p>
       <p>
-      This will be done by enabling Java's  standard security mechanisms within the Eclipse platform, defining
+      This will be done by enabling Java's standard security mechanisms within the Eclipse platform, defining
       new functionality where there are gaps in the available standard interfaces. Using Java's
-      core standard interfaces will enable wider integration with code available throughout the Java community,
-      allo.
+      core standard interfaces will enable wider integration with code available throughout the Java community.
       </p>
 
       <p class=bar>Latest News</p>
