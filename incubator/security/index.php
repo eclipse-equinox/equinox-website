@@ -53,9 +53,10 @@
       </table>
 
       <p class=bar>Goals</p>
-      <p><b>Provide mechanisms for <u>integrating cryptographic providers</u> into Eclipse:</b> Java provides
+      <p><b>Provide mechanisms for <u>integrating cryptographic providers</u> into Eclipse:</b> Applications that need to implement
+      security related functionality require cryptographic services upon which to build. Java provides
       the <a href="http://java.sun.com/j2se/1.4.2/docs/guide/security/CryptoSpec.html">Java Cryptography Architecture (JCA)</a>
-      as a mechanism for installing implementations of several interfaces used for security, including
+      as a mechanism for installing implementations of several interfaces used for cryptography, including
       <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/security/MessageDigestSpi.html">MessageDigest</a>,
       <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/security/SignatureSpi.html">Signature</a>,
       <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/security/KeyStoreSpi.html">KeyStore</a>,
@@ -74,8 +75,9 @@
          </tr>
       </table>
       
-      <p><b>Natively support the Java KeyStore and CertStore interfaces for <u>user credential management</u></b>: JCA provides several
-      interfaces that are used for credential management, including
+      <p><b>Natively support the Java KeyStore and CertStore interfaces for <u>user credential management</u></b>: When dealing with
+      user's credentials - such as passwords, keys, and certificates - applications need to use some form of secure storage backend for
+      sensitive materials. JCA provides several interfaces that are used for credential management, including
       <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/security/KeyStoreSpi.html">KeyStore</a>,
       <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/security/cert/CertStoreSpi.html">CertStore</a>,
       <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/security/KeyFactorySpi.html">KeyFactory</a> and
@@ -92,10 +94,10 @@
          </tr>
       </table>
       
-      <p><b>Provide an extensible <u>user authentication framework</u> based on Java's JAAS subsystem:</b> In corporate environments, there
-      are many applications which require that the user perform a login to interact with the system. The Eclipse RCP does not
-      yet support login, and the goal is to provide a framework that will manage the lifecycle of login for an RCP application.
-      Java provides a pluggable system called the
+      <p><b>Provide an extensible <u>user authentication framework</u> based on Java's JAAS subsystem:</b> In many environments, there
+      are applications which require the user login before interacting with the system, and provide a different user experience based
+      on the user's login. The Eclipse RCP does not yet support login, and the goal is to provide a framework that will manage the lifecycle
+      of login for an RCP application. Java provides a pluggable system called the
       <a href="http://java.sun.com/j2se/1.4.2/docs/guide/security/jaas/JAASRefGuide.html">Java Authentication and Authorization Service (JAAS)</a>, 
       similar to the <a href="http://www.kernel.org/pub/linux/libs/pam/">pluggable authentication module (PAM)</a> systems used
       in many Linux distributions. JAAS will serve as a basis for this login framework.
@@ -109,7 +111,8 @@
             
       <p><b>Enable mechanisms for <u>code authorization</u> of signed Java plug-ins:</b> As the Eclipse platform grows as a basis for
       rich desktop applications, it will become more of a target for authors of malicious viruses. Java provides mechanisms for
-      cryptographically signing Jar files, and ships with a powerful architecture for fine-grained code authorization through enabling
+      cryptographically signing Jar files, and ships with a powerful architecture for fine-grained code authorization. 
+      <a href="http://en.wikipedia.org/wiki/Sandbox_%28computer_security%29">Sandboxing<a> is done by enabling
       a <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/lang/SecurityManager.html">SecurityManager</a> and granting
       <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/security/Permission.html">Permissions</a> to application code. Eclipse should
       provide the ability to enable a SecurityManager and manage Permissions granted to plug-in code via integrated UI. In addition to the
@@ -135,9 +138,9 @@
          </tr>         
       </table>
       
-      <p><b>Integrate with and <u>support security-aware projects</u>:</b> Several Eclipse projects have already
-      expressed interest in standardized solutions for security fundamentals like the ones listed above. Integrating well with projects 
-      like <a href="http://www.eclipse.org/higgins/">Higgins</a> and the <a href="http://www.eclipse.org/ecf/">Eclipse Communications Framework</a> 
+      <p><b>Integrate with and <u>support security-aware projects</u>:</b> Several Eclipse projects have already expressed interest in
+      standardized solutions for security fundamentals like the ones listed above. Integrating well with projects like
+      <a href="http://www.eclipse.org/higgins/">Higgins</a> and the <a href="http://www.eclipse.org/ecf/">Eclipse Communications Framework</a> 
       is a core goal of the platform security initiative.  
       </p>
       
