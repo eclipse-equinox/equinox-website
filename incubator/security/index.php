@@ -112,7 +112,7 @@
       <p><b>Enable mechanisms for <u>code authorization</u> of signed Java plug-ins:</b> As the Eclipse platform grows as a basis for
       rich desktop applications, it will become more of a target for authors of malicious viruses. Java provides mechanisms for
       cryptographically signing Jar files, and ships with a powerful architecture for fine-grained code authorization. 
-      <a href="http://en.wikipedia.org/wiki/Sandbox_%28computer_security%29">Sandboxing<a> is done by enabling
+      <a href="http://en.wikipedia.org/wiki/Sandbox_%28computer_security%29">Sandboxing</a> is done by enabling
       a <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/lang/SecurityManager.html">SecurityManager</a> and granting
       <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/security/Permission.html">Permissions</a> to application code. Eclipse should
       provide the ability to enable a SecurityManager and manage Permissions granted to plug-in code via integrated UI. In addition to the
