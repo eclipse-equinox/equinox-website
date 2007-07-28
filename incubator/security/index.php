@@ -95,7 +95,7 @@
       </table>
       
       <p><b>Provide an extensible <u>user authentication framework</u> based on Java's JAAS subsystem:</b> In many environments, there
-      are applications which require the user login before interacting with the system, and provide a different user experience based
+      are applications which require the user to login before interacting with the system, and provide a different user experience based
       on the user's login. The Eclipse RCP does not yet support login, and the goal is to provide a framework that will manage the lifecycle
       of login for an RCP application. Java provides a pluggable system called the
       <a href="http://java.sun.com/j2se/1.4.2/docs/guide/security/jaas/JAASRefGuide.html">Java Authentication and Authorization Service (JAAS)</a>, 
