@@ -23,6 +23,9 @@ ob_start();
 	</div>
 
 <?php
+   include $_SERVER['DOCUMENT_ROOT'] . "/equinox/incubator/security/sidebar.html";
+?>
+<?php
 	$html = ob_get_contents();
 	ob_end_clean();
 
