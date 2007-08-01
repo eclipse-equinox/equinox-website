@@ -83,11 +83,11 @@ function traverseLinkifyBugs(node) {
     </p>
 
     <p class="bar">Goals</p>
-    <p>This section lists the goals for Eclipse 3.4 for the Equinox Security project. 
+    <p>This section lists the goals for Eclipse 3.4 for the Equinox Security project. Note that any <i>time estimates</i> are only provided as an indication of the amount of work implied; these are our best guess and could be revised while addressing these work items. 
     </p>
 
       <p>
-      <strong><a name="1"></a>[1] Java Security Integration</strong>. Integrate and expose functionality in support of Java's core security mechanisms.  
+      <strong><a name="1"></a>[1] Java Security Integration</strong>. Integrate and expose functionality in support of Java's core security mechanisms (java.security.Security, java.security.Provider et al).  
       </p>
 
       <p>
@@ -99,31 +99,48 @@ function traverseLinkifyBugs(node) {
 	  </p>
 
       <p>
-	  <strong><a name="4"></a>[4] Code Authorization Support</strong>. Provide support for authorization decisions for signed code at various decision points, including install-time, load-time and run-time.
-		</p>
+	  <strong><a name="4"></a>[4] Code Authorization Support</strong>. Provide support for authorization of signed code at various decision points - including install-time, load-time and run-time.
+   </p>
 
 	<a name="work_items"></a><p class="bar">Work Items</p>
-	<p> This section lists the possible work items for Eclipse 3.4 for the Equinox Security project
-	with the [corresponding theme].
-		Some of those items have a <Style:committed>higher priority</Style:committed> than others.
+	<p> This section lists the possible Security work items for the Eclipse 3.4 release with the [corresponding theme].
+    Some of those items have a <style:committed>higher priority</style:committed> than others.
 	</p>
 
 	<ul>
-		<li><h4><a name="rich hovers"></a>Rich Hovers (experimental) [<a href="#3">3</a>]</h4>
+		<li><h4></a>Committed</h4>
 		<ul>
-			<li><Style:committed>links support in hovers so that you can navigate to things from there</Style:committed></li>
+			<li></li>
+		</ul>
+		</li>
+		<li><h4></a>Proposed</h4>
+		<ul>
+ <li>Support for JCA classes provided from bundles (153848) [1]</li>
+ <li>Support a platform controlled login based on JAAS (153850) [2]</li>
+ <li>Support a KeyStore instance for storing security sensitive data (153851) [3]</li>
+ <li>Comprehensive support for signature checking at plugin update (153846)[4]</li>
+ <li>Update should support permanent persistence of trust (157676)[4]</li>
+ <li>Comprehensive support for signature checking at plugin load (153847)[4]</li>
+ <li>Analyze and scope impact of enabling Java2 permission checking (153854)[4]</li>
+ <li>Need a way to view and edit security configuration (153854)[1]</li>
+			<li></li>
+		</ul>
+		</li>
+		<li><h4></a>Deferred</h4>
+		<ul>
+			<li></li>
 		</ul>
 		</li>
 	</ul>
-
-
-	<h2><br>Cross Team Issues</h2>
+    
+	<p class="bar">Cross Team Issues</p>
 	<p>This section contains cross team issues that have to be clarified. The concrete outcome affects the plan items listed above.</p>
 	<ul>
 	</ul>
 	TBD
 
-	   <a name="milestone"/><p class="bar">Milestone 1 (M1) - 2007/08/??</p>
+
+	   <a name="M1"/><p class="bar">Milestone 1 (M1) - 2007/08/??</p>
 
 		<h4><img src="http://www.eclipse.org/images/Adarrow.gif" border="0" height="16" width="16" align="top"> General Items [<a href="#2">2</a>]</h4>
 		<ul>
@@ -166,17 +183,9 @@ function traverseLinkifyBugs(node) {
 	      </ul>
 		
 	      
-		<h3>Previous Milestones</h3>
+		<p class="bar">Previous Milestones</p>
 		<p>Previous 3.4 milestones can be reviewed <a href="previous_plans.php">here</a>.</p>
 
-
-    <font face="Arial,Helvetica"><font color="#FFFFFF">Bug Tracking</font></font>
-
-<ul>
-<li><a href="https://bugs.eclipse.org/bugs/buglist.cgi?query_format=advanced&short_desc_type=allwordssubstr&short_desc=&product=JDT&product=Platform&component=Text&long_desc_type=allwordssubstr&long_desc=&bug_file_loc_type=allwordssubstr&bug_file_loc=&keywords_type=allwords&keywords=&bug_status=UNCONFIRMED&bug_status=NEW&bug_status=REOPENED&emailassigned_to1=1&emailtype1=substring&email1=inbox&emailtype2=substring&email2=&bugidtype=include&bug_id=&votes=&chfieldfrom=400d&chfieldto=Now&chfieldvalue=&cmdtype=doit&order=Reuse+same+sort+as+last+time&field0-0-0=noop&type0-0-0=noop&value0-0-0=">new bug reports</a></li>
-<li><a href="http://dev.eclipse.org/bugs/buglist.cgi?bug_status=ASSIGNED&email1=platform-text-inbox@eclipse.org&emailtype1=exact&emailassigned_to1=1&email2=&emailtype2=substring&emailreporter2=1&bugidtype=include&bug_id=&changedin=&votes=&chfieldfrom=&chfieldto=Now&chfieldvalue=&product=Platform&component=Text&short_desc=&short_desc_type=allwordssubstr&long_desc=&long_desc_type=allwordssubstr&keywords=&keywords_type=anywords&field0-0-0=noop&type0-0-0=noop&value0-0-0=&namedcmd=All&newqueryname=Text%2BInbox&tofooter=1&order=Reuse%2Bsame%2Bsort%2Bas%2Blast%2Btime">accepted Platform Text bug reports</a></li>
-<li><a href="https://bugs.eclipse.org/bugs/query.cgi?short_desc_type=allwordssubstr&short_desc=&product=JDT&product=Platform&component=Text&long_desc_type=allwordssubstr&long_desc=&bug_file_loc_type=allwordssubstr&bug_file_loc=&keywords_type=allwords&keywords=&bug_status=UNCONFIRMED&bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED&emailtype1=substring&email1=&emailtype2=substring&email2=&bugidtype=include&bug_id=&votes=&changedin=&chfieldfrom=&chfieldto=Now&chfieldvalue=&namedcmd=Assigned&newqueryname=&field0-0-0=noop&type0-0-0=noop&value0-0-0=">find a bug report</a></li>
-</ul>
 <table border="0" cellpadding="2" cellspacing="5" width="100%"><tbody><tr><td colspan="4" align="left" bgcolor="#595791" valign="top" width="100%"><font face="Arial,Helvetica"><font color="#ffffff">Legend
 			</font></font></td>
 		</tr>
