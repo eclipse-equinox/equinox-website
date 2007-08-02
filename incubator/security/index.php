@@ -7,7 +7,7 @@
 	
    #
    # Begin: page-specific settings.  Change these. 
-   $pageTitle 		= "Equinox Incubator - Security";
+   $pageTitle 		= "Equinox Incubator - Security - Project Info";
    $pageKeywords	= "equinox, incubator, security";
 	
    # Add page-specific Nav bars here
