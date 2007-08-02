@@ -30,7 +30,7 @@ function traverseLinkifyBugs(node) {
 			
 		} else if (node.nodeType == 3/*text*/) {
 			var txt= node.data;
-			var regex= /(\#*)([0-9]+)/;
+			var regex= /(\#)([0-9]+)/;
 			var res= regex.exec(txt);
 			if (res) {
 				var matchStart= txt.indexOf(res[0]);
