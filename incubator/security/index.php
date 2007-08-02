@@ -166,8 +166,9 @@
       <p class=bar>Active Investigators</p>
       <ul>
          <li>Matt Flaherty (IBM Lotus)</li>
-         <li>Eric W Li (IBM Lotus)</li>
          <li>Ted Habeck (IBM Research)</li>
+         <li>Eric W Li (IBM Lotus)</li>
+         <li>Jay Rosenthal (IBM Lotus)</li>
       </ul>
 	  <p>
 	  <p>
