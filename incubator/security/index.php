@@ -7,7 +7,7 @@
 	
    #
    # Begin: page-specific settings.  Change these. 
-   $pageTitle 		= "Equinox Security: Project Info";
+   $pageTitle 		= "Equinox Security - Project Info";
    $pageKeywords	= "equinox, incubator, security";
 	
    # Add page-specific Nav bars here
@@ -145,7 +145,7 @@
       </p>
       
       <p class=bar>Plan</p>
-      <p>Coming soon.
+      <p>A DRAFT plan for the 3.4 release is available <a href="./plan.php">here</a>.
       </p>
 
       <p class=bar>Community</p>
