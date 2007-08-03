@@ -19,7 +19,7 @@ ob_start();
 		
 	<div id="midcolumn">
 		<h1><?= $pageTitle ?></h1>
-		<?php include("releases/r3.4/equinox_security_plan_3.4_20070801.html"); ?>
+		<?php include("releases/r3.4/security_plan_3.4_current.html"); ?>
 	</div>
 
 <?php
