@@ -76,7 +76,7 @@ function traverseLinkifyBugs(node) {
 </head>
 <body text="#000000" bgcolor="#FFFFFF" onload="linkifyBugs()">
     <p class="bar">Overview</p>
-    <p>Last revised 15:35 EST August 03, 2007</p>
+    <p>Last revised 18:35 EST August 08, 2007</p>
     
     <p>This plan is under continuous refinement. Please send comments about this plan to
     the <a href="mailto:equinox-dev@eclipse.org">equinox-dev@eclipse.org</a> developer mailing list.
@@ -87,7 +87,7 @@ function traverseLinkifyBugs(node) {
     </p>
 
       <p>
-      <strong><a name="1"></a>[1] Java Security Integration</strong>. Integrate and expose functionality in support of Java's core security mechanisms (java.security.Security, java.security.Provider et al).  
+      <strong><a name="1"></a>[1] Java Security Provider Integration</strong>. Integrate and expose functionality in support of Java's core security mechanisms (java.security.Security, java.security.Provider et al).  
       </p>
 
       <p>
@@ -114,14 +114,11 @@ function traverseLinkifyBugs(node) {
 	
 	<h4><img src="http://www.eclipse.org/images/Adarrow.gif" border="0" height="16" width="16" align="top"> Proposed</h4>
 		<ul>
-           <li>#153848 - Support for JCA classes provided from bundles [1]</li>
-           <li>#153850 - Support a platform controlled login based on JAAS [2]</li>
-           <li>#153851 - Support a KeyStore instance for storing security sensitive data [3]</li>
-           <li>#153846 - Comprehensive support for signature checking at plugin update [4]</li>
-           <li>#157676 - Update should support permanent persistence of trust [4]</li>
-           <li>#153847 - Comprehensive support for signature checking at plugin load [4]</li>
+		   <li>#199330 - Support Java security provider framework (JCA) in Eclipse [1]</li>
+           <li>#153850 - Support user authentication based on the JAAS login framework [2]</li>
+           <li>#153851 - Implement credential management in support of signed bundles [3]</li>
+           <li>#153847 - Support for signature checking at bundle load-time [4]</li>
            <li>#153854 - Analyze and scope impact of enabling Java2 permission checking [4]</li>
-           <li>#153854 - Need a way to view and edit security configuration [1]</li>
 		</ul>
 	
 	<h4><img src="http://www.eclipse.org/images/Adarrow.gif" border="0" height="16" width="16" align="top"> Deferred</h4>

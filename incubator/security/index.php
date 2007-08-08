@@ -57,7 +57,7 @@
       </table>
 
       <p class=bar>Goals</p>
-      <p><b>Provide mechanisms for <u>integrating cryptographic providers</u> into Eclipse:</b> Applications that need to implement
+      <p><b>Provide mechanisms for <u>integrating Java security providers</u> into Eclipse:</b> Applications that need to implement
       security related functionality require cryptographic services upon which to build. Java provides
       the <a href="http://java.sun.com/j2se/1.4.2/docs/guide/security/CryptoSpec.html">Java Cryptography Architecture (JCA)</a>
       as a mechanism for installing implementations of several interfaces used for cryptography, including
