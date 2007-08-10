@@ -73,11 +73,6 @@ The goal of the Equinox Incubator is to experiment with techniques for
 <p>For an understanding of how work is carried out in the incubators, check out
   the <a href="howto.php">How to Incubate</a> guide.</p>
 
-			<p class=bar>Old Work Areas</p>
-<p>See the <a href="archive">Equinox Incubator Archive</a> for details of previous
-  work areas.</p>
-
-			<p class=bar>What's New</p>
 		  <p class=bar>What's New</p>
 		    <p><b>Aug 10</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14">
 		       The <a href="http://www.eclipse.org/equinox/incubator/provisioning/">Provisioning workarea</a> team in the 
@@ -92,12 +87,12 @@ The goal of the Equinox Incubator is to experiment with techniques for
 		       The team at <a href="http://prosyst.com">Prosyst</a> has contributed implementations of 4 standard OSGi services to the 
 		       <a href="http://www.eclipse.org/equinox/incubator">Equinox Incubator</a>. And Pavlin Dobrev and Teodor Todorov
 		       from Prosyst have joined the incubator as committers.</p>
-			<p>&nbsp;</p>
 <p><b>June 5, 2007</b> - <IMG src="http://www.eclipse.org/images/new.gif"
 	width="31" height="14"> Matt Flaherty and Eric W Li from the Lotus division of IBM have joined as committers. They will be working
 	on enabling security functionality for the Eclipse platform. More info in the <a href="http://wiki.eclipse.org/Category:Security">security</a>
 	category of the wiki.
 </p>
+			<p>&nbsp;</p>
 
 			<p class=bar>Committers</p>
       <p>The following people are committers on the Equinox Incubator:</p>
@@ -118,7 +113,11 @@ The goal of the Equinox Incubator is to experiment with techniques for
         <li>Matthew Webster, IBM Hursley</li>
         <li>Ikuo Yamasaki, NTT Corporation</li>
       </ul>
-      
+
+		<p class=bar>Old Work Areas</p>
+		<p>See the <a href="archive">Equinox Incubator Archive</a> for details of previous
+  		work areas.</p>
+
 <p>&nbsp;</p>
 	</div>
 
