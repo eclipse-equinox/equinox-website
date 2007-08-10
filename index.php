@@ -64,8 +64,19 @@ ob_start();
 				of Equinox.</p>
 
 		  <p class=bar>What's New</p>
-		    <p><b>Oct 3</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14">
-		       Five bundles from the server side incubator have been graduated (org.eclipse.equinox.http.* and org.eclipse.equinox.servletbridge). Those bundles are available in all the build dated after october 3rd.
+		    <p><b>Aug 10</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14">
+		       The <a href="http://www.eclipse.org/equinox/incubator/provisioning/">Provisioning workarea</a> team in the 
+		       <a href="http://www.eclipse.org/equinox/incubator">Equinox Incubator</a> has released an M1a of the new provisioning
+		       support.  For more information see <a href="http://wiki.eclipse.org/Equinox_Provisioning_M1">the wiki</a>.</p>
+		    <p><b>Aug 8</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14">
+		       The <a href="http://www.eclipse.org/equinox/incubator/security/">Security workarea</a> in the 
+		       <a href="http://www.eclipse.org/equinox/incubator">Equinox Incubator</a> has come alive with various contributions from Lotus
+		       around JAAS, JCA and Keystores.  Matthew Flaherty and Eric Li from Lotus have joined the incubator as committers working in 
+		       the security area.</p>
+		    <p><b>July</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14">
+		       The team at <a href="http://prosyst.com">Prosyst</a> has contributed implementations of 4 standard OSGi services to the 
+		       <a href="http://www.eclipse.org/equinox/incubator">Equinox Incubator</a>. And Pavlin Dobrev and Teodor Todorov
+		       from Prosyst have joined the incubator as committers.</p>
 			<p>&nbsp;</p>
 	</div>
 

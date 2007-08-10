@@ -78,33 +78,45 @@ The goal of the Equinox Incubator is to experiment with techniques for
   work areas.</p>
 
 			<p class=bar>What's New</p>
+		  <p class=bar>What's New</p>
+		    <p><b>Aug 10</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14">
+		       The <a href="http://www.eclipse.org/equinox/incubator/provisioning/">Provisioning workarea</a> team in the 
+		       <a href="http://www.eclipse.org/equinox/incubator">Equinox Incubator</a> has released an M1a of the new provisioning
+		       support.  For more information see <a href="http://wiki.eclipse.org/Equinox_Provisioning_M1">the wiki</a>.</p>
+		    <p><b>Aug 8</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14">
+		       The <a href="http://www.eclipse.org/equinox/incubator/security/">Security workarea</a> in the 
+		       <a href="http://www.eclipse.org/equinox/incubator">Equinox Incubator</a> has come alive with various contributions from Lotus
+		       around JAAS, JCA and Keystores.  Matthew Flaherty and Eric Li from Lotus have joined the incubator as committers working in 
+		       the security area.</p>
+		    <p><b>July</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14">
+		       The team at <a href="http://prosyst.com">Prosyst</a> has contributed implementations of 4 standard OSGi services to the 
+		       <a href="http://www.eclipse.org/equinox/incubator">Equinox Incubator</a>. And Pavlin Dobrev and Teodor Todorov
+		       from Prosyst have joined the incubator as committers.</p>
+			<p>&nbsp;</p>
 <p><b>June 5, 2007</b> - <IMG src="http://www.eclipse.org/images/new.gif"
 	width="31" height="14"> Matt Flaherty and Eric W Li from the Lotus division of IBM have joined as committers. They will be working
 	on enabling security functionality for the Eclipse platform. More info in the <a href="http://wiki.eclipse.org/Category:Security">security</a>
 	category of the wiki.
 </p>
-<p><b>Nov 10, 2006</b> - Andrew Niefer has been added as a committer and has started working on a new launcher story for Eclipse.  
-	See the <a href="http://wiki.eclipse.org/index.php/Equinox_Launcher">wiki</a> for more information.</p>
-</p>
 
 			<p class=bar>Committers</p>
       <p>The following people are committers on the Equinox Incubator:</p>
       <ul>
+        <li>Pavlin Dobrev, Prosyst</li>
+        <li>Matt Flaherty, IBM Lotus</li>
         <li>Jennifer Fogell, IBM PvC</li>
-        <li>Olivier Gruber, IBM Research</li>
 		<li>Ted Habeck, IBM Research</li>
-        <li>BJ Hargrave, IBM PvC</li>
+        <li>BJ Hargrave, IBM Lotus</li>
         <li>Simon Kaegi, IBM Rational</li>
-        <li>Peter Kriens, aQute</li>
+        <li>Eric W Li, IBM Lotus</li>
         <li>Martin Lippert, it-agile</li>
         <li>Jeff McAffer, IBM Rational (Project lead)</li>
         <li>Andrew Niefer, IBM Rational</li>
         <li>Pascal Rapicault, IBM Rational</li>
-        <li>Tom Watson, IBM PvC</li>
+        <li>Teodor Todorov, Prosyst</li>
+        <li>Tom Watson, IBM Lotus</li>
         <li>Matthew Webster, IBM Hursley</li>
         <li>Ikuo Yamasaki, NTT Corporation</li>
-        <li>Matt Flaherty, IBM Lotus</li>
-        <li>Eric W Li, IBM Lotus</li>
       </ul>
       
 <p>&nbsp;</p>

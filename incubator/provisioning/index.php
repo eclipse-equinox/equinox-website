@@ -34,12 +34,15 @@ in Eclipse.  The refresh while not providing substantially more out-of-the-box f
 provide an open and extensibile provisioning platform.  See the <a href="proposal.php">incubator proposal</a> 
 and the <a href="overview.php">overview</a> for additional detail.</p>
 
-<p class=bar>Getting started</p>
-<p>Currently there exists only a very limited prototype implementation of some of the design ideas that have been 
-bounced around.  To get the code and start playing with it, navigate to the dev.eclipse.org/cvsroot/eclipse 
-repository and navigate to equinox-incubator/provisioning/org.eclipse.equinox.prov.releng.  Check this project
-out iand nto your workspace and import the .psf file included there. Then follow the <a href="http://wiki.eclipse.org/Equinox_Provisioning_Getting_Started">getting started</a> instructions.</br>
-</p>
+<p>The bulk of the current information on this work area is maintained in the <a href="http://wiki.eclipse.org/Equinox_Provisioning">wiki</a>.  
+There you will find documents discussing:</p>
+<ul>
+<li> <a href="http://wiki.eclipse.org/Equinox_Provisioning_Getting_Started">Getting started</a></li>
+<li> <a href="http://wiki.eclipse.org/Equinox_Provisioning_Concepts">Provisioning concepts</a></li>
+<li> <a href="http://wiki.eclipse.org/Equinox_Provisioning_Plan">The provisioning plan</a></li>
+<li> <a href="http://wiki.eclipse.org/Category:Equinox">A whole host of articles on provisioning</a> in general and related to specifically to the Equinox work</li>
+</ul>
+
 <p class=bar>Working With the Provisioning Incubator</p>
 <p>The Provisioning incubator uses the main <a href="../resources.php">incubator resources</a> with
   the following refinements.</p>
@@ -57,7 +60,14 @@ out iand nto your workspace and import the .psf file included there. Then follow
 
 <p class=bar>Active investigators</p>
 <ul>
+<li>Andrew Overholt (RedHat)</li>
+<li>Dave Stevenson (IBM)</li>
+<li>Jeff McAffer (IBM)</li>
+<li>John Arthorne (IBM)</li>
 <li>Pascal Rapicault (IBM)</li>
+<li>Simon Kaegi (IBM)</li>
+<li>Stefan Liebig (Compeople)</li>
+<li>Susan McCourt (IBM)</li>
 </ul>
 <p>&nbsp;</p>
 </div>
