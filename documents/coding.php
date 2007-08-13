@@ -35,8 +35,10 @@ ob_start();
 <p class="subbar">Legal</p>
 <ul>
 <li> <strong>All committed contributions from non-committers must be tracked.</strong> This must be done
-  by using the 'contributed' keyword in bugzilla.</li>
-  <li>All classes MUST have the correct copyright notice. See http://www.eclipse.org/legal/copyrightandlicensenotice.php for a template.</li>
+  by using the 'contributed' keyword in bugzilla.  A <i>non-committer</i> is someone who is not a committer on the
+  <a href="http://eclipse.org/eclipse">Eclipse Top-Level project</a></li>
+  <li>All classes MUST have the correct copyright notice. See <a href="http://www.eclipse.org/legal/copyrightandlicensenotice.php">
+  the Foundation's legal page</a> for a template.</li>
   <li> If the code was written in 2003, don't have 2000,2003 in the copyright.</li>
 </ul>
 <p class="subbar">Code Formatting</p>
@@ -54,11 +56,11 @@ ob_start();
 </ul>
 <p class="subbar">Comments</p>
 <ul>
-  <li> Comments are a good thing.</li>
+  <li>Comments are a good thing but are not a substitute for good naming (see next section).
+  Comment all &quot;non-obvious&quot; things whether they be methods, fields,
+    arguments, algorithm steps, ...</li>
   <li>Javadoc on API is essential</li>
   <li>Follow the Javadoc guidelines as well as @since etc recommendations</li>
-  <li> Comment all &quot;non-obvious&quot; things whether they be methods, fields,
-    arguments, algorithm steps, ...</li>
 </ul>
 <p class="subbar">Naming</p>
 <ul>
@@ -67,16 +69,16 @@ ob_start();
   <li>Choose names that are semantically useful. Type-based names are taboo!
     Java is strongly typed, why repeat the type in the name? For example, use
     setFoo(Foo foo) is not as interesting as setFoo(Foo value).</li>
+  <li>Further, the use of semantic names makes cutting and pasting of similar code 
+  easier and less error-prone.</li>
   <li>Try for complete words rather than fragments (e.g., getProjectValue is
     better than getProjVal).</li>
   <li>Avoid generic variable names like &quot;temp&quot; or &quot;index&quot; (Exception:
-    really short methods where usage is very straight-forward Ok to use i, j,
+    really short methods where usage is very straight-forward an in cases of i, j,
     etc for loop indexes).</li>
   <li>get/set prefixes should be reserved for real accessors. If the method does
-    real work, it's not an accessor. (Note: we
-    don't
-    always
-    follow this rigorously, but we try).</li>
+    real work, it's not an accessor. (Note: we don't always follow this rigorously, but we try.  Lazy
+    initialization is one such exception).</li>
   <li>Avoid random word prefixes such as &quot;a&quot; and &quot;the&quot;. They don't add value.</li>
 </ul>
 <p class="subbar">Use the tools</p>
@@ -121,8 +123,7 @@ ob_start();
 <p class="subbar">Internationalization</p>
 <ul>
   <li> Follow the NLS guidelines and use the Eclipse NLS mechanism.</li>
-  <li>All sentences
-      which are displayed to the user must end with a period.</li>
+  <li>All sentences which are displayed to the user must end with a period.</li>
   <li> Include parameters if possible</li>
   <li> Remove unused messages</li>
   <li> Make sure if the message accepts a parameter then you pass one in</li>
