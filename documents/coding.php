@@ -34,10 +34,9 @@ ob_start();
   let the tools do their work.</p>
 <p class="subbar">Legal</p>
 <ul>
-<li> <strong>All committed contributions from non-committers must be tracked.</strong> The easiest way is to put
-  &quot;[contributed patch applied]&quot; in a comment in the bug report that contains
-  the patch/contribution when the code is committed.</li>
-  <li>All classes MUST have the correct copyright notice. See XXX for a template.</li>
+<li> <strong>All committed contributions from non-committers must be tracked.</strong> This must be done
+  by using the 'contributed' keyword in bugzilla.</li>
+  <li>All classes MUST have the correct copyright notice. See http://www.eclipse.org/legal/copyrightandlicensenotice.php for a template.</li>
   <li> If the code was written in 2003, don't have 2000,2003 in the copyright.</li>
 </ul>
 <p class="subbar">Code Formatting</p>
