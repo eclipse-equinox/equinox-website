@@ -11,8 +11,8 @@
 <body>
 <?php include("nav-include.html") ?>
 <p class=bar>Eclipse introspection tools incubator proposal</p>
-<p>The goal of Eclipse to become a platform to produce flexible and dynamic applications.
-  In such a dynamic environment, it is often hard to now what is happening or
+<p>The goal of Eclipse is to become a platform to produce flexible and dynamic applications.
+  In such a dynamic environment, it is often hard to know what is happening or
 to explain why the system is behaving as it is. Over the history of Eclipse,
   various teams have put together tools (e.g, Core tools, Sleak, ...). This proposed
   incubatory is a recognition that some of the tools we have in place today (e.g.,
