@@ -51,6 +51,8 @@ ob_start();
   <li>Format and Organize Imports before committing</li>
   <li>Use blank lines sparingly. Group lines of code together as you would group
   sentences into paragraphs in written text.</li>
+  <li>Don't use braces for simple if/for statements. Use braces where it improves
+  code readability and clarity, such as in nested control statements.
   <li>These settings should be done on each Equinox project so that everyone
     uses the same settings.</li>
 </ul>
