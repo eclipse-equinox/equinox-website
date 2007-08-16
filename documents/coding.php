@@ -43,12 +43,10 @@ ob_start();
 </ul>
 <p class="subbar">Code Formatting</p>
 <ul>
-  <li>Use the <a href="../equinox_formatting.xml">Equinox formatter settings</a>.    </li>
-  <li>Set the number of imports needed for import coalesing (i.e., using *) to
-    3.</li>
-  <li> Disable the import grouping feature by removing all entries from the grouping
-    list.</li>
-  <li>Format and Organize Imports before committing</li>
+  <li>Use the <a href="../equinox_formatting.xml">Equinox formatter settings</a>.</li>
+  <li>Set the number of imports needed for import coalescing (i.e., using *) to 3.</li>
+  <li>Disable the import grouping feature by removing all entries from the grouping list.</li>
+  <li>Format and Organize Imports before committing, or enable the setting to do this automatically on save</li>
   <li>Use blank lines sparingly. Group lines of code together as you would group
   sentences into paragraphs in written text.</li>
   <li>Don't use braces for simple if/for statements. Use braces where it improves
@@ -85,14 +83,20 @@ ob_start();
 </ul>
 <p class="subbar">Use the tools</p>
 <ul>
-  <li>Turn on all the compiler prefs including unused temps, synthetic accessor
-    methods, unused imports, unused parameters, non-NLS'd strings, etc etc</li>
+  <li>Configure compiler warnings to match those used in org.eclipse.osgi project 
+  (see below for a <a href="#NewProjectTemplate">template</a>)</li>
   <li>Turn on compiler warnings for javadoc<br>
 &nbsp;&nbsp;Javadoc -&gt; Process Javadoc comments<br>
-&nbsp;&nbsp;&nbsp;&nbsp;- Malformed Javadoc comments -&gt; warning <br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Malformed Javadoc comments -&gt; error <br>
 &nbsp;&nbsp;&nbsp;&nbsp;- Report Errors in tags -&gt; true </li>
+&nbsp;&nbsp;&nbsp;&nbsp;- Report non-visible references -&gt; true</li>
+&nbsp;&nbsp;&nbsp;&nbsp;- Report deprecated references -&gt; false</li>
+&nbsp;&nbsp;&nbsp;&nbsp;- Missing Javadoc comments/tags -&gt; ignore</li>
+  <lli>Use the JDT cleanup wizard. Here is an <a href="../equinox_cleanup.xml">Equinox template</a>
+  with some of the common useful cleanups. With this setting enabled, you can use "Cleanup on save"
+  to ensure your code stays clean.</li>
   <li> Compiler tasks. We have 3 that we use as a team (TODO, FIXME, XXX) Do
-    not add your own as this is unecessary and requires everyone on the team
+    not add your own as this is unnecessary and requires everyone on the team
   to change their compiler settings in order to see these tasks.</li>
   <li>Sort the methods within a class alphabetically (use the sort members action).</li>
   <li> Data type size initialization -&gt; use meaningful values if possible,
@@ -130,6 +134,10 @@ ob_start();
   <li> Remove unused messages</li>
   <li> Make sure if the message accepts a parameter then you pass one in</li>
 </ul>
+<p class="subbar"><a name="NewProjectTemplate">New project tempalte</p>
+When setting up a new Equinox project, you can use this <a href="org.eclipse.jdt.core.core.prefs">
+template</a> of the .settings/org.eclipse.jdt.core.prefs file. This will configure the code
+style and compiler settings outlined above.
 <p>&nbsp;</p>
 
 	</div>
