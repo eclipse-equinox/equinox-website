@@ -134,10 +134,12 @@ ob_start();
   <li> Remove unused messages</li>
   <li> Make sure if the message accepts a parameter then you pass one in</li>
 </ul>
-<p class="subbar"><a name="NewProjectTemplate">New project tempalte</p>
+<p class="subbar"><a name="NewProjectTemplate"/>New project template</p>
+<p>
 When setting up a new Equinox project, you can use this <a href="org.eclipse.jdt.core.core.prefs">
 template</a> of the .settings/org.eclipse.jdt.core.prefs file. This will configure the code
 style and compiler settings outlined above.
+</p>
 <p>&nbsp;</p>
 
 	</div>
