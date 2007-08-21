@@ -136,7 +136,7 @@ ob_start();
 </ul>
 <p class="subbar"><a name="NewProjectTemplate"/>New project template</p>
 <p>
-When setting up a new Equinox project, you can use this <a href="org.eclipse.jdt.core.core.prefs">
+When setting up a new Equinox project, you can use this <a href="org.eclipse.jdt.core.prefs">
 template</a> of the .settings/org.eclipse.jdt.core.prefs file. This will configure the code
 style and compiler settings outlined above.
 </p>
