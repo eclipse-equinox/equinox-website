@@ -25,6 +25,7 @@
 
    <div id="midcolumn">
       <h1><?= $pageTitle ?></h1>
+      <p class=bar>Under construction...</p>
 <?php
    include $_SERVER['DOCUMENT_ROOT'] . "/equinox/incubator/security/codescans/report.html";
 ?>
