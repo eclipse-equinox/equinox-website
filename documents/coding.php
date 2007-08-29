@@ -74,6 +74,7 @@ code formatting, organize imports, code cleanup wizard settings and enabling the
 </ul>
 
 <p class="subbar">Coding style</p>
+<ul>
   <li>Use blank lines sparingly. Group lines of code together as you would group
   sentences into paragraphs in written text.</li>
   <li>Don't use braces for simple if/for statements. Use braces where it improves
@@ -148,12 +149,7 @@ code formatting, organize imports, code cleanup wizard settings and enabling the
   <li> Remove unused messages</li>
   <li> Make sure if the message accepts a parameter then you pass one in</li>
 </ul>
-<p class="subbar"><a name="NewProjectTemplate"/>New project template</p>
-<p>
-When setting up a new Equinox project, you can use this <a href="org.eclipse.jdt.core.prefs">
-template</a> of the .settings/org.eclipse.jdt.core.prefs file. This will configure the code
-style and compiler settings outlined above.
-</p>
+
 <p>&nbsp;</p>
 
 	</div>
