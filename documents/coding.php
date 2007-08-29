@@ -41,6 +41,25 @@ ob_start();
   the Foundation's legal page</a> for a template.</li>
   <li> If the code was written in 2003, don't have 2000,2003 in the copyright.</li>
 </ul>
+<p class="subbar">Attribution</p>
+<p>Contributors should feel free to identify themselves individually or by company in the code.  
+There are three main places this is done.  </p>
+<ol>
+<li>in the copyright line (first line in class comment).  Here the first/main entity that 
+legally owns the copyright should be listed first followed by "and others".  See the legal notes above.</li>
+<li>in the Contributors section of the class comment.  Here we want to capture a rough sense of who 
+(people and/or companies) has made contributions.  We do not need to be overly specific about which 
+contributions.  General descriptions such as "bug fixes", "performance enhancements" or "continuing
+development" are fine.  This is information is partly to cue the legal process to ensure 
+proper tracking (though the actual tracking is done through CVS and Bugzilla) and partly to give contributors
+visibility and acknowledgment for their contributions.  People are free to put their 
+names in this section if they choose however, traditionally we have identified simply identified
+companies/organizations here.  We have opted for this approach to eliminate the continual maintenance of 
+the list.  Contributors wanting to have their names in this section are certainly welcomed to do so in their patches.</li>
+<li>@author in the class Javadoc.  For the most part the Eclipse project team does not use @author as there are typically
+a vast number of people working on and contributing to the code.  Maintenance of such a list would be 
+quite cumbersome and poorly maintained authorship lists give a false picture of code evolution.</li>
+</ol>
 <p class="subbar">Code Formatting</p>
 <ul>
   <li>Use the <a href="../equinox_formatting.xml">Equinox formatter settings</a>.</li>
