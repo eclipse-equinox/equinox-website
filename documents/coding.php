@@ -46,9 +46,9 @@ ob_start();
 <p>Contributors should feel free to identify themselves individually or by company in the code.  
 There are three main places this is done.  </p>
 <ul>
-<li>in the copyright line (first line in class comment).  Here the first/main entity that 
+<li><b>in the copyright line (first line in class comment).</b>  Here the first/main entity that 
 legally owns the copyright should be listed first followed by "and others".  See the legal notes above.</li>
-<li>in the Contributors section of the class comment.  Here we want to capture a rough sense of who 
+<li><b>in the Contributors section of the class comment.</b>  Here we want to capture a rough sense of who 
 (people and/or companies) has made contributions.  We do not need to be overly specific about which 
 contributions.  General descriptions such as "bug fixes", "performance enhancements" or "continuing
 development" are fine.  This is information is partly to cue the legal process to ensure 
@@ -57,7 +57,7 @@ visibility and acknowledgment for their contributions.  People are free to put t
 names in this section if they choose however, traditionally we have identified simply identified
 companies/organizations here.  We have opted for this approach to eliminate the continual maintenance of 
 the list.  Contributors wanting to have their names in this section are certainly welcomed to do so in their patches.</li>
-<li>@author in the class Javadoc.  For the most part the Eclipse project team does not use @author as there are typically
+<li><b>in the @author tag in the class Javadoc.</b>  For the most part the Eclipse project team does not use @author as there are typically
 a vast number of people working on and contributing to the code.  Maintenance of such a list would be 
 quite cumbersome and poorly maintained authorship lists give a false picture of code evolution.</li>
 </ul>
@@ -66,30 +66,11 @@ quite cumbersome and poorly maintained authorship lists give a false picture of 
 <p>For the most part you can just use the preference template files supplied here to configure the various tools 
 to do the same as the rest of the team.  These preference files are typically found in the .settings 
 directory of a project.  To apply the preferences simply copy the template file from here into the .settings folder overwriting the original.
-Of course, you may choose to merge the settings but beware of varying too far from the standard coding practices.</p>
+Of course, you may choose to merge the settings but beware of varying too far from the standard coding practices.  The templates cover 
+code formatting, organize imports, code cleanup wizard settings and enabling these operations to happen automatically on save.</p>
 <ul>
-<li><a href="org.eclipse.jdt.core.prefs">JDT Core preferences</a> - sets up compiler and code formatting preferences
-<li><a href="org.eclipse.jdt.ui.prefs">JDT UI preferences</a> - sets up editor preferences (e.g., format on save etc.)
-</ul>
-<p>These templates setup roughly the following conventions:</p>
-<ul>
-  <li>Turn on compiler warnings for javadoc
-<li>Process Javadoc comments -&gt; false</li>
-<li>Malformed Javadoc comments -&gt; error </li>
-<li>Report Errors in tags -&gt; true </li>
-<li>Report non-visible references -&gt; true</li>
-<li>Report deprecated references -&gt; false</li>
-<li>Missing Javadoc comments/tags -&gt; ignore</li>
-</ul>
-</li>
-  <li>Use the JDT cleanup wizard. The templates have setttings for these and should result in "Cleanup on save" being enabled
-  to ensure your code stays clean.</li>
-  <li>Sort the methods within a class alphabetically (use the sort members action).</li>
-</ul>  
-  <li>Set the number of imports needed for import coalescing (i.e., using *) to 3.</li>
-  <li>Disable the import grouping feature by removing all entries from the grouping list.</li>
-  <li>Format and Organize Imports before committing, or enable the setting to do this automatically on save.  Note that 
-  the Equinox editor settings have this turned on by default.</li>
+<li><a href="org.eclipse.jdt.core.prefs">Equinox JDT Core preferences</a> - template for compiler and code formatting preferences
+<li><a href="org.eclipse.jdt.ui.prefs">Equinox JDT UI preferences</a> - template for editor preferences (e.g., format on save etc.)
 </ul>
 
 <p class="subbar">Coding style</p>
@@ -125,19 +106,20 @@ Of course, you may choose to merge the settings but beware of varying too far fr
   <li> Ensure all file I/O is buffered.</li>
   <li> When sharing code with others, ensure that all the code released to the
     repository at least compiles. </li>
+  <li> Compiler tasks. We have 3 that we use as a team (TODO, FIXME, XXX) Do
+    not add your own as this is unnecessary and requires everyone on the team
+  to change their compiler settings in order to see these tasks.</li>
 </ul>
 
 <p class="subbar">Comments</p>
 <ul>
-  <li> Compiler tasks. We have 3 that we use as a team (TODO, FIXME, XXX) Do
-    not add your own as this is unnecessary and requires everyone on the team
-  to change their compiler settings in order to see these tasks.</li>
   <li>Comments are a good thing but are not a substitute for good naming (see next section).
   Comment all &quot;non-obvious&quot; things whether they be methods, fields,
     arguments, algorithm steps, ...</li>
   <li>Javadoc on API is essential</li>
   <li>Follow the Javadoc guidelines as well as @since etc recommendations</li>
 </ul>
+
 <p class="subbar">Naming</p>
 <ul>
   <li>Choose class/method/field names that describe the purpose of the entire
