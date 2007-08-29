@@ -26,11 +26,10 @@
    <div id="midcolumn">
       <h1><?= $pageTitle ?></h1>
       <p class=bar>Under construction...    Note:  Use cut/past from Plug-in reports into a Java Stack Trace console to navigate to source in your workspace. </p>
-           <br/>
-           <a href="/equinox/incubator/security/codescans/swreport.php">Summary Workspace Analysis report</a>
-           <br/>
-           <a href="/equinox/incubator/security/codescans/swareport.php">Summary Workspace Analysis API report</a>
-           <br/>
+<?php
+   include $_SERVER['DOCUMENT_ROOT'] . "/equinox/incubator/security/codescans/sapi.html";
+?>
+
    </div>
 
 <?php
