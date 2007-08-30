@@ -27,6 +27,12 @@
  
 <div id="midcolumn">
 
+<div>
+<a name="update"></a><p class="bar">Release 3.4 Milestone 1</p>
+<p>The following is information on the delivery of Milestone 1 (M1) of Release 3.4 of security features in
+Eclipse Equinox. The release was completed on <strong>August 17th, 2007</strong>.</p> 
+</div>
+
 <div id="div_toparea" style="position: relative; height: 400px;">
 <div id="div_update" style="position: absolute; top: 0px; left: 0px; right: 420px; margin-right: 10px;">
 <a name="update"></a><p class="bar">Status Update</p>
