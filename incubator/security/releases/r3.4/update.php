@@ -26,7 +26,8 @@
 ?>		
  
 <div id="midcolumn">
-<div id="div_update" style="margin-right: 425px; height: 400px">
+<div id="div_toparea" style="position: relative; height: 405px; width: 100%">
+<div id="div_update" style="position: relative; float: left; margin-right: 425px; height: 400px">
 <?php
    include $_SERVER['DOCUMENT_ROOT'] . "/equinox/incubator/security/releases/r3.4/M1/update.html";
 ?>
@@ -36,13 +37,14 @@
    include $_SERVER['DOCUMENT_ROOT'] . "/equinox/incubator/security/releases/r3.4/M1/demo.html";
 ?>
 </div>
-<!--
+</div>
+<div id="div_bottomarea">
 <div id="div_plan">
 <?php
    include $_SERVER['DOCUMENT_ROOT'] . "/equinox/incubator/security/releases/r3.4/M1/plan.html";
 ?>
 </div>
--->
+</div>
 </div>
 
 <?php
