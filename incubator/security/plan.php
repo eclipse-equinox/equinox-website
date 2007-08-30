@@ -19,12 +19,13 @@ ob_start();
 		
 	<div id="midcolumn">
 		<h1><?= $pageTitle ?></h1>
-		<?php include("releases/r3.4/security_plan_3.4_current.html"); ?>
+		<?php include("releases/r3.4/release_plan.html"); ?>
 	</div>
 
 <?php
    include $_SERVER['DOCUMENT_ROOT'] . "/equinox/incubator/security/sidebar.html";
 ?>
+
 <?php
 	$html = ob_get_contents();
 	ob_end_clean();
