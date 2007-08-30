@@ -27,6 +27,8 @@
 
  This is milestone <?php echo $target; ?>.
  
+ 
+<div id="midcolumn">
 <table>
 <tr>
 <td>
@@ -48,7 +50,8 @@
 </td>
 </tr>
 </table>
- 
+</div>
+
 <?php
    include $_SERVER['DOCUMENT_ROOT'] . "/equinox/incubator/security/sidebar.html";
 ?>
