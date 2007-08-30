@@ -1,131 +1,40 @@
-<!-- tpl:insert page="/incubator/security/equinox.htpl" --><!doctype html public "-//w3c//dtd html 4.0 transitional//en">
-<html>
-<head>
-<title>Equinox Security Home</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<style type="text/css">
-.input {background: "#ffffcc";color: "#000000" ;font-weight: normal;}
-a.nav:link { text-decoration: none; color: "#000000"; }
-a.nav:visited { text-decoration: none; color: "#000000"; }
-a.nav:hover { text-decoration: underline; color: "#000000"; }
-</style>
-<link rel="stylesheet" href="http://www.eclipse.org/nav_style.css" type="text/css">
-<link rel="stylesheet2" href="http://eclipse.org/default_style.css" type="text/css">
-</head>
-<body bgcolor="#ffffff" link="#0000ee" vlink="#551a8b" alink="#ff0000" leftmargin="0" marginheight="0" topmargin="0" rightmargin="0">
-<!--  start of banner  -->
- <table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" >
-  <tr>
-   <td WIDTH="100%">
-    <table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" BGCOLOR="#006699" >
+<?php require_once($_SERVER['DOCUMENT_ROOT'] . "/eclipse.org-common/system/app.class.php");	require_once($_SERVER['DOCUMENT_ROOT'] . "/eclipse.org-common/system/nav.class.php"); 	require_once($_SERVER['DOCUMENT_ROOT'] . "/eclipse.org-common/system/menu.class.php"); 	$App 	= new App();	$Nav	= new Nav();	$Menu 	= new Menu();		include($App->getProjectCommon());    # All on the same line to unclutter the user's desktop'
 
-     <tr>
-          <td BGCOLOR="#000000" width="116" ><a href="http://www.eclipse.org" target="_top"><img src="http://www.eclipse.org/images/EclipseBannerPic.jpg" width="115" height="50" border="0"></a></td>
-          <td WIDTH="637"><img SRC="http://www.eclipse.org/images/gradient.jpg" BORDER=0 height=50 width=282></td>
-          <td WIDTH="250" nowrap><img SRC="http://dev.eclipse.org/viewcvs/indextech.cgi/~checkout~/equinox-home/security/EJS/icons/eclipse-org-security-small.GIF" width="250" height="48"> </td>
-     </tr>
-    </table>
-   </td>
-  </tr>
- </table><!--  end of banner -->
-<!--  start of main frame table -->
-<table BORDER=0 CELLSPACING=0 CELLPADDING="4" WIDTH="100%" HEIGHT="100%" BGCOLOR="#90C8FF">
-<tr><td width="160" valign="top" bgcolor="#6699CC" nowrap>
-<!--  start of navigator -->
-<table BORDER=0 CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%"  BGCOLOR="#90C8FF" >
-<tr><td>
-	<table BORDER=0 CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%"  BGCOLOR="#90C8FF" >
-	  <tr> 
-	    <td VALIGN=CENTER HEIGHT="21" BGCOLOR="#0080C0">&nbsp; <a href="http://www.eclipse.org/equinox" target="_top" class="navhead"> 
-	      equinox home</a></td>
-	  </tr>
-	  <tr> 
-	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
-	  </tr>
-	  <tr VALIGN=CENTER> 
-	    <td HEIGHT="21">&nbsp; <a name="overview" href="http://www.eclipse.org/equinox/incubator/security/index.html" class="nav" >overview</a></td>
-	  </tr>
-	  <tr> 
-	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
-	  </tr>
-	  <tr VALIGN=CENTER WIDTH="40"> 
-	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://www.eclipse.org/equinox/incubator/security/EJS/ejs.html" class="nav">rcp plug-in analysis</a></td>
-	  </tr>
-	  <tr> 
-	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
-	  </tr>
-	  <tr VALIGN=CENTER WIDTH="40"> 
-	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://www.eclipse.org/equinox/incubator/security/java2security.html" class="nav" >java2 security</a></td>
-	  </tr>
-	  <tr> 
-	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
-	  </tr>
-	  <tr VALIGN=CENTER WIDTH="40"> 
-	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://www.eclipse.org/equinox/incubator/security/Signing.html" class="nav" >plug-in signing</a></td>
-	  </tr>
+   #*****************************************************************************
+   #
+   #
+   #****************************************************************************
+	
+   #
+   # Begin: page-specific settings.  Change these. 
+   $pageTitle 		= "Equinox Security - Downloads";
+   $pageKeywords	= "equinox, incubator, security";
+	
+   # Add page-specific Nav bars here
+   # Format is Link text, link URL (can be http://www.someothersite.com/), target (_self, _blank), level (1, 2 or 3)
+   # $Nav->addNavSeparator("Security Links", 	"downloads.php");
+   # $Nav->addCustomNav("A Link", "mypage.php", "_self", 3);
+   # $Nav->addCustomNav("Google", "http://www.google.com/", "_blank", 3);
 
-	  <tr> 
-	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
-	  </tr>
-	  <tr VALIGN=CENTER WIDTH="40"> 
-	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://www.eclipse.org/equinox/incubator/security/EJS/rcp/keystore.html" class="nav" >keystore/credentialstore</a></td>
-	  </tr>
+   # End: page-specific settings
+   #
+		
+   # Paste your HTML content between the markers!	
+   ob_start();
+   ?>		
 
-	  <tr> 
-	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
-	  </tr>
-	  <tr VALIGN=CENTER WIDTH="40"> 
-	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://www.eclipse.org/equinox/incubator/security/EJS/rcp/end2end.html" class="nav" >end to end security</a></td>
-	  </tr>
-	  <tr> 
-	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
-	  </tr>
-	  <tr VALIGN=CENTER WIDTH="40"> 
-	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://www.eclipse.org/equinox/incubator/security/verifier.html" class="nav" >verifying JAR files</a></td>
-	  </tr>
-	  <tr> 
-	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
-	  </tr>
-	  <tr VALIGN=CENTER WIDTH="40"> 
-	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://www.eclipse.org/equinox/incubator/security/documents/index.html" class="nav" >documents</a></td>
-	  </tr>
-	  <tr> 
-	    <td BGCOLOR="#CFFFFF"><img SRC="http://www.eclipse.org/images/c.gif" height=1 width=1></td>
-	  </tr>
-	  <tr VALIGN=CENTER WIDTH="40"> 
-	    <td WIDTH="40" HEIGHT="21">&nbsp; <a href="http://www.eclipse.org/equinox/incubator/security/downloads.html" class="nav" >downloads</a></td>
-	  </tr>
-	  <tr>
-	  	<td>
-			<img src="/images/egg-incubation.png">
-		</td>
-	  </tr>
+   <div id="midcolumn">
+      <h1><?= $pageTitle ?></h1>
+      <p class=bar>Coming soon...</p>
+   </div>
 
-	</table>
-</td></tr>
-</table>
-<!--  end of navigator -->
-</td>
-<!--  start of main content  -->
-<td bgcolor="white" valign="top" >
-<!-- tpl:put name="bodyarea" -->
-				<TABLE border="0" cellspacing="0" cellpadding="2" width="100%">
-					<TR>
-						<TD align="LEFT" valign="TOP" colspan="2" bgcolor="#0080C0"><B><FONT
-							color="#FFFFFF"> Downloads</FONT></B></TD>
-					</TR>
-				</TABLE>
-				<BR>
-				<IMG border="0" src="EJS/rcp/u011ani.gif" width="63" height="63"><UL>
-					<LI><FONT color="silver">RCP 3.1</FONT></LI>
-				</UL>
-				<BR><!-- /tpl:put -->
-<!--  end of main content -->
-</td>
-</tr>
-</table>
-<!--  end of main frame table -->
-</body>
-</html>
+<?php
+   include $_SERVER['DOCUMENT_ROOT'] . "/equinox/incubator/security/sidebar.php";
+?>
+<?php
+   $html = ob_get_contents();
+   ob_end_clean();
 
-<!-- /tpl:insert -->
+   # Generate the web page
+   $App->generatePage($theme, $Menu, $Nav, $pageAuthor, $pageKeywords, $pageTitle, $html);
+?>
