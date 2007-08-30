@@ -28,7 +28,7 @@
 <div id="midcolumn">
 
 <div id="div_toparea" style="position: relative; height: 400px;">
-<div id="div_update" style="position: absolute; top: 0px; left: 0px; width: 100%; margin-right: 420px;">
+<div id="div_update" style="position: absolute; top: 0px; left: 0px; width: 100%; margin-right: 420px; padding-right: 10px;">
 <?php
    include $_SERVER['DOCUMENT_ROOT'] . "/equinox/incubator/security/releases/r3.4/M1/update.html";
 ?>
