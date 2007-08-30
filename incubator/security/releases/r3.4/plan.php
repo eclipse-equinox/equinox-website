@@ -130,41 +130,9 @@ function traverseLinkifyBugs(node) {
 	<p>This section contains cross team issues that have to be clarified. The concrete outcome affects the plan items listed above.</p>
 	TBD
 
-	   <a name="M1"></a><p class="bar">Milestone 1 (M1) - 2007/08/16</p>
-
-       <p>Note: We will be driving the security-incubation schedule to perform milestone builds exactly 1 week behind the schedule that
-       is being used for the overall 3.4 platform release.
-       </p>
-       <p><strong>Themes:</strong> Initial contributions
-       </p>
-       
-		<h4><img src="http://www.eclipse.org/images/Adarrow.gif" border="0" height="16" width="16" align="top"> Committed</h4>
-		<ul>
-			<li><img src="images/icon-completed.gif" border="0" height="10" width="10" align="middle"> #198814 - Contribute initial JAAS framework to Equinox [2]</li>
-			<li>
-			<ul>Ongoing work items
-			   <li><img src="images/icon-inprogress.gif" border="0" height="5" width="14" align="middle"> 3.4 & 3.4M1 planning</li>
-			   <li><img src="images/icon-inprogress.gif" border="0" height="5" width="14" align="middle"> Wiki & site authoring</li>
-			   <li><img src="images/icon-inprogress.gif" border="0" height="5" width="14" align="middle"> Bugzilla queue monitoring</li>
-			   <li><img src="images/icon-inprogress.gif" border="0" height="5" width="14" align="middle"> Sample & unit test development</li>
-			</ul>
-			</li>	
-		</ul>
-		
-		<h4><img src="http://www.eclipse.org/images/Adarrow.gif" border="0" height="16" width="16" align="top"> Proposed</h4>
-		<ul>
-			<li><img src="images/icon-inprogress.gif" border="0" height="5" width="14" align="middle"/> #196987 - Fix boot classloader delegation issues with security contribution [2]</li>
-			<li><img src="images/icon-investigating.gif" border="0" height="10" width="10" align="middle"/> #198833 - Post SWORD4J scan to Equinox security page [4]</li>			
-		</ul>
-		
-		<h4><img src="http://www.eclipse.org/images/Adarrow.gif" border="0" height="16" width="16" align="top"> Deferred</h4>
-		<ul>
-			<li>(0 items)</li>
-		</ul>
-
-		<a name="M2"></a><p class="bar">Milestone 2 (M2) - 2007/09/??</p>
-        <p><strong>Themes:</strong> Contribution hardening, Launcher integration, Provider completeness, UI/API design 
-        </p>
+<?php
+   include $_SERVER['DOCUMENT_ROOT'] . "/equinox/incubator/security/releases/r3.4/M2/plan.html";
+?>
 
    <p class="bar">Legend</p>
    <table border="0" cellpadding="2" cellspacing="5" width="100%">

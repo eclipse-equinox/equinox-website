@@ -19,7 +19,7 @@ ob_start();
 		
 	<div id="midcolumn">
 		<h1><?= $pageTitle ?></h1>
-		<?php include("releases/r3.4/release_plan.html"); ?>
+		<?php include("releases/r3.4/plan.php"); ?>
 	</div>
 
 <?php
