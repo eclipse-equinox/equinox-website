@@ -58,7 +58,7 @@ Eclipse Equinox. The release was completed on <strong>August 17th, 2007</strong>
 </div>
 
 </div>
-
+<br/>
 <?php
    include $_SERVER['DOCUMENT_ROOT'] . "/equinox/incubator/security/sidebar.html";
 ?>
