@@ -22,7 +22,7 @@
    # Paste your HTML content between the markers!	
    ob_start();
 
-   $target = $_SESSION['target'];
+   $target = $_REQUEST['target'];
 ?>		
 
  This is milestone <?php echo $target; ?>.
