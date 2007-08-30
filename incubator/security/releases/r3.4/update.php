@@ -34,7 +34,7 @@ Eclipse Equinox. The release was completed on <strong>August 17th, 2007</strong>
 </div>
 
 <div id="div_toparea" style="position: relative; height: 400px;">
-<div id="div_update" style="position: absolute; top: 0px; left: 0px; right: 420px; margin-right: 10px;">
+<div id="div_update" style="position: absolute; top: 0px; left: 0px; right: 420px; margin-right: 10px; min-width: 205;">
 <a name="update"></a><p class="bar">Status Update</p>
 <?php
    include $_SERVER['DOCUMENT_ROOT'] . "/equinox/incubator/security/releases/r3.4/M1/update.html";
@@ -56,9 +56,9 @@ Eclipse Equinox. The release was completed on <strong>August 17th, 2007</strong>
 ?>
 </div>
 </div>
-
+<p></p>
 </div>
-<br/>
+
 <?php
    include $_SERVER['DOCUMENT_ROOT'] . "/equinox/incubator/security/sidebar.html";
 ?>
