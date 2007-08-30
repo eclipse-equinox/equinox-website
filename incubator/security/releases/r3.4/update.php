@@ -26,7 +26,7 @@
 ?>		
  
 <div id="midcolumn">
-<div id="div_update" style="margin-right: 421px; height: 400px">
+<div id="div_update" style="margin-right: 425px; height: 400px">
 <?php
    include $_SERVER['DOCUMENT_ROOT'] . "/equinox/incubator/security/releases/r3.4/M1/update.html";
 ?>
