@@ -24,32 +24,23 @@
 
    $target = $_REQUEST['target'];
 ?>		
-
- This is milestone <?php echo $target; ?>.
- 
  
 <div id="midcolumn">
-<table>
-<tr>
-<td>
+<div id="div_update" style="align: left;">
 <?php
    include $_SERVER['DOCUMENT_ROOT'] . "/equinox/incubator/security/releases/r3.4/M1/update.html";
 ?>
-</td>
-<td>
+</div>
+<div id="div_demo" style="align: right; width: 420px;">
 <?php
    include $_SERVER['DOCUMENT_ROOT'] . "/equinox/incubator/security/releases/r3.4/M1/demo.html";
 ?>
-</td>
-</tr>
-<tr>
-<td colspan=2>
+</div>
+<div id="div_plan">
 <?php
    include $_SERVER['DOCUMENT_ROOT'] . "/equinox/incubator/security/releases/r3.4/M1/plan.html";
 ?>
-</td>
-</tr>
-</table>
+</div>
 </div>
 
 <?php
