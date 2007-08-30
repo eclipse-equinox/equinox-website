@@ -33,7 +33,7 @@
    include $_SERVER['DOCUMENT_ROOT'] . "/equinox/incubator/security/releases/r3.4/M1/update.html";
 ?>
 </div>
-<div id="div_demo" style="position: relative; float: right;">
+<div id="div_demo" style="position: relative; float: right; width: 420px;">
 <?php
    include $_SERVER['DOCUMENT_ROOT'] . "/equinox/incubator/security/releases/r3.4/M1/demo.html";
 ?>
