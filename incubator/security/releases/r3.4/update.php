@@ -36,10 +36,10 @@
    include $_SERVER['DOCUMENT_ROOT'] . "/equinox/incubator/security/releases/r3.4/M1/update.html";
 ?>
 </td>
+<td>
 <?php
    include $_SERVER['DOCUMENT_ROOT'] . "/equinox/incubator/security/releases/r3.4/M1/demo.html";
 ?>
-<td>
 </td>
 </tr>
 <tr>
