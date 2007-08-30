@@ -1,5 +1,7 @@
 <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/eclipse.org-common/system/app.class.php");	require_once($_SERVER['DOCUMENT_ROOT'] . "/eclipse.org-common/system/nav.class.php"); 	require_once($_SERVER['DOCUMENT_ROOT'] . "/eclipse.org-common/system/menu.class.php"); 	$App 	= new App();	$Nav	= new Nav();	$Menu 	= new Menu();		include($App->getProjectCommon());    # All on the same line to unclutter the user's desktop'
 
+require 
+
    #*****************************************************************************
    #
    #
@@ -26,6 +28,28 @@
 ?>		
 
  This is milestone <?php echo $target; ?>.
+ 
+<table>
+<tr>
+<td>
+<?php
+   include $_SERVER['DOCUMENT_ROOT'] . "/equinox/incubator/security/releases/r3.4/M1/update.html";
+?>
+</td>
+<?php
+   include $_SERVER['DOCUMENT_ROOT'] . "/equinox/incubator/security/releases/r3.4/M1/demo.html";
+?>
+<td>
+</td>
+</tr>
+<tr>
+<td colspan=2>
+<?php
+   include $_SERVER['DOCUMENT_ROOT'] . "/equinox/incubator/security/releases/r3.4/M1/plan.html";
+?>
+</td>
+</tr>
+</table>
  
 <?php
    include $_SERVER['DOCUMENT_ROOT'] . "/equinox/incubator/security/sidebar.html";
