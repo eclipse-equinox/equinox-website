@@ -26,12 +26,12 @@
 ?>		
  
 <div id="midcolumn">
-<div id="div_update" style="position: absolute; top: 0px; left: 0px;">
+<div id="div_update" style="position: relative; top: 0px; left: 0px;">
 <?php
    include $_SERVER['DOCUMENT_ROOT'] . "/equinox/incubator/security/releases/r3.4/M1/update.html";
 ?>
 </div>
-<div id="div_demo" style="position: absolute; top: 0px; right: 0px; width: 420px;">
+<div id="div_demo" style="position: relative; top: 0px; right: 0px; width: 420px;">
 <?php
    include $_SERVER['DOCUMENT_ROOT'] . "/equinox/incubator/security/releases/r3.4/M1/demo.html";
 ?>
