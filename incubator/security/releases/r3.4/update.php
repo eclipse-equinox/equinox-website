@@ -29,11 +29,13 @@
 
 <div id="div_toparea" style="position: relative; height: 400px;">
 <div id="div_update" style="position: absolute; top: 0px; left: 0px; right: 420px; margin-right: 10px;">
+<a name="update"></a><p class="bar">Status Update</p>
 <?php
    include $_SERVER['DOCUMENT_ROOT'] . "/equinox/incubator/security/releases/r3.4/M1/update.html";
 ?>
 </div>
 <div id="div_demo" style="position: absolute; top: 0px; right: 0px; width: 420px;">
+<a name="demo"></a><p class="bar">Feature Demo</p>
 <?php
    include $_SERVER['DOCUMENT_ROOT'] . "/equinox/incubator/security/releases/r3.4/M1/demo.html";
 ?>
@@ -42,6 +44,7 @@
 
 <div id="div_bottomarea">
 <div id="div_plan">
+<a name="plan"></a><p class="bar">Development Plan</p>
 <?php
    include $_SERVER['DOCUMENT_ROOT'] . "/equinox/incubator/security/releases/r3.4/M1/plan.html";
 ?>
