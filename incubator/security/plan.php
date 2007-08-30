@@ -23,7 +23,7 @@ ob_start();
 	</div>
 
 <?php
-   include $_SERVER['DOCUMENT_ROOT'] . "/equinox/incubator/security/sidebar.html";
+   include $_SERVER['DOCUMENT_ROOT'] . "/equinox/incubator/security/sidebar.php";
 ?>
 
 <?php
