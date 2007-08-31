@@ -5,7 +5,7 @@
          <li><a href="/equinox/incubator/security/">project info</a></li>
          <li><a href="/equinox/incubator/security/plan.php">development plan</a></li>
          <li><strong>milestone updates</strong><br>
-            &nbsp;<strong>-</strong>&nbsp;<a href="">milestone 1</a>
+            &nbsp;<strong>-</strong>&nbsp;<a href="/equinox/incubator/security/releases/3.4.0/update.php?target=M1">milestone 1</a>
          </li>
          <li><a href="/equinox/incubator/security/status.php">weekly status</a></li>         
                   
