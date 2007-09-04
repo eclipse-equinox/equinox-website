@@ -44,7 +44,7 @@
       <table width="100%" border="0">
          <tr>
             <td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-            <td width="98%">August 17, 2007 - M1 release is complete. Update and demo <a href="/equinox/incubator/security/releases/3.4.0/update.php&target=M1">here</a>.</td>
+            <td width="98%">August 17, 2007 - M1 release is complete. Update and demo <a href="/equinox/incubator/security/releases/3.4.0/update.php?target=M1">here</a>.</td>
          </tr>
          <tr>
             <td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
