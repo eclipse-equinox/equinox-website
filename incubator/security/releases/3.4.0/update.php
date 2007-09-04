@@ -26,7 +26,7 @@
 ?>		
  
 <div id="midcolumn">
-
+<h1><?= $pageTitle ?></h1>
 <div>
 <a name="update"></a><p class="bar">Release 3.4 Milestone 1</p>
 <p>The following is information on the delivery of Milestone 1 (M1) of Release 3.4 of security features in
