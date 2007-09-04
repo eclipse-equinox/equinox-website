@@ -44,6 +44,10 @@
       <table width="100%" border="0">
          <tr>
             <td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+            <td width="98%">August 17, 2007 - M1 release is complete. Update and demo <a href="/equinox/security/releases/3.4.0/update.php&target=M1">here</a>.</td>
+         </tr>
+         <tr>
+            <td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
             <td width="98%">August 08, 2007 - Official launch of these security pages. <a href="http://dev.eclipse.org/mhonarc/lists/equinox-dev/msg02685.html">Announcement</a>.</td>
          </tr>
          <tr>
