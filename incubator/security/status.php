@@ -32,7 +32,7 @@
       technical issues that require discussion.
       </p>
       
-      <p>The agenda will be driven via a page on the <a href="">wiki</a>.
+      <p>The agenda will be driven via a page on the <a href="http://wiki.eclipse.org/Security:_Meeting_Agenda">wiki</a>.
       </p>
       
       <p><strong>Call in details:</strong> (coming soon)
