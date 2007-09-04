@@ -25,7 +25,20 @@
 
    <div id="midcolumn">
       <h1><?= $pageTitle ?></h1>
-      <p class=bar>Coming soon...</p>
+      <p class=bar>Overview</p>
+      
+      We'll be hosting a call on Tuesday mornings from 10:00-11:00 EST to discuss progress and
+      problems over the previous week. We'll also make time to lay out upcoming development and
+      technical issues that require discussion.
+      
+      The agenda will be driven via a page on the <a href="">wiki</a>.
+      
+      Call in details: (coming soon)
+      <p/>
+      
+<?php
+   include $_SERVER['DOCUMENT_ROOT'] . "/equinox/incubator/security/releases/3.4.0/weekly/status_2007-09-04.php";
+?> 
    </div>
 
 <?php
