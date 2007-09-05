@@ -64,6 +64,9 @@ ob_start();
 				of Equinox.</p>
 
 		  <p class=bar>What's New</p>
+		    <p><b>Sep 4</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14">
+		       The <a href="http://wiki.eclipse.org/Equinox_Summit_2007">Equinox Summit</a> is shaping up to be a great
+		       event with some 20 people alread registered.</p>
 		    <p><b>Aug 10</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14">
 		       The <a href="http://www.eclipse.org/equinox/incubator/provisioning/">Provisioning workarea</a> team in the 
 		       <a href="http://www.eclipse.org/equinox/incubator">Equinox Incubator</a> has released an M1a of the new provisioning
