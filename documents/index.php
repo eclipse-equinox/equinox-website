@@ -45,6 +45,9 @@ ob_start();
 					  - <a href="jaoo2006/JAOO06-equinox.pdf">Equinox OSGi: Pervasive Componentization</a> - Thomas Watson and Jeff McAffer</li>
 					<li><a href="http://jaoo.org">JAOO 2006</a> (October)
 					  - <a href="jaoo2006/JAOO06-OSGi_Tutorial.pdf">Programming with Equinox</a> - Thomas Watson and Jeff McAffer</li>
+					<li><a href="http://eclipsecon.org">EclipseCon 2006</a> (March)
+					  - <a href="eclipsecon2006/Best Practices for Programming Eclipse and OSGi.pdf">Best Practices for Programming
+					  Eclipse and OSGi</a> - BJ Hargrave and Jeff McAffer</li>
 					<li><a href="http://osgicongress.com">OSGi Developer Forum 2005</a> (October)
 					  - <a href="osgicongress2005/mcaffer_1012_1530.pdf">Eclipse the Rich Client Platform</a> - Jeff McAffer</li>
 					<li><a href="http://osgicongress.com">OSGi Developer Forum 2005</a> (October)
