@@ -35,7 +35,7 @@
       <p>The agenda will be driven via a page on the <a href="http://wiki.eclipse.org/Security:_Meeting_Agenda">wiki</a>.
       </p>
       
-      <p><strong>Call in details:</strong> (coming soon)
+      <p><strong>Call in details: (866) 880-0098 w/passcode 9639110</strong> (coming soon)
       </p>
       
 <?php
