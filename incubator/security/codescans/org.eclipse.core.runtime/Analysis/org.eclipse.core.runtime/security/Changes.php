@@ -50,12 +50,11 @@
       {
         echo $line;
       }
-    /* This only works if the title and its tags are on one line */
   }
   fclose($file);
  }
 ?>
-<title>SWORD4J analysis report generated Aug 29, 2007</title>
+<h2>SWORD4J analysis report generated Aug 29, 2007</h2>
 <br/><br/>
 [sword4j] WARNING: in <a href="#" onClick='open_file(org.eclipse.core.runtime,org.eclipse.core.runtime,Preferences.java, 383 ")'> org.eclipse.core.runtime.Preferences.java:383</a>)
 <br/>[sword4j] void importPreferences(org.eclipse.core.runtime.IPath)
