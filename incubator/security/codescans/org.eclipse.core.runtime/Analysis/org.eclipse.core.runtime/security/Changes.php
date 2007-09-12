@@ -7,7 +7,7 @@
 	
    #
    # Begin: page-specific settings.  Change these. 
-   $pageTitle 		= "Equinox Security - Code Scan Analysis";
+   $pageTitle 		= "Equinox Security - org.eclipse.core.runtime analysis report";
    $pageKeywords	= "equinox, incubator, security";
 	
    # Add page-specific Nav bars here
@@ -56,7 +56,7 @@
 ?>
 <h2>SWORD4J analysis report generated Aug 29, 2007</h2>
 <br/><br/>
-[sword4j] WARNING: in <a href="#" onClick='open_file(org.eclipse.core.runtime,org.eclipse.core.runtime,Preferences.java, 383 ")'> org.eclipse.core.runtime.Preferences.java:383</a>)
+[sword4j] WARNING: in <a href="#" onClick='open_file(org.eclipse.core.runtime,org.eclipse.core.runtime,Preferences.java, 383 )'> org.eclipse.core.runtime.Preferences.java:383</a>)
 <br/>[sword4j] void importPreferences(org.eclipse.core.runtime.IPath)
 <br/>[sword4j] J2SE Permission required to invoke the method.<br/>
 </div>
@@ -71,4 +71,3 @@
    # Generate the web page
    $App->generatePage($theme, $Menu, $Nav, $pageAuthor, $pageKeywords, $pageTitle, $html);
 ?>
-
