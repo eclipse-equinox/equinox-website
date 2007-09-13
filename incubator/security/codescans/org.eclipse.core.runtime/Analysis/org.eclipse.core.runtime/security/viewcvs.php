@@ -33,12 +33,16 @@
  {
    $int_line = $_REQUEST['linenumber'];
    echo "<br/>";
-   echo "int_line="+$int_line+"<br/>";
+   echo "int_line=";
+   echo $int_line "<br/>";
    $tmpPath = $_REQUEST['packageName']+"."+$_REQUEST['fileName'];
-   echo "tmpPath="+$tmpPath+"<br/>";
+   echo "tmpPath=";
+   echo $tmpPath "<br/>";
    $filePath = str_replace(".","/",$tmpPath);
-   echo "filePath="+$filePath+"<br/>";
-   $file = fopen("http://dev.eclipse.org/viewcvs/index.cgi/"+$_REQUEST['projectName']+"/src/"+$filePath+"?view=markup", "r");
+   echo "filePath=";
+   echo $filePath;
+   echo "<br/>";
+   $file = fopen("http://dev.eclipse.org/viewcvs/index.cgi/" . $_REQUEST['projectName'] . "/src/" . $filePath . "?view=markup", "r");
    if (!$file) 
    {
     echo "<p>Unable to open remote file:"+$filePath+"\n</p>";
