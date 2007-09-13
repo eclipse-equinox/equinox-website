@@ -30,12 +30,13 @@
 <?php
  function open_file()
  {
-   $int_line = 0 + lineNumber;
-   $tmpPath = $_REQUEST['packageName']"."+$_REQUEST['fileName'];
+   $int_line = 0 + $_REQUEST['linenumber'];
+   $tmpPath = $_REQUEST['packageName']+"."+$_REQUEST['fileName'];
    $filePath = str_replace(".","/",$tmpPath);
-   $file = fopen ("http://dev.eclipse.org/viewcvs/index.cgi/"+$_REQUEST['projectName']+"/src/"+$filePath+"?view=markup", "r");
-   if (!$file) {
-    echo "<p>Unable to open remote file:"+$filePath+"\n";
+   $file = fopen("http://dev.eclipse.org/viewcvs/index.cgi/"+$_REQUEST['projectName']+"/src/"+$filePath+"?view=markup", "r");
+   if (!$file) 
+   {
+    echo "<p>Unable to open remote file:"+$filePath+"\n</p>";
     exit;
    }
    $cur_line = 0;
@@ -46,7 +47,7 @@
       if ($cur_line == $int_line)
       {
         // spank in a highlight on this line, and a <a name=" "> tag so it can be naivated with #name.
-        echo "<a name=\"curline\"><FONT style=\"background-color:#F2C553;display;inline\">"+line+"</FONT></a>"
+        echo "<a name=\"curline\"><FONT style=\"background-color:#F2C553;display;inline\">"+$line+"</FONT></a>"
       } else
       {
         echo $line;
@@ -54,7 +55,6 @@
   }
   fclose($file);
  }
- 
  open_file();
 ?>
 
