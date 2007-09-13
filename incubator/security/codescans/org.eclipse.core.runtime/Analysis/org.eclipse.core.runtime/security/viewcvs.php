@@ -31,13 +31,18 @@
 
  function open_file()
  {
+   echo "<br/>linenumber=";
+   echo $_REQUEST['linenumber'];
+   echo "<br/>projectName=";
+   echo $_REQUEST['projectName'];
+   echo "<br/>packageName=";
+   echo $_REQUEST['packageName'];
+   echo "<br/>fileName=";
+   echo $_REQUEST['fileName'];
    $int_line = $_REQUEST['linenumber'];
-   echo "<br/>";
-   echo "int_line=";
-   echo $int_line "<br/>";
-//   $tmpPath = "$_REQUEST['packageName'].$_REQUEST['fileName']";
-//   echo "tmpPath=";
-//   echo $tmpPath "<br/>";
+   echo "int_line=$int_line<br/>";
+   $tmpPath = "$_REQUEST['packageName'].$_REQUEST['fileName']";
+   echo "tmpPath=$tmpPath<br/>";
 //   $filePath = str_replace(".","/",$tmpPath);
 //   echo "filePath=";
 //   echo $filePath;
