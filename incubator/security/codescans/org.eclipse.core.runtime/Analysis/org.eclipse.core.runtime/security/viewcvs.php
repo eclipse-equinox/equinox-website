@@ -7,7 +7,7 @@
 	
    #
    # Begin: page-specific settings.  Change these. 
-   $pageTitle 		= "Equinox Security - org.eclipse.core.runtime analysis report";
+   $pageTitle 		= "Equinox Security - Source viewer";
    $pageKeywords	= "equinox, incubator, security";
 	
    # Add page-specific Nav bars here
@@ -22,15 +22,42 @@
    # Paste your HTML content between the markers!	
    ob_start();
    ?>		
+
    <div id="midcolumn">
       <h1><?= $pageTitle ?></h1>
-      <p class=bar>Under construction...    Note:  Use cut/past from Plug-in reports into a Java Stack Trace console to navigate to source in your workspace. </p>
-<h2>SWORD4J analysis report generated Aug 29, 2007</h2>
-<br/><br/>
-[sword4j] WARNING: in <a href="viewcvs.php?projectName=org.eclipse.core.runtime&packageName=org.eclipse.core.runtime&fileName=Preferences.java&linenumber=383"> org.eclipse.core.runtime.Preferences.java:383</a>)
-<br/>[sword4j] void importPreferences(org.eclipse.core.runtime.IPath)
-<br/>[sword4j] J2SE Permission required to invoke the method.<br/>
-</div>
+      <p class=bar>Under construction...</p>
+   </div>
+<?php
+ function open_file()
+ {
+   $int_line = 0 + lineNumber;
+   $tmpPath = $_REQUEST['packageName']"."+$_REQUEST['fileName'];
+   $filePath = str_replace(".","/",$tmpPath);
+   $file = fopen ("http://dev.eclipse.org/viewcvs/index.cgi/"+$_REQUEST['projectName']+"/src/"+$filePath+"?view=markup", "r");
+   if (!$file) {
+    echo "<p>Unable to open remote file:"+$filePath+"\n";
+    exit;
+   }
+   $cur_line = 0;
+   while (!feof ($file)) 
+   {
+      $line = fgets ($file, 1024);
+      $cur_line+=1;
+      if ($cur_line == $int_line)
+      {
+        // spank in a highlight on this line, and a <a name=" "> tag so it can be naivated with #name.
+        echo "<a name=\"curline\"><FONT style=\"background-color:#F2C553;display;inline\">"+line+"</FONT></a>"
+      } else
+      {
+        echo $line;
+      }
+  }
+  fclose($file);
+ }
+ 
+ open_file();
+?>
+
 
 <?php
    include $_SERVER['DOCUMENT_ROOT'] . "/equinox/incubator/security/sidebar.html";
