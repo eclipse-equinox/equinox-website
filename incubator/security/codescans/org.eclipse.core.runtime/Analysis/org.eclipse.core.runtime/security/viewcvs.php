@@ -47,7 +47,7 @@
       if ($cur_line == $int_line)
       {
         // spank in a highlight on this line, and a <a name=" "> tag so it can be naivated with #name.
-        echo "<a name=\"curline\"><FONT style=\"background-color:#F2C553;display;inline\">"+$line+"</FONT></a>"
+        echo "<a name=\"curline\"><FONT style=\"background-color:#F2C553;display;inline\">"+$line+"</FONT></a>";
       } else
       {
         echo $line;
