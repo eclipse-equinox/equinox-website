@@ -28,9 +28,10 @@
       <p class=bar>Under construction...</p>
    </div>
 <?php
+
  function open_file()
  {
-   $int_line = 0 + $_REQUEST['linenumber'];
+   $int_line = $_REQUEST['linenumber'];
    echo "<br/>";
    echo "int_line="+$int_line+"<br/>";
    $tmpPath = $_REQUEST['packageName']+"."+$_REQUEST['fileName'];
@@ -56,8 +57,8 @@
       {
         echo $line;
       }
-  }
-  fclose($file);
+   }
+   fclose($file);
  }
  open_file();
 ?>
