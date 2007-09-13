@@ -26,8 +26,7 @@
    <div id="midcolumn">
       <h1><?= $pageTitle ?></h1>
       <p class=bar>Under construction...</p>
-   </div>
-<?php
+      <?php
 
  function open_file()
  {
@@ -51,6 +50,8 @@
  
  open_file();
 ?>
+      
+   </div>
 
 
 <?php
