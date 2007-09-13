@@ -32,6 +32,7 @@
  {
    echo "<br/>linenumber=";
    echo $_REQUEST['linenumber'];
+   /*
    echo "<br/>projectName=";
    echo $_REQUEST['projectName'];
    echo "<br/>packageName=";
@@ -46,6 +47,7 @@
    echo "filePath=";
    echo $filePath;
    echo "<br/>";
+   */
  }
  
  open_file();
