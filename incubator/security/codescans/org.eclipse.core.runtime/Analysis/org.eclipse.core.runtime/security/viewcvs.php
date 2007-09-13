@@ -31,8 +31,12 @@
  function open_file()
  {
    $int_line = 0 + $_REQUEST['linenumber'];
+   echo "<br/>";
+   echo "int_line="+$int_line;
    $tmpPath = $_REQUEST['packageName']+"."+$_REQUEST['fileName'];
+   echo "tmpPath="+$tmpPath;
    $filePath = str_replace(".","/",$tmpPath);
+   echo "filePath="+$filePath;   
    $file = fopen("http://dev.eclipse.org/viewcvs/index.cgi/"+$_REQUEST['projectName']+"/src/"+$filePath+"?view=markup", "r");
    if (!$file) 
    {
