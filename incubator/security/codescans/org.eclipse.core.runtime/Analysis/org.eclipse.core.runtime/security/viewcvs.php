@@ -32,11 +32,11 @@
  {
    $int_line = 0 + $_REQUEST['linenumber'];
    echo "<br/>";
-   echo "int_line="+$int_line;
+   echo "int_line="+$int_line+"<br/>";
    $tmpPath = $_REQUEST['packageName']+"."+$_REQUEST['fileName'];
-   echo "tmpPath="+$tmpPath;
+   echo "tmpPath="+$tmpPath+"<br/>";
    $filePath = str_replace(".","/",$tmpPath);
-   echo "filePath="+$filePath;   
+   echo "filePath="+$filePath+"<br/>";
    $file = fopen("http://dev.eclipse.org/viewcvs/index.cgi/"+$_REQUEST['projectName']+"/src/"+$filePath+"?view=markup", "r");
    if (!$file) 
    {
