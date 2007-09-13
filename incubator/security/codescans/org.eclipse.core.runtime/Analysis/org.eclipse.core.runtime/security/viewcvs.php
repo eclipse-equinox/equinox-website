@@ -47,30 +47,8 @@
    echo "filePath=";
    echo $filePath;
    echo "<br/>";
-   /*
-   $file = fopen("http://dev.eclipse.org/viewcvs/index.cgi/" . $_REQUEST['projectName'] . "/src/" . $filePath . "?view=markup", "r");
-   if (!$file) 
-   {
-    echo "<p>Unable to open remote file:"+$filePath+"\n</p>";
-    exit;
-   }
-   $cur_line = 0;
-   while (!feof ($file)) 
-   {
-      $line = fgets ($file, 1024);
-      $cur_line+=1;
-      if ($cur_line == $int_line)
-      {
-        // spank in a highlight on this line, and a <a name=" "> tag so it can be naivated with #name.
-        echo "<a name=\"curline\"><FONT style=\"background-color:#F2C553;display;inline\">"+$line+"</FONT></a>";
-      } else
-      {
-        echo $line;
-      }
-   }
-   fclose($file);
-   */
  }
+ 
  open_file();
 ?>
 
