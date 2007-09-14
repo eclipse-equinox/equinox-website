@@ -54,7 +54,7 @@
      exit;
    } else 
    {
-   	 echo "<p>Progress!!! The file was opened OK.</p>";
+//   	 echo "<p>Progress!!! The file was opened OK.</p>";
    	 $cur_line = 0;
    	 $start_counting = false;
 	 while (!feof ($file)) 
