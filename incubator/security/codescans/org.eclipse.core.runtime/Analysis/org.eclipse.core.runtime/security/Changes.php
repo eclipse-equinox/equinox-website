@@ -24,7 +24,9 @@
    ?>		
    <div id="midcolumn">
       <h1><?= $pageTitle ?></h1>
-      <p class=bar>Under construction...    Note:  Use cut/past from Plug-in reports into a Java Stack Trace console to navigate to source in your workspace. </p>
+      <p class=bar>Under construction...    
+      <br/>Note:  Use cut/past from Plug-in reports into a Java Stack Trace console to navigate to source in your workspace.
+      <br/>From the web, simply click the source file hyper link to view the source line via viewcvs.</p>
 <h2>SWORD4J analysis report generated Aug 29, 2007</h2>
 <br/><br/>
 [sword4j] WARNING: in (<a href="viewcvs.php?projectName=org.eclipse.core.runtime&packageName=org.eclipse.core.runtime&fileName=Preferences.java&linenumber=383#curline">org.eclipse.core.runtime.Preferences.java:383</a>)
