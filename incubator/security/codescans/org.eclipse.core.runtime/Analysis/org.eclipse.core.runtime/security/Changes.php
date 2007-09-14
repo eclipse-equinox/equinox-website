@@ -27,7 +27,7 @@
       <p class=bar>Under construction...    Note:  Use cut/past from Plug-in reports into a Java Stack Trace console to navigate to source in your workspace. </p>
 <h2>SWORD4J analysis report generated Aug 29, 2007</h2>
 <br/><br/>
-[sword4j] WARNING: in <a href="viewcvs.php?projectName=org.eclipse.core.runtime&packageName=org.eclipse.core.runtime&fileName=Preferences.java&linenumber=383"> org.eclipse.core.runtime.Preferences.java:383</a>)
+[sword4j] WARNING: in <a href="viewcvs.php?projectName=org.eclipse.core.runtime&packageName=org.eclipse.core.runtime&fileName=Preferences.java&linenumber=383#curline"> org.eclipse.core.runtime.Preferences.java:383</a>)
 <br/>[sword4j] void importPreferences(org.eclipse.core.runtime.IPath)
 <br/>[sword4j] J2SE Permission required to invoke the method.<br/>
 </div>
