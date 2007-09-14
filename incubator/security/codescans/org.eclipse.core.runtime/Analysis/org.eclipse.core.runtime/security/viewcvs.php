@@ -51,10 +51,25 @@
    $file = fopen($cvs_url, "r");
    if (!$file) 
    {
-    echo "<p>Unable to open remote file:$cvs_url\n</p>";
-    exit;
-   } else {
-    echo "<p>Progress!!! The file was opened OK.</p>";
+     echo "<p>Unable to open remote file:$cvs_url\n</p>";
+     exit;
+   } else 
+   {
+   	 echo "<p>Progress!!! The file was opened OK.</p>";
+   	 $cur_line = 0;
+	 while (!feof ($file)) 
+	 {
+	    $line = fgets ($file, 1024);
+	    $cur_line+=1;
+	    if ($cur_line == $int_line)
+	    {
+	      // spank in a highlight on this line, and a <a name=" "> tag so it can be naivated with #name.
+	      echo "<a name=\"curline\"><FONT style=\"background-color:#F2C553;display;inline\">$line</FONT></a>";
+	    } else
+	    {
+	      echo $line;
+	    }
+	 }   	 
    }
    fclose($file);
  }
