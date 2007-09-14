@@ -63,12 +63,15 @@
 	    $line = fgets ($file, 1024);
 	    if ($start_counting === false)
 	      $start_counting = strpos($line,"<div id=\"vc_markup\">");
-	    if ($start_counting===true)
+	    if ($start_counting!==false)
 	      $cur_line+=1;
-	    if ($cur_line == $int_line && $start_counting === true )
+	    if ($cur_line == $int_line)
 	    {
-	      // spank in a highlight on this line, and a <a name=" "> tag so it can be naivated with #name.
-	      echo "<a name=\"curline\"><FONT style=\"background-color:#F2C553;display;inline\">$line</FONT></a>";
+	      if ($start_counting !== false )
+	      {
+  	        // spank in a highlight on this line, and a <a name=" "> tag so it can be naivated with #name.
+	        echo "<a name=\"curline\"><FONT style=\"background-color:#F2C553;display;inline\">$line</FONT></a>";
+	      }
 	    } else
 	    {
 	      echo $line;
