@@ -48,6 +48,15 @@
    echo "filePath=$filePath<br/>";
    $cvs_url = "http://dev.eclipse.org/viewcvs/index.cgi/" . $_REQUEST['projectName'] . "/src/$filePath?root=Eclipse_Project&view=markup";
    echo "cvs_url=$cvs_url<br/>"; 
+   $file = fopen($cvs_url, "r");
+   if (!$file) 
+   {
+    echo "<p>Unable to open remote file:$cvs_url\n</p>";
+    exit;
+   } else {
+    echo "<p>Progress!!! The file was opened OK.</p>";
+   }
+   fclose($file);
  }
  
  open_file();
