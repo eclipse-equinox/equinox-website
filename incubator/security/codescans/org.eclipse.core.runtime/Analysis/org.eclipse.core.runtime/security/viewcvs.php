@@ -30,6 +30,7 @@
 
  function open_file()
  {
+   /*
    echo "<br/>linenumber=";
    echo $_REQUEST['linenumber'];
    echo "<br/>projectName=";
@@ -39,15 +40,13 @@
    echo "<br/>fileName=";
    echo $_REQUEST['fileName'];
    echo "<br/>";
+   */
    $int_line = $_REQUEST['linenumber'];
-   echo "int_line=$int_line<br/>";
    $tmpPath = $_REQUEST['packageName'];
-   echo "tmpPath=$tmpPath<br/>";
    $filePath = str_replace(".","/",$tmpPath);
    $filePath = "$filePath/" . $_REQUEST['fileName'];
-   echo "filePath=$filePath<br/>";
    $cvs_url = "http://dev.eclipse.org/viewcvs/index.cgi/" . $_REQUEST['projectName'] . "/src/$filePath?root=Eclipse_Project&view=markup";
-   echo "cvs_url=$cvs_url<br/>"; 
+   //echo "cvs_url=$cvs_url<br/>"; 
    $file = fopen($cvs_url, "r");
    if (!$file) 
    {
@@ -77,8 +76,6 @@
 	      echo $line;
 	    }
 	 }
-     echo "<br/><b>start_counting=</b> $start_counting ";
-	 echo "<br/><b>cur_line=</b> $cur_line"; 
    }
    fclose($file);
  }
