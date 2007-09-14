@@ -41,9 +41,10 @@
    echo "<br/>";
    $int_line = $_REQUEST['linenumber'];
    echo "int_line=$int_line<br/>";
-   $tmpPath = $_REQUEST['packageName'] . "." . $_REQUEST['fileName'];
+   $tmpPath = $_REQUEST['packageName'];
    echo "tmpPath=$tmpPath<br/>";
    $filePath = str_replace(".","/",$tmpPath);
+   $filePath = "$filePath/" . $_REQUEST['fileName'];
    echo "filePath=$filePath<br/>";
    $projectPath = str_replace(".","/",$_REQUEST['projectName']);
    $cvs_url = "http://dev.eclipse.org/viewcvs/index.cgi/$projectPath/src/$filePath?root=Eclipse_Project&view=markup";
