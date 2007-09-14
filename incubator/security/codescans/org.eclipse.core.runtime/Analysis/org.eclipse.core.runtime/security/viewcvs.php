@@ -76,6 +76,8 @@
 	 }   	 
    }
    fclose($file);
+   echo "<br/><b>start_counting=</b> $start_counting ";
+   echo "<br/><b>cur_line=</b> $cur_line";
  }
  
  open_file();
