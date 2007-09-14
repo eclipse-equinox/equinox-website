@@ -46,8 +46,7 @@
    $filePath = str_replace(".","/",$tmpPath);
    $filePath = "$filePath/" . $_REQUEST['fileName'];
    echo "filePath=$filePath<br/>";
-   $projectPath = str_replace(".","/",$_REQUEST['projectName']);
-   $cvs_url = "http://dev.eclipse.org/viewcvs/index.cgi/$projectPath/src/$filePath?root=Eclipse_Project&view=markup";
+   $cvs_url = "http://dev.eclipse.org/viewcvs/index.cgi/" . $_REQUEST['projectName'] . "/src/$filePath?root=Eclipse_Project&view=markup";
    echo "cvs_url=$cvs_url<br/>"; 
  }
  
