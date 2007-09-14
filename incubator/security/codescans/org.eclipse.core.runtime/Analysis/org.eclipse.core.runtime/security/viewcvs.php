@@ -57,15 +57,15 @@
    {
    	 echo "<p>Progress!!! The file was opened OK.</p>";
    	 $cur_line = 0;
-   	 $start_counting = -1;
+   	 $start_counting = false;
 	 while (!feof ($file)) 
 	 {
 	    $line = fgets ($file, 1024);
-	    if ($start_counting == -1)
+	    if ($start_counting === false)
 	      $start_counting = strpos($line,"<div id=\"vc_markup\">");
-	    if ($start_counting >- 1)
-	    $cur_line+=1;
-	    if ($cur_line == $int_line && $start_counting > -1)
+	    if ($start_counting===true)
+	      $cur_line+=1;
+	    if ($cur_line == $int_line && $start_counting === true )
 	    {
 	      // spank in a highlight on this line, and a <a name=" "> tag so it can be naivated with #name.
 	      echo "<a name=\"curline\"><FONT style=\"background-color:#F2C553;display;inline\">$line</FONT></a>";
