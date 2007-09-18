@@ -31,3 +31,5 @@
 <li>Ted to look into scan results linked to ViewCVS</li>
 <li>Oleg to consider integration points of JAAS code into eclipse. Startup sequence, getSubject() in context, etc</li>
 </ul>
+<p>
+</p>
