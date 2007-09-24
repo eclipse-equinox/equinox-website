@@ -45,7 +45,15 @@
    $tmpPath = $_REQUEST['packageName'];
    $filePath = str_replace(".","/",$tmpPath);
    $filePath = "$filePath/" . $_REQUEST['fileName'];
-   $cvs_url = "http://dev.eclipse.org/viewcvs/index.cgi/" . $_REQUEST['projectName'] . "/src/$filePath?root=Eclipse_Project&view=markup";
+   $sourceFolder = ""; 
+   if (isset($_REQUEST['sourceFolder']))
+     $sourceFolder = "/" . $_REQUEST['sourceFolder'] . "/";
+
+   $cvs_url = "http://dev.eclipse.org/viewcvs/index.cgi/" . $_REQUEST['projectName'] . "$sourceFolder$filePath?root=" . $_REQUEST['repositoryRoot'] . "&view=markup";
+   if (isset($_REQUEST['revision']))
+   {
+     $cvs_url = "$cvs_url&revision=" . $_REQUEST['revision'];
+   }
    //echo "cvs_url=$cvs_url<br/>"; 
    $file = fopen($cvs_url, "r");
    if (!$file) 
