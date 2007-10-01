@@ -70,7 +70,7 @@ ob_start();
 		    <p><b>Aug 10</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14">
 		       The <a href="http://www.eclipse.org/equinox/incubator/provisioning/">Provisioning workarea</a> team in the 
 		       <a href="http://www.eclipse.org/equinox/incubator">Equinox Incubator</a> has released an M1a of the new provisioning
-		       support.  For more information see <a href="http://wiki.eclipse.org/Equinox_Provisioning_M1">the wiki</a>.</p>
+		       support.  For more information see <a href="http://wiki.eclipse.org/Equinox_p2_M1">the wiki</a>.</p>
 		    <p><b>Aug 8</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14">
 		       The <a href="http://www.eclipse.org/equinox/incubator/security/">Security workarea</a> in the 
 		       <a href="http://www.eclipse.org/equinox/incubator">Equinox Incubator</a> has come alive with various contributions from Lotus
