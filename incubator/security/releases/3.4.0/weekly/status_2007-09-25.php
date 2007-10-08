@@ -15,7 +15,6 @@
 <li>Discussed integration of o.e.e.security.boot.*, o.e.e.security.provider and o.e.e.security.provider-feature into the Equinox build</li>
 <li>Brainstormed potential enhancements to the SWORD4J scanning on Equinox site: using a database backend to store code snippets, link to bugzillas</li>
 <li>Talked about upcoming UI work for viewing security config, and touch-less secure launch</li>
-<li></li>
 </ul>
 
 <p><strong>Actions:</strong>
