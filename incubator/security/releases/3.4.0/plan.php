@@ -131,7 +131,7 @@ function traverseLinkifyBugs(node) {
 	TBD
 
 <?php
-   include $_SERVER['DOCUMENT_ROOT'] . "/equinox/incubator/security/releases/3.4.0/M2/plan.html";
+   include $_SERVER['DOCUMENT_ROOT'] . "/equinox/incubator/security/releases/3.4.0/M3/plan.html";
 ?>
 
    <p class="bar">Legend</p>
