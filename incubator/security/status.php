@@ -42,6 +42,7 @@
       </p>
       
 <?php
+   include $_SERVER['DOCUMENT_ROOT'] . "/equinox/incubator/security/releases/3.4.0/weekly/status_2007-10-16.php";
    include $_SERVER['DOCUMENT_ROOT'] . "/equinox/incubator/security/releases/3.4.0/weekly/status_2007-10-09.php";
    include $_SERVER['DOCUMENT_ROOT'] . "/equinox/incubator/security/releases/3.4.0/weekly/status_2007-10-02.php";
    include $_SERVER['DOCUMENT_ROOT'] . "/equinox/incubator/security/releases/3.4.0/weekly/status_2007-09-25.php";
