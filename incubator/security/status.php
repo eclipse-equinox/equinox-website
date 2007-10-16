@@ -36,8 +36,9 @@
       </p>
       
       <p><strong>Call in details: (866) 880-0098 w/passcode 9639110</strong>
+      </p>
       
-      <p>Add to calendar: <a target="_blank" href="http://www.google.com/calendar/ical/7t4bfbaoabkhhsaejtse2s7imo%40group.calendar.google.com/public/basic.ics"><img border=0 src="http://www.google.com/calendar/images/ical.gif"></a></p>
+      <p>Add to calendar: <a target="_blank" href="http://www.google.com/calendar/ical/7t4bfbaoabkhhsaejtse2s7imo%40group.calendar.google.com/public/basic.ics"><img border=0 src="http://www.google.com/calendar/images/ical.gif"></a>
       </p>
       
 <?php
