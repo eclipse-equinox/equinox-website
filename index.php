@@ -65,7 +65,7 @@ ob_start();
 
 		  <p class=bar>What's New</p>
 		    <p><b>Oct 23</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14">
-		      A new work work area <a href="http://www.eclipse.org/equinox/incubator/osgi-next/">OSGi next</a>has been started in 
+		      A new work work area <a href="http://www.eclipse.org/equinox/incubator/osgi-next/">OSGi next</a> has been started in 
 		      the <a href="http://www.eclipse.org/equinox/incubator">Equinox Incubator</a> for prototyping and 
 		      investigating future OSGi specifications.</p>
 		    <p><b>Sep 4</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14">

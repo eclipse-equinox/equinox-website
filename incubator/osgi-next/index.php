@@ -27,8 +27,8 @@ ob_start();
 
 <p class=bar>Mission Statement</p>
 <p>
-This incubator project is targetted at implementing prototypes of the specifications developed by the 
-<a href="http://www.osgi.org">OSGi Alliance</a> while the specification is being developmented.
+This incubator project is targeted at implementing prototypes of the specifications developed by the 
+<a href="http://www.osgi.org">OSGi Alliance</a> while the specification is being developed.
 Typically the development cycle for the OSGi specification do not align with the Eclipse yearly release train.
 In many cases it is not feasible to develop prototypes for the next OSGi specifications in current release stream 
 of Eclipse.
