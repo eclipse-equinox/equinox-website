@@ -64,6 +64,10 @@ ob_start();
 				of Equinox.</p>
 
 		  <p class=bar>What's New</p>
+		    <p><b>Oct 23</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14">
+		      A new work work area <a href="http://www.eclipse.org/equinox/incubator/osgi-next/">OSGi next</a>has been started in 
+		      the <a href="http://www.eclipse.org/equinox/incubator">Equinox Incubator</a> for prototyping and 
+		      investigating future OSGi specifications.</p>
 		    <p><b>Sep 4</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14">
 		       The <a href="http://wiki.eclipse.org/Equinox_Summit_2007">Equinox Summit</a> is shaping up to be a great
 		       event with some 20 people alread registered.</p>
