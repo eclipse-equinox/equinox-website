@@ -16,7 +16,8 @@
 <p><strong>Updates:</strong>
 </p>
 <ul>
-<li>Dove right into the P2 discussion.. Quick overview of needs:</li>
+<li>Dove right into the P2 discussion.. Overview of needs:</li>
+<li>
 <ul>
 <li>Verify signatures on content as it is downloaded</li>
 <li>UI for signature information about signed content</li>
@@ -31,6 +32,7 @@
 <li>FUTURE: a method to secure data (probably encrypt) is some storage area</li>
 <li>FUTURE: permissions for install related actions</li>
 </ul>
+</li>
 </ul>
 
 <p><strong>Actions:</strong>
