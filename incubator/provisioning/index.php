@@ -60,7 +60,7 @@ There you will find documents discussing:</p>
 
 <p class=bar>Active investigators</p>
 <ul>
-<li>Andrew Overholt (RedHat)</li>
+<li>Andrew Overholt (Red Hat)</li>
 <li>Dave Stevenson (IBM)</li>
 <li>Jeff McAffer (IBM)</li>
 <li>John Arthorne (IBM)</li>
