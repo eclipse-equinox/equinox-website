@@ -28,12 +28,12 @@ ob_start();
 <p class=bar>Getting Started</p>
 <p>
 <ol>
-  <li>Install <a href="http://fullmoon.torolab.ibm.com/downloads/drops/R-3.2-200606291905/index.php">Eclipse 3.2 SDK</a>.</li>
-  <li>Install <a href="http://www.eclipse.org/ajdt/downloads/">AspectJ Development Tools (AJDT) 1.4.1</a>.</li>
+  <li>Install <a href="http://www.eclipse.org/downloads/download.php?file=/eclipse/downloads/drops/R-3.3.1.1-200710231652/eclipse-SDK-3.3.1.1-win32.zip">Eclipse 3.3 SDK</a>.</li>
+  <li>Install <a href="http://www.eclipse.org/ajdt/downloads/">AspectJ Development Tools (AJDT) 1.5.0</a>.</li>
   <li>Install the AspectJ Equinox Framework Extension using
-  either the update site <code>http://download.eclipse.org/tools/aspectj/dev/update</code> or by
-  downloading and unzipping <a href="downloads/org.aspectj.osgi_1.0.3a_archive.zip">
-  <code>org.aspectj.osgi_1.0.3a_archive.zip</code></a>.</li>
+  either the update site <code>http://www.eclipse.org/equinox/incubator/aspects/downloads/update</code> or by
+  downloading and unzipping <a href="downloads/org.aspectj.osgi_1.0.4_archive.zip">
+  <code>org.aspectj.osgi_1.0.4_archive.zip</code></a>.</li>
 <!--  
   <li>Check out the org.aspectj.osgi, org.aspectj.osgi.service.weaving and org.eclipse.osgi_3.2.0 bundles
   from the "aspects" folder in the <a href="http://www.eclipse.org/equinox/incubator/howto.php">incubator repository</a>

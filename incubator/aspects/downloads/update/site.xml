@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <description>
+      This update site provides the Aspect Equinox Incubator.
+   </description>
+   <feature url="features/org.aspectj.osgi.feature_1.0.4.200801082259.jar" id="org.aspectj.osgi.feature" version="1.0.4.200801082259">
+      <category name="org.aspectj.osgi"/>
+   </feature>
+   <category-def name="org.aspectj.osgi" label="AspectJ Equinox Framework Extension"/>
+</site>
