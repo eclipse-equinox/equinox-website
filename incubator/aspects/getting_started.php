@@ -28,7 +28,7 @@ ob_start();
 <p class=bar>Getting Started</p>
 <p>
 <ol>
-  <li>Install <a href="http://www.eclipse.org/downloads/download.php?file=/eclipse/downloads/drops/R-3.3.1.1-200710231652/eclipse-SDK-3.3.1.1-win32.zip">Eclipse 3.3 SDK</a>.</li>
+  <li>Install <a href="http://download.eclipse.org/eclipse/downloads/drops/R-3.3.1.1-200710231652/index.php">Eclipse 3.3 SDK</a>.</li>
   <li>Install <a href="http://www.eclipse.org/ajdt/downloads/">AspectJ Development Tools (AJDT) 1.5.0</a>.</li>
   <li>Install the AspectJ Equinox Framework Extension using
   either the update site <code>http://www.eclipse.org/equinox/incubator/aspects/downloads/update</code> or by

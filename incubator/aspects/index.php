@@ -26,7 +26,11 @@ ob_start();
 <h1><?= $pageTitle ?></h1>
 
 <p class=bar>News</p>
-<p>The Aspects project is pleased to announce the availability of Version 1.0.3.
+<p><b>Jan 11</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14">
+		       We are pleased to announce the availability of version 1.0.4 of Equinox Aspects.
+		       Please visit the <a href="getting_started.php">Getting Started</a> page for download and install instructions.</p>
+		       
+		       <p>The Aspects project is pleased to announce the availability of Version 1.0.3.
   This release, which is available from the update site or as a download, includes Phase I,
   <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=161020"> Phase II<a> and
   <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=161023"> Phase III<a> 
