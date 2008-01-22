@@ -48,8 +48,8 @@
    $sourceFolder = ""; 
    if (isset($_REQUEST['sourceFolder']))
    {
-     $sourceFolder = str_replace(" ", "%20",$sourceFolder);
-     $sourceFolder = "/" . $_REQUEST['sourceFolder'] . "/";
+     $sourceFolder = str_replace(" ", "%20",$_REQUEST['sourceFolder']);
+     $sourceFolder = "/$sourceFolder/";
    }
    $cvs_url = "http://dev.eclipse.org/viewcvs/index.cgi/" . urlencode($_REQUEST['projectName']) . "$sourceFolder$filePath?root=" . $_REQUEST['repositoryRoot'] . "&view=markup";
    if (isset($_REQUEST['revision']))
