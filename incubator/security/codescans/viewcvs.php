@@ -44,12 +44,12 @@
    $int_line = $_REQUEST['linenumber'];
    $tmpPath = $_REQUEST['packageName'];
    $filePath = str_replace(".","/",$tmpPath);
-   $filePath = "$filePath/" . $_REQUEST['fileName'];
+   $filePath = urlencode("$filePath/" . $_REQUEST['fileName']);
    $sourceFolder = ""; 
    if (isset($_REQUEST['sourceFolder']))
-     $sourceFolder = "/" . $_REQUEST['sourceFolder'] . "/";
+     $sourceFolder = "/" . urlencode($_REQUEST['sourceFolder']) . "/";
 
-   $cvs_url = "http://dev.eclipse.org/viewcvs/index.cgi/" . $_REQUEST['projectName'] . "$sourceFolder$filePath?root=" . $_REQUEST['repositoryRoot'] . "&view=markup";
+   $cvs_url = "http://dev.eclipse.org/viewcvs/index.cgi/" . urlencode($_REQUEST['projectName']) . "$sourceFolder$filePath?root=" . $_REQUEST['repositoryRoot'] . "&view=markup";
    if (isset($_REQUEST['revision']))
    {
      $cvs_url = "$cvs_url&revision=" . $_REQUEST['revision'];
