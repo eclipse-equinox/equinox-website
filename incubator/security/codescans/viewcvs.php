@@ -44,7 +44,7 @@
    $int_line = $_REQUEST['linenumber'];
    $tmpPath = $_REQUEST['packageName'];
    $filePath = str_replace(".","/",$tmpPath);
-   $filePath = urlencode("$filePath/" . $_REQUEST['fileName']);
+   $filePath = "$filePath/" . $_REQUEST['fileName'];
    $sourceFolder = ""; 
    if (isset($_REQUEST['sourceFolder']))
      $sourceFolder = "/" . urlencode($_REQUEST['sourceFolder']) . "/";
