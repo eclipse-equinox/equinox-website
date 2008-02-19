@@ -48,7 +48,7 @@ ob_start();
   </tr>
   <tr>
     <td align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-    <td><b>Java Launcher (org.eclipse.equinox.launcher)</b><br>
+    <td><b>Java Launcher (<a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox.launcher/">org.eclipse.equinox.launcher</a>)</b><br>
       This helps setup the framework classloader and launches the Framework
       etc. <font color="#FF0000">Note: this code used to be included in the startup.jar and has be moved from its old location in the 
       <a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.platform/">org.eclipse.platform</a> project.</font> 
