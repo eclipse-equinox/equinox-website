@@ -35,9 +35,10 @@ ob_start();
 				for the Extenstion registry used throughout Eclipse.</p>
 
 		  <p class=bar>What's New</p>
-		  <p><b>Sep 28</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14"> The
-		    Equiox server-side support has graduated from the incubator into the Bundles
-		    component.</p>
+		  <p><b>Feb 2008</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14">
+		  Several new OSGi service implementations contributed by ProSyst have been graduated into the Bundles
+		  component.  This includes Declarative Services, IO Connector Service, Initial Provisioning, and Wire Admin Service.
+		  </p>
 
 		  <p class=bar>Bundle Projects</p>
 		  <p>The Bundles component consists of several &quot;projects&quot; in the Eclipse
@@ -63,7 +64,7 @@ ob_start();
   </tr>
   <tr>
     <td align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-    <td><b><a name="config"></a>Config Admin (<a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox.config">org.eclipse.equinox.config</a>)</b> <A HREF="#legend" style="color:red;"> status:red</a><br>
+    <td><b><a name="config"></a>Config Admin (<a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox.cm">org.eclipse.equinox.cm</a>)</b> <A HREF="#legend" style="color:red;"> status:red</a><br>
         <font color="#FF0000">Coming soon...</font> An implementation of the
         OSGi R4 Configuration Admin service.</td>
   </tr>
@@ -77,14 +78,12 @@ ob_start();
   </tr>
   <tr>
     <td align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-    <td><b><a name="ds"></a>Declarative Services (<a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox.ds">org.eclipse.equinox.ds</a>)</b><A HREF="#legend" style="color:red;"> status:red</a><br>
+    <td><b><a name="ds"></a>Declarative Services (<a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox.ds">org.eclipse.equinox.ds</a>)</b><A HREF="#legend" style="color:green;"> status:green</a><br>
         An implementation of the OSGi R4 Declarative Services specification.
           This service simplifies the task of authoring OSGi services by performing
           the work of registering the service and handling service dependencies.
-          This
-          minimizes the amount of code a programmer has to write; it also allows
-          service 
-        components to be loaded only when they are needed.</td>
+          This minimizes the amount of code a programmer has to write; it also allows
+          service components to be loaded only when they are needed.</td>
   </tr>
   <tr>
     <td align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
@@ -101,6 +100,20 @@ ob_start();
         (<a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox.http">org.eclipse.equinox.http</a>)</b><A HREF="#legend" style="color:green;"> status:green</a><br>
     An implementation of the OSGi R4 HTTP service. This service provides an embedded
     HTTP server that is capable of serving HTML and Java servlets.</td>
+  </tr>
+  <tr>
+    <td align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+    <td><b> <a name="io"></a>IO Connector Service 
+        (<a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox.io">org.eclipse.equinox.io</a>)</b><A HREF="#legend" style="color:green;"> status:green</a><br>
+    An implementation of the OSGi R4 IO Connector Service.  This service adopts the javax.microedition.io packages as a basic communications infrastructure.
+    This specification defines a service that adopts the flexible model of the Connector framework in J2ME, but allows OSGi bundles to extend it.</td>
+  </tr>
+  <tr>
+    <td align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+    <td><b> <a name="ip"></a>IO Connector Service 
+        (<a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox.ip">org.eclipse.equinox.ip</a>)</b><A HREF="#legend" style="color:green;"> status:green</a><br>
+    An implementation of the OSGi R4 Initial Provisioning.  This service Defines how the Management Agent can make its way to the Service Platform, 
+    and gives a structured view of the problems and their corresponding resolution methods.</td>
   </tr>
   <tr>
     <td align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
@@ -148,11 +161,18 @@ ob_start();
   <tr>
     <td align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
     <td><b> <a name="wire"></a>Wire Admin Service
-        (<a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox.wireadmin">org.eclipse.equinox.wireadmin</a>)</b><A HREF="#legend" style="color:red;"> status:red</a><br>
+        (<a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox.wireadmin">org.eclipse.equinox.wireadmin</a>)</b><A HREF="#legend" style="color:green;"> status:green</a><br>
     An implementation of the OSGi R4 Wire Admin Service. This is an administrative
     service that is used to control a wiring topology in the OSGi Service Platform.
     It is intended to be used by user interfaces or management programs that
     control the wiring of services in an OSGi Service Platform.</td>
+  </tr>
+    <tr>
+    <td align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+    <td><b> <a name="equinox.util"></a>Wire Admin Service
+        (<a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox.util">org.eclipse.equinox.util</a>)</b><A HREF="#legend" style="color:green;"> status:green</a><br>
+        A  library of utility classes that are frequently used the Equinox OSGi Service implementation bundles.
+        </td>
   </tr>
   <tr>
     <td align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
@@ -163,7 +183,7 @@ ob_start();
   </tr>
   <tr>
     <td align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-    <td><strong><a name="util"></a>OSGi Utilities (<a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.osgi.services">org.eclipse.osgi.util</a>)</strong><A HREF="#legend" style="color:green;"> status:green</a><br>
+    <td><strong><a name="util"></a>OSGi Utilities (<a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.osgi.util">org.eclipse.osgi.util</a>)</strong><A HREF="#legend" style="color:green;"> status:green</a><br>
     This bundle contains the set of OSGi specified utilities (e.g., ServiceTracker).
       It is included here as a convenience.</td>
   </tr>
@@ -186,13 +206,14 @@ ob_start();
 				<p>The following people are committers on the Equinox bundles component:</p>
 				<ul>
 					<li>Oleg Besedin, IBM Rational</li>
-					<li>Jennifer Fogell, IBM Lotus</li>
 					<li>Simon Kaegi, IBM Rational</li>
 					<li>BJ Hargrave, IBM Lotus</li>
 					<li>DJ Houghton, IBM Rational</li>
-					<li>Jeff McAffer, IBM Rational (Project lead)</li>
+					<li>Jeff McAffer, Code 9 (Project co-lead)</li>
 					<li>Pascal Rapicault, IBM Rational</li>
-					<li>Tom Watson, IBM Lotus</li>
+					<li>Tom Watson, IBM Lotus (Project co-lead)</li>
+					<li>Pavlin Dobrev, ProSyst</li>
+					<li>Stoyan Boshev, ProSyst</li>
 				</ul>
 	<p>&nbsp;</p>
 </div>
