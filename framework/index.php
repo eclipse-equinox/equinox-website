@@ -48,19 +48,22 @@ ob_start();
   </tr>
   <tr>
     <td align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-    <td><b>Boot support (org.eclipse.equinox.boot)</b><br>
-    This is the Eclipse startup.jar that helps setup the framework classloader
-      etc. <font color="#FF0000">Note: this code has yet to be moved. It is currently
-      in the <a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.platform/">org.eclipse.platform</a> project.</font> See <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=113069">bug
-      113069</a> for more details.</td>
+    <td><b>Java Launcher (org.eclipse.equinox.launcher)</b><br>
+      This helps setup the framework classloader and launches the Framework
+      etc. <font color="#FF0000">Note: this code used to be included in the startup.jar and has be moved from its old location in the 
+      <a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.platform/">org.eclipse.platform</a> project.</font> 
+      See <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=113069">bug 113069</a> for more details.</td>
   </tr>
   <tr>
     <td align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-    <td><b>Native Launcher (<a href="http://dev.eclipse.org/viewcvs/index.cgi/platform-launcher/">platform-launcher</a>)</b><br>
-    The launcher is the native executable that runs startup.jar and thus
+    <td><b>Native Launcher (<a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox.executable/">org.eclipse.equinox.executable</a>)</b><br>
+      The launcher is the native executable that finds and runs the java launcher org.eclipse.equinox.launcher and thus
       the framework. It is also responsible for putting up the splash screen
       etc. The launcher is written in C and currently supports a wide range of
-    operating systems, window systems and processor architectures.</td>
+      operating systems, window systems and processor architectures.
+      The launcher is split into a small native executable and a platform specific library.  The source for both the launcher and 
+      the library can be found in the org.eclipse.equinox.executable project.
+      </td>
   </tr>
 </table>
 <p>The Framework team typically develops using Eclipse itself so getting and
@@ -73,12 +76,12 @@ information and choose the projects you want to load into the workspace. </p>
 		  <p class=bar>Committers</p>
 			<p>The following people are committers on the Equinox Framework component:</p>
 			<ul>
-				<li>Jennifer Fogell, IBM Lotus</li>
 				<li>BJ Hargrave, IBM Lotus</li>
 				<li>DJ Houghton, IBM Rational</li>
-				<li>Jeff McAffer, IBM Rational (Project lead)</li>
+				<li>Jeff McAffer, Code 9 (Project co-lead)</li>
+				<li>Andrew Niefer, IBM Rational</li>
 				<li>Pascal Rapicault, IBM Rational</li>
-				<li>Tom Watson, IBM Lotus</li>
+				<li>Tom Watson, IBM Lotus (Project co-lead)</li>
 			</ul>
 <p>&nbsp;</p>
 	</div>
