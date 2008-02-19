@@ -206,14 +206,14 @@ ob_start();
 				<p>The following people are committers on the Equinox bundles component:</p>
 				<ul>
 					<li>Oleg Besedin, IBM Rational</li>
+					<li>Stoyan Boshev, ProSyst</li>
+					<li>Pavlin Dobrev, ProSyst</li>
 					<li>Simon Kaegi, IBM Rational</li>
 					<li>BJ Hargrave, IBM Lotus</li>
 					<li>DJ Houghton, IBM Rational</li>
 					<li>Jeff McAffer, Code 9 (Project co-lead)</li>
 					<li>Pascal Rapicault, IBM Rational</li>
 					<li>Tom Watson, IBM Lotus (Project co-lead)</li>
-					<li>Pavlin Dobrev, ProSyst</li>
-					<li>Stoyan Boshev, ProSyst</li>
 				</ul>
 	<p>&nbsp;</p>
 </div>
