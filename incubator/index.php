@@ -104,19 +104,23 @@ The goal of the Equinox Incubator is to experiment with techniques for
 			<p class=bar>Committers</p>
       <p>The following people are committers on the Equinox Incubator:</p>
       <ul>
+        <li>John Arthorne, IBM Rational</li>
+        <li>Oleg Besedin, IBM Rational</li>
         <li>Pavlin Dobrev, Prosyst</li>
+        <li>Stoyan Boshev, ProSyst</li>
         <li>Matt Flaherty, IBM Lotus</li>
-        <li>Jennifer Fogell, IBM PvC</li>
 		<li>Ted Habeck, IBM Research</li>
         <li>BJ Hargrave, IBM Lotus</li>
         <li>Simon Kaegi, IBM Rational</li>
         <li>Eric W Li, IBM Lotus</li>
+        <li>Stefan Liebig, compeople</li>
         <li>Martin Lippert, it-agile</li>
-        <li>Jeff McAffer, IBM Rational (Project lead)</li>
+        <li>Jeff McAffer, Code 9 (Project co-lead)</li>
+        <li>Susan McCourt, IBM Rational</li>
         <li>Andrew Niefer, IBM Rational</li>
         <li>Pascal Rapicault, IBM Rational</li>
-        <li>Teodor Todorov, Prosyst</li>
-        <li>Tom Watson, IBM Lotus</li>
+        <li>Dave Stevenson, IBM Rational</li>
+        <li>Tom Watson, IBM Lotus (Project co-lead)</li>
         <li>Matthew Webster, IBM Hursley</li>
         <li>Ikuo Yamasaki, NTT Corporation</li>
       </ul>
