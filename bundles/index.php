@@ -39,7 +39,9 @@ ob_start();
 		  Several new OSGi service implementations contributed by ProSyst have been graduated into the Bundles
 		  component.  This includes Declarative Services, IO Connector Service, Initial Provisioning, and Wire Admin Service.
 		  </p>
-
+		  <p><b>Feb 2008</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14">
+		  The Config Admin Service implementation bundle been graduated into the Bundles component.
+		  </p>
 		  <p class=bar>Bundle Projects</p>
 		  <p>The Bundles component consists of several &quot;projects&quot; in the Eclipse
   CVS repository (see the <a href="resources.php">resources</a> page for information
@@ -64,9 +66,8 @@ ob_start();
   </tr>
   <tr>
     <td align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-    <td><b><a name="config"></a>Config Admin (<a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox.cm">org.eclipse.equinox.cm</a>)</b> <A HREF="#legend" style="color:red;"> status:red</a><br>
-        <font color="#FF0000">Coming soon...</font> An implementation of the
-        OSGi R4 Configuration Admin service.</td>
+    <td><b><a name="config"></a>Config Admin (<a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox.cm">org.eclipse.equinox.cm</a>)</b> <A HREF="#legend" style="color:green;"> status:green</a><br>
+        An implementation of the OSGi R4 Configuration Admin service.</td>
   </tr>
   <tr>
     <td align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
