@@ -170,7 +170,7 @@ ob_start();
   </tr>
     <tr>
     <td align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-    <td><b> <a name="equinox.util"></a>Wire Admin Service
+    <td><b> <a name="equinox.util"></a>Equinox Utilities
         (<a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox.util">org.eclipse.equinox.util</a>)</b><A HREF="#legend" style="color:green;"> status:green</a><br>
         A  library of utility classes that are frequently used the Equinox OSGi Service implementation bundles.
         </td>
