@@ -64,6 +64,11 @@ ob_start();
 				of Equinox.</p>
 
 		  <p class=bar>What's New</p>
+		    <p><b>Mar 10</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14">
+		       The <a href="http://www.eclipse.org/equinox/incubator/aspects/index.php">Equinox Aspects </a> team in the 
+		       <a href="http://www.eclipse.org/equinox/incubator">Equinox Incubator</a> has released version 1.1.0 of the Equinox
+		       Aspects bundles. The release is compatible with Eclipse 3.3 and 3.4, the latest AJDT versions, adds
+		       caching of woven bundles for non-IBM VMs, fixes a number of bugs and improves stability.</p>
 		    <p><b>Oct 23</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14">
 		      A new work work area <a href="http://www.eclipse.org/equinox/incubator/osgi-next/">OSGi next</a> has been started in 
 		      the <a href="http://www.eclipse.org/equinox/incubator">Equinox Incubator</a> for prototyping and 

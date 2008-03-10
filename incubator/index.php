@@ -81,6 +81,11 @@ The goal of the Equinox Incubator is to experiment with techniques for
   the <a href="howto.php">How to Incubate</a> guide.</p>
 
 		  <p class=bar>What's New</p>
+		    <p><b>Mar 10</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14">
+		       The <a href="http://www.eclipse.org/equinox/incubator/aspects/index.php">Equinox Aspects </a> team in the 
+		       <a href="http://www.eclipse.org/equinox/incubator">Equinox Incubator</a> has released version 1.1.0 of the Equinox
+		       Aspects bundles. The release is compatible with Eclipse 3.3 and 3.4, the latest AJDT versions, adds
+		       caching of woven bundles for non-IBM VMs, fixes a number of bugs and improves stability.</p>
 		    <p><b>Aug 10</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14">
 		       The <a href="http://www.eclipse.org/equinox/incubator/provisioning/">Provisioning workarea</a> team in the 
 		       <a href="http://www.eclipse.org/equinox/incubator">Equinox Incubator</a> has released an M1a of the new provisioning
