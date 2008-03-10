@@ -41,7 +41,7 @@ ob_start();
 		       
 		       In addition to the standard caching service this release includes a number of bug fixes and
 		       stability improvements. See the readme.txt for details. As a side effect of the reworked
-		       supplementing mechanism you no longer need to list aspects bundles in the config.ini and you
+		       supplementing mechanism you no longer need to list aspect bundles in the config.ini and you
 		       can even install aspects bundles dynamically at runtime.<p>
 		       
 		       <b>Special thanks</b> go to <b>Heiko Seeberger</b> and <b>Wojciech Durczynski</b> for bug reporting, testing and
