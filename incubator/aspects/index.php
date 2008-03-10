@@ -33,17 +33,17 @@ ob_start();
 		       This version of Equinox Aspects works with AJDT 1.5.1 as well as the development builds of
 		       AJDT 1.5.2 and AJDT 1.6.0. This means also that Equinox Aspects works with Eclipse 3.3 and
 		       the current Eclipse 3.4 milestone builds. Older versions of AJDT are not supported with this
-		       release. Please let us know if you need Equinox Aspects for older AJDT versions.
+		       release. Please let us know if you need Equinox Aspects for older AJDT versions.</p>
 		       
 		       This version delivers caching of woven bundles for non-IBM VMs for the first time. This means that you have
 		       a caching bundle for standard Java VMs. This service was contributed by Heiko Seeberger.
-		       Many thanks to Heiko for this great work!
+		       Many thanks to Heiko for this great work!</p>
 		       
 		       In addition to the standard caching service this release includes a number of bug fixes and
-		       stability improvements. See the readme.txt for details.
+		       stability improvements. See the readme.txt for details.</p>
 		       
 		       Special thanks go to Heiko Seeberger and Wojciech Durczynski for bug reporting, testing and
-		       last but not least great patch contributions!
+		       last but not least great patch contributions!</p>
 
 <p><b>Jan 11</b> - We are pleased to announce the availability of version 1.0.4 of Equinox Aspects.
 		       Please visit the <a href="getting_started.php">Getting Started</a> page for download and install instructions.</p>
