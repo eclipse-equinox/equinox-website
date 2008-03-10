@@ -42,7 +42,7 @@ ob_start();
 		       In addition to the standard caching service this release includes a number of bug fixes and
 		       stability improvements. See the readme.txt for details.<p>
 		       
-		       Special thanks go to Heiko Seeberger and Wojciech Durczynski for bug reporting, testing and
+		       <b>Special thanks</b> go to <b>Heiko Seeberger</b> and <b>Wojciech Durczynski</b> for bug reporting, testing and
 		       last but not least great patch contributions!<p>
 
 <p><b>Jan 11</b> - We are pleased to announce the availability of version 1.0.4 of Equinox Aspects.
