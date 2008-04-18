@@ -86,6 +86,7 @@ ob_start();
 			<p class=bar>Related Documents</p>
 			<ul>
 				<li> <a href="http://osgi.org/osgi_technology/download_specs.asp?section=2">OSGi specifications</a></li>
+				<li> <a href="iplogs/EquinoxIPlog.html">IP Logs</a></li>
 			</ul>
 <p>&nbsp;</p>
 	</div>
