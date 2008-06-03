@@ -111,7 +111,7 @@ ob_start();
   </tr>
   <tr>
     <td align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-    <td><b> <a name="ip"></a>IO Connector Service 
+    <td><b> <a name="ip"></a>Initial Provisioning 
         (<a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox.ip">org.eclipse.equinox.ip</a>)</b><A HREF="#legend" style="color:green;"> status:green</a><br>
     An implementation of the OSGi R4 Initial Provisioning.  This service Defines how the Management Agent can make its way to the Service Platform, 
     and gives a structured view of the problems and their corresponding resolution methods.</td>
