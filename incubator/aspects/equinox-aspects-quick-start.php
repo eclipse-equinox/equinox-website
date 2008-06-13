@@ -39,7 +39,7 @@ AJDT 1.5.2 / AspectJ 1.6.0.
   <li>Install <a href="http://download.eclipse.org/eclipse/downloads/drops/R-3.3.2-200802211800/index.php">Eclipse 3.3.2 SDK</a>.</li>
   <li>Install <a href="http://www.eclipse.org/downloads/download.php?file=/tools/ajdt/33/update/ajdt_1.5.2_for_eclipse_3.3.zip">AspectJ Development Tools (AJDT) 1.5.2</a>.</li>
   <li>Download <a href="downloads/org.aspectj.osgi-incubation-1.1.0-archive.zip">Equinox Aspects 1.1.0</a>.</li>
-  <li>Equinox Aspects comes without any tooling, thus there is no need to install it into your development environment (SDK). We strongly recommend to use a custom target platform inside your workspace as described in the next section. But if you prefer to mix your SDK with Equinox Aspects you could extract the downloaded archive into your SDK installation.
+  <li>Equinox Aspects comes without any tooling, thus there is no need to install it into your development environment (SDK). We strongly recommend to use a custom target platform local to your workspace as described in the next section. But if you prefer to mix your SDK with Equinox Aspects you could extract the downloaded archive into your SDK installation.
   </li>
 </ol>
 
@@ -78,7 +78,7 @@ If you are planning to support different target platforms, e.g. with different v
 <p class=bar>Configuring your aspect bundle</p>
 
 <p>
-There is nothing special about non-aspect bundles in Equinox Aspects. Your aspect-bundles however need some special treatment:
+There is nothing special about non-aspect bundles in Equinox Aspects. Your bundles containing aspects however need some special treatment:
 </p>
 
 <ol>
@@ -98,10 +98,10 @@ There is nothing special about non-aspect bundles in Equinox Aspects. Your aspec
 <li>The weaving service (bundle <i>org.aspectj.osgi.service.weaving</i>) has to be started before classes are loaded from any bundles targeted for weaving.</li>
 </ol>
 
-<p>&nbsp;</p>
-
 <p>For the Hello world demo applying all these steps will result in printing "Hi from HelloAspect ;-)" when the bundle <i>org.eclipse.equinox.aspects.demo.hello</i> is started (after the weaving service).</p>
 <img src="images/hello-run.png" border="1" />
+
+<p>&nbsp;</p>
 
 </div>
 
