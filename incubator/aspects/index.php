@@ -155,6 +155,7 @@ AOP and OSGi - A Marriage Made in Heaven</a>.
 <p class=bar>Active investigators</p>
 <ul>
   <li>Martin Lippert (it-agile)</li>
+  <li>Matthew Webster (IBM)</li>
   <li>Heiko Seeberger (Weigle Wilczek GmbH)</li>
 </ul>
 
