@@ -28,11 +28,11 @@ ob_start();
 <p class=bar>Latest news</p>
 
 <p>
-  <b>Mar 10</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14" />
+  <b>Jun 13 2008</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14" />
   We reworked this website and created an up-to-date <a href="equinox-aspects-quick-start.php">
   quick-start guide</a> including a <a href="downloads/equinox-aspects-hello-world_1.1.0.zip">"Hello world!" demo</a>. We are looking forward to getting your feedback ...
 </p>
-<p><b>Mar 10</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14">
+<p><b>Mar 10 2008</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14">
 		       We are pleased to announce the availability of version 1.1.0 of Equinox Aspects ...
 		       <!--
 		       Please visit the <a href="getting_started.php">Getting Started</a> page for download and install instructions.<p>
@@ -54,7 +54,7 @@ ob_start();
 		       <b>Special thanks</b> go to <b>Heiko Seeberger</b> and <b>Wojciech Durczynski</b> for bug reporting, testing and
 		       last but not least great patch contributions!<p>
 					 -->
-<p><b>Jan 11</b> - We are pleased to announce the availability of version 1.0.4 of Equinox Aspects ...
+<p><b>Jan 11 2008</b> - We are pleased to announce the availability of version 1.0.4 of Equinox Aspects ...
            <!--
 		       Please visit the <a href="getting_started.php">Getting Started</a> page for download and install instructions.</p>
 		       
