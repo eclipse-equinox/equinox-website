@@ -30,7 +30,7 @@ ob_start();
 <p>
   <b>Mar 10</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14" />
   We reworked this website and created an up-to-date <a href="equinox-aspects-quick-start.php">
-  quick-start guide</a> including a simple demo. We are looking forward to getting your feedback.
+  quick-start guide</a> including a <a href="downloads/equinox-aspects-hello-world_1.1.0.zip">"Hello world!" demo</a>. We are looking forward to getting your feedback ...
 </p>
 <p><b>Mar 10</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14">
 		       We are pleased to announce the availability of version 1.1.0 of Equinox Aspects ...

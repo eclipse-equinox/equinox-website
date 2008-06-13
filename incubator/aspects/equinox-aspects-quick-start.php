@@ -25,7 +25,7 @@ ob_start();
 <div id="midcolumn">
 <h1><?= $pageTitle ?></h1>
 
-<p>The following steps are intended to help you getting started with Equinox Aspects. Please also take a look at the <a href="downloads/equinox-aspects-hello-world_1.1.0.zip">"Hello world!"</a> demo (from the link for from CVS) which is used as an example at some points.</p>
+<p>The following steps are intended to help you getting started with Equinox Aspects. Please also take a look at the <a href="downloads/equinox-aspects-hello-world_1.1.0.zip">"Hello world!" demo</a> (from the link for from CVS) which is used as an example at some points.</p>
 
 <p class=bar>Setting up your development environment</p>
 
