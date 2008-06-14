@@ -47,7 +47,7 @@ These steps are highly recommended. If you installed Equinox Aspects into your S
 
 <?php
 	include $_SERVER['DOCUMENT_ROOT'] . "/equinox/global-links.html";
-	include $_SERVER['DOCUMENT_ROOT'] . "component-links.html";
+	include "component-links.html";
 	if (file_exists("dir-links.html")) {include "dir-links.html";}
 ?>
 
