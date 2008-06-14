@@ -25,7 +25,7 @@ ob_start();
 <div id="midcolumn">
 <h1><?= $pageTitle ?></h1>
 
-<p class=bar>Equinox aspects bundles</p>
+<p class=bar>Equinox Aspects bundles</p>
 
 <p>
 <a href="downloads/org.aspectj.osgi-incubation-1.1.0-archive.zip">Release 1.1.0</a><br/>
@@ -49,10 +49,10 @@ last but not least great patch contributions!
 </p>
 
 <p>
-<a href="downloads/org.aspectj.osgi_1.0.3a_archive.zip">Release 1.0.4</a><br/>
-This release, which is available from the update site or as a download, includes Phase I,
-<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=161020"> Phase II<a> and
-<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=161023"> Phase III<a> 
+<a href="downloads/org.aspectj.osgi_1.0.3a_archive.zip">Release 1.0.3</a><br/>
+This release, which is available from the update site or as a download, includes Phase I, 
+<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=161020">Phase II</a> and 
+<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=161023">Phase III</a> 
 completing the first stage of the incubator. This code 
 comprises an OSGi framework extension, tests and demos that allow you to create flexible
 aspect-oriented applications using Eclipse and AJDT. These can be deployed as bundles, 
@@ -65,7 +65,7 @@ environment.
 
 <p>
 <a href="downloads/equinox-aspects-hello-world_1.1.0.zip">Hello world! demo</a><br/>
-This minimal demo shows how to use Equinox Aspects. It is also used for the <a href="../equinox-aspects-quick-start.php">quick-start guide</a>.
+This minimal demo shows how to use Equinox Aspects. It is also used for the <a href="equinox-aspects-quick-start.php">quick-start guide</a>.
 </p>
 
 <p>&nbsp;</p>
