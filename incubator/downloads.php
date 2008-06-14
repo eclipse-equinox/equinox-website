@@ -48,6 +48,10 @@ work areas make their downloads (if any) available on individual pages as they r
 	          <td width="20%" valign="top"><a href="http://www.eclipse.org/equinox/incubator/monitoring/index.php">Monitoring</a></td>
 	          <td width="82%">The monitoring workarea has several pre-built pieces for trial</td>
 	        </tr>
+	        <tr>
+	          <td width="20%" valign="top"><a href="http://www.eclipse.org/equinox/incubator/aspects/equinox-aspects-downloads.php">Aspects</a></td>
+	          <td width="82%">Find the latest releases and demos</td>
+	        </tr>
 	      </table>
 	</div>
 

@@ -107,7 +107,7 @@ There is nothing special about non-aspect bundles in Equinox Aspects. Your bundl
 
 <?php
 	include $_SERVER['DOCUMENT_ROOT'] . "/equinox/global-links.html";
-	include $_SERVER['DOCUMENT_ROOT'] . "/equinox/incubator/component-links.html";
+	include $_SERVER['DOCUMENT_ROOT'] . "component-links.html";
 	if (file_exists("dir-links.html")) {include "dir-links.html";}
 ?>
 
