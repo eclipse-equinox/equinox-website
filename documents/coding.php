@@ -150,6 +150,27 @@ code formatting, organize imports, code cleanup wizard settings and enabling the
   <li> Make sure if the message accepts a parameter then you pass one in</li>
 </ul>
 
+<p class="subbar">Exception handling</p>
+<ul>
+	<li>When catching exceptions, consider whether it is some low-level error that
+	the client should not be aware of or will not be able to interpret. Consider wrapping
+	in an exception with a message and API status code that will make sense to the caller.</li>
+	<li>Whenever possible let exceptions flow back to the caller through a declared
+	exception specified in API rather than catching and swallowing/logging ourselves. 
+	Since our code is typically very low level, the caller often has better contextual 
+	knowledge of whether it would more appropriate to log the exception, present to a user, or swallow it.</li>
+	<li>Only suppress or log exceptions if irrelevant to the caller and doesn't affect
+	the success of the operation the caller is attempting to perform.</li>
+	<li>Should only have empty catch blocks if the exception is truly impossible,
+	or if we completely understand all the cases where this exception can occur and
+	we understand that it has no effect on the success of the operation. When in doubt
+	log it.</li>
+	<li>Never throw generic Exception or Error - use a more specific subclass appropriate
+	for the error condition.</li>
+	<li>Logged exception messages should not be externalized/translated. If there
+	is any possibility of an exception being propagated to client code it must have
+	externalized messages.</li>
+</ul>
 <p>&nbsp;</p>
 
 	</div>
