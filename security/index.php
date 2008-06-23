@@ -91,6 +91,10 @@
    </div>
    
 <?php
+	include $_SERVER['DOCUMENT_ROOT'] . "/equinox/global-links.html";
+?>
+
+<?php
    $html = ob_get_contents();
    ob_end_clean();
 
