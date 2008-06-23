@@ -14,7 +14,7 @@
 	
 	#
 	# Begin: page-specific settings.  Change these. 
-	$pageTitle 		= "Equinox Security - Project Info";
+	$pageTitle 		= "Equinox Security";
     $pageKeywords	= "equinox, security";
 	$pageAuthor		= "Matt Flaherty";
 	
@@ -23,6 +23,8 @@
    ?>
 
    <div id="midcolumn">
+      <h1><?= $pageTitle ?></h1>
+   
 	  <p class=bar>Mission Statement</p>
       <p>To ensure the Equinox runtime (and the Eclipse product) is secure, enabling users and administrators to confidently use and
       deploy products built on it in environments where not all users and/or code sources are friendly. Providing integrated security
