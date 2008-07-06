@@ -41,7 +41,7 @@ ob_start();
 </tr>
 
 <tr>
-	<td><strong>Equinox Aspects Runtime</strong></td>
+	<td colspan="2"><strong>Equinox Aspects Runtime</strong></td>
 	<td> </td>
 </tr>
 

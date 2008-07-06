@@ -121,25 +121,6 @@ AOP and OSGi - A Marriage Made in Heaven</a>.
 </ul>
 -->
 
-<p class=bar>Working With the Aspects Incubator</p>
-<p>The Aspects incubator uses the main <a href="../resources.php">incubator resources</a> with
-  the following refinements.</p>
-<table width="100%" border="0">
-  <tr>
-    <td>Bugs</td>
-    <td colspan="2">Summaries start with <strong><a href="https://bugs.eclipse.org/bugs/buglist.cgi?query_format=advanced&short_desc_type=substring&short_desc=%5Baspects%5D&long_desc_type=allwordssubstr&long_desc=&bug_file_loc_type=allwordssubstr&bug_file_loc=&status_whiteboard_type=allwordssubstr&status_whiteboard=&keywords_type=allwords&keywords=&emailtype1=substring&email1=&emailtype2=substring&email2=&bugidtype=include&bug_id=&votes=&chfieldfrom=&chfieldto=Now&chfieldvalue=&cmdtype=doit&order=Reuse+same+sort+as+last+time&field0-0-0=noop&type0-0-0=noop&value0-0-0=">[aspects]</a></strong></td>
-  </tr>
-  <tr>
-    <td width="11%" rowspan="2" valign="top">CVS</td>
-    <td width="30%"><strong>Project</strong></td>
-    <td width="59%"><strong>Module/directory</strong></td>
-  </tr>
-  <tr>
-    <td>Eclipse project repository</td>
-    <td>equinox-incubator/aspects</td>
-  </tr>
-</table>
-
 <!--
 <p class="bar">Current Activities</p>
 <ul>
