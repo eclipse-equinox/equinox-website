@@ -25,7 +25,32 @@ ob_start();
 <div id="midcolumn">
 <h1><?= $pageTitle ?></h1>
 
-<p class=bar>Equinox Aspects bundles</p>
+<p class=bar>Development Builds</p>
+
+<p>
+<a href="downloads/dev/org.eclipse.equinox.weaving-incubation-1.0.0.200807082136-archive.zip">org.eclipse.equinox.weaving-incubation-1.0.0.200807082136-archive.zip</a><br/>
+</p>
+
+<p>&nbsp;</p>
+
+<p class=bar>Releases</p>
+
+<p>
+  Take a look at the <a href="http://wiki.eclipse.org/Equinox_Aspects_Plan">Equinox Aspects Release Plan Wiki</a>.
+</p>
+
+<p>&nbsp;</p>
+
+<p class=bar>Demos</p>
+
+<p>
+<a href="downloads/equinox-aspects-hello-world_1.1.0.zip">Hello world! demo</a><br/>
+This minimal demo shows how to use Equinox Aspects. It is also used for the <a href="equinox-aspects-quick-start.php">quick-start guide</a>.
+</p>
+
+<p>&nbsp;</p>
+
+<p class=bar>Archived Builds</p>
 
 <p>
 <a href="downloads/org.aspectj.osgi-incubation-1.1.0-archive.zip">Release 1.1.0</a><br/>
@@ -60,15 +85,6 @@ Eclipse plug-ins or an RCP application using a seemless
 <a href="http://www.eclipse.org/aspectj/">AspectJ</a> load-time weaving 
 environment.
 </p>
-
-<p class=bar>Demos</p>
-
-<p>
-<a href="downloads/equinox-aspects-hello-world_1.1.0.zip">Hello world! demo</a><br/>
-This minimal demo shows how to use Equinox Aspects. It is also used for the <a href="equinox-aspects-quick-start.php">quick-start guide</a>.
-</p>
-
-<p>&nbsp;</p>
 
 </div>
 
