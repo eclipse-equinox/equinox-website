@@ -28,18 +28,27 @@ ob_start();
 <p class=bar>Development Builds</p>
 
 <p>
-<a href="downloads/dev/org.eclipse.equinox.weaving-incubation-1.0.0.200807082136-archive.zip">org.eclipse.equinox.weaving-incubation-1.0.0.200807082136-archive.zip</a><br/>
+<table width="100%" border="0">
+<tr>
+	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+	<td width="98%"><a href="downloads/dev/org.eclipse.equinox.weaving-incubation-1.0.0.200807082136-archive.zip">
+	    org.eclipse.equinox.weaving-incubation-1.0.0.200807082136-archive.zip</a>
+    </td>
+</tr>
+</table>
 </p>
-
-<p>&nbsp;</p>
 
 <p class=bar>Releases</p>
 
 <p>
-  Take a look at the <a href="http://wiki.eclipse.org/Equinox_Aspects_Plan">Equinox Aspects Release Plan Wiki</a>.
+<table width="100%" border="0">
+<tr>
+	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+	<td width="98%">Take a look at the <a href="http://wiki.eclipse.org/Equinox_Aspects_Plan">Equinox Aspects Release Plan Wiki</a>.
+    </td>
+</tr>
+</table>
 </p>
-
-<p>&nbsp;</p>
 
 <p class=bar>Demos</p>
 
@@ -47,8 +56,6 @@ ob_start();
 <a href="downloads/equinox-aspects-hello-world_1.1.0.zip">Hello world! demo</a><br/>
 This minimal demo shows how to use Equinox Aspects. It is also used for the <a href="equinox-aspects-quick-start.php">quick-start guide</a>.
 </p>
-
-<p>&nbsp;</p>
 
 <p class=bar>Archived Builds</p>
 
