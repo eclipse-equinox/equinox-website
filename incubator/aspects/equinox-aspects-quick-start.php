@@ -25,7 +25,7 @@ ob_start();
 <div id="midcolumn">
 <h1><?= $pageTitle ?></h1>
 
-<p>The following steps are intended to help you getting started with Equinox Aspects. Please also take a look at the <a href="downloads/equinox-aspects-hello-world_1.1.0.zip">"Hello world!" demo</a> (from the link for from CVS) which is used as an example at some points.</p>
+<p>The following steps are intended to help you getting started with Equinox Aspects. Please also take a look at the <a href="downloads/demo/equinox-aspects-demo-hello.zip">"Hello world!" demo</a> (from the link for from CVS) which is used as an example at some points.</p>
 
 <p class=bar>Setting up your development environment</p>
 
@@ -86,7 +86,7 @@ There is nothing special about non-aspect bundles in Equinox Aspects. Your bundl
 <li>Use the special manifest header <i>Eclipse-SupplementBundle</i> to declare the target bundles for weaving, e.g. <i>Eclipse-SupplementBundle: org.eclipse.equinox.weaving.demo.hello</i>.
 </ol>
 
-<p>For the Hello world demo the bundle manifest looks like this:</p>
+<p>For the "Hello world!" demo the bundle manifest looks like this:</p>
 <img src="images/hello-aspect-manifest.png" border="1" />
 
 <p class=bar>Configuring your runtime</p>
@@ -95,7 +95,7 @@ There is nothing special about non-aspect bundles in Equinox Aspects. Your bundl
 <li>The AspectJ weaving service (bundle <i>org.eclipse.equinox.weaving.aspectj</i>) has to be started before any classes are loaded from any bundles targeted for weaving.</li>
 </ol>
 
-<p>For the Hello world demo applying all these steps will result in printing "Hi from HelloAspect ;-)" when the bundle <i>org.eclipse.equinox.weaving.demo.hello</i> is started (after the AspectJ weaving service).</p>
+<p>For the "Hello world!" demo applying all these steps will result in printing "Hi from HelloAspect ;-)" when the bundle <i>org.eclipse.equinox.weaving.demo.hello</i> is started (after the AspectJ weaving service).</p>
 <img src="images/hello-run.png" border="1" />
 
 <p>&nbsp;</p>
