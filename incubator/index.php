@@ -128,7 +128,7 @@ The goal of the Equinox Incubator is to experiment with techniques for
         <li>Tom Watson, IBM Lotus (Project co-lead)</li>
         <li>Matthew Webster, IBM Hursley</li>
         <li>Ikuo Yamasaki, NTT Corporation</li>
-        <li>Heiko Seeberger, Weigle Wilczek</li>
+        <li>Heiko Seeberger, WeigleWilczek</li>
       </ul>
 
 		<p class=bar>Old Work Areas</p>

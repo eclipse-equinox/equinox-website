@@ -59,40 +59,6 @@ This minimal demo shows how to use Equinox Aspects. It is also used for the <a h
 
 <p class=bar>Archived Builds</p>
 
-<p>
-<a href="downloads/org.aspectj.osgi-incubation-1.1.0-archive.zip">Release 1.1.0</a><br/>
-This version of Equinox Aspects works with AJDT 1.5.1 as well as the development builds of
-AJDT 1.5.2 and AJDT 1.6.0. This means also that Equinox Aspects works with Eclipse 3.3 and
-the current Eclipse 3.4 milestone builds. Older versions of AJDT are not supported with this
-release. Please let us know if you need Equinox Aspects for older AJDT versions.<br/>
-This version delivers caching of woven bundles for non-IBM VMs for the first time. This means that you have
-a caching bundle for standard Java VMs. This service was contributed by Heiko Seeberger.
-Many thanks to Heiko for this great work!<br/>
-In addition to the standard caching service this release includes a number of bug fixes and
-stability improvements. See the readme.txt for details. As a side effect of the reworked
-supplementing mechanism you no longer need to list aspect bundles in the config.ini and you
-can even install aspects bundles dynamically at runtime.<br/>
-<b>Special thanks</b> go to Heiko Seeberger and Wojciech Durczynski for bug reporting, testing and
-last but not least great patch contributions!
-</p>
-
-<p>
-<a href="downloads/org.aspectj.osgi_1.0.4_archive.zip">Release 1.0.4</a>
-</p>
-
-<p>
-<a href="downloads/org.aspectj.osgi_1.0.3a_archive.zip">Release 1.0.3</a><br/>
-This release, which is available from the update site or as a download, includes Phase I, 
-<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=161020">Phase II</a> and 
-<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=161023">Phase III</a> 
-completing the first stage of the incubator. This code 
-comprises an OSGi framework extension, tests and demos that allow you to create flexible
-aspect-oriented applications using Eclipse and AJDT. These can be deployed as bundles, 
-Eclipse plug-ins or an RCP application using a seemless 
-<a href="http://www.eclipse.org/aspectj/">AspectJ</a> load-time weaving 
-environment.
-</p>
-
 </div>
 
 <?php

@@ -32,48 +32,6 @@ ob_start();
   We reworked this website and created an up-to-date <a href="equinox-aspects-quick-start.php">
   quick-start guide</a> including a <a href="downloads/equinox-aspects-hello-world_1.1.0.zip">"Hello world!" demo</a>. We are looking forward to getting your feedback ...
 </p>
-<p><b>Mar 10 2008</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14">
-		       We are pleased to announce the availability of version 1.1.0 of Equinox Aspects ...
-		       <!--
-		       Please visit the <a href="getting_started.php">Getting Started</a> page for download and install instructions.<p>
-		       
-		       This version of Equinox Aspects works with AJDT 1.5.1 as well as the development builds of
-		       AJDT 1.5.2 and AJDT 1.6.0. This means also that Equinox Aspects works with Eclipse 3.3 and
-		       the current Eclipse 3.4 milestone builds. Older versions of AJDT are not supported with this
-		       release. Please let us know if you need Equinox Aspects for older AJDT versions.<p>
-		       
-		       This version delivers caching of woven bundles for non-IBM VMs for the first time. This means that you have
-		       a caching bundle for standard Java VMs. This service was contributed by Heiko Seeberger.
-		       Many thanks to Heiko for this great work!<p>
-		       
-		       In addition to the standard caching service this release includes a number of bug fixes and
-		       stability improvements. See the readme.txt for details. As a side effect of the reworked
-		       supplementing mechanism you no longer need to list aspect bundles in the config.ini and you
-		       can even install aspects bundles dynamically at runtime.<p>
-		       
-		       <b>Special thanks</b> go to <b>Heiko Seeberger</b> and <b>Wojciech Durczynski</b> for bug reporting, testing and
-		       last but not least great patch contributions!<p>
-					 -->
-<p><b>Jan 11 2008</b> - We are pleased to announce the availability of version 1.0.4 of Equinox Aspects ...
-           <!--
-		       Please visit the <a href="getting_started.php">Getting Started</a> page for download and install instructions.</p>
-		       
-		       <p>The Aspects project is pleased to announce the availability of Version 1.0.3.
-  This release, which is available from the update site or as a download, includes Phase I,
-  <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=161020"> Phase II<a> and
-  <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=161023"> Phase III<a> 
-  completing the first stage of the incubator. This code 
-  comprises an OSGi framework extension, tests and demos that allow you to create flexible
-  aspect-oriented applications using Eclipse and AJDT. These can be deployed as bundles, 
-  Eclipse plug-ins or an RCP application using a seemless 
-  <a href="http://www.eclipse.org/aspectj/">AspectJ</a> load-time weaving 
-  environment. The next stage of the project will integrate the AJEER programming model into this 
-  aspect-oriented runtime.</p>
-<p>Of particular interest to Eclipse developers is the latest set of demos available for download. 
-  As well as simple introductions to project there several examples of how 
-to implement and deploy new or modified extension points for existing plug-ins.
-<p>Please read <a href="getting_started.php">Getting Started</a> guide.
--->
   
 <p class=bar>Mission Statement</p>
 <p>Aspect-oriented computing is continuing to increase in popularity. The modularity
@@ -137,7 +95,7 @@ AOP and OSGi - A Marriage Made in Heaven</a>.
 <ul>
   <li>Martin Lippert (it-agile)</li>
   <li>Matthew Webster (IBM)</li>
-  <li>Heiko Seeberger (Weigle Wilczek)</li>
+  <li>Heiko Seeberger (WeigleWilczek)</li>
 </ul>
 
 <p>&nbsp;</p>
