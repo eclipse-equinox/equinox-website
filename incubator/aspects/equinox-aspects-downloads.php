@@ -29,19 +29,21 @@ ob_start();
 
 <p>
 <table width="100%" border="0">
-<tr>
 
+<tr>
 	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
 	<td width="98%"><a href="downloads/dev/org.eclipse.equinox.weaving-incubation-1.0.0.200807281655-archive.zip">
 	    org.eclipse.equinox.weaving-incubation-1.0.0.200807281655-archive.zip</a>
     </td>
+</tr>
 
+<tr>
 	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
 	<td width="98%"><a href="downloads/dev/org.eclipse.equinox.weaving-incubation-1.0.0.200807082136-archive.zip">
 	    org.eclipse.equinox.weaving-incubation-1.0.0.200807082136-archive.zip</a>
     </td>
-
 </tr>
+
 </table>
 </p>
 
