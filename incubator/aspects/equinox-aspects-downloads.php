@@ -68,8 +68,8 @@ ob_start();
 
 <tr>
 	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-	<td width="96%"><a href="">Coming soon ...</a></td>
-	<td width="92%"><a href="equinox-aspects-news-1.0.0-M1.html">New and Noteworthy 1.0.0 M1</a></td>
+	<td width="58%"><a href="">Coming soon ...</a></td>
+	<td width="40%"><a href="equinox-aspects-news-1.0.0-M1.html">New and Noteworthy 1.0.0 M1</a></td>
 </tr>
 
 </table>
@@ -90,7 +90,7 @@ ob_start();
 <p class=bar>Demos</p>
 
 <p>
-<a href="downloads/demo/equinox-aspects-hello-world.zip">"Hello world!" demo</a><br/>
+<a href="downloads/demo/equinox-aspects-demo-hello.zip">"Hello world!" demo</a><br/>
 This minimal demo shows how to use Equinox Aspects. It is also used for the <a href="equinox-aspects-quick-start.php">quick-start guide</a>.
 </p>
 
