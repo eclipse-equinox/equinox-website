@@ -53,8 +53,8 @@ ob_start();
 
 <tr>
 	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-	<td width="98%"><a href="downloads/dev/org.eclipse.equinox.weaving-incubation-1.0.0.200807082136-M1-archive.zip">
-	    org.eclipse.equinox.weaving-incubation-1.0.0.200807082136-M1-archive.zip</a>
+	<td width="98%"><a href="downloads/dev/org.eclipse.equinox.weaving-incubation-1.0.0.200807082136-archive.zip">
+	    org.eclipse.equinox.weaving-incubation-1.0.0.200807082136-archive.zip</a>
     </td>
 </tr>
 
@@ -68,7 +68,9 @@ ob_start();
 
 <tr>
 	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-	<td width="58%"><a href="">Coming soon ...</a></td>
+	<td width="58%"><a href="downloads/dev/org.eclipse.equinox.weaving-incubation-1.0.0.200807082136-M1-archive.zip">
+	    org.eclipse.equinox.weaving-incubation-1.0.0.200807082136-M1-archive.zip</a>
+    </td>
 	<td width="40%" align="right"><a href="equinox-aspects-news-1.0-M1.html">New and Noteworthy 1.0 M1</a></td>
 </tr>
 
