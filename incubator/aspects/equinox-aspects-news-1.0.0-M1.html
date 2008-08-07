@@ -1,0 +1,245 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Language" content="en-us" />
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <link rel="stylesheet" href="default_style.css" />
+    <title>Equinox Aspects 1.0 M1 News</title>
+  </head>
+  
+  <body>
+    <h1>Equinox Aspects 1.0 M1 - New and Noteworthy</h1>
+    
+    <p>
+      The Equinox Aspects incubator project is now aligning itself with the general development
+      process of the other Eclipse projects and is moving towards graduation. Therefore we are
+      starting this effort by producing a number of milestone builds over the next weeks and months
+      and share them with you - including a new and noteworthy announcement.
+    </p>
+    
+    <ul>
+      <li>
+        <a href="#General">General</a>
+      </li>
+      <li>
+        <a href="#Weaving">Weaving</a>
+      </li>
+      <li>
+        <a href="#Caching">Caching</a>
+      </li>
+      <li>
+        <a href="#Documentation">Documentation</a>
+      </li>
+    </ul>
+    
+    <table border="0" cellpadding="10" cellspacing="0" width="80%">
+      <tr>
+        <td colspan="2">
+          <hr/>
+          <h2><a name="General" id="General"></a>General</h2>
+          <hr/>
+        </td>
+      </tr>
+      
+      <tr>
+        <td width="30%" valign="top" align="left">
+          <b>Bundle renaming</b>
+        </td>
+        <td width="70%" valign="top">
+          To be a better citizan of the Eclipse community the Equinox Aspects bundles were renamed
+          to fit into the naming conventions of the Equinox project.
+          <ul>
+            <li>org.aspectj.osgi -> org.eclipse.equinox.weaving.hook</li>
+            <li>org.aspectj.osgi.service.weaving -> org.eclipse.equinox.weaving.aspectj</li>
+            <li>org.aspectj.osgi.service.caching -> org.eclipse.equinox.weaving.caching</li>
+            <li>org.aspectj.osgi.service.caching.j9 -> org.eclipse.equinox.weaving.caching.j9</li>
+          </ul>
+          If you have used Equinox Aspects before this bundle renaming you just need to
+          update your config.ini or launch configuration. Define org.eclipse.equinox.weaving.hook as
+          your framework extension and start the new weaving and caching serivces instead of the old
+          ones.
+        </td>
+      </tr>
+      
+      <tr>
+        <td colspan="2">
+          <hr/>
+        </td>
+      </tr>
+      
+      <tr>
+        <td align="left" valign="top" width="30%">
+          <b>New wiki-based planning</b>
+        </td>
+        <td width="70%" valign="top">
+          Equinox Aspects now has a transparent project planning via the <a href="http://wiki.eclipse.org/Equinox_Aspects_Plan">
+          Equinox Aspects Wiki Plan</a>. You can see what we have planed for the next milestones and what the state
+          of the current development work is.
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2">
+          <hr/>
+          <h2><a name="Weaving" id="Weaving"></a>Weaving</h2>
+          <hr/>
+        </td>
+      </tr>
+
+      <tr>
+        <td width="30%" valign="top" align="left">
+          <b>OSGi dynamics for aspect bundles</b>
+        </td>
+        <td width="70%" valign="top">
+          OSGi allows you to install, update or uninstall bundles at runtime. The same is now
+          possible for bundles that provide aspects to be woven into the system and for
+          bundles that need to be woven or that are already woven by aspects from other bundles.</br>
+          The effect of installing an aspect bundle at runtime is:
+          <ol>
+            <li>Read the supplement-headers from the aspect bundle</li>
+            <li>Update existing bundles that would be supplemented by the new aspect bundle</li>
+            <li>As a result of the bundle update those bundles are supplemented and woven from now on</li>
+          </ol>
+          A similar mechanism deals with bundle updates and uninstalls. In the end this means that
+          you have no limitations with regards to dynamics. You get somewhat a feeling of runtime
+          weaving.<p>
+          The only prerequisite is that all other bundles need to be dynamic-aware and dynamic-enabled
+          so that bundle updates are handling correctly by those bundles.
+        </td>
+      </tr>
+      
+      <tr>
+        <td colspan="2">
+          <hr/>
+        </td>
+      </tr>
+      
+      <tr>
+        <td width="30%" valign="top" align="left">
+          <b>OSGi dynamics for weaving services</b>
+        </td>
+        <td width="70%" valign="top">
+          We spend some time to improve the dynamics of the weaving service itself. This means that
+          you are now able to start and stop the weaving service itself at runtime.<p>
+          As a result of stopping the weaving service all woven bundles are updated to remove
+          the aspects being woven from those bundles. If you start the weaving service, the updating
+          and therefore re-weaving of already existing bundles takes place as well.
+        </td>
+      </tr>
+      
+      <tr>
+        <td colspan="2">
+          <hr/>
+        </td>
+      </tr>
+      
+      <tr>
+        <td align="left" valign="top" width="30%">
+          <b>Easier aop.xml lookup</b>
+        </td>
+        <td width="70%" valign="top">
+          In the past the lookup of the aop.xml definition files was similar to the
+          load-time weaving aop.xml lookup that AspectJ uses. Equinox Aspects moved away
+          from this kind of configuration (via org.aspectj.weaver.loadtime.configuration).
+          Instead you can now just put the aop.xml file into the META-INF directory and
+          Equinox Aspects finds it automatically without any configuration.</br>
+          If you would like to put the aop.xml file into a different directory you have
+          to define this location in the MANIFEST.MF via a special header:<p>
+          <b>Eclipse-AspectContext: META-INF/aspects/aop.xml</b><p>
+          You can do this on a per-bundle base.
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2">
+          <hr/>
+          <h2><a name="Caching" id="Caching"></a>Caching</h2>
+          <hr/>
+        </td>
+      </tr>
+
+      <tr>
+        <td width="30%" valign="top" align="left">
+          <b>Caching now aware of versions</b>
+        </td>
+        <td width="70%" valign="top">
+          The caches for woven bytecodes are now aware of bundle versions. The version
+          information is used to identify woven bundles as well as aspect bundles.<p>
+          Therefore the cache is invalidated if the version of a bundle that provides
+          an aspect has changed. The cache is invalidated for the aspect bundle as
+          well as all bundles where this aspect was woven into. If a non-aspect bundle
+          changes its version, the cache is invalidated for this bundle only.<p>
+          In fact the cache is not flushed but changed to a different partition. This
+          means that the cache works fine if you switch, for example, between different
+          bundle sets.
+        </td>
+      </tr>
+      
+      <tr>
+        <td colspan="2">
+          <hr/>
+        </td>
+      </tr>
+      
+      <tr>
+        <td align="left" valign="top" width="30%">
+          <b>Standard caching performance improvements</b>
+        </td>
+        <td width="70%" valign="top">
+          We worked a lot on the performance of the standard caching service. It now
+          works a lot faster. The improvements include:
+          <ul>
+            <li>Caching works for bundles which are not woven without writing unchanged
+              bytecode to the cache. The cache controls that unwoven bundles are not
+              passed to the weaver anymore</li>
+            <li>The lookup performance for cached bytecodes improved drastically</li>
+          </ul>
+          Starting the system from cache is now at a similar speed as starting the
+          system without equinox aspects.
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2">
+          <hr/>
+          <h2><a name="Documentation" id="Documentation"></a>Documentation</h2>
+          <hr/>
+        </td>
+      </tr>
+
+      <tr>
+        <td align="left" valign="top" width="30%">
+          <b>New "Hello world!" demo</b>
+        </td>
+        <td width="70%" valign="top">
+          The <a href="http://www.eclipse.org/equinox/incubator/aspects/downloads/demo/equinox-aspects-hello-world.zip">"Hello world!" demo</a> 
+          has been updated to the latest Equinox Aspects target.
+          In particular the new bundle naming is considered.
+        </td>
+      </tr>
+<!--
+      <tr>
+        <td colspan="2">
+          <hr/>
+        </td>
+      </tr>
+      
+      <tr>
+        <td width="30%" valign="top" align="left">
+          <b>Quick-start screencast</b>
+        </td>
+        <td width="70%" valign="top">
+          Whatever
+        </td>
+      </tr>
+-->      
+      <tr>
+        <td colspan="2">
+          <hr/>
+        </td>
+      </tr>
+      
+    </table>
+  </body>
+</html>

@@ -30,7 +30,7 @@ ob_start();
 <p>
   <b>Jun 13 2008</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14" />
   We reworked this website and created an up-to-date <a href="equinox-aspects-quick-start.php">
-  quick-start guide</a> including a <a href="downloads/equinox-aspects-hello-world_1.1.0.zip">"Hello world!" demo</a>. We are looking forward to getting your feedback ...
+  quick-start guide</a> including a <a href="downloads/demo/equinox-aspects-hello-world.zip">"Hello world!" demo</a>. We are looking forward to getting your feedback ...
 </p>
   
 <p class=bar>Mission Statement</p>
