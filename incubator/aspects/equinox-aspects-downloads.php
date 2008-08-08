@@ -25,6 +25,34 @@ ob_start();
 <div id="midcolumn">
 <h1><?= $pageTitle ?></h1>
 
+<p class=bar>Releases</p>
+
+<p>
+<table width="100%" border="0">
+<tr>
+	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+	<td width="98%">The planning for the first release is here: <a href="http://wiki.eclipse.org/Equinox_Aspects_Plan">Equinox Aspects Release Plan Wiki</a>.
+    </td>
+</tr>
+</table>
+</p>
+
+<p class=bar>Milestone Builds</p>
+
+<p>
+<table width="100%" border="0">
+
+<tr>
+	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+	<td width="68%"><a href="downloads/dev/org.eclipse.equinox.weaving-incubation-1.0.0.200808061839-M1-archive.zip">
+	    org.eclipse.equinox.weaving-incubation-1.0.0.200808061839-M1-archive.zip</a>
+    </td>
+	<td width="30%" align="right"><a href="equinox-aspects-news-1.0-M1.html">New and Noteworthy 1.0 M1</a></td>
+</tr>
+
+</table>
+</p>
+
 <p class=bar>Development Builds</p>
 
 <p>
@@ -58,34 +86,6 @@ ob_start();
     </td>
 </tr>
 
-</table>
-</p>
-
-<p class=bar>Milestone Builds</p>
-
-<p>
-<table width="100%" border="0">
-
-<tr>
-	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-	<td width="68%"><a href="downloads/dev/org.eclipse.equinox.weaving-incubation-1.0.0.200808061839-M1-archive.zip">
-	    org.eclipse.equinox.weaving-incubation-1.0.0.200808061839-M1-archive.zip</a>
-    </td>
-	<td width="30%" align="right"><a href="equinox-aspects-news-1.0-M1.html">New and Noteworthy 1.0 M1</a></td>
-</tr>
-
-</table>
-</p>
-
-<p class=bar>Releases</p>
-
-<p>
-<table width="100%" border="0">
-<tr>
-	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-	<td width="98%">Take a look at the <a href="http://wiki.eclipse.org/Equinox_Aspects_Plan">Equinox Aspects Release Plan Wiki</a>.
-    </td>
-</tr>
 </table>
 </p>
 
