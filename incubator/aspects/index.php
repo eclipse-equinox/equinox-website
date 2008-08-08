@@ -28,7 +28,13 @@ ob_start();
 <p class=bar>Latest news</p>
 
 <p>
-  <b>Jun 13 2008</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14" />
+  <b>Aug 08 2008</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14" />
+  Milestone 1 for Equinox Aspects 1.0 is there! You can get it at the
+  <a href="equinox-aspects-downloads.php">Downloads</a>.
+</p>
+
+<p>
+  <b>Jun 13 2008</b> -
   We reworked this website and created an up-to-date <a href="equinox-aspects-quick-start.php">
   quick-start guide</a> including a <a href="downloads/demo/equinox-aspects-demo-hello.zip">"Hello world!" demo</a>. We are looking forward to getting your feedback ...
 </p>
