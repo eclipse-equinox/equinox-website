@@ -49,3 +49,18 @@ p.subbar {
 	padding-left: 5px;
 	padding-right: 1px;
 }
+
+#popupcontent {
+      position: absolute;
+      visibility: hidden;
+      overflow: hidden;
+      background-color:#F9F9F9;
+      border:0px solid #333;
+      padding:5px;
+}
+
+.hidden {
+      position: absolute;
+      visibility:hidden;
+      overflow: hidden;
+}
