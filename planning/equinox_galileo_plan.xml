@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <!--  Use this to test local rendering in firefox -->
-<?xml-stylesheet type="text/xsl" href="project-plan-render.xsl"?> 
+<!-- ?xml-stylesheet type="text/xsl" href="project-plan-render.xsl"?--> 
 
-<!--?xml-stylesheet type="text/xsl" href="http://www.eclipse.org/projects/project-plan.xsl"?-->
+<?xml-stylesheet type="text/xsl" href="http://www.eclipse.org/projects/project-plan.xsl"?>
 <p:plan plan-format="1.0" xmlns:p="http://www.eclipse.org/project/plan" xmlns="http://www.w3.org/1999/xhtml"
       name="Equinox">
    <p:release projectid="rt.equinox" version="Galileo"/>
@@ -12,27 +12,15 @@
 
 <p>
 Equinox is way cool.
-
 </p>
-Table of contents:
-<ul>
-  <li><a href="#m_release_deliverables">Release Deliverables</a></li>
-  <li><a href="#m_release_milestones">Release Milestones</a></li>
-  <li><a href="#m_target_environments">Target Environments</a></li>
-  <li><a href="#m_compatibility">Compatibility</a></li>
-  <li><a href="#m_themes">Themes and Priorities</a>
-	  <ul>
-	  	<li><a href="#tp_tcf">Tentative: OSGi Spec implementation</a></li>
-	   	<li><a href="#tp_other">Other</a></li>
-	  </ul>
-  </li>
-</ul>
+
   </div></p:introduction>
+
   <p:release_deliverables><div>
 <ul>
-	<li><b><a name="m_release_deliverables">Equinox</a> source code release</b>, available as versions tagged "R3_5" in the project's
+	<li><b>Equinox source code release</b>, available as versions tagged "R3_5" in the project's
 		<ul>
-			<li><a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox/?root=RT_Project">Equinox CVS Repository</a>,</li>
+			<li><a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox/?root=RT_Project">Equinox CVS Repository</a></li>
 		</ul>
 	</li>
 	<li><b>Framework:</b>
@@ -102,10 +90,12 @@ Galileo Simultaneous Release</a> train.
     <p:milestone date="06/05/2009" milestone="RC3"><div>3.5RC3</div></p:milestone>
     <p:milestone date="06/12/2009" milestone="RC4"><div>3.5RC4</div></p:milestone>
     <p:postamble><div>
-A detailed <a href="http://wiki.eclipse.org/DSDP/TM/3.1_Ramp_down_Plan">
-TM 3.1 Ramp down Plan</a> towards the release is available especially for the Eclipse 
-<a href="http://wiki.eclipse.org/Galileo_Simultaneous_Release">
-Galileo Simultaneous Release</a> integration.
+	A detailed view of the Equinox 3.5 ramp down plans towards the release are available at the following links.
+	<ul>
+	<li><a href="http://wiki.eclipse.org/Equinox/Plan/Galileo/Framework">Framework</a></li>
+	<li><a href="http://wiki.eclipse.org/Equinox/p2/Plan">p2</a></li>
+	<li><a href="http://wiki.eclipse.org/Equinox/Plan/Galileo/Security">Security</a></li>
+	</ul>
 <p>
 The target date for availability of Equinox 3.5 is:</p>
 <ul>
@@ -115,7 +105,7 @@ The target date for availability of Equinox 3.5 is:</p>
   </p:release_milestones>
 
   <p:target_environments><div>
-<a name="m_target_environments">In order</a>
+<a name="m_target_environments"></a>
 <p>In order to remain current, each Equinox release targets reasonably current
   operating environments. </p>
 <p>Most of Equinox is &quot;pure&quot; Java code and has no direct dependence
