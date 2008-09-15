@@ -32,24 +32,55 @@ Table of contents:
 <ul>
 	<li><b><a name="m_release_deliverables">Equinox</a> source code release</b>, available as versions tagged "R3_5" in the project's
 		<ul>
-			<li><a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.tm.rse/?cvsroot=DSDP_Project">RSE CVS Repository</a>,</li>
-			<li><a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.tm.core/?cvsroot=DSDP_Project">TM Core CVS Repository</a>, and</li>
-			<li><a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.tm.tcf/trunk/?root=DSDP_SVN">TM TCF SVN Repository</a>.</li>
+			<li><a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox/?root=RT_Project">Equinox CVS Repository</a>,</li>
 		</ul>
 	</li>
 	<li><b>Framework:</b>
 		<ul>
-		   <li>bunch o stuff here.</li>
+		   <li>An OSGi R4.2 Core Framework implementation</li>
+		   <li>Native launcher and splash screen support</li>
     	</ul>
     </li>
-	<li><b>Framework:</b>
+	<li><b>Compendium Services:</b>
 		<ul>
-		   <li>bunch o stuff here.</li>
+		   <li>Application Container - An implementation of the OSGi R4.2 MEG Application Container service.</li>
+		   <li>Config Admin - An implementation of the OSGi R4.2 Configuration Admin service.</li>
+		   <li>Device Access Service - An implementation of the OSGi R4.2 Device Access service.</li>
+		   <li>Declarative Services - An implementation of the OSGi R4.2 Declarative Services specification.</li>
+		   <li>Event Admin Service - An implementation of the OSGi R4.2 Event Admin Service.</li>
+		   <li>HTTP Service - An implementation of the OSGi R4.2 HTTP service.</li>
+		   <li>HTTP Servlet - Generic support for exposing another servlet facility (e.g., an underlying application server) as an OSGi HTTP service.</li>
+		   <li>IO Connector Service - An implementation of the OSGi R4.2 IO Connector Service.</li>
+		   <li>Initial Provisioning - An implementation of the OSGi R4.2 Initial Provisioning.</li>
+		   <li>Log Service - An implementation of the OSGi R4.2 Log service.</li>
+		   <li>Metatype Service - An implementation of the OSGi R4.2 Metatype service.</li>
+		   <li>Preferences Service - The Eclipse preference service is an extension of the standard OSGi preference service that adds listeners and the notion of preference scopes.</li>
+		   <li>User Admin Service - An implementation of the OSGi R4.2 User Admin Service.</li>
+		   <li>Wire Admin Service - An implementation of the OSGi R4.2 Wire Admin Service.</li>
+    	</ul>
+    </li>
+    <li><b>p2</b></li>
+    <li><b>Component model</b>
+    	<ul>
+    		<li>Eclipse Extension Registry - The Eclipse extension registry allows bundles to communicate and cooperate using declarative markup and lazy instantiation.</li>
+    		<li>Equinox Transforms - A framework to provide transformations of bundle resources.</li>
+    	</ul>
+    </li>
+    <li><b>Security</b>
+    	<ul>
+    		<li>Equinox Secure Storage</li>
+    		<li>Certificate Trust Engine - API for to managing trusted certificates</li>
+    	</ul>
+    </li>
+    <li><b>Server Side</b>
+    	<ul>
+    		<li>HTTP Registry - Support for registering servlets, resources and JSPs via the Eclipse extension registry rather than using the code based OSGi registration mechanisms.</li>
+			<li>JSP Registry - Provides a JSP Factory that allows JSP usage with the HTTP Registry.</li>
+    		<li>Servlet Bridge - Low level hook servlet installed in an existing traditional application server. This servlet launches an embedded Equinox and enables it to handle incoming HTTP requests originally sent to the underlying server.</li>
+    		<li>HTTP Jetty - A thin layer that exposes an embedded Jetty server as a compliant OSGi HTTP service.</li>
     	</ul>
     </li>
 </ul>
-<b>Notes:</b>
-<p> stuff here </p>
 
   </div></p:release_deliverables>
   <p:release_milestones>
