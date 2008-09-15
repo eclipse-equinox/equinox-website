@@ -335,17 +335,60 @@ ongoing work and planned delivery milestones.
 <!-- Query: Deferred  = target_milestone IS Future            AND NOT priority=P5  AND resolution=-  -->
 <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 
-    <p:theme name="Tentative: OSGi spec implementation">
+    <p:theme name="Scalability and Performance">
       <p:description><p>
-The <a name="tp_spec">OSGi Alliance</a>, in collaboration with Equinox and other open source communities, is currently 
-revising the Core specifications. As the reference implementation for several parts of the OSGi specifications, 
-Equinox will be updated to implement these new features and changes to the spec.
-In bugzilla, these items are tagged with <b>"[spec]"</b> in the Summary
-(query: <a href="https://bugs.eclipse.org/bugs/buglist.cgi?query_format=advanced&amp;short_desc_type=allwordssubstr&amp;short_desc=[spec%5D&amp;classification=RT&amp;product=Equinox&amp;component=Framework&amp;component=RSE&amp;component=Compendium&amp;component=Components&amp;bug_status=UNCONFIRMED&amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;cmdtype=doit">
-all [spec] open</a>).
+      	<a name="tp_scalability"/>New usage scenarios for Equinox require it to be faster, smaller, bigger, ...  
+      	The technology needs to scale up or down to allow Equinox to scale down to small embedded environments as well 
+      	as scaling up to large server environments.
+      	Monitor overall performance and memory consumption which includes the addition of new performance tests for new features. 
       </p></p:description>
       <!--  Query: short_desc LIKE %[spec]% -->
       <p:committed bugzilla="https://bugs.eclipse.org/bugs/buglist.cgi?query_format=advanced&amp;short_desc_type=allwordssubstr&amp;short_desc=[spec%5D&amp;classification=RT&amp;product=Equinox&amp;component=Framework&amp;component=RSE&amp;component=Compendium&amp;component=Components&amp;target_milestone=3.5+M2&amp;target_milestone=3.5+M3&amp;target_milestone=3.5+M4&amp;target_milestone=3.5+M5&amp;target_milestone=3.5+M6&amp;target_milestone=3.5+M7&amp;keywords_type=allwords&amp;keywords=&amp;priority=P1&amp;priority=P2&amp;priority=P3&amp;priority=P4&amp;cmdtype=doit"></p:committed>
+      <p:proposed bugzilla="https://bugs.eclipse.org/bugs/buglist.cgi?query_format=advanced&amp;short_desc_type=allwordssubstr&amp;short_desc=[spec%5D&amp;classification=RT&amp;product=Equinox&amp;component=Framework&amp;component=RSE&amp;component=Compendium&amp;component=Components&amp;target_milestone=3.5&amp;target_milestone=---&amp;keywords_type=allwords&amp;keywords=&amp;resolution=---&amp;priority=P1&amp;priority=P2&amp;priority=P3&amp;priority=P4&amp;cmdtype=doit"></p:proposed>
+      <p:deferred bugzilla="https://bugs.eclipse.org/bugs/buglist.cgi?query_format=advanced&amp;short_desc_type=allwordssubstr&amp;short_desc=[spec%5D&amp;classification=RT&amp;product=Equinox&amp;component=Framework&amp;component=RSE&amp;component=Compendium&amp;component=Components&amp;target_milestone=Future&amp;keywords_type=allwords&amp;keywords=&amp;resolution=---&amp;priority=P1&amp;priority=P2&amp;priority=P3&amp;priority=P4&amp;cmdtype=doit"></p:deferred>
+    </p:theme>
+    
+    <p:theme name="Robustness">
+      <p:description><p>
+		<a name="tp_robustness"/>Equinox has become the base for a wide range of platform from embedded to server to desktop and rich client applications.
+		These new scenarios bring new requirements on the execution of Equinox as well as on the programming of its API.
+		The Equinox team will improve the overall robustness by providing APIs for clients where needed and fixing critical bugs. 
+		There will also be a focused effort on testability and enhancing the automated test suites.
+      </p></p:description>
+      <!--  Query: short_desc LIKE %[spec]% -->
+      <p:committed bugzilla="https://bugs.eclipse.org/bugs/buglist.cgi?query_format=advanced&amp;short_desc_type=allwordssubstr&amp;short_desc=[spec%5D&amp;classification=RT&amp;product=Equinox&amp;component=Framework&amp;component=RSE&amp;component=Compendium&amp;component=Components&amp;target_milestone=3.5+M2&amp;target_milestone=3.5+M3&amp;target_milestone=3.5+M4&amp;target_milestone=3.5+M5&amp;target_milestone=3.5+M6&amp;target_milestone=3.5+M7&amp;keywords_type=allwords&amp;keywords=&amp;priority=P1&amp;priority=P2&amp;priority=P3&amp;priority=P4&amp;cmdtype=doit"></p:committed>
+      <p:proposed bugzilla="https://bugs.eclipse.org/bugs/buglist.cgi?query_format=advanced&amp;short_desc_type=allwordssubstr&amp;short_desc=[spec%5D&amp;classification=RT&amp;product=Equinox&amp;component=Framework&amp;component=RSE&amp;component=Compendium&amp;component=Components&amp;target_milestone=3.5&amp;target_milestone=---&amp;keywords_type=allwords&amp;keywords=&amp;resolution=---&amp;priority=P1&amp;priority=P2&amp;priority=P3&amp;priority=P4&amp;cmdtype=doit"></p:proposed>
+      <p:deferred bugzilla="https://bugs.eclipse.org/bugs/buglist.cgi?query_format=advanced&amp;short_desc_type=allwordssubstr&amp;short_desc=[spec%5D&amp;classification=RT&amp;product=Equinox&amp;component=Framework&amp;component=RSE&amp;component=Compendium&amp;component=Components&amp;target_milestone=Future&amp;keywords_type=allwords&amp;keywords=&amp;resolution=---&amp;priority=P1&amp;priority=P2&amp;priority=P3&amp;priority=P4&amp;cmdtype=doit"></p:deferred>
+    </p:theme>
+    
+    <p:theme name="Consumability">
+      <p:description><p>
+		<a name="tp_consumability"/>The diversity of Equinox poses a significant problem to end-users and developers alike.  
+		Equinox is extremely flexible and configurable.  This makes the hard things possible but in some cases the simple things are
+		not as simple as they might be.  The Equinox team will make it easier for users to get the relevant pieces of function,
+		 install it on their systems, and configure it for their use.  Where there is UI, attention will be paid to making it simple and
+		 natural to use.  We will also make it easier for developers to use our APIs.      
+	  </p></p:description>
+      <!--  Query: short_desc LIKE %[spec]% -->
+      <p:committed bugzilla="https://bugs.eclipse.org/bugs/buglist.cgi?query_format=advanced&amp;short_desc_type=allwordssubstr&amp;short_desc=[spec%5D&amp;classification=RT&amp;product=Equinox&amp;component=Framework&amp;component=RSE&amp;component=Compendium&amp;component=Components&amp;target_milestone=3.5+M2&amp;target_milestone=3.5+M3&amp;target_milestone=3.5+M4&amp;target_milestone=3.5+M5&amp;target_milestone=3.5+M6&amp;target_milestone=3.5+M7&amp;keywords_type=allwords&amp;keywords=&amp;priority=P1&amp;priority=P2&amp;priority=P3&amp;priority=P4&amp;cmdtype=doit"></p:committed>
+      <p:proposed bugzilla="https://bugs.eclipse.org/bugs/buglist.cgi?query_format=advanced&amp;short_desc_type=allwordssubstr&amp;short_desc=[spec%5D&amp;classification=RT&amp;product=Equinox&amp;component=Framework&amp;component=RSE&amp;component=Compendium&amp;component=Components&amp;target_milestone=3.5&amp;target_milestone=---&amp;keywords_type=allwords&amp;keywords=&amp;resolution=---&amp;priority=P1&amp;priority=P2&amp;priority=P3&amp;priority=P4&amp;cmdtype=doit"></p:proposed>
+      <p:deferred bugzilla="https://bugs.eclipse.org/bugs/buglist.cgi?query_format=advanced&amp;short_desc_type=allwordssubstr&amp;short_desc=[spec%5D&amp;classification=RT&amp;product=Equinox&amp;component=Framework&amp;component=RSE&amp;component=Compendium&amp;component=Components&amp;target_milestone=Future&amp;keywords_type=allwords&amp;keywords=&amp;resolution=---&amp;priority=P1&amp;priority=P2&amp;priority=P3&amp;priority=P4&amp;cmdtype=doit"></p:deferred>
+    </p:theme>
+    
+    <p:theme name="Future">
+      <p:description><p>
+      <a name="tp_future">Eclipse</a> is evolving quickly.  New features in the next OSGi specification R4.2 and e4 will drive numerous changes throughout the Equinox
+      project.  Considerable effort will be put into updating Equinox to accomodate and exploit these new scenarios.
+      </p></p:description>
+      <!--  Query: short_desc LIKE %[spec]% -->
+      <p:committed>
+      <blockquote><p>
+ 	 	<strong>OSGi standards participation.</strong> The OSGi Alliance</a>, in collaboration with Equinox 
+  		and other open source communities, is currently revising the Core specifications. As the reference implementation for 
+  		several parts of the OSGi specifications, Equinox will be updated to implement these new features and changes to the spec. 
+  		[Framework](<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=XXX"> XXX</a>) </p>
+	</blockquote>
+      </p:committed>
       <p:proposed bugzilla="https://bugs.eclipse.org/bugs/buglist.cgi?query_format=advanced&amp;short_desc_type=allwordssubstr&amp;short_desc=[spec%5D&amp;classification=RT&amp;product=Equinox&amp;component=Framework&amp;component=RSE&amp;component=Compendium&amp;component=Components&amp;target_milestone=3.5&amp;target_milestone=---&amp;keywords_type=allwords&amp;keywords=&amp;resolution=---&amp;priority=P1&amp;priority=P2&amp;priority=P3&amp;priority=P4&amp;cmdtype=doit"></p:proposed>
       <p:deferred bugzilla="https://bugs.eclipse.org/bugs/buglist.cgi?query_format=advanced&amp;short_desc_type=allwordssubstr&amp;short_desc=[spec%5D&amp;classification=RT&amp;product=Equinox&amp;component=Framework&amp;component=RSE&amp;component=Compendium&amp;component=Components&amp;target_milestone=Future&amp;keywords_type=allwords&amp;keywords=&amp;resolution=---&amp;priority=P1&amp;priority=P2&amp;priority=P3&amp;priority=P4&amp;cmdtype=doit"></p:deferred>
     </p:theme>
