@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <!--  Use this to test local rendering in firefox -->
-<!-- ?xml-stylesheet type="text/xsl" href="project-plan-render.xsl"?--> 
+<?xml-stylesheet type="text/xsl" href="project-plan-render.xsl"?> 
 
-<?xml-stylesheet type="text/xsl" href="http://www.eclipse.org/projects/project-plan.xsl"?>
+<!-- ?xml-stylesheet type="text/xsl" href="http://www.eclipse.org/projects/project-plan.xsl"?-->
 <p:plan plan-format="1.0" xmlns:p="http://www.eclipse.org/project/plan" xmlns="http://www.w3.org/1999/xhtml"
       name="Equinox">
    <p:release projectid="rt.equinox" version="Galileo"/>
@@ -73,8 +73,7 @@ Equinox is way cool.
   </div></p:release_deliverables>
   <p:release_milestones>
     <p:preamble><p>      
-<a name="m_release_milestones">Release milestones</a>
-will be occurring at roughly 6 week intervals, and will be aligned with the
+Release milestones will be occurring at roughly 6 week intervals, and will be aligned with the
 <a href="http://wiki.eclipse.org/Galileo_Simultaneous_Release">
 Galileo Simultaneous Release</a> train.
     </p></p:preamble>
@@ -105,7 +104,6 @@ The target date for availability of Equinox 3.5 is:</p>
   </p:release_milestones>
 
   <p:target_environments><div>
-<a name="m_target_environments"></a>
 <p>In order to remain current, each Equinox release targets reasonably current
   operating environments. </p>
 <p>Most of Equinox is &quot;pure&quot; Java code and has no direct dependence
@@ -274,7 +272,7 @@ The target date for availability of Equinox 3.5 is:</p>
   </p:target_environments>
  
   <p:compatibility_with_previous_releases><div>
-<p><a name="m_compatibility">Equinox 3.5</a> will be backward compatible with Equinox 3.4 (and, hence, with 3.3, 3.2, 3.1
+<p>Equinox 3.5 will be backward compatible with Equinox 3.4 (and, hence, with 3.3, 3.2, 3.1
   and 3.0).</p>
 <p> <strong>API Contract Compatibility:</strong> Equinox 3.5 will be upwards
   contract-compatible with Equinox 3.4 except in those areas noted in the <a href="http://wiki.eclipse.org/Equinox_Galileo_Porting_Guide" target="_top"> <em>Equinox
@@ -313,7 +311,7 @@ The target date for availability of Equinox 3.5 is:</p>
   
   <p:themes_and_priorities>
     <p:preamble><div>
-<p>Plan items listed <a name="m_themes">below</a> were defined according to
+<p>Plan items listed below were defined according to
  contributor requirements and the Eclipse <a href="http://wiki.eclipse.org/RequirementsCouncilThemesAndPriorities">
 Themes and Priorities</a>
 set forth by the Eclipse Requirements Council.
