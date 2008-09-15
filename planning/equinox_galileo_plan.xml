@@ -383,7 +383,7 @@ ongoing work and planned delivery milestones.
       <!--  Query: short_desc LIKE %[spec]% -->
       <p:committed>
       <blockquote><p>
- 	 	<strong>OSGi standards participation.</strong> The OSGi Alliance</a>, in collaboration with Equinox 
+ 	 	<strong>OSGi standards participation.</strong> The OSGi Alliance, in collaboration with Equinox 
   		and other open source communities, is currently revising the Core specifications. As the reference implementation for 
   		several parts of the OSGi specifications, Equinox will be updated to implement these new features and changes to the spec. 
   		[Framework](<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=XXX"> XXX</a>) </p>
