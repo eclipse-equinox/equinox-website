@@ -68,6 +68,13 @@ Equinox is way cool.
     		<li>HTTP Jetty - A thin layer that exposes an embedded Jetty server as a compliant OSGi HTTP service.</li>
     	</ul>
     </li>
+    <li><b>p2</b>
+		<ul>
+			<li>Command line application to mirror repositories.</li>
+			<li>Command line application to manage (install / uninstall / update) an eclipse install.</li> 
+			<li>UI to manage an eclipse installation from within eclipse.</li>
+			<li>API to programmatically interact with p2.</li>
+		</ul>
 </ul>
 
   </div></p:release_deliverables>
@@ -366,6 +373,14 @@ ongoing work and planned delivery milestones.
 		</ul>
 		</p>
 	  </blockquote>
+	        <blockquote>
+      	<p>
+      	<strong>p2</strong>
+		<ul>
+		  <li>Investigate the places where the installation process is taking too long and see if we can reduce the install time.</li> 
+		</ul>
+		</p>
+	  </blockquote>
       </p:committed>
       <p:proposed bugzilla="https://bugs.eclipse.org/bugs/buglist.cgi?query_format=advanced&amp;short_desc_type=allwordssubstr&amp;short_desc=[spec%5D&amp;classification=RT&amp;product=Equinox&amp;component=Framework&amp;component=RSE&amp;component=Compendium&amp;component=Components&amp;target_milestone=3.5&amp;target_milestone=---&amp;keywords_type=allwords&amp;keywords=&amp;resolution=---&amp;priority=P1&amp;priority=P2&amp;priority=P3&amp;priority=P4&amp;cmdtype=doit"></p:proposed>
       <p:deferred bugzilla="https://bugs.eclipse.org/bugs/buglist.cgi?query_format=advanced&amp;short_desc_type=allwordssubstr&amp;short_desc=[spec%5D&amp;classification=RT&amp;product=Equinox&amp;component=Framework&amp;component=RSE&amp;component=Compendium&amp;component=Components&amp;target_milestone=Future&amp;keywords_type=allwords&amp;keywords=&amp;resolution=---&amp;priority=P1&amp;priority=P2&amp;priority=P3&amp;priority=P4&amp;cmdtype=doit"></p:deferred>
@@ -400,6 +415,14 @@ ongoing work and planned delivery milestones.
  	 		</ul>
   		</p> 
 	  </blockquote>
+	  <blockquote><p>
+ 	 	<strong>p2</strong>
+ 	 		<ul>
+ 	 		<li>Improve the robustness of transports.</li>
+ 	 		<li>Improve the robustness of the installation in case of failure.</li> 
+ 	 		</ul>
+  		</p> 
+	  </blockquote>
 	  </p:committed>
       <p:proposed bugzilla="https://bugs.eclipse.org/bugs/buglist.cgi?query_format=advanced&amp;short_desc_type=allwordssubstr&amp;short_desc=[spec%5D&amp;classification=RT&amp;product=Equinox&amp;component=Framework&amp;component=RSE&amp;component=Compendium&amp;component=Components&amp;target_milestone=3.5&amp;target_milestone=---&amp;keywords_type=allwords&amp;keywords=&amp;resolution=---&amp;priority=P1&amp;priority=P2&amp;priority=P3&amp;priority=P4&amp;cmdtype=doit"></p:proposed>
       <p:deferred bugzilla="https://bugs.eclipse.org/bugs/buglist.cgi?query_format=advanced&amp;short_desc_type=allwordssubstr&amp;short_desc=[spec%5D&amp;classification=RT&amp;product=Equinox&amp;component=Framework&amp;component=RSE&amp;component=Compendium&amp;component=Components&amp;target_milestone=Future&amp;keywords_type=allwords&amp;keywords=&amp;resolution=---&amp;priority=P1&amp;priority=P2&amp;priority=P3&amp;priority=P4&amp;cmdtype=doit"></p:deferred>
@@ -422,6 +445,15 @@ ongoing work and planned delivery milestones.
  	 		including a certificate management subsystem. Enhance functionality for developing and testing 
  	 		with signed bundles.
  	 		</li>
+ 	 	</ul>
+  		</p> 
+	  </blockquote>
+	        <blockquote><p>
+ 	 	<strong>p2 Usability</strong>
+ 	 	<ul>
+ 	 		<li>Revise the workflow around update and install of new functionality.</li>
+ 	 		<li>Improve the error messages when an operation goes wrong.</li>
+ 	 		<li>Improve the responsiveness of the system.</li>
  	 	</ul>
   		</p> 
 	  </blockquote>
