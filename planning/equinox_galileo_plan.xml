@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <!--  Use this to test local rendering in firefox -->
-<!-- ?xml-stylesheet type="text/xsl" href="project-plan-render.xsl"?--> 
+<?xml-stylesheet type="text/xsl" href="project-plan-render.xsl"?> 
 
-<?xml-stylesheet type="text/xsl" href="http://www.eclipse.org/projects/project-plan.xsl"?>
+<!-- ?xml-stylesheet type="text/xsl" href="http://www.eclipse.org/projects/project-plan.xsl"?-->
 <p:plan plan-format="1.0" xmlns:p="http://www.eclipse.org/project/plan" xmlns="http://www.w3.org/1999/xhtml"
       name="Equinox">
    <p:release projectid="rt.equinox" version="Galileo"/>
@@ -364,23 +364,19 @@ ongoing work and planned delivery milestones.
       </p></p:description>
       <!--  Query: short_desc LIKE %[spec]% -->
       <p:committed>
-      <blockquote>
-      	<p>
-      	<strong>Framework</strong>
-		<ul>
-		  <li>Investigate places where we can rid the framework of bulky and unnecessary abstraction layers to reduce size and improve performance (service registry abstraction, resolver abstraction etc.). </li>
-		  <li>Make &quot;uses&quot; clause usable for large installs. </li>
-		</ul>
-		</p>
-	  </blockquote>
-	        <blockquote>
-      	<p>
-      	<strong>p2</strong>
-		<ul>
-		  <li>Investigate the places where the installation process is taking too long and see if we can reduce the install time.</li> 
-		</ul>
-		</p>
-	  </blockquote>
+	  <ul>
+	  	<li><strong>Framework</strong>
+	  	  <ul>
+	  	    <li>Investigate places where we can rid the framework of bulky and unnecessary abstraction layers to reduce size and improve performance (service registry abstraction, resolver abstraction etc.).</li>
+	  	    <li>Make &quot;uses&quot; clause usable for large installs.</li>
+	  	  </ul>
+	  	</li>
+	  	<li><strong>p2</strong>
+	  	  <ul>
+	  	    <li>Investigate the places where the installation process is taking too long and see if we can reduce the install time.</li>
+	  	  </ul>
+	  	</li>
+	  </ul>
       </p:committed>
       <p:proposed bugzilla="https://bugs.eclipse.org/bugs/buglist.cgi?query_format=advanced&amp;short_desc_type=allwordssubstr&amp;short_desc=[spec%5D&amp;classification=RT&amp;product=Equinox&amp;component=Framework&amp;component=RSE&amp;component=Compendium&amp;component=Components&amp;target_milestone=3.5&amp;target_milestone=---&amp;keywords_type=allwords&amp;keywords=&amp;resolution=---&amp;priority=P1&amp;priority=P2&amp;priority=P3&amp;priority=P4&amp;cmdtype=doit"></p:proposed>
       <p:deferred bugzilla="https://bugs.eclipse.org/bugs/buglist.cgi?query_format=advanced&amp;short_desc_type=allwordssubstr&amp;short_desc=[spec%5D&amp;classification=RT&amp;product=Equinox&amp;component=Framework&amp;component=RSE&amp;component=Compendium&amp;component=Components&amp;target_milestone=Future&amp;keywords_type=allwords&amp;keywords=&amp;resolution=---&amp;priority=P1&amp;priority=P2&amp;priority=P3&amp;priority=P4&amp;cmdtype=doit"></p:deferred>
@@ -395,34 +391,26 @@ ongoing work and planned delivery milestones.
       </p></p:description>
       <!--  Query: short_desc LIKE %[spec]% -->
       <p:committed>
-      <blockquote><p>
- 	 	<strong>Framework</strong>
- 	 		<ul>
- 	 		<li>
- 	 	 	Review and fix thread safety issues in the Framework <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=245251">Bug 245251</a>
- 	 		</li>
- 	 		</ul>
-  		</p> 
-	  </blockquote>
-      <blockquote><p>
- 	 	<strong>Equinox Security APIs</strong>
- 	 		<ul>
- 	 		<li>
- 	 	 	Graduate authorization APIs for Trusted Bundle feature, 
+      <ul>
+	  	<li><strong>Framework</strong>
+	  	  <ul>
+	  	    <li>Review and fix thread safety issues in the Framework <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=245251">Bug 245251</a></li>
+	  	  </ul>
+	  	</li>
+	  	<li><strong>Security</strong>
+	  	  <ul>
+	  	    <li>Graduate authorization APIs for Trusted Bundle feature, 
  	 		ensure consistency across PKI based use-cases: P2 (Signed Artifacts), Framework (Trusted Bundles)
- 	 		and ECF (SSL)
- 	 		</li>
- 	 		</ul>
-  		</p> 
-	  </blockquote>
-	  <blockquote><p>
- 	 	<strong>p2</strong>
- 	 		<ul>
+ 	 		and ECF (SSL)</li>
+	  	  </ul>
+	  	</li>
+	  	<li><strong>p2</strong>
+	  	  <ul>
  	 		<li>Improve the robustness of transports.</li>
  	 		<li>Improve the robustness of the installation in case of failure.</li> 
- 	 		</ul>
-  		</p> 
-	  </blockquote>
+	  	  </ul>
+	  	</li>
+	  </ul>
 	  </p:committed>
       <p:proposed bugzilla="https://bugs.eclipse.org/bugs/buglist.cgi?query_format=advanced&amp;short_desc_type=allwordssubstr&amp;short_desc=[spec%5D&amp;classification=RT&amp;product=Equinox&amp;component=Framework&amp;component=RSE&amp;component=Compendium&amp;component=Components&amp;target_milestone=3.5&amp;target_milestone=---&amp;keywords_type=allwords&amp;keywords=&amp;resolution=---&amp;priority=P1&amp;priority=P2&amp;priority=P3&amp;priority=P4&amp;cmdtype=doit"></p:proposed>
       <p:deferred bugzilla="https://bugs.eclipse.org/bugs/buglist.cgi?query_format=advanced&amp;short_desc_type=allwordssubstr&amp;short_desc=[spec%5D&amp;classification=RT&amp;product=Equinox&amp;component=Framework&amp;component=RSE&amp;component=Compendium&amp;component=Components&amp;target_milestone=Future&amp;keywords_type=allwords&amp;keywords=&amp;resolution=---&amp;priority=P1&amp;priority=P2&amp;priority=P3&amp;priority=P4&amp;cmdtype=doit"></p:deferred>
@@ -438,25 +426,22 @@ ongoing work and planned delivery milestones.
 	  </p></p:description>
       <!--  Query: short_desc LIKE %[spec]% -->
       <p:committed>
-      <blockquote><p>
- 	 	<strong>Equinox Security Usability</strong>
- 	 	<ul>
+      <ul>
+      	<li><strong>Security</strong>
+	  	  <ul>
  	 		<li>Develop useful UIs for functionality delivered in Ganymede, 
  	 		including a certificate management subsystem. Enhance functionality for developing and testing 
- 	 		with signed bundles.
- 	 		</li>
- 	 	</ul>
-  		</p> 
-	  </blockquote>
-	        <blockquote><p>
- 	 	<strong>p2 Usability</strong>
- 	 	<ul>
+ 	 		with signed bundles.</li>
+ 	  	  </ul>
+	  	</li>
+	  	<li><strong>p2 Usability</strong>
+	  	  <ul>
  	 		<li>Revise the workflow around update and install of new functionality.</li>
  	 		<li>Improve the error messages when an operation goes wrong.</li>
  	 		<li>Improve the responsiveness of the system.</li>
- 	 	</ul>
-  		</p> 
-	  </blockquote>
+ 	  	  </ul>
+	  	</li>
+	  </ul>
       </p:committed>
       <p:proposed bugzilla="https://bugs.eclipse.org/bugs/buglist.cgi?query_format=advanced&amp;short_desc_type=allwordssubstr&amp;short_desc=[spec%5D&amp;classification=RT&amp;product=Equinox&amp;component=Framework&amp;component=RSE&amp;component=Compendium&amp;component=Components&amp;target_milestone=3.5&amp;target_milestone=---&amp;keywords_type=allwords&amp;keywords=&amp;resolution=---&amp;priority=P1&amp;priority=P2&amp;priority=P3&amp;priority=P4&amp;cmdtype=doit"></p:proposed>
       <p:deferred bugzilla="https://bugs.eclipse.org/bugs/buglist.cgi?query_format=advanced&amp;short_desc_type=allwordssubstr&amp;short_desc=[spec%5D&amp;classification=RT&amp;product=Equinox&amp;component=Framework&amp;component=RSE&amp;component=Compendium&amp;component=Components&amp;target_milestone=Future&amp;keywords_type=allwords&amp;keywords=&amp;resolution=---&amp;priority=P1&amp;priority=P2&amp;priority=P3&amp;priority=P4&amp;cmdtype=doit"></p:deferred>
@@ -469,16 +454,18 @@ ongoing work and planned delivery milestones.
       </p></p:description>
       <!--  Query: short_desc LIKE %[spec]% -->
       <p:committed>
-      <blockquote><p>
- 	 	<strong>OSGi standards participation.</strong> The OSGi Alliance, in collaboration with Equinox 
-  		and other open source communities, is currently revising the Core specifications. As the reference implementation for 
-  		several parts of the OSGi specifications, Equinox will be updated to implement these new features and changes to the spec.
-  		<ul>
-  		<li>Framework <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=247354">Bug 247354</a></li>
-  		<li>Compendium Services <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=247355">Bug 247355</a></li>
-  		</ul>
-  		</p>
-	  </blockquote>
+      <ul>
+      	<li><strong>OSGi standards participation</strong>
+	  	  <ul>
+ 	 		<li>Develop useful UIs for functionality delivered in Ganymede, 
+ 	 		including a certificate management subsystem. Enhance functionality for developing and testing 
+ 	 		with signed bundles.
+ 	 		[Framework] <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=247354">Bug 247354</a> 
+ 	 		[Compendium] <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=247355">Bug 247355</a>
+ 	 		</li>
+ 	  	  </ul>
+	  	</li>
+	  </ul>
       </p:committed>
       <p:proposed bugzilla="https://bugs.eclipse.org/bugs/buglist.cgi?query_format=advanced&amp;short_desc_type=allwordssubstr&amp;short_desc=[spec%5D&amp;classification=RT&amp;product=Equinox&amp;component=Framework&amp;component=RSE&amp;component=Compendium&amp;component=Components&amp;target_milestone=3.5&amp;target_milestone=---&amp;keywords_type=allwords&amp;keywords=&amp;resolution=---&amp;priority=P1&amp;priority=P2&amp;priority=P3&amp;priority=P4&amp;cmdtype=doit"></p:proposed>
       <p:deferred bugzilla="https://bugs.eclipse.org/bugs/buglist.cgi?query_format=advanced&amp;short_desc_type=allwordssubstr&amp;short_desc=[spec%5D&amp;classification=RT&amp;product=Equinox&amp;component=Framework&amp;component=RSE&amp;component=Compendium&amp;component=Components&amp;target_milestone=Future&amp;keywords_type=allwords&amp;keywords=&amp;resolution=---&amp;priority=P1&amp;priority=P2&amp;priority=P3&amp;priority=P4&amp;cmdtype=doit"></p:deferred>
