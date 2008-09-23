@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <!--  Use this to test local rendering in firefox -->
-<!-- ?xml-stylesheet type="text/xsl" href="project-plan-render.xsl"?--> 
+<?xml-stylesheet type="text/xsl" href="project-plan-render.xsl"?> 
 
-<?xml-stylesheet type="text/xsl" href="http://www.eclipse.org/projects/project-plan.xsl"?>
+<!-- ?xml-stylesheet type="text/xsl" href="http://www.eclipse.org/projects/project-plan.xsl"? -->
 <p:plan plan-format="1.0" xmlns:p="http://www.eclipse.org/project/plan" xmlns="http://www.w3.org/1999/xhtml"
       name="Equinox">
    <p:release projectid="rt.equinox" version="Galileo"/>
@@ -368,7 +368,6 @@ ongoing work and planned delivery milestones.
 	  	<li><strong>Framework</strong>
 	  	  <ul>
 	  	    <li>Investigate places where we can rid the framework of bulky and unnecessary abstraction layers to reduce size and improve performance (service registry abstraction, resolver abstraction etc.).</li>
-	  	    <li>Make &quot;uses&quot; clause usable for large installs.</li>
 	  	  </ul>
 	  	</li>
 	  	<li><strong>p2</strong>
@@ -378,7 +377,20 @@ ongoing work and planned delivery milestones.
 	  	</li>
 	  </ul>
       </p:committed>
-      <p:proposed bugzilla="https://bugs.eclipse.org/bugs/buglist.cgi?query_format=advanced&amp;short_desc_type=allwordssubstr&amp;short_desc=[spec%5D&amp;classification=RT&amp;product=Equinox&amp;component=Framework&amp;component=RSE&amp;component=Compendium&amp;component=Components&amp;target_milestone=3.5&amp;target_milestone=---&amp;keywords_type=allwords&amp;keywords=&amp;resolution=---&amp;priority=P1&amp;priority=P2&amp;priority=P3&amp;priority=P4&amp;cmdtype=doit"></p:proposed>
+      <p:proposed>
+      <ul>
+        <li><strong>Framework</strong>
+	  	  <ul>
+	  	    <li><strong>Improve performance of the &quot;uses&quot; directive in the resolver</strong> - The OSGi specification provides a modularity framework that ensures consist class spaces
+	  	    when multiple versions of a package is available.  In order to ensure a consist class space 
+	  	    exporters must specify what other packages they &quot;use&quot; with the &quot;uses&quot; 
+	  	    directive.  The Equinox Framework correctly implements the &quot;uses&quot; directive but 
+	  	    it has been found to cause performance issues in the resolver.
+	  	    <a href="https//bugs.eclipse.org/bugs/show_bug.cgi?id=216934">216934</a></li>
+	  	  </ul>
+	  	</li>
+	  </ul>
+      </p:proposed>
       <p:deferred bugzilla="https://bugs.eclipse.org/bugs/buglist.cgi?query_format=advanced&amp;short_desc_type=allwordssubstr&amp;short_desc=[spec%5D&amp;classification=RT&amp;product=Equinox&amp;component=Framework&amp;component=RSE&amp;component=Compendium&amp;component=Components&amp;target_milestone=Future&amp;keywords_type=allwords&amp;keywords=&amp;resolution=---&amp;priority=P1&amp;priority=P2&amp;priority=P3&amp;priority=P4&amp;cmdtype=doit"></p:deferred>
     </p:theme>
     
@@ -394,7 +406,10 @@ ongoing work and planned delivery milestones.
       <ul>
 	  	<li><strong>Framework</strong>
 	  	  <ul>
-	  	    <li>Review and fix thread safety issues in the Framework <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=245251">Bug 245251</a></li>
+	  	    <li><strong>Thread Safety</strong> - The Framework lifecycle operations must be thread safe.  
+	  	    Several bugs have been reported about thread safety issues when running bundle lifecycle 
+	  	    operations from multiple threads.  This plan item is to review and fix thread safety issues in the 
+	  	    Framework <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=245251">Bug 245251</a></li>
 	  	  </ul>
 	  	</li>
 	  	<li><strong>Security</strong>
@@ -412,7 +427,31 @@ ongoing work and planned delivery milestones.
 	  	</li>
 	  </ul>
 	  </p:committed>
-      <p:proposed bugzilla="https://bugs.eclipse.org/bugs/buglist.cgi?query_format=advanced&amp;short_desc_type=allwordssubstr&amp;short_desc=[spec%5D&amp;classification=RT&amp;product=Equinox&amp;component=Framework&amp;component=RSE&amp;component=Compendium&amp;component=Components&amp;target_milestone=3.5&amp;target_milestone=---&amp;keywords_type=allwords&amp;keywords=&amp;resolution=---&amp;priority=P1&amp;priority=P2&amp;priority=P3&amp;priority=P4&amp;cmdtype=doit"></p:proposed>
+      <p:proposed>
+      <ul>
+	  	<li><strong>Framework</strong>
+	  	  <ul>
+	  	    <li><strong>API to contribute and get Execution Environment Profiles</strong> - The Equinox 
+	  	    Framework currently has a set of built-in and supported Execution Environment profiles 
+	  	    (e.g. J2SE-1.4, J2SE-1.5 etc.).  These profiles are used internally be the Framework to 
+	  	    define the packages exported by the running VM.  Tooling also needs access to the 
+	  	    Execution Environments to place proper visibility rules on the configured VM for a 
+	  	    project.  API is needed to provide a way to contribute and get the available 
+	  	    Execution Environment profiles 
+	  	    <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=240724">Bug 240724</a></li>
+	  	    <li><strong>WebStart support on latest VMs</strong> - The WebStart support in 
+	  	    Equinox needs to be enhanced to load resources outside the jnlp class loader.
+	  	    The current WebStart support makes invalid assumptions on the resources cached 
+	  	    by the jnlp class loader.
+	  	    <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=244311">Bug 244311</a></li>
+	  	    <li><strong>Pass arguments to a running Eclipse application.</strong> A protocol and 
+	  	    framework are needed to allow arguments to be passed from the native launcher to a 
+	  	    running instance of eclipse.
+	  	    <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=178927">Bug 178927</a></li>
+	  	  </ul>
+	  	</li>
+	  </ul>      
+      </p:proposed>
       <p:deferred bugzilla="https://bugs.eclipse.org/bugs/buglist.cgi?query_format=advanced&amp;short_desc_type=allwordssubstr&amp;short_desc=[spec%5D&amp;classification=RT&amp;product=Equinox&amp;component=Framework&amp;component=RSE&amp;component=Compendium&amp;component=Components&amp;target_milestone=Future&amp;keywords_type=allwords&amp;keywords=&amp;resolution=---&amp;priority=P1&amp;priority=P2&amp;priority=P3&amp;priority=P4&amp;cmdtype=doit"></p:deferred>
     </p:theme>
     
@@ -468,7 +507,20 @@ ongoing work and planned delivery milestones.
 	  	</li>
 	  </ul>
       </p:committed>
-      <p:proposed bugzilla="https://bugs.eclipse.org/bugs/buglist.cgi?query_format=advanced&amp;short_desc_type=allwordssubstr&amp;short_desc=[spec%5D&amp;classification=RT&amp;product=Equinox&amp;component=Framework&amp;component=RSE&amp;component=Compendium&amp;component=Components&amp;target_milestone=3.5&amp;target_milestone=---&amp;keywords_type=allwords&amp;keywords=&amp;resolution=---&amp;priority=P1&amp;priority=P2&amp;priority=P3&amp;priority=P4&amp;cmdtype=doit"></p:proposed>
+      <p:proposed>
+      <ul>
+      	<li><strong>Extension Registry</strong>
+	  	  <ul>
+	  	    <li><strong>Investigate improvements of the extension registry.</strong>
+	  	    Areas of research will include creating user-defined objects instead of configuration 
+	  	    elements, expanding ability to programmatically modify the extension registry, and 
+	  	    adding support for non-singleton bundles.  Due to the size and potential impact of this 
+	  	    item, it is considered experimental and might be pushed into later releases.
+	  	    </li>
+	  	  </ul>
+	  	</li>
+	  </ul>
+      </p:proposed>
       <p:deferred bugzilla="https://bugs.eclipse.org/bugs/buglist.cgi?query_format=advanced&amp;short_desc_type=allwordssubstr&amp;short_desc=[spec%5D&amp;classification=RT&amp;product=Equinox&amp;component=Framework&amp;component=RSE&amp;component=Compendium&amp;component=Components&amp;target_milestone=Future&amp;keywords_type=allwords&amp;keywords=&amp;resolution=---&amp;priority=P1&amp;priority=P2&amp;priority=P3&amp;priority=P4&amp;cmdtype=doit"></p:deferred>
     </p:theme>
     
