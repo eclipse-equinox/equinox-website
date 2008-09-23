@@ -47,7 +47,14 @@ Equinox is way cool.
 		   <li>Wire Admin Service - An implementation of the OSGi R4.2 Wire Admin Service.</li>
     	</ul>
     </li>
-    <li><b>p2</b></li>
+    <li><b>p2</b>
+		<ul>
+			<li>Command line application to mirror repositories.</li>
+			<li>Command line application to manage (install / uninstall / update) an eclipse install.</li> 
+			<li>UI to manage an eclipse installation from within eclipse.</li>
+			<li>API to programmatically interact with p2.</li>
+		</ul>
+	</li>
     <li><b>Component model</b>
     	<ul>
     		<li>Eclipse Extension Registry - The Eclipse extension registry allows bundles to communicate and cooperate using declarative markup and lazy instantiation.</li>
@@ -68,13 +75,6 @@ Equinox is way cool.
     		<li>HTTP Jetty - A thin layer that exposes an embedded Jetty server as a compliant OSGi HTTP service.</li>
     	</ul>
     </li>
-    <li><b>p2</b>
-		<ul>
-			<li>Command line application to mirror repositories.</li>
-			<li>Command line application to manage (install / uninstall / update) an eclipse install.</li> 
-			<li>UI to manage an eclipse installation from within eclipse.</li>
-			<li>API to programmatically interact with p2.</li>
-		</ul>
 </ul>
 
   </div></p:release_deliverables>
