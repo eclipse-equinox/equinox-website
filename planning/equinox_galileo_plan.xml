@@ -367,7 +367,8 @@ ongoing work and planned delivery milestones.
 	  <ul>
 	  	<li><strong>Framework</strong>
 	  	  <ul>
-	  	    <li>Investigate places where we can rid the framework of bulky and unnecessary abstraction layers to reduce size and improve performance (service registry abstraction, resolver abstraction etc.).</li>
+	  	    <li>Investigate places where we can rid the framework of bulky and unnecessary abstraction layers to reduce size and improve performance (service registry abstraction, resolver abstraction etc.).
+	  	    <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=248352">Bug 248352</a></li>
 	  	  </ul>
 	  	</li>
 	  	<li><strong>p2</strong>
