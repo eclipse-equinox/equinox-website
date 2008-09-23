@@ -457,9 +457,10 @@ ongoing work and planned delivery milestones.
       <ul>
       	<li><strong>OSGi standards participation</strong>
 	  	  <ul>
- 	 		<li>Develop useful UIs for functionality delivered in Ganymede, 
- 	 		including a certificate management subsystem. Enhance functionality for developing and testing 
- 	 		with signed bundles.
+ 	 		<li>The OSGi Alliance, in collaboration with Equinox and other open source communities, 
+ 	 		is currently revising the Core specifications. As the reference implementation for 
+ 	 		several parts of the OSGi specifications, Equinox will be updated to implement these 
+ 	 		new features and changes to the spec.
  	 		[Framework] <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=247354">Bug 247354</a> 
  	 		[Compendium] <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=247355">Bug 247355</a>
  	 		</li>
