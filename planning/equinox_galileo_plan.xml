@@ -8,10 +8,22 @@
    <p:release projectid="rt.equinox" version="Galileo"/>
     <p:introduction><div>
 <hr/>
-<div style="align:center;"><big><b>Preliminary</b></big></div>
 
 <p>
-Equinox is way cool.
+The goal of the Equinox project is to be a first class OSGi community and foster the vision of Eclipse 
+as a landscape of bundles. As part of this, it is responsible for developing and delivering the OSGi 
+framework implementation used for all of Eclipse.
+</p><p>
+ This plan is for Equinox as part of the 
+Galileo release in 2009 and attempts to balance the evolution of the technology with the increased 
+need for testing and robustness.
+</p><p>
+This release of Equinox tackles a number of challenges.  As OSGi gains more visibility and Equinox 
+more use, new use-cases and drivers come to the fore -- people 
+are pushing the technology and implementation in new directions.  2009 will also see the release of a new 
+OSGi spec revision. Equinox will implement this spec and several of the new services.  Equinox will also 
+deliver runtime technologies including the p2 provisioning platform, the extension registry, integrated security 
+support as well as support for OSGi on on the server.
 </p>
 
   </div></p:introduction>
@@ -89,14 +101,15 @@ Galileo Simultaneous Release</a> train.
     <p:milestone date="10/31/2008" milestone="M3"><div>3.5M3</div></p:milestone>
     <p:milestone date="12/12/2008" milestone="M4"><div>3.5M4</div></p:milestone>
     <p:milestone date="01/30/2009" milestone="M5"><div>3.5M5</div></p:milestone>
-    <p:milestone date="03/12/2009" milestone="M6"><div>3.5M6 (API Freeze)</div></p:milestone>
+    <p:milestone date="03/13/2009" milestone="M6"><div>3.5M6 (API Freeze)</div></p:milestone>
     <p:milestone date="05/01/2009" milestone="M7"><div>3.5M7 (Feature Freeze)</div></p:milestone>
     <p:milestone date="05/15/2009" milestone="RC1"><div>3.5RC1</div></p:milestone>
-    <p:milestone date="05/29/2009" milestone="RC2"><div>3.5RC2</div></p:milestone>
-    <p:milestone date="06/05/2009" milestone="RC3"><div>3.5RC3</div></p:milestone>
-    <p:milestone date="06/12/2009" milestone="RC4"><div>3.5RC4</div></p:milestone>
+    <p:milestone date="05/22/2009" milestone="RC2"><div>3.5RC2</div></p:milestone>
+    <p:milestone date="05/29/2009" milestone="RC3"><div>3.5RC3</div></p:milestone>
+    <p:milestone date="06/5/2009" milestone="RC4"><div>3.5RC4</div></p:milestone>
+    <p:milestone date="06/12/2009" milestone="RC5"><div>3.5RC5</div></p:milestone>
     <p:postamble><div>
-	A detailed view of the Equinox 3.5 ramp down plans towards the release are available at the following links.
+	A detailed view of the Equinox 3.5 milestone plans towards the release are available at the following links.
 	<ul>
 	<li><a href="http://wiki.eclipse.org/Equinox/Plan/Galileo/Framework">Framework</a></li>
 	<li><a href="http://wiki.eclipse.org/Equinox/p2/Plan">p2</a></li>
@@ -105,7 +118,7 @@ Galileo Simultaneous Release</a> train.
 <p>
 The target date for availability of Equinox 3.5 is:</p>
 <ul>
-	<li>Wednesday June 24, 2009 - Equinox 3.5 Release date (with Galileo)</li>
+	<li>Friday June 26, 2009 - Equinox 3.5 Release date (with Galileo)</li>
 </ul>
     </div></p:postamble>
   </p:release_milestones>

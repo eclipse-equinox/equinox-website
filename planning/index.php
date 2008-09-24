@@ -26,49 +26,8 @@ ob_start();
 	<div id="midcolumn">
 		<h1><?= $pageTitle ?></h1>
 
-<table BORDER=0 CELLPADDING=2 WIDTH="100%" >
-
-	<tr>
-		<td WIDTH="2%" ALIGN=RIGHT VALIGN=TOP><img SRC="../../images/Adarrow.gif" BORDER=0 height=16 width=16></td>
-		<td><b>Bundles</b>
-			<ul>
-				<li>Check out the <a href="../bundles/planning">plan</a> for the Equinox Bundles component.</li>
-			</ul>
-			<p>&nbsp;</p>
-		</td>
-	</tr>
-
-	<tr>
-		<td WIDTH="2%" ALIGN=RIGHT VALIGN=TOP><img SRC="../../images/Adarrow.gif" BORDER=0 height=16 width=16></td>
-		<td><b>Framework</b>
-			<ul>
-				<li>Check out the <a href="../framework/planning">plan</a> for the Equinox Framework component.</li>
-			</ul>
-			<p>&nbsp;</p>
-		</td>
-	</tr>
-
-	<tr>
-		<td WIDTH="2%" ALIGN=RIGHT VALIGN=TOP><img SRC="../../images/Adarrow.gif" BORDER=0 height=16 width=16></td>
-		<td><b>Incubator</b>
-			<ul>
-				<li>Check out the plan for the Equinox Incubator component. <em>(TBD)</em></li>
-			</ul>
-			<p>&nbsp;</p>
-		</td>
-	</tr>
-
-	<tr>
-		<td WIDTH="2%" ALIGN=RIGHT VALIGN=TOP><img SRC="../../images/Adarrow.gif" BORDER=0 height=16 width=16></td>
-		<td><b>Server</b>
-			<ul>
-				<li>Check out the plan for the Equinox Server component. <em>(TBD)</em></li>
-			</ul>
-			<p>&nbsp;</p>
-		</td>
-	</tr>
-
-</table>
+<p>This page is obsolete.  Please see the current <a href="http://www.eclipse.org/projects/project-plan.php?projectid=rt.equinox">Equinox plan</a> 
+or the <a href="http://wiki.eclipse.org/Equinox/Plan">Equinox planning wiki</a>.</p>
 <p>&nbsp;</p>
 	</div>
 

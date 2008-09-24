@@ -43,18 +43,24 @@ There you will find documents discussing:</p>
 <li> <a href="http://wiki.eclipse.org/Category:Equinox">A whole host of articles on provisioning</a> in general and related to specifically to the Equinox work</li>
 </ul>
 
-<p class=bar>Working With the Provisioning Incubator</p>
-<p>The Provisioning incubator uses the main <a href="../resources.php">incubator resources</a> with
+<p class=bar>Working with  p2</p>
+<p>The p2 team uses the main <a href="../resources.php">Equinox resources</a> with
   the following refinements.</p>
 <table width="100%" border="0">
   <tr>
     <td><strong>Bugs</strong></td>
-    <td colspan="2">Summaries start with <strong><a href="https://bugs.eclipse.org/bugs/buglist.cgi?query_format=advanced&short_desc_type=allwordssubstr&short_desc=%5Bprov%5D&classification=Eclipse&product=Equinox&component=Incubator&long_desc_type=allwordssubstr&long_desc=&bug_file_loc_type=allwordssubstr&bug_file_loc=&status_whiteboard_type=allwordssubstr&status_whiteboard=&keywords_type=allwords&keywords=&bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED&emailtype1=substring&email1=&emailtype2=substring&email2=&bugidtype=include&bug_id=&votes=&chfieldfrom=&chfieldto=Now&chfieldvalue=&cmdtype=doit&order=Reuse+same+sort+as+last+time&field0-0-0=noop&type0-0-0=noop&value0-0-0=">[prov]</a></strong></td>
+    <td colspan="2">Summaries start with <strong><a href="https://bugs.eclipse.org/bugs/buglist.cgi?query_format=advanced&classification=RT&product=Equinox&component=p2&long_desc_type=allwordssubstr&long_desc=&bug_file_loc_type=allwordssubstr&bug_file_loc=&status_whiteboard_type=allwordssubstr&status_whiteboard=&keywords_type=allwords&keywords=&bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED&emailtype1=substring&email1=&emailtype2=substring&email2=&bugidtype=include&bug_id=&votes=&chfieldfrom=&chfieldto=Now&chfieldvalue=&cmdtype=doit&order=Reuse+same+sort+as+last+time&field0-0-0=noop&type0-0-0=noop&value0-0-0=">[prov]</a></strong></td>
   </tr>
 
   <tr>
     <td ><strong>CVS</strong></td>
-    <td colspan="2">See the projects in the "provisioning" folder of the normal Equinox Incubator CVS repository.
+    <td colspan="2">See the projects in the <a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox/p2/?root=RT_Project">p2</a>
+     folder of the normal Equinox CVS repository.
+            <blockquote>
+          <p>:pserver:anonymous@dev.eclipse.org/cvsroot/rt/org.eclipse.equinox/p2/</p>
+        </blockquote>
+    
+    </td>
   </tr>
 </table>
 
@@ -62,12 +68,13 @@ There you will find documents discussing:</p>
 <ul>
 <li>Andrew Overholt (Red Hat)</li>
 <li>Dave Stevenson (IBM)</li>
-<li>Jeff McAffer (IBM)</li>
+<li><a href="http://code9.com/team/jeff">Jeff McAffer</a> (<a href="http://code9.com">Code 9</a>)</li>
 <li>John Arthorne (IBM)</li>
 <li>Pascal Rapicault (IBM)</li>
 <li>Simon Kaegi (IBM)</li>
 <li>Stefan Liebig (Compeople)</li>
 <li>Susan McCourt (IBM)</li>
+<li><a href="http://code9.com/team/scott">Scott Lewis</a> (<a href="http://code9.com">Code 9</a>)</li>
 </ul>
 <p>&nbsp;</p>
 </div>
