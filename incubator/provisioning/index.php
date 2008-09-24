@@ -57,7 +57,7 @@ There you will find documents discussing:</p>
     <td colspan="2">See the projects in the <a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox/p2/?root=RT_Project">p2</a>
      folder of the normal Equinox CVS repository.
             <blockquote>
-          <p>:pserver:anonymous@dev.eclipse.org/cvsroot/rt/org.eclipse.equinox/p2/</p>
+          :pserver:anonymous@dev.eclipse.org/cvsroot/rt/org.eclipse.equinox/p2/
         </blockquote>
     
     </td>
