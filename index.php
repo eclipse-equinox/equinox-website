@@ -37,20 +37,19 @@ ob_start();
 					implementation used for all of Eclipse. In addition. the project is open to:
 				</p>
 				<ul>
-					<li>Implementation of all aspects of the OSGi specification (including the MEG and VEG work) </li>
+					<li>Implementation of all aspects of the OSGi specification (including the EEG, MEG and VEG work) </li>
 					<li> Investigation and research related to future versions of OSGi specifications and related runtime issues </li>
 					<li>Development of non-standard infrastructure deemed to be essential
 						to the running and management of OSGi-based systems </li>
 					<li>Implementation of key framework services and extensions needed for running Eclipse 
 						(e.g., the Eclipse Adaptor, Extension registry) and deemed generally useful to people using OSGi.</li>
 				</ul>
-				<p>As a peer of the Platform, JDT and PDE projects, the Equinox OSGi code is
-					managed by the Eclipse PMC and ships with the Eclipse project
-					major releases. The various other bundles developed here may ship independently
+				<p>As part of the RT project, the Equinox OSGi code is
+					managed by the RT PMC.  There is a close binding however to the Eclipse project and its PMC.
+					Equinox, as the base for all of Eclipse, ships with all the major releases. 
+					The various other bundles developed here may ship independently
 					and on different schedules. 
 				</p>
-				<p>Did you come here expecting to find the Equinox Technology project? It has
-					been transitioned. See the <a href="documents/transition.html">transition documentation</a> for more details.</p>
 
 		  <p class=bar>Getting Started and Getting Involved</p>
 			<p>The easiest way to get involved in Equinox is to try it out. See the <a href="documents/quickstart.php">Quick
@@ -64,31 +63,13 @@ ob_start();
 				of Equinox.</p>
 
 		  <p class=bar>What's New</p>
+		    <p><b>Aug 12</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14">
+		       The Equinox project is moving to the RT project.  Repository and bug locations are changing.</p>
 		    <p><b>Mar 10</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14">
 		       The <a href="http://www.eclipse.org/equinox/incubator/aspects/index.php">Equinox Aspects </a> team in the 
 		       <a href="http://www.eclipse.org/equinox/incubator">Equinox Incubator</a> has released version 1.1.0 of the Equinox
 		       Aspects bundles. The release is compatible with Eclipse 3.3 and 3.4, the latest AJDT versions, adds
 		       caching of woven bundles for non-IBM VMs, fixes a number of bugs and improves stability.</p>
-		    <p><b>Oct 23</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14">
-		      A new work work area <a href="http://www.eclipse.org/equinox/incubator/osgi-next/">OSGi next</a> has been started in 
-		      the <a href="http://www.eclipse.org/equinox/incubator">Equinox Incubator</a> for prototyping and 
-		      investigating future OSGi specifications.</p>
-		    <p><b>Sep 4</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14">
-		       The <a href="http://wiki.eclipse.org/Equinox_Summit_2007">Equinox Summit</a> is shaping up to be a great
-		       event with some 20 people alread registered.</p>
-		    <p><b>Aug 10</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14">
-		       The <a href="http://www.eclipse.org/equinox/incubator/provisioning/">Provisioning workarea</a> team in the 
-		       <a href="http://www.eclipse.org/equinox/incubator">Equinox Incubator</a> has released an M1a of the new provisioning
-		       support.  For more information see <a href="http://wiki.eclipse.org/Equinox_p2_M1">the wiki</a>.</p>
-		    <p><b>Aug 8</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14">
-		       The <a href="http://www.eclipse.org/equinox/incubator/security/">Security workarea</a> in the 
-		       <a href="http://www.eclipse.org/equinox/incubator">Equinox Incubator</a> has come alive with various contributions from Lotus
-		       around JAAS, JCA and Keystores.  Matthew Flaherty and Eric Li from Lotus have joined the incubator as committers working in 
-		       the security area.</p>
-		    <p><b>July</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14">
-		       The team at <a href="http://prosyst.com">Prosyst</a> has contributed implementations of 4 standard OSGi services to the 
-		       <a href="http://www.eclipse.org/equinox/incubator">Equinox Incubator</a>. And Pavlin Dobrev and Teodor Todorov
-		       from Prosyst have joined the incubator as committers.</p>
 			<p>&nbsp;</p>
 	</div>
 
