@@ -511,7 +511,7 @@ ongoing work and planned delivery milestones.
 	  	</li>
 	  	<li><strong>p2 Usability</strong>
 	  	  <ul>
- 	 		<li>Revise the workflow around update and install of new functionality.<a href="http://wiki.eclipse.org/Equinox_p2_UI_3.5_workflows#Install_New_Software">New UI ideas.<a/></li>
+ 	 		<li>Revise the workflow around update and install of new functionality.<a href="http://wiki.eclipse.org/Equinox_p2_UI_3.5_workflows#Install_New_Software">New UI ideas.</a></li>
  	 		<li>Improve the error messages when an operation goes wrong. <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=248604">Bug 248604</a></li>
  	 		<li>Improve the responsiveness of the system. <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=232440">Bug 232440</a>.</li>
  	  	  </ul>
