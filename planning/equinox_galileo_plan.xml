@@ -464,7 +464,27 @@ ongoing work and planned delivery milestones.
 	  	    <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=178927">Bug 178927</a></li>
 	  	  </ul>
 	  	</li>
-	  </ul>      
+	  	<li><strong>Compendium</strong>
+	  	  <ul>
+	  	    <li><strong>Logging</strong> - To date the platform has placed tight restrictions on the 
+	  	    configuration of existing 3rd party logging frameworks. The goal here is to lift the most 
+	  	    important of these restrictions and provide a modular and OSGi friendly integrated approach.
+	  	    <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=XXXXXX">Bug XXXXXX</a></li>
+	  	  </ul>
+	  	</li>
+	  	<li><strong>Server-side</strong>
+	  	  <ul>
+	  	    <li><strong>Support undeploying the servlet bridge</strong> - Ensure the servletbridge 
+	  	    provides a clean deploy and undeploy environment.  The servletbridge does not undeploy 
+	  	    cleanly because of its use of a URLClassloader and a restriction on how the VMs 
+	  	    "jar"URLConnection holds open the underlying jar file.  In particular this prevents us 
+	  	    from deleting the framework and servletbridge extension bundles when undeploying. 
+	  	    A more deployment friendly class loader is needed here and will likely be useful elsewhere 
+	  	    when launching equinox. 
+	  	    <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=190279">Bug 190279</a></li>
+	  	  </ul>
+	  	</li>
+	  </ul>     
       </p:proposed>
       <p:deferred bugzilla="https://bugs.eclipse.org/bugs/buglist.cgi?query_format=advanced&amp;short_desc_type=allwordssubstr&amp;short_desc=[spec%5D&amp;classification=RT&amp;product=Equinox&amp;component=Framework&amp;component=RSE&amp;component=Compendium&amp;component=Components&amp;target_milestone=Future&amp;keywords_type=allwords&amp;keywords=&amp;resolution=---&amp;priority=P1&amp;priority=P2&amp;priority=P3&amp;priority=P4&amp;cmdtype=doit"></p:deferred>
     </p:theme>
@@ -494,9 +514,33 @@ ongoing work and planned delivery milestones.
  	 		<li>Improve the responsiveness of the system.</li>
  	  	  </ul>
 	  	</li>
+	  	<li><strong>Server-side</strong>
+	  	  <ul>
+ 	 		<li><strong>Improved configurability for the Jetty Http Service</strong> - 
+ 	 		As the Jetty Http Service used in the platform is applied to broader use-cases we 
+ 	 		continue to make the necessary changes. In particular we intend to lift the single 
+ 	 		context per port configuration restriction and allow better access to the underlying 
+ 	 		error handling mechanisms Jetty provides.
+ 	 		<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=XXXXXX">Bug XXXXXX</a></li>
+ 	  	  </ul>
+	  	</li>
 	  </ul>
       </p:committed>
-      <p:proposed bugzilla="https://bugs.eclipse.org/bugs/buglist.cgi?query_format=advanced&amp;short_desc_type=allwordssubstr&amp;short_desc=[spec%5D&amp;classification=RT&amp;product=Equinox&amp;component=Framework&amp;component=RSE&amp;component=Compendium&amp;component=Components&amp;target_milestone=3.5&amp;target_milestone=---&amp;keywords_type=allwords&amp;keywords=&amp;resolution=---&amp;priority=P1&amp;priority=P2&amp;priority=P3&amp;priority=P4&amp;cmdtype=doit"></p:proposed>
+      <p:proposed>
+      <ul>
+	  	<li><strong>Server-side</strong>
+	  	  <ul>
+ 	 		<li><strong>Servletbridge and p2</strong> - 
+ 	 		Investigate integration and use of p2 in servletbridge-based applications. In particular 
+ 	 		looking at how to build web applications that come with the full-set of p2 metadata, 
+ 	 		artifact descriptors and related configuration information consistent with a regular 
+ 	 		RCP product build.
+ 	 		<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=223526">Bug 223526</a>
+ 	 		</li>
+ 	  	  </ul>
+	  	</li>
+	  </ul>      
+      </p:proposed>
       <p:deferred bugzilla="https://bugs.eclipse.org/bugs/buglist.cgi?query_format=advanced&amp;short_desc_type=allwordssubstr&amp;short_desc=[spec%5D&amp;classification=RT&amp;product=Equinox&amp;component=Framework&amp;component=RSE&amp;component=Compendium&amp;component=Components&amp;target_milestone=Future&amp;keywords_type=allwords&amp;keywords=&amp;resolution=---&amp;priority=P1&amp;priority=P2&amp;priority=P3&amp;priority=P4&amp;cmdtype=doit"></p:deferred>
     </p:theme>
     
@@ -519,6 +563,18 @@ ongoing work and planned delivery milestones.
  	 		</li>
  	  	  </ul>
 	  	</li>
+	  	<li><strong>Server-side</strong>
+	  	  <ul>
+ 	 		<li><strong>Update to the latest Jetty release</strong> -
+ 	 		Equinox currently hosts both a Jetty 5.1 and Jetty 6.1 based version of the Http 
+ 	 		Service and for this release we intend to update the platforms version.
+ 	 		In addition to being smaller, faster, and most importantly better supported 
+ 	 		Jetty 6.1 adds Servlet 2.5 support and improved support for communication 
+ 	 		patterns common to AJAX applications.
+ 	 		<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=XXXXXX">Bug XXXXXX</a>
+ 	 		</li>
+ 	  	  </ul>
+	  	</li>
 	  </ul>
       </p:committed>
       <p:proposed>
@@ -530,6 +586,7 @@ ongoing work and planned delivery milestones.
 	  	    elements, expanding ability to programmatically modify the extension registry, and 
 	  	    adding support for non-singleton bundles.  Due to the size and potential impact of this 
 	  	    item, it is considered experimental and might be pushed into later releases.
+	  	    [Components] <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=248340">Bug 248340</a>
 	  	    </li>
 	  	  </ul>
 	  	</li>
