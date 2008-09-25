@@ -431,7 +431,13 @@ ongoing work and planned delivery milestones.
 	  	  <ul>
 	  	    <li>Graduate authorization APIs for Trusted Bundle feature, 
  	 		ensure consistency across PKI based use-cases: p2 (Signed Artifacts), Framework (Trusted Bundles)
- 	 		and ECF (SSL)</li>
+ 	 		and ECF (SSL)<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=248586">Bug 248586</a>
+ 	 		</li>
+ 	  	  </ul>
+ 	 	  <ul>
+ 	 		<li><strong>Improved Test Coverage</strong> - More complete security tests are needed for the 
+ 	 		security APIs.  Also need to investigate tests suites when the security manager is enabled.
+ 	 		<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=248608">Bug 248608</a></li>
 	  	  </ul>
 	  	</li>
 	  </ul>
@@ -504,9 +510,10 @@ ongoing work and planned delivery milestones.
       <ul>
       	<li><strong>Security</strong>
 	  	  <ul>
- 	 		<li>Develop useful UIs for functionality delivered in Ganymede, 
- 	 		including a certificate management subsystem. Enhance functionality for developing and testing 
- 	 		with signed bundles.</li>
+ 	 		<li><strong>Improve Security UI</strong> - Develop useful UIs for functionality delivered in 
+ 	 		Ganymede, including a certificate management subsystem. Enhance functionality for developing 
+ 	 		and testing with signed bundles.
+ 	 		<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=153851">Bug 153851</a></li>
  	  	  </ul>
 	  	</li>
 	  	<li><strong>p2 Usability</strong>
