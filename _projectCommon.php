@@ -21,6 +21,6 @@
 	$Nav->addCustomNav("PDE", "http://eclipse.org/pde/", "_self", 1);
 	$Nav->addCustomNav("RAP", "http://eclipse.org/rap/", "_self", 1);
 	$Nav->addCustomNav("ECF", "http://eclipse.org/ecf/", "_self", 1);
-	$Nav->addNavSeparator("Development", "http://eclipse.org/eclipse/development/", "_self", 1);
+	$Nav->addCustomNav("Development", "http://eclipse.org/eclipse/development/", "_self", 1);
 
 ?>
