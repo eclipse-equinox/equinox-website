@@ -482,7 +482,7 @@ ongoing work and planned delivery milestones.
 	  	</li>
 	  <li><strong>p2</strong>
 	  	  <ul>
- 	 		<li>Improve the robustness of transports. In certain cases the current transport layer </li>
+ 	 		<li>Improve the robustness of the download operations. <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=248602">Bug 248602</a>.</li>
  	 		<li>Improve the robustness of the installation in case of failure. <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=248594">Bug 248594</a>.</li> 
  	 		<li>Investigate the use of Apache http client.<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=220240">Bug 220240</a>.</li>
 	  	  </ul>
@@ -512,9 +512,9 @@ ongoing work and planned delivery milestones.
 	  	</li>
 	  	<li><strong>p2 Usability</strong>
 	  	  <ul>
- 	 		<li>Revise the workflow around update and install of new functionality.</li>
- 	 		<li>Improve the error messages when an operation goes wrong.</li>
- 	 		<li>Improve the responsiveness of the system.</li>
+ 	 		<li>Revise the workflow around update and install of new functionality.<a href="http://wiki.eclipse.org/Equinox_p2_UI_3.5_workflows#Install_New_Software">New UI ideas.<a/></li>
+ 	 		<li>Improve the error messages when an operation goes wrong. <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=248604">Bug 248604</a></li>
+ 	 		<li>Improve the responsiveness of the system. <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=232440">Bug 232440</a>.</li>
  	  	  </ul>
 	  	</li>
 	  	<li><strong>Server-side</strong>
