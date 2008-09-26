@@ -402,7 +402,7 @@ ongoing work and planned delivery milestones.
 	  	    exporters must specify what other packages they &quot;use&quot; with the &quot;uses&quot; 
 	  	    directive.  The Equinox Framework correctly implements the &quot;uses&quot; directive but 
 	  	    it has been found to cause performance issues in the resolver.
-	  	    <a href="https//bugs.eclipse.org/bugs/show_bug.cgi?id=216934">216934</a></li>
+	  	    <a href="https//bugs.eclipse.org/bugs/show_bug.cgi?id=216934">Bug 216934</a></li>
 	  	  </ul>
 	  	</li>
 	  </ul>
@@ -432,7 +432,7 @@ ongoing work and planned delivery milestones.
 	  	  <ul>
 	  	    <li>Graduate authorization APIs for Trusted Bundle feature, 
  	 		ensure consistency across PKI based use-cases: p2 (Signed Artifacts), Framework (Trusted Bundles)
- 	 		and ECF (SSL)<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=248586">Bug 248586</a>
+ 	 		and ECF (SSL). <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=248586">Bug 248586</a>
  	 		</li>
  	 		<li><strong>Improved Test Coverage</strong> More complete security tests are needed for the 
  	 		security APIs.  Also need to investigate tests suites when the security manager is enabled.
@@ -497,17 +497,17 @@ ongoing work and planned delivery milestones.
  	 		Several parts of p2 download files (repo content, artifacts, etc.). Even though
 			the robustness is reasonable, there are still room for improvement by providing
 			the ability to checksum the files being downloaded, retry strategies, etc.
- 			<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=248602">Bug 248602</a>.</li>
+ 			<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=248602">Bug 248602</a></li>
  	 		<li><strong>Improve the robustness of the installation in case of failure.</strong>
  	 		There are cases where a failure during certain phase of the installation will
 			cause the system to be left in an inconsistent state (bogus entries in
 			bundles.info, config.ini, etc.). 
 			We need to make the transitioning from an install to another robust.
-			<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=248594">Bug 248594</a>.</li> 
+			<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=248594">Bug 248594</a></li> 
  	 		<li><strong>Investigate the use of alternate http clients.</strong>
  	 		There exist several alternative HTTP client implentations (e.g., Apache, Jetty, ...). Investigate
  	 		if p2 would benefit from switching to one of these clients in the SDK, the Installer and the
-			Admin UI. <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=220240">Bug 220240</a>.</li>
+			Admin UI. <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=220240">Bug 220240</a></li>
 	  	  </ul>
 	  	</li>
 	  </ul>     
@@ -528,7 +528,7 @@ ongoing work and planned delivery milestones.
       <ul>
       	<li><strong>Security</strong>
 	  	  <ul>
- 	 		<li><strong>Improve Security UI</strong> - Develop useful UIs for functionality delivered in 
+ 	 		<li><strong>Improve Security UI</strong>  Develop useful UIs for functionality delivered in 
  	 		Ganymede, including a certificate management subsystem. Enhance functionality for developing 
  	 		and testing with signed bundles.
  	 		<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=153851">Bug 153851</a></li>
@@ -536,7 +536,7 @@ ongoing work and planned delivery milestones.
 	  	</li>
 	  	<li><strong>p2</strong>
 	  	  <ul>
- 	 		<li><strong>New p2 UI workflows.</strong>Based on <a href="http://wiki.eclipse.org/Equinox_p2_UI_3.5_workflows#Install_New_Software">collaboration</a>
+ 	 		<li><strong>New p2 UI workflows.</strong> Based on <a href="http://wiki.eclipse.org/Equinox_p2_UI_3.5_workflows#Install_New_Software">collaboration</a>
  	 		 with the various user communities, revise the workflow around update and install of new functionality.
  	 		 <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=248789">Bug 248789</a></li>
  	 		<li><strong>Improve p2 error reporting.</strong>
