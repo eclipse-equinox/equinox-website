@@ -443,7 +443,7 @@ ongoing work and planned delivery milestones.
  	 	  <ul>
  	 		<li><strong>Improved Test Coverage</strong> Flesh out the p2 test suite to include UI tests, 
  	 		more unit tests as well as better testing of network and communications failure cases.
- 	 		<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=XXXX">Bug XXXXX</a></li>
+ 	 		<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=248788">Bug 248788</a></li>
 	  	  </ul>
 	  	</li>
 	  </ul>
@@ -538,7 +538,7 @@ ongoing work and planned delivery milestones.
 	  	  <ul>
  	 		<li><strong>New p2 UI workflows.</strong>Based on <a href="http://wiki.eclipse.org/Equinox_p2_UI_3.5_workflows#Install_New_Software">collaboration</a>
  	 		 with the various user communities, revise the workflow around update and install of new functionality.
- 	 		 <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=XXXX">Bug XXXXX</a></li>
+ 	 		 <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=248789">Bug 248789</a></li>
  	 		<li><strong>Improve p2 error reporting.</strong>
  	 			When an error occurs, for example, when connecting to a server, downloading a file, etc. the
 				ensure the error messages are specific and directly helpful
@@ -556,7 +556,7 @@ ongoing work and planned delivery milestones.
  	 		continue to make the necessary changes. In particular we intend to lift the single 
  	 		context per port configuration restriction and allow better access to the underlying 
  	 		error handling mechanisms Jetty provides.
- 	 		<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=XXXXXX">Bug XXXXXX</a></li>
+ 	 		<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=248790">Bug 248790</a></li>
  	  	  </ul>
 	  	</li>
 	  </ul>
@@ -568,13 +568,13 @@ ongoing work and planned delivery milestones.
  	 		<li><strong>Create API.</strong> Currently p2 has considerable provisional API.  Review this
  	 		API and identify consistent subsets to be committed as full API.  Focus here should be on specific
  	 		usage scenarios and care should be taken to not unduly limit progress in places where p2 is still evolving.
- 	 		 <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=XXXX">Bug XXXXX</a></li>
+ 	 		 <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=248791">Bug 248791</a></li>
  	  	  </ul>
 	  	  <ul>
  	 		<li><strong>Simplify the addition of repository content</strong> p2 is powered by metadata and artifact 
  	 		repositories.  Unlike other systems, p2's repositories are solely API driven (there is no schema, and perhaps
  	 		no XML).  As such, we need reasonable tooling and mechanisms to facilitate the publishing of repository content.
- 	 		 <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=XXXX">Bug XXXXX</a></li>
+ 	 		 <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=248792">Bug 248792</a></li>
  	  	  </ul>
 	  	</li>
 	  	<li><strong>Server-side</strong>
@@ -616,11 +616,11 @@ ongoing work and planned delivery milestones.
 	  	  <ul>
  	 		<li><strong>Update to the latest Jetty release</strong> -
  	 		Equinox currently hosts both a Jetty 5.1 and Jetty 6.1 based version of the Http 
- 	 		Service and for this release we intend to update the platforms version.
- 	 		In addition to being smaller, faster, and most importantly better supported 
- 	 		Jetty 6.1 adds Servlet 2.5 support and improved support for communication 
+ 	 		Service. For this release we intend to include the latest version of Jetty.
+ 	 		In addition to being smaller, faster, and most importantly better supported, more recent 
+ 	 		versions add support for the latest servlet versions and improved support for communication 
  	 		patterns common to AJAX applications.
- 	 		<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=XXXXXX">Bug XXXXXX</a>
+ 	 		<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=248793">Bug 248793</a>
  	 		</li>
  	  	  </ul>
 	  	</li>
