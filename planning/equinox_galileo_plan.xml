@@ -473,10 +473,10 @@ ongoing work and planned delivery milestones.
 	  	</li>
 	  	<li><strong>Compendium</strong>
 	  	  <ul>
-	  	    <li><strong>Logging</strong> - To date the platform has placed tight restrictions on the 
+	  	    <li><strong>Logging</strong> To date the platform has placed tight restrictions on the 
 	  	    configuration of existing 3rd party logging frameworks. The goal here is to lift the most 
 	  	    important of these restrictions and provide a modular and OSGi friendly integrated approach.
-	  	    <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=XXXXXX">Bug XXXXXX</a></li>
+	  	    <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=248794">Bug 248794</a></li>
 	  	  </ul>
 	  	</li>
 	  	<li><strong>Server-side</strong>
