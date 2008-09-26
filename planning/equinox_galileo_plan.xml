@@ -387,6 +387,7 @@ ongoing work and planned delivery milestones.
 	  	<li><strong>p2</strong>
 	  	  <ul>
 	  	    <li>Investigate the places where the installation process is taking too long and see if we can reduce the install time. 
+	  	    This includes review of the data structures and algorithms used as well as persistance approaches.
 	  	    <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=184538">184538</a>, <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=224439">224439</a>, <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=231194">231194</a>,<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=232440">232440</a>,<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=247058">247058</a>.</li>
 	  	  </ul>
 	  	</li>
@@ -433,11 +434,16 @@ ongoing work and planned delivery milestones.
  	 		ensure consistency across PKI based use-cases: p2 (Signed Artifacts), Framework (Trusted Bundles)
  	 		and ECF (SSL)<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=248586">Bug 248586</a>
  	 		</li>
- 	  	  </ul>
- 	 	  <ul>
- 	 		<li><strong>Improved Test Coverage</strong> - More complete security tests are needed for the 
+ 	 		<li><strong>Improved Test Coverage</strong> More complete security tests are needed for the 
  	 		security APIs.  Also need to investigate tests suites when the security manager is enabled.
  	 		<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=248608">Bug 248608</a></li>
+	  	  </ul>
+	  	</li>
+	  	<li><strong>p2</strong>
+ 	 	  <ul>
+ 	 		<li><strong>Improved Test Coverage</strong> Flesh out the p2 test suite to include UI tests, 
+ 	 		more unit tests as well as better testing of network and communications failure cases.
+ 	 		<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=XXXX">Bug XXXXX</a></li>
 	  	  </ul>
 	  	</li>
 	  </ul>
@@ -487,9 +493,21 @@ ongoing work and planned delivery milestones.
 	  	</li>
 	    <li><strong>p2</strong>
 	  	  <ul>
- 	 		<li>Improve the robustness of the download operations. <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=248602">Bug 248602</a>.</li>
- 	 		<li>Improve the robustness of the installation in case of failure. <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=248594">Bug 248594</a>.</li> 
- 	 		<li>Investigate the use of Apache http client.<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=220240">Bug 220240</a>.</li>
+ 	 		<li><strong>Improve the robustness of the download operations</strong>
+ 	 		Several parts of p2 download files (repo content, artifacts, etc.). Even though
+			the robustness is reasonable, there are still room for improvement by providing
+			the ability to checksum the files being downloaded, retry strategies, etc.
+ 			<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=248602">Bug 248602</a>.</li>
+ 	 		<li><strong>Improve the robustness of the installation in case of failure.</strong>
+ 	 		There are cases where a failure during certain phase of the installation will
+			cause the system to be left in an inconsistent state (bogus entries in
+			bundles.info, config.ini, etc.). 
+			We need to make the transitioning from an install to another robust.
+			<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=248594">Bug 248594</a>.</li> 
+ 	 		<li><strong>Investigate the use of alternate http clients.</strong>
+ 	 		There exist several alternative HTTP client implentations (e.g., Apache, Jetty, ...). Investigate
+ 	 		if p2 would benefit from switching to one of these clients in the SDK, the Installer and the
+			Admin UI. <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=220240">Bug 220240</a>.</li>
 	  	  </ul>
 	  	</li>
 	  </ul>     
@@ -516,11 +534,19 @@ ongoing work and planned delivery milestones.
  	 		<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=153851">Bug 153851</a></li>
  	  	  </ul>
 	  	</li>
-	  	<li><strong>p2 Usability</strong>
+	  	<li><strong>p2</strong>
 	  	  <ul>
- 	 		<li>Revise the workflow around update and install of new functionality.<a href="http://wiki.eclipse.org/Equinox_p2_UI_3.5_workflows#Install_New_Software">New UI ideas.</a></li>
- 	 		<li>Improve the error messages when an operation goes wrong. <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=248604">Bug 248604</a></li>
- 	 		<li>Improve the responsiveness of the system. <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=232440">Bug 232440</a>.</li>
+ 	 		<li><strong>New p2 UI workflows.</strong>Based on <a href="http://wiki.eclipse.org/Equinox_p2_UI_3.5_workflows#Install_New_Software">collaboration</a>
+ 	 		 with the various user communities, revise the workflow around update and install of new functionality.
+ 	 		 <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=XXXX">Bug XXXXX</a></li>
+ 	 		<li><strong>Improve p2 error reporting.</strong>
+ 	 			When an error occurs, for example, when connecting to a server, downloading a file, etc. the
+				ensure the error messages are specific and directly helpful
+				(e.g. missing file vs unknown host, etc).
+				<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=248604">Bug 248604</a></li>
+ 	 		<li><strong>Improve p2 responsiveness</strong>. 
+ 	 		When the user is interacting with p2, ensure that the UI is responsive to cancelation and other inputs.
+ 	 		<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=232440">Bug 232440</a></li>
  	  	  </ul>
 	  	</li>
 	  	<li><strong>Server-side</strong>
@@ -537,6 +563,20 @@ ongoing work and planned delivery milestones.
       </p:committed>
       <p:proposed>
       <ul>
+	  	<li><strong>p2</strong>
+	  	  <ul>
+ 	 		<li><strong>Create API.</strong> Currently p2 has considerable provisional API.  Review this
+ 	 		API and identify consistent subsets to be committed as full API.  Focus here should be on specific
+ 	 		usage scenarios and care should be taken to not unduly limit progress in places where p2 is still evolving.
+ 	 		 <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=XXXX">Bug XXXXX</a></li>
+ 	  	  </ul>
+	  	  <ul>
+ 	 		<li><strong>Simplify the addition of repository content</strong> p2 is powered by metadata and artifact 
+ 	 		repositories.  Unlike other systems, p2's repositories are solely API driven (there is no schema, and perhaps
+ 	 		no XML).  As such, we need reasonable tooling and mechanisms to facilitate the publishing of repository content.
+ 	 		 <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=XXXX">Bug XXXXX</a></li>
+ 	  	  </ul>
+	  	</li>
 	  	<li><strong>Server-side</strong>
 	  	  <ul>
  	 		<li><strong>Servletbridge and p2</strong> - 
