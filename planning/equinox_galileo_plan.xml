@@ -592,7 +592,7 @@ ongoing work and planned delivery milestones.
  	 		looking at how to build web applications that come with the full-set of p2 metadata, 
  	 		artifact descriptors and related configuration information consistent with a regular 
  	 		RCP product build.
- 	 		<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=223526">Bug 223526</a>
+ 	 		<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=223256">Bug 223256</a>
  	 		</li>
  	  	  </ul>
 	  	</li>
