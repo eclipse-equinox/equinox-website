@@ -388,8 +388,9 @@ ongoing work and planned delivery milestones.
 	  	  <ul>
 	  	    <li>Investigate the places where the installation process is taking too long and see if we can reduce the install time. 
 	  	    This includes review of the data structures and algorithms used as well as persistance approaches.
-	  	    <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=184538">184538</a>, <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=224439">224439</a>, <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=231194">231194</a>,<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=232440">232440</a>,<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=247058">247058</a>.</li>
-	  	  </ul>
+	  	    <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=249167">249167</a>.
+	  	    </li>
+	  	    </ul>
 	  	</li>
 	  </ul>
       </p:committed>
