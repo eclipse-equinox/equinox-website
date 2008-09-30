@@ -403,7 +403,7 @@ ongoing work and planned delivery milestones.
 	  	    exporters must specify what other packages they &quot;use&quot; with the &quot;uses&quot; 
 	  	    directive.  The Equinox Framework correctly implements the &quot;uses&quot; directive but 
 	  	    it has been found to cause performance issues in the resolver.
-	  	    <a href="https//bugs.eclipse.org/bugs/show_bug.cgi?id=216934">Bug 216934</a></li>
+	  	    <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=216934">Bug 216934</a></li>
 	  	  </ul>
 	  	</li>
 	  </ul>
@@ -426,7 +426,7 @@ ongoing work and planned delivery milestones.
 	  	    <li><strong>Thread Safety</strong> - The Framework lifecycle operations must be thread safe.  
 	  	    Several bugs have been reported about thread safety issues when running bundle lifecycle 
 	  	    operations from multiple threads.  This plan item is to review and fix thread safety issues in the 
-	  	    Framework. <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=245251">Bug 245251</a></li>
+	  	    Framework. <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=247636">Bug 247636</a></li>
 	  	  </ul>
 	  	</li>
 	  	<li><strong>Security</strong>
