@@ -63,8 +63,10 @@ ob_start();
 				of Equinox.</p>
 
 		  <p class=bar>What's New</p>
-		    <p><b>Aug 12</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14">
-		       The Equinox project is moving to the RT project.  Repository and bug locations are changing.</p>
+		    <p><b>Oct 02</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14">
+		       The Equinox project has moved to the RT project.  Repository and bug locations have changed.
+		       See <a href="http://wiki.eclipse.org/Equinox_Eclipse_to_RT_Migration">Equinox RT Migration</a>
+		       for more details.</p>
 		    <p><b>Mar 10</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14">
 		       The <a href="http://www.eclipse.org/equinox/incubator/aspects/index.php">Equinox Aspects </a> team in the 
 		       <a href="http://www.eclipse.org/equinox/incubator">Equinox Incubator</a> has released version 1.1.0 of the Equinox
