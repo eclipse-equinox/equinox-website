@@ -64,13 +64,13 @@ ob_start();
 	<tr>
       <td align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
       <td>
-        <p><a href="http://dev.eclipse.org/viewcvs/index.cgi/" target="_top"><b>CVS</b></a><br>
-      The Equinox code is hosted in the normal Eclipse project repository and
-        is available via <a href="http://dev.eclipse.org/viewcvs/index.cgi/">web
+        <p><a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox/?root=RT_Project" target="_top"><b>CVS</b></a><br>
+      The Equinox code is hosted in the RT project repository and
+        is available via <a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox/?root=RT_Project">web
         access</a> or direct CVS access. For direct access, use anonymous login
         to the CVS repo</p>
         <blockquote>
-          <p>:pserver:anonymous@dev.eclipse.org/cvsroot/eclipse</p>
+          <p>:pserver:anonymous@dev.eclipse.org/cvsroot/rt</p>
         </blockquote>
         <p>The Equinox work goes on in various folders as appropriate for the
           work being done. See the project lists in the <a href="framework/index.php#frameworkprojects">framework</a>, <a href="bundles/index.php#bundleprojects">bundles</a> and <a href="incubator/index.php#workareas">incubator</a> components
