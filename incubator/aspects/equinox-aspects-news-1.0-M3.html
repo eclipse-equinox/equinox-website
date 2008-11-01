@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Language" content="en-us" />
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <link rel="stylesheet" href="default_style.css" />
+    <title>Equinox Aspects 1.0 M3 News</title>
+  </head>
+  
+  <body>
+    <h1>Equinox Aspects 1.0 M3 - New and Noteworthy</h1>
+    
+    <p>
+      These days the Equinox Aspects incubator project is mostly working on improving stability
+      and reliability.
+    </p>
+    
+    <ul>
+      <li>
+        <a href="#General">General</a>
+      </li>
+      <li>
+        <a href="#Weaving">Weaving</a>
+      </li>
+      <li>
+        <a href="#Caching">Caching</a>
+      </li>
+    </ul>
+    
+    <table border="0" cellpadding="10" cellspacing="0" width="80%">
+      <tr>
+        <td colspan="2">
+          <hr/>
+          <h2><a name="General" id="General"></a>General</h2>
+          <hr/>
+        </td>
+      </tr>
+      
+      <tr>
+        <td width="30%" valign="top" align="left">
+          <b>New implementation of supplementer mechanism</b>
+        </td>
+        <td width="70%" valign="top">
+          With this milestone build we introduce a new implementation of the supplementer
+          mechanism. This is an implementation change only, there are no changes required
+          by users of Equinox Aspects. This new implementation makes use of a new hook that
+          Equinox offers since 3.4. Therefore Equinox Aspects requires from now on Equinox 3.4.
+        </td>
+      </tr>
+      
+      <tr>
+        <td colspan="2">
+          <hr/>
+        </td>
+      </tr>
+      
+      <tr>
+        <td width="30%" valign="top" align="left">
+          <b>Bugfixing</b>
+        </td>
+        <td width="70%" valign="top">
+          M3 fixes a number of bugs. Here is an overview:
+          <ul>
+            <li>fixed: equinox aspects not weaving against OSGI head (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=251964">bug 251964</a>)</li>
+            <li>fixed: deadlock when using equinox aspects and spring dm extender (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=249613">bug 249613</a>)</li>
+            <li>fixed: supplementing via Require-Bundle may conflict with "uses" directive (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=248826">bug 248826</a>)</li>
+            <li>fixed: replace require-bundle with import-package for weaving.aspectj bundle (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=248046">bug 248046</a>)</li>
+            <li>fixed: change aspect activation from installed to resolved state (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=247718">bug 247718</a>)</li>
+            <li>fixed: avoid weaver initialization until really needed (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=243685">bug 243685</a>)</li>
+            <li>fixed: replace the manifest rewriting with the new hook (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=229863">bug 229863</a>)</li>
+          </ul>
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2">
+          <hr/>
+          <h2><a name="Weaving" id="Weaving"></a>Weaving</h2>
+          <hr/>
+        </td>
+      </tr>
+
+      <tr>
+        <td width="30%" valign="top" align="left">
+          <b>More on OSGi dynamics for weaving services</b>
+        </td>
+        <td width="70%" valign="top">
+          We are still struggling a bit with dynamically enabling the weaving service itself
+          and possibly re-weaving bundles that need aspect weaving from that point on time.
+          This works nicely in a standard OSGi setting but causes problems for RCP apps,
+          for example. We try to solve this within the M4 timeframe. Until those problems
+          are really solved, we have disabled the dynamics for the weaving service be default.
+          This makes it easy to use Equinox Aspects for general RCP apps or the IDE itself.
+          If you would like to enable the dynamics for the weaving service, you can set the
+          system property "equinox.weaving.service.dynamics=true".
+          <b>Note:</b> This has nothing to do with dynamics for aspect bundles. This is still
+          working nicely and enabled by default.
+        </td>
+      </tr>
+      
+      <tr>
+        <td colspan="2">
+          <hr/>
+        </td>
+      </tr>
+      
+      <tr>
+        <td align="left" valign="top" width="30%">
+          <b>Aspect bundles need to be resolved</b>
+        </td>
+        <td width="70%" valign="top">
+          In the past aspects bundles were recognized by the system if the bundle was
+          installed. From now on aspect bundles need to be resolved before supplementing
+          or aspect information are taken into account by Equinox Aspects. This makes
+          dynamics of aspect bundles feel a lot more natural and OSGi-like.
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2">
+          <hr/>
+          <h2><a name="Caching" id="Caching"></a>Caching</h2>
+          <hr/>
+        </td>
+      </tr>
+
+      <tr>
+        <td align="left" valign="top" width="30%">
+          <b>Minor caching performance improvements</b>
+        </td>
+        <td width="70%" valign="top">
+          We did some minor tweeks to the initialization of weaver objects to save
+          time for bundles that are loaded completely from the cache. The cache
+          is now very close to the performance of running without aspect weaving
+          at all.
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2">
+          <hr/>
+        </td>
+      </tr>
+      
+    </table>
+  </body>
+</html>
