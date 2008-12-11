@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Language" content="en-us" />
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <link rel="stylesheet" href="default_style.css" />
+    <title>Equinox Aspects 1.0 M4 News</title>
+  </head>
+  
+  <body>
+    <h1>Equinox Aspects 1.0 M4 - New and Noteworthy</h1>
+    
+    <p>
+      These days the Equinox Aspects incubator project is mostly working on improving stability
+      and reliability.
+    </p>
+    
+    <ul>
+      <li>
+        <a href="#General">General</a>
+      </li>
+      <li>
+        <a href="#Weaving">Weaving</a>
+      </li>
+    </ul>
+    
+    <table border="0" cellpadding="10" cellspacing="0" width="80%">
+      <tr>
+        <td colspan="2">
+          <hr/>
+          <h2><a name="General" id="General"></a>General</h2>
+          <hr/>
+        </td>
+      </tr>
+      
+      <tr>
+        <td width="30%" valign="top" align="left">
+          <b>weaving and caching service API changed</b>
+        </td>
+        <td width="70%" valign="top">
+          We changed the API that is used between the hook and the aspectj weaver and the
+          different caching service implementations to separate concerns. As long as you don't
+          implement your own bytecode manipulation or caching services, this has no effect
+          on your usage of equinox aspects.
+        </td>
+      </tr>
+      
+      <tr>
+        <td colspan="2">
+          <hr/>
+        </td>
+      </tr>
+      
+      <tr>
+        <td width="30%" valign="top" align="left">
+          <b>p2.inf added</b>
+        </td>
+        <td width="70%" valign="top">
+          We added a p2.inf file to allow the automatic installation of equinox aspects
+          via the p2 provisioning system. Using this p2.inf file all the necessary changes
+          to a config.ini are done automatically for you.<br/>
+          Thanks to Andrew Eisenberg from the AJDT team for this contribution!
+        </td>
+      </tr>
+      
+      <tr>
+        <td colspan="2">
+          <hr/>
+        </td>
+      </tr>
+      
+      <tr>
+        <td width="30%" valign="top" align="left">
+          <b>Bugfixing</b>
+        </td>
+        <td width="70%" valign="top">
+          We fixed a number of bugs in M4:
+          <ul>
+            <li>fixed: deploy of war bundle using Spring-DM web extender (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=255156">bug 255156</a>)</li>
+            <li>fixed: An endless recursion when weaving against M3 (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=253656">bug 253656</a>)</li>
+            <li>fixed: deadlock when using equinox aspects and spring dm extender (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=249613">bug 249613</a>)</li>
+          </ul>
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2">
+          <hr/>
+          <h2><a name="Weaving" id="Weaving"></a>Weaving</h2>
+          <hr/>
+        </td>
+      </tr>
+
+      <tr>
+        <td width="30%" valign="top" align="left">
+          <b>Mechanism reworked that does aop.xml parsing</b>
+        </td>
+        <td width="70%" valign="top">
+          To solve some threading problems that could cause deadlocks (especially in the
+          combination with Spring Dynamic Modules) we have reworked the mechanism that
+          is parsing the aop.xml files that aspects bundles provide. From now on the aop.xml
+          files are parsed at bundle resolve time.<br/>
+          This has the side effect that we spend more time on startup and bundle resolve
+          time. On the other side we save a lot more time because we no longer parse those
+          files over and over again. As long as you don't have a massive number of bundles
+          that provide aspects the new mechanism improves performance.
+        </td>
+      </tr>
+      
+      <tr>
+        <td colspan="2">
+          <hr/>
+        </td>
+      </tr>
+      
+    </table>
+
+    <p>
+    The above features are just the ones that are new since the previous
+    milestone build. Summaries for earlier 1.0 milestone builds:
+    </p>
+    
+    <ul>
+      <li>
+        <a href="http://www.eclipse.org/equinox/incubator/aspects/equinox-aspects-news-1.0-M1.html">New for Equinox Aspects 1.0 milestone build M1 (August 8, 2008)</a>
+      </li>
+      <li>
+        <a href="http://www.eclipse.org/equinox/incubator/aspects/equinox-aspects-news-1.0-M2.html">New for Equinox Aspects 1.0 milestone build M2 (September 19, 2008)</a>
+      </li>
+      <li>
+        <a href="http://www.eclipse.org/equinox/incubator/aspects/equinox-aspects-news-1.0-M3.html">New for Equinox Aspects 1.0 milestone build M3 (October 31, 2008)</a>
+      </li>
+    </ul>
+
+  </body>
+</html>
