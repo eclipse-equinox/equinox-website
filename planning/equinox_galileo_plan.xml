@@ -800,11 +800,11 @@ ongoing work and planned delivery milestones.
       <td><div align="center">F1.0</div></td>
     </tr>
     <tr>
-      <td>org.eclipse.equinox.frameworkadmin.equinox</td>
-      <td><div align="center">F1.0</div></td>
+      <td>org.eclipse.equinox.frameworkadmin</td>
+      <td><div align="center">F1.1</div></td>
     </tr>
     <tr>
-      <td>org.eclipse.equinox.frameworkadmin</td>
+      <td>org.eclipse.equinox.frameworkadmin.equinox</td>
       <td><div align="center">F1.1</div></td>
     </tr>
     <tr>
@@ -844,15 +844,15 @@ ongoing work and planned delivery milestones.
       <td><div align="center">F1.1</div></td>
     </tr>
     <tr>
+      <td>org.eclipse.equinox.p2.director</td>
+      <td><div align="center">F1.1</div></td>
+    </tr>
+    <tr>
       <td>org.eclipse.equinox.p2.director.app</td>
       <td><div align="center">F1.0</div></td>
     </tr>
     <tr>
       <td>org.eclipse.equinox.p2.directorywatcher</td>
-      <td><div align="center">F1.0</div></td>
-    </tr>
-    <tr>
-      <td>org.eclipse.equinox.p2.director</td>
       <td><div align="center">F1.1</div></td>
     </tr>
     <tr>
@@ -876,6 +876,10 @@ ongoing work and planned delivery milestones.
       <td><div align="center">F1.1</div></td>
     </tr>
     <tr>
+      <td>org.eclipse.equinox.p2.metadata</td>
+      <td><div align="center">F1.1</div></td>
+    </tr>
+    <tr>
       <td>org.eclipse.equinox.p2.metadata.generator</td>
       <td><div align="center">1.4</div></td>
     </tr>
@@ -884,7 +888,7 @@ ongoing work and planned delivery milestones.
       <td><div align="center">F1.1</div></td>
     </tr>
     <tr>
-      <td>org.eclipse.equinox.p2.metadata</td>
+      <td>org.eclipse.equinox.p2.publisher</td>
       <td><div align="center">F1.1</div></td>
     </tr>
     <tr>
@@ -900,11 +904,15 @@ ongoing work and planned delivery milestones.
       <td><div align="center">F1.1</div></td>
     </tr>
     <tr>
+      <td>org.eclipse.equinox.p2.ui</td>
+      <td><div align="center">F1.1</div></td>
+    </tr>
+    <tr>
       <td>org.eclipse.equinox.p2.ui.sdk</td>
       <td><div align="center">F1.1</div></td>
     </tr>
     <tr>
-      <td>org.eclipse.equinox.p2.ui</td>
+      <td>org.eclipse.equinox.p2.ui.sdk.scheduler</td>
       <td><div align="center">F1.1</div></td>
     </tr>
     <tr>
@@ -933,7 +941,7 @@ ongoing work and planned delivery milestones.
     </tr>
     <tr>
       <td>org.eclipse.equinox.simpleconfigurator.manipulator</td>
-      <td><div align="center">F1.0</div></td>
+      <td><div align="center">F1.1</div></td>
     </tr>
     <tr>
       <td>org.eclipse.equinox.simpleconfigurator</td>
