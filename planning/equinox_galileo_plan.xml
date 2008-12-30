@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <!--  Use this to test local rendering in firefox -->
-<!-- ?xml-stylesheet type="text/xsl" href="project-plan-render.xsl"? --> 
+<!-- ?xml-stylesheet type="text/xsl" href="project-plan-render.xsl"? -->
 
 <?xml-stylesheet type="text/xsl" href="http://www.eclipse.org/projects/project-plan.xsl"?>
 <p:plan plan-format="1.0" xmlns:p="http://www.eclipse.org/project/plan" xmlns="http://www.w3.org/1999/xhtml"
@@ -10,19 +10,19 @@
 <hr/>
 
 <p>
-The goal of the Equinox project is to be a first class OSGi community and foster the vision of Eclipse 
-as a landscape of bundles. As part of this, it is responsible for developing and delivering the OSGi 
+The goal of the Equinox project is to be a first class OSGi community and foster the vision of Eclipse
+as a landscape of bundles. As part of this, it is responsible for developing and delivering the OSGi
 framework implementation used for all of Eclipse.
 </p><p>
- This plan is for Equinox as part of the 
-Galileo release in 2009 and attempts to balance the evolution of the technology with the increased 
+ This plan is for Equinox as part of the
+Galileo release in 2009 and attempts to balance the evolution of the technology with the increased
 need for testing and robustness.
 </p><p>
-This release of Equinox tackles a number of challenges.  As OSGi gains more visibility and Equinox 
-more use, new use-cases and drivers come to the fore -- people 
-are pushing the technology and implementation in new directions.  2009 will also see the release of a new 
-OSGi spec revision. Equinox will implement this spec and several of the new services.  Equinox will also 
-deliver runtime technologies including the p2 provisioning platform, the extension registry, integrated security 
+This release of Equinox tackles a number of challenges.  As OSGi gains more visibility and Equinox
+more use, new use-cases and drivers come to the fore -- people
+are pushing the technology and implementation in new directions.  2009 will also see the release of a new
+OSGi spec revision. Equinox will implement this spec and several of the new services.  Equinox will also
+deliver runtime technologies including the p2 provisioning platform, the extension registry, integrated security
 support as well as support for OSGi on on the server.
 </p>
 
@@ -62,7 +62,7 @@ support as well as support for OSGi on on the server.
     <li><b>p2</b>
 		<ul>
 			<li>Command line application to mirror repositories.</li>
-			<li>Command line application to manage (install / uninstall / update) an eclipse install.</li> 
+			<li>Command line application to manage (install / uninstall / update) an eclipse install.</li>
 			<li>UI to manage an eclipse installation from within eclipse.</li>
 			<li>API to programmatically interact with p2.</li>
 		</ul>
@@ -91,7 +91,7 @@ support as well as support for OSGi on on the server.
 
   </div></p:release_deliverables>
   <p:release_milestones>
-    <p:preamble><p>      
+    <p:preamble><p>
 Release milestones will be occurring at roughly 6 week intervals, and will be aligned with the
 <a href="http://wiki.eclipse.org/Galileo_Simultaneous_Release">
 Galileo Simultaneous Release</a> train.
@@ -271,11 +271,11 @@ The target date for availability of Equinox 3.5 is:</p>
   those platforms are listed here. Although there are teams doing some Java 6
   based development we have not included specific Java6 VMs, since they have
   not yet received the general level of testing we require. <i>We expect that
-  Equinox works fine on other current Java VMs and OSes but we cannot flag these as reference 
-  platforms without significant community support for testing them. Especially in areas such as 
+  Equinox works fine on other current Java VMs and OSes but we cannot flag these as reference
+  platforms without significant community support for testing them. Especially in areas such as
   the launcher and OS security integration.</i></p>
  <p>As Equinox is largely headless, there are very few dependencies on window systems.
- Where there are UI elements (e.g., in the p2 UI), these elements will work on any configuration 
+ Where there are UI elements (e.g., in the p2 UI), these elements will work on any configuration
  supported by SWT.</p>
 
   </div><p:internationalization>
@@ -290,7 +290,7 @@ The target date for availability of Equinox 3.5 is:</p>
 <p>German and Japanese locales are tested.</p>
     </p:internationalization>
   </p:target_environments>
- 
+
   <p:compatibility_with_previous_releases><div>
 <p>Equinox 3.5 will be backward compatible with Equinox 3.4 (and, hence, with 3.3, 3.2, 3.1
   and 3.0).</p>
@@ -327,24 +327,24 @@ The target date for availability of Equinox 3.5 is:</p>
   to Use the Eclipse API</em> </a> for information about how to write compliant
   bundles. </p>
 </div></p:compatibility_with_previous_releases>
-  
-  
+
+
   <p:themes_and_priorities>
     <p:preamble><div>
 <p>Plan items listed below were defined according to
  contributor requirements and the Eclipse <a href="http://wiki.eclipse.org/RequirementsCouncilThemesAndPriorities">
 Themes and Priorities</a>
 set forth by the Eclipse Requirements Council.
-Each plan item covers a feature or API that is to be added to the 
-Equinox deliverables, or some aspect of the Equinox Project that is to be improved. Each plan item has its 
-own entry in the Eclipse bugzilla database, with a title and a 
-concise summary (usually a single paragraph) that explains the 
-work item at a suitably high enough level so that everyone can 
+Each plan item covers a feature or API that is to be added to the
+Equinox deliverables, or some aspect of the Equinox Project that is to be improved. Each plan item has its
+own entry in the Eclipse bugzilla database, with a title and a
+concise summary (usually a single paragraph) that explains the
+work item at a suitably high enough level so that everyone can
 readily understand what the work item is without having to understand
-the nitty-gritty detail. 
+the nitty-gritty detail.
 </p>
 <p>Not all plan items represent the same amount of work; some may be quite
-large, others, quite small. Although some plan items are for work that is 
+large, others, quite small. Although some plan items are for work that is
 more pressing than others, the plan items appear in no particular order.
 See the corresponding bugzilla items for up-to-date status information on
 ongoing work and planned delivery milestones.
@@ -370,10 +370,10 @@ ongoing work and planned delivery milestones.
     </div></p:preamble>
     <p:theme name="Scalability and Performance">
       <p:description><p>
-      	New usage scenarios for Equinox require it to be faster, smaller, bigger, ...  
-      	The technology needs to scale up or down to allow Equinox to scale down to small embedded environments as well 
+      	New usage scenarios for Equinox require it to be faster, smaller, bigger, ...
+      	The technology needs to scale up or down to allow Equinox to scale down to small embedded environments as well
       	as scaling up to large server environments.
-      	Monitor overall performance and memory consumption which includes the addition of new performance tests for new features. 
+      	Monitor overall performance and memory consumption which includes the addition of new performance tests for new features.
       </p></p:description>
       <!--  Query: short_desc LIKE %[spec]% -->
       <p:committed>
@@ -386,7 +386,7 @@ ongoing work and planned delivery milestones.
 	  	</li>
 	  	<li><strong>p2</strong>
 	  	  <ul>
-	  	    <li>Investigate the places where the installation process is taking too long and see if we can reduce the install time. 
+	  	    <li>Investigate the places where the installation process is taking too long and see if we can reduce the install time.
 	  	    This includes review of the data structures and algorithms used as well as persistance approaches.
 	  	    <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=249167">249167</a>.
 	  	    </li>
@@ -399,9 +399,9 @@ ongoing work and planned delivery milestones.
         <li><strong>Framework</strong>
 	  	  <ul>
 	  	    <li><strong>Improve performance of the &quot;uses&quot; directive in the resolver</strong> - The OSGi specification provides a modularity framework that ensures consist class spaces
-	  	    when multiple versions of a package is available.  In order to ensure a consist class space 
-	  	    exporters must specify what other packages they &quot;use&quot; with the &quot;uses&quot; 
-	  	    directive.  The Equinox Framework correctly implements the &quot;uses&quot; directive but 
+	  	    when multiple versions of a package is available.  In order to ensure a consist class space
+	  	    exporters must specify what other packages they &quot;use&quot; with the &quot;uses&quot;
+	  	    directive.  The Equinox Framework correctly implements the &quot;uses&quot; directive but
 	  	    it has been found to cause performance issues in the resolver.
 	  	    <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=216934">Bug 216934</a></li>
 	  	  </ul>
@@ -410,12 +410,12 @@ ongoing work and planned delivery milestones.
       </p:proposed>
       <p:deferred bugzilla="https://bugs.eclipse.org/bugs/buglist.cgi?query_format=advanced&amp;short_desc_type=allwordssubstr&amp;short_desc=[spec%5D&amp;classification=RT&amp;product=Equinox&amp;component=Framework&amp;component=RSE&amp;component=Compendium&amp;component=Components&amp;target_milestone=Future&amp;keywords_type=allwords&amp;keywords=&amp;resolution=---&amp;priority=P1&amp;priority=P2&amp;priority=P3&amp;priority=P4&amp;cmdtype=doit"></p:deferred>
     </p:theme>
-    
+
     <p:theme name="Robustness">
       <p:description><p>
 		Equinox has become the base for a wide range of platform from embedded to server to desktop and rich client applications.
 		These new scenarios bring new requirements on the execution of Equinox as well as on the programming of its API.
-		The Equinox team will improve the overall robustness by providing APIs for clients where needed and fixing critical bugs. 
+		The Equinox team will improve the overall robustness by providing APIs for clients where needed and fixing critical bugs.
 		There will also be a focused effort on testability and enhancing the automated test suites.
       </p></p:description>
       <!--  Query: short_desc LIKE %[spec]% -->
@@ -423,24 +423,34 @@ ongoing work and planned delivery milestones.
       <ul>
 	  	<li><strong>Framework</strong>
 	  	  <ul>
-	  	    <li><strong>Thread Safety</strong> - The Framework lifecycle operations must be thread safe.  
-	  	    Several bugs have been reported about thread safety issues when running bundle lifecycle 
-	  	    operations from multiple threads.  This plan item is to review and fix thread safety issues in the 
+	  	    <li><strong>Thread Safety</strong> - The Framework lifecycle operations must be thread safe.
+	  	    Several bugs have been reported about thread safety issues when running bundle lifecycle
+	  	    operations from multiple threads.  This plan item is to review and fix thread safety issues in the
 	  	    Framework. <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=247636">Bug 247636</a></li>
 	  	  </ul>
 	  	</li>
 	  	<li><strong>Security</strong>
 	  	  <ul>
- 	 		<li><strong>Improved Test Coverage</strong> More complete security tests are needed for the 
+ 	 		<li><strong>Improved Test Coverage</strong> More complete security tests are needed for the
 	 	 		security APIs.  Also need to investigate tests suites when the security manager is enabled.
  		 		<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=248608">Bug 248608</a></li>
 	  	  </ul>
 	  	</li>
 	  	<li><strong>p2</strong>
  	 	  <ul>
- 	 		<li><strong>Improved Test Coverage</strong> Flesh out the p2 test suite to include UI tests, 
+ 	 		<li><strong>Improved Test Coverage</strong> Flesh out the p2 test suite to include UI tests,
  	 		more unit tests as well as better testing of network and communications failure cases.
  	 		<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=248788">Bug 248788</a></li>
+ 	 		<li><strong>Improve the robustness of the installation in case of failure.</strong>
+ 	 		There are cases where a failure during certain phase of the installation will
+			cause the system to be left in an inconsistent state (bogus entries in
+			bundles.info, config.ini, etc.).
+			We need to make the transitioning from an install to another robust.
+			<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=248594">Bug 248594</a></li>
+ 	 		<li><strong>Investigate the use of alternate http clients.</strong>
+ 	 		There exist several alternative HTTP client implentations (e.g., Apache, Jetty, ...). Investigate
+ 	 		if p2 would benefit from switching to one of these clients in the SDK, the Installer and the
+			Admin UI. <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=220240">Bug 220240</a></li>
 	  	  </ul>
 	  	</li>
 	  </ul>
@@ -457,42 +467,42 @@ ongoing work and planned delivery milestones.
 	  	</li>
 	  	<li><strong>Framework</strong>
 	  	  <ul>
-	  	    <li><strong>API to contribute and get Execution Environment Profiles</strong> - The Equinox 
-	  	    Framework currently has a set of built-in and supported Execution Environment profiles 
-	  	    (e.g. J2SE-1.4, J2SE-1.5 etc.).  These profiles are used internally be the Framework to 
-	  	    define the packages exported by the running VM.  Tooling also needs access to the 
-	  	    Execution Environments to place proper visibility rules on the configured VM for a 
-	  	    project.  API is needed to provide a way to contribute and get the available 
-	  	    Execution Environment profiles 
+	  	    <li><strong>API to contribute and get Execution Environment Profiles</strong> - The Equinox
+	  	    Framework currently has a set of built-in and supported Execution Environment profiles
+	  	    (e.g. J2SE-1.4, J2SE-1.5 etc.).  These profiles are used internally be the Framework to
+	  	    define the packages exported by the running VM.  Tooling also needs access to the
+	  	    Execution Environments to place proper visibility rules on the configured VM for a
+	  	    project.  API is needed to provide a way to contribute and get the available
+	  	    Execution Environment profiles
 	  	    <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=240724">Bug 240724</a></li>
-	  	    <li><strong>WebStart support on latest VMs</strong> - The WebStart support in 
+	  	    <li><strong>WebStart support on latest VMs</strong> - The WebStart support in
 	  	    Equinox needs to be enhanced to load resources outside the jnlp class loader.
-	  	    The current WebStart support makes invalid assumptions on the resources cached 
+	  	    The current WebStart support makes invalid assumptions on the resources cached
 	  	    by the jnlp class loader.
 	  	    <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=244311">Bug 244311</a></li>
-	  	    <li><strong>Pass arguments to a running Eclipse application.</strong> A protocol and 
-	  	    framework are needed to allow arguments to be passed from the native launcher to a 
+	  	    <li><strong>Pass arguments to a running Eclipse application.</strong> A protocol and
+	  	    framework are needed to allow arguments to be passed from the native launcher to a
 	  	    running instance of eclipse.
 	  	    <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=178927">Bug 178927</a></li>
 	  	  </ul>
 	  	</li>
 	  	<li><strong>Compendium</strong>
 	  	  <ul>
-	  	    <li><strong>Logging</strong> To date the platform has placed tight restrictions on the 
-	  	    configuration of existing 3rd party logging frameworks. The goal here is to lift the most 
+	  	    <li><strong>Logging</strong> To date the platform has placed tight restrictions on the
+	  	    configuration of existing 3rd party logging frameworks. The goal here is to lift the most
 	  	    important of these restrictions and provide a modular and OSGi friendly integrated approach.
 	  	    <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=248794">Bug 248794</a></li>
 	  	  </ul>
 	  	</li>
 	  	<li><strong>Server-side</strong>
 	  	  <ul>
-	  	    <li><strong>Support undeploying the servlet bridge</strong> - Ensure the servletbridge 
-	  	    provides a clean deploy and undeploy environment.  The servletbridge does not undeploy 
-	  	    cleanly because of its use of a URLClassloader and a restriction on how the VMs 
-	  	    "jar"URLConnection holds open the underlying jar file.  In particular this prevents us 
-	  	    from deleting the framework and servletbridge extension bundles when undeploying. 
-	  	    A more deployment friendly class loader is needed here and will likely be useful elsewhere 
-	  	    when launching equinox. 
+	  	    <li><strong>Support undeploying the servlet bridge</strong> - Ensure the servletbridge
+	  	    provides a clean deploy and undeploy environment.  The servletbridge does not undeploy
+	  	    cleanly because of its use of a URLClassloader and a restriction on how the VMs
+	  	    "jar"URLConnection holds open the underlying jar file.  In particular this prevents us
+	  	    from deleting the framework and servletbridge extension bundles when undeploying.
+	  	    A more deployment friendly class loader is needed here and will likely be useful elsewhere
+	  	    when launching equinox.
 	  	    <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=190279">Bug 190279</a></li>
 	  	  </ul>
 	  	</li>
@@ -503,41 +513,31 @@ ongoing work and planned delivery milestones.
 			the robustness is reasonable, there are still room for improvement by providing
 			the ability to checksum the files being downloaded, retry strategies, etc.
  			<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=248602">Bug 248602</a></li>
- 	 		<li><strong>Improve the robustness of the installation in case of failure.</strong>
- 	 		There are cases where a failure during certain phase of the installation will
-			cause the system to be left in an inconsistent state (bogus entries in
-			bundles.info, config.ini, etc.). 
-			We need to make the transitioning from an install to another robust.
-			<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=248594">Bug 248594</a></li> 
- 	 		<li><strong>Investigate the use of alternate http clients.</strong>
- 	 		There exist several alternative HTTP client implentations (e.g., Apache, Jetty, ...). Investigate
- 	 		if p2 would benefit from switching to one of these clients in the SDK, the Installer and the
-			Admin UI. <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=220240">Bug 220240</a></li>
 	  	  </ul>
 	  	</li>
-	  </ul>     
+	  </ul>
       </p:proposed>
       <p:deferred bugzilla="https://bugs.eclipse.org/bugs/buglist.cgi?query_format=advanced&amp;short_desc_type=allwordssubstr&amp;short_desc=[spec%5D&amp;classification=RT&amp;product=Equinox&amp;component=Framework&amp;component=RSE&amp;component=Compendium&amp;component=Components&amp;target_milestone=Future&amp;keywords_type=allwords&amp;keywords=&amp;resolution=---&amp;priority=P1&amp;priority=P2&amp;priority=P3&amp;priority=P4&amp;cmdtype=doit"></p:deferred>
     </p:theme>
-    
+
     <p:theme name="Consumability">
       <p:description><p>
-		The diversity of Equinox poses a significant problem to end-users and developers alike.  
+		The diversity of Equinox poses a significant problem to end-users and developers alike.
 		Equinox is extremely flexible and configurable.  This makes the hard things possible but in some cases the simple things are
 		not as simple as they might be.  The Equinox team will make it easier for users to get the relevant pieces of function,
 		install it on their systems, and configure it for their use.  Where there is UI, attention will be paid to making it simple and
-		natural to use.  We will also make it easier for developers to use our APIs.      
+		natural to use.  We will also make it easier for developers to use our APIs.
 	  </p></p:description>
       <!--  Query: short_desc LIKE %[spec]% -->
       <p:committed>
       <ul>
       	<li><strong>Security</strong>
 	  	  <ul>
- 	 		<li><strong>Improve Security UI</strong>  Develop useful UIs for functionality delivered in 
-	 	 		Ganymede, including a certificate management subsystem. Enhance functionality for developing 
+ 	 		<li><strong>Improve Security UI</strong>  Develop useful UIs for functionality delivered in
+	 	 		Ganymede, including a certificate management subsystem. Enhance functionality for developing
  	 			and testing with signed bundles.
  		 		<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=153851">Bug 153851</a></li>
-	  	    <li><strong>API completeness</strong> - Graduate authorization APIs for Trusted Bundle feature, 
+	  	    <li><strong>API completeness</strong> - Graduate authorization APIs for Trusted Bundle feature,
 	 	 		ensure consistency across PKI based use-cases: p2 (Signed Artifacts), Framework (Trusted Bundles)
  		 		and ECF (SSL). <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=248586">Bug 248586</a></li>
 	  	  </ul>
@@ -552,17 +552,17 @@ ongoing work and planned delivery milestones.
 				ensure the error messages are specific and directly helpful
 				(e.g. missing file vs unknown host, etc).
 				<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=248604">Bug 248604</a></li>
- 	 		<li><strong>Improve p2 responsiveness</strong>. 
+ 	 		<li><strong>Improve p2 responsiveness</strong>.
  	 		When the user is interacting with p2, ensure that the UI is responsive to cancelation and other inputs.
  	 		<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=232440">Bug 232440</a></li>
  	  	  </ul>
 	  	</li>
 	  	<li><strong>Server-side</strong>
 	  	  <ul>
- 	 		<li><strong>Improved configurability for the Jetty Http Service</strong> - 
- 	 		As the Jetty Http Service used in the platform is applied to broader use-cases we 
- 	 		continue to make the necessary changes. In particular we intend to lift the single 
- 	 		context per port configuration restriction and allow better access to the underlying 
+ 	 		<li><strong>Improved configurability for the Jetty Http Service</strong> -
+ 	 		As the Jetty Http Service used in the platform is applied to broader use-cases we
+ 	 		continue to make the necessary changes. In particular we intend to lift the single
+ 	 		context per port configuration restriction and allow better access to the underlying
  	 		error handling mechanisms Jetty provides.
  	 		<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=248790">Bug 248790</a></li>
  	  	  </ul>
@@ -573,13 +573,7 @@ ongoing work and planned delivery milestones.
       <ul>
 	  	<li><strong>p2</strong>
 	  	  <ul>
- 	 		<li><strong>Create API.</strong> Currently p2 has considerable provisional API.  Review this
- 	 		API and identify consistent subsets to be committed as full API.  Focus here should be on specific
- 	 		usage scenarios and care should be taken to not unduly limit progress in places where p2 is still evolving.
- 	 		 <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=248791">Bug 248791</a></li>
- 	  	  </ul>
-	  	  <ul>
- 	 		<li><strong>Simplify the addition of repository content</strong> p2 is powered by metadata and artifact 
+ 	 		<li><strong>Simplify the addition of repository content</strong> p2 is powered by metadata and artifact
  	 		repositories.  Unlike other systems, p2's repositories are solely API driven (there is no schema, and perhaps
  	 		no XML).  As such, we need reasonable tooling and mechanisms to facilitate the publishing of repository content.
  	 		 <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=248792">Bug 248792</a></li>
@@ -587,20 +581,29 @@ ongoing work and planned delivery milestones.
 	  	</li>
 	  	<li><strong>Server-side</strong>
 	  	  <ul>
- 	 		<li><strong>Servletbridge and p2</strong> - 
- 	 		Investigate integration and use of p2 in servletbridge-based applications. In particular 
- 	 		looking at how to build web applications that come with the full-set of p2 metadata, 
- 	 		artifact descriptors and related configuration information consistent with a regular 
+ 	 		<li><strong>Servletbridge and p2</strong> -
+ 	 		Investigate integration and use of p2 in servletbridge-based applications. In particular
+ 	 		looking at how to build web applications that come with the full-set of p2 metadata,
+ 	 		artifact descriptors and related configuration information consistent with a regular
  	 		RCP product build.
  	 		<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=223256">Bug 223256</a>
  	 		</li>
  	  	  </ul>
 	  	</li>
-	  </ul>      
+	  </ul>
       </p:proposed>
-      <p:deferred bugzilla="https://bugs.eclipse.org/bugs/buglist.cgi?query_format=advanced&amp;short_desc_type=allwordssubstr&amp;short_desc=[spec%5D&amp;classification=RT&amp;product=Equinox&amp;component=Framework&amp;component=RSE&amp;component=Compendium&amp;component=Components&amp;target_milestone=Future&amp;keywords_type=allwords&amp;keywords=&amp;resolution=---&amp;priority=P1&amp;priority=P2&amp;priority=P3&amp;priority=P4&amp;cmdtype=doit"></p:deferred>
+      <p:deferred bugzilla="https://bugs.eclipse.org/bugs/buglist.cgi?query_format=advanced&amp;short_desc_type=allwordssubstr&amp;short_desc=[spec%5D&amp;classification=RT&amp;product=Equinox&amp;component=Framework&amp;component=RSE&amp;component=Compendium&amp;component=Components&amp;target_milestone=Future&amp;keywords_type=allwords&amp;keywords=&amp;resolution=---&amp;priority=P1&amp;priority=P2&amp;priority=P3&amp;priority=P4&amp;cmdtype=doit">
+       	 <li><strong>p2</strong>
+	  	  <ul>
+       	 	<li><strong>Create API.</strong> Currently p2 has considerable provisional API.  Review this
+ 	 		API and identify consistent subsets to be committed as full API.  Focus here should be on specific
+ 	 		usage scenarios and care should be taken to not unduly limit progress in places where p2 is still evolving.
+ 	 		 <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=248791">Bug 248791</a></li>
+      	  </ul>
+         </li>
+      </p:deferred>
     </p:theme>
-    
+
     <p:theme name="Future">
       <p:description><p>
       Eclipse is evolving quickly.  New features in the next OSGi specification R4.2 and e4 will drive numerous changes throughout the Equinox
@@ -611,11 +614,11 @@ ongoing work and planned delivery milestones.
       <ul>
       	<li><strong>OSGi standards participation</strong>
 	  	  <ul>
- 	 		<li>The OSGi Alliance, in collaboration with Equinox and other open source communities, 
- 	 		is currently revising the Core specifications. As the reference implementation for 
- 	 		several parts of the OSGi specifications, Equinox will be updated to implement these 
+ 	 		<li>The OSGi Alliance, in collaboration with Equinox and other open source communities,
+ 	 		is currently revising the Core specifications. As the reference implementation for
+ 	 		several parts of the OSGi specifications, Equinox will be updated to implement these
  	 		new features and changes to the spec.
- 	 		[Framework] <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=247354">Bug 247354</a> 
+ 	 		[Framework] <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=247354">Bug 247354</a>
  	 		[Compendium] <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=247355">Bug 247355</a>
  	 		</li>
  	  	  </ul>
@@ -623,10 +626,10 @@ ongoing work and planned delivery milestones.
 	  	<li><strong>Server-side</strong>
 	  	  <ul>
  	 		<li><strong>Update to the latest Jetty release</strong> -
- 	 		Equinox currently hosts both a Jetty 5.1 and Jetty 6.1 based version of the Http 
+ 	 		Equinox currently hosts both a Jetty 5.1 and Jetty 6.1 based version of the Http
  	 		Service. For this release we intend to include the latest version of Jetty.
- 	 		In addition to being smaller, faster, and most importantly better supported, more recent 
- 	 		versions add support for the latest servlet versions and improved support for communication 
+ 	 		In addition to being smaller, faster, and most importantly better supported, more recent
+ 	 		versions add support for the latest servlet versions and improved support for communication
  	 		patterns common to AJAX applications.
  	 		<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=248793">Bug 248793</a>
  	 		</li>
@@ -639,9 +642,9 @@ ongoing work and planned delivery milestones.
       	<li><strong>Extension Registry</strong>
 	  	  <ul>
 	  	    <li><strong>Investigate improvements of the extension registry.</strong>
-	  	    Areas of research will include creating user-defined objects instead of configuration 
-	  	    elements, expanding ability to programmatically modify the extension registry, and 
-	  	    adding support for non-singleton bundles.  Due to the size and potential impact of this 
+	  	    Areas of research will include creating user-defined objects instead of configuration
+	  	    elements, expanding ability to programmatically modify the extension registry, and
+	  	    adding support for non-singleton bundles.  Due to the size and potential impact of this
 	  	    item, it is considered experimental and might be pushed into later releases.
 	  	    [Components] <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=248340">Bug 248340</a>
 	  	    </li>
@@ -651,11 +654,11 @@ ongoing work and planned delivery milestones.
       </p:proposed>
       <p:deferred bugzilla="https://bugs.eclipse.org/bugs/buglist.cgi?query_format=advanced&amp;short_desc_type=allwordssubstr&amp;short_desc=[spec%5D&amp;classification=RT&amp;product=Equinox&amp;component=Framework&amp;component=RSE&amp;component=Compendium&amp;component=Components&amp;target_milestone=Future&amp;keywords_type=allwords&amp;keywords=&amp;resolution=---&amp;priority=P1&amp;priority=P2&amp;priority=P3&amp;priority=P4&amp;cmdtype=doit"></p:deferred>
     </p:theme>
-    
-    
+
+
   </p:themes_and_priorities>
   <p:appendix name="1">
-  
+
   <h2><a name="Appendix1" id="Appendix1">Appendix 1: Execution Environment by Bundle</a></h2>
 <p>In the table below, the &quot;3.5 minimum execution environment&quot;
   column indicates the minimum Java class library requirements of each bundle
@@ -962,6 +965,6 @@ ongoing work and planned delivery milestones.
     </tr>
   </tbody>
 </table>
-  </p:appendix>  
+  </p:appendix>
 </p:plan>
 
