@@ -35,4 +35,9 @@
          This is another category
       </description>
    </category-def>
+   <category-def name="Empty Category" label="Empty Category">
+      <description>
+         Go figure.  (Empty category for testing).
+      </description>
+   </category-def>
 </site>
