@@ -673,14 +673,20 @@ ongoing work and planned delivery milestones.
     <tr>
       <td><div align="center"><strong>M1.0</strong></div></td>
       <td>OSGi Minimum Execution Environment 1.0 - This is a subset of the J2ME
-        Foundation class libraries defined by OSGi to be the base for framework
+        Foundation 1.0 class libraries defined by OSGi to be the base for framework
         implementations. See the OSGi specification for more details.</td>
     </tr>
 
     <tr>
       <td width="9%"><div align="center"><strong>M1.1</strong></div></td>
       <td width="91%">OSGi Minimum Execution Environment 1.1 - This is a subset
-        of the J2ME Foundation class libraries defined by OSGi to be the base
+        of the J2ME Foundation 1.1 class libraries defined by OSGi to be the base
+        for framework implementations. See the OSGi specification for more details.</td>
+    </tr>
+    <tr>
+      <td width="9%"><div align="center"><strong>M1.2</strong></div></td>
+      <td width="91%">OSGi Minimum Execution Environment 1.2 - This is a subset
+        of the J2ME Foundation 1.1 class libraries defined by OSGi to be the base
         for framework implementations. See the OSGi specification for more details.</td>
     </tr>
     <tr>
@@ -745,7 +751,7 @@ ongoing work and planned delivery milestones.
   <tbody>
     <tr>
       <td width="290"><strong>Bundle</strong></td>
-      <td width="60"><div align="center"><p align="center"><b>3.4<br/>minimum<br/>execution<br/>environment</b></p></div></td>
+      <td width="60"><div align="center"><p align="center"><b>Galileo<br/>minimum<br/>execution<br/>environment</b></p></div></td>
     </tr>
     <tr>
       <td>org.eclipse.equinox.app</td>
