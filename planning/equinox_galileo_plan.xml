@@ -748,56 +748,36 @@ ongoing work and planned delivery milestones.
       <td width="60"><div align="center"><p align="center"><b>3.4<br/>minimum<br/>execution<br/>environment</b></p></div></td>
     </tr>
     <tr>
-      <td>javax.servlet.jsp</td>
-      <td><div align="center">F1.0</div></td>
-    </tr>
-    <tr>
-      <td>javax.servlet</td>
-      <td><div align="center">F1.0</div></td>
-    </tr>
-    <tr>
-      <td>org.apache.commons.el</td>
-      <td><div align="center">F1.0</div></td>
-    </tr>
-    <tr>
-      <td>org.apache.commons.logging</td>
-      <td><div align="center">F1.0</div></td>
-    </tr>
-    <tr>
-      <td>org.apache.jasper</td>
-      <td><div align="center">F1.0</div></td>
-    </tr>
-    <tr>
-      <td>org.eclipse.ecf.filetransfer</td>
-      <td><div align="center">F1.0</div></td>
-    </tr>
-    <tr>
-      <td>org.eclipse.ecf.identity</td>
-      <td><div align="center">F1.0</div></td>
-    </tr>
-    <tr>
-      <td>org.eclipse.ecf.provider.filetransfer.ssl</td>
-      <td><div align="center">1.4</div></td>
-    </tr>
-    <tr>
-      <td>org.eclipse.ecf.provider.filetransfer</td>
-      <td><div align="center">F1.0</div></td>
-    </tr>
-    <tr>
-      <td>org.eclipse.ecf.ssl</td>
-      <td><div align="center">1.4</div></td>
-    </tr>
-    <tr>
-      <td>org.eclipse.ecf</td>
-      <td><div align="center">F1.0</div></td>
-    </tr>
-    <tr>
       <td>org.eclipse.equinox.app</td>
-      <td><div align="center">M1.1</div></td>
+      <td><div align="center">M1.2</div></td>
+    </tr>
+    <tr>
+      <td>org.eclipse.equinox.cm</td>
+      <td><div align="center">M1.2</div></td>
     </tr>
     <tr>
       <td>org.eclipse.equinox.common</td>
+      <td><div align="center">F1.1</div></td>
+    </tr>
+    <tr>
+      <td>org.eclipse.equinox.compendium.tests</td>
+      <td><div align="center">1.4</div></td>
+    </tr>
+    <tr>
+      <td>org.eclipse.equinox.concurrent</td>
       <td><div align="center">F1.0</div></td>
+    </tr>
+    <tr>
+      <td>org.eclipse.equinox.device</td>
+      <td><div align="center">F1.0</div></td>
+    </tr>
+    <tr>
+      <td>org.eclipse.equinox.ds</td>
+      <td><div align="center">M1.2</div></td>
+    </tr>
+    <tr>
+      <td>org.eclipse.equinox.event</td>
+      <td><div align="center">M1.1</div></td>
     </tr>
     <tr>
       <td>org.eclipse.equinox.frameworkadmin</td>
@@ -808,8 +788,12 @@ ongoing work and planned delivery milestones.
       <td><div align="center">F1.1</div></td>
     </tr>
     <tr>
+      <td>org.eclipse.equinox.http</td>
+      <td><div align="center">M1.1</div></td>
+    </tr>
+    <tr>
       <td>org.eclipse.equinox.http.jetty</td>
-      <td><div align="center">F1.0</div></td>
+      <td><div align="center">F1.1</div></td>
     </tr>
     <tr>
       <td>org.eclipse.equinox.http.registry</td>
@@ -820,7 +804,15 @@ ongoing work and planned delivery milestones.
       <td><div align="center">F1.0</div></td>
     </tr>
     <tr>
-      <td>org.eclipse.equinox.jsp.jasper.registry</td>
+      <td>org.eclipse.equinox.http.servletbridge</td>
+      <td><div align="center">F1.0</div></td>
+    </tr>
+    <tr>
+      <td>org.eclipse.equinox.io</td>
+      <td><div align="center">M1.0</div></td>
+    </tr>
+    <tr>
+      <td>org.eclipse.equinox.ip</td>
       <td><div align="center">F1.0</div></td>
     </tr>
     <tr>
@@ -828,8 +820,96 @@ ongoing work and planned delivery milestones.
       <td><div align="center">F1.0</div></td>
     </tr>
     <tr>
+      <td>org.eclipse.equinox.jsp.jasper.registry</td>
+      <td><div align="center">F1.0</div></td>
+    </tr>
+    <tr>
       <td>org.eclipse.equinox.launcher</td>
       <td><div align="center">F1.0</div></td>
+    </tr>
+    <tr>
+      <td>org.eclipse.equinox.launcher.carbon.macosx</td>
+      <td><div align="center">N/A</div></td>
+    </tr>
+    <tr>
+      <td>org.eclipse.equinox.launcher.cocoa.macosx</td>
+      <td><div align="center">N/A</div></td>
+    </tr>
+    <tr>
+      <td>org.eclipse.equinox.launcher.cocoa.macosx.x86_64</td>
+      <td><div align="center">N/A</div></td>
+    </tr>
+    <tr>
+      <td>org.eclipse.equinox.launcher.gtk.linux.ppc</td>
+      <td><div align="center">N/A</div></td>
+    </tr>
+    <tr>
+      <td>org.eclipse.equinox.launcher.gtk.linux.s390</td>
+      <td><div align="center">N/A</div></td>
+    </tr>
+    <tr>
+      <td>org.eclipse.equinox.launcher.gtk.linux.s390x</td>
+      <td><div align="center">N/A</div></td>
+    </tr>
+    <tr>
+      <td>org.eclipse.equinox.launcher.gtk.linux.x86</td>
+      <td><div align="center">N/A</div></td>
+    </tr>
+    <tr>
+      <td>org.eclipse.equinox.launcher.gtk.linux.x86_64</td>
+      <td><div align="center">N/A</div></td>
+    </tr>
+    <tr>
+      <td>org.eclipse.equinox.launcher.gtk.solaris.sparc</td>
+      <td><div align="center">N/A</div></td>
+    </tr>
+    <tr>
+      <td>org.eclipse.equinox.launcher.gtk.solaris.x86</td>
+      <td><div align="center">N/A</div></td>
+    </tr>
+    <tr>
+      <td>org.eclipse.equinox.launcher.motif.aix.ppc</td>
+      <td><div align="center">N/A</div></td>
+    </tr>
+    <tr>
+      <td>org.eclipse.equinox.launcher.motif.hpux.PA_RISC</td>
+      <td><div align="center">N/A</div></td>
+    </tr>
+    <tr>
+      <td>org.eclipse.equinox.launcher.motif.hpux.ia64_32</td>
+      <td><div align="center">N/A</div></td>
+    </tr>
+    <tr>
+      <td>org.eclipse.equinox.launcher.motif.linux.x86</td>
+      <td><div align="center">N/A</div></td>
+    </tr>
+    <tr>
+      <td>org.eclipse.equinox.launcher.motif.solaris.sparc</td>
+      <td><div align="center">N/A</div></td>
+    </tr>
+    <tr>
+      <td>org.eclipse.equinox.launcher.win32.win32.ia64</td>
+      <td><div align="center">N/A</div></td>
+    </tr>
+    <tr>
+      <td>org.eclipse.equinox.launcher.win32.win32.x86</td>
+      <td><div align="center">N/A</div></td>
+    </tr>
+    <tr>
+      <td>org.eclipse.equinox.launcher.win32.win32.x86_64</td>
+      <td><div align="center">N/A</div></td>
+    </tr>
+    <tr>
+      <td>org.eclipse.equinox.launcher.wpf.win32.x86</td>
+      <td><div align="center">N/A</div></td>
+    </tr>
+    <tr>
+      <td>org.eclipse.equinox.log</td>
+      <td><div align="center">M1.1</div></td>
+    </tr>
+    <tr>
+      <td>org.eclipse.equinox.metatype</td>
+      <td><div align="center">M1.1</div></td>
     </tr>
     <tr>
       <td>org.eclipse.equinox.p2.artifact.repository</td>
@@ -849,7 +929,7 @@ ongoing work and planned delivery milestones.
     </tr>
     <tr>
       <td>org.eclipse.equinox.p2.director.app</td>
-      <td><div align="center">F1.0</div></td>
+      <td><div align="center">F1.1</div></td>
     </tr>
     <tr>
       <td>org.eclipse.equinox.p2.directorywatcher</td>
@@ -917,7 +997,7 @@ ongoing work and planned delivery milestones.
     </tr>
     <tr>
       <td>org.eclipse.equinox.p2.updatechecker</td>
-      <td><div align="center">F1.0</div></td>
+      <td><div align="center">F1.1</div></td>
     </tr>
     <tr>
       <td>org.eclipse.equinox.p2.updatesite</td>
@@ -925,51 +1005,79 @@ ongoing work and planned delivery milestones.
     </tr>
     <tr>
       <td>org.eclipse.equinox.preferences</td>
-      <td><div align="center">F1.0</div></td>
+      <td><div align="center">F1.1</div></td>
     </tr>
     <tr>
       <td>org.eclipse.equinox.registry</td>
       <td><div align="center">F1.0</div></td>
     </tr>
     <tr>
-      <td>org.eclipse.equinox.security.ui</td>
-      <td><div align="center">1.4</div></td>
-    </tr>
-    <tr>
       <td>org.eclipse.equinox.security</td>
       <td><div align="center">1.4</div></td>
     </tr>
     <tr>
-      <td>org.eclipse.equinox.simpleconfigurator.manipulator</td>
-      <td><div align="center">F1.1</div></td>
+      <td>org.eclipse.equinox.security.macosx</td>
+      <td><div align="center">1.4</div></td>
+    </tr>
+    <tr>
+      <td>org.eclipse.equinox.security.tests</td>
+      <td><div align="center">1.4</div></td>
+    </tr>
+    <tr>
+      <td>org.eclipse.equinox.security.ui</td>
+      <td><div align="center">1.4</div></td>
+    </tr>
+    <tr>
+      <td>org.eclipse.equinox.security.win32.x86</td>
+      <td><div align="center">1.4</div></td>
+    </tr>
+    <tr>
+      <td>org.eclipse.equinox.servletbridge</td>
+      <td><div align="center">F1.0</div></td>
     </tr>
     <tr>
       <td>org.eclipse.equinox.simpleconfigurator</td>
       <td><div align="center">F1.1</div></td>
     </tr>
     <tr>
-      <td>org.eclipse.osgi.services</td>
-      <td><div align="center">M1.0</div></td>
+      <td>org.eclipse.equinox.simpleconfigurator.manipulator</td>
+      <td><div align="center">F1.1</div></td>
     </tr>
     <tr>
-      <td>org.eclipse.osgi.util</td>
+      <td>org.eclipse.equinox.supplement</td>
+      <td><div align="center">F1.0</div></td>
+    </tr>
+    <tr>
+      <td>org.eclipse.equinox.transforms.hook</td>
+      <td><div align="center">1.4</div></td>
+    </tr>
+    <tr>
+      <td>org.eclipse.equinox.transforms.xslt</td>
+      <td><div align="center">1.4</div></td>
+    </tr>
+    <tr>
+      <td>org.eclipse.equinox.useradmin</td>
+      <td><div align="center">M1.1</div></td>
+    </tr>
+    <tr>
+      <td>org.eclipse.equinox.util</td>
+      <td><div align="center">M1.1</div></td>
+    </tr>
+    <tr>
+      <td>org.eclipse.equinox.wireadmin</td>
       <td><div align="center">M1.0</div></td>
     </tr>
     <tr>
       <td>org.eclipse.osgi</td>
-      <td><div align="center">M1.1</div></td>
+      <td><div align="center">M1.2</div></td>
     </tr>
     <tr>
-      <td>org.mortbay.jetty</td>
-      <td><div align="center">F1.0</div></td>
+      <td>org.eclipse.osgi.services</td>
+      <td><div align="center">M1.2</div></td>
     </tr>
     <tr>
-      <td>org.sat4j.core</td>
-      <td><div align="center">1.4</div></td>
-    </tr>
-    <tr>
-      <td>org.sat4j.pb</td>
-      <td><div align="center">1.4</div></td>
+      <td>org.eclipse.osgi.util</td>
+      <td><div align="center">M1.2</div></td>
     </tr>
   </tbody>
 </table>
