@@ -28,7 +28,13 @@ ob_start();
 <p class=bar>Latest news</p>
 
 <p>
-  <b>Dec 12 2008</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14" />
+  <b>Jan 30 2009</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14" />
+  Milestone 5 for Equinox Aspects 1.0 is there! You can get it at the
+  <a href="equinox-aspects-downloads.php">Downloads</a>.
+</p>
+
+<p>
+  <b>Dec 12 2008</b> - 
   Milestone 4 for Equinox Aspects 1.0 is there! You can get it at the
   <a href="equinox-aspects-downloads.php">Downloads</a>.
 </p>
