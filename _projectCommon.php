@@ -4,7 +4,7 @@
 	# See the Committer Tools "How Do I" for list of themes
 	# https://dev.eclipse.org/committers/
 	# Optional: defaults to system theme 
-	$theme = "";
+	$theme = "Nova";
 	$pageAuthor="Equinox Committers";
 	$App->ExtraHtmlHeaders = '<link rel="stylesheet" type="text/css" href="/equinox/equinox.css">';
 	# Define your project-wide Nav bars here.
