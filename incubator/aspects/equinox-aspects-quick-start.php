@@ -92,7 +92,7 @@ ob_start();
 </p>
 <p>
 	For the "Hello world!" demo the target project looks like this:
-</p><img src="./Equinox%20Aspects%20-%20Quick-start%20guide_files/hello-target.png" border="1" />
+</p><img src="images/hello-target.png" border="1" />
 
 
 <p class="bar">
@@ -109,7 +109,7 @@ ob_start();
 </ol>
 <p>
 	For the "Hello world!" demo the bundle manifest looks like this:
-</p><img src="./Equinox%20Aspects%20-%20Quick-start%20guide_files/hello-aspect-manifest.png" border="1" />
+</p><img src="images/hello-aspect-manifest.png" border="1" />
 
 <p class="bar">
 	Declare dependencies between aspect bundles and target bundles
@@ -138,7 +138,7 @@ ob_start();
 </ol>
 <p>
 	For the "Hello world!" demo, applying all these steps will result in printing "Hi from HelloAspect ;-)" when the bundle <i>org.eclipse.equinox.weaving.demo.hello</i> is started (after the AspectJ weaving service).
-</p><img src="./Equinox%20Aspects%20-%20Quick-start%20guide_files/hello-run.png" border="1" />
+</p><img src="images/hello-run.png" border="1" />
 
 
 <p class="bar">
