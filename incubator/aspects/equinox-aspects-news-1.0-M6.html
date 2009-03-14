@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Language" content="en-us" />
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <link rel="stylesheet" href="default_style.css" />
+    <title>Equinox Aspects 1.0 M6 News</title>
+  </head>
+  
+  <body>
+    <h1>Equinox Aspects 1.0 M6 - New and Noteworthy</h1>
+    
+    <p>
+      During the M6 timeframe we had a lot of very fruitful discussions with the AJDT team
+      to make Equinox Aspects easier to use and to have more fine-grained control of the
+      actual weaving. The goal of M7 will be to implement those changes.
+    </p>
+    
+    <ul>
+      <li>
+        <a href="#General">General</a>
+      </li>
+      <li>
+        <a href="#Weaving">Weaving</a>
+      </li>
+      <li>
+        <a href="#Caching">Caching</a>
+      </li>
+    </ul>
+    
+    <table border="0" cellpadding="10" cellspacing="0" width="80%">
+
+      <tr>
+        <td colspan="2">
+          <hr/>
+          <h2><a name="General" id="General"></a>General</h2>
+          <hr/>
+        </td>
+      </tr>
+
+      <tr>
+        <td width="30%" valign="top" align="left">
+          <b>Discussions on different use-cases</b>
+        </td>
+        <td width="70%" valign="top">
+          Triggered by Andy Clement and Andrew Eisenberg we discussed some major
+          improvements how to control the weaving of aspects within the Equinox
+          Aspects setting. The discussions and basic design decisions are made and
+          will be implemented during the next milestone timeframe. Please follow
+          <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=255682">bug #255682</a>
+          to stay tuned.
+        </td>
+      </tr>
+      
+      <tr>
+        <td colspan="2">
+          <hr/>
+          <h2><a name="Weaving" id="Weaving"></a>Weaving</h2>
+          <hr/>
+        </td>
+      </tr>
+      
+      <tr>
+        <td width="30%" valign="top" align="left">
+          <b>AspectJ bundle versions</b>
+        </td>
+        <td width="70%" valign="top">
+          Because of some major improvements within the loadtime weaving implementation
+          of AspectJ we now have a version dependency on at least version 1.6.2 of the
+          AspectJ weaver package imports. This avoids confusion if you have multiple versions
+          of those packages installed (which is the case if you have AJDT and SpringIDE
+          installed together, for example). If you have the latest AJDT versions in use,
+          you should have no problems. If you definitely need Equinox Aspects to work with
+          older AspectJ weaver versions, please let us know.
+        </td>
+      </tr>
+      
+      <tr>
+        <td colspan="2">
+          <hr/>
+          <h2><a name="Caching" id="Caching"></a>Caching</h2>
+          <hr/>
+        </td>
+      </tr>
+
+      <tr>
+        <td width="30%" valign="top" align="left">
+          <b>Asynchronous cache writing</b>
+        </td>
+        <td width="70%" valign="top">
+          We got some bug reports regarding the standard cache implementation. That seemed to
+          cause problems with the file handling in some (mostly OS-dependent) situations.
+          The major problem was that those problems caused the complete system to hang. We
+          now reimplemented the cache writing for the standard caching service to an asynchronous
+          mode. Woven class bytecodes are put into a bounded concurrent queue and a different
+          thread takes care to write those bytes to the appropriate directory. This makes the
+          cache handing even faster since the thread that caused the weaving is no longer used
+          to write the bytes to the cache and can continue right away.
+        </td>
+      </tr>
+      
+      <tr>
+        <td colspan="2">
+          <hr/>
+        </td>
+      </tr>
+    
+    </table>
+
+    <p>
+    The above features are just the ones that are new since the previous
+    milestone build. Summaries for earlier 1.0 milestone builds:
+    </p>
+    
+    <ul>
+      <li>
+        <a href="http://www.eclipse.org/equinox/incubator/aspects/equinox-aspects-news-1.0-M1.html">New for Equinox Aspects 1.0 milestone build M1 (August 8, 2008)</a>
+      </li>
+      <li>
+        <a href="http://www.eclipse.org/equinox/incubator/aspects/equinox-aspects-news-1.0-M2.html">New for Equinox Aspects 1.0 milestone build M2 (September 19, 2008)</a>
+      </li>
+      <li>
+        <a href="http://www.eclipse.org/equinox/incubator/aspects/equinox-aspects-news-1.0-M3.html">New for Equinox Aspects 1.0 milestone build M3 (October 31, 2008)</a>
+      </li>
+      <li>
+        <a href="http://www.eclipse.org/equinox/incubator/aspects/equinox-aspects-news-1.0-M4.html">New for Equinox Aspects 1.0 milestone build M4 (December 12, 2008)</a>
+      </li>
+      <li>
+        <a href="http://www.eclipse.org/equinox/incubator/aspects/equinox-aspects-news-1.0-M5.html">New for Equinox Aspects 1.0 milestone build M5 (Jan 30, 2009)</a>
+      </li>
+    </ul>
+
+  </body>
+</html>
