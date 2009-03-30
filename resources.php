@@ -70,7 +70,7 @@ ob_start();
         access</a> or direct CVS access. For direct access, use anonymous login
         to the CVS repo</p>
         <blockquote>
-          <p>:pserver:anonymous@dev.eclipse.org/cvsroot/rt</p>
+          <p>:pserver:anonymous@dev.eclipse.org:/cvsroot/rt</p>
         </blockquote>
         <p>The Equinox work goes on in various folders as appropriate for the
           work being done. See the project lists in the <a href="framework/index.php#frameworkprojects">framework</a>, <a href="bundles/index.php#bundleprojects">bundles</a> and <a href="incubator/index.php#workareas">incubator</a> components
@@ -85,7 +85,7 @@ ob_start();
           PHP, Flash, ... and enables versioning and diffing using Eclipse. The
           site is open for editing by all Equinox committers using:</p>
         <blockquote>
-          <p>:extssh:&lt;you here&gt;@dev.eclipse.org/cvsroot/org.eclipse</p>
+          <p>:extssh:&lt;you here&gt;@dev.eclipse.org:/cvsroot/org.eclipse</p>
         </blockquote>
         <p>The Equinox website is in </p>
         <blockquote>
