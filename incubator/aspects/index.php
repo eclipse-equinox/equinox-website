@@ -44,7 +44,7 @@ ob_start();
   Milestone 5 for Equinox Aspects 1.0 is there! You can get it at the
   <a href="equinox-aspects-downloads.php">Downloads</a>.
 </p>
-
+<!--
 <p>
   <b>Dec 12 2008</b> - 
   Milestone 4 for Equinox Aspects 1.0 is there! You can get it at the
@@ -74,6 +74,7 @@ ob_start();
   We reworked this website and created an up-to-date <a href="equinox-aspects-quick-start.php">
   quick-start guide</a> including a <a href="downloads/demo/equinox-aspects-demo-hello.zip">"Hello world!" demo</a>. We are looking forward to getting your feedback ...
 </p>
+-->
   
 <p class=bar>Mission Statement</p>
 <p>Aspect-oriented computing is continuing to increase in popularity. The modularity
