@@ -1,0 +1,219 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Language" content="en-us" />
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <link rel="stylesheet" href="default_style.css" />
+    <title>Equinox Aspects 1.0 M7 News</title>
+  </head>
+  
+  <body>
+    <h1>Equinox Aspects 1.0 M7 - New and Noteworthy</h1>
+    
+    <p>
+      The major work that was done in the M7 milestone of Equinox Aspects focussed on more
+      fine grained control of the weaving process. We discussed these enhancements a lot with
+      the AJDT team and have now a first version of this available. Please give feedback on
+      this improvement and tell us, what you observe.
+    </p>
+    
+    <ul>
+      <li>
+        <a href="#General">General</a>
+      </li>
+      <li>
+        <a href="#Weaving">Weaving</a>
+      </li>
+      <li>
+        <a href="#Caching">Caching</a>
+      </li>
+    </ul>
+    
+    <table border="0" cellpadding="10" cellspacing="0" width="80%">
+
+      <tr>
+        <td colspan="2">
+          <hr/>
+          <h2><a name="General" id="General"></a>General</h2>
+          <hr/>
+        </td>
+      </tr>
+
+      <tr>
+        <td width="30%" valign="top" align="left">
+          <b>Graduation</b>
+        </td>
+        <td width="70%" valign="top">
+          We started the graduation process for graduating Equinox Aspects out
+          of the incubator area into a general Equinox component.
+        </td>
+      </tr>
+      
+      <tr>
+        <td width="30%" valign="top" align="left">
+          <b>Different weavers</b>
+        </td>
+        <td width="70%" valign="top">
+          The general design of Equinox Aspects allows you to use your
+          own bytecode modifiers instead of AspectJ's aspect weaving together
+          with the base Equinox Aspects infrastructure. To prove this we
+          implemented (as an example) a weaving service that connects Equinox
+          Aspects to the spring dynamic modules infrastructure to make all
+          the spring load-time weavers (AspectJ, JPA, etc.) work within OSGi
+          using Equinox Aspects.<br/>
+          You can find more on this implementation in this blog entry:<br/>
+          <a href="http://martinlippert.blogspot.com/2009/04/load-time-weaving-for-spring-dm.html">Load-Time Weaving for Spring-DM</a>
+        </td>
+      </tr>
+      
+      <tr>
+        <td colspan="2">
+          <hr/>
+          <h2><a name="Weaving" id="Weaving"></a>Weaving</h2>
+          <hr/>
+        </td>
+      </tr>
+      
+      <tr>
+        <td width="30%" valign="top" align="left">
+          <b>Manifest-only fine-grained aspect weaving control</b>
+        </td>
+        <td width="70%" valign="top">
+          We implemented a number of additional options and mechanisms that allow
+          you to control the weaving of aspects on a more fine-grained level. The
+          major discussion of this took place in
+          <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=255682">bug 255682</a>.<br/><br/>
+          <b>What is new?</b><br/><br/>
+          <ul>
+            <li>the packages of aspects in aop.xml needs to be exported via
+                the bundle manifest. If they are not, the aspect is no longer
+                woven into other bundles.</li>
+            <li>you don't need an aop.xml file anymore. Instead of list your
+                aspects within this special file, you can add them as attribute
+                to your export-package declaration in the manifest:<br/>
+                <b>Export-Package: com.foo.bar;aspects="Tracing,Monitoring"</b><br/></li>
+            <li>if you export an aspect, you can define a policy when this aspect
+                should be woven into bundles that are depending on this package
+                (via Import-Package or Require-Bundle):<br/>
+                <b>Export-Package: com.foo.bar;aspect-policy:=opt-out;aspects="Tracing,Monitoring"</b><br/>
+                In this "opt-out" case your aspects are woven into dependend bundles
+                unless they explicitly prevent those aspects from being woven into them.<br/>
+                If you use "opt-in" instead, these aspects are NOT woven unless the
+                dependend bundle explicitly asks for them being woven.</li>
+            <li>if you import a package (or require a bundle) that exports an aspect,
+                you can define an "apply-aspects" directive to tell Equinox Aspects
+                whether to weave the imported aspects into your bundle or not.<br/>
+                <b>Import-Package: com.foo.bar;apply-aspects:=true</b><br/>
+                This means the aspects that are exported from the bundle that satisfies
+                this import should be woven into your bundle. If you define "false", then
+                those aspects are not woven into your bundle.</li>
+          </ul>
+          
+          More details on this can be found in the comments for
+          <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=255682">bug #255682</a>,
+          especially in <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=255682#c18">comment #18</a>
+          and following.<br/>
+          <br/>
+          The supplementer mechanism is not touched by this. If you define aspects
+          within a bundle via aop.xml or the manifest, export the package and supplement
+          another bundle, those aspects are being woven into the supplemented bundle
+          as always.<br/>
+          <br/>
+          The new mechanism should be completely backwards compatible. So if you run your
+          aspect bundles as they are with the new build and observe any problems, please
+          open a new issue in bugzilla.<br/>
+        </td>
+      </tr>
+      
+      <tr>
+        <td width="30%" valign="top" align="left">
+          <b>Declare bundles as finised</b>
+        </td>
+        <td width="70%" valign="top">
+          Equinox Aspects tries to avoid weaving a bundle whereas possible to avoid
+          the weaving overhead. But there are situations where Equinox Aspects cannot
+          decide on its own efficiently whether to weave a bundle or not. This is the
+          case for bundles that contain @Aspect-style aspects, define them in aop.xml
+          or via the manifest and where not compiled with AJDT (or AspectJ in general).
+          In those situations Equinox Aspects needs to weave the bundle to "finish"
+          the aspects in bytecode.<br/>
+          Because Equinox Aspects cannot easily decide whether the aspects inside a
+          bundle are finished or not, it always weaves the bundle with its own aspects
+          in such cases. If you know that you compiled your aspect bundle with AJDT
+          and therefore know that your aspects are finished, you can tell Equinox
+          Aspects this in the manifest. Simply add:<br/><br/>
+          <b>Eclipse-AspectBundle: finished</b><br/>
+        </td>
+      </tr>
+
+      <tr>
+        <td width="30%" valign="top" align="left">
+          <b>Aspects in fragments</b>
+        </td>
+        <td width="70%" valign="top">
+          We fixed a bug that prevented you from defining an aspect inside a fragment
+          together with a supplement bundle definition. This works now.
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2">
+          <hr/>
+          <h2><a name="Caching" id="Caching"></a>Caching</h2>
+          <hr/>
+        </td>
+      </tr>
+
+      <tr>
+        <td width="30%" valign="top" align="left">
+          <b>Caching of generated classes</b>
+        </td>
+        <td width="70%" valign="top">
+          In the past the caching service denied to cache generated classes for some
+          reasons, especially the problem of invalidating those cache items. Since the
+          latest versions of Equinox Aspects deal with the cache invalidation using the
+          OSGi bundle names, versions and update dates, we are now able to cache
+          generated classes the same way we cache all other woven bytecode. This is
+          implemented in this milestone build for the standard caching service.<br/>
+          This was the last step towards getting zero-overhead startup performance
+          for the cached scenario. :-)
+        </td>
+      </tr>
+      
+      <tr>
+        <td colspan="2">
+          <hr/>
+        </td>
+      </tr>
+    
+    </table>
+
+    <p>
+    The above features are just the ones that are new since the previous
+    milestone build. Summaries for earlier 1.0 milestone builds:
+    </p>
+    
+    <ul>
+      <li>
+        <a href="http://www.eclipse.org/equinox/incubator/aspects/equinox-aspects-news-1.0-M1.html">New for Equinox Aspects 1.0 milestone build M1 (August 8, 2008)</a>
+      </li>
+      <li>
+        <a href="http://www.eclipse.org/equinox/incubator/aspects/equinox-aspects-news-1.0-M2.html">New for Equinox Aspects 1.0 milestone build M2 (September 19, 2008)</a>
+      </li>
+      <li>
+        <a href="http://www.eclipse.org/equinox/incubator/aspects/equinox-aspects-news-1.0-M3.html">New for Equinox Aspects 1.0 milestone build M3 (October 31, 2008)</a>
+      </li>
+      <li>
+        <a href="http://www.eclipse.org/equinox/incubator/aspects/equinox-aspects-news-1.0-M4.html">New for Equinox Aspects 1.0 milestone build M4 (December 12, 2008)</a>
+      </li>
+      <li>
+        <a href="http://www.eclipse.org/equinox/incubator/aspects/equinox-aspects-news-1.0-M5.html">New for Equinox Aspects 1.0 milestone build M5 (Jan 30, 2009)</a>
+      </li>
+      <li>
+        <a href="http://www.eclipse.org/equinox/incubator/aspects/equinox-aspects-news-1.0-M6.html">New for Equinox Aspects 1.0 milestone build M6 (Mar 13, 2009)</a>
+      </li>
+    </ul>
+
+  </body>
+</html>

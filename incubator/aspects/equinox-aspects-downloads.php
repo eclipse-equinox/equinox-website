@@ -44,6 +44,14 @@ ob_start();
 
 <tr>
 	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+	<td width="68%"><a href="downloads/dev/org.eclipse.equinox.weaving-incubation-1.0.0.200904302341-M7-archive.zip">
+	    org.eclipse.equinox.weaving-incubation-1.0.0.200904302341-M7-archive.zip</a>
+    </td>
+	<td width="30%" align="right"><a href="equinox-aspects-news-1.0-M7.html">New and Noteworthy 1.0 M7</a></td>
+</tr>
+
+<tr>
+	<td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
 	<td width="68%"><a href="downloads/dev/org.eclipse.equinox.weaving-incubation-1.0.0.200903141932-M6-archive.zip">
 	    org.eclipse.equinox.weaving-incubation-1.0.0.200903141932-M6-archive.zip</a>
     </td>
