@@ -182,6 +182,7 @@ The target date for availability of Equinox 3.5 is:</p>
 
         <td><b>Red Hat Enterprise Linux 5.0, x86-32, GTK</b> running (any of):
           <ul>
+            <li> Sun Java 2 Standard Edition 6.0 Update 4 for Linux x86</li>
             <li>Sun Java 2 Standard Edition 5.0 Update 14 for Linux x86</li>
             <li>IBM 32-bit SDK for Linux on Intel architecture, Java 2 Technology Edition 5.0, SR6b</li>
             <li>BEA JRockit 27.4.0, for Linux x86</li>
@@ -191,12 +192,18 @@ The target date for availability of Equinox 3.5 is:</p>
           </ul></td>
       </tr>
       <tr>
-        <td><b>SUSE Linux Enterprise Server 10, x86-32, GTK</b> running (any
-          of):
+        <td><b>SUSE Linux Enterprise Server 10, x86-32, GTK</b> running (any of):
           <ul>
             <li>Sun Java 2 Standard Edition 5.0 Update 14 for Linux x86</li>
 
             <li>IBM 32-bit SDK for Linux on Intel architecture, Java 2 Technology Edition 5.0, SR6b</li>
+          </ul></td>
+      </tr>
+      <tr>
+        <td><b><img src="http://www.eclipse.org/eclipse/development/new.gif" alt="(new)" border="0" height="12" width="12" /> SUSE Linux Enterprise Server 10, x86-64, GTK</b> running (any of):
+          <ul>
+            <li>Sun Java 2 Standard Edition 5.0 Update 14 for Linux x86-64</li>
+            <li>IBM 64-bit SDK for Linux on Intel architecture, Java 2 Technology Edition 5.0, SR6b</li>
           </ul></td>
       </tr>
       <tr>
@@ -218,8 +225,8 @@ The target date for availability of Equinox 3.5 is:</p>
       <tr>
         <td><b>Red Hat Enterprise Linux 4.0 update 2, x86-64, GTK</b> running:
           <ul>
-            <li>Sun Java 2 Standard Edition 5.0 Update 14 for Linux x86_64</li>
-
+            <li>Sun Java 2 Standard Edition 5.0 Update 14 for Linux x86-64</li>
+            <li><img src="http://www.eclipse.org/eclipse/development/new.gif" alt="(new)" border="0" height="12" width="12" /> IBM 64-bit SDK for Linux on Intel architecture, Java 2 Technology Edition 5.0, SR6b</li>
           </ul></td>
       </tr>
       <tr>
@@ -229,6 +236,12 @@ The target date for availability of Equinox 3.5 is:</p>
           </ul></td>
       </tr>
 
+      <tr>
+        <td><img src="http://www.eclipse.org/eclipse/development/new.gif" alt="(new)" border="0" height="12" width="12" /> <b>Sun Solaris 10, x86, GTK</b> running:
+          <ul>
+            <li>Sun Java 2 Standard Edition 5.0 Update 14 for Solaris</li>
+          </ul></td>
+      </tr>
       <tr>
         <td><b>HP-UX 11i v2, ia64, Motif 2.1, GTK</b> running:
           <ul>
@@ -259,20 +272,28 @@ The target date for availability of Equinox 3.5 is:</p>
       <tr>
         <td><b>Apple Mac OS X 10.5, Universal, Carbon</b> running:
           <ul>
-            <li>Apple Java 2 Platform Standard Edition (J2SE) 5, service release 4</li>
+            <li>Apple Java for Mac OS X 10.5, Update 1</li>
+          </ul></td>
+      </tr>
+      <tr>
+        <td><b>Apple Mac OS X 10.5, Universal 32-bit, Cocoa</b> running:
+          <ul>
+            <li>Apple Java for Mac OS X 10.5, Update 1</li>
+          </ul></td>
+      </tr>
+      <tr>
+        <td><img src="http://www.eclipse.org/eclipse/development/new.gif" alt="(new)" border="0" height="12" width="12" /> <b>Apple Mac OS X 10.5, Universal 64-bit, Cocoa</b> running:
+          <ul>
+            <li>Apple Java for Mac OS X 10.5, Update 1</li>
           </ul></td>
       </tr>
     </tbody>
   </table>
 
 </center>
-<p>Because Java 1.4.2 and Java5 based platforms are used for most Eclipse development,
-  those platforms are listed here. Although there are teams doing some Java 6
-  based development we have not included specific Java6 VMs, since they have
-  not yet received the general level of testing we require. <i>We expect that
-  Equinox works fine on other current Java VMs and OSes but we cannot flag these as reference
-  platforms without significant community support for testing them. Especially in areas such as
-  the launcher and OS security integration.</i></p>
+<p>As stated above, <i>we expect that Eclipse works fine on other current
+  Java VM and OS versions but we cannot flag these as reference platforms without
+  significant community support for testing them.</i></p>
  <p>As Equinox is largely headless, there are very few dependencies on window systems.
  Where there are UI elements (e.g., in the p2 UI), these elements will work on any configuration
  supported by SWT.</p>
