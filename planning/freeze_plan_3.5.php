@@ -36,7 +36,9 @@ ob_start();
 		<h1><?= $pageTitle ?></h1>
 		<div class="homeitem3col">
 			<h3>Status</h3>
-			<p><b>April 3, 2009 - M7 development underway.</b></p>
+			<p><b>Equinox follows the same schedule as the Eclipse project.  Check the Eclipse 
+			  <a href="http://www.eclipse.org/eclipse/development/freeze_plan_3.5.php">freeze plan</a> plan for the current status.
+			</b></p>
       	</div>
 		<div class="homeitem3col">
 			<h3>Detailed Timeline</h3>
