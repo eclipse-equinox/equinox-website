@@ -442,6 +442,14 @@ ongoing work and planned delivery milestones.
       <!--  Query: short_desc LIKE %[spec]% -->
       <p:committed>
       <ul>
+        <li><strong>All</strong>
+	  	  <ul>
+	  	    <li><strong>Improved path and URL support</strong> - UNC and URL encoding frequently cause
+	  	    problems.  We will identify best practices and coding patterns and make them available for others to use
+	  	    as well as use them throughout the Equinox code base.
+	  	    <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=248842">Bug 248842</a></li>
+	  	  </ul>
+	  	</li>
 	  	<li><strong>Framework</strong>
 	  	  <ul>
 	  	    <li><strong>Thread Safety</strong> - The Framework lifecycle operations must be thread safe.
@@ -513,14 +521,6 @@ ongoing work and planned delivery milestones.
       </p:proposed>
       <p:deferred>
       <ul>
-      	<li><strong>All</strong>
-	  	  <ul>
-	  	    <li><strong>Improved path and URL support</strong> - UNC and URL encoding frequently cause
-	  	    problems.  We will identify best practices and coding patterns and make them available for others to use
-	  	    as well as use them throughout the Equinox code base.
-	  	    <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=248842">Bug 248842</a></li>
-	  	  </ul>
-	  	</li>
 	  	<li><strong>Framework</strong>
 	  	  <ul>
 	  	    <li><strong>WebStart support on latest VMs</strong> - The WebStart support in
