@@ -499,10 +499,6 @@ ongoing work and planned delivery milestones.
 	  	    <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=190279">Bug 190279</a></li>
 	  	  </ul>
 	  	</li>
-	  </ul>
-	  </p:committed>
-      <p:proposed>
-      <ul>
 	  	<li><strong>Compendium</strong>
 	  	  <ul>
 	  	    <li><strong>Logging</strong> To date the platform has placed tight restrictions on the
@@ -512,6 +508,8 @@ ongoing work and planned delivery milestones.
 	  	  </ul>
 	  	</li>
 	  </ul>
+	  </p:committed>
+      <p:proposed>
       </p:proposed>
       <p:deferred>
       <ul>
