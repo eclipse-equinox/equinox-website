@@ -1,0 +1,328 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+  <title>Eclipse Install/Update Packaging Conventions</title>
+</head>
+  <body>
+                            
+<h1>Eclipse Install/Update Packaging Conventions</h1>
+<font size="-1">Revision Date: 10-JUN-2009</font><br>
+<font size="-1">Copyright 2009 IBM Corporation and others</font>
+                            
+<h3> <font size="+2">Table of Contents</font></h3>
+              <a href="#Introduction">Introduction</a>  <br>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="#Concepts">Concepts</a><br>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="#Framework">Provisioning Framework</a>
+      <br>
+             <a href="#Packaging_Conventions">Packaging Conventions</a> 
+<br>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a
+ href="#Feature_Archive">Feature     Archive</a>  <br>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a
+ href="#Plug-In_Archive">Plug-In     Archive</a>  <br>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a
+ href="#Packaging_NL">Packaging      NL</a>   <br>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+<a href="#Translated_Feature_Information"> Translated Feature Information</a> 
+       <br>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+<a href="#Translated_Plug-In_Information"> Translated Plug-In Information</a> 
+       <br>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a
+ href="#Security_Considerations">Security  Considerations</a>  <br>
+             <a href="#Update_Server">Update Server</a>  <br>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="#Site_Map">Site
+ Map</a>      <br>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a
+ href="#Default_Site_Layout">Default    Site Layout</a>  <br>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a
+ href="#Controlling_Access">Controlling     Access</a>  <br>
+             <a href="#Eclipse_Install">Eclipse Install</a>  <br>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a
+ href="#Default_Install_Layout">Default   Install Layout</a>  <br>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a
+ href="#Unmanaged_Plugins">"Unmanaged"     Plug-Ins</a>  <br>
+                    
+<h2> <a name="Introduction"></a> Introduction</h2>
+This document outlines the support for managing the delivery of  function     
+within the Eclipse platform. Also refer to the "<a
+ href="http://www.eclipse.org/legal/updatemanager.php"> Eclipse Foundation Update
+Manager Agreement</a> " for additional legal information governing the
+use of the Eclipse update manager function.              
+</ul>
+                            
+<h3> <a name="Concepts"></a> Concepts</h3>
+<b>Plug-in</b> <br>
+Eclipse developers build <em>plug-ins</em>, also known as <em>bundles</em>
+in OSGi terminology. Plug-ins are the base units of  execution recognized by the 
+Equinox runtime environment. In general, plug-ins are not exposed to users that 
+select function during installation or update.  The reason is that plug-in boundaries are 
+established by developers for development reasons (like function reuse) and present the wrong
+level of granularity   in terms of what the user sees as the unit of function.
+              
+<p>While plug-ins are being developed (i.e. are frequently being changed),
+their internal file structure will reflect what is convenient to the
+developer. This will generally depend on the particular development
+tool  being used.  Most commonly, at development time plug-ins are a simple
+directory tree in the file system, including source, binaries, and other related development
+and deployment related files. During development the developer  does not  pay particular  attention to plug-in
+versioning information, because  the plug-in is continually  changing. </p>
+                         
+<p>However, when the plug-in is ready to be packaged, it needs to be converted
+to a form suitable for packaging and installation. Typically it means
+creation    of the runtime .jar(s) and removing any development-time files
+(source,  exposed .class files, etc). It also means updating the plug-in/bundle manifest
+(MANIFEST.MF) with the formal plug-in version and reflecting the version in
+the  plug-in  directory name (see "Concurrent Plug-In Version Support" for
+details).  </p>
+                         
+<p><b>Plug-in Fragment</b> <br>
+             Plug-in Fragments (or simply Fragments) allow independent packaging
+    of  certain  aspects of the base plug-in. This includes (but may not
+be   limited   to) translated  resources for the plug-in, OS-specific or
+windowing-system-specific code.  At runtime, fragments are logically
+merged into the base plug-in. From a packaging point of view, the install
+and update support does not really differentiate  between plug-ins and
+their related fragments. </p>
+                         
+<p><b>Feature</b> <br>
+A feature is an installation packaging mechanism used to define
+a  group of versioned plug-ins and/or plug-in fragments plus non-plug-in
+files that is used to deliver some user function. A feature can also
+include or require other  features.  Features are exposed to users as part of the
+packaging  and installation   process,  because they represent a unit of
+function selection.   Features also  represent  a unit of installation. Features
+carry a version   identifier.</p>
+                         
+<p>Features are packaged as a feature archive, referencing the required plug-ins, 
+plug-in fragments and optional non-plug-in files. The feature archives 
+are   placed on an update server for download and installation by the Eclipse
+update  manager, or they can be used as the input into a formal packaging
+process  using one of the "traditional" installer technologies. The format
+of the feature archive is described later. </p>
+
+<p><b>Product</b><br>
+Products are a branded and packaged collection of features and plug-ins. Products define
+non-reusable aspects of an Eclipse-based application: splash screen, About dialog content,
+icons, default preference settings, etc.</p>
+
+<p><b>Software Repository</b><br>
+Software repositories store collections of installable content (plug-ins, features, products,
+and other installable entities), in a format
+suitable for consumption by the Eclipse platform's provisioning system. Repositories
+are also sometimes referred to as <em>update sites</em> or <em>update servers</em>.</p>
+
+<h3> <a name="Framework"></a> Provisioning Framework</h3>
+The Eclipse platform uses a provisioning framework called p2 developed by the Eclipse Equinox
+project. This framework supports an open ended set of repository formats, and provides
+many more generic and powerful core concepts than outlined here. The scope of this document
+is just to define the "default" or canonical packaging format used by Eclipse projects.
+                         
+<h2> <a name="Packaging_Conventions"></a> Packaging Conventions</h2>
+Feature packages consist of several related files:
+             
+<ul>
+	<li> exactly one jar containing the feature manifest and related files.
+	This one is referred to as the "<b>feature archive</b>"</li>
+	<li> zero or more jars containing the feature plug-ins. These
+	are referred to as the "<b>plug-in archives</b>"</li>
+</ul>
+                            
+<h3> <a name="Feature_Archive"></a> Feature Archive</h3>
+              The feature packaging information is placed into a separate 
+Java   .jar.    Standard Java jar facilities are used for constructing feature
+ archives.    Feature archives reference separately packaged plug-in archives
+ (see next    section) and non-plug-in files.              
+<p>Features are identified using a structured identifier based on the provider
+       internet domain name. For example, organization eclipse.org may produce
+     feature org.eclipse.javatooling. The character set used for feature
+identifiers      is as specified for plug-in identifiers (see reference information
+describing        the plug-in manifest). </p>
+                         
+<p>The recommended convention for naming the feature archives is <br>
+             <tt>&lt;id&gt;_&lt;version&gt;.jar</tt> </p>
+                         
+<p>Where <tt>&lt;id&gt;</tt> is the feature identifier and <tt>&lt;version&gt;</tt> 
+       is the full version identifier contained in the respective feature.xml.
+      Note that this is a recommended convention that minimizes chance of
+collisions,       but is not required by the Eclipse architecture. For example,
+the following       are valid feature archive names </p>
+                         
+<p><tt>org.eclipse.javatooling_1.0.3.jar</tt> <br>
+             <tt>org.eclipse.pde_2.0.jar</tt> <br>
+             <tt>my_feature.jar</tt> </p>
+                         
+<p>Internally, each feature archive is packaged relative to its feature directory 
+      (but not including the directory path element). The archive has the 
+following      structure </p>
+                         
+<p><tt>feature.xml</tt> <br>
+             <tt>feature&lt;_locale&gt;.properties (see "Translated Feature 
+ Information")</tt>       <br>
+             <tt>other feature files and subdirectories (TBD)</tt> <br>
+             <tt>META-INF/</tt> <br>
+             <tt>&nbsp;&nbsp;&nbsp; Java jar manifest and security files</tt> 
+  </p>
+                         
+<p>The feature manifest file (feature.xml) format is documented 
+<a href="http://help.eclipse.org/ganymede/topic/org.eclipse.platform.doc.isv/reference/misc/feature_manifest.html">here</a>.
+In general, feature authors don't need to know the details of the feature manifest format.
+The Plug-in Development Environment (PDE) in the Eclipse SDK provides graphical authoring
+tools for defining and editing feature manifests.</p>
+                     
+<p>Translatable text contained in the feature.xml can be separated into feature&lt;_locale&gt;.properties 
+files using Java property bundle conventions. Note that the translated 
+strings are used at installation time (ie. do not employ the plug-in 
+fragment   runtime   mechanism). </p>
+                         
+<h3> <a name="Plug-In_Archive"></a> Plug-In Archive</h3>
+              Plug-ins and plug-in fragments are individually packaged as 
+separate     Java   .jars. Standard Java jar facilities are used for constructing
+ plug-in     archives.   There is no distinction made between a plug-in archive
+ containing     a plug-in   and one containing a plug-in fragment.      
+       
+<p>The recommended convention for naming the plug-in archives is <br>
+             <tt>&lt;id&gt;_&lt;version&gt;.jar</tt> </p>
+                         
+<p>Where <tt>&lt;id&gt;</tt> is the plug-in or fragment identifier and <tt> 
+      &lt;version&gt;</tt> is the full version identifier contained in the 
+ respective plug-in or fragment's MANIFEST.MF. Note that this is a recommended 
+ convention  that   minimizes chance of collisions, but is not required by 
+ the Eclipse  architecture.   For example, the following are valid plug-in 
+ archive names  </p>
+                         
+<p><tt>org.eclipse.platform_1.0.3.jar</tt> <br>
+             <tt>org.eclipse.ui.nl_2.0.jar</tt> <br>
+             <tt>my_plugin.jar</tt> </p>
+                         
+<p>Internally, each plug-in archive packages all the relevant plug-in or
+fragment files relative to its plug-in or fragment directory (but not including
+the directory path element). The archive has the following structure </p>
+                         
+<p><tt>META-INF/</tt> <br>
+       <tt>&nbsp;&nbsp;&nbsp; MANIFEST.MF - bundle manifest file</tt> 
+       <tt>other plug-in or feature files and subdirectories</tt> <br>
+  </p>
+                         
+<h3> <a name="Packaging_NL"></a> Packaging NL</h3>
+              In Eclipse, translated plug-in information is packaged either 
+ together     with the base plug-in, or as a plug-in fragment. At runtime, 
+ Eclipse locates     the translations for the required locale. The use of 
+fragments allows translations     to be added to the runtime without the need
+to repackage the base plug-ins.                 
+<p>This mechanism cannot be used for translating the actual packaging information
+       that is part of the installation xml files. Consequently the standard
+   Java    translation conventions are used for the packaging information,
+ and  all  necessary translations must be available at the time the feature
+ is packaged.  </p>
+                         
+<h4> <a name="Translated_Feature_Information"></a> Translated Feature Information</h4>
+              <b>Note:</b> This section describes the conventions used for
+ translating       the information contained within the feature manifest.
+It allows for  the    update client to select the correctly localized strings
+ from the update    server.  This section specifically does not describe
+localization  of individual    plug-ins.               
+<p>Several of the attributes within the feature manifest are strings intended
+       for display through user interfaces. To facilitate translation, these
+   attribute    values use the convention defined for translatable attributes
+   of plugin.xml.    Strings beginning with % up to the first space are treated
+   as resource identifier  keys (without the %) and looked up in a properties
+   file. For example: </p>
+                         
+<p><tt>label="%cfg Tool Feature for Linux"</tt> </p>
+                         
+<p>results in a resource lookup in the correct property file with key "cfg".
+       If no property files are supplied, or the key is not found the default
+    string  value (following the %key) is used. </p>
+                         
+<p>The property files are named as feature_&lt;locale&gt;.properties using
+       the Java resource bundle naming conventions. Within the feature archive
+     .jar they are placed in the same directory as their corresponding feature.xml
+     file.  </p>
+                         
+<h4> <a name="Translated_Plug-In_Information"></a> Translated Plug-In Information</h4>
+              No change from 1.0. Translated plug-in information should be
+ packaged     as  plug-in fragments.              
+
+<h3> <a name="Security_Considerations"></a> Security Considerations</h3>
+              The general approach is to use base Java jar signing for the
+ feature     and   plug-in archive .jars.              
+<p>Features are verified as follows: </p>
+<ul>
+	<li> download and verify the feature archive (use base Java jar verification)</li>
+	<li> for each plug-in archive</li>
+	<ul>
+		<li> verify the archive jar content (use base Java jar verification)</li>
+		<li> verify plug-in id and version from <tt>&lt;plugin&gt;</tt>
+		entry in feature manifest matches downloaded plugin.xml</li>
+	</ul>
+	<li> for each non-plugin file</li>
+	<ul>
+		<li> call install handler to verify file</li>
+	</ul>
+</ul>
+In general, when processing signed jars, the user will be prompted
+for each unrecognised certificate. The response choices will include
+aborting the installation (originator is not trusted), continuing the
+installation (originator is trusted for this installation).        
+     
+<h2> <a name="Repository"></a>Software Repository</h2>
+The default Eclipse software repository is any URL-accessible location (such
+as a remote server or local file system location). 
+The default implementation assumes a fixed-layout server. The content 
+of the repository (in terms of available features and plug-ins) is described 
+in index files (<i>content.jar</i> and <i>artifacts.jar</i>). These files are generated
+either using command line tools provided by Equinox p2, or by using repository
+editing tools in the Eclipse Plug-in Development Environment (PDE). The repository
+can also defined categories for its content, which provide navigational aide to 
+end users installing software from that repository.
+                         
+<h3> <a name="Default_Site_Layout"></a> Default Site Layout</h3>
+              <tt>&lt;site root&gt;/</tt> <br>
+             <tt>&nbsp;&nbsp;&nbsp; content.jar</tt> <br>
+             <tt>&nbsp;&nbsp;&nbsp; artifacts.jar</tt> <br>
+             <tt>&nbsp;&nbsp;&nbsp; features/</tt> <br>
+             <tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; feature archives&nbsp;&nbsp;
+       (eg. org.eclipse.javatools_1.0.1.jar)</tt> <br>
+             <tt>&nbsp;&nbsp;&nbsp; plugins/</tt> <br>
+             <tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; plug-in archives&nbsp;&nbsp;&nbsp;</tt><br>
+             <tt>&nbsp;&nbsp;&nbsp; binary/</tt> <br>
+             <tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; binary artifact archives&nbsp;&nbsp;&nbsp;
+       (eg.  org.eclipse.platform_root_3.5.0)</tt>              
+<h3> <a name="Controlling_Access"></a> Controlling Access</h3>
+The default Eclipse site implementation provides support for https access with basic user authentication (user id and password). 
+            
+<h2> <a name="Eclipse_Install"></a> Eclipse Install</h2>
+                            
+<h3> <a name="Default_Install_Layout"></a> Default Install Layout</h3>
+	<tt>eclipse/</tt> <br>
+		<tt>&nbsp;&nbsp;&nbsp; configuration/</tt><br>
+		<tt>&nbsp;&nbsp;&nbsp; features/</tt><br>
+		<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;featureId&gt;_&lt;version&gt;/</tt>   <br>
+		<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;feature.xml</tt> <br>
+		<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; other feature files</tt> <br>
+	<tt>&nbsp;&nbsp;&nbsp; plugins/</tt> <br>
+		<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;pluginORfragmentId&gt;_&lt;version&gt;.jar</tt><br>
+	<tt>&nbsp;&nbsp;&nbsp; p2/</tt> <br>
+	<tt>&nbsp;&nbsp;&nbsp; dropins/</tt> <br>
+	<tt>&nbsp;&nbsp;&nbsp; eclipse.exe</tt> <br>
+	<tt>&nbsp;&nbsp;&nbsp; eclipse.ini</tt> <br>
+                         
+<h3> <a name="Unmanaged_Plugins"></a> "Unmanaged" Plug-Ins</h3>
+Eclipse supports a concept of "unmanaged" plug-ins. These are 
+plug-ins that were directly installed into the Eclipse file tree without 
+being part of a feature (eg. developer unzipping plug-in archive directly 
+into the  Eclipse  file tree).              
+<p>Eclipse runtime recognizes these plugins during startup and loads the
+plug-in information into the runtime registry following the standard plug-in
+binding rules. The update support also recognizes the presence of this new
+plug-in, but since this plug-in is not part of any feature it cannot be updated
+using the update support (hence "unmanaged"). Unmanaged plug-in that become
+referenced by a feature as a result of some future installation or update
+action become "managed" (can be updated as part of the feature). </p>
+                         
+<p>Unmanaged plug-ins are not displayed as part of the installation and update 
+      UI. </p>
+                         
+</body>
+</html>
