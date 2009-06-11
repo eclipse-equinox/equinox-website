@@ -48,7 +48,7 @@ ob_start();
 			<p>The following are approved IP logs for past Equinox project releases.</p>
 			<ul>
 				<li><a href="RT.Equinox.IPLog.galileo.xls">Galileo (3.5)</a></li>
-				<li><a href="EquinoxLoggingIPlog.html">Ganymede (3.4)</a></li>
+				<li><a href="EquinoxIPlog.html">Ganymede (3.4)</a></li>
 				<li><a href="http://eclipse.org/eclipse/development/project-log-files/">Previous releases</a> the Equinox project was part of the Eclipse Project.</li>
 			</ul>
 		</div>
