@@ -6,7 +6,7 @@
   <body>
                             
 <h1>Eclipse Install/Update Packaging Conventions</h1>
-<font size="-1">Revision Date: 10-JUN-2009</font><br>
+<font size="-1">Revision Date: 11-JUN-2009</font><br>
 <font size="-1">Copyright 2009 IBM Corporation and others</font>
                             
 <h3> <font size="+2">Table of Contents</font></h3>
@@ -30,88 +30,95 @@
        <br>
              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a
  href="#Security_Considerations">Security  Considerations</a>  <br>
-             <a href="#Update_Server">Update Server</a>  <br>
-             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="#Site_Map">Site
- Map</a>      <br>
+             <a href="#Repository">Software Repositories</a>  <br>
              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a
- href="#Default_Site_Layout">Default    Site Layout</a>  <br>
+ href="#Default_Repo_Layout">Default Repository Layout</a>  <br>
              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a
  href="#Controlling_Access">Controlling     Access</a>  <br>
              <a href="#Eclipse_Install">Eclipse Install</a>  <br>
              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a
  href="#Default_Install_Layout">Default   Install Layout</a>  <br>
              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a
- href="#Unmanaged_Plugins">"Unmanaged"     Plug-Ins</a>  <br>
+ href="#Unmanaged_Plugins">Unmanaged Plug-Ins</a>  <br>
                     
 <h2> <a name="Introduction"></a> Introduction</h2>
 This document outlines the support for managing the delivery of  function     
-within the Eclipse platform. Also refer to the "<a
+within the Eclipse platform. For complete details, see the section
+<a href="http://help.eclipse.org/ganymede/topic/org.eclipse.platform.doc.isv/guide/product.htm">
+Packaging and delivering Eclipse-based products</a> in the Eclipse help system. Also refer to the <a
  href="http://www.eclipse.org/legal/updatemanager.php"> Eclipse Foundation Update
-Manager Agreement</a> " for additional legal information governing the
+Manager Agreement</a> for legal information governing the
 use of the Eclipse update manager function.              
 </ul>
                             
 <h3> <a name="Concepts"></a> Concepts</h3>
-<b>Plug-in</b> <br>
-Eclipse developers build <em>plug-ins</em>, also known as <em>bundles</em>
-in OSGi terminology. Plug-ins are the base units of  execution recognized by the 
-Equinox runtime environment. In general, plug-ins are not exposed to users that 
-select function during installation or update.  The reason is that plug-in boundaries are 
-established by developers for development reasons (like function reuse) and present the wrong
-level of granularity   in terms of what the user sees as the unit of function.
-              
-<p>While plug-ins are being developed (i.e. are frequently being changed),
-their internal file structure will reflect what is convenient to the
-developer. This will generally depend on the particular development
-tool  being used.  Most commonly, at development time plug-ins are a simple
-directory tree in the file system, including source, binaries, and other related development
-and deployment related files. During development the developer  does not  pay particular  attention to plug-in
-versioning information, because  the plug-in is continually  changing. </p>
-                         
-<p>However, when the plug-in is ready to be packaged, it needs to be converted
-to a form suitable for packaging and installation. Typically it means
-creation    of the runtime .jar(s) and removing any development-time files
-(source,  exposed .class files, etc). It also means updating the plug-in/bundle manifest
-(MANIFEST.MF) with the formal plug-in version and reflecting the version in
-the  plug-in  directory name (see "Concurrent Plug-In Version Support" for
-details).  </p>
-                         
-<p><b>Plug-in Fragment</b> <br>
-             Plug-in Fragments (or simply Fragments) allow independent packaging
-    of  certain  aspects of the base plug-in. This includes (but may not
-be   limited   to) translated  resources for the plug-in, OS-specific or
-windowing-system-specific code.  At runtime, fragments are logically
-merged into the base plug-in. From a packaging point of view, the install
-and update support does not really differentiate  between plug-ins and
-their related fragments. </p>
-                         
-<p><b>Feature</b> <br>
-A feature is an installation packaging mechanism used to define
-a  group of versioned plug-ins and/or plug-in fragments plus non-plug-in
-files that is used to deliver some user function. A feature can also
-include or require other  features.  Features are exposed to users as part of the
-packaging  and installation   process,  because they represent a unit of
-function selection.   Features also  represent  a unit of installation. Features
-carry a version   identifier.</p>
-                         
-<p>Features are packaged as a feature archive, referencing the required plug-ins, 
-plug-in fragments and optional non-plug-in files. The feature archives 
-are   placed on an update server for download and installation by the Eclipse
-update  manager, or they can be used as the input into a formal packaging
-process  using one of the "traditional" installer technologies. The format
-of the feature archive is described later. </p>
-
-<p><b>Product</b><br>
-Products are a branded and packaged collection of features and plug-ins. Products define
-non-reusable aspects of an Eclipse-based application: splash screen, About dialog content,
-icons, default preference settings, etc.</p>
-
-<p><b>Software Repository</b><br>
-Software repositories store collections of installable content (plug-ins, features, products,
-and other installable entities), in a format
-suitable for consumption by the Eclipse platform's provisioning system. Repositories
-are also sometimes referred to as <em>update sites</em> or <em>update servers</em>.</p>
-
+<dl>
+<dt><b>Plug-in</b></dt>
+	<dd>
+	Eclipse developers build <em>plug-ins</em>, also known as <em>bundles</em>
+	in OSGi terminology. Plug-ins are the base units of  execution recognized by the 
+	Equinox runtime environment. In general, plug-ins are not exposed to users that 
+	select function during installation or update.  The reason is that plug-in boundaries are 
+	established by developers for development reasons (like function reuse) and present the wrong
+	level of granularity   in terms of what the user sees as the unit of function.
+	              
+	<p>While plug-ins are being developed (i.e. are frequently being changed),
+	their internal file structure will reflect what is convenient to the
+	developer. This will generally depend on the particular development
+	tool  being used.  Most commonly, at development time plug-ins are a simple
+	directory tree in the file system, including source, binaries, and other related development
+	and deployment related files. During development the developer  does not  pay particular  attention to plug-in
+	versioning information, because  the plug-in is continually  changing. </p>
+	                         
+	<p>However, when the plug-in is ready to be packaged, it needs to be converted
+	to a form suitable for packaging and installation. Typically it means
+	creation of the runtime .jar(s) and removing any development-time files
+	(source,  exposed .class files, etc). It also means updating the plug-in/bundle manifest
+	(MANIFEST.MF) with the formal plug-in version and reflecting the version in
+	the  plug-in  directory name (see "Concurrent Plug-In Version Support" for
+	details).
+	</dd>
+<dt><b>Plug-in Fragment</b></dt>
+	<dd>
+	Plug-in Fragments (or simply Fragments) allow independent packaging
+	of  certain  aspects of the base plug-in. This includes (but may not
+	be limited to) translated  resources for the plug-in, OS-specific or
+	windowing-system-specific code.  At runtime, fragments are logically
+	merged into the base plug-in. From a packaging point of view, the install
+	and update support does not really differentiate  between plug-ins and
+	their related fragments.
+	</dd>                         
+<dt><b>Feature</b></dt>
+	<dd>
+	A feature is an installation packaging mechanism used to define
+	a  group of versioned plug-ins and/or plug-in fragments plus non-plug-in
+	files that is used to deliver some user function. A feature can also
+	include or require other  features.  Features are exposed to users as part of the
+	packaging  and installation   process,  because they represent a unit of
+	function selection.   Features also  represent  a unit of installation. Features
+	carry a version   identifier.</p>
+	                         
+	<p>Features are packaged as a feature archive, referencing the required plug-ins, 
+	plug-in fragments and optional non-plug-in files. The feature archives 
+	are   placed on an update server for download and installation by the Eclipse
+	update  manager, or they can be used as the input into a formal packaging
+	process  using one of the "traditional" installer technologies. The format
+	of the feature archive is described later. </p>
+	</dd>
+<dt><b>Product</b></dt>
+	<dd>
+	Products are a branded and packaged collection of features and plug-ins. Products define
+	non-reusable aspects of an Eclipse-based application: splash screen, About dialog content,
+	icons, default preference settings, etc.</p>
+	</dd>
+<dt><b>Software Repository</b></dt>
+	<dd>
+	Software repositories store collections of installable content (plug-ins, features, products,
+	and other installable entities), in a format
+	suitable for consumption by the Eclipse platform's provisioning system. Repositories
+	are also sometimes referred to as <em>update sites</em> or <em>update servers</em>.</p>
+	</dd>
+</dl>
 <h3> <a name="Framework"></a> Provisioning Framework</h3>
 The Eclipse platform uses a provisioning framework called p2 developed by the Eclipse Equinox
 project. This framework supports an open ended set of repository formats, and provides
@@ -266,7 +273,7 @@ for each unrecognised certificate. The response choices will include
 aborting the installation (originator is not trusted), continuing the
 installation (originator is trusted for this installation).        
      
-<h2> <a name="Repository"></a>Software Repository</h2>
+<h2> <a name="Repository"></a>Software Repositories</h2>
 The default Eclipse software repository is any URL-accessible location (such
 as a remote server or local file system location). 
 The default implementation assumes a fixed-layout server. The content 
@@ -277,7 +284,7 @@ editing tools in the Eclipse Plug-in Development Environment (PDE). The reposito
 can also defined categories for its content, which provide navigational aide to 
 end users installing software from that repository.
                          
-<h3> <a name="Default_Site_Layout"></a> Default Site Layout</h3>
+<h3> <a name="Default_Repo_Layout"></a> Default Repository Layout</h3>
               <tt>&lt;site root&gt;/</tt> <br>
              <tt>&nbsp;&nbsp;&nbsp; content.jar</tt> <br>
              <tt>&nbsp;&nbsp;&nbsp; artifacts.jar</tt> <br>
@@ -295,6 +302,9 @@ The default Eclipse site implementation provides support for https access with b
 <h2> <a name="Eclipse_Install"></a> Eclipse Install</h2>
                             
 <h3> <a name="Default_Install_Layout"></a> Default Install Layout</h3>
+A typical Eclipse application install has the following layout. Note a branded application
+will typically replace files and directories containing the word "eclipse" with their own branded application name.
+<p>
 	<tt>eclipse/</tt> <br>
 		<tt>&nbsp;&nbsp;&nbsp; configuration/</tt><br>
 		<tt>&nbsp;&nbsp;&nbsp; features/</tt><br>
@@ -307,22 +317,19 @@ The default Eclipse site implementation provides support for https access with b
 	<tt>&nbsp;&nbsp;&nbsp; dropins/</tt> <br>
 	<tt>&nbsp;&nbsp;&nbsp; eclipse.exe</tt> <br>
 	<tt>&nbsp;&nbsp;&nbsp; eclipse.ini</tt> <br>
-                         
-<h3> <a name="Unmanaged_Plugins"></a> "Unmanaged" Plug-Ins</h3>
+</p>                  
+<h3> <a name="Unmanaged_Plugins"></a>Unmanaged Plug-Ins</h3>
 Eclipse supports a concept of "unmanaged" plug-ins. These are 
-plug-ins that were directly installed into the Eclipse file tree without 
+plug-ins that were directly installed into the Eclipse <i>dropins</i> folder without 
 being part of a feature (eg. developer unzipping plug-in archive directly 
-into the  Eclipse  file tree).              
-<p>Eclipse runtime recognizes these plugins during startup and loads the
+into the Eclipse file tree).              
+<p>The Eclipse provisioning system recognizes these plugins during startup and loads the
 plug-in information into the runtime registry following the standard plug-in
 binding rules. The update support also recognizes the presence of this new
 plug-in, but since this plug-in is not part of any feature it cannot be updated
-using the update support (hence "unmanaged"). Unmanaged plug-in that become
-referenced by a feature as a result of some future installation or update
-action become "managed" (can be updated as part of the feature). </p>
+using the update support (hence "unmanaged").</p>
                          
-<p>Unmanaged plug-ins are not displayed as part of the installation and update 
-      UI. </p>
+<p>Unmanaged plug-ins are not displayed as part of the installation and update UI. </p>
                          
 </body>
 </html>
