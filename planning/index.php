@@ -34,7 +34,7 @@ ob_start();
 		<div class="homeitem3col">
 			<h3>Historical information about past releases</h3>			
 		<ul>
-	      <li><a href="equinox_galileo_plan.xml"> Equoinx Project Galileo Plan</a><br>
+	      <li><a href="equinox_galileo_plan.xml"> Equinox Project Galileo Plan</a><br>
 	        This document lays out the feature and API set for the Galileo (3.5) release of the Equinox Project. </li>
 	      <li><a href="freeze_plan_3.5.php"> Equinox Project Galileo Endgame Plan</a><br>
 	    		Information about how we wrapped up the Galileo release (version 3.5).</li>     

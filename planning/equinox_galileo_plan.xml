@@ -2,33 +2,40 @@
 <!--  Use this to test local rendering in firefox -->
 <?xml-stylesheet type="text/xsl" href="project-plan-render.xsl"?>
 
-<?xml-stylesheet type="text/xsl" href="http://www.eclipse.org/projects/project-plan.xsl"?>
-<p:plan plan-format="1.0" xmlns:p="http://www.eclipse.org/project/plan" xmlns="http://www.w3.org/1999/xhtml"
-      name="Equinox">
-   <p:release projectid="rt.equinox" version="Galileo"/>
-    <p:introduction><div>
-<hr/>
+<!--<?xml-stylesheet type="text/xsl" href="http://www.eclipse.org/projects/project-plan.xsl"?> -->
+<p:plan 
+  plan-format="1.0" 
+  xmlns:p="http://www.eclipse.org/project/plan" xmlns="http://www.w3.org/1999/xhtml"
+  name="Equinox">
+<p:release projectid="rt.equinox" version="Galileo"/>
 
-<p>
+<p:introduction>
+  <div>
+    <hr/>
+
+    <p>
 The goal of the Equinox project is to be a first class OSGi community and foster the vision of Eclipse
 as a landscape of bundles. As part of this, it is responsible for developing and delivering the OSGi
 framework implementation used for all of Eclipse.
-</p><p>
- This plan is for Equinox as part of the
+    </p>
+    <p>
+This plan is for Equinox as part of the
 Galileo release in 2009 and attempts to balance the evolution of the technology with the increased
 need for testing and robustness.
-</p><p>
+    </p>
+    <p>
 This release of Equinox tackles a number of challenges.  As OSGi gains more visibility and Equinox
 more use, new use-cases and drivers come to the fore -- people
 are pushing the technology and implementation in new directions.  2009 will also see the release of a new
 OSGi spec revision. Equinox will implement this spec and several of the new services.  Equinox will also
 deliver runtime technologies including the p2 provisioning platform, the extension registry, integrated security
 support as well as support for OSGi on on the server.
-</p>
+    </p>
 
-  </div></p:introduction>
+  </div>
+</p:introduction>
 
-  <p:release_deliverables><div>
+<p:release_deliverables><div>
 <ul>
 	<li><b>Equinox source code release</b>, available as versions tagged "R3_5" in the project's
 		<ul>
