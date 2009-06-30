@@ -22,19 +22,27 @@
 	# Paste your HTML content between the markers!	
 ob_start();
 ?>		
-
 	<div id="midcolumn">
 		<h1><?= $pageTitle ?></h1>
-
-<p>This page is obsolete.  Please see the current <a href="http://www.eclipse.org/projects/project-plan.php?projectid=rt.equinox">Equinox plan</a> 
-or the <a href="http://wiki.eclipse.org/Equinox/Plan">Equinox planning wiki</a>.</p>
-<p>&nbsp;</p>
+		<div class="homeitem3col">
+			<h3>Releases currently under development</h3>
+			<ul>
+	      <li><a href="http://www.eclipse.org/projects/project-plan.php?projectid=rt.equinox">Equinox Helios plan</a><br>
+	        This document lays out the feature and API set for the Helios (3.6) release of the Equinox Project. </li>
+	    </ul>
+      	</div>
+		<div class="homeitem3col">
+			<h3>Historical information about past releases</h3>			
+		<ul>
+	      <li><a href="equinox_galileo_plan.xml"> Equoinx Project Galileo Plan</a><br>
+	        This document lays out the feature and API set for the Galileo (3.5) release of the Equinox Project. </li>
+	      <li><a href="freeze_plan_3.5.php"> Equinox Project Galileo Endgame Plan</a><br>
+	    		Information about how we wrapped up the Galileo release (version 3.5).</li>     
+	      <li><a href="http://eclipse.org/eclipse/development/"> Eclipse Project Development</a><br>
+	    		Previous releases of Equinox where included in the Eclipse Project plans</li>     
+		</ul>
+		</div>
 	</div>
-
-<?php
-	include $_SERVER['DOCUMENT_ROOT'] . "/equinox/global-links.html";
-	if (file_exists("dir-links.html")) {include "dir-links.html";}
-?>
 
 <?php
 	$html = ob_get_contents();
