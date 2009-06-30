@@ -5,7 +5,7 @@
 <?xml-stylesheet type="text/xsl" href="http://www.eclipse.org/projects/project-plan.xsl"?>
 <p:plan plan-format="1.0" xmlns:p="http://www.eclipse.org/project/plan" xmlns="http://www.w3.org/1999/xhtml"
       name="Equinox">
-   <p:release projectid="rt.equinox" version="Galileo"/>
+   <p:release projectid="rt.equinox" version="Helios"/>
     <p:introduction><div>
 <hr/>
 
@@ -90,7 +90,7 @@ More intro to the Helios release is needed here.
     <p:preamble><p>
 Release milestones will be occurring at roughly 6 week intervals, and will be aligned with the
 <a href="http://wiki.eclipse.org/Helios_Simultaneous_Release">
-Galileo Simultaneous Release</a> train.
+Helios Simultaneous Release</a> train.
     </p></p:preamble>
 	<p:milestone date="08/07/2009" milestone="M1"><div>3.6M1</div></p:milestone>
 	<p:milestone date="09/18/2009" milestone="M2"><div>3.6M2</div></p:milestone>
@@ -140,7 +140,7 @@ The target date for availability of Equinox 3.6 is:</p>
   encountered when running Equinox on a non-reference platform that cannot be
   recreated on any reference platform will be given lower priority than problems
   with running Equinox on a reference platform.</p>
-<p> Equinox 3.5 is tested and validated on the following reference platforms
+<p> Equinox 3.6 is tested and validated on the following reference platforms
 (<img src="new.gif" alt="(new)" border="0" height="12" width="12" /> multiple updates)
   (this list is updated over the course of the release cycle):</p>
 <center>
@@ -373,7 +373,7 @@ ongoing work and planned delivery milestones.
     investigating it, we are not yet in a position to commit to it, or to say
     that we won't be able to address it. After due consideration, a proposal
     will either be committed or deferred. In bugzilla, such items are reflected
-    by having a target milestone "3.5" or "---" assigned.</li>
+    by having a target milestone "3.6" or "---" assigned.</li>
   <li><b>Deferred</b> plan item - A reasonable proposal that will not make it in
     to this release for some reason is marked as deferred with a brief note as
     to why it was deferred. Deferred plan items may resurface as committed plan
@@ -552,7 +552,7 @@ ongoing work and planned delivery milestones.
   <tbody>
     <tr>
       <td width="290"><strong>Bundle</strong></td>
-      <td width="60"><div align="center"><p align="center"><b>Galileo<br/>minimum<br/>execution<br/>environment</b></p></div></td>
+      <td width="60"><div align="center"><p align="center"><b>Helios<br/>minimum<br/>execution<br/>environment</b></p></div></td>
     </tr>
     <tr>
       <td>org.eclipse.equinox.app</td>
