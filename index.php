@@ -54,7 +54,7 @@ ob_start();
 		  <p class=bar>Getting Started and Getting Involved</p>
 			<p>The easiest way to get involved in Equinox is to try it out. See the <a href="documents/quickstart.php">Quick
 				Start Guide</a> for how to get up and running with the standalone
-				Equinox OSGi framework and  the <a href="http://download.eclipse.org/eclipse/equinox">downloads</a> page
+				Equinox OSGi framework and  the <a href="http://download.eclipse.org/equinox">downloads</a> page
 				for more information on acquiring various Equinox OSGi bundles.</p>
 			<p>If you want to find out more, ask questions, report bugs, get (or contribute
 				:-) code, check out the <a href="resources.php">community
