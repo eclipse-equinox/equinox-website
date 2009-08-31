@@ -532,14 +532,13 @@ interesting changes since the previous draft)
 
 <!-- ============================================== -->
 
-<p:theme name="Platforms">
+<p:theme name="Scalability and Performance">
 <p:description>
-<p>This work is focused on ensuring that Equinox takes full advantage of all
-  capabilities of the underlying technologies that it is based on, be they
-  operating system, window system, Java or other. This includes support
-  for native accessibility, internationalization and localization capabilities.
-</p>
-</p:description>
+<p>New usage scenarios for Equinox require it to be faster, smaller, bigger, ...
+  The technology needs to scale up or down to allow Equinox to scale down to small embedded environments as well
+  as scaling up to large server environments.
+  Monitor overall performance and memory consumption which includes the addition of new performance tests for new features.
+</p></p:description>
 
 <p:committed>
   <p><i>None at this time.</i></p>
@@ -547,6 +546,13 @@ interesting changes since the previous draft)
 
 <p:proposed>
   <p><i>None at this time.</i></p>	
+  <ul>
+  <li><img src="http://www.eclipse.org/eclipse/development/new.gif" alt="(new)" border="0" height="12" width="12" />
+	<strong>TITLE</strong>
+	Description.
+	[component1, component2] (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=XXXXXX">XXXXXX</a>)
+  </li>
+  </ul>
 </p:proposed>
 
 <p:deferred>
@@ -572,6 +578,13 @@ interesting changes since the previous draft)
 
 <p:proposed>
   <p><i>None at this time.</i></p>
+  <ul>
+  <li><img src="http://www.eclipse.org/eclipse/development/new.gif" alt="(new)" border="0" height="12" width="12" />
+	<strong>TITLE</strong>
+	Description.
+	[component1, component2] (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=XXXXXX">XXXXXX</a>)
+  </li>
+  </ul>
 </p:proposed>
 
 <p:deferred>
@@ -595,6 +608,13 @@ interesting changes since the previous draft)
 
 <p:proposed>
   <p><i>None at this time.</i></p>
+  <ul>
+  <li><img src="http://www.eclipse.org/eclipse/development/new.gif" alt="(new)" border="0" height="12" width="12" />
+	<strong>TITLE</strong>
+	Description.
+	[component1, component2] (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=XXXXXX">XXXXXX</a>)
+  </li>
+  </ul>
 </p:proposed>
 
 <p:deferred>
@@ -602,7 +622,34 @@ interesting changes since the previous draft)
 </p:deferred>
 
 </p:theme>
-    
+
+<p:theme name="Future">
+<p:description>
+<p>Eclipse is evolving quickly.  New features in the next OSGi specification and e4 will drive numerous changes throughout the Equinox
+   project.  Considerable effort will be put into updating Equinox to accomodate and exploit these new scenarios.
+</p>
+</p:description>
+
+<p:committed>
+  <p><i>None at this time.</i></p>
+</p:committed>
+
+<p:proposed>
+  <p><i>None at this time.</i></p>
+  <ul>
+  <li><img src="http://www.eclipse.org/eclipse/development/new.gif" alt="(new)" border="0" height="12" width="12" />
+	<strong>TITLE</strong>
+	Description.
+	[component1, component2] (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=XXXXXX">XXXXXX</a>)
+  </li>
+  </ul>
+</p:proposed>
+
+<p:deferred>
+  <p><i>None at this time.</i></p>
+</p:deferred>
+
+</p:theme>
 </p:themes_and_priorities>
 
 <!-- ============================================== -->
