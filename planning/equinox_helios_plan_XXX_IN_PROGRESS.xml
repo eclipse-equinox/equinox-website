@@ -616,7 +616,7 @@ interesting changes since the previous draft)
 	[p2] (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=XXXXXX">XXXXXX</a>)
   </li>
   <li><img src="http://www.eclipse.org/eclipse/development/new.gif" alt="(new)" border="0" height="12" width="12" />
-	<strong>Multi-local support in the extension registry</strong>
+	<strong>Multi-locale support in the extension registry</strong>
 	Multi-locale scenarios such as server-side require that the translated content of the extension registry support
 	multiple locales at the same time.  Currently the extension registry only supports one locale at a time.
 	[components] (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=244468">244468</a>)
