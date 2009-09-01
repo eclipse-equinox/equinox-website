@@ -175,7 +175,7 @@ interesting changes since the previous draft)
 <p>Individual, milestone level plans for the components that make up the Equinox Project can be found 
   on the <a href="http://wiki.eclipse.org/Equinox/Plan/Helios">Equinox Project Helios Plan page</a>
   on the wiki.</p>
-<p>Our target is to complete 3.6 in late June 2009, in alignment with Helios.
+<p>Our target is to complete 3.6 in late June 2010, in alignment with Helios.
   All release deliverables will be available for download as soon as the release has been
   tested and validated in the target operating configurations listed below.</p>
 <p>Dates for builds after M7 will be found in the Equinox Helios end-game plan, available near 3.6 M7.</p>
@@ -548,11 +548,11 @@ interesting changes since the previous draft)
   <ul>
   <li><img src="http://www.eclipse.org/eclipse/development/new.gif" alt="(new)" border="0" height="12" width="12" />
 	<strong>p2 performance improvements</strong>
-	Investigation will be done to improve performance of the p2 resolver/engent/etc.
+	Investigation will be done to improve performance of the p2 resolver/engine/etc.
 	[p2] (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=XXXXXX">XXXXXX</a>)
   </li>
   <li><img src="http://www.eclipse.org/eclipse/development/new.gif" alt="(new)" border="0" height="12" width="12" />
-	<strong>Framewrok resolver performance improvements</strong>
+	<strong>Framework resolver performance improvements</strong>
 	Investigation will be done to improve performance of the framework resolver.
 	[framework] (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=216934">216934</a>)
   </li>
@@ -658,8 +658,8 @@ interesting changes since the previous draft)
   </li>
   <li><img src="http://www.eclipse.org/eclipse/development/new.gif" alt="(new)" border="0" height="12" width="12" />
 	<strong>Support updating from 3.5 to 3.6 and rollback from 3.6 to 3.5</strong>
-	Eclipse has never supported updating from on major release to the next.  Now with p2 Eclipse will be 
-	able to upgrade from on major release to the next.
+	Eclipse has never supported updating from one major release to the next.  Now with p2 Eclipse will be 
+	able to upgrade from one major release to the next.
 	[p2] (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=XXXXXX">XXXXXX</a>)
   </li>
   <li><img src="http://www.eclipse.org/eclipse/development/new.gif" alt="(new)" border="0" height="12" width="12" />
@@ -713,7 +713,7 @@ interesting changes since the previous draft)
 	<strong>Participate in the OSGi specification for composite bundles (RFC 138)</strong>
 	OSGi is investigating a specification for composite bundles.  Equinox will 
 	participate in the specification process to provide our expertise in the framework.  Equinox
-	plans to provide the Framework RI for the specification.
+	plans to provide the Framework reference implementation (RI) for the specification.
 	[framework] (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=XXXXXX">XXXXXX</a>)
   </li>
   <li><img src="http://www.eclipse.org/eclipse/development/new.gif" alt="(new)" border="0" height="12" width="12" />
