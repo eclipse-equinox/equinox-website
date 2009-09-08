@@ -560,7 +560,7 @@ interesting changes since the previous draft)
 	<strong>Support for low memory events</strong>
 	Investigation will be done to leverage event admin to deliver events.  One event example is support for firing
 	and listening for low memory events.
-	[components] (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=XXXXXX">XXXXXX</a>)
+	[components] (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=284061">284061</a>)
   </li>
   <li><img src="http://www.eclipse.org/eclipse/development/new.gif" alt="(new)" border="0" height="12" width="12" />
 	<strong>TITLE</strong>
