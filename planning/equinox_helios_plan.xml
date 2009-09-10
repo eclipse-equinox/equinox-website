@@ -1,36 +1,93 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
-<!--  Use this to test local rendering in firefox -->
+<!--  Use this to test local rendering in firefox. Comment out this line once this plan is linked to portal data. -->
 <?xml-stylesheet type="text/xsl" href="project-plan-render.xsl"?>
 
-<?xml-stylesheet type="text/xsl" href="http://www.eclipse.org/projects/project-plan.xsl"?>
-<p:plan plan-format="1.0" xmlns:p="http://www.eclipse.org/project/plan" xmlns="http://www.w3.org/1999/xhtml"
-      name="Equinox">
-   <p:release projectid="rt.equinox" version="Helios"/>
-    <p:introduction><div>
-<hr/>
+<!-- <?xml-stylesheet type="text/xsl" href="http://www.eclipse.org/projects/project-plan.xsl"?> -->
 
+<p:plan
+  plan-format="1.0"
+  xmlns:p="http://www.eclipse.org/project/plan" xmlns="http://www.w3.org/1999/xhtml"
+  name="Equinox">
+
+<p:release projectid="rt.equinox" version="Helios"/>
+
+<!-- ============================================== -->
+
+<p:introduction>
+<div>
 <p>
-The goal of the Equinox project is to be a first class OSGi community and foster the vision of Eclipse
-as a landscape of bundles. As part of this, it is responsible for developing and delivering the OSGi
-framework implementation used for all of Eclipse.
-</p><p>
- This plan is for Equinox as part of the
-Helios release in 2010 and attempts to balance the evolution of the technology with the increased
-need for testing and robustness.
+Last revised September 10, 2009 (<img src="http://www.eclipse.org/eclipse/development/new.gif" alt="(new)" border="0" height="12" width="12" /> marks
+interesting changes since the previous draft)
 </p>
-<p>
-More intro to the Helios release is needed here.
+<p><i>Please send comments about this plan to the</i> <a href="mailto:equinox-dev@eclipse.org">equinox-dev@eclipse.org</a> <i>developer
+  mailing list.</i>
+</p>
+<p>The goal of the Equinox project is to be a first class OSGi community and foster the vision of Eclipse
+  Runtime technologies. As part of this, it is responsible for developing and delivering the OSGi
+  framework implementation used for all of Eclipse.  Equinox is also responsible for developing
+  other core runtime technologies such as p2, extension registry, security and core server-side
+  runtime components.
+</p>
+<p>This document lays out the feature and API set for the next feature release
+  of Equinox after 3.5, designated release 3.6 and code-named Helios.
 </p>
 
-  </div></p:introduction>
-
-  <p:release_deliverables><div>
+<p>Plans do not materialize out of nowhere, nor are they entirely static. To
+  ensure the planning process is transparent and open to the entire Eclipse community,
+  we (the Equinox component leads) post plans in an embryonic form and revise them
+  throughout the release cycle. </p>
+<p>The first part of the plan deals with the important matters of release deliverables,
+  release milestones, target operating environments, and release-to-release compatibility.
+  These are all things that need to be clear for any release, even if no features
+  were to change. </p>
+<p>The remainder of the plan consists of plan items for all of the sub-projects
+  under the Equinox Project. Each plan item covers a feature or API
+  that is to be added to the Equinox Project deliverables, or some aspect of
+  the Equinox Project that is to be improved. Each plan item has its own entry
+  in the Eclipse bugzilla database, with a title and a concise summary (usually
+  a single paragraph) that explains the work item at a suitably high enough level
+  so that everyone can readily understand what the work item is without having
+  to understand the nitty-gritty detail. </p>
+<p>Not all plan items represent the same amount of work; some may be quite large,
+  others, quite small. Some plan items may involve work that is localized to
+  a single component; others may involve coordinated changes to several components;
+  other may pervade the entire SDK. Although some plan items are for work that
+  is more pressing than others, the plan items appear in no particular order. </p>
+<p>With the previous release as the starting point, this is the plan for how
+  we will enhance and improve it. Fixing bugs, improving test coverage, documentation,
+  examples, performance tuning, usability, etc. are considered routine ongoing
+  maintenance activities and are not included in this plan unless they would
+  also involve a significant change to the API or feature set, or involve a significant
+  amount of work. The intent of the plan is to account for all interesting feature
+  work. </p>
+<p>The current status of each plan item is noted: </p>
 <ul>
-	<li><b>Equinox source code release</b>, available as versions tagged "R3_6" in the project's
-		<ul>
-			<li><a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox/?root=RT_Project">Equinox CVS Repository</a></li>
-		</ul>
-	</li>
+  <li><b>Committed</b> plan item - A committed plan item is one that we have
+    decided to address for the release.</li>
+  <li><b>Proposed</b> plan item - A proposed plan item is one that we are considering
+    addressing for the release. Although we are actively investigating it, we
+    are not yet in a position to commit to it, or to say that we won't be able
+    to address it. After due consideration, a proposal will either be committed
+    or deferred.</li>
+  <li><b>Deferred</b> plan item - A reasonable proposal that will not make it
+    in to this release for some reason is marked as deferred with a brief note
+    as to why it was deferred. Deferred plan items may resurface as committed
+    plan items at a later point.</li>
+</ul>
+
+</div>
+</p:introduction>
+
+<!-- ============================================== -->
+
+<p:release_deliverables>
+<div>
+
+<p>The release deliverables have the same form as previous releases, namely: </p>
+<ul>
+  <li>Source code release for all Equinox Project deliverables, available as
+    versions tagged &quot;R3_6&quot; in the Equinox Project <a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox/?root=RT_Project">CVS
+    repository</a>.</li>
 	<li><b>Framework:</b>
 		<ul>
 		   <li>An OSGi R4.2 Core Framework implementation</li>
@@ -83,287 +140,374 @@ More intro to the Helios release is needed here.
     		<li>HTTP Jetty - A thin layer that exposes an embedded Jetty server as a compliant OSGi HTTP service.</li>
     	</ul>
     </li>
+    <li><b>Weaving</b>
+    	<ul>
+    		<li>Equinox Weaving - Support for weaving aspects at runtime.</li>
+    	</ul>
+    </li>
 </ul>
 
-  </div></p:release_deliverables>
-  <p:release_milestones>
-    <p:preamble><p>
-Release milestones will be occurring at roughly 6 week intervals, and will be aligned with the
-<a href="http://wiki.eclipse.org/Helios_Simultaneous_Release">
-Helios Simultaneous Release</a> train.
-    </p></p:preamble>
-	<p:milestone date="08/07/2009" milestone="M1"><div>3.6M1</div></p:milestone>
-	<p:milestone date="09/18/2009" milestone="M2"><div>3.6M2</div></p:milestone>
-	<p:milestone date="10/30/2009" milestone="M3"><div>3.6M3</div></p:milestone>
-	<p:milestone date="12/11/2009" milestone="M4"><div>3.6M4</div></p:milestone>
-	<p:milestone date="01/29/2010" milestone="M5"><div>3.6M5</div></p:milestone>
-	<p:milestone date="03/12/2010" milestone="M6"><div>3.6M6 (API Freeze)</div></p:milestone>
-	<p:milestone date="04/30/2010" milestone="M7"><div>3.6M7 (Feature Freeze)</div></p:milestone>
-    <p:postamble><div>
-	A detailed view of the Equinox 3.6 milestone plans towards the release are available at the following link.
-	<ul>
-	<li><a href="http://wiki.eclipse.org/Equinox/Plan/Helios">Equinox Helios</a></li>
-	</ul>
-	<p> Dates for builds after M7 can be found in the Equinox Helios end-game plan, available ner 3.6 M7.
-	</p>
-	
-<p>
-The target date for availability of Equinox 3.6 is:</p>
-<ul>
-	<li>Friday June 25, 2010 - Equinox 3.6 Release date (with Helios)</li>
-</ul>
-    </div></p:postamble>
-  </p:release_milestones>
+</div>
+</p:release_deliverables>
 
-  <p:target_environments><div>
-<p>In order to remain current, each Equinox release targets reasonably current
-  operating environments. </p>
+<!-- ============================================== -->
+
+<p:release_milestones>
+
+<p:preamble><p>      
+  Release milestones will be occurring at roughly 6 week intervals, and will be aligned with the
+  <a href="http://wiki.eclipse.org/Helios_Simultaneous_Release">
+  Helios Simultaneous Release</a> train.</p>
+</p:preamble>
+<p:milestone date="08/07/2009" milestone="M1"><div>3.6M1</div></p:milestone>
+<p:milestone date="09/18/2009" milestone="M2"><div>3.6M2</div></p:milestone>
+<p:milestone date="10/30/2009" milestone="M3"><div>3.6M3</div></p:milestone>
+<p:milestone date="12/11/2009" milestone="M4"><div>3.6M4</div></p:milestone>
+<p:milestone date="01/29/2010" milestone="M5"><div>3.6M5</div></p:milestone>
+<p:milestone date="03/12/2010" milestone="M6"><div>3.6M6 (API Freeze)</div></p:milestone>
+<p:milestone date="04/30/2010" milestone="M7"><div>3.6M7 (Feature Freeze)</div></p:milestone>
+
+<p:postamble>
+<div>
+<p>Individual, milestone level plans for the components that make up the Equinox Project can be found 
+  on the <a href="http://wiki.eclipse.org/Equinox/Plan/Helios">Equinox Project Helios Plan page</a>
+  on the wiki.</p>
+<p>Our target is to complete 3.6 in late June 2010, in alignment with Helios.
+  All release deliverables will be available for download as soon as the release has been
+  tested and validated in the target operating configurations listed below.</p>
+<p>Dates for builds after M7 will be found in the Equinox Helios end-game plan, available near 3.6 M7.</p>
+<!--	<a href="http://www.eclipse.org/equinox/planning/freeze_plan_3.6.php">Eclipse Helios end-game plan</a></p> -->
+</div>
+</p:postamble>
+
+</p:release_milestones>
+
+<!-- ============================================== -->
+
+<p:target_environments>
+
+<div>
+<p>In order to remain current, each Equinox Project release targets reasonably current
+  operating environments.</p>
 <p>Most of Equinox is &quot;pure&quot; Java code and has no direct dependence
   on the underlying operating system. The chief dependence is therefore on the
-  Java Platform itself. Portions of Equinox are targeted to specific classes of operating
+  Java Platform itself. Portions are targeted to specific classes of operating
   environments, requiring their source code to only reference facilities available
   in particular class libraries (e.g. J2ME Foundation 1.0, J2SE 1.3 and 1.4,
-  etc.). </p>
-<p> In general, the 3.6 release of Equinox is developed for a mix
-  of J2ME Foundation 1.1, OSGi Minimum 1.2 and J2SE 1.4 JREs. Certain bundles do however use facilities in more
-  recent JRE versions.  In such cases, the associated capabilities are available when
-  running on the required JRE. </p>
-<p> <a href="#Appendix1">Appendix 1</a> contains a table that indicates the class
-  library level required for each bundle. </p>
-
+  etc.).</p>
+<p>In general, the 3.6 release of the Equinox Project is developed on a mix
+  of Java 1.4, Java 5 and Java 6 VMs. As such, the Equinox SDK as a whole
+  is targeted at all modern, desktop Java VMs. Full functionality is available for
+  1.4 level development everywhere, and extended development capabilities are made
+  available on the VMs that support them.</p>
+<p><a href="#Appendix1">Appendix 1</a> contains a table that indicates the class
+  library level required for each bundle.</p>
 <p>There are many different implementations of the Java Platform running atop
-  a variety of operating systems. We focus Equinox testing on a handful of
+  a variety of operating systems. We focus our testing on a handful of
   popular combinations of operating system and Java Platform; these are our <em>reference
   platforms</em>. Equinox undoubtedly runs fine in many operating environments
-  beyond the reference platforms we test, including those using Java6 VMs. However,
-  since we do not systematically test them we cannot vouch for them. Problems
-  encountered when running Equinox on a non-reference platform that cannot be
-  recreated on any reference platform will be given lower priority than problems
-  with running Equinox on a reference platform.</p>
-<p> Equinox 3.6 is tested and validated on the following reference platforms
-(<img src="new.gif" alt="(new)" border="0" height="12" width="12" /> multiple updates)
+  beyond the reference platforms we test. However, since we do not systematically test
+  them we cannot vouch for them. Problems encountered when running Equinox on a
+  non-reference platform that cannot be recreated on any reference platform will
+  be given lower priority than problems with running Equinox on a reference platform.</p>
+<p>Equinox 3.6 is tested and validated on the following reference platforms
   (this list is updated over the course of the release cycle):</p>
+<style type="text/css">
+	table.platforms {
+		border-width: 1px;
+		border-spacing: 0px;
+		border-style: solid;
+		border-collapse: separate;
+	}
+	table.platforms th {
+		border-width: 1px;
+		padding: 3px;
+		border-style: inset;
+		border-color: black;
+		background-color: #B9A9FF;
+	}
+	table.platforms td {
+		border-width: 1px 1px 1px 1px;
+		padding: 3px 3px 3px 3px;
+		border-style: inset inset inset inset;
+		border-color: gray gray gray gray;
+	}
+	table.platforms tr.c0 td {
+		background-color: #FDFDFD;
+	}
+	table.platforms tr.c1 td {
+		background-color: #F4EEFF;
+	}
+</style>
 <center>
-  <table border="1" cellpadding="2" cellspacing="2" width="80%" summary="Equinox Reference Platforms">
-    <tbody>
-      <tr align="center">
-        <td><b>Reference Platforms</b></td>
-
-      </tr>
-      <tr>
-        <td><b>Microsoft Windows Vista, x86-32, Win32</b> running (any of):
-          <ul>
-            <li>Sun Java 2 Standard Edition 5.0 Update 14 for Microsoft Windows</li>
-            <li>IBM 32-bit SDK for Windows, Java 2 Technology Edition 5.0, SR6b</li>
-            <li>BEA JRockit 27.4.0, for Microsoft Windows</li>
-
-          </ul></td>
-      </tr>
-      <tr>
-        <td><b>Microsoft Windows XP, x86-32, Win32</b> running (any of):
-          <ul>
-            <li>Sun Java 2 Standard Edition 6.0 Update 4 for Microsoft Windows</li>
-            <li>Sun Java 2 Standard Edition 5.0 Update 14 for Microsoft Windows</li>
-
-            <li>IBM 32-bit SDK for Windows, Java 2 Technology Edition 5.0, SR6b</li>
-            <li>BEA JRockit 27.4.0, for Microsoft Windows</li>
-            <li>Sun Java 2 Standard Edition 1.4.2_16 for Microsoft Windows</li>
-            <li>IBM 32-bit SDK for Windows, Java 2 Technology Edition 1.4.2 SR10</li>
-          </ul></td>
-      </tr>
-      <tr>
-
-        <td><b>Red Hat Enterprise Linux 5.0, x86-32, GTK</b> running (any of):
-          <ul>
-            <li> Sun Java 2 Standard Edition 6.0 Update 4 for Linux x86</li>
-            <li>Sun Java 2 Standard Edition 5.0 Update 14 for Linux x86</li>
-            <li>IBM 32-bit SDK for Linux on Intel architecture, Java 2 Technology Edition 5.0, SR6b</li>
-            <li>BEA JRockit 27.4.0, for Linux x86</li>
-            <li>Sun Java 2 Standard Edition 1.4.2_16 for Linux x86</li>
-
-            <li>IBM 32-bit SDK for Linux on Intel architecture, Java 2 Technology Edition 1.4.2 SR10</li>
-          </ul></td>
-      </tr>
-      <tr>
-        <td><b>SUSE Linux Enterprise Server 10, x86-32, GTK</b> running (any of):
-          <ul>
-            <li>Sun Java 2 Standard Edition 5.0 Update 14 for Linux x86</li>
-
-            <li>IBM 32-bit SDK for Linux on Intel architecture, Java 2 Technology Edition 5.0, SR6b</li>
-          </ul></td>
-      </tr>
-      <tr>
-        <td><b><img src="http://www.eclipse.org/eclipse/development/new.gif" alt="(new)" border="0" height="12" width="12" /> SUSE Linux Enterprise Server 10, x86-64, GTK</b> running (any of):
-          <ul>
-            <li>Sun Java 2 Standard Edition 5.0 Update 14 for Linux x86-64</li>
-            <li>IBM 64-bit SDK for Linux on Intel architecture, Java 2 Technology Edition 5.0, SR6b</li>
-          </ul></td>
-      </tr>
-      <tr>
-        <td><b>Microsoft Windows Vista, x86-64, Win32</b> running (any of):
-          <ul>
-            <li>Sun Java 2 Standard Edition 5.0 Update 14 for Microsoft Windows (AMD64/EM64T)</li>
-
-            <li>IBM 64-bit SDK for Windows, Java 2 Technology Edition 5.0, SR6b</li>
-          </ul></td>
-      </tr>
-      <tr>
-        <td><b>Microsoft Windows XP Professional x64 Edition, x86-64, Win32</b> running (any of):
-          <ul>
-            <li>Sun Java 2 Standard Edition 5.0 Update 14 for Microsoft Windows (AMD64/EM64T)</li>
-
-            <li>IBM 64-bit SDK for Windows, Java 2 Technology Edition 5.0, SR6b</li>
-          </ul></td>
-      </tr>
-      <tr>
-        <td><b>Red Hat Enterprise Linux 4.0 update 2, x86-64, GTK</b> running:
-          <ul>
-            <li>Sun Java 2 Standard Edition 5.0 Update 14 for Linux x86-64</li>
-            <li><img src="http://www.eclipse.org/eclipse/development/new.gif" alt="(new)" border="0" height="12" width="12" /> IBM 64-bit SDK for Linux on Intel architecture, Java 2 Technology Edition 5.0, SR6b</li>
-          </ul></td>
-      </tr>
-      <tr>
-        <td><b>Sun Solaris 10, SPARC, GTK</b> running:
-          <ul>
-            <li>Sun Java 2 Standard Edition 5.0 Update 14 for Solaris SPARC</li>
-          </ul></td>
-      </tr>
-
-      <tr>
-        <td><img src="http://www.eclipse.org/eclipse/development/new.gif" alt="(new)" border="0" height="12" width="12" /> <b>Sun Solaris 10, x86, GTK</b> running:
-          <ul>
-            <li>Sun Java 2 Standard Edition 5.0 Update 14 for Solaris</li>
-          </ul></td>
-      </tr>
-      <tr>
-        <td><b>HP-UX 11i v2, ia64, Motif 2.1, GTK</b> running:
-          <ul>
-            <li>HP-UX Java 2 Standard Edition 5.0 Update 7 for Itanium</li>
-          </ul></td>
-      </tr>
-      <tr>
-        <td><b>IBM AIX 5.3, Power, Motif 2.1</b> running:
-          <ul>
-
-            <li>IBM 32-bit SDK, Java 2 Technology Edition 5.0, SR6b</li>
-          </ul></td>
-      </tr>
-      <tr>
-        <td><b>Red Hat Enterprise Linux 5.0, Power, GTK</b> running:
-          <ul>
-            <li>IBM 32-bit SDK for Linux on pSeries architecture, Java 2 Technology Edition 5.0, SR6b</li>
-
-          </ul></td>
-      </tr>
-      <tr>
-        <td><b>SUSE Linux Enterprise Server 10, Power, GTK</b> running:
-          <ul>
-            <li>IBM 32-bit SDK for Linux on pSeries architecture, Java 2 Technology Edition 5.0, SR6b</li>
-          </ul></td>
-      </tr>
-
-      <tr>
-        <td><b>Apple Mac OS X 10.5, Universal, Carbon</b> running:
-          <ul>
-            <li>Apple Java for Mac OS X 10.5, Update 1</li>
-          </ul></td>
-      </tr>
-      <tr>
-        <td><b>Apple Mac OS X 10.5, Universal 32-bit, Cocoa</b> running:
-          <ul>
-            <li>Apple Java for Mac OS X 10.5, Update 1</li>
-          </ul></td>
-      </tr>
-      <tr>
-        <td><img src="http://www.eclipse.org/eclipse/development/new.gif" alt="(new)" border="0" height="12" width="12" /> <b>Apple Mac OS X 10.5, Universal 64-bit, Cocoa</b> running:
-          <ul>
-            <li>Apple Java for Mac OS X 10.5, Update 1</li>
-          </ul></td>
-      </tr>
-    </tbody>
-  </table>
-
+	<table class="platforms">
+		<tr>
+			<th>Operating System</th>
+			<th>Version</th>
+			<th>Hardware</th>
+			<th>JRE</th>
+			<th>Windowing System</th>
+		</tr>
+		<!-- ************ WINDOWS ************** -->
+		<tr class="c0">
+			<td rowspan="6">Windows</td>
+			<td rowspan="2"><img src="http://www.eclipse.org/eclipse/development/new.gif" alt="(new)" border="0" height="12" width="12" /> 7</td>
+			<td rowspan="1">x86 32-bit</td>
+			<td rowspan="2">Sun Java 5 Update 14<br/>
+				IBM Java 5 SR6b
+			</td>
+			<td rowspan="6">Win32</td>
+		</tr>
+		<tr>
+			<td rowspan="1">x86 64-bit</td>
+		</tr>
+		<tr>
+			<td rowspan="2">Vista</td>
+			<td rowspan="1">x86 32-bit</td>
+			<td>Sun Java 5 Update 14<br/>
+				IBM Java 5 SR6b<br/>
+				BEA JRockit 27.4.0
+			</td>
+		</tr>
+		<tr class="c0">
+			<td rowspan="1">x86 64-bit</td>
+			<td>Sun Java 5 Update 14<br/>
+				IBM Java 5 SR6b
+			</td>
+		</tr>
+		<tr class="c0">
+			<td rowspan="2">XP</td>
+			<td rowspan="1">x86 32-bit</td>
+			<td>Sun Java 6 Update 3<br/>
+				Sun Java 5 Update 14<br/>
+				Sun Java 1.4.2 Update 16<br/>
+				IBM Java 5 SR6b<br/>
+				IBM Java 1.4.2 SR10<br/>
+				BEA JRockit 27.4.0
+			</td>
+		</tr>
+		<tr class="c0">
+			<td rowspan="1">x86 64-bit</td>
+			<td>Sun Java 5 Update 14<br/>
+				IBM Java 5 SR6b
+			</td>
+		</tr>
+		<!-- ************ RHEL ************** -->
+		<tr class="c1">
+			<td rowspan="3">Red Hat Enterprise Linux</td>
+			<td rowspan="2">5.0</td>
+			<td rowspan="1">x86 32-bit</td>
+			<td>Sun Java 6 Update 3<br/>
+				Sun Java 5 Update 14<br/>
+				Sun Java 1.4.2 Update 16<br/>
+				IBM Java 5 SR6b<br/>
+				IBM Java 1.4.2 SR10<br/>
+				BEA JRockit 27.4.0
+			</td>
+			<td rowspan="3">GTK</td>
+		</tr>
+		<tr class="c1">
+			<td rowspan="1"><img src="http://www.eclipse.org/eclipse/development/new.gif" alt="(new)" border="0" height="12" width="12" /> Power 64-bit</td>
+			<td>IBM Java 5 SR6b</td>
+		</tr>
+		<tr class="c1">
+			<td rowspan="1">4.0</td>
+			<td rowspan="1">x86 64-bit</td>
+			<td>Sun Java 5 Update 14<br/>
+				IBM Java 5 SR6b
+			</td>
+		</tr>
+		<!-- ************ SLES ************** -->
+		<tr class="c0">
+			<td rowspan="3">SUSE Linux Enterprise Server</td>
+			<td rowspan="3"><img src="http://www.eclipse.org/eclipse/development/new.gif" alt="(new)" border="0" height="12" width="12" /> 11</td>
+			<td rowspan="1">x86 32-bit</td>
+			<td rowspan="2">Sun Java 5 Update 14<br/>
+				IBM Java 5 SR6b
+			</td>
+			<td rowspan="3">GTK</td>
+		</tr>
+		<tr class="c0">
+			<td rowspan="1">x86 64-bit</td>
+		</tr>
+		<tr class="c0">
+			<td rowspan="1"><img src="http://www.eclipse.org/eclipse/development/new.gif" alt="(new)" border="0" height="12" width="12" /> Power 64-bit</td>
+			<td>IBM Java 5 SR6b</td>
+		</tr>
+		<!-- ************ Ubuntu ************** -->
+		<tr class="c1">
+			<td rowspan="2"><img src="http://www.eclipse.org/eclipse/development/new.gif" alt="(new)" border="0" height="12" width="12" /> Ubuntu Long Term Support</td>
+			<td rowspan="2">9.04</td>
+			<td rowspan="1">x86 32-bit</td>
+			<td rowspan="2">Sun Java 5 Update 14<br/>
+				IBM Java 5 SR6b
+			</td>
+			<td rowspan="2">GTK</td>
+		</tr>
+		<tr class="c1">
+			<td rowspan="1">x86 64-bit</td>
+		</tr>
+		<!-- ************ Solaris ************** -->
+		<tr class="c0">
+			<td rowspan="2">Sun Solaris</td>
+			<td rowspan="2">10</td>
+			<td rowspan="1">x86 32-bit</td>
+			<td rowspan="2">Sun Java 5 Update 14</td>
+			<td rowspan="2">GTK</td>
+		</tr>
+		<tr class="c0">
+			<td rowspan="1">SPARC</td>
+		</tr>
+		<!-- ************ HPUX ************** -->
+		<tr class="c1">
+			<td rowspan="1">HP-UX</td>
+			<td rowspan="1">11i v2</td>
+			<td rowspan="1">ia64</td>
+			<td rowspan="1">HP-UX Java 5 Update 7</td>
+			<td rowspan="1">Motif 2.1</td>
+		</tr>
+		<!-- ************ AIX ************** -->
+		<tr class="c0">
+			<td rowspan="1">IBM AIX</td>
+			<td rowspan="1">5.3</td>
+			<td rowspan="1">Power</td>
+			<td rowspan="1">IBM Java 5 SR6b</td>
+			<td rowspan="1">Motif 2.1</td>
+		</tr>
+		<!-- ************ Mac ************** -->
+		<tr class="c1">
+			<td rowspan="3">Apple Mac OS X</td>
+			<td rowspan="3">10.5</td>
+			<td rowspan="1">Universal</td>
+			<td rowspan="3">Apple Java 10.5 Update 1</td>
+			<td rowspan="1">Carbon</td>
+		</tr>
+		<tr class="c1">
+			<td rowspan="1">Universal 32-bit</td>
+			<td rowspan="2">Cocoa</td>
+		</tr>
+		<tr class="c1">
+			<td rowspan="1">Universal 64-bit</td>
+		</tr>
+	</table>
 </center>
-<p>As stated above, <i>we expect that Eclipse works fine on other current
+
+<p>As stated above, <i>we expect that Equinox works fine on other current
   Java VM and OS versions but we cannot flag these as reference platforms without
   significant community support for testing them.</i></p>
- <p>As Equinox is largely headless, there are very few dependencies on window systems.
- Where there are UI elements (e.g., in the p2 UI), these elements will work on any configuration
- supported by SWT.</p>
+</div>
 
-  </div><p:internationalization>
-<p>Equinox is designed as the basis for internationalized products. The
-  user interface elements provided by Equinox components, including dialogs
+<p:internationalization>
+<p>The Equinox SDK is designed as the basis for internationalized products. The
+  user interface elements provided by the Equinox components, including dialogs
   and error messages, are externalized. The English strings are provided as the
   default resource bundles.</p>
-<p>Latin-1 and DBCS locales are supported by Equinox on all reference platforms;
-  BIDI locales are supported by Equinox everywhere but on Motif.</p>
-<p>Equinox supports GB 18030 (level 1), the Chinese code page standard,
+<p>Latin-1 and DBCS locales are supported by the Equinox on all reference platforms;
+  BIDI locales are supported by the Equinox everywhere but on Motif.</p>
+<p>The Equinox supports GB 18030 (level 1), the Chinese code page standard,
   on Windows XP and 2000, Linux/GTK and the Macintosh.</p>
 <p>German and Japanese locales are tested.</p>
-    </p:internationalization>
-  </p:target_environments>
+</p:internationalization>
 
-  <p:compatibility_with_previous_releases><div>
-<p>Equinox 3.6 will be backward compatible with Equinox 3.5 (and, hence, with 3.4, 3.3, 3.2, 3.1
-  and 3.0).</p>
-<p> <strong>API Contract Compatibility:</strong> Equinox 3.6 will be upwards
-  contract-compatible with Equinox 3.5 except in those areas noted in the <a href="http://wiki.eclipse.org/Equinox_Helios_Porting_Guide" target="_top"> <em>Equinox
-  3.6 Migration Guide</em></a>. Programs that use affected APIs and extension
-  points will need to be ported to Equinox 3.6 APIs. Downward contract compatibility
+</p:target_environments>
+ 
+<!-- ============================================== -->
+
+<p:compatibility_with_previous_releases>
+<div>
+
+<h3>Compatibility of Release 3.6 with 3.5</h3>
+<p>Equinox 3.6 will be compatible with Equinox 3.5 (and all earlier 3.x versions).</p>
+
+<p><strong>API Contract Compatibility:</strong> Equinox 3.6 will be upwards
+  contract-compatible with Equinox 3.5 except in those areas noted in the
+  <a href="http://dev.eclipse.org/viewcvs/index.cgi/%7Echeckout%7E/org.eclipse.platform.doc.isv/porting/eclipse_3_6_porting_guide.html" target="_top">
+    <em>Eclipse 3.6 Plug-in Migration Guide</em>
+  </a>. Programs that use affected APIs and extension points will need to be ported
+  to Equinox 3.6 APIs. Downward contract compatibility
   is not supported. There is no guarantee that compliance with Equinox 3.6
-  APIs would ensure compliance with Equinox 3.5 APIs. Refer to <a href="http://wiki.eclipse.org/index.php/Evolving_Java-based_APIs"> <em>Evolving
-  Java-based APIs</em> </a> for a discussion of the kinds of API changes that
-  maintain contract compatibility. </p>
-<p><strong>Binary (bundle) Compatibility:</strong> Equinox 3.6 will be upwards
-  binary-compatible with Equinox 3.5 except in those areas noted in the <a href="http://wiki.eclipse.org/Equinox_Helois_Porting_Guide" target="_top"> <em>Equinox
-  3.6 Migration Guide</em></a>. Downward bundle compatibility is not
-  supported. Bundles for Equinox 3.6 will not in general be usable in Equinox 3.5.
-  Refer to <a href="http://wiki.eclipse.org/index.php/Evolving_Java-based_APIs"> <em>Evolving
-  Java-based APIs</em> </a> for a discussion of the kinds of API changes that
-  maintain binary compatibility. </p>
+  APIs would ensure compliance with Equinox 3.5 APIs. Refer to
+  <a href="http://wiki.eclipse.org/index.php/Evolving_Java-based_APIs">
+    <em>Evolving Java-based APIs</em>
+  </a> for a discussion of the kinds of API changes that maintain contract compatibility.</p>
+  
+<p><strong>Binary (plug-in) Compatibility:</strong> Equinox 3.6 will be upwards
+  binary-compatible with Equinox 3.5 except in those areas noted in the
+  <a href="http://dev.eclipse.org/viewcvs/index.cgi/%7Echeckout%7E/org.eclipse.platform.doc.isv/porting/eclipse_3_6_porting_guide.html" target="_top">
+    <em>Eclipse 3.6 Plug-in Migration Guide</em>
+  </a>. Downward plug-in compatibility is not supported. Plug-ins for Equinox
+  3.6 will not be usable in Equinox 3.5. Refer to
+  <a href="http://wiki.eclipse.org/index.php/Evolving_Java-based_APIs">
+    <em>Evolving Java-based APIs</em>
+  </a> for a discussion of the kinds of API changes that maintain binary compatibility.</p>
+  
 <p><strong>Source Compatibility:</strong> Equinox 3.6 will be upwards source-compatible
-  with Equinox 3.5 except in the areas noted in the <a href="http://wiki.eclipse.org/Equinox_Helios_Porting_Guide" target="_top"> <em>Equinox
-  3.6 Migration Guide</em></a>. This means that source files written
+  with Equinox 3.5 except in the areas noted in the
+  <a href="http://dev.eclipse.org/viewcvs/index.cgi/%7Echeckout%7E/org.eclipse.platform.doc.isv/porting/eclipse_3_6_porting_guide.html" target="_top">
+    <em>Eclipse 3.6 Plug-in Migration Guide</em>
+  </a>. This means that source files written
   to use Equinox 3.5 APIs might successfully compile and run against Equinox
   3.6 APIs, although this is not guaranteed. Downward source compatibility
   is not supported. If source files use new Equinox APIs, they will not be
   usable with an earlier version of Equinox. </p>
+  
+<p><strong>Workspace Compatibility:</strong> Equinox 3.6 will be upwards
+  workspace-compatible with earlier 3.x versions of the Equinox unless noted.
+  This means that workspaces created with Equinox 3.5 .. 3.0 can be successfully
+  opened by Equinox 3.6 and upgraded to a 3.6 workspace. This includes both
+  hidden metadata, which is localized to a particular workspace, as well as metadata
+  files found within a workspace project (e.g., the .project file), which may
+  propagate between workspaces via file copying or team repositories. Individual
+  plug-ins developed for Eclipse SDK 3.6 should provide similar upwards compatibility
+  for their hidden and visible workspace metadata created by earlier versions;
+  3.6 plug-in developers are responsible for ensuring that their plug-ins recognize
+  metadata from earlier versions and process it appropriately. User
+  interface session state may be discarded when a workspace is upgraded. Downward
+  workspace compatibility is not supported. A workspace created (or opened) by
+  a product based on Eclipse 3.6 will be unusable with a product based on an earlier
+  version of Eclipse. Visible metadata files created (or overwritten) by Eclipse
+  3.6 will generally be unusable with earlier versions of Eclipse. </p>
+  
 <p><strong>Non-compliant usage of API's</strong>: All non-API methods and classes,
-  and certainly everything in a package with &quot;internal&quot; in its name or those
-  packages marked with &quot;x-internal=true&quot; or with &quot;x-friends&quot; annotations,
+  and certainly everything in a package with &quot;internal&quot; in its name or 
+  exported with the x-internal directive,
   are considered implementation details which may vary between operating environment
-  and are subject to change without notice. Client bundles that directly depend
+  and are subject to change without notice. Client plug-ins that directly depend
   on anything other than what is specified in the Equinox API are inherently
   unsupportable and receive no guarantees about compatibility within a single
-  release much less with earlier releases. Refer to <a href="http://www.eclipse.org/articles/Article-API%20use/eclipse-api-usage-rules.html"> <em>How
-  to Use the Eclipse API</em> </a> for information about how to write compliant
-  bundles. </p>
-</div></p:compatibility_with_previous_releases>
+  release much less with earlier releases. Refer to
+  <a href="http://www.eclipse.org/articles/Article-API%20use/eclipse-api-usage-rules.html">
+    <em>How to Use the Eclipse API</em>
+  </a> for information about how to write compliant plug-ins. </p>
 
+</div>
+</p:compatibility_with_previous_releases>
+  
+<!-- ============================================== -->
 
-  <p:themes_and_priorities>
-    <p:preamble><div>
-<p>Plan items listed below were defined according to
- contributor requirements and the Eclipse <a href="http://wiki.eclipse.org/RequirementsCouncilThemesAndPriorities">
-Themes and Priorities</a>
-set forth by the Eclipse Requirements Council.
-Each plan item covers a feature or API that is to be added to the
-Equinox deliverables, or some aspect of the Equinox Project that is to be improved. Each plan item has its
-own entry in the Eclipse bugzilla database, with a title and a
-concise summary (usually a single paragraph) that explains the
-work item at a suitably high enough level so that everyone can
-readily understand what the work item is without having to understand
-the nitty-gritty detail.
-</p>
+<p:themes_and_priorities>
+
+<p:preamble>
+<div>
+<p>The plan items listed below were defined according to contributor requirements and the Eclipse
+  <a href="http://wiki.eclipse.org/RequirementsCouncilThemesAndPriorities">Themes and Priorities</a>
+  set forth by the Eclipse Requirements Council. Each plan item covers a feature or API that is
+  to be added to the Equinox Project deliverables, or some aspect of the Equinox Project that is
+  to be improved. Each plan item has its own entry in the Equinox bugzilla database, with a title
+  and a concise summary (usually a single paragraph) that explains the work item at a suitably
+  high enough level so that everyone can readily understand what the work item.</p>
+<p> Although there are several components under the Equinox Project, there
+  is a significant amount of commonality and shared effort between them. In general,
+  many plan items involve coordinated changes to multiple components, and thus
+  attempting to separate the items into sections based on components leads to
+  artificial distinctions between them (e.g., Framework vs. p2, Security vs. Server Side, etc.).
+  As such, this plan covers the work of all projects under the Equinox Project.</p>
 <p>Not all plan items represent the same amount of work; some may be quite
-large, others, quite small. Although some plan items are for work that is
-more pressing than others, the plan items appear in no particular order.
-See the corresponding bugzilla items for up-to-date status information on
-ongoing work and planned delivery milestones.
-</p>
-<p>The current status of each plan item is noted:
-</p>
+  large, others, quite small. Although some plan items are for work that is 
+  more pressing than others, the plan items appear in no particular order.
+  See the corresponding bugzilla items for up-to-date status information on
+  ongoing work and planned delivery milestones.</p>
+<p>The current status of each plan item is noted:</p>
 <ul>
   <li><b>Committed</b> plan item - A committed plan item is one that we have
     decided to address for the release. In bugzilla, this is reflected by
@@ -380,87 +524,170 @@ ongoing work and planned delivery milestones.
     items at a later point. In bugzilla, such items are reflected by having
     a target milestone "Future" assigned.</li>
 </ul>
-    </div></p:preamble>
-    <p:theme name="Scalability and Performance">
-      <p:description><p>
-      	New usage scenarios for Equinox require it to be faster, smaller, bigger, ...
-      	The technology needs to scale up or down to allow Equinox to scale down to small embedded environments as well
-      	as scaling up to large server environments.
-      	Monitor overall performance and memory consumption which includes the addition of new performance tests for new features.
-      </p></p:description>
-      <!--  Query: short_desc LIKE %[spec]% -->
-      <p:committed>
-		  <p><i>None at this time.</i></p>
-      </p:committed>
-      <p:proposed>
-		  <p><i>None at this time.</i></p>
-      </p:proposed>
-      <p:deferred>
-		  <p><i>None at this time.</i></p>
-      </p:deferred>
-    </p:theme>
+</div>
+</p:preamble>
 
-    <p:theme name="Robustness">
-      <p:description><p>
-		Equinox has become the base for a wide range of platform from embedded to server to desktop and rich client applications.
-		These new scenarios bring new requirements on the execution of Equinox as well as on the programming of its API.
-		The Equinox team will improve the overall robustness by providing APIs for clients where needed and fixing critical bugs.
-		There will also be a focused effort on testability and enhancing the automated test suites.
-      </p></p:description>
-      <!--  Query: short_desc LIKE %[spec]% -->
-      <p:committed>
-		  <p><i>None at this time.</i></p>
-	  </p:committed>
-      <p:proposed>
-		  <p><i>None at this time.</i></p>
-      </p:proposed>
-      <p:deferred>
-		  <p><i>None at this time.</i></p>
-      </p:deferred>
-    </p:theme>
+<!-- ============================================== -->
 
-    <p:theme name="Consumability">
-      <p:description><p>
-		The diversity of Equinox poses a significant problem to end-users and developers alike.
-		Equinox is extremely flexible and configurable.  This makes the hard things possible but in some cases the simple things are
-		not as simple as they might be.  The Equinox team will make it easier for users to get the relevant pieces of function,
-		install it on their systems, and configure it for their use.  Where there is UI, attention will be paid to making it simple and
-		natural to use.  We will also make it easier for developers to use our APIs.
-	  </p></p:description>
-      <!--  Query: short_desc LIKE %[spec]% -->
-      <p:committed>
-		  <p><i>None at this time.</i></p>
-      </p:committed>
-      <p:proposed>
-		  <p><i>None at this time.</i></p>
-      </p:proposed>
-      <p:deferred>
-		  <p><i>None at this time.</i></p>
-      </p:deferred>
-    </p:theme>
+<p:theme name="Scalability and Performance">
+<p:description>
+<p>New usage scenarios for Equinox require it to be faster, smaller, bigger, ...
+  The technology needs to scale up or down to allow Equinox to scale down to small embedded environments as well
+  as scaling up to large server environments.
+  Monitor overall performance and memory consumption which includes the addition of new performance tests for new features.
+</p></p:description>
 
-    <p:theme name="Future">
-      <p:description><p>
-      Eclipse is evolving quickly.  New features in the next OSGi specification R4.2 and e4 will drive numerous changes throughout the Equinox
-      project.  Considerable effort will be put into updating Equinox to accomodate and exploit these new scenarios.
-      </p></p:description>
-      <!--  Query: short_desc LIKE %[spec]% -->
-      <p:committed>
-		  <p><i>None at this time.</i></p>
-      </p:committed>
-      <p:proposed>
-		  <p><i>None at this time.</i></p>
-      </p:proposed>
-      <p:deferred>
-		  <p><i>None at this time.</i></p>
-      </p:deferred>
-    </p:theme>
+<p:committed>
+  <p><i>None at this time.</i></p>
+</p:committed>
 
+<p:proposed>
+  <ul>
+  <li><img src="http://www.eclipse.org/eclipse/development/new.gif" alt="(new)" border="0" height="12" width="12" />
+	<strong>Focus on performance</strong>
+	Investigation will be done to improve performance of equinox for both CPU and memory usage.  
+	For example, some of the bottlenecks that slowdown the p2 resolver/engine/etc. will be improved and 
+	investigation to improve performance of the framework resolver.
+	[All Components] (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=289121">289121</a>)
+  </li>
+  <li><img src="http://www.eclipse.org/eclipse/development/new.gif" alt="(new)" border="0" height="12" width="12" />
+	<strong>Support for low memory events</strong>
+	Investigation will be done to leverage event admin to deliver events.  One event example is support for firing
+	and listening for low memory events.
+	[components] (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=284061">284061</a>)
+  </li>
+  </ul>
+</p:proposed>
 
-  </p:themes_and_priorities>
-  <p:appendix name="1">
+<p:deferred>
+  <p><i>None at this time.</i></p>
+</p:deferred>
 
-  <h2><a name="Appendix1" id="Appendix1">Appendix 1: Execution Environment by Bundle</a></h2>
+</p:theme>
+    
+<!-- ============================================== -->
+
+<p:theme name="Robustness">
+<p:description>
+<p>As the basis for the entire Eclipse eco-system, Equinox must be robust,
+  flexible and secure. This work will address those issues by providing API for
+  missing or currently internal functionality, and focusing on the issues that
+  affect the stability of the platform.
+</p>
+</p:description>
+
+<p:committed>
+  <p><i>None at this time.</i></p>
+</p:committed>
+
+<p:proposed>
+  <ul>
+  <li><img src="http://www.eclipse.org/eclipse/development/new.gif" alt="(new)" border="0" height="12" width="12" />
+    <strong>p2 install flexibility</strong>
+    p2 supports basic install layouts well, but has some limitations
+    preventing more advanced layouts. We will improve the flexibility and configurability of p2-based installs
+    to provide better support for multi-user installs, and make greater use of relative paths to allow
+    installs to be relocated.
+    [p2] (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=289133">289133</a>)
+  </li>
+  <li><img src="http://www.eclipse.org/eclipse/development/new.gif" alt="(new)" border="0" height="12" width="12" />
+	<strong>Provide p2 repository verification tools</strong>
+	A set of tools will be developed that help developers verify the content of p2 repositories.
+	[p2] (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=289134">289134</a>)
+  </li>
+  <li><img src="http://www.eclipse.org/eclipse/development/new.gif" alt="(new)" border="0" height="12" width="12" />
+	<strong>Define p2 API and complete java doc.</strong>
+	Previous releases of p2 have included provisional API.  For this release p2 will graduate a subset of the most
+	important APIs.
+	[p2] (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=248791">248791</a>)
+  </li>
+  <li><img src="http://www.eclipse.org/eclipse/development/new.gif" alt="(new)" border="0" height="12" width="12" />
+	<strong>Multi-locale support in the extension registry</strong>
+	Multi-locale scenarios such as server-side require that the translated content of the extension registry support
+	multiple locales at the same time.  Currently the extension registry only supports one locale at a time.
+	[components] (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=244468">244468</a>)
+  </li>
+  </ul>
+</p:proposed>
+
+<p:deferred>
+  <p><i>None at this time.</i></p>
+</p:deferred>
+
+</p:theme>
+    
+<!-- ============================================== -->
+
+<p:theme name="Consumability">
+<p:description>
+<p>This work will make it easier for users to get Equinox, install it on their systems,
+  and configure it for their use. It also covers work related to error handling and reporting
+  mechanisms.
+</p>
+</p:description>
+
+<p:committed>
+  <p><i>None at this time.</i></p>
+</p:committed>
+
+<p:proposed>
+  <ul>
+  <li><img src="http://www.eclipse.org/eclipse/development/new.gif" alt="(new)" border="0" height="12" width="12" />
+	<strong>Support updating from 3.5 to 3.6 and rollback from 3.6 to 3.5</strong>
+	Eclipse has never supported updating from one major release to the next.  Now with p2 Eclipse will be 
+	able to upgrade from one major release to the next.
+	[p2] (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=289135">289135</a>)
+  </li>
+  <li><img src="http://www.eclipse.org/eclipse/development/new.gif" alt="(new)" border="0" height="12" width="12" />
+	<strong>Use p2 to manage and run on other OSGi framework implementations</strong>
+	Currently p2 can only run on and manage an Equinox framework.  Work will be done to allow p2 to run on
+	and manage other OSGi framework implementations (e.g. Apache Felix).
+	[p2] (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=289136">289136</a>)
+  </li>
+  </ul>
+</p:proposed>
+
+<p:deferred>
+  <p><i>None at this time.</i></p>
+</p:deferred>
+
+</p:theme>
+
+<p:theme name="Future">
+<p:description>
+<p>Eclipse is evolving quickly.  New features in the next OSGi specification and e4 will drive numerous changes throughout the Equinox
+   project.  Considerable effort will be put into updating Equinox to accomodate and exploit these new scenarios.
+</p>
+</p:description>
+
+<p:committed>
+  <p><i>None at this time.</i></p>
+</p:committed>
+
+<p:proposed>
+  <ul>
+  <li><img src="http://www.eclipse.org/eclipse/development/new.gif" alt="(new)" border="0" height="12" width="12" />
+	<strong>Participate in the OSGi specification process</strong>
+	Various OSGi specifications are actively being developed by the OSGi Alliance.  Equinox will 
+	participate in the specification process to provide our expertise in areas that apply to Equinox.
+	In many cases Equinox will provide an implementation of the new specification if the specification
+	schedule aligns with the Equinox release schedule and we have Equinox community interest.
+	[All Components] (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=289124">289124</a>)
+  </li>
+  </ul>
+</p:proposed>
+
+<p:deferred>
+  <p><i>None at this time.</i></p>
+</p:deferred>
+
+</p:theme>
+</p:themes_and_priorities>
+
+<!-- ============================================== -->
+
+<p:appendix name="Execution Environment by Bundle">
+  
 <p>In the table below, the &quot;3.6 minimum execution environment&quot;
   column indicates the minimum Java class library requirements of each bundle
   for the 3.6 release, where the value is one of:</p>
@@ -477,7 +704,6 @@ ongoing work and planned delivery milestones.
         Foundation 1.0 class libraries defined by OSGi to be the base for framework
         implementations. See the OSGi specification for more details.</td>
     </tr>
-
     <tr>
       <td width="9%"><div align="center"><strong>M1.1</strong></div></td>
       <td width="91%">OSGi Minimum Execution Environment 1.1 - This is a subset
@@ -495,7 +721,6 @@ ongoing work and planned delivery milestones.
       <td>J2ME Foundation 1.0 - indicates that the bundle can only be run on
         Foundation 1.0 or greater. Note that with the exception of some MicroEdition
         IO classes, Foundation 1.0 is a subset of J2SE 1.3.</td>
-
     </tr>
     <tr>
       <td><div align="center"><strong>F1.1</strong></div></td>
@@ -504,38 +729,25 @@ ongoing work and planned delivery milestones.
         IO classes, Foundation 1.1 is a subset of J2SE 1.4.</td>
     </tr>
     <tr>
-      <td><div align="center"><strong>1.2</strong></div></td>
-
-      <td>J2SE 1.2 - indicates that the bundle can only be run on JSE 1.2 or
-        greater.</td>
-    </tr>
-    <tr>
       <td><div align="center"><strong>1.3</strong></div></td>
       <td>J2SE 1.3 - indicates that the bundle can only be run on JSE 1.3 or
         greater.</td>
     </tr>
     <tr>
-
       <td><div align="center"><strong>1.4</strong></div></td>
       <td>J2SE 1.4 - indicates that the bundle can only be run on JSE 1.4 or
         greater.</td>
     </tr>
     <tr>
-      <td><div align="center"><strong>1.4/1.5</strong></div></td>
-      <td>Indicates that the bundle can run on JSE 1.4 or greater, but provides
-        enhanced functionality when run on J2SE 5.0.</td>
-    </tr>
-
-    <tr>
       <td><div align="center"><strong>1.5</strong></div></td>
-      <td>J2SE 5.0 - indicates that the bundle can only be run on JSE 5.0 or
+      <td>Java SE 5 - indicates that the bundle can only be run on Java SE 5 or
         greater.</td>
+
     </tr>
     <tr>
       <td><div align="center"><strong>1.6</strong></div></td>
-      <td>J2SE 6.0 - indicates that the bundle can only be run on JSE 6.0 or
+      <td>Java SE 6 - indicates that the bundle can only be run on Java SE 6 or
         greater.</td>
-
     </tr>
     <tr>
       <td align="center"><b>n/a</b></td>
@@ -543,16 +755,16 @@ ongoing work and planned delivery milestones.
     </tr>
   </tbody>
 </table>
-<br />
-<p><b>Table of minimum execution environments by bundle.</b> (<img src="new.gif" alt="(new)" border="0" height="12" width="12" /> multiple updates)</p>
 
-<br />
+<p><b>Table of minimum execution environments by bundle.</b> (See also the
+  <a href="http://www.eclipse.org/projects/project-plan.php?projectid=rt.equinox#appendix">Equinox Project plan</a>
+  for the execution environment requirements of bundles contributed via that project.)</p>
 
 <table border="1">
   <tbody>
     <tr>
       <td width="290"><strong>Bundle</strong></td>
-      <td width="60"><div align="center"><p align="center"><b>Helios<br/>minimum<br/>execution<br/>environment</b></p></div></td>
+      <td width="60"><div align="center"><p align="center"><b>3.6<br/>minimum<br/>execution<br/>environment</b></p></div></td>
     </tr>
     <tr>
       <td>org.eclipse.equinox.app</td>
@@ -892,6 +1104,5 @@ ongoing work and planned delivery milestones.
     </tr>
   </tbody>
 </table>
-  </p:appendix>
+  </p:appendix>  
 </p:plan>
-
