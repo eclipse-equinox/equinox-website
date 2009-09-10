@@ -547,7 +547,7 @@ interesting changes since the previous draft)
 <p:proposed>
   <ul>
   <li><img src="http://www.eclipse.org/eclipse/development/new.gif" alt="(new)" border="0" height="12" width="12" />
-	<strong>p2 performance improvements</strong>
+	<strong>Focus on performance</strong>
 	Investigation will be done to improve performance of equinox for both CPU and memory usage.  
 	For example, some of the bottlenecks that slowdown the p2 resolver/engine/etc. will be improved and 
 	investigation to improve performance of the framework resolver.
