@@ -29,6 +29,8 @@ ob_start();
 			<ul>
 	      <li><a href="http://www.eclipse.org/projects/project-plan.php?projectid=rt.equinox">Equinox Helios plan</a><br>
 	        This document lays out the feature and API set for the Helios (3.6) release of the Equinox Project. </li>
+	      <li><a href="freeze_plan_3.5.2.php"> Equinox Project Galileo SR2 Endgame Plan</a><br>
+	    		Information about how we plan to wrap up the Galileo Servie Release 2 (version 3.5.2).</li>   
 	    </ul>
       	</div>
 		<div class="homeitem3col">
