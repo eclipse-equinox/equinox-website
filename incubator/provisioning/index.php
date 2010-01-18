@@ -27,12 +27,16 @@ ob_start();
 
 <p class=bar>Mission Statement</p>
 <p>
-Eclipse has advanced quite quickly with new use-cases (RCP, Equinox, server side, etc.) and new technologies. 
-However, to date Update Manager has not been enhanced to support or exploit these changes thus limiting the 
-applications being developed.  This incubator project is targetted at refreshing the client-side provisioning infrastructure
-in Eclipse.  The refresh while not providing substantially more out-of-the-box functionality than Update Manager, will 
-provide an open and extensibile provisioning platform.  See the <a href="proposal.php">incubator proposal</a> 
-and the <a href="overview.php">overview</a> for additional detail.</p>
+The Equinox Incubator p2 component was the original incubator for the <a href="http://www.eclipse.org/equinox/p2">Equinox p2</a> project.
+This p2 incubator is now used as an area for experiments and investigation that is related
+to p2 but not sufficiently mature to reside in or ship with the p2 project proper. This is
+also used as an area where new committers can be added quickly if they are interested in
+investigating p2-related technology but haven't earned or are not interested in commit
+rights on the p2 project itself.
+</p>
+<p>
+See the <a href="proposal.php">incubator proposal</a> 
+and the <a href="overview.php">overview</a> for additional detail about the original p2 incubator work.</p>
 
 <p>The bulk of the current information on this work area is maintained in the <a href="http://wiki.eclipse.org/Equinox_Provisioning">wiki</a>.  
 There you will find documents discussing:</p>
@@ -49,15 +53,15 @@ There you will find documents discussing:</p>
 <table width="100%" border="0">
   <tr>
     <td><strong>Bugs</strong></td>
-    <td colspan="2">Summaries start with <strong><a href="https://bugs.eclipse.org/bugs/buglist.cgi?query_format=advanced&classification=RT&product=Equinox&component=p2&long_desc_type=allwordssubstr&long_desc=&bug_file_loc_type=allwordssubstr&bug_file_loc=&status_whiteboard_type=allwordssubstr&status_whiteboard=&keywords_type=allwords&keywords=&bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED&emailtype1=substring&email1=&emailtype2=substring&email2=&bugidtype=include&bug_id=&votes=&chfieldfrom=&chfieldto=Now&chfieldvalue=&cmdtype=doit&order=Reuse+same+sort+as+last+time&field0-0-0=noop&type0-0-0=noop&value0-0-0=">[prov]</a></strong></td>
+    <td colspan="2">Bugs use the p2 component, and use a variety of summary prefixes for various aspects of p2.
   </tr>
 
   <tr>
     <td ><strong>CVS</strong></td>
-    <td colspan="2">See the projects in the <a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox/p2/?root=RT_Project">p2</a>
+    <td colspan="2">See the projects in the <a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox/incubator/p2/?root=RT_Project">p2 incubator</a>
      folder of the normal Equinox CVS repository.
             <blockquote>
-          :pserver:anonymous@dev.eclipse.org/cvsroot/rt/org.eclipse.equinox/p2/
+          :pserver:anonymous@dev.eclipse.org/cvsroot/rt/org.eclipse.equinox/incubator/p2/
         </blockquote>
     
     </td>
@@ -66,15 +70,18 @@ There you will find documents discussing:</p>
 
 <p class=bar>Active investigators</p>
 <ul>
-<li>Andrew Overholt (Red Hat)</li>
-<li>Dave Stevenson (IBM)</li>
-<li><a href="http://code9.com/team/jeff">Jeff McAffer</a> (<a href="http://code9.com">Code 9</a>)</li>
+<li>Pascal Rapicault - p2 lead (IBM)</li>
+<li>Andrew Niefer (IBM)</li>
+<li>Daniel Leberre (Universit&#233; d'Artois)</li>
+<li>DJ Houghton (IBM)</li>
+<li>Henrik Lindberg (Cloudsmith)</li>
+<li>Ian Bull (EclipseSource)</li>
+<li>Jeff McAffer (EclipseSource)</li>
 <li>John Arthorne (IBM)</li>
-<li>Pascal Rapicault (IBM)</li>
 <li>Simon Kaegi (IBM)</li>
 <li>Stefan Liebig (Compeople)</li>
 <li>Susan McCourt (IBM)</li>
-<li><a href="http://code9.com/team/scott">Scott Lewis</a> (<a href="http://code9.com">Code 9</a>)</li>
+<li>Thomas Hallgren (Cloudsmith)</li>
 </ul>
 <p>&nbsp;</p>
 </div>
