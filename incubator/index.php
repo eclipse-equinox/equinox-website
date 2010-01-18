@@ -60,13 +60,13 @@ The goal of the Equinox Incubator is to experiment with techniques for
 	<tr>
       <td align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
       <td><a href="server" target="_top"><b>Server Side OSGi</b></a> <br>
-    This incubator project is targeted at eliminating barriers to using and integrating OSGi (and Equinox more specificially) on
+    This incubator project is targeted at eliminating barriers to using and integrating OSGi (and Equinox more specifically) on
   the server.  Note that some of this work has graduated.  See the <a href="http://eclipse.org/equinox/server">server-side</a> website.</td>
   </tr>
 	<tr>
       <td align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-      <td><a href="provisioning" target="_top"><b>Provisioning</b></a> <br>
-    This incubator project is targeted at investigating the 3.3 plan item around provisioning support.</td>
+      <td><a href="provisioning" target="_top"><b>p2</b></a> <br>
+    This is the incubator project for the Equinox p2 component.</td>
   </tr>
   </tr>
 	<tr>
@@ -81,21 +81,26 @@ The goal of the Equinox Incubator is to experiment with techniques for
   the <a href="howto.php">How to Incubate</a> guide.</p>
 
 		  <p class=bar>What's New</p>
-		    <p><b>Mar 10</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14">
+		    <p><b>December 2009</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14">
+		    	Service Activator Toolkit (SAT), and Device Kit from the retired <a href="http://www.eclipse.org/ohf/">Open Healthcare Framework</a> project have
+		    	<a href="http://www.eclipse.org/project-slides/SODA_Move_OHF_to_Equinox_Docuware.pdf">moved</a> 
+		    	into the Equinox incubator to create the incubator <a href="http://www.eclipse.org/ohf/components/soda/">SODA</a>
+		    	component.</p>
+		    <p><b>Mar 10, 2008</b> - 
 		       The <a href="http://www.eclipse.org/equinox/incubator/aspects/index.php">Equinox Aspects </a> team in the 
 		       <a href="http://www.eclipse.org/equinox/incubator">Equinox Incubator</a> has released version 1.1.0 of the Equinox
 		       Aspects bundles. The release is compatible with Eclipse 3.3 and 3.4, the latest AJDT versions, adds
 		       caching of woven bundles for non-IBM VMs, fixes a number of bugs and improves stability.</p>
-		    <p><b>Aug 10</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14">
+		    <p><b>Aug 10, 2007</b> - 
 		       The <a href="http://www.eclipse.org/equinox/incubator/provisioning/">Provisioning workarea</a> team in the 
 		       <a href="http://www.eclipse.org/equinox/incubator">Equinox Incubator</a> has released an M1a of the new provisioning
 		       support.  For more information see <a href="http://wiki.eclipse.org/Equinox_Provisioning_M1">the wiki</a>.</p>
-		    <p><b>Aug 8</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14">
+		    <p><b>Aug 8, 2007</b> - 
 		       The <a href="http://www.eclipse.org/equinox/incubator/security/">Security workarea</a> in the 
 		       <a href="http://www.eclipse.org/equinox/incubator">Equinox Incubator</a> has come alive with various contributions from Lotus
 		       around JAAS, JCA and Keystores.  Matthew Flaherty and Eric Li from Lotus have joined the incubator as committers working in 
 		       the security area.</p>
-		    <p><b>July</b> - <img src="http://www.eclipse.org/images/new.gif" width="31" height="14">
+		    <p><b>July 2007</b> - 
 		       The team at <a href="http://prosyst.com">Prosyst</a> has contributed implementations of 4 standard OSGi services to the 
 		       <a href="http://www.eclipse.org/equinox/incubator">Equinox Incubator</a>. And Pavlin Dobrev and Teodor Todorov
 		       from Prosyst have joined the incubator as committers.</p>
