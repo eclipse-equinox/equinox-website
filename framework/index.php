@@ -41,14 +41,14 @@ ob_start();
 <table BORDER=0 CELLSPACING=5 CELLPADDING=2 WIDTH="100%" >
   <tr>
     <td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-    <td width="98%"><strong>OSGi R4 Framework (<a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.osgi/">org.eclipse.osgi</a>)</strong><br>
+    <td width="98%"><strong>OSGi R4 Framework (<a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox/framework/bundles/org.eclipse.osgi/?root=RT_Project">org.eclipse.osgi</a>)</strong><br>
     The main framework project. This includes a set of adaptors and enough
       function to make a standalone OSGi framework. When built this project produces
     org.eclispe.osgi.jar.</td>
   </tr>
   <tr>
     <td align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-    <td><b>Java Launcher (<a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox.launcher/">org.eclipse.equinox.launcher</a>)</b><br>
+    <td><b>Java Launcher (<a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox/framework/bundles/org.eclipse.equinox.launcher/?root=RT_Project">org.eclipse.equinox.launcher</a>)</b><br>
       This helps setup the framework classloader and launches the Framework
       etc. <font color="#FF0000">Note: this code used to be included in the startup.jar and has be moved from its old location in the 
       <a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.platform/">org.eclipse.platform</a> project.</font> 
@@ -56,7 +56,7 @@ ob_start();
   </tr>
   <tr>
     <td align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
-    <td><b>Native Launcher (<a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox.executable/">org.eclipse.equinox.executable</a>)</b><br>
+    <td><b>Native Launcher (<a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox/framework/bundles/org.eclipse.equinox.executable/?root=RT_Project">org.eclipse.equinox.executable</a>)</b><br>
       The launcher is the native executable that finds and runs the java launcher org.eclipse.equinox.launcher and thus
       the framework. It is also responsible for putting up the splash screen
       etc. The launcher is written in C and currently supports a wide range of

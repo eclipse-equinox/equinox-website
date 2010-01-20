@@ -55,7 +55,7 @@ Differences will be tracked here.</p>
 <p>These projects can be downloaded from the equinox-incubator CVS depot. <br /> 
 (e.g. cvsroot/eclipse/equinox-incubator/org.eclipse.equinox.jsp.jasper)</p>
 <p>
-In addition a number of third party bundles are required to provide JSP support. These are all available as bundle proect for the Orbit CVS depot. <br/>
+In addition a number of third party bundles are required to provide JSP support. These are all available as bundle project for the Orbit CVS depot. <br/>
 <ul>
 <li>
 (/cvsroot/tools/org.eclipse.orbit/javax.servlet.jsp [branch v2_0])
