@@ -538,23 +538,24 @@ interesting changes since the previous draft)
 </p></p:description>
 
 <p:committed>
-  <p><i>None at this time.</i></p>
-</p:committed>
-
-<p:proposed>
   <ul>
-  <li><img src="http://www.eclipse.org/eclipse/development/new.gif" alt="(new)" border="0" height="12" width="12" />
-	<strong>Focus on performance</strong>
-	Investigation will be done to improve performance of equinox for both CPU and memory usage.  
-	For example, some of the bottlenecks that slowdown the p2 resolver/engine/etc. will be improved and 
-	investigation to improve performance of the framework resolver.
-	[All Components] (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=289121">289121</a>)
-  </li>
   <li><img src="http://www.eclipse.org/eclipse/development/new.gif" alt="(new)" border="0" height="12" width="12" />
 	<strong>Support for low memory events</strong>
 	Investigation will be done to leverage event admin to deliver events.  One event example is support for firing
 	and listening for low memory events.
 	[components] (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=284061">284061</a>)
+  </li>
+  </ul>
+</p:committed>
+
+<p:proposed>
+  <ul>
+  <li>
+	<strong>Focus on performance</strong>
+	Investigation will be done to improve performance of equinox for both CPU and memory usage.  
+	For example, some of the bottlenecks that slowdown the p2 resolver/engine/etc. will be improved and 
+	investigation to improve performance of the framework resolver.
+	[All Components] (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=289121">289121</a>)
   </li>
   </ul>
 </p:proposed>
@@ -577,10 +578,33 @@ interesting changes since the previous draft)
 </p:description>
 
 <p:committed>
-  <p><i>None at this time.</i></p>
+  <ul>
+  <li><img src="http://www.eclipse.org/eclipse/development/new.gif" alt="(new)" border="0" height="12" width="12" />
+	<strong>Provide p2 repository verification tools</strong>
+	A set of tools will be developed that help developers verify the content of p2 repositories.
+	[p2] (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=289134">289134</a>)
+  </li>
+  <li><img src="http://www.eclipse.org/eclipse/development/new.gif" alt="(new)" border="0" height="12" width="12" />
+	<strong>Multi-locale support in the extension registry</strong>
+	Multi-locale scenarios such as server-side require that the translated content of the extension registry support
+	multiple locales at the same time.  Currently the extension registry only supports one locale at a time.
+	[components] (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=244468">244468</a>)
+  </li>
+  </ul>
 </p:committed>
 
 <p:proposed>
+  <ul>
+  <li>
+	<strong>Define p2 API and complete java doc.</strong>
+	Previous releases of p2 have included provisional API.  For this release p2 will graduate a subset of the most
+	important APIs.
+	[p2] (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=248791">248791</a>)
+  </li>
+  </ul>
+</p:proposed>
+
+<p:deferred>
   <ul>
   <li><img src="http://www.eclipse.org/eclipse/development/new.gif" alt="(new)" border="0" height="12" width="12" />
     <strong>p2 install flexibility</strong>
@@ -590,28 +614,7 @@ interesting changes since the previous draft)
     installs to be relocated.
     [p2] (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=289133">289133</a>)
   </li>
-  <li><img src="http://www.eclipse.org/eclipse/development/new.gif" alt="(new)" border="0" height="12" width="12" />
-	<strong>Provide p2 repository verification tools</strong>
-	A set of tools will be developed that help developers verify the content of p2 repositories.
-	[p2] (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=289134">289134</a>)
-  </li>
-  <li><img src="http://www.eclipse.org/eclipse/development/new.gif" alt="(new)" border="0" height="12" width="12" />
-	<strong>Define p2 API and complete java doc.</strong>
-	Previous releases of p2 have included provisional API.  For this release p2 will graduate a subset of the most
-	important APIs.
-	[p2] (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=248791">248791</a>)
-  </li>
-  <li><img src="http://www.eclipse.org/eclipse/development/new.gif" alt="(new)" border="0" height="12" width="12" />
-	<strong>Multi-locale support in the extension registry</strong>
-	Multi-locale scenarios such as server-side require that the translated content of the extension registry support
-	multiple locales at the same time.  Currently the extension registry only supports one locale at a time.
-	[components] (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=244468">244468</a>)
-  </li>
   </ul>
-</p:proposed>
-
-<p:deferred>
-  <p><i>None at this time.</i></p>
 </p:deferred>
 
 </p:theme>
@@ -632,12 +635,17 @@ interesting changes since the previous draft)
 
 <p:proposed>
   <ul>
-  <li><img src="http://www.eclipse.org/eclipse/development/new.gif" alt="(new)" border="0" height="12" width="12" />
+  <li>
 	<strong>Support updating from 3.5 to 3.6 and rollback from 3.6 to 3.5</strong>
 	Eclipse has never supported updating from one major release to the next.  Now with p2 Eclipse will be 
 	able to upgrade from one major release to the next.
 	[p2] (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=289135">289135</a>)
   </li>
+  </ul>
+</p:proposed>
+
+<p:deferred>
+  <ul>
   <li><img src="http://www.eclipse.org/eclipse/development/new.gif" alt="(new)" border="0" height="12" width="12" />
 	<strong>Use p2 to manage and run on other OSGi framework implementations</strong>
 	Currently p2 can only run on and manage an Equinox framework.  Work will be done to allow p2 to run on
@@ -645,10 +653,6 @@ interesting changes since the previous draft)
 	[p2] (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=289136">289136</a>)
   </li>
   </ul>
-</p:proposed>
-
-<p:deferred>
-  <p><i>None at this time.</i></p>
 </p:deferred>
 
 </p:theme>
@@ -666,7 +670,7 @@ interesting changes since the previous draft)
 
 <p:proposed>
   <ul>
-  <li><img src="http://www.eclipse.org/eclipse/development/new.gif" alt="(new)" border="0" height="12" width="12" />
+  <li>
 	<strong>Participate in the OSGi specification process</strong>
 	Various OSGi specifications are actively being developed by the OSGi Alliance.  Equinox will 
 	participate in the specification process to provide our expertise in areas that apply to Equinox.
