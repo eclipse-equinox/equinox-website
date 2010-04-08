@@ -61,9 +61,9 @@ There you will find documents discussing:</p>
   </tr>
 </table>
 
-<p class=bar>Active investigators</p>
+<p class=bar>Committers</p>
 <ul>
-<li>Pascal Rapicault - p2 lead (IBM)</li>
+<li>Pascal Rapicault - p2 lead (Sonatype)</li>
 <li>Andrew Niefer (IBM)</li>
 <li>Daniel Leberre (Universit&#233; d'Artois)</li>
 <li>DJ Houghton (IBM)</li>
