@@ -35,6 +35,7 @@ provisioning solutions for a wide variety of software applications.</p>
 <p>The bulk of the current information on this work area is maintained in the <a href="http://wiki.eclipse.org/Equinox_Provisioning">wiki</a>.  
 There you will find documents discussing:</p>
 <ul>
+<li> <a href="/projects/project_summary.php?projectid=rt.equinox.p2">About This Project</a>
 <li> <a href="http://wiki.eclipse.org/Equinox_p2_Getting_Started">Getting started</a></li>
 <li> <a href="http://wiki.eclipse.org/Equinox/p2/Concepts">Provisioning concepts</a></li>
 <li> <a href="http://wiki.eclipse.org/Equinox/p2/Plan">The provisioning plan</a></li>
