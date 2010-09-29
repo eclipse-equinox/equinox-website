@@ -19,6 +19,17 @@
 		
 	# Paste your HTML content between the EOHTML markers!	
 	$html = <<<EOHTML
+	<div id="rap-small-header">
+  <a href="/rap/"><div id="rap-small-logo"></div></a>
+</div>
+<script type="text/javascript">
+  // logo
+  var logo = $( '#logo:first-child' );
+  var newLogo = '<div id="logo"><a href="http://www.eclipse.org">' 
+                + logo.html() + '</a></div>';
+  logo.replaceWith( newLogo );
+</script>
+
 <div id="big-header">
   <div id="rap-logo"></div>
   <div id="rap-big-buttons">
