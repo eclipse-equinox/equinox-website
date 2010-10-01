@@ -4,10 +4,10 @@
 	$pageKeywords="equinox, osgi, framework, runtime";
 	$pageAuthor="Equinox Committers";
 
-	$Nav = null; // delete right side navigation
-	$App->AddExtraHtmlHeader( '<link rel="stylesheet" type="text/css" href="/rap/rap-big-header.css"/>' );
+	$Nav = null; // delete left side navigation
+	$App->AddExtraHtmlHeader( '<link rel="stylesheet" type="text/css" href="/equinox/rap-big-header.css"/>' );
 
-$html=<<<EOHTML;	
+$html=<<<EOHTML
 <div id="big-header">
   <div id="rap-logo"></div>
   <div id="rap-big-buttons">

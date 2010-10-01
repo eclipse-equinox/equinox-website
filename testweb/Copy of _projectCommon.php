@@ -7,13 +7,11 @@
 ini_set('display_errors', 1); ini_set('error_reporting', E_ALL);
 
 	$Nav->setLinkList( array() );
+	$Nav->addCustomNav("Wiki", "http://wiki.eclipse.org/Equinox", "_self", 1);
+	$Nav->addCustomNav("Mailing Lists", "http://eclipse.org/mail", "_self", 1);
 	$Nav->addNavSeparator("Components", "index.php");
-	$Nav->addCustomNav("Bundles", "/equinox/bundles", "_self", 1);
-	$Nav->addCustomNav("Framework", "/equinox/framework", "_self", 1);
-	$Nav->addCustomNav("Incubator", "/equinox/incubator", "_self", 1);
-	$Nav->addCustomNav("p2", "/equinox/p2", "_self", 1);
-	$Nav->addCustomNav("Security", "/equinox/security", "_self", 1);
-	$Nav->addCustomNav("Server", "/equinox/server", "_self", 1);
+	$Nav->addCustomNav("Equinox", "http://eclipse.org/equinox", "_self", 1);
+	$Nav->addCustomNav("Incubator", "http://eclipse.org/eclipse/incubator", "_self", 1);
 	
 	$Nav->addNavSeparator("Related", "");
 	$Nav->addCustomNav("RT", "http://eclipse.org/rt", "_self", 1);
@@ -25,23 +23,21 @@ ini_set('display_errors', 1); ini_set('error_reporting', E_ALL);
 
 	$Menu->setMenuItemList( array() );
 	$Menu->addMenuItem( "Home", "/equinox/", "_self" );
+	$Menu->addMenuItem( "Demos", "/equinox/demos/", "_self" );
 	$Menu->addMenuItem( "Get Started", "/equinox/getting-started/", "_self" );
-	$Menu->addMenuItem( "Downloads", "http//download.eclipse.org/equinox", "_self" );
-	$Menu->addMenuItem( "Documents", "/equinox/documents/", "_self" );
-	$Menu->addMenuItem( "Resources", "/equinox/resources/", "_self" );
-	$Menu->addMenuItem( "FAQ", "/equinox/faq.php/", "_self" );
+	$Menu->addMenuItem( "Downloads", "/equinox/downloads/", "_self" );
+	$Menu->addMenuItem( "Documentation", "/equinox/documentation/", "_self" );
 	$Menu->addMenuItem( "Wiki", "http://wiki.eclipse.org/Equinox", "_self" );
 
   $App->AddExtraHtmlHeader( '<link rel="stylesheet" type="text/css" href="/equinox/rap-layout-fixes.css"/>' );
   $App->AddExtraHtmlHeader( '<!--[if lt IE 8]><link rel="stylesheet" type="text/css" href="/equinox/rap-layout-fixes-ie.css"/><![endif]-->' );
-  $App->AddExtraHtmlHeader( '<link rel="shortcut icon" href="/rt/images/favicon.ico" />');
 
 //  $App->Promotion = TRUE; # set true to enable current eclipse.org site-wide promo
 
-  function createRapNavigation() {
+  function createRapNavigation( $Nav ) {
     $html = <<<EOHTML
 <div id="rap-small-header">
-  <a href="/equinox/"><div id="rap-small-logo"></div></a>
+  <a href="/equinox"><div id="rap-small-logo"></div></a>
 </div>
 <script type="text/javascript">
   // logo
@@ -51,9 +47,7 @@ ini_set('display_errors', 1); ini_set('error_reporting', E_ALL);
   logo.replaceWith( newLogo );
 </script>
 
-
-EOHTML;
-    
+EOHTML;    
     return $html;
   }
 
@@ -61,7 +55,6 @@ EOHTML;
   {
     $theme = "Nova";
     $pageHtml = createRapNavigation( $Nav ) . $html;
-    	$pageHtml .= file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/equinox/global-links.html");
     $App->generatePage( $theme, $Menu, $Nav, $author, $keywords, $title, $pageHtml );
   }
 
