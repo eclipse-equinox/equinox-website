@@ -61,7 +61,7 @@ EOHTML;
   {
     $theme = "Nova";
     $pageHtml = createRapNavigation( $Nav ) . $html;
-    	$pageHtml .= file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/equinox/global-links.html");
+    	$pageHtml .= file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/equinox/testweb/right-links.html");
     $App->generatePage( $theme, $Menu, $Nav, $author, $keywords, $title, $pageHtml );
   }
 
