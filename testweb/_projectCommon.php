@@ -10,6 +10,7 @@
 	$Nav->addNavSeparator("Components", "index.php");
 	$Nav->addCustomNav("Equinox", "http://eclipse.org/equinox", "_self", 1);
 	$Nav->addCustomNav("Incubator", "http://eclipse.org/eclipse/incubator", "_self", 1);
+	
 	$Nav->addNavSeparator("Related", "");
 	$Nav->addCustomNav("RT", "http://eclipse.org/rt", "_self", 1);
 	$Nav->addCustomNav("Eclipse", "http://eclipse.org/eclipse", "_self", 1);
@@ -26,8 +27,8 @@
 	$Menu->addMenuItem( "Documentation", "/equinox/documentation/", "_self" );
 	$Menu->addMenuItem( "Wiki", "http://wiki.eclipse.org/Equinox", "_self" );
 
-  $App->AddExtraHtmlHeader( '<link rel="stylesheet" type="text/css" href="/rap/rap-layout-fixes.css"/>' );
-  $App->AddExtraHtmlHeader( '<!--[if lt IE 8]><link rel="stylesheet" type="text/css" href="/rap/rap-layout-fixes-ie.css"/><![endif]-->' );
+  $App->AddExtraHtmlHeader( '<link rel="stylesheet" type="text/css" href="/equinox/rap-layout-fixes.css"/>' );
+  $App->AddExtraHtmlHeader( '<!--[if lt IE 8]><link rel="stylesheet" type="text/css" href="/equinox/rap-layout-fixes-ie.css"/><![endif]-->' );
   $App->AddExtraHtmlHeader( '<script type="text/javascript" src="http://code.jquery.com/jquery-1.4.2.min.js"></script>' );
 
 //  $App->Promotion = TRUE; # set true to enable current eclipse.org site-wide promo
@@ -35,7 +36,7 @@
   function createRapNavigation( $Nav ) {
     $html = <<<EOHTML
 <div id="rap-small-header">
-  <a href="/rap/"><div id="rap-small-logo"></div></a>
+  <a href="/equinox"><div id="rap-small-logo"></div></a>
 </div>
 <script type="text/javascript">
   // logo
@@ -45,9 +46,7 @@
   logo.replaceWith( newLogo );
 </script>
 
-
-EOHTML;
-    
+EOHTML;    
     return $html;
   }
 
