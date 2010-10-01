@@ -1,13 +1,5 @@
 @CHARSET "UTF-8";
 
-#searchBox {
-	width:210px;
-	font-size:12px;		
-	border:none !important;
-	position:relative;
-	top:3px;
-	right:0px;
-}
 #novaContent {
   position: relative;
 }
