@@ -32,9 +32,12 @@ ini_set('display_errors', 1); ini_set('error_reporting', E_ALL);
 	$Menu->addMenuItem( "FAQ", "/equinox/faq.php/", "_self" );
 	$Menu->addMenuItem( "Wiki", "http://wiki.eclipse.org/Equinox", "_self" );
 
-  $App->AddExtraHtmlHeader( '<link rel="stylesheet" type="text/css" href="/equinox/rap-layout-fixes.css"/>' );
-  $App->AddExtraHtmlHeader( '<!--[if lt IE 8]><link rel="stylesheet" type="text/css" href="/equinox/rap-layout-fixes-ie.css"/><![endif]-->' );
-  $App->AddExtraHtmlHeader( '<link rel="shortcut icon" href="/rt/images/favicon.ico" />');
+	$App->AddExtraHtmlHeader( '<link rel="stylesheet" type="text/css" href="/equinox/testweb/equinox.css"/>' );
+	$App->AddExtraHtmlHeader( '<link rel="stylesheet" type="text/css" href="/equinox/rap-layout-fixes.css"/>' );
+	$App->AddExtraHtmlHeader( '<!--[if lt IE 8]><link rel="stylesheet" type="text/css" href="/equinox/rap-layout-fixes-ie.css"/><![endif]-->' );
+	$App->AddExtraHtmlHeader( '<link rel="shortcut icon" href="/rt/images/favicon.ico" />');
+	$App->AddExtraHtmlHeader( '<link rel="stylesheet" type="text/css" href="/rt/rap-posts.css"/>' );
+	$App->AddExtraHtmlHeader( '<script type="text/javascript" src="/rt/jquery.zrssfeed.min.js"></script>' );
 
 //  $App->Promotion = TRUE; # set true to enable current eclipse.org site-wide promo
 

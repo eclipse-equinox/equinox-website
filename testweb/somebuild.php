@@ -5,6 +5,23 @@
 	$pageAuthor = "Equinox committers";
 	$html = <<<EOHTML
 	
+<script type="text/javascript">
+<!--
+function expandCollapse(id) {
+	expandCollapse(id, null);
+}
+
+function expandCollapse(id, value) {
+	var element = document.getElementById(id);
+	if (value == null) {
+		element.className = (element.className == 'collapsable') ? '' : 'collapsable';
+	} else {
+		element.className = value;
+	}
+}
+//-->
+</script>
+
 <div id="midcolumn">
 
 	<h3>$pageTitle</h3>
@@ -53,10 +70,12 @@
 	</div>
 
 	<div class="homeitem3col">
-		<h3><a name="Addon"> Add-on Bundles</a></h3>
+		<h3><a name="Addon" onclick="expandCollapse('addon.bundles');">Add-on Bundles</a></h3>
 		<P>The drops listed here are individual <a href="http://eclipse.org/equinox/bundles">bundles</a> or sets of bundles that provide 
 		a single standalone service or mechanism.  This includes implementations of many of the OSGi specified services as well as additional 
-		mechanisms (e.g., the Eclipse extension registry) of interest to OSGi programmers.</P>
+		mechanisms (e.g., the Eclipse extension registry) of interest to OSGi programmers.
+		<br/><a name="Addon" onclick="expandCollapse('addon.bundles');">Click here to expand/collapse</a> the list of add-on bundles.</P>
+		<div id="addon.bundles" class="collapsable">
 		<table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="99%" bordercolor="#999999" >
 			<tr><td width="5%"/> <td width="79%"/><td width="9%"/><td width="7%"/></tr>
 			<tr>
@@ -86,6 +105,7 @@
 				<td><a href="http://download.eclipse.org/equinox/drops/N20101001-0943/checksum/org.eclipse.equinox.ds_1.2.100.N20101001-0943.jar.md5"><img src="greendot.png" height=12 alt="md5"></a> <a href="http://download.eclipse.org/equinox/drops/N20101001-0943/checksum/org.eclipse.equinox.ds_1.2.100.N20101001-0943.jar.sha1"><img src="purpledot.png" height=12 alt="sha1"></a></td>
 			</tr>
 		</table>
+		</div>
 	</div>
 </div>
 

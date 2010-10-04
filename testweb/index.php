@@ -86,6 +86,8 @@ $html=<<<EOHTML
 			of Equinox.</p>
 	</div>
 </div>
+
+
 EOHTML;
 
 	generateRapPage( $App, $Menu, $Nav, $pageAuthor, $pageKeywords, $pageTitle, $html );
