@@ -47,17 +47,6 @@ $html=<<<EOHTML
 
 <div id="midcolumn">
 	<div class="homeitem">
-	    <h6>Equinox News <a href="http://pipes.yahoo.com/pipes/pipe.run?_id=29fa792a21689d660776bb62478167c9&_render=rss" class="rssIcon"><img src="/rt/images/feed.png" alt="feed"/></a></h6>
-	    <div id="rssFeed"></div>
-	    <script type="text/javascript">
-	      $( document ).ready( function () {
-	        $( '#rssFeed' ).rssfeed( 'http%3A%2F%2Fpipes.yahoo.com%2Fpipes%2Fpipe.run%3F_id%3D29fa792a21689d660776bb62478167c9%26_render%3Drss',
-	          { limit: 5, header : false, titletag : "h5", date : true, content : false } );
-	      } );
-	    </script>
-	</div>
-
-	<div class="homeitem">
 		<h3>Mission Statement</h3>
 		<p>From a code point of view, Equinox is an implementation of the <a href="http://osgi.org/osgi_technology/download_specs.asp?section=2#Release4">OSGi
 			R4 core framework specification</a>, a set of bundles that implement
