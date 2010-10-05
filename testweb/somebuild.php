@@ -327,7 +327,7 @@ function expandCollapse(id, value) {
 	</div>
 
 	<div class="homeitem3col">
-		<h3><a onclick="expandCollapse('provisioning.bundles');"><img  id="provisioning.bundles.button" src="/equinox/images/arrow.png"/></a>&nbsp;Provisioning Bundles</h3>
+		<h3><a onclick="expandCollapse('provisioning.bundles');"><img  id="provisioning.bundles.button" src="/equinox/images/arrow.png"/></a>&nbsp;p2 Provisioning Tools</h3>
 		<p>The following downloads are produced by the Provisioning team. For more about provisoning, 
 		see the <a href="http://wiki.eclipse.org/Category:Provisioning"> provisioning articles on the eclipse.org wiki</a>.</p>
 		<div id="provisioning.bundles" class="collapsable">
@@ -441,6 +441,41 @@ function expandCollapse(id, value) {
 				</tr>
 			 </table>
 		</div>
+	</div>
+
+	<div class="homeitem3col">
+		<h3>Legend</h3>
+		<table border="0" cellspacing="0" cellpadding="0" width="100%">
+			<tr><td width="5%"/></tr>
+			<tr>
+				<td align="center"><img src="OK.gif"/></td>
+				<td>Build completed OK</td>
+			</tr>
+			<tr>
+				<td align="center"><img src="FAIL.gif"/></td>
+				<td>Build failed to complete</td>
+			</tr>
+			<tr>
+				<td align="center"><img src="pending.gif"/></td>
+				<td>Build is still pending</td>
+			</tr>
+			<tr>
+				<td align="center"><img src="repo.gif"/></td>
+				<td>Build artifact is also a p2 repository</td>
+			</tr>
+			<tr>
+				<td align="center"><img src="md5.png"/></td>
+				<td>Click to get the MD5 hash for the corresponding build artifact</td>
+			</tr>
+			<tr>
+				<td align="center"><img src="sha1.png"/></td>
+				<td>Click to get the SHA1 hash for the corresponding build artifact</td>
+			</tr>
+			<tr>
+				<td align="center"><img src="egg.gif"/></td>
+				<td>Build artifact is from the Equinox incubator and may not be fully complete or tested.</td>
+			</tr>
+		</table>
 	</div>
 </div>
 
