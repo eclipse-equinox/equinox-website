@@ -55,9 +55,8 @@ function expandCollapse(id, value) {
 	
 	<div class="homeitem3col">
 		<h3>Framework Only</h3>
-		<p>The Equinox OSGi R4 <a href="http://eclipse.org/equinox/framework">framework</a> implementation includes all optional parts 
-	of the R4 spec as well as several additional mechanisms (e.g., x-internal, platform filters, ...) that are generally useful in a standalone 
-	package.  See the <a href="http://eclipse.org/equinox/quickstart.html">Quick Start Guide</a> for details on how to use this JAR.</p>
+		<p>The Equinox OSGi R4 <a href="http://eclipse.org/equinox/framework">framework</a> implementation in a standalone 
+		package.  See the <a href="http://eclipse.org/equinox/quickstart.html">Quick Start Guide</a> for details on how to use this JAR.</p>
 		<table border="0" cellspacing="2" cellpadding="0" width="99%">
 			<tr><td width="5%"/> <td width="79%"/><td width="9%"/><td width="7%"/></tr>
 			<tr>
@@ -71,9 +70,9 @@ function expandCollapse(id, value) {
 
 	<div class="homeitem3col">
 		<h3>Add-on Bundles</h3>
-		<p>The drops listed here are individual <a href="http://eclipse.org/equinox/bundles">bundles</a> or sets of bundles that provide 
-		a single standalone service or mechanism.  This includes implementations of many of the OSGi specified services as well as additional 
-		mechanisms (e.g., the Eclipse extension registry) of interest to OSGi programmers.
+		<p>Individual <a href="http://eclipse.org/equinox/bundles">bundles</a> that provide 
+		a standalone OSGi specified services or add-on mechanisms (e.g., the Eclipse extension registry) of 
+		interest to OSGi programmers.
 		<br/><a onclick="expandCollapse('addon.bundles');">Click here to expand/collapse</a> the list of add-on bundles.</p>
 		<div id="addon.bundles" class="collapsable">
 			<table border="0" cellspacing="0" cellpadding="0" width="99%">
@@ -245,7 +244,7 @@ function expandCollapse(id, value) {
 		
 	<div class="homeitem3col">
 		<h3>Other Required  Bundles</h3>
-		<p>As a convenience we also supply the following bundles that are required by some of the Equinox bundles.
+		<p>A convenient set of bundles that are required by some of the Equinox bundles.
 		<br/><a onclick="expandCollapse('other.bundles');">Click here to expand/collapse</a> the list of bundles.</p>
 		<div id="other.bundles" class="collapsable">
 			<table border="0" cellspacing="0" cellpadding="0" width="99%">
@@ -296,9 +295,8 @@ function expandCollapse(id, value) {
 
 	<div class="homeitem3col">
 		<h3>Incubator</h3>
-		<p>The Equinox Incubator is a place for exploring Eclipse and OSGi running in
-		different scenarios and environments (e.g., secure, server-side, ...). The downloads supplied below 
-		are made available as a convenience and, while some are quite complete, all should be considered experimental.
+		<p>Equinox Incubator downloads supplied as a convenience. While some are quite complete, 
+		all should be considered experimental.
 		<br/><a onclick="expandCollapse('incubator.bundles');">Click here to expand/collapse</a> the list of bundles.</p>
 		<div id="incubator.bundles" class="collapsable">
 			<table border="0" cellspacing="0" cellpadding="0" width="99%">
@@ -371,10 +369,8 @@ function expandCollapse(id, value) {
 
 	<div class="homeitem3col">
 		<h3>Native Launchers</h3>
-		<p>While it is possible to use the Equinox framework as a standalone JAR, it is often convenient to use the 
-		executable native launcher (e.g., like eclipse.exe).  The platform-specific archives here include precompiled 
-		executables as well as some support files such as the equinox launcher and a configuration template. See the list of
-		<a href="http://www.eclipse.org/projects/project-plan.php?projectid=eclipse#target_environments">support OS configurations</a>.
+		<p>Platform-specific native launchers (e.g., eclipse.exe) for the Equinox framework.
+		See the list of <a href="http://www.eclipse.org/projects/project-plan.php?projectid=eclipse#target_environments">support OS configurations</a>.
 		<br/><a onclick="expandCollapse('launcher.bundles');">Click here to expand/collapse</a> the list of downloads.</p>
 		<div id="launcher.bundles" class="collapsable">
 			<table border="0" cellspacing="0" cellpadding="0" width="99%">
