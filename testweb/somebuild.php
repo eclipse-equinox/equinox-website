@@ -18,6 +18,11 @@ function expandCollapse(id, value) {
 	} else {
 		element.className = value;
 	}
+	var button = document.getElementById(id + '.button');
+	if (element.className == 'collapsable')	
+		button.src="url(/equinox/images/arrow.png)";
+	else
+		button.src="url(/equinox/images/downarrow.png)";
 }
 //-->
 </script>
@@ -30,10 +35,10 @@ function expandCollapse(id, value) {
 	Eclipse Foundation Software User Agreement</a>. Click <a href="verifyMD5.html">here</a> for instructions 
 	on verifying download integrity.</p>
 
-	<p><a href="apitools/index.html">API Version Verification Report</a> Verifies the versions
-	of the plugins against Eclipse 3.6.  See org.eclipse.releng/apiexclude/exclude_list_external.txt for exclusions.</p>
+	<p><a href="apitools/index.html">API Version Verification Report</a> -- Verification of this build's versions
+	against those of Eclipse 3.6.  See <a href="org.eclipse.releng/apiexclude/exclude_list_external.txt">here</a> for exclusions.</p>
 
-	<p><a href="apitools/apitoolsdeprecations/apideprecation.html">API Deprecation Report</a> 
+	<p><a href="apitools/apitoolsdeprecations/apideprecation.html">API Deprecation Report</a> --
 	Report of API deprecated since 3.6.</p>
 
 	<!--p><a href="apitools/report.html"><b>API Tools Post-API Freeze Report</b></a>  This report describes API changes 
@@ -69,11 +74,9 @@ function expandCollapse(id, value) {
 	</div>
 
 	<div class="homeitem3col">
-		<h3>Add-on Bundles</h3>
-		<p>Individual <a href="http://eclipse.org/equinox/bundles">bundles</a> that provide 
-		a standalone OSGi specified services or add-on mechanisms (e.g., the Eclipse extension registry) of 
-		interest to OSGi programmers.
-		<br/><a onclick="expandCollapse('addon.bundles');">Click here to expand/collapse</a> the list of add-on bundles.</p>
+		<h3><a onclick="expandCollapse('addon.bundles');"><img id="addon.bundles.button" src="/equinox/images/arrow.png"/></a>&nbsp;Add-on Bundles</h3>
+		<p>Individual bundles that provide standalone OSGi specified services or add-on mechanisms (e.g., the Eclipse extension registry) of 
+		interest to OSGi programmers.</p>
 		<div id="addon.bundles" class="collapsable">
 			<table border="0" cellspacing="0" cellpadding="0" width="99%">
 				<tr><td width="5%"/> <td width="79%"/><td width="9%"/><td width="7%"/></tr>
@@ -243,9 +246,8 @@ function expandCollapse(id, value) {
 	</div>
 		
 	<div class="homeitem3col">
-		<h3>Other Required  Bundles</h3>
-		<p>A convenient set of bundles that are required by some of the Equinox bundles.
-		<br/><a onclick="expandCollapse('other.bundles');">Click here to expand/collapse</a> the list of bundles.</p>
+		<h3><a onclick="expandCollapse('other.bundles');"><img id="other.bundles.button" src="/equinox/images/arrow.png"/></a>&nbsp;Other Required  Bundles</h3>
+		<p>A convenient set of bundles that are required by some of the Equinox bundles.</p>
 		<div id="other.bundles" class="collapsable">
 			<table border="0" cellspacing="0" cellpadding="0" width="99%">
 				<tr><td width="5%"/> <td width="79%"/><td width="9%"/><td width="7%"/></tr>
@@ -294,10 +296,9 @@ function expandCollapse(id, value) {
 	</div>
 
 	<div class="homeitem3col">
-		<h3>Incubator</h3>
+		<h3><a onclick="expandCollapse('incubator.bundles');"><img id="incubator.bundles.button" src="/equinox/images/arrow.png"/></a>&nbsp;Incubator</h3>
 		<p>Equinox Incubator downloads supplied as a convenience. While some are quite complete, 
-		all should be considered experimental.
-		<br/><a onclick="expandCollapse('incubator.bundles');">Click here to expand/collapse</a> the list of bundles.</p>
+		all should be considered experimental.</p>
 		<div id="incubator.bundles" class="collapsable">
 			<table border="0" cellspacing="0" cellpadding="0" width="99%">
 				<tr><td width="5%"/> <td width="79%"/><td width="9%"/><td width="7%"/></tr>
@@ -326,10 +327,9 @@ function expandCollapse(id, value) {
 	</div>
 
 	<div class="homeitem3col">
-		<h3>Provisioning Bundles</h3>
+		<h3><a onclick="expandCollapse('provisioning.bundles');"><img  id="provisioning.bundles.button" src="/equinox/images/arrow.png"/></a>&nbsp;Provisioning Bundles</h3>
 		<p>The following downloads are produced by the Provisioning team. For more about provisoning, 
-		see the <a href="http://wiki.eclipse.org/Category:Provisioning"> provisioning articles on the eclipse.org wiki</a>.
-		<br/><a onclick="expandCollapse('provisioning.bundles');">Click here to expand/collapse</a> the list of downloads.</p>
+		see the <a href="http://wiki.eclipse.org/Category:Provisioning"> provisioning articles on the eclipse.org wiki</a>.</p>
 		<div id="provisioning.bundles" class="collapsable">
 			<table border="0" cellspacing="0" cellpadding="0" width="99%">
 				<tr><td width="5%"/> <td width="79%"/><td width="9%"/><td width="7%"/></tr>
@@ -368,7 +368,7 @@ function expandCollapse(id, value) {
 	</div>
 
 	<div class="homeitem3col">
-		<h3>Native Launchers <a onclick="expandCollapse('launcher.bundles');"><img src="expand.png"/></a></h3>
+		<h3><a onclick="expandCollapse('launcher.bundles');"><img  id="launcher.bundles.button" src="/equinox/images/arrow.png"/></a>&nbsp;Native Launchers</h3>
 		<p>Platform-specific native launchers (e.g., eclipse.exe) for the Equinox framework.
 		See the list of <a href="http://www.eclipse.org/projects/project-plan.php?projectid=eclipse#target_environments">support OS configurations</a>.</p>
 		<div id="launcher.bundles" class="collapsable">
