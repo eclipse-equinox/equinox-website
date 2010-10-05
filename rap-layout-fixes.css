@@ -16,13 +16,6 @@ div#logo {
   top: 10px;
 }
 
-/* Increase font size */
-div, span, p, blockquote, pre, code, em, sub, sup, dl, dt, dd, ol, ul, li, fieldset, form, legend, table, caption, tbody, tfoot, thead, tr, th, td
-{
-  font-size: 13px;
-  line-height: 16px;
-}
-
 /* More space above sub-headers */
 
 h3 {
