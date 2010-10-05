@@ -7,7 +7,7 @@
 ini_set('display_errors', 1); ini_set('error_reporting', E_ALL);
 
 	$Nav->setLinkList( array() );
-	$Nav->addNavSeparator("Components", "index.php");
+	$Nav->addNavSeparator("Work Areas", "index.php");
 	$Nav->addCustomNav("Bundles", "/equinox/bundles", "_self", 1);
 	$Nav->addCustomNav("Framework", "/equinox/framework", "_self", 1);
 	$Nav->addCustomNav("Incubator", "/equinox/incubator", "_self", 1);
