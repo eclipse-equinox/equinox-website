@@ -368,7 +368,7 @@ function expandCollapse(id, value) {
 	</div>
 
 	<div class="homeitem3col">
-		<h3>Native Launchers</h3>
+		<h3>Native Launchers <a onclick="expandCollapse('launcher.bundles');"><img src="expand.png"/></a></h3>
 		<p>Platform-specific native launchers (e.g., eclipse.exe) for the Equinox framework.
 		See the list of <a href="http://www.eclipse.org/projects/project-plan.php?projectid=eclipse#target_environments">support OS configurations</a>.
 		<br/><a onclick="expandCollapse('launcher.bundles');">Click here to expand/collapse</a> the list of downloads.</p>
