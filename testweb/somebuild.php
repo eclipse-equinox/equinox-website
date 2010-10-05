@@ -65,7 +65,7 @@ function expandCollapse(id, value) {
 		<table border="0" cellspacing="0" cellpadding="0" width="100%">
 			<tr><td width="5%"/> <td width="78%"/><td width="9%"/><td width="8%"/></tr>
 			<tr>
-				<td align="center"><img src="pending.gif" height="16" alt="pending"/></td>
+				<td align="center"><img src="pending.gif" alt="pending"/></td>
 				<td><a href="download.php?dropFile=org.eclipse.osgi_3.7.0.N20101001-0943.jar">org.eclipse.osgi_3.7.0.N20101001-0943.jar</a></td>
 				<td>1.2M</td>
 				<td><a href="http://download.eclipse.org/equinox/drops/N20101001-0943/checksum/org.eclipse.osgi_3.7.0.N20101001-0943.jar.md5"><img src="md5.png" alt="md5"/></a><a href="http://download.eclipse.org/equinox/drops/N20101001-0943/checksum/org.eclipse.osgi_3.7.0.N20101001-0943.jar.sha1"><img src="sha1.png" alt="sha1"/></a></td>
@@ -303,22 +303,22 @@ function expandCollapse(id, value) {
 			<table border="0" cellspacing="0" cellpadding="0" width="100%">
 				<tr><td width="5%"/> <td width="78%"/><td width="9%"/><td width="8%"/></tr>
 				<tr><td align="center"><img src="OK.gif"/></td>
-					<td><img src="egg.gif"/><a href="download.php?dropFile=org.eclipse.equinox.initializer_1.0.0.N20101003-2000.jar">org.eclipse.equinox.initializer_1.0.0.N20101003-2000.jar</a></td>
+					<td><img src="egg.gif"/>&nbsp;<a href="download.php?dropFile=org.eclipse.equinox.initializer_1.0.0.N20101003-2000.jar">org.eclipse.equinox.initializer_1.0.0.N20101003-2000.jar</a></td>
 					<td>0.01M</td>
 					<td><a href="http://download.eclipse.org/equinox/drops/N20101001-0943/checksum/org.eclipse.equinox.ds_1.2.100.N20101001-0943.jar.md5"><img src="md5.png" alt="md5"/></a><a href="http://download.eclipse.org/equinox/drops/N20101001-0943/checksum/org.eclipse.equinox.ds_1.2.100.N20101001-0943.jar.sha1"><img src="sha1.png" alt="sha1"/></a></td>
 				</tr>
 				<tr><td align="center"><img src="OK.gif"/></td>
-					<td><img src="egg.gif"/><img src="repo.gif"/><a href="download.php?dropFile=equinox-jmx-common-N20101003-2000.zip">equinox-jmx-common-N20101003-2000.zip</a></td>
+					<td><img src="egg.gif"/><img src="repo.gif"/>&nbsp;<a href="download.php?dropFile=equinox-jmx-common-N20101003-2000.zip">equinox-jmx-common-N20101003-2000.zip</a></td>
 					<td>0.97M</td>
 					<td><a href="http://download.eclipse.org/equinox/drops/N20101001-0943/checksum/org.eclipse.equinox.ds_1.2.100.N20101001-0943.jar.md5"><img src="md5.png" alt="md5"/></a><a href="http://download.eclipse.org/equinox/drops/N20101001-0943/checksum/org.eclipse.equinox.ds_1.2.100.N20101001-0943.jar.sha1"><img src="sha1.png" alt="sha1"/></a></td>
 				</tr>
 				<tr><td align="center"><img src="OK.gif"/></td>
-					<td><img src="egg.gif"/><img src="repo.gif"/><a href="download.php?dropFile=equinox-jmx-client-N20101003-2000.zip">equinox-jmx-client-N20101003-2000.zip</a></td>
+					<td><img src="egg.gif"/><img src="repo.gif"/>&nbsp;<a href="download.php?dropFile=equinox-jmx-client-N20101003-2000.zip">equinox-jmx-client-N20101003-2000.zip</a></td>
 					<td>0.07M</td>
 					<td><a href="http://download.eclipse.org/equinox/drops/N20101001-0943/checksum/org.eclipse.equinox.ds_1.2.100.N20101001-0943.jar.md5"><img src="md5.png" alt="md5"/></a><a href="http://download.eclipse.org/equinox/drops/N20101001-0943/checksum/org.eclipse.equinox.ds_1.2.100.N20101001-0943.jar.sha1"><img src="sha1.png" alt="sha1"/></a></td>
 				</tr>
 				<tr><td align="center"><img src="OK.gif"/></td>
-					<td><img src="egg.gif"/><img src="repo.gif"/><a href="download.php?dropFile=equinox-jmx-server-N20101003-2000.zip">equinox-jmx-server-N20101003-2000.zip</a></td>
+					<td><img src="egg.gif"/><img src="repo.gif"/>&nbsp;<a href="download.php?dropFile=equinox-jmx-server-N20101003-2000.zip">equinox-jmx-server-N20101003-2000.zip</a></td>
 					<td>0.87M</td>
 					<td><a href="http://download.eclipse.org/equinox/drops/N20101001-0943/checksum/org.eclipse.equinox.ds_1.2.100.N20101001-0943.jar.md5"><img src="md5.png" alt="md5"/></a><a href="http://download.eclipse.org/equinox/drops/N20101001-0943/checksum/org.eclipse.equinox.ds_1.2.100.N20101001-0943.jar.sha1"><img src="sha1.png" alt="sha1"/></a></td>
 				</tr>
