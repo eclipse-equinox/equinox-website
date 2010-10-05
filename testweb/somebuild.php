@@ -28,7 +28,7 @@ function expandCollapse(id, value) {
 	<p><b>October 1, 2010</b></p>
 	<p>These downloads are provided under the <a href="http://www.eclipse.org/legal/epl/notice.html">
 	Eclipse Foundation Software User Agreement</a>. Click <a href="verifyMD5.html">here</a> for instructions 
-	on how to verify the integrity of your downloads.</p>
+	on verifying download integrity.</p>
 
 	<p><a href="apitools/index.html">API Version Verification Report</a> Verifies the versions
 	of the plugins against Eclipse 3.6.  See org.eclipse.releng/apiexclude/exclude_list_external.txt for exclusions.</p>
@@ -240,7 +240,7 @@ function expandCollapse(id, value) {
 					<td><a href="http://download.eclipse.org/equinox/drops/N20101001-0943/checksum/org.eclipse.equinox.ds_1.2.100.N20101001-0943.jar.md5"><img src="greendot.png" height="12" alt="md5"/></a> <a href="http://download.eclipse.org/equinox/drops/N20101001-0943/checksum/org.eclipse.equinox.ds_1.2.100.N20101001-0943.jar.sha1"><img src="purpledot.png" height="12" alt="sha1"/></a></td>
 				</tr>
 			</table>
-		<div>
+		</div>
 	</div>
 		
 	<div class="homeitem3col">
@@ -291,11 +291,11 @@ function expandCollapse(id, value) {
 					<td><a href="http://download.eclipse.org/equinox/drops/N20101001-0943/checksum/org.eclipse.equinox.ds_1.2.100.N20101001-0943.jar.md5"><img src="greendot.png" height="12" alt="md5"/></a> <a href="http://download.eclipse.org/equinox/drops/N20101001-0943/checksum/org.eclipse.equinox.ds_1.2.100.N20101001-0943.jar.sha1"><img src="purpledot.png" height="12" alt="sha1"/></a></td>
 				</tr>
 			</table>
-		<div>
+		</div>
 	</div>
 
 	<div class="homeitem3col">
-		<h3><a name="incubator" onclick="expandCollapse('incubator.bundles');">Incubator</a></h3>
+		<h3>Incubator</h3>
 		<p>The Equinox Incubator is a place for exploring Eclipse and OSGi running in
 		different scenarios and environments (e.g., secure, server-side, ...). The downloads supplied below 
 		are made available as a convenience and, while some are quite complete, all should be considered experimental.
@@ -314,7 +314,7 @@ function expandCollapse(id, value) {
 					<td><a href="http://download.eclipse.org/equinox/drops/N20101001-0943/checksum/org.eclipse.equinox.ds_1.2.100.N20101001-0943.jar.md5"><img src="greendot.png" height="12" alt="md5"/></a> <a href="http://download.eclipse.org/equinox/drops/N20101001-0943/checksum/org.eclipse.equinox.ds_1.2.100.N20101001-0943.jar.sha1"><img src="purpledot.png" height="12" alt="sha1"/></a></td>
 				</tr>
 				<tr><td align="center"><img src="OK.gif" height="15"/></td>
-					<td><img src="egg.gif"/><img src="repo.gif"/><a href="download.php?dropFile=equinox-jmx-client-N20101003-2000.zip">equinox-jmx-client-N20101003-2000.zip</a>
+					<td><img src="egg.gif"/><img src="repo.gif"/><a href="download.php?dropFile=equinox-jmx-client-N20101003-2000.zip">equinox-jmx-client-N20101003-2000.zip</a></td>
 					<td>0.07M</td>
 					<td><a href="http://download.eclipse.org/equinox/drops/N20101001-0943/checksum/org.eclipse.equinox.ds_1.2.100.N20101001-0943.jar.md5"><img src="greendot.png" height="12" alt="md5"/></a> <a href="http://download.eclipse.org/equinox/drops/N20101001-0943/checksum/org.eclipse.equinox.ds_1.2.100.N20101001-0943.jar.sha1"><img src="purpledot.png" height="12" alt="sha1"/></a></td>
 				</tr>
@@ -328,10 +328,10 @@ function expandCollapse(id, value) {
 	</div>
 
 	<div class="homeitem3col">
-		<h3><a name="provisioning" onclick="expandCollapse('provisioning.bundles');">Provisioning Bundles</a></h3>
-		<P>The following downloads are produced by the Provisioning team. For more about provisoning, 
+		<h3>Provisioning Bundles</h3>
+		<p>The following downloads are produced by the Provisioning team. For more about provisoning, 
 		see the <a href="http://wiki.eclipse.org/Category:Provisioning"> provisioning articles on the eclipse.org wiki</a>.
-		<br/><a onclick="expandCollapse('provisioning.bundles');">Click here to expand/collapse</a> the list of downloads.</P>
+		<br/><a onclick="expandCollapse('provisioning.bundles');">Click here to expand/collapse</a> the list of downloads.</p>
 		<div id="provisioning.bundles" class="collapsable">
 			<table border="0" cellspacing="0" cellpadding="0" width="99%">
 				<tr><td width="5%"/> <td width="79%"/><td width="9%"/><td width="7%"/></tr>
@@ -351,7 +351,7 @@ function expandCollapse(id, value) {
 					<td><a href="http://download.eclipse.org/equinox/drops/N20101001-0943/checksum/org.eclipse.equinox.ds_1.2.100.N20101001-0943.jar.md5"><img src="greendot.png" height="12" alt="md5"/></a> <a href="http://download.eclipse.org/equinox/drops/N20101001-0943/checksum/org.eclipse.equinox.ds_1.2.100.N20101001-0943.jar.sha1"><img src="purpledot.png" height="12" alt="sha1"/></a></td>
 				</tr>
 				<tr><td align="center"><img src = "OK.gif" height="15"/></td>
-					<td><td><a href="download.php?dropFile=equinox.p2.installer-N20101003-2000-win32.win32.x86.zip">equinox.p2.installer-N20101003-2000-win32.win32.x86.zip</a></td>
+					<td><a href="download.php?dropFile=equinox.p2.installer-N20101003-2000-win32.win32.x86.zip">equinox.p2.installer-N20101003-2000-win32.win32.x86.zip</a></td>
 					<td>6.7M</td>
 					<td><a href="http://download.eclipse.org/equinox/drops/N20101001-0943/checksum/org.eclipse.equinox.ds_1.2.100.N20101001-0943.jar.md5"><img src="greendot.png" height="12" alt="md5"/></a> <a href="http://download.eclipse.org/equinox/drops/N20101001-0943/checksum/org.eclipse.equinox.ds_1.2.100.N20101001-0943.jar.sha1"><img src="purpledot.png" height="12" alt="sha1"/></a></td>
 				</tr>
@@ -370,12 +370,12 @@ function expandCollapse(id, value) {
 	</div>
 
 	<div class="homeitem3col">
-		<h3><a name="launchers" onclick="expandCollapse('launcher.bundles');">Native Launchers</a></h3>
-		<P>While it is possible to use the Equinox framework as a standalone JAR, it is often convenient to use the 
+		<h3>Native Launchers</h3>
+		<p>While it is possible to use the Equinox framework as a standalone JAR, it is often convenient to use the 
 		executable native launcher (e.g., like eclipse.exe).  The platform-specific archives here include precompiled 
 		executables as well as some support files such as the equinox launcher and a configuration template. See the list of
 		<a href="http://www.eclipse.org/projects/project-plan.php?projectid=eclipse#target_environments">support OS configurations</a>.
-		<br/><a onclick="expandCollapse('launcher.bundles');">Click here to expand/collapse</a> the list of downloads.</P>
+		<br/><a onclick="expandCollapse('launcher.bundles');">Click here to expand/collapse</a> the list of downloads.</p>
 		<div id="launcher.bundles" class="collapsable">
 			<table border="0" cellspacing="0" cellpadding="0" width="99%">
 				<tr><td width="5%"/> <td width="79%"/><td width="9%"/><td width="7%"/></tr>
