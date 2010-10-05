@@ -47,7 +47,7 @@ function expandCollapse(id, value) {
 	<div class="homeitem3col">
 		<h3>All of Equinox</h3>
 		<p> A complete set of all bundles and launchers produced by the Equinox project. This zip is also a p2 repo. </p>
-		<table border="0" cellspacing="2" cellpadding="0" width="100%">
+		<table border="0" cellspacing="0" cellpadding="0" width="100%">
 			<tr><td width="5%"/> <td width="78%"/><td width="9%"/><td width="8%"/></tr>
 			<tr>
 				<td align="center"><img src="OK.gif" height="15" alt="OK"/></td>
@@ -62,11 +62,11 @@ function expandCollapse(id, value) {
 		<h3>Framework Only</h3>
 		<p>The Equinox OSGi R4 <a href="http://eclipse.org/equinox/framework">framework</a> implementation in a standalone 
 		package.  See the <a href="http://eclipse.org/equinox/quickstart.html">Quick Start Guide</a> for details on how to use this JAR.</p>
-		<table border="0" cellspacing="2" cellpadding="0" width="100%">
+		<table border="0" cellspacing="0" cellpadding="0" width="100%">
 			<tr><td width="5%"/> <td width="78%"/><td width="9%"/><td width="8%"/></tr>
 			<tr>
-				<td align="center"><img src="OK.gif" height="15" alt="OK"/></td>
-				<td>&nbsp;<a href="download.php?dropFile=org.eclipse.osgi_3.7.0.N20101001-0943.jar">org.eclipse.osgi_3.7.0.N20101001-0943.jar</a></td>
+				<td align="center"><img src="pending.gif" height="16" alt="pending"/></td>
+				<td><a href="download.php?dropFile=org.eclipse.osgi_3.7.0.N20101001-0943.jar">org.eclipse.osgi_3.7.0.N20101001-0943.jar</a></td>
 				<td>1.2M</td>
 				<td><a href="http://download.eclipse.org/equinox/drops/N20101001-0943/checksum/org.eclipse.osgi_3.7.0.N20101001-0943.jar.md5"><img src="md5.png" alt="md5"/></a><a href="http://download.eclipse.org/equinox/drops/N20101001-0943/checksum/org.eclipse.osgi_3.7.0.N20101001-0943.jar.sha1"><img src="sha1.png" alt="sha1"/></a></td>
 			</tr>
