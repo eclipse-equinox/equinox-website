@@ -20,9 +20,9 @@ function expandCollapse(id, value) {
 	}
 	var button = document.getElementById(id + '.button');
 	if (element.className == 'collapsable')	
-		button.src="url(/equinox/images/arrow.png)";
+		button.src="/equinox/images/arrow.png";
 	else
-		button.src="url(/equinox/images/downarrow.png)";
+		button.src="/equinox/images/downarrow.png";
 }
 //-->
 </script>
@@ -84,7 +84,7 @@ function expandCollapse(id, value) {
 					<td align="center"><img src="OK.gif" height="15" alt="OK"/></td>
 					<td><a href="download.php?dropFile=org.eclipse.equinox.app_1.3.100.N20101001-0943.jar">org.eclipse.equinox.app_1.3.100.N20101001-0943.jar</a></td>
 					<td>0.08M</td>
-					<td><a href="http://download.eclipse.org/equinox/drops/N20101001-0943/checksum/org.eclipse.equinox.app_1.3.100.N20101001-0943.jar.md5"><img src="greendot.png" height="12" alt="md5"/></a> <a href="http://download.eclipse.org/equinox/drops/N20101001-0943/checksum/org.eclipse.equinox.app_1.3.100.N20101001-0943.jar.sha1"><img src="purpledot.png" height="12" alt="sha1"/></a></td>
+					<td><a href="http://download.eclipse.org/equinox/drops/N20101001-0943/checksum/org.eclipse.equinox.app_1.3.100.N20101001-0943.jar.md5"><img src="greendot.png" height="12" alt="md5"/> </a><a href="http://download.eclipse.org/equinox/drops/N20101001-0943/checksum/org.eclipse.equinox.app_1.3.100.N20101001-0943.jar.sha1"><img src="purpledot.png" height="12" alt="sha1"/></a></td>
 				</tr>
 				<tr><td align="center"><img src="OK.gif" height="15" alt="OK"/></td>
 					<td><a href="download.php?dropFile=org.eclipse.equinox.cm_1.0.200.N20101001-0943.jar">org.eclipse.equinox.cm_1.0.200.N20101001-0943.jar</a></td>

@@ -9,23 +9,23 @@
 	<h2>$pageTitle</h2>
 	<table border=0 cellspacing=5 cellpadding=2 width="100%" >
 	  <tr>
-	    <td align=RIGHT valign=TOP><img src="/equinox/images/Adarrow.gif" width="16" height="16" border="0"></td>
+	    <td align=RIGHT valign=TOP><img src="/equinox/images/arrow.png" border="0"></td>
 	    <td><a href="http://wiki.eclipse.org/Equinox" target="_top"><b>Wiki</b></a><br>
 	    The Equinox project Wiki.</td>
 	  </tr>
 		<tr>
-	      <td align=RIGHT valign=TOP><img src="/equinox/images/Adarrow.gif" width="16" height="16" border="0"></td>
+	      <td align=RIGHT valign=TOP><img src="/equinox/images/arrow.png" border="0"></td>
 	      <td><a href="news://news.eclipse.org/eclipse.technology.equinox" target="_top"><b>Newsgroup</b></a><br>
 	    Talk to the people using Equinox</td>
 	  </tr>
 		<tr>
-	      <td width="2%" align=RIGHT valign=TOP><img src="/equinox/images/Adarrow.gif" width="16" height="16" border="0"></td>
+	      <td width="2%" align=RIGHT valign=TOP><img src="/equinox/images/arrow.png" border="0"></td>
 	      <td width="98%"><a href="http://dev.eclipse.org/mailman/listinfo/equinox-dev" target="_top"><b>Mailing
 	            list </b></a><br>
 	    Talk to the people working on Equinox</td>
 	  </tr>
 		<tr>
-	      <td align=RIGHT valign=TOP><img src="/equinox/images/Adarrow.gif" width="16" height="16" border="0"></td>
+	      <td align=RIGHT valign=TOP><img src="/equinox/images/arrow.png" border="0"></td>
 	      <td><a href="https://bugs.eclipse.org/bugs/buglist.cgi?query_format=advanced&short_desc_type=allwordssubstr&short_desc=&classification=RT&product=Equinox&long_desc_type=allwordssubstr&long_desc=&bug_file_loc_type=allwordssubstr&bug_file_loc=&status_whiteboard_type=allwordssubstr&status_whiteboard=&keywords_type=allwords&keywords=&bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED&emailtype1=substring&email1=&emailtype2=substring&email2=&bugidtype=include&bug_id=&votes=&chfieldfrom=&chfieldto=Now&chfieldvalue=&cmdtype=doit&order=Reuse+same+sort+as+last+time&field0-0-0=noop&type0-0-0=noop&value0-0-0=" target="_top"><b>Bugs/Issues</b></a><br>
 	    Discover the current bugs and issues in Equinox. Note that a large amount of the activity goes on in Bugzilla. 
 	    You can <a href="https://bugs.eclipse.org/bugs/buglist.cgi?query_format=advanced&short_desc_type=allwordssubstr&short_desc=&classification=RT&product=Equinox&long_desc_type=allwordssubstr&long_desc=&bug_file_loc_type=allwordssubstr&bug_file_loc=&status_whiteboard_type=allwordssubstr&status_whiteboard=&keywords_type=allwords&keywords=&bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED&emailtype1=substring&email1=&emailtype2=substring&email2=&bugidtype=include&bug_id=&votes=&chfieldfrom=&chfieldto=Now&chfieldvalue=&cmdtype=doit&order=Reuse+same+sort+as+last+time&field0-0-0=noop&type0-0-0=noop&value0-0-0=" target="_top">browse the bugs</a> 
@@ -46,13 +46,12 @@
 	      </td>
 	  </tr>
 		<tr>
-	      <td align=RIGHT valign=TOP><img src="/equinox/images/Adarrow.gif" width="16" height="16" border="0"></td>
-	      <td>
-	        <p><a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox/?root=RT_Project" target="_top"><b>CVS</b></a><br>
+	      <td align=RIGHT valign=TOP><img src="/equinox/images/arrow.png" border="0"></td>
+	      <td><a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox/?root=RT_Project" target="_top"><b>CVS</b></a><br>
 	      The Equinox code is hosted in the RT project repository and
 	        is available via <a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox/?root=RT_Project">web
 	        access</a> or direct CVS access. For direct access, use anonymous login
-	        to the CVS repo</p>
+	        to the CVS repo
 	        <blockquote>
 	          <p>:pserver:anonymous@dev.eclipse.org:/cvsroot/rt</p>
 	        </blockquote>
@@ -62,12 +61,12 @@
 	      </td>
 	  </tr>
 		<tr>
-	      <td align=RIGHT valign=TOP><img src="/equinox/images/Adarrow.gif" width="16" height="16" border="0"></td>
-	      <td>        <p><a href="http://eclipse.org/equinox" target="_top"><b>Website</b></a><br>
+	      <td align=RIGHT valign=TOP><img src="/equinox/images/arrow.png" border="0"></td>
+	      <td> <a href="http://eclipse.org/equinox" target="_top"><b>Website</b></a><br>
 	      The Equinox  website itself is hosted in a CVS repository and mirrored
 	          on a conventional HTTP server every minute or so. This allows use of
 	          PHP, Flash, ... and enables versioning and diffing using Eclipse. The
-	          site is open for editing by all Equinox committers using:</p>
+	          site is open for editing by all Equinox committers using:
 	        <blockquote>
 	          <p>:extssh:&lt;you here&gt;@dev.eclipse.org:/cvsroot/org.eclipse</p>
 	        </blockquote>
