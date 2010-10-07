@@ -14,7 +14,7 @@ $html=<<<EOHTML
     <h3>Primary Links</h3>
     <ul>
       <li>
-        <a id="rap-button-download" href="/equinox/testweb/download.php">
+        <a id="rap-button-download" href="http://download.eclipse.org/equinox">
           <div class="rap-button-icon"></div>
           <h4>Download</h4>
           <p>Distributions, Repositories,<br/>Target Components</p>

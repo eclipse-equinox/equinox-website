@@ -5,7 +5,7 @@
 	$pageAuthor = "Equinox committers";
 	$html = <<<EOHTML
 	
-<script type="text/javascript" src="http://eclipse.org/equinox/testweb/expand.js"></script>'
+<script type="text/javascript" src="http://eclipse.org/equinox/expand.js"></script>'
 
 <div id="midcolumn">
 
