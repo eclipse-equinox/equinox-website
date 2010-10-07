@@ -5,27 +5,7 @@
 	$pageAuthor = "Equinox committers";
 	$html = <<<EOHTML
 	
-<script type="text/javascript">
-<!--
-function expandCollapse(id) {
-	expandCollapse(id, null);
-}
-
-function expandCollapse(id, value) {
-	var element = document.getElementById(id);
-	if (value == null) {
-		element.className = (element.className == 'collapsable') ? '' : 'collapsable';
-	} else {
-		element.className = value;
-	}
-	var button = document.getElementById(id + '.button');
-	if (element.className == 'collapsable')	
-		button.src="/equinox/images/arrow.png";
-	else
-		button.src="/equinox/images/downarrow.png";
-}
-//-->
-</script>
+<script type="text/javascript" src="http://eclipse.org/equinox/testweb/expand.js"></script>'
 
 <div id="midcolumn">
 
