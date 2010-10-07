@@ -52,7 +52,7 @@ q q:after { content: '\2019'; }
   top: 15px;
   width: 137px;
   height: 65px;
-  background: url( "/equinox/images/logo_small.png" ) no-repeat 0 0;
+  background: url( "http://eclipse.org/equinox/images/logo_small.png" ) no-repeat 0 0;
 }
 
 #leftnav {
@@ -89,7 +89,7 @@ span.download-icon {
   top: 6px;
   width: 24px;
   height: 24px;
-  background: url( /equinox/images/button-icons-small.png ) 0 0;
+  background: url( http://eclipse.org/equinox/images/button-icons-small.png ) 0 0;
 }
 
 /* Expand areas on download page */
