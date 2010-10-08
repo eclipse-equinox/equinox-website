@@ -1,15 +1,12 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<title>Equinox OSGi incubator</title>
-<link rel="stylesheet" href="http://dev.eclipse.org/default_style.css" type="text/css">
-<link rel="stylesheet" href="../equinox.css" type="text/css">
-</head>
-<body>
-<?php include("nav-include.html") ?>
-<p class=bar>How to Work in an Incubator</p>
-
+<?php require_once($_SERVER['DOCUMENT_ROOT'] . "/eclipse.org-common/system/app.class.php");	require_once($_SERVER['DOCUMENT_ROOT'] . "/eclipse.org-common/system/nav.class.php"); 	require_once($_SERVER['DOCUMENT_ROOT'] . "/eclipse.org-common/system/menu.class.php"); 	$App 	= new App();	$Nav	= new Nav();	$Menu 	= new Menu();		include($App->getProjectCommon());    # All on the same line to unclutter the user's desktop'
+	# Begin: page-specific settings.  Change these. 
+	$pageTitle = "Equinox OSGi incubator";
+	$pageKeywords = "equinox, osgi, framework, runtime, resources";
+	$pageAuthor = "Equinox committers";
+	$html = <<<EOHTML
+	
+<div id="midcolumn">
+	<h2>$pageTitle</h2>
 <p>A work in progress...</p>
 <p>- the current repo structure gives incubator committers access to the &quot;equinox-incubator&quot; folder
   in the dev.eclipse.org/cvsroot/eclipse repository. We'll call that the &quot;incubator
@@ -38,7 +35,9 @@
   should document what projects are relevant and what branch it is using. See
   the aspects work area for an example of what I mean (http://eclipse.org/equinox/incubator/aspects)<br>
 </p>
-<p class=bar>Populating the Repo</p>
-<p>&nbsp;</p>
-</body>
-</html>
+
+</div>
+
+EOHTML;
+	generateRapPage( $App, $Menu, $Nav, $pageAuthor, $pageKeywords, $pageTitle, $html );
+?>

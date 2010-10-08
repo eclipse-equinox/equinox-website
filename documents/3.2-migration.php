@@ -1,16 +1,16 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-<head>
-<title>Equinox Migration Preview</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<link rel="stylesheet" title="default" href="http://eclipse.org/default_style.css" type="text/css">
-<link rel="stylesheet" title="default" href="../equinox.css" type="text/css">
-</head>
-<body>
-<?php include("nav-include.html") ?>
+<?php require_once($_SERVER['DOCUMENT_ROOT'] . "/eclipse.org-common/system/app.class.php");	require_once($_SERVER['DOCUMENT_ROOT'] . "/eclipse.org-common/system/nav.class.php"); 	require_once($_SERVER['DOCUMENT_ROOT'] . "/eclipse.org-common/system/menu.class.php"); 	$App 	= new App();	$Nav	= new Nav();	$Menu 	= new Menu();		include($App->getProjectCommon());    # All on the same line to unclutter the user's desktop'
+	# Begin: page-specific settings.  Change these. 
+	$pageTitle = "Equinox Migration Preview";
+	$pageKeywords = "equinox, osgi, framework, runtime, resources";
+	$pageAuthor = "Equinox committers";
+	$html = <<<EOHTML
+	
+<div id="midcolumn">
+	<h2>$pageTitle</h2>
 
 <p>This document details the major changes in the Eclipse runtime layer (aka Equinox) during the 3.2 development cycle.</p>
-<p class=bar>Runtime Split</p>
+
+<h3>Runtime Split</h3>
 
 The Runtime has been refactored as per <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=113663">https://bugs.eclipse.org/bugs/show_bug.cgi?id=113663</a>.
 The refactoring was done to:
@@ -45,7 +45,8 @@ make the runtime more flexible
   that is used to support running without OSGi.</li>
 </ul>  
   <p>These changes should have no affect on other plugins. </p>
-<p class=subbar>Adapting</p>
+
+<h4>Adapting</h4>
   <ol>
   <li>Conflicts with new public APIs. org.eclipse.equinox.common includes several
     new API classes (e.g., Assert and ListenerList) that have common names. Code
@@ -68,8 +69,8 @@ names and import org.eclipse.core.runtime.* now have abiguous class references
     </ul>
   </ol>
   
+</div>
 
-
-  <p>&nbsp;</p>
-</body>
-</html>
+EOHTML;
+	generateRapPage( $App, $Menu, $Nav, $pageAuthor, $pageKeywords, $pageTitle, $html );
+?>

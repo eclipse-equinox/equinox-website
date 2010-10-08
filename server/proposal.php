@@ -1,31 +1,12 @@
 <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/eclipse.org-common/system/app.class.php");	require_once($_SERVER['DOCUMENT_ROOT'] . "/eclipse.org-common/system/nav.class.php"); 	require_once($_SERVER['DOCUMENT_ROOT'] . "/eclipse.org-common/system/menu.class.php"); 	$App 	= new App();	$Nav	= new Nav();	$Menu 	= new Menu();		include($App->getProjectCommon());    # All on the same line to unclutter the user's desktop'
-
-	#*****************************************************************************
-	#
-	#
-	#****************************************************************************
-	
-	#
 	# Begin: page-specific settings.  Change these. 
 	$pageTitle 		= "Equinox Incubator - Server-side Proposal";
 	$pageKeywords	= "equinox, osgi, framework, runtime, incubator, server, proposal";
+	$pageAuthor = "Equinox committers";
+	$html = <<<EOHTML
 	
-	# Add page-specific Nav bars here
-	# Format is Link text, link URL (can be http://www.someothersite.com/), target (_self, _blank), level (1, 2 or 3)
-	# $Nav->addNavSeparator("My Page Links", 	"downloads.php");
-	# $Nav->addCustomNav("My Link", "mypage.php", "_self", 3);
-	# $Nav->addCustomNav("Google", "http://www.google.com/", "_blank", 3);
-
-	# End: page-specific settings
-	#
-		
-	# Paste your HTML content between the markers!	
-ob_start();
-?>	
 <div id="midcolumn">
-<h1><?= $pageTitle ?></h1>
-
-<p class=bar>Server-side Environment</p>
+	<h2>$pageTitle</h2>
 
 <p>Increasingly, developers are thinking about how they might use
 Eclipse's powerful component model and extension mechanisms in
@@ -56,7 +37,7 @@ emphasis is on J2EE implementations but more specifically the following issues
 	<li>Application Server Integration</li>
 </ul>
 
-<p class=bar>Eclipse Changes for Server-side Operation</p>
+<h3>Eclipse Changes for Server-side Operation</h3>
 
 <p>The Eclipse runtime was originally designed to run an IDE. It's a
 testament to the runtime's versatility that Eclipse is now used in a
@@ -87,7 +68,7 @@ make these changes without compromising compatibility with existing Eclipse
 applications. Any changes will trace the HEAD very closely to facilitate integration.
 Ideally these changes would occur in the 3.2 timeframe.</p>
 
-<p class=bar>Container Specific Launchers</p>
+<h3>Container Specific Launchers</h3>
 
 <p>One way to think of the Eclipse IDE and RCP applications (in general) is that they
 are started by the native executable launcher. For server-side environments,
@@ -101,29 +82,18 @@ The code, build instructions, and usage instructions for the servlet
 launcher will be part of the initial contribution for the incubator.
 </p>
 
-<p class=bar>Application Server Integration</p>
+<h3>Application Server Integration</h3>
 The Geronimo community has expressed some interest in OSGi. This incubator intends
 to investigate what it means to integrate OSGi and Geronimo as well as any changes
 to Equinox that might be required to support Geronimo. Integration with other
 application servers is also of interest.
 
-<p class=bar>Resources</p>
+<h3>Resources</h3>
 <p>Please direct comments or questions to <a
 	href="mailto:equinox-dev@eclipse.org">equinox-dev@eclipse.org</a>.</p>
 
-
-<p>&nbsp;</p>
 </div>
 
-<?php
-	include $_SERVER['DOCUMENT_ROOT'] . "/equinox/global-links.html";
-	include $_SERVER['DOCUMENT_ROOT'] . "/equinox/server/component-links.html";
-	if (file_exists("dir-links.html")) {include "dir-links.html";}
-?>
-<?php
-	$html = ob_get_contents();
-	ob_end_clean();
-
-	# Generate the web page
-	$App->generatePage($theme, $Menu, $Nav, $pageAuthor, $pageKeywords, $pageTitle, $html);
+EOHTML;
+	generateRapPage( $App, $Menu, $Nav, $pageAuthor, $pageKeywords, $pageTitle, $html );
 ?>

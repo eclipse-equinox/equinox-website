@@ -1,32 +1,14 @@
 <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/eclipse.org-common/system/app.class.php");	require_once($_SERVER['DOCUMENT_ROOT'] . "/eclipse.org-common/system/nav.class.php"); 	require_once($_SERVER['DOCUMENT_ROOT'] . "/eclipse.org-common/system/menu.class.php"); 	$App 	= new App();	$Nav	= new Nav();	$Menu 	= new Menu();		include($App->getProjectCommon());    # All on the same line to unclutter the user's desktop'
-
-	#*****************************************************************************
-	#
-	#
-	#****************************************************************************
-	
-	#
 	# Begin: page-specific settings.  Change these. 
 	$pageTitle 		= "Embedding an HTTP server in Equinox";
 	$pageKeywords	= "equinox, osgi, framework, runtime, incubator, server, servlet, http";
+	$pageAuthor = "Equinox committers";
+	$html = <<<EOHTML
 	
-	# Add page-specific Nav bars here
-	# Format is Link text, link URL (can be http://www.someothersite.com/), target (_self, _blank), level (1, 2 or 3)
-	# $Nav->addNavSeparator("My Page Links", 	"downloads.php");
-	# $Nav->addCustomNav("My Link", "mypage.php", "_self", 3);
-	# $Nav->addCustomNav("Google", "http://www.google.com/", "_blank", 3);
-
-	# End: page-specific settings
-	#
-		
-	# Paste your HTML content between the markers!	
-ob_start();
-?>	
 <div id="midcolumn">
-<h1><?= $pageTitle ?></h1>
+	<h2>$pageTitle</h2>
 
-<p class=bar>Overview</p>
-<p>Equinox provides two complete implementations of the OSGi Http Service suitable for embedding.
+<p>Equinox provides two complete implementations of the OSGi Http Service suitable for embedding.<p>
 <ul>
 <li><b>org.eclipse.equinox.http</b><br />
 Very small footprint suitable for resource constrained environments. <br />
@@ -36,9 +18,8 @@ Very small footprint suitable for resource constrained environments. <br />
 Implemented using <a href="http://jetty.mortbay.org">Jetty</a> as the underlying engine for providing Servlet API 2.4 Support.
 </li>
 </ul>
-</p>
 
-<p class=bar>Bundles</p>
+<h3>Bundles</h3>
 <p>The following bundles are involved in putting together an Http Service environment:
 <br />
 <ul>
@@ -76,11 +57,11 @@ The 3rd party bundles can be retrieved from the Orbit CVS Depott. <br/>
 </ul>
 </i></p>
 
-<p class=bar>Writing the server application</p>
+<h3>Writing the server application</h3>
 <p>See the <a href="http_writing_application.php">Writing a bundle-based server application</a>
  for information on how to write a bundle based web application.</p>
 
-<p class=bar>Running the server</p>
+<h3>Running the server</h3>
 <p>To run the server and your application, carry out the following steps:
 <ul>
 	<li>Create an OSGi Framework launch configuration <b>Run &gt; Run... &gt; OSGi Framework</b></li>
@@ -90,19 +71,8 @@ The 3rd party bundles can be retrieved from the Orbit CVS Depott. <br/>
 	<li>Launch your favorite web browser and access the URLs</li>
 </ul>
 </p>
-<p>&nbsp;</p>
 </div>
 
-<?php
-	include $_SERVER['DOCUMENT_ROOT'] . "/equinox/global-links.html";
-	include $_SERVER['DOCUMENT_ROOT'] . "/equinox/server/component-links.html";
-	if (file_exists("dir-links.html")) {include "dir-links.html";}
-?>
-
-<?php
-	$html = ob_get_contents();
-	ob_end_clean();
-
-	# Generate the web page
-	$App->generatePage($theme, $Menu, $Nav, $pageAuthor, $pageKeywords, $pageTitle, $html);
+EOHTML;
+	generateRapPage( $App, $Menu, $Nav, $pageAuthor, $pageKeywords, $pageTitle, $html );
 ?>

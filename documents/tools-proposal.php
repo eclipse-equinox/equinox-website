@@ -1,16 +1,12 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-<head>
-<meta
-	http-equiv="Content-Type"
-	content="text/html; charset=iso-8859-1" />
-<title>The Equinox Project - Introspection Tools Proposal</title>
-<link rel="stylesheet" href="http://eclipse.org/default_style.css" type="text/css" />
-<link rel="stylesheet" href="../equinox.css" type="text/css" />
-</head>
-<body>
-<?php include("nav-include.html") ?>
-<p class=bar>Eclipse introspection tools incubator proposal</p>
+<?php require_once($_SERVER['DOCUMENT_ROOT'] . "/eclipse.org-common/system/app.class.php");	require_once($_SERVER['DOCUMENT_ROOT'] . "/eclipse.org-common/system/nav.class.php"); 	require_once($_SERVER['DOCUMENT_ROOT'] . "/eclipse.org-common/system/menu.class.php"); 	$App 	= new App();	$Nav	= new Nav();	$Menu 	= new Menu();		include($App->getProjectCommon());    # All on the same line to unclutter the user's desktop'
+	# Begin: page-specific settings.  Change these. 
+	$pageTitle = "The Equinox Project - Introspection Tools Proposal";
+	$pageKeywords = "equinox, osgi, framework, runtime, resources";
+	$pageAuthor = "Equinox committers";
+	$html = <<<EOHTML
+	
+<div id="midcolumn">
+	<h2>$pageTitle</h2>
 <p>The goal of Eclipse is to become a platform to produce flexible and dynamic applications.
   In such a dynamic environment, it is often hard to know what is happening or
 to explain why the system is behaving as it is. Over the history of Eclipse,
@@ -32,7 +28,7 @@ to explain why the system is behaving as it is. Over the history of Eclipse,
       to implement rudimentary Eclipse user interfaces to facilitate the use
   of the monitoring tools.
 
-<p class="bar">Interested Parties</p>
+<h3>Interested Parties</h3>
 <ul>
   <li>Robert Connell (UNB)</li>
   <li>DJ Houghton (IBM)</li>
@@ -43,5 +39,8 @@ to explain why the system is behaving as it is. Over the history of Eclipse,
 </ul>
 <p>Please direct comments or questions to <a
 	href="mailto:equinox-dev@eclipse.org">equinox-dev@eclipse.org</a>.</p>
-</body>
-</html>
+
+</div>
+EOHTML;
+	generateRapPage( $App, $Menu, $Nav, $pageAuthor, $pageKeywords, $pageTitle, $html );
+?>

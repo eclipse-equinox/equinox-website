@@ -1,42 +1,23 @@
-<?php  																														require_once($_SERVER['DOCUMENT_ROOT'] . "/eclipse.org-common/system/app.class.php");	require_once($_SERVER['DOCUMENT_ROOT'] . "/eclipse.org-common/system/nav.class.php"); 	require_once($_SERVER['DOCUMENT_ROOT'] . "/eclipse.org-common/system/menu.class.php"); 	$App 	= new App();	$Nav	= new Nav();	$Menu 	= new Menu();		include($App->getProjectCommon());    # All on the same line to unclutter the user's desktop'
-
-	#*****************************************************************************
-	#
-	# template.php
-	#
-	# Author: 		Denis Roy
-	# Date:			2005-06-16
-	#
-	# Description: Type your page comments here - these are not sent to the browser
-	#
-	#
-	#****************************************************************************
-	
-	#
+<?php require_once($_SERVER['DOCUMENT_ROOT'] . "/eclipse.org-common/system/app.class.php");	require_once($_SERVER['DOCUMENT_ROOT'] . "/eclipse.org-common/system/nav.class.php"); 	require_once($_SERVER['DOCUMENT_ROOT'] . "/eclipse.org-common/system/menu.class.php"); 	$App 	= new App();	$Nav	= new Nav();	$Menu 	= new Menu();		include($App->getProjectCommon());    # All on the same line to unclutter the user's desktop'
 	# Begin: page-specific settings.  Change these. 
 	$pageTitle 		= "Equinox Security";
     $pageKeywords	= "equinox, security";
-	$pageAuthor		= "Matt Flaherty";
+	$pageAuthor = "Equinox committers";
+	$html = <<<EOHTML
 	
-	# Paste your HTML content between the markers!	
-   ob_start();
-   ?>
-
-   <div id="midcolumn">
-      <h1><?= $pageTitle ?></h1>
-   
-	  <p class=bar>Mission Statement</p>
+<div id="midcolumn">
+	<h2>$pageTitle</h2>
       <p>To ensure the Equinox runtime (and the Eclipse product) is secure, enabling users and administrators to confidently use and
       deploy products built on it in environments where not all users and/or code sources are friendly. Providing integrated security
       functionality will allow Equinox and Eclipse-based applications to protect their data, to authenticate and authorize valid users,
       and to protect against potentially malicious code packaged and distributed as bundles.
       </p>
 	
-      <p class=bar>Goals</p>
+      <h3>Goals</h3>
       
       <table BORDER=0 CELLSPACING=5 CELLPADDING=2 WIDTH="100%" >
          <tr>
-            <td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+            <td width="2%" align=RIGHT valign=TOP><img src="/equinox/images/arrow.png" /></td>
             <td width="98%"><strong>Support <u>user credential management</u>:</strong><br>
             When dealing with user's credentials - such as passwords, keys, and certificates - applications need to use some form of
             secure storage backend for sensitive materials. In the 3.4 release we have added support for 'Secure Storage', a
@@ -46,7 +27,7 @@
          </tr>
       
          <tr>
-            <td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+            <td width="2%" align=RIGHT valign=TOP><img src="/equinox/images/arrow.png" /></td>
             <td width="98%"><strong>Provide an extensible <u>user authentication framework</u>:</strong><br>
             In many environments, there are applications which require the user to login before interacting with the system, and provide
             a different user experience based on the user's login. The Eclipse RCP does not yet support login, and the goal is to provide
@@ -61,7 +42,7 @@
          </tr>
 
          <tr>
-            <td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+            <td width="2%" align=RIGHT valign=TOP><img src="/equinox/images/arrow.png" /></td>
             <td width="98%"><strong>Enable flexible mechanisms for <u>code authorization</u>:</strong><br>
             As the Eclipse platform grows as a basis for rich desktop applications, it will become more of a target for authors of malicious viruses. Java provides mechanisms for
             cryptographically signing Jar files, and ships with a powerful architecture for fine-grained code authorization. 
@@ -75,7 +56,7 @@
          </tr>
 
          <tr>
-            <td width="2%" align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
+            <td width="2%" align=RIGHT valign=TOP><img src="/equinox/images/arrow.png" /></td>
             <td width="98%"><strong>Integrate with and <u>support security-aware projects</u>:</strong><br>
             Several Eclipse projects have already expressed interest in
             standardized solutions for security fundamentals like the ones listed above. Integrating well with projects like
@@ -85,21 +66,14 @@
          </tr>         
       </table>
       
-      <p class=bar>Community</p>
+      <h3>Community</h3>
       <p>We are actively looking for contributors (with or without technology) with interest in this area who are
       willing to contribute time and resources. 
       </p>
       
    </div>
    
-<?php
-	include $_SERVER['DOCUMENT_ROOT'] . "/equinox/global-links.html";
+EOHTML;
+	generateRapPage( $App, $Menu, $Nav, $pageAuthor, $pageKeywords, $pageTitle, $html );
 ?>
-
-<?php
-   $html = ob_get_contents();
-   ob_end_clean();
-
-   # Generate the web page
-   $App->generatePage($theme, $Menu, $Nav, $pageAuthor, $pageKeywords, $pageTitle, $html);
-?>
+   

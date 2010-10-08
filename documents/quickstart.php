@@ -1,32 +1,13 @@
 <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/eclipse.org-common/system/app.class.php");	require_once($_SERVER['DOCUMENT_ROOT'] . "/eclipse.org-common/system/nav.class.php"); 	require_once($_SERVER['DOCUMENT_ROOT'] . "/eclipse.org-common/system/menu.class.php"); 	$App 	= new App();	$Nav	= new Nav();	$Menu 	= new Menu();		include($App->getProjectCommon());    # All on the same line to unclutter the user's desktop'
-
-	#*****************************************************************************
-	#
-	#
-	#****************************************************************************
-	
-	#
 	# Begin: page-specific settings.  Change these. 
 	$pageTitle 		= "Equinox QuickStart Guide";
 	$pageKeywords	= "equinox, osgi, framework, runtime, resources, quick, start";
-	
-	# Add page-specific Nav bars here
-	# Format is Link text, link URL (can be http://www.someothersite.com/), target (_self, _blank), level (1, 2 or 3)
-	# $Nav->addNavSeparator("My Page Links", 	"downloads.php");
-	# $Nav->addCustomNav("My Link", "mypage.php", "_self", 3);
-	# $Nav->addCustomNav("Google", "http://www.google.com/", "_blank", 3);
-
-	# End: page-specific settings
-	#
-		
-	# Paste your HTML content between the markers!	
-ob_start();
-?>		
-
+	$pageAuthor = "Equinox committers";
+	$html = <<<EOHTML
 	<div id="midcolumn">
 		<h1><?= $pageTitle ?></h1>
 		
-<p class=bar>Getting and using the Equinox OSGi implementation</p>
+<h3>Getting and using the Equinox OSGi implementation</h3>
 <p>The Equinox OSGi framework implementation forms the underpinnings of the Eclipse
 RCP and IDE platforms but it is in fact a fully standalone OSGi implementation.
   To run Equinox OSGi on its own either download the org.eclipse.osgi JAR from
@@ -35,7 +16,7 @@ location&gt;/eclipse/plugins/org.eclipse.osgi_3.2.0_xxx.jar. Once you have the E
 framework JAR, use the following command line:</p>
 <pre>  java -jar org.eclipse.osgi_3.2.0.jar -console</pre>
 <p>Once this is running you will see an osgi&gt; prompt. This is the OSGi console waiting for you to type commands.  
-Type '?' at the prompt for command help.  The most interesting commands for getting started are:
+Type '?' at the prompt for command help.  The most interesting commands for getting started are:</p>
 <ul>
 <li>install &lt;bundle URL&gt; - Installs the bundle from the given URL</li>
 <li>start &lt;bundle # or bundle name&gt; - Starts the bundle with the given numeric or symbolic id</li>
@@ -43,11 +24,13 @@ Type '?' at the prompt for command help.  The most interesting commands for gett
 <li>ss - Reports a summary status of all installed bundles</li>
 <li>diag &lt;bundle # or bundle name&gt; - Reports any resolution problems for the bundle with the given numeric or symbolic id</li>
 </li>
-</p>
+</ul>
 
 <p>If you don't have Eclipse and just want OSGi, click <a href="http://download.eclipse.org/eclipse/equinox/">here</a> to get the JAR from the 
 Equinox download site. </p>
-<p class=bar>Configurations and all that...</p>
+
+
+<h3>Configurations and all that...</h3>
 <p>The Equinox OSGi implementation is extremely configurable. One of the most
   common configuration scenarios is to have the framework automatically install
   and run a set of bundles when it is started. You do this every time you run
@@ -152,7 +135,7 @@ check out the Help system links above as well as</p>
       for inclusion in the OSGi R4.1 or R5 specifications while others are Eclipse-specific. All were put in place to solve
       real problems that we (or our consumers) were having. You may be having related problems.</p>
 
-<p class=bar>Other Information</p>
+<h3>Other Information</h3>
 <ul>
   <li>The Eclipse SDK includes some very sophisticated tooling for defining,
     developing, debugging, building and deploying bundles. To use this tooling
@@ -166,19 +149,8 @@ check out the Help system links above as well as</p>
   <li>Questions and comments should go in the <a href="news://news.eclipse.org/eclipse.technology.equinox">equinox</a> newsgroup.</li>
   <li>Development questions can go to <a href="mailto:equinox-dev@eclipse.org">equinox-dev@eclipse.org</a>.</li>
 </ul>
-<p>&nbsp;</p>
 	</div>
 
-<?php
-	include $_SERVER['DOCUMENT_ROOT'] . "/equinox/global-links.html";
-	include $_SERVER['DOCUMENT_ROOT'] . "/equinox/documents/component-links.html";
-	if (file_exists("dir-links.html")) {include "dir-links.html";}
-?>
-
-<?php
-	$html = ob_get_contents();
-	ob_end_clean();
-
-	# Generate the web page
-	$App->generatePage($theme, $Menu, $Nav, $pageAuthor, $pageKeywords, $pageTitle, $html);
+EOHTML;
+	generateRapPage( $App, $Menu, $Nav, $pageAuthor, $pageKeywords, $pageTitle, $html );
 ?>

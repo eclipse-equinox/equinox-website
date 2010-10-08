@@ -1,38 +1,22 @@
 <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/eclipse.org-common/system/app.class.php");	require_once($_SERVER['DOCUMENT_ROOT'] . "/eclipse.org-common/system/nav.class.php"); 	require_once($_SERVER['DOCUMENT_ROOT'] . "/eclipse.org-common/system/menu.class.php"); 	$App 	= new App();	$Nav	= new Nav();	$Menu 	= new Menu();		include($App->getProjectCommon());    # All on the same line to unclutter the user's desktop'
-
-	#*****************************************************************************
-	#
-	#
-	#****************************************************************************
-	
-	#
 	# Begin: page-specific settings.  Change these. 
 	$pageTitle 		= "Equinox Coding Practices";
 	$pageKeywords	= "equinox, osgi, framework, runtime, documents, coding, practices";
-	
-	# Add page-specific Nav bars here
-	# Format is Link text, link URL (can be http://www.someothersite.com/), target (_self, _blank), level (1, 2 or 3)
-	# $Nav->addNavSeparator("My Page Links", 	"downloads.php");
-	# $Nav->addCustomNav("My Link", "mypage.php", "_self", 3);
-	# $Nav->addCustomNav("Google", "http://www.google.com/", "_blank", 3);
+	$pageAuthor = "Equinox committers";
+	$html = <<<EOHTML
 
-	# End: page-specific settings
-	#
-		
-	# Paste your HTML content between the markers!	
-ob_start();
-?>		
 	<div id="midcolumn">
 		<h1><?= $pageTitle ?></h1>
 
-<p class="bar">Coding Practices</p>
+<h3>Coding Practices</h3>
 <p>Equinox covers a reasonably large code base. To ensure coherence
   and consistency, the team follows a number of coding conventions and practices.
   For the most part these conventions are supported by the Eclipse tooling (e.g.,
   formatter settings) so its really a matter of setting it up and going from
   there. Give yourself over to the tooling and forget about formatting. Just
   let the tools do their work.</p>
-<p class="subbar">Legal</p>
+
+<h4>Legal</h4>
 <ul>
 <li> <strong>All committed contributions from non-committers must be tracked.</strong> This must be done
   by using the 'contributed' keyword in bugzilla.  A <i>non-committer</i> is someone who is not a committer on the
@@ -42,7 +26,7 @@ ob_start();
   <li> If the code was written in 2003, don't have 2000,2003 in the copyright.</li>
 </ul>
 
-<p class="subbar">Attribution</p>
+<h4>Attribution</h4>
 <p>Contributors should feel free to identify themselves individually or by company in the code.  
 There are three main places this is done.  </p>
 <ul>
@@ -62,7 +46,7 @@ a vast number of people working on and contributing to the code.  Maintenance of
 quite cumbersome and poorly maintained authorship lists give a false picture of code evolution.</li>
 </ul>
 
-<p class="subbar">Use the tools</p>
+<h4>Use the tools</h4>
 <p>For the most part you can just use the preference template files supplied here to configure the various tools 
 to do the same as the rest of the team.  These preference files are typically found in the .settings 
 directory of a project.  To apply the preferences simply copy the template file from here into the .settings folder overwriting the original.
@@ -73,7 +57,7 @@ code formatting, organize imports, code cleanup wizard settings and enabling the
 <li><a href="org.eclipse.jdt.ui.prefs">Equinox JDT UI preferences</a> - template for editor preferences (e.g., format on save etc.)
 </ul>
 
-<p class="subbar">Coding style</p>
+<h4>Coding style</h4>
 <ul>
   <li>Use blank lines sparingly. Group lines of code together as you would group
   sentences into paragraphs in written text.</li>
@@ -112,7 +96,7 @@ code formatting, organize imports, code cleanup wizard settings and enabling the
   to change their compiler settings in order to see these tasks.</li>
 </ul>
 
-<p class="subbar">Comments</p>
+<h4>Comments</h4>
 <ul>
   <li>Comments are a good thing but are not a substitute for good naming (see next section).
   Comment all &quot;non-obvious&quot; things whether they be methods, fields,
@@ -121,7 +105,7 @@ code formatting, organize imports, code cleanup wizard settings and enabling the
   <li>Follow the Javadoc guidelines as well as @since etc recommendations</li>
 </ul>
 
-<p class="subbar">Naming</p>
+<h4>Naming</h4>
 <ul>
   <li>Choose class/method/field names that describe the purpose of the entire
     method/class.</li>
@@ -141,7 +125,7 @@ code formatting, organize imports, code cleanup wizard settings and enabling the
   <li>Avoid random word prefixes such as &quot;a&quot; and &quot;the&quot;. They don't add value.</li>
 </ul>
 
-<p class="subbar">Internationalization</p>
+<h4>Internationalization</h4>
 <ul>
   <li> Follow the NLS guidelines and use the Eclipse NLS mechanism.</li>
   <li>All sentences which are displayed to the user must end with a period.</li>
@@ -150,7 +134,7 @@ code formatting, organize imports, code cleanup wizard settings and enabling the
   <li> Make sure if the message accepts a parameter then you pass one in</li>
 </ul>
 
-<p class="subbar">Exception handling</p>
+<h4>Exception handling</h4>
 <ul>
 	<li>When catching exceptions, consider whether it is some low-level error that
 	the client should not be aware of or will not be able to interpret. Consider wrapping
@@ -171,20 +155,8 @@ code formatting, organize imports, code cleanup wizard settings and enabling the
 	is any possibility of an exception being propagated to client code it must have
 	externalized messages.</li>
 </ul>
-<p>&nbsp;</p>
-
 	</div>
 
-<?php
-	include $_SERVER['DOCUMENT_ROOT'] . "/equinox/global-links.html";
-	include $_SERVER['DOCUMENT_ROOT'] . "/equinox/documents/component-links.html";
-	if (file_exists("dir-links.html")) {include "dir-links.html";}
-?>
-
-<?php
-	$html = ob_get_contents();
-	ob_end_clean();
-
-	# Generate the web page
-	$App->generatePage($theme, $Menu, $Nav, $pageAuthor, $pageKeywords, $pageTitle, $html);
+EOHTML;
+	generateRapPage( $App, $Menu, $Nav, $pageAuthor, $pageKeywords, $pageTitle, $html );
 ?>

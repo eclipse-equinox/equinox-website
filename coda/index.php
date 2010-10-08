@@ -1,36 +1,14 @@
-<?php  																														require_once($_SERVER['DOCUMENT_ROOT'] . "/eclipse.org-common/system/app.class.php");	require_once($_SERVER['DOCUMENT_ROOT'] . "/eclipse.org-common/system/nav.class.php"); 	require_once($_SERVER['DOCUMENT_ROOT'] . "/eclipse.org-common/system/menu.class.php"); 	$App 	= new App();	$Nav	= new Nav();	$Menu 	= new Menu();		include($App->getProjectCommon());     # All on the same line to unclutter the user's desktop'
-
-	
-	#
+<?php require_once($_SERVER['DOCUMENT_ROOT'] . "/eclipse.org-common/system/app.class.php");	require_once($_SERVER['DOCUMENT_ROOT'] . "/eclipse.org-common/system/nav.class.php"); 	require_once($_SERVER['DOCUMENT_ROOT'] . "/eclipse.org-common/system/menu.class.php"); 	$App 	= new App();	$Nav	= new Nav();	$Menu 	= new Menu();		include($App->getProjectCommon());    # All on the same line to unclutter the user's desktop'
 	# Begin: page-specific settings.  Change these. 
 	$pageTitle 		= "Whitepaper: Component Oriented Development and Assembly with Equinox";
 	$pageKeywords	= "Eclipse, equinox, CODA";
-	$pageAuthor		= "Lynn Gayowski";
-	
-	# Add page-specific Nav bars here
-	# Format is Link text, link URL (can be http://www.someothersite.com/), target (_self, _blank)
-	# $Nav->addCustomNav("My Link", "mypage.php", "_self");
-	# $Nav->addCustomNav("Google", "http://www.google.com/", "_blank");
-
-	# End: page-specific settings
-	#
-	
-	# Paste your HTML content between the EOHTML markers!	
+	$pageAuthor = "Equinox committers";
 	$html = <<<EOHTML
-	<style>
-		p {
-			margin-left:20px;
-			line-height:150%;
-		}
-		ul {
-			margin-left:30px;
-		}
-	</style>
-<div id="maincontent">
-	<div id="midcolumn">
-		<h1>$pageTitle</h1>
+	
+<div id="midcolumn">
+	<h2>$pageTitle</h2>
 
-		<h3><strong>Executive Summary</strong></h3>
+		<h3>Executive Summary (<a href="20080310_equinox.pdf">PDF</a>)</h3>
 		
 		<p>Eclipse Equinox simplifies the process of developing and deploying modern software solutions, a process we call Component
 		Oriented Development and Assembly (CODA). Rather than carving down large, complex, feature-rich stacks to suit your needs,
@@ -213,27 +191,9 @@
 			<a href="http://live.eclipse.org/node/387" target="blank">Introduction to Eclipse Equinox and OSGi</a></li>
 			<li><a href="../tutorials/server-side/">Complete the Introduction to Equinox Tutorial</a></li>
 		</ul></p>
-
-		<br>
-					
-	</div>
 		
 </div>
 
-<div id="rightcolumn">
-	<div class="sideitem">
-		<h6>Whitepaper</h6>
-			<ul>
-				<li><a href="20080310_equinox.pdf">PDF Version</a></li>
-			</ul>
-		</h6>
-	</div>
-</div>
-
 EOHTML;
-
-
-	# Generate the web page
-	$App->generatePage($theme, $Menu, $Nav, $pageAuthor, $pageKeywords, $pageTitle, $html);
+	generateRapPage( $App, $Menu, $Nav, $pageAuthor, $pageKeywords, $pageTitle, $html );
 ?>
-
