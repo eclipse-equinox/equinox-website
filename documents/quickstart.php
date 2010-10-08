@@ -5,7 +5,6 @@
 	$pageAuthor = "Equinox committers";
 	$html = <<<EOHTML
 	<div id="midcolumn">
-		<h1><?= $pageTitle ?></h1>
 		
 <h3>Getting and using the Equinox OSGi implementation</h3>
 <p>The Equinox OSGi framework implementation forms the underpinnings of the Eclipse
