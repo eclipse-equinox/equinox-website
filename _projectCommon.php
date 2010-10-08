@@ -4,7 +4,7 @@
 # https://dev.eclipse.org/committers/
 # Largely copied from the RAP team
 
-// ini_set('display_errors', 1); ini_set('error_reporting', E_ALL);
+//	ini_set('display_errors', 1); ini_set('error_reporting', E_ALL);
 
 	$Nav->setLinkList( array() );
 	$Nav->addNavSeparator("Work Areas", "");
@@ -44,7 +44,7 @@
 	$App->AddExtraHtmlHeader( '<link rel="shortcut icon" href="http://eclipse.org/rt/images/favicon.ico" />');
 	$App->AddExtraHtmlHeader( '<link rel="stylesheet" type="text/css" href="http://eclipse.org/equinox/rap-posts.css"/>' );
 	$App->AddExtraHtmlHeader( '<script type="text/javascript" src="http://code.jquery.com/jquery-1.4.2.min.js"></script>' );
-	$App->AddExtraHtmlHeader( '<script type="text/javascript" src="http://eclipse.org/rt/jquery.zrssfeed.min.js"></script>' );
+	$App->AddExtraHtmlHeader( '<script type="text/javascript" src="http://eclipse.org/equinox/jquery.zrssfeed.min.js"></script>' );
 
 //  $App->Promotion = TRUE; # set true to enable current eclipse.org site-wide promo
 
@@ -70,7 +70,7 @@ EOHTML;
   function generateRapPage( $App, $Menu, $Nav, $author, $keywords, $title, $html )
   {
     $theme = "Nova";
-    $pageHtml = createRapNavigation( $Nav ) . $html;
+    $pageHtml = createRapNavigation() . $html;
     	$pageHtml .= file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/equinox/right-links.html");
     $App->generatePage( $theme, $Menu, $Nav, $author, $keywords, $title, $pageHtml );
   }
