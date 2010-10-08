@@ -4,7 +4,7 @@
 	$pageKeywords = "equinox, osgi, framework, runtime, download";
 	$pageAuthor = "Equinox committers";
 	
-       $contents = substr(file_get_contents('dlconfig.txt'),0,-1);
+       $contents = substr(file_get_contents('dlconfig-new.txt'),0,-1);
        $contents = str_replace("\n", "", $contents);
 
         #split the content file by & and fill the arrays
