@@ -28,10 +28,10 @@ $html=<<<EOHTML
         </a>
       </li>
       <li>
-        <a id="rap-button-support" href="/equinox/support/">
+        <a id="rap-button-support" href="/equinox/resources.php">
           <div class="rap-button-icon"></div>
-          <h4>Support</h4>
-          <p>FAQ, Newsgroup,<br/>Bug Tracker</p>
+          <h4>Resources</h4>
+          <p>Wiki, Newsgroup,<br/>CVS, Bug Tracker</p>
         </a>
       </li>
       <li>
