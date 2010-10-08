@@ -6,9 +6,7 @@
 	$html = <<<EOHTML
 
 	<div id="midcolumn">
-		<h1><?= $pageTitle ?></h1>
-
-			<h3>Documents</h3>
+		<h3>$pageTitle</h3>
 				<ul>
               <li><a href="quickstart.php">Equinox Quickstart Guide </a><br/>
                           <i>An easy set of steps for running Equinox.</i> </li>

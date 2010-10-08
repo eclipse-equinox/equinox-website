@@ -34,7 +34,7 @@
 	$Menu->addMenuItem( "Get Started", "http://eclipse.org/equinox/documents/quickstart.php", "_self" );
 	$Menu->addMenuItem( "Downloads", "http://download.eclipse.org/equinox", "_self" );
 	$Menu->addMenuItem( "Documents", "http://eclipse.org/equinox/documents/", "_self" );
-	$Menu->addMenuItem( "Resources", "http://eclipse.org/equinox/resources/", "_self" );
+	$Menu->addMenuItem( "Resources", "http://eclipse.org/equinox/resources.php", "_self" );
 	$Menu->addMenuItem( "FAQ", "http://eclipse.org/equinox/faq.php/", "_self" );
 	$Menu->addMenuItem( "Wiki", "http://wiki.eclipse.org/Equinox", "_self" );
 
