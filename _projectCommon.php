@@ -31,7 +31,7 @@
 
 	$Menu->setMenuItemList( array() );
 	$Menu->addMenuItem( "Home", "http://eclipse.org/equinox/", "_self" );
-	$Menu->addMenuItem( "Get Started", "http://eclipse.org/equinox/getting-started/", "_self" );
+	$Menu->addMenuItem( "Get Started", "http://eclipse.org/equinox/documents/quickstart.php", "_self" );
 	$Menu->addMenuItem( "Downloads", "http://download.eclipse.org/equinox", "_self" );
 	$Menu->addMenuItem( "Documents", "http://eclipse.org/equinox/documents/", "_self" );
 	$Menu->addMenuItem( "Resources", "http://eclipse.org/equinox/resources/", "_self" );
