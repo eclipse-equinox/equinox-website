@@ -130,12 +130,11 @@ EOHTML;
 
 		foreach ($category as $element) {
 			$status = $element["status"];
+			$statusImage = "/equinox/images/pending.gif";
 			if ($status == "F")
-				$status = "/equinox/images/FAIL.gif";
-			else if ($status == "P")
-				$status = "/equinox/images/pending.gif";
+				$statusImage = "/equinox/images/FAIL.gif";
 			else if ($status == "O")
-				$status = "/equinox/images/OK.gif";
+				$statusImage = "/equinox/images/OK.gif";
 			
 			$images = "";
 			if (array_key_exists("images", $element)) {
@@ -149,7 +148,7 @@ EOHTML;
 			$checksumLinks = generateChecksumLinks($file, $buildLabel);
 
 			$result .= <<<EOHTML
-			<tr><td align="center"><img src="$status"/></td>
+			<tr><td align="center"><img src="$statusImage"/></td>
 				<td>$images<a href="download.php?dropFile=$file">$file</a></td>
 				$downloadSize
 				$checksumLinks
