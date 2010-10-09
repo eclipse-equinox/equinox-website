@@ -74,11 +74,12 @@ EOHTML;
 		global $buildLabel;
 		global $buildTime;
 		global $buildTitle;
+		global $path;
 		
 		$buildDir =$dir;
 		$specs = array(); 
 		$categories = array(); 
-		$contents = substr(file_get_contents('buildspec.txt'),0,-1);
+		$contents = substr(file_get_contents($path . '/buildspec.txt'),0,-1);
 		$lines = explode("\n", $contents);
 		$buildTitle = $lines[0];
 		$buildTime = $lines[1];
