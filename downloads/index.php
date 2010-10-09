@@ -96,13 +96,13 @@ EOHTML;
 		if (count($parts)==3)
 			$html .= <<<EOHTML
 			<tr>
-				<td width="30%"><a href="http://download.eclipse.org/equinox/drops/$fileName/index.php">$parts[1]</a></td>
+				<td width="30%"><a href="/equinox/downloads/index.php?build=$parts[1]">$parts[1]</a></td>
 
 EOHTML;
 		if (count($parts)==2) 
 			$html .= <<<EOHTML
 			<tr>
-				<td width="30%"><a href="http://download.eclipse.org/equinox/drops/$fileName/index.php">$fileName</a></td>
+				<td width="30%"><a href="/equinox/downloads/index.php?build=$fileName">$fileName</a></td>
 
 EOHTML;
 
@@ -144,12 +144,12 @@ EOHTML;
 				// Comment the line below if we need click through licenses.
 				if (count ($parts)==3)
 					$html .= <<<EOHTML
-				<td width="30%"><a href="http://download.eclipse.org/equinox/drops/$innerValue/index.php">$parts[1]</a></td>
+				<td width="30%"><a href="/equinox/downloads/index.php?build=$innerValue">$parts[1]</a></td>
 
 EOHTML;
 				if (count ($parts)==2)
 					$html .= <<<EOHTML
-				<td width="30%"><a href="http://download.eclipse.org/equinox/drops/$innerValue/index.php">$innerValue</a></td>
+				<td width="30%"><a href="/equinox/downloads/index.php?build=$innerValue">$innerValue</a></td>
 
 EOHTML;
 
