@@ -96,7 +96,7 @@ EOHTML;
 		if (count($parts)==3)
 			$html .= <<<EOHTML
 			<tr>
-				<td width="30%"><a href="/equinox/downloads/index.php?build=$parts[1]">$parts[1]</a></td>
+				<td width="30%"><a href="/equinox/downloads/index.php?build=$filename">$parts[1]</a></td>
 
 EOHTML;
 		if (count($parts)==2) 
