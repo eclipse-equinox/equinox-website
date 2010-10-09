@@ -161,7 +161,8 @@ EOHTML;
 
 	$root = $App->getDownloadBasePath();
 //	$root = $_SERVER['DOCUMENT_ROOT'];
-	$build = array_pop(split("=", "build", -1));
+	$qstring = $_SERVER['QUERY_STRING'];
+	$build = array_pop(split("=", $qstring, -1));
 	$path = "/equinox/drops/" . $build;
 
 	analyzeBuild(dir($root . $path));
