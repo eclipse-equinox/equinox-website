@@ -147,7 +147,7 @@ EOHTML;
 
 			$result .= <<<EOHTML
 			<tr><td align="center"><img src="$statusImage"/></td>
-				<td>$images<a href="download.php?dropFile=$file">$file</a></td>
+				<td>$images<a href="http://eclipse.org/downloads/download.php?file=/equinox/drops/$buildLabel/$file">$file</a></td>
 				$downloadSize
 				$checksumLinks
 			</tr>
