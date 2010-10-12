@@ -118,6 +118,7 @@ printf($beginning);
 	function generateTable($name) {
 		global $categories;
 		global $buildLabel;
+		global $$filesystemPath;
 		
 		if (! array_key_exists($name, $categories))
 			return "";
@@ -144,7 +145,7 @@ EOHTML;
 					$images .= "<img src=\"/equinox/images/" . trim($entry) . "\"/>&nbsp;";
 			}
 			$file = $element["file"];
-			$downloadSize = generateDropSize($file);
+			$downloadSize = generateDropSize($filesystemPath . $file);
 			$checksumLinks = generateChecksumLinks($file, $buildLabel);
 
 			$result .= <<<EOHTML
@@ -165,8 +166,9 @@ EOHTML;
 	$qstring = $_SERVER['QUERY_STRING'];
 	$build = array_pop(split("=", $qstring, -1));
 	$path = "/equinox/drops/" . $build;
+	$filesystemPath = $root . $path;
 
-	analyzeBuild(dir($root . $path));
+	analyzeBuild(dir($filesystemPath));
 	$generateTable = 'generateTable';
 
 	$html = <<<EOHTML
