@@ -53,7 +53,7 @@ EOHTML;
 		$i = strpos($template, "|");
 		if ($i === FALSE || $i == (strlen($template) - 1))
 			return startsWith($source, $template);
-		$beginning = strstr($template, "|");
+		$beginning = substr($template, 0, $i);
 printf($beginning);
 		$end = substr($template, $i + 1);
 		return startsWith($source, $beginning) && endsWith($source, $end);
