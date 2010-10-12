@@ -162,7 +162,6 @@ EOHTML;
 //	$root = $_SERVER['DOCUMENT_ROOT'];
 	$qstring = $_SERVER['QUERY_STRING'];
 	$build = array_pop(split("=", $qstring, -1));
-	$root = "/home/data/httpd/download.eclipse.org";
 	$path = "/equinox/drops/" . $build;
 	$filesystemPath = $root . $path;
 printf($filesystemPath);
