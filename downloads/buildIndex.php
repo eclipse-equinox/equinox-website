@@ -53,6 +53,7 @@ EOHTML;
 		$i = strpos($template, "|");
 		if ($i === FALSE || $i == (strlen($template) - 1))
 			return startsWith($source, $template);
+printf($template);
 		$beginning = strstr($template, "|", true);
 		$end = substr($template, $i + 1);
 		return startsWith($source, $beginning) && endsWith($source, $end);
@@ -140,7 +141,7 @@ EOHTML;
 				$imageSpec = $element["images"];
 				$images = "<img src=\"";
 				foreach ($imageSpec as $entry)
-					$images .= trim($entry) . "\"/>&nbsp;";
+					$images .= "<img src=\"" . trim($entry) . "\"/>&nbsp;";
 			}
 			$file = $element["file"];
 			$downloadSize = generateDropSize($file);
