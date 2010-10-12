@@ -140,7 +140,6 @@ EOHTML;
 			$images = "";
 			if (array_key_exists("images", $element)) {
 				$imageSpec = $element["images"];
-				$images = "<img src=\"";
 				foreach ($imageSpec as $entry)
 					$images .= "<img src=\"/equinox/images/" . trim($entry) . "\"/>&nbsp;";
 			}
