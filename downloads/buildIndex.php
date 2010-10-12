@@ -163,7 +163,9 @@ EOHTML;
 //	$root = $_SERVER['DOCUMENT_ROOT'];
 	$qstring = $_SERVER['QUERY_STRING'];
 	$build = array_pop(split("=", $qstring, -1));
+printf($build);
 	$path = "/equinox/drops/" . $build . "/";
+printf($path);
 	$filesystemPath = $root . $path;
 
 	analyzeBuild(dir($filesystemPath));
