@@ -118,7 +118,7 @@ printf($beginning);
 	function generateTable($name) {
 		global $categories;
 		global $buildLabel;
-		global $$filesystemPath;
+		global $filesystemPath;
 		
 		if (! array_key_exists($name, $categories))
 			return "";
