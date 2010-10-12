@@ -78,7 +78,7 @@ EOHTML;
 		$buildDir =$dir;
 		$specs = array(); 
 		$categories = array(); 
-		$contents = substr(file_get_contents($filesystemPath . 'buildspec.txt'),0,-1);
+		$contents = substr(file_get_contents($filesystemPath . "/buildspec.txt"), 0, -1);
 		$lines = explode("\n", $contents);
 		$buildTitle = $lines[0];
 		$buildTime = $lines[1];
@@ -142,7 +142,7 @@ EOHTML;
 					$images .= "<img src=\"/equinox/images/" . trim($entry) . "\"/>&nbsp;";
 			}
 			$file = $element["file"];
-			$downloadSize = generateDropSize($filesystemPath . $file);
+			$downloadSize = generateDropSize($filesystemPath . "/$file");
 			$checksumLinks = generateChecksumLinks($file, $buildLabel);
 
 			$result .= <<<EOHTML
@@ -162,7 +162,7 @@ EOHTML;
 //	$root = $_SERVER['DOCUMENT_ROOT'];
 	$qstring = $_SERVER['QUERY_STRING'];
 	$build = array_pop(split("=", $qstring, -1));
-	$path = "/equinox/drops/" . $build . "/";
+	$path = "/equinox/drops/" . $build;
 	$filesystemPath = $root . $path;
 
 	analyzeBuild(dir($filesystemPath));
