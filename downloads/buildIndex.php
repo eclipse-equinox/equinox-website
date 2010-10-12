@@ -1,6 +1,5 @@
 <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/eclipse.org-common/system/app.class.php"); require_once($_SERVER['DOCUMENT_ROOT'] . "/eclipse.org-common/system/nav.class.php"); require_once($_SERVER['DOCUMENT_ROOT'] . "/eclipse.org-common/system/menu.class.php"); $App = new App(); $Nav	= new Nav(); $Menu = new Menu(); include($App->getProjectCommon());    # All on the same line to unclutter the user's desktop'
 	# Begin: page-specific settings.  Change these. 
-	$pageTitle = "Equinox Nightly Build: N20101007-2000";
 	$pageKeywords = "equinox, osgi, framework, runtime, download";
 	$pageAuthor = "Equinox committers";
 
@@ -282,5 +281,5 @@ EOHTML;
 </div>
 
 EOHTML;
-	generateRapPage( $App, $Menu, $Nav, $pageAuthor, $pageKeywords, $pageTitle, $html );
+	generateRapPage( $App, $Menu, $Nav, $pageAuthor, $pageKeywords, $buildTitle, $html );
 ?>
