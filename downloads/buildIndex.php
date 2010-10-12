@@ -164,7 +164,6 @@ EOHTML;
 	$build = array_pop(split("=", $qstring, -1));
 	$path = "/equinox/drops/" . $build;
 	$filesystemPath = $root . $path;
-printf($filesystemPath);
 	analyzeBuild(dir($filesystemPath));
 	$generateTable = 'generateTable';
 
