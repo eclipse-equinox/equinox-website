@@ -1,5 +1,9 @@
 @CHARSET "UTF-8";
 
+div.collapsable {
+	display: none;
+}
+
 #novaContent {
   position: relative;
 }
