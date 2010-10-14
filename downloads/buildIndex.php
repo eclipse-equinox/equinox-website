@@ -162,7 +162,7 @@ EOHTML;
 			$checksumLinks = generateChecksumLinks($file, $buildLabel);
 
 			$result .= <<<EOHTML
-			<tr><td align="center"><img src="$statusImage"/></td>
+			<tr><td align="center">$statusImage</td>
 				<td>$images<a href="http://eclipse.org/downloads/download.php?file=/equinox/drops/$buildLabel/$file">$file</a></td>
 				$downloadSize
 				$checksumLinks
