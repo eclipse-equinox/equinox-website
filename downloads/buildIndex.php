@@ -295,41 +295,6 @@ EOHTML;
 {$generateTable("Launchers")}
 		</div>
 	</div>
-
-	<div class="homeitem3col"> 
-		<h3>Legend</h3> 
-		<table border="0" cellspacing="0" cellpadding="0" width="100%"> 
-			<tr><td width="5%"/></tr> 
-			<tr> 
-				<td align="center"><img src="/equinox/images/OK.gif"/></td> 
-				<td>Build completed OK</td> 
-			</tr> 
-			<tr> 
-				<td align="center"><img src="/equinox/images/FAIL.gif"/></td> 
-				<td>Build failed to complete</td> 
-			</tr> 
-			<tr> 
-				<td align="center"><img src="/equinox/images/pending.gif"/></td> 
-				<td>Build is still pending</td> 
-			</tr> 
-			<tr> 
-				<td align="center"><img src="/equinox/images/repo.gif"/></td> 
-				<td>Build artifact is also a p2 repository</td> 
-			</tr> 
-			<tr> 
-				<td align="center"><img src="/equinox/images/md5.png"/></td> 
-				<td>Click to get the MD5 hash for the corresponding build artifact</td> 
-			</tr> 
-			<tr> 
-				<td align="center"><img src="/equinox/images/sha1.png"/></td> 
-				<td>Click to get the SHA1 hash for the corresponding build artifact</td> 
-			</tr> 
-			<tr> 
-				<td align="center"><img src="/equinox/images/egg.gif"/></td> 
-				<td>Build artifact is from the Equinox incubator and may not be fully complete or tested</td> 
-			</tr> 
-		</table> 
-	</div>
 </div>
 
 EOHTML;
