@@ -115,6 +115,28 @@ EOHTML;
 		}			
 	}
 	
+	function generateDecorationImages($element) {
+		$result = "";
+		if (! isset("images", $element)) 
+			return $result;
+		$imageSpec = $element["images"];
+		foreach ($imageSpec as $entry) {
+			$entry = trim($entry);
+			if ($entry == "repo.gif") {
+				$image = "/equinox/images/repo.gif";
+				$alt = "repo";
+				$tooltip = "Build artifact is also a p2 repository";
+			} else if ($entry == "egg.gif") {
+				$image = "/equinox/images/egg.gif";
+				$alt = "incubating";
+				$tooltip = "Build artifact is from the Equinox incubator <br/>and may not be fully complete or tested.";
+			$result .= <<<EOHTML
+<span class="hotspot" 	onmouseover="tooltip.show('$tooltip');" onmouseout="tooltip.hide();"><img src="$image" alt="$alt"/></span>&nbsp;
+EOHTML;
+		}
+		return $result;	
+	}
+
 	function generateStatusImage($status) {
 		$image = "/equinox/images/pending.gif";
 		$alt = "pending";
@@ -150,13 +172,7 @@ EOHTML;
 
 		foreach ($category as $element) {
 			$statusImage = generateStatusImage($element["status"]);
-			
-			$images = "";
-			if (array_key_exists("images", $element)) {
-				$imageSpec = $element["images"];
-				foreach ($imageSpec as $entry)
-					$images .= "<img src=\"/equinox/images/" . trim($entry) . "\"/>&nbsp;";
-			}
+			$images = generateDecorationImages($element);
 			$file = $element["file"];
 			$downloadSize = generateDropSize($filesystemPath . "/$file");
 			$checksumLinks = generateChecksumLinks($file, $buildLabel);
@@ -309,7 +325,7 @@ EOHTML;
 			</tr> 
 			<tr> 
 				<td align="center"><img src="/equinox/images/egg.gif"/></td> 
-				<td>Build artifact is from the Equinox incubator and may not be fully complete or tested.</td> 
+				<td>Build artifact is from the Equinox incubator and may not be fully complete or tested</td> 
 			</tr> 
 		</table> 
 	</div>
