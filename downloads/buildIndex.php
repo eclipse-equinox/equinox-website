@@ -189,7 +189,7 @@ EOHTML;
 
 	<div class="homeitem3col">
 		<h3>All of Equinox</h3>
-		<p> A complete set of all bundles and launchers produced by the Equinox project. This zip is also a p2 repo. </p>
+		<p> A complete set of all bundles and launchers produced by the Equinox project.</p>
 {$generateTable("Equinox")}
 	</div>
 
@@ -215,7 +215,12 @@ EOHTML;
 	</div>
 
 	<div class="homeitem3col">
-		<h3><a onclick="expandCollapse('other.bundles');"><img id="other.bundles.button" src="http://eclipse.org/equinox/images/arrow.png"/></a>&nbsp;Other Required Bundles</h3>
+		<h3>
+		<span class="hotspot" 
+				onmouseover="tooltip.show('Click to expand/collapse');" 
+				onmouseout="tooltip.hide();">
+			<a onclick="expandCollapse('other.bundles');"><img id="other.bundles.button" src="http://eclipse.org/equinox/images/arrow.png"/></a>
+		</span> &nbsp;Other Required Bundles</h3>
 		<p>A convenient set of bundles that are required by some of the Equinox bundles.</p>
 		<div id="other.bundles" class="collapsable"> 
 {$generateTable("Other")}
@@ -223,7 +228,12 @@ EOHTML;
 	</div>
 
 	<div class="homeitem3col">
-		<h3><a onclick="expandCollapse('incubator.bundles');"><img id="incubator.bundles.button" src="http://eclipse.org/equinox/images/arrow.png"/></a>&nbsp;Incubator</h3>
+		<h3>
+		<span class="hotspot" 
+				onmouseover="tooltip.show('Click to expand/collapse');" 
+				onmouseout="tooltip.hide();">
+			<a onclick="expandCollapse('addon.bundles');"><img id="addon.bundles.button" src="http://eclipse.org/equinox/images/arrow.png"/></a>	
+		</span> &nbsp;Incubator</h3>
 		<p>Equinox Incubator downloads supplied as a convenience. While some are quite complete, all should be considered experimental.</p>
 		<div id="incubator.bundles" class="collapsable"> 
 {$generateTable("Incubator")}

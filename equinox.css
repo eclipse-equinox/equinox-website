@@ -17,7 +17,7 @@ div.collapsable {
 	display: none;
 }
 
-.hotspot {color:#900; padding-bottom:1px; border-bottom:1px dotted #900; cursor:pointer}
+.hotspot {color:#900; padding-bottom:1px; cursor:pointer}
 
 #tt {position:absolute; display:block; background:url(images/tt_left.gif) top left no-repeat}
 #tttop {display:block; height:5px; margin-left:5px; background:url(images/tt_top.gif) top right no-repeat; overflow:hidden}
