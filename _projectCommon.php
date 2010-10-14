@@ -38,9 +38,11 @@
 	$Menu->addMenuItem( "FAQ", "http://eclipse.org/equinox/faq.php/", "_self" );
 	$Menu->addMenuItem( "Wiki", "http://wiki.eclipse.org/Equinox", "_self" );
 
+	$App->AddExtraHtmlHeader( '<link rel="shortcut icon" href="http://eclipse.org/rt/images/favicon.ico" />');
+	$App->AddExtraHtmlHeader( '<link rel="stylesheet" type="text/css" href="http://eclipse.org/equinox/equinox.css"/>' );
+	$App->AddExtraHtmlHeader( '<script type="text/javascript" src="http://eclipse.org/equinox/equinox.js"></script>' );
 	$App->AddExtraHtmlHeader( '<link rel="stylesheet" type="text/css" href="http://eclipse.org/equinox/rap-layout-fixes.css"/>' );
 	$App->AddExtraHtmlHeader( '<!--[if lt IE 8]><link rel="stylesheet" type="text/css" href="http://eclipse.org/equinox/rap-layout-fixes-ie.css"/><![endif]-->' );
-	$App->AddExtraHtmlHeader( '<link rel="shortcut icon" href="http://eclipse.org/rt/images/favicon.ico" />');
 	$App->AddExtraHtmlHeader( '<link rel="stylesheet" type="text/css" href="http://eclipse.org/equinox/rap-posts.css"/>' );
 	$App->AddExtraHtmlHeader( '<script type="text/javascript" src="http://code.jquery.com/jquery-1.4.2.min.js"></script>' );
 	$App->AddExtraHtmlHeader( '<script type="text/javascript" src="http://eclipse.org/equinox/jquery.zrssfeed.min.js"></script>' );

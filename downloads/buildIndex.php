@@ -201,7 +201,12 @@ EOHTML;
 	</div>
 
 	<div class="homeitem3col">
-		<h3><a onclick="expandCollapse('addon.bundles');"><img id="addon.bundles.button" src="http://eclipse.org/equinox/images/arrow.png"/></a>&nbsp;Add-on Bundles</h3>
+		<h3>
+		<span class="hotspot" 
+				onmouseover="tooltip.show('Click to expand/collapse');" 
+				onmouseout="tooltip.hide();">
+			<a onclick="expandCollapse('addon.bundles');"><img id="addon.bundles.button" src="http://eclipse.org/equinox/images/arrow.png"/></a>	
+		</span> &nbsp;Add-on Bundles</h3>
 		<p>Individual <a href="http://eclipse.org/equinox/bundles">bundles</a> that provide 
 		standalone OSGi specified services or add-on mechanisms (e.g., the Eclipse extension registry) of interest to OSGi programmers.</p>
 		<div id="addon.bundles" class="collapsable"> 
