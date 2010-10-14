@@ -129,7 +129,7 @@ EOHTML;
 			} else if ($entry == "egg.gif") {
 				$image = "/equinox/images/egg.gif";
 				$alt = "incubating";
-				$tooltip = "Build artifact is from the Equinox incubator <br/>and may not be fully complete or tested.";
+				$tooltip = "Build artifact is from the Equinox incubator and may not be fully complete or tested.";
 			}
 			$result .= <<<EOHTML
 <span class="hotspot" 	onmouseover="tooltip.show('$tooltip');" onmouseout="tooltip.hide();"><img src="$image" alt="$alt"/></span>&nbsp;
