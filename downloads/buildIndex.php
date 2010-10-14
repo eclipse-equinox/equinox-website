@@ -32,7 +32,14 @@ ini_set('display_errors', 1); ini_set('error_reporting', E_ALL);
 	
 	function generateChecksumLinks($zipfile, $buildLabel) {
 		$result = <<<EOHTML
-<td><a href="http://download.eclipse.org/equinox/drops/$buildLabel/checksum/$zipfile.md5"><img src="/equinox/images/md5.png" alt="md5"/></a><a href="http://download.eclipse.org/equinox/drops/$buildLabel/checksum/$zipfile.sha1"><img src="/equinox/images/sha1.png" alt="sha1"/></a></td>
+<td>
+	<span class="hotspot" 	onmouseover="tooltip.show('Click to get the MD5 hash for this artifact');" onmouseout="tooltip.hide();">
+		<a href="http://download.eclipse.org/equinox/drops/$buildLabel/checksum/$zipfile.md5"><img src="/equinox/images/md5.png" alt="md5"/></a>
+	</span>
+	<span class="hotspot" 	onmouseover="tooltip.show('Click to get the SHA1 hash for this artifact');" onmouseout="tooltip.hide();">
+		<a href="http://download.eclipse.org/equinox/drops/$buildLabel/checksum/$zipfile.sha1"><img src="/equinox/images/sha1.png" alt="sha1"/></a>
+	</span>
+</td>
 
 EOHTML;
 		return $result;	
