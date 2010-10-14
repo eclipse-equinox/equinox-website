@@ -202,11 +202,10 @@ EOHTML;
 
 	<div class="homeitem3col">
 		<h3>
-		<span class="hotspot" 
-				onmouseover="tooltip.show('Click to expand/collapse');" 
-				onmouseout="tooltip.hide();">
-			<a onclick="expandCollapse('addon.bundles');"><img id="addon.bundles.button" src="http://eclipse.org/equinox/images/arrow.png"/></a>	
-		</span> &nbsp;Add-on Bundles</h3>
+			<span class="hotspot" 	onmouseover="tooltip.show('Click to expand/collapse');" onmouseout="tooltip.hide();">
+				<a onclick="expandCollapse('addon.bundles');"><img id="addon.bundles.button" src="http://eclipse.org/equinox/images/arrow.png"/></a>	
+			</span> &nbsp;Add-on Bundles
+		</h3>
 		<p>Individual <a href="http://eclipse.org/equinox/bundles">bundles</a> that provide 
 		standalone OSGi specified services or add-on mechanisms (e.g., the Eclipse extension registry) of interest to OSGi programmers.</p>
 		<div id="addon.bundles" class="collapsable"> 
@@ -216,11 +215,10 @@ EOHTML;
 
 	<div class="homeitem3col">
 		<h3>
-		<span class="hotspot" 
-				onmouseover="tooltip.show('Click to expand/collapse');" 
-				onmouseout="tooltip.hide();">
-			<a onclick="expandCollapse('other.bundles');"><img id="other.bundles.button" src="http://eclipse.org/equinox/images/arrow.png"/></a>
-		</span> &nbsp;Other Required Bundles</h3>
+			<span class="hotspot" 	onmouseover="tooltip.show('Click to expand/collapse');" onmouseout="tooltip.hide();">
+				<a onclick="expandCollapse('other.bundles');"><img id="other.bundles.button" src="http://eclipse.org/equinox/images/arrow.png"/></a>
+			</span> &nbsp;Other Required Bundles
+		</h3>
 		<p>A convenient set of bundles that are required by some of the Equinox bundles.</p>
 		<div id="other.bundles" class="collapsable"> 
 {$generateTable("Other")}
@@ -229,11 +227,10 @@ EOHTML;
 
 	<div class="homeitem3col">
 		<h3>
-		<span class="hotspot" 
-				onmouseover="tooltip.show('Click to expand/collapse');" 
-				onmouseout="tooltip.hide();">
-			<a onclick="expandCollapse('addon.bundles');"><img id="addon.bundles.button" src="http://eclipse.org/equinox/images/arrow.png"/></a>	
-		</span> &nbsp;Incubator</h3>
+			<span class="hotspot" 	onmouseover="tooltip.show('Click to expand/collapse');" onmouseout="tooltip.hide();">
+				<a onclick="expandCollapse('incubator.bundles');"><img id="incubator.bundles.button" src="http://eclipse.org/equinox/images/arrow.png"/></a>	
+			</span> &nbsp;Incubator
+		</h3>
 		<p>Equinox Incubator downloads supplied as a convenience. While some are quite complete, all should be considered experimental.</p>
 		<div id="incubator.bundles" class="collapsable"> 
 {$generateTable("Incubator")}
@@ -241,7 +238,11 @@ EOHTML;
 	</div>
 
 	<div class="homeitem3col">
-		<h3><a onclick="expandCollapse('provisioning.bundles');"><img  id="provisioning.bundles.button" src="http://eclipse.org/equinox/images/arrow.png"/></a>&nbsp;p2 Provisioning Tools</h3>
+		<h3>
+			<span class="hotspot" 	onmouseover="tooltip.show('Click to expand/collapse');" onmouseout="tooltip.hide();">
+				<a onclick="expandCollapse('provisioning.bundles');"><img id="provisioning.bundles.button" src="http://eclipse.org/equinox/images/arrow.png"/></a>	
+			</span> &nbsp;p2 Provisioning Tools
+		</h3>
 		<p>The following downloads are produced by the Provisioning team. For more about provisoning, see 
 		the <a href="http://wiki.eclipse.org/Category:Provisioning">provisioning articles</a> on the eclipse.org wiki.</p>
 		<div id="provisioning.bundles" class="collapsable">
@@ -250,7 +251,11 @@ EOHTML;
 	</div>
 
 	<div class="homeitem3col">
-		<h3><a onclick="expandCollapse('launcher.bundles');"><img  id="launcher.bundles.button" src="http://eclipse.org/equinox/images/arrow.png"/></a>&nbsp;Native Launchers</h3>
+		<h3>
+			<span class="hotspot" 	onmouseover="tooltip.show('Click to expand/collapse');" onmouseout="tooltip.hide();">
+				<a onclick="expandCollapse('launcher.bundles');"><img  id="launcher.bundles.button" src="http://eclipse.org/equinox/images/arrow.png"/></a>
+			</span> &nbsp;Native Launchers
+		</h3>
 		<p>Platform-specific native launchers (e.g., eclipse.exe) for the Equinox framework. See the list 
 		of <a href="http://www.eclipse.org/projects/project-plan.php?projectid=eclipse#target_environments">supported OS configurations</a>.</>
 		<div id="launcher.bundles" class="collapsable">
