@@ -33,13 +33,8 @@ ini_set('display_errors', 1); ini_set('error_reporting', E_ALL);
 	function generateChecksumLinks($zipfile, $buildLabel) {
 		$result = <<<EOHTML
 <td>
-	<span class="hotspot" 	onmouseover="tooltip.show('Click to get the MD5 hash for this artifact');" onmouseout="tooltip.hide();">
-		<a href="http://download.eclipse.org/equinox/drops/$buildLabel/checksum/$zipfile.md5"><img src="/equinox/images/md5.png" alt="md5"/></a>
-	</span>
-	<span class="hotspot" 	onmouseover="tooltip.show('Click to get the SHA1 hash for this artifact');" onmouseout="tooltip.hide();">
-		<a href="http://download.eclipse.org/equinox/drops/$buildLabel/checksum/$zipfile.sha1"><img src="/equinox/images/sha1.png" alt="sha1"/></a>
-	</span>
-</td>
+					<span class="hotspot" 	onmouseover="tooltip.show('Click to get the MD5 hash for this artifact');" onmouseout="tooltip.hide();"><a href="http://download.eclipse.org/equinox/drops/$buildLabel/checksum/$zipfile.md5"><img src="/equinox/images/md5.png" alt="md5"/></a></span><span class="hotspot" 	onmouseover="tooltip.show('Click to get the SHA1 hash for this artifact');" onmouseout="tooltip.hide();"><a href="http://download.eclipse.org/equinox/drops/$buildLabel/checksum/$zipfile.sha1"><img src="/equinox/images/sha1.png" alt="sha1"/></a></span>
+				</td>
 
 EOHTML;
 		return $result;	
@@ -119,6 +114,25 @@ EOHTML;
 			}
 		}			
 	}
+	
+	function generateStatusImage($status) {
+		$image = "/equinox/images/pending.gif";
+		$alt = "pending";
+		$tooltip = "Build output is pending";
+		if ($status == "F") {
+			$image = "/equinox/images/FAIL.gif";
+			$alt = "failed";
+			$tooltip = "Build failed";
+		} else if ($status == "O") {
+			$image = "/equinox/images/OK.gif";
+			$alt = "ok";
+			$tooltip = "Build completed";
+		}
+		$result = <<<EOHTML
+<span class="hotspot" 	onmouseover="tooltip.show('$tooltip');" onmouseout="tooltip.hide();"><img src="$image" alt="$alt"/></span>
+EOHTML;
+		return $result;	
+	}
 
 	function generateTable($name) {
 		global $categories;
@@ -135,12 +149,7 @@ EOHTML;
 EOHTML;
 
 		foreach ($category as $element) {
-			$status = $element["status"];
-			$statusImage = "/equinox/images/pending.gif";
-			if ($status == "F")
-				$statusImage = "/equinox/images/FAIL.gif";
-			else if ($status == "O")
-				$statusImage = "/equinox/images/OK.gif";
+			$statusImage = generateStatusImage($element["status"]);
 			
 			$images = "";
 			if (array_key_exists("images", $element)) {
