@@ -117,7 +117,7 @@ EOHTML;
 	
 	function generateDecorationImages($element) {
 		$result = "";
-		if (! isset("images", $element)) 
+		if (! isset($element["images"]))
 			return $result;
 		$imageSpec = $element["images"];
 		foreach ($imageSpec as $entry) {
