@@ -1,0 +1,18 @@
+Equinox Nightly Build: N20101011-2000
+October 11, 2010
+N20101011-2000
+equinox-SDK-, Equinox, O, repo.gif
+org.eclipse.osgi_, Framework, F
+org.eclipse.equinox.app_, Addon, F
+org.eclipse.equinox.cm, Addon, P
+javax.servlet_2.4.0, Other, P
+javax.servlet_2.5.0, Other, F
+javax.servlet.jsp, Other, O
+org.eclipse.equinox.initializer, Incubator, O, egg.gif
+equinox-jmx-common-, Incubator, P, egg.gif&repo.gif
+equinox-jmx-client-, Incubator, P, egg.gif&repo.gif
+equinox-jmx-server-, Incubator, F, egg.gif&repo.gif
+equinox-p2-adminui-|-win32.zip, Provisioning, P, egg.gif
+equinox-p2-adminui-|-linux-gtk-x86.tar.gz, Provisioning, O, egg.gif
+launchers-win32.win32.x86., Launchers, P
+launchers-win32.win32.x86_64, Launchers, F

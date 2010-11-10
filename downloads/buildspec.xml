@@ -1,0 +1,188 @@
+<build title="Equinox @type@ Build: @buildid@" label = "@buildlabel@" date="@date@">
+	<preamble>
+	<p>These downloads are provided under the <a href="http://www.eclipse.org/legal/epl/notice.html">
+	Eclipse Foundation Software User Agreement</a>. Click <a href="verifyMD5.html">here</a> for instructions
+	on verifying download integrity.</p>
+
+	<p><a href="apitools/index.html">API Version Verification Report</a> -- Verification of this build's versions
+	against those of Eclipse 3.6. See <a href="org.eclipse.releng/apiexclude/exclude_list_external.txt">here</a> for exclusions.</p> 
+
+	<p><a href="apitools/apitoolsdeprecations/apideprecation.html">API Deprecation Report</a> --
+	Report of API deprecated since 3.6.</p> 
+ 
+	<!--p><a href="apitools/report.html">API Tools Post-API Freeze Report</a> -- This report describes API changes 
+	since 3.6M6.  Exclusions are listed in org.eclipse.releng/apiexclude/exclude_list.txt.</p--> 
+	</preamble>
+	
+	<category id="Equinox" title="All of Equinox">
+		<preamble>
+			A complete set of all bundles and launchers produced by the Equinox project.
+		</preamble>
+		<drop file="equinox-SDK-" status="P" images="repo.gif" />
+
+	</category>
+	
+	<category id="Framework" title="Framework Only">
+		<preamble>
+			The Equinox OSGi R4 <a href="http://eclipse.org/equinox/framework">framework</a> implementation in a standalone package.
+			See the <a href="http://eclipse.org/equinox/quickstart.html">Quick Start Guide</a> for details on how to use this JAR.
+		</preamble>
+		<drop file="org.eclipse.osgi_" status="P" />
+
+	</category>
+
+	<category id="StarterKits" type="collapsable">
+		<preamble>
+			<h3><a onclick="expandCollapse('osgistarterkits.bundles');"><img  id="osgistarterkits.bundles.button" src="http://eclipse.org/equinox/images/arrow.png"/></a>&nbsp;OSGi starter kits</h3>
+			<p>A useful collection of Equinox bundles packaged as a ready to run system.  This include the framework, p2 and other frequently used service implementations. </p>
+		</preamble>
+%osgistarterkits%
+	</category>
+
+	<category id="Addon" type="collapsable">
+		<preamble>
+			<h3><a onclick="expandCollapse('addon.bundles');"><img id="addon.bundles.button" src="http://eclipse.org/equinox/images/arrow.png"/></a>&nbsp;Add-on Bundles</h3>
+			<p>Individual <a href="http://eclipse.org/equinox/bundles">bundles</a> that provide 
+			standalone OSGi specified services or add-on mechanisms (e.g., the Eclipse extension registry) of interest to OSGi programmers.</p>
+		</preamble>
+		<drop file="org.eclipse.equinox.app_" status="P" />
+		<drop file="org.eclipse.equinox.cm_" status="P" />
+		<drop file="org.eclipse.equinox.common_" status="P" />
+		<drop file="org.eclipse.equinox.device_" status="P" />
+		<drop file="org.eclipse.equinox.ds_" status="P" />
+		<drop file="org.eclipse.equinox.event_" status="P" />
+		<drop file="org.eclipse.equinox.io_" status="P" />
+		<drop file="org.eclipse.equinox.ip_" status="P" />
+		<drop file="org.eclipse.equinox.launcher_" status="P" />
+		<drop file="org.eclipse.equinox.log_" status="P" />
+		<drop file="org.eclipse.equinox.jsp.jasper_" status="P" />
+		<drop file="org.eclipse.equinox.jsp.jasper.registry_" status="P" />
+		<drop file="org.eclipse.equinox.metatype_" status="P" />
+		<drop file="org.eclipse.equinox.preferences_" status="P" />
+		<drop file="org.eclipse.equinox.registry_" status="P" />
+		<drop file="org.eclipse.osgi.services_" status="P" />
+		<drop file="org.eclipse.equinox.supplement_" status="P" />
+		<drop file="org.eclipse.equinox.transforms.xslt_" status="P" />
+		<drop file="org.eclipse.equinox.transforms.hook_" status="P" />
+		<drop file="org.eclipse.equinox.util_" status="P" />
+		<drop file="org.eclipse.equinox.useradmin_" status="P" />
+		<drop file="org.eclipse.osgi.util_" status="P" />
+		<drop file="org.eclipse.equinox.servletbridge_" status="P" />
+		<drop file="org.eclipse.equinox.http_" status="P" />
+		<drop file="org.eclipse.equinox.http.jetty_1.1.100_" status="P" />
+		<drop file="org.eclipse.equinox.http.jetty_2.0.0_" status="P" />
+		<drop file="org.eclipse.equinox.http.registry_" status="P" />
+		<drop file="org.eclipse.equinox.http.servletbridge_" status="P" />
+		<drop file="org.eclipse.equinox.http.servlet_1.1.0_" status="P" />
+		<drop file="org.eclipse.equinox.wireadmin_" status="P" />
+		<drop file="org.eclipse.equinox.simpleconfigurator_" status="P" />
+		<drop file="org.eclipse.equinox.concurrent_" status="P" />
+
+	</category>
+
+	<category id="Other" type="collapsable">
+		<preamble>
+			<h3><a onclick="expandCollapse('other.bundles');"><img id="other.bundles.button" src="http://eclipse.org/equinox/images/arrow.png"/></a>&nbsp;Other Required Bundles</h3>
+			<p>A convenient set of bundles that are required by some of the Equinox bundles.</p>
+		</preamble>
+		<drop file="javax.servlet_2.4.0_" status="P" />
+		<drop file="javax.servlet_2.5.0_" status="P" />
+		<drop file="javax.servlet.jsp_" status="P" />
+		<drop file="org.apache.commons.el_" status="P" />
+		<drop file="org.apache.commons.logging_" status="P" />
+		<drop file="org.mortbay.jetty_" status="P" />
+		<drop file="org.mortbay.jetty.util_" status="P" />
+		<drop file="org.mortbay.jetty.server_" status="P" />
+
+	</category>
+	
+	<category id="Incubator" type="collapsable">
+		<preamble>
+			<h3><a onclick="expandCollapse('incubator.bundles');"><img id="incubator.bundles.button" src="http://eclipse.org/equinox/images/arrow.png"/></a>&nbsp;Incubator</h3>
+			<p>Equinox Incubator downloads supplied as a convenience. While some are quite complete, all should be considered experimental.</p>
+		</preamble>
+		<drop file="org.eclipse.equinox.initializer_" status="P" images="egg.gif" />
+		<drop file="equinox-jmx-common-" status="P" images="egg.gif,repo.gif" />
+		<drop file="equinox-jmx-client-" status="P" images="egg.gif,repo.gif" />
+		<drop file="equinox-jmx-server-" status="P" images="egg.gif,repo.gif" />
+
+	</category>
+
+	<category id="Incubator" type="collapsable">
+		<preamble>
+			<h3><a onclick="expandCollapse('provisioning.bundles');"><img  id="provisioning.bundles.button" src="http://eclipse.org/equinox/images/arrow.png"/></a>&nbsp;p2 Provisioning Tools</h3>
+			<p>The following downloads are produced by the Provisioning team. For more about provisoning, see 
+			the <a href="http://wiki.eclipse.org/Category:Provisioning">provisioning articles</a> on the eclipse.org wiki.</p>
+		</preamble>
+		<drop file="equinox-p2-adminui-|-win32.zip" status="P" images="egg.gif" />
+		<drop file="equinox-p2-adminui-|-linux-gtk-x86.tar.gz" status="P" images="egg.gif" />
+		<drop file="equinox-p2-adminui-|-macosx-cocoa-x86.tar.gz" status="P" images="egg.gif" />
+		<drop file="equinox.p2.installer-|-win32.win32.x86.zip" status="P" images="egg.gif" />
+		<drop file="equinox.p2.installer-|-linux.gtk.x86.tar.gz" status="P" images="egg.gif" />
+		<drop file="equinox.p2.installer-|-macosx.carbon.x86.tar.gz" status="P" images="egg.gif" />
+
+	</category>
+
+	<category id="Launchers" type="collapsable">
+		<preamble>
+			<h3><a onclick="expandCollapse('launcher.bundles');"><img  id="launcher.bundles.button" src="http://eclipse.org/equinox/images/arrow.png"/></a>&nbsp;Native Launchers</h3>
+			<p>Platform-specific native launchers (e.g., eclipse.exe) for the Equinox framework. See the list 
+			of <a href="http://www.eclipse.org/projects/project-plan.php?projectid=eclipse#target_environments">supported OS configurations</a>.</>
+		</preamble>
+		<drop file="launchers-win32.win32.x86." status="P" />
+		<drop file="launchers-win32.win32.x86_64." status="P" />
+		<drop file="launchers-linux.gtk.x86." status="P" />
+		<drop file="launchers-linux.gtk.x86_64." status="P" />
+		<drop file="launchers-linux.gtk.ppc64." status="P" />
+		<drop file="launchers-solaris.gtk.sparc." status="P" />
+		<drop file="launchers-solaris.gtk.x86." status="P" />
+		<drop file="launchers-hpux.motif.ia64_32." status="P" />
+		<drop file="launchers-aix.gtk.ppc." status="P" />
+		<drop file="launchers-aix.gtk.ppc64." status="P" />
+		<drop file="launchers-macosx.carbon.x86." status="P" />
+		<drop file="launchers-macosx.cocoa.x86." status="P" />
+		<drop file="launchers-macosx.cocoa.x86_64." status="P" />
+
+	</category>
+	
+	<postscript>
+	<div class="homeitem3col"> 
+		<h3>Legend</h3> 
+		<table border="0" cellspacing="0" cellpadding="0" width="100%"> 
+			<tr><td width="5%"/></tr> 
+			<tr> 
+				<td align="center"><img src="/equinox/images/OK.gif"/></td> 
+				<td>Build completed OK</td> 
+			</tr> 
+			<tr> 
+				<td align="center"><img src="/equinox/images/FAIL.gif"/></td> 
+				<td>Build failed to complete</td> 
+			</tr> 
+			<tr> 
+				<td align="center"><img src="/equinox/images/pending.gif"/></td> 
+				<td>Build is still pending</td> 
+			</tr> 
+			<tr> 
+				<td align="center"><img src="/equinox/images/repo.gif"/></td> 
+				<td>Build artifact is also a p2 repository</td> 
+			</tr> 
+			<tr> 
+				<td align="center"><img src="/equinox/images/md5.png"/></td> 
+				<td>Click to get the MD5 hash for the corresponding build artifact</td> 
+			</tr> 
+			<tr> 
+				<td align="center"><img src="/equinox/images/sha1.png"/></td> 
+				<td>Click to get the SHA1 hash for the corresponding build artifact</td> 
+			</tr> 
+			<tr> 
+				<td align="center"><img src="/equinox/images/egg.gif"/></td> 
+				<td>Build artifact is from the Equinox incubator and may not be fully complete or tested.</td> 
+			</tr> 
+			<tr> 
+				<td align="center"><img src="http://eclipse.org/equinox/images/arrow.png"/></td> 
+				<td>Click to expand section.</td> 
+			</tr> 
+		</table> 
+	</div>
+	</postscript>
+</build>

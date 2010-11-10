@@ -5,12 +5,6 @@
 
 ini_set('display_errors', 1); ini_set('error_reporting', E_ALL);
 
-	$specs;
-	$categories;
-	$buildTime = "";
-	$buildTitle = "";
-	$buildDir;
-	
 	function generateDropSize($zipfile) {
 		$filesize = getDropSize($zipfile);
 		return "<td>$filesize</td>";
@@ -60,59 +54,11 @@ EOHTML;
 		return startsWith($source, $beginning) && endsWith($source, $end);
 	}
 	
-	function getSpec($file) {
-		global $specs;
-		foreach ($specs as $spec) 
-			if (match($file, $spec["name"]))
-				return $spec;
-		return null;
-	}
-
-	function loadSpecs($dir) {
-		global $categories;
-		global $specs;
-		global $buildDir;
-		global $buildLabel;
-		global $buildTime;
-		global $buildTitle;
-		global $filesystemPath;
-				
-		$buildDir =$dir;
-		$specs = array(); 
-		$categories = array(); 
-		$contents = substr(file_get_contents($filesystemPath . "/buildspec.txt"), 0, -1);
-		$lines = explode("\n", $contents);
-		$buildTitle = $lines[0];
-		$buildTime = $lines[1];
-		$buildLabel = $lines[2];
-		unset($lines[0], $lines[1], $lines[2]);
-		
-		foreach ($lines as $line) {
-			$line = trim($line);
-			$values = explode(",", $line);
-			$spec = array();
-			$name = trim($values[0]);
-			$spec["name"] = $name;
-			$spec["category"] = trim($values[1]);
-			$spec["status"] = trim($values[2]);
-			if (count ($values) > 3)
-				$spec["images"] = explode("&", $values[3]);
-			$specs[$name] = $spec;
-		}
-	}
-		
 	function analyzeBuild($dir) {	
-		global $categories;
-		loadSpecs($dir);
-		
-		while ($anEntry = $dir->read()) {
-			$spec = getSpec($anEntry);
-			if ($spec != null) {
- 				$spec["file"] = $anEntry;
-				$categories[$spec["category"]][] = $spec;
-				continue;
-			}
-		}			
+		global $buildSpec;
+		global $filesystemPath;
+
+		$buildSpec = simplexml_load_file($filesystemPath . "/buildspec.xml");
 	}
 	
 	function generateDecorationImages($element) {
@@ -138,7 +84,8 @@ EOHTML;
 		return $result;	
 	}
 
-	function generateStatusImage($status) {
+	function generateStatusImage($drop) {
+		$status = $drop["status"];
 		$image = "/equinox/images/pending.gif";
 		$alt = "pending";
 		$tooltip = "Build output is pending";
@@ -157,45 +104,75 @@ EOHTML;
 		return $result;	
 	}
 
-	function generateTable($name) {
-		global $categories;
-		global $buildLabel;
-		global $filesystemPath;
+	function findCategory($id) {
+		foreach ($buildSpec as $category) {
+			if ($category["id"] == $id)
+				return $category;
+		}
+		return null;
+	}
+	
+	function generateTablePreamble($category) {
+		$preamble = $category->preamble;
+		$title = $category["title"];
+		$id = $category["id"];
+		$tableClass = "";
 		
-		if (! array_key_exists($name, $categories))
-			return "";
-		$category = $categories[$name];
+		if ($category["type"] == "collapsable") {
+			$tableClass = " class=\"collapsable\"";
+			$title = <<<EOHTML
+			<span class="hotspot" 	onmouseover="tooltip.show('Click to expand/collapse');" onmouseout="tooltip.hide();">
+				<a onclick="expandCollapse('$id');"><img id="$id.button" src="http://eclipse.org/equinox/images/arrow.png"/></a>	
+			</span> &nbsp;$title
+EOHTML;
+		}
 		$result = <<<EOHTML
-		<table border="0" cellspacing="0" cellpadding="0" width="100%">
-			<tr><td width="5%"/><td width="78%"/><td width="9%"/><td width="8%"/></tr>
+	<div class="homeitem3col">
+		<h3>$title</h3>
+		<p>$preamble</p>
+		<div id="$id" $tableClass> 
+			<table border="0" cellspacing="0" cellpadding="0" width="100%">
+				<tr><td width="5%"/><td width="78%"/><td width="9%"/><td width="8%"/></tr>
 
 EOHTML;
+		return $result;
+	}
+	
+	function generateTable($id) {
+		global $buildSpec;
+		global $filesystemPath;
+		
+		$category = findCategory($id);
+		if ($category == null)
+			return "";
 
-		foreach ($category as $element) {
-			$statusImage = generateStatusImage($element["status"]);
-			$images = generateDecorationImages($element);
-			$file = $element["file"];
+		$result = generateTablePreamble($category);
+		
+		foreach ($category as $drop) {
+			$statusImage = generateStatusImage($drop);
+			$images = generateDecorationImages($drop["images"]);
+			$file = $drop["file"];
 			$downloadSize = generateDropSize($filesystemPath . "/$file");
-			$checksumLinks = generateChecksumLinks($file, $buildLabel);
+			$checksumLinks = generateChecksumLinks($file, $buildSpec["label"]);
 
 			$result .= <<<EOHTML
-			<tr><td align="center">$statusImage</td>
-				<td>$images<a href="http://eclipse.org/downloads/download.php?file=/equinox/drops/$buildLabel/$file">$file</a></td>
-				$downloadSize
-				$checksumLinks
-			</tr>
+				<tr><td align="center">$statusImage</td>
+					<td>$images<a href="http://eclipse.org/downloads/download.php?file=/equinox/drops/$buildSpec["label"]/$file">$file</a></td>
+					$downloadSize
+					$checksumLinks
+				</tr>
 
 EOHTML;
 		}
-		$result .= "</table>";
+
+		$result .= "\t\t\t</table>\n\t\t</div>\n\t</div>";
 		return $result;		
 	}
 
 	$root = $App->getDownloadBasePath();
 //	$root = $_SERVER['DOCUMENT_ROOT'];
 	$qstring = $_SERVER['QUERY_STRING'];
-	$build = array_pop(split("=", $qstring, -1));
-	$path = "/equinox/drops/" . $build;
+	$path = "/equinox/drops/" . array_pop(split("=", $qstring, -1));
 	$filesystemPath = $root . $path;
 	analyzeBuild(dir($filesystemPath));
 	$generateTable = 'generateTable';
@@ -207,96 +184,17 @@ EOHTML;
 <div id="midcolumn">
 	<h3>$buildTitle</h3>
 	<p><b>$buildTime</b></p> 
-	<p>These downloads are provided under the <a href="http://www.eclipse.org/legal/epl/notice.html">
-	Eclipse Foundation Software User Agreement</a>. Click <a href="verifyMD5.html">here</a> for instructions
-	on verifying download integrity.</p>
+$preamble
 
-	<p><a href="apitools/index.html">API Version Verification Report</a> -- Verification of this build's versions
-	against those of Eclipse 3.6. See <a href="org.eclipse.releng/apiexclude/exclude_list_external.txt">here</a> for exclusions.</p> 
-
-	<p><a href="apitools/apitoolsdeprecations/apideprecation.html">API Deprecation Report</a> --
-	Report of API deprecated since 3.6.</p> 
- 
-	<!--p><a href="apitools/report.html">API Tools Post-API Freeze Report</a> -- This report describes API changes 
-	since 3.6M6.  Exclusions are listed in org.eclipse.releng/apiexclude/exclude_list.txt.</p--> 
-
-	<div class="homeitem3col">
-		<h3>All of Equinox</h3>
-		<p> A complete set of all bundles and launchers produced by the Equinox project.</p>
 {$generateTable("Equinox")}
-	</div>
-
-	<div class="homeitem3col">
-		<h3>Framework Only</h3>
-		<p>The Equinox OSGi R4 <a href="http://eclipse.org/equinox/framework">framework</a> implementation in a standalone package.
-		See the <a href="http://eclipse.org/equinox/quickstart.html">Quick Start Guide</a> for details on how to use this JAR.</p>
 {$generateTable("Framework")}
-	</div>
-
-	<div class="homeitem3col">
-		<h3>
-			<span class="hotspot" 	onmouseover="tooltip.show('Click to expand/collapse');" onmouseout="tooltip.hide();">
-				<a onclick="expandCollapse('addon.bundles');"><img id="addon.bundles.button" src="http://eclipse.org/equinox/images/arrow.png"/></a>	
-			</span> &nbsp;Add-on Bundles
-		</h3>
-		<p>Individual <a href="http://eclipse.org/equinox/bundles">bundles</a> that provide 
-		standalone OSGi specified services or add-on mechanisms (e.g., the Eclipse extension registry) of interest to OSGi programmers.</p>
-		<div id="addon.bundles" class="collapsable"> 
 {$generateTable("Addon")}
-		</div>
-	</div>
-
-	<div class="homeitem3col">
-		<h3>
-			<span class="hotspot" 	onmouseover="tooltip.show('Click to expand/collapse');" onmouseout="tooltip.hide();">
-				<a onclick="expandCollapse('other.bundles');"><img id="other.bundles.button" src="http://eclipse.org/equinox/images/arrow.png"/></a>
-			</span> &nbsp;Other Required Bundles
-		</h3>
-		<p>A convenient set of bundles that are required by some of the Equinox bundles.</p>
-		<div id="other.bundles" class="collapsable"> 
 {$generateTable("Other")}
-		</div>
-	</div>
-
-	<div class="homeitem3col">
-		<h3>
-			<span class="hotspot" 	onmouseover="tooltip.show('Click to expand/collapse');" onmouseout="tooltip.hide();">
-				<a onclick="expandCollapse('incubator.bundles');"><img id="incubator.bundles.button" src="http://eclipse.org/equinox/images/arrow.png"/></a>	
-			</span> &nbsp;Incubator
-		</h3>
-		<p>Equinox Incubator downloads supplied as a convenience. While some are quite complete, all should be considered experimental.</p>
-		<div id="incubator.bundles" class="collapsable"> 
 {$generateTable("Incubator")}
-		</div>
-	</div>
-
-	<div class="homeitem3col">
-		<h3>
-			<span class="hotspot" 	onmouseover="tooltip.show('Click to expand/collapse');" onmouseout="tooltip.hide();">
-				<a onclick="expandCollapse('provisioning.bundles');"><img id="provisioning.bundles.button" src="http://eclipse.org/equinox/images/arrow.png"/></a>	
-			</span> &nbsp;p2 Provisioning Tools
-		</h3>
-		<p>The following downloads are produced by the Provisioning team. For more about provisoning, see 
-		the <a href="http://wiki.eclipse.org/Category:Provisioning">provisioning articles</a> on the eclipse.org wiki.</p>
-		<div id="provisioning.bundles" class="collapsable">
 {$generateTable("Provisioning")}
-		</div>
-	</div>
-
-	<div class="homeitem3col">
-		<h3>
-			<span class="hotspot" 	onmouseover="tooltip.show('Click to expand/collapse');" onmouseout="tooltip.hide();">
-				<a onclick="expandCollapse('launcher.bundles');"><img  id="launcher.bundles.button" src="http://eclipse.org/equinox/images/arrow.png"/></a>
-			</span> &nbsp;Native Launchers
-		</h3>
-		<p>Platform-specific native launchers (e.g., eclipse.exe) for the Equinox framework. See the list 
-		of <a href="http://www.eclipse.org/projects/project-plan.php?projectid=eclipse#target_environments">supported OS configurations</a>.</>
-		<div id="launcher.bundles" class="collapsable">
 {$generateTable("Launchers")}
-		</div>
-	</div>
 </div>
 
 EOHTML;
-	generateRapPage( $App, $Menu, $Nav, $pageAuthor, $pageKeywords, $buildTitle, $html );
+	generateRapPage( $App, $Menu, $Nav, $pageAuthor, $pageKeywords, $buildSpec["title"], $html );
 ?>
