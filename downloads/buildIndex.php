@@ -47,11 +47,27 @@ EOHTML;
 	
 	function match($source, $template) {
 		$i = strpos($template, "|");
-		if ($i === FALSE || $i == (strlen($template) - 1))
+		if ($i === FALSE || $i == (strlen($template) - 1)) {
+		
 			return startsWith($source, $template);
+			}
 		$beginning = substr($template, 0, $i);
 		$end = substr($template, $i + 1);
 		return startsWith($source, $beginning) && endsWith($source, $end);
+	}
+	
+	function &getDrop($file) {
+		global $buildSpec;
+		foreach ($buildSpec as $category) {
+			foreach ($category as $drop) {
+				$pattern = trim($drop["pattern"]);
+				if ($pattern != null && match($file, $pattern)) {
+					return $drop;
+				}
+			}
+		}
+		$result = null;
+		return $result;
 	}
 	
 	function analyzeBuild($dir) {	
@@ -59,6 +75,12 @@ EOHTML;
 		global $filesystemPath;
 
 		$buildSpec = simplexml_load_file($filesystemPath . "/buildspec.xml");
+//		$buildSpec = simplexml_load_file("buildspec.xml");
+		while ($anEntry = $dir->read()) {
+			$drop = getDrop($anEntry);
+			if ($drop != null)
+ 				$drop["file"] = $anEntry;
+		}
 	}
 	
 	function generateDecorationImages($element) {
@@ -105,6 +127,7 @@ EOHTML;
 	}
 
 	function findCategory($id) {
+		global $buildSpec;
 		foreach ($buildSpec as $category) {
 			if ($category["id"] == $id)
 				return $category;
@@ -149,15 +172,18 @@ EOHTML;
 		$result = generateTablePreamble($category);
 		
 		foreach ($category as $drop) {
+			$file = $drop["file"];
+			if ($file == null)
+				continue;
 			$statusImage = generateStatusImage($drop);
 			$images = generateDecorationImages($drop["images"]);
-			$file = $drop["file"];
 			$downloadSize = generateDropSize($filesystemPath . "/$file");
-			$checksumLinks = generateChecksumLinks($file, $buildSpec["label"]);
+			$buildLabel = $buildSpec["label"];
+			$checksumLinks = generateChecksumLinks($file, $buildLabel);
 
 			$result .= <<<EOHTML
 				<tr><td align="center">$statusImage</td>
-					<td>$images<a href="http://eclipse.org/downloads/download.php?file=/equinox/drops/$buildSpec["label"]/$file">$file</a></td>
+					<td>$images<a href="http://eclipse.org/downloads/download.php?file=/equinox/drops/$buildLabel/$file">$file</a></td>
 					$downloadSize
 					$checksumLinks
 				</tr>
@@ -169,14 +195,18 @@ EOHTML;
 		return $result;		
 	}
 
-	$root = $App->getDownloadBasePath();
-//	$root = $_SERVER['DOCUMENT_ROOT'];
+//	$root = $App->getDownloadBasePath();
+	$root = $_SERVER['DOCUMENT_ROOT'];
 	$qstring = $_SERVER['QUERY_STRING'];
-	$path = "/equinox/drops/" . array_pop(split("=", $qstring, -1));
+	$path = "/equinox/drops/" . array_pop(explode("=", $qstring));
 	$filesystemPath = $root . $path;
 	analyzeBuild(dir($filesystemPath));
 	$generateTable = 'generateTable';
-
+	$preamble = $buildSpec->preamble;
+	$buildTitle = $buildSpec["title"];
+	$buildTime = $buildSpec["date"];
+	$postscript = $buildSpec->postscript;
+	
 	$html = <<<EOHTML
 
 <script type="text/javascript" src="http://eclipse.org/equinox/expand.js"></script>
@@ -185,14 +215,15 @@ EOHTML;
 	<h3>$buildTitle</h3>
 	<p><b>$buildTime</b></p> 
 $preamble
-
 {$generateTable("Equinox")}
+{$generateTable("StarterKits")}
 {$generateTable("Framework")}
 {$generateTable("Addon")}
 {$generateTable("Other")}
 {$generateTable("Incubator")}
 {$generateTable("Provisioning")}
 {$generateTable("Launchers")}
+$postscript
 </div>
 
 EOHTML;
