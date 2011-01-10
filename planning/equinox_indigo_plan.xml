@@ -557,7 +557,19 @@ Equinox Indigo end-game plan, available shortly before M7 in April 2011.
 </p:committed>
 
 <p:proposed>
-  <p><i>None at this time.</i></p>
+  <ul>
+  <li><img src="http://www.eclipse.org/eclipse/development/new.gif" alt="(new)" border="0" height="12" width="12" />
+	<strong>Support for elevated privileges for updates in shared install</strong>
+    Typically when installing an appliction on Windows 7 in Program Files,
+    special privileges are required. In most installers (e.g. MSI) this is done via
+    privileges elevation. So one part of application runs with current user
+    privileges and other part with system user privileges. This requires almost no
+    effort from the user.  For the Indigo release, investigation will be done to 
+    see if we can seemlessly use use elevated privileges when installing updates with p2.
+
+	[p] (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=322477">322477</a>)
+  </li>
+  </ul>
 </p:proposed>
 
 <p:deferred>
@@ -579,7 +591,7 @@ Equinox Indigo end-game plan, available shortly before M7 in April 2011.
 <p:committed>
   <ul>
   <li><img src="http://www.eclipse.org/eclipse/development/new.gif" alt="(new)" border="0" height="12" width="12" />
-	<strong>Cosolidate and unify the eclipse logging APIs</strong>
+	<strong>Consolidate and unify the eclipse logging APIs</strong>
 	The eclipse platform and equinox have several logging APIs both public and internal.  Public
 	logging API includes the FrameoworkLog, ILog and the OSGi LogService.  The various logging APIs
 	in eclipse will be unified by using the Equinox Extended OSGi LogService.  This will allow a log
