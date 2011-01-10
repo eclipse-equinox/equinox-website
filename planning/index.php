@@ -9,14 +9,16 @@
 	<h2>$pageTitle</h2>
 			<h3>Releases currently under development</h3>
 			<ul>
-	      <li><a href="http://www.eclipse.org/projects/project-plan.php?projectid=rt.equinox">Equinox Helios plan</a><br>
-	        This document lays out the feature and API set for the Helios (3.6) release of the Equinox Project. </li>
+	      <li><a href="http://www.eclipse.org/projects/project-plan.php?projectid=rt.equinox">Current plan</a><br>
+	        This document lays out the feature and API set for the current planned release of the Equinox Project. </li>
 	      <li><a href="freeze_plan_3.6.php"> Equinox Project Helios Endgame Plan</a><br>
 	    		Information about how we plan to wrap up the Helios release (version 3.6.0).</li> 
 	    </ul>
       	
 			<h3>Historical information about past releases</h3>			
 		<ul>
+		  <li><a href="equinox_helios_plan.xml"> Equinox Project Helios Plan</a><br>
+	        This document lays out the feature and API set for the Helios (3.6) release of the Equinox Project. </li>
 	      <li><a href="equinox_galileo_plan.xml"> Equinox Project Galileo Plan</a><br>
 	        This document lays out the feature and API set for the Galileo (3.5) release of the Equinox Project. </li>
 	      <li><a href="freeze_plan_3.5.php"> Equinox Project Galileo Endgame Plan</a><br>

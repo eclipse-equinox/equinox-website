@@ -10,19 +10,29 @@
 	<table border=0 cellspacing=5 cellpadding=2 width="100%" >
 	  <tr>
 	    <td align=RIGHT valign=TOP><img src="/equinox/images/arrow.png" border="0"></td>
-	    <td><a href="http://wiki.eclipse.org/Equinox" target="_top"><b>Wiki</b></a><br>
-	    The Equinox project Wiki.</td>
+	    <td><a href="http://www.eclipse.org/projects/project_summary.php?projectid=rt.equinox" target="_top"><b>Summary</b></a><br>
+	    The Equinox project summary</td>
 	  </tr>
-		<tr>
-	      <td align=RIGHT valign=TOP><img src="/equinox/images/arrow.png" border="0"></td>
-	      <td><a href="news://news.eclipse.org/eclipse.technology.equinox" target="_top"><b>Newsgroup</b></a><br>
+	  <tr>
+	    <td align=RIGHT valign=TOP><img src="/equinox/images/arrow.png" border="0"></td>
+	    <td><a href="http://wiki.eclipse.org/Equinox" target="_top"><b>Wiki</b></a><br>
+	    The Equinox project Wiki</td>
+	  </tr>
+	  <tr>
+	    <td align=RIGHT valign=TOP><img src="/equinox/images/arrow.png" border="0"></td>
+	    <td><a href="news://news.eclipse.org/eclipse.technology.equinox" target="_top"><b>Newsgroup</b></a><br>
 	    Talk to the people using Equinox</td>
 	  </tr>
-		<tr>
-	      <td width="2%" align=RIGHT valign=TOP><img src="/equinox/images/arrow.png" border="0"></td>
-	      <td width="98%"><a href="http://dev.eclipse.org/mailman/listinfo/equinox-dev" target="_top"><b>Mailing
+	  <tr>
+	    <td width="2%" align=RIGHT valign=TOP><img src="/equinox/images/arrow.png" border="0"></td>
+	    <td width="98%"><a href="http://dev.eclipse.org/mailman/listinfo/equinox-dev" target="_top"><b>Mailing
 	            list </b></a><br>
 	    Talk to the people working on Equinox</td>
+	  </tr>
+	  <tr>
+	    <td width="2%" align=RIGHT valign=TOP><img src="/equinox/images/arrow.png" border="0"></td>
+	    <td width="98%"><a href="http://eclipse.org/equinox/planning/" target="_top"><b>Planning</b></a><br>
+	    The current and past release plans for the Equinox project</td>
 	  </tr>
 		<tr>
 	      <td align=RIGHT valign=TOP><img src="/equinox/images/arrow.png" border="0"></td>
