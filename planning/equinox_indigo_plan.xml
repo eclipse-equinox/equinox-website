@@ -567,7 +567,17 @@ Equinox Indigo end-game plan, available shortly before M7 in April 2011.
 </p:description>
 
 <p:committed>
-  <p><i>None at this time.</i></p>
+  <ul>
+  <li><img src="http://www.eclipse.org/eclipse/development/new.gif" alt="(new)" border="0" height="12" width="12" />
+	<strong>Cosolidate and unify the eclipse logging APIs</strong>
+	The eclipse platform and equinox have several logging APIs both public and internal.  Public
+	logging API includes the FrameoworkLog, ILog and the OSGi LogService.  The various logging APIs
+	in eclipse will be unified by using the Equinox Extended OSGi LogService.  This will allow a log
+	listener to listen for log events from any bundle no matter what eclipse logging API was used to
+	log the message.
+	[framework] (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=292135">289135</a>)
+  </li>
+  </ul>
 </p:committed>
 
 <p:proposed>
@@ -588,7 +598,16 @@ Equinox Indigo end-game plan, available shortly before M7 in April 2011.
 </p:description>
 
 <p:committed>
-  <p><i>None at this time.</i></p>
+  <ul>
+  <li><img src="http://www.eclipse.org/eclipse/development/new.gif" alt="(new)" border="0" height="12" width="12" />
+	<strong>Participate in the OSGi specification process</strong>
+	Various OSGi specifications are actively being developed by the OSGi Alliance.  Equinox will 
+	participate in the specification process to provide our expertise in areas that apply to Equinox.
+	In many cases Equinox will provide an implementation of the new specification if the specification
+	schedule aligns with the Equinox release schedule and we have Equinox community interest.
+	[All Components] (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=289124">289124</a>)
+  </li>
+  </ul>
 </p:committed>
 
 <p:proposed>
