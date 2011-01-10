@@ -522,7 +522,17 @@ Equinox Indigo end-game plan, available shortly before M7 in April 2011.
 </p:committed>
 
 <p:proposed>
-  <p><i>None at this time.</i></p>
+  <ul>
+  <li>
+	<strong>Performance improvements in p2</strong>
+	Improvements will include, but are not limited to memory savings, speed
+	improvements and disk footprint.
+	Areas of focus will include the reconciler, dealing with large repositories and
+	a large number of repositories (specifically composite repositories), UI
+	updates, metadata repository size on disk, etc.
+	[p2] (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=333894">333894</a>)
+  </li>
+  </ul>
 </p:proposed>
 
 <p:deferred>
@@ -575,7 +585,7 @@ Equinox Indigo end-game plan, available shortly before M7 in April 2011.
 	in eclipse will be unified by using the Equinox Extended OSGi LogService.  This will allow a log
 	listener to listen for log events from any bundle no matter what eclipse logging API was used to
 	log the message.
-	[framework] (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=292135">289135</a>)
+	[framework] (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=292135">292135</a>)
   </li>
   </ul>
 </p:committed>
