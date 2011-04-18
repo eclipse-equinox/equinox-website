@@ -56,6 +56,11 @@ The goal of the Equinox Incubator is to experiment with techniques for
     This incubator project is targeted at implementing prototypes of the specifications developed by the 
     <a href="http://www.osgi.org">OSGi Alliance</a> while the specification is being developed.</td>
   </tr>
+    <tr>
+      <td width="2%" align=RIGHT valign=TOP><img src="/equinox/images/arrow.png" /></td>
+      <td><a href="console/index.php" target="_top"><b>Console</b></a> <br>
+    Console with telnet and ssh access features for Equinox.</td>
+  </tr>
 </table>
 
 <p>For an understanding of how work is carried out in the incubators, check out
@@ -84,6 +89,7 @@ The goal of the Equinox Incubator is to experiment with techniques for
         <li>Matthew Webster, IBM Hursley</li>
         <li>Ikuo Yamasaki, NTT Corporation</li>
         <li>Heiko Seeberger, WeigleWilczek</li>
+        <li>Lazar Kirchev, SAP</li>
       </ul>
 
 		<h3>Old Work Areas</h3>
