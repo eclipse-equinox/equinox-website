@@ -98,6 +98,7 @@ marks interesting changes since the previous draft)
 		<ul>
 		   <li>Application Container - An implementation of the OSGi R4.3 Application Container service.</li>
 		   <li>Config Admin - An implementation of the OSGi R4.3 Configuration Admin service.</li>
+		   <li>Coordinator - An implementation of the OSGi R4.3 Coordinator service.</li>
 		   <li>Device Access Service - An implementation of the OSGi R4.3 Device Access service.</li>
 		   <li>Declarative Services - An implementation of the OSGi R4.3 Declarative Services specification.</li>
 		   <li>Event Admin Service - An implementation of the OSGi R4.3 Event Admin Service.</li>
@@ -518,10 +519,6 @@ Equinox Indigo end-game plan, available shortly before M7 in April 2011.
 </p></p:description>
 
 <p:committed>
-  <p><i>None at this time.</i></p>
-</p:committed>
-
-<p:proposed>
   <ul>
   <li>
 	<strong>Performance improvements in p2</strong>
@@ -533,6 +530,10 @@ Equinox Indigo end-game plan, available shortly before M7 in April 2011.
 	[p2] (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=333894">333894</a>)
   </li>
   </ul>
+</p:committed>
+
+<p:proposed>
+  <p><i>None at this time.</i></p>
 </p:proposed>
 
 <p:deferred>
@@ -553,10 +554,6 @@ Equinox Indigo end-game plan, available shortly before M7 in April 2011.
 </p:description>
 
 <p:committed>
-  <p><i>None at this time.</i></p>
-</p:committed>
-
-<p:proposed>
   <ul>
   <li><img src="http://www.eclipse.org/eclipse/development/new.gif" alt="(new)" border="0" height="12" width="12" />
 	<strong>Support for elevated privileges for updates in shared install</strong>
@@ -570,6 +567,10 @@ Equinox Indigo end-game plan, available shortly before M7 in April 2011.
 	[p] (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=322477">322477</a>)
   </li>
   </ul>
+</p:committed>
+
+<p:proposed>
+  <p><i>None at this time.</i></p>
 </p:proposed>
 
 <p:deferred>
