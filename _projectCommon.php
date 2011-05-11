@@ -14,6 +14,7 @@
 	$Nav->addCustomNav("p2", "http://eclipse.org/equinox/p2", "_self", 1);
 	$Nav->addCustomNav("Security", "http://eclipse.org/equinox/security", "_self", 1);
 	$Nav->addCustomNav("Server", "http://eclipse.org/equinox/server", "_self", 1);
+	$Nav->addCustomNav("Weaving", "http://eclipse.org/equinox/weaving", "_self", 1);
 	
 	if (file_exists("component-links.php")) 
 		include "component-links.php";
