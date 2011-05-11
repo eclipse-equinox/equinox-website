@@ -91,6 +91,17 @@ top of the OSGi Weaving Specification. Contributions to this are highly welcome!
 time ago. Therefore if you find resources calling it Equinox Aspects, thats we this comes from. Equinox Aspects graduated
 and was renamed into Equinox Weaving within the Helios release timeframe.</p>
 
+<h3>Committers</h3>
+	<p>The following people are committers on the Equinox Weaving component:</p>
+	<ul>
+		<li>Martin Lippert, VMware</li>
+	</ul>
+	<p>Previous, now inactive committers:</p>
+	<ul>
+		<li>Matthew Webster, IBM</li>
+		<li>Heiko Seeberger, WeigleWilczek</li>
+	</ul>
+
 </div>
 
 EOHTML;
