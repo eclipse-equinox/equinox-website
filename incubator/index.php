@@ -24,11 +24,6 @@ The goal of the Equinox Incubator is to experiment with techniques for
 
 			<h3>Work Areas</3>
 <table BORDER=0 CELLSPACING=5 CELLPADDING=2 WIDTH="100%" >
-	<tr>
-      <td width="2%" align=RIGHT valign=TOP><img src="/equinox/images/arrow.png" /></td>
-      <td width="98%"><a href="aspects/index.php" target="_top"><b>Aspects</b></a><br>
-    Issues around Aspect-oriented programming, load-time weaving and modularity.</td>
-  </tr>
   <tr>
       <td width="2%" align=RIGHT valign=TOP><img src="/equinox/images/arrow.png" /></td>
       <td width="98%"><a href="monitoring/index.php" target="_top"><b>Resource Monitoring</b></a><br>
