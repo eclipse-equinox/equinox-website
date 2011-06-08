@@ -77,7 +77,7 @@ ob_start();
                     osgi.console.ssh=&lt;host&gt;:&lt;port&gt; <br />
                     </code>
                     where &lt;host&gt; is either <b>localhost</b> or <b>127.0.0.1</b>, so that the console listens for telnet connections only from the localhost. <br />
-                    You can use both telnet and ssh. For this you have to specify both properties.
+                    You can use both telnet and ssh. For this you have to specify both properties. <br />
                 </li>
                 
                 <li>Create a file with name <b>org.eclipse.equinox.console.authentication.config</b> in the <b>configuration</b> subfolder.</li>
@@ -102,7 +102,7 @@ ob_start();
                     </code>
                 </li>
             <ol>
-            
+            <br />
             <b>Notes:</b>
             <ul>
                 <li>The property <code>osgi.console.enable.builtin=false</code> disables the Equinox built-in console. It must be disabled in order for the new console to work properly.</li>
