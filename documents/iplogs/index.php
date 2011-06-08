@@ -23,6 +23,7 @@
 			<h3>IP Logs For Past Releases</h3>
 			<p>The following are approved IP logs for past Equinox project releases.</p>
 			<ul>
+			    <li><a href="RT.Equinox.IPLog.indigo.pdf">Indigo (3.7)</a></li>
 				<li><a href="RT.Equinox.IPLog.helios.pdf">Helios (3.6)</a></li>
 				<li><a href="RT.Equinox.IPLog.galileo.html">Galileo (3.5)</a></li>
 				<li><a href="EquinoxIPlog.html">Ganymede (3.4)</a></li>
