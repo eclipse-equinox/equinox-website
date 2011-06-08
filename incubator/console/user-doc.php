@@ -111,7 +111,7 @@ ob_start();
                 <li>The property <code>osgi.console.ssh.useDefaultSecureStorage</code> is necessary only if ssh is used and the default login mechanism is used (i. e., a custom login module is not provided)</li>
                 <li>The configuration file <b>org.eclipse.equinox.console.authentication.config</b> may have a different name, but its name must be given as a value of the property <code>-Djava.security.auth.login.config</code> accordingly.</li>
                 <li>You can download the three Gogo bundles and slf4j-api from <a href="http://download.eclipse.org/tools/orbit/downloads/">Eclipse Orbit repository</a>.</li>
-                <li>You can use org.slf4j.log4j from <a href="http://download.eclipse.org/tools/orbit/downloads/">Eclipse Orbit repository</a>. Other implementations also may be used.</li>
+                <li>You can use ch.cos.logback.slf4j from <a href="http://download.eclipse.org/tools/orbit/downloads/">Eclipse Orbit repository</a>. Other implementations also may be used.</li>
                 <li>All configuration files, excluding <b>config.ini</b>, may be placed in a folder, different from the configuration subfolder. In this case the VM properties must be changed respectively to point to the correct folder.</li>
             </ul>
                        
