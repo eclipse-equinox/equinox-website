@@ -39,7 +39,7 @@ ob_start();
 </p>
 
 <p class=bar>Documentation</p>
-<p>Here is some <a href="documentation.php">documentation</a> to get you started.
+<p>Here is some <a href="user-doc.php">documentation</a> to get you started.
 </p>
 
 <p class=bar>Working With the Server-side Incubator</p>
