@@ -26,7 +26,7 @@ ob_start();
     <div id="midcolumn">
         <h1><?= $pageTitle ?></h1>
 
-            <p class=bar>General features</p>
+            <h2>General features</h2>
             The new console is based on Apache Felix Gogo shell, which is the reference implementation of RFC 147 - the Command Line Interface specification in OSGi. The new console provides:
             <ul>
                 <li>support for the ssh protocol (in addition to the telnet connectivity)</li>
@@ -102,7 +102,6 @@ ob_start();
                     </code>
                 </li>
             </ol>
-            <br />
             <b>Notes:</b>
             <ul>
                 <li>The property <code>osgi.console.enable.builtin=false</code> disables the Equinox built-in console. It must be disabled in order for the new console to work properly.</li>
@@ -115,7 +114,7 @@ ob_start();
                 <li>All configuration files, excluding <b>config.ini</b>, may be placed in a folder, different from the configuration subfolder. In this case the VM properties must be changed respectively to point to the correct folder.</li>
             </ul>
                        
-            <p class=bar>JAAS Authentication</p> 
+            <h2>JAAS Authentication</h2> 
             The new console uses JAAS authentication when the SSH is used. The default JAAS login module, implemented in the console, uses custom store file,
             where it stores users and passwords. The passwords are one-way encrypted. The console also provides shell commands for administering users:
             <ul>
@@ -134,7 +133,7 @@ ob_start();
             If the default JAAS login module is be used, then the property <code>osgi.console.ssh.useDefaultSecureStorage</code> must be set to
             <code>true</code>. The file, where the users are stored, is specified through the property <code>org.eclipse.equinox.console.jaas.file<code>
             
-            <p class=bar>Using Custom JAAS Authentication Login Module</p>
+            <h2>Using Custom JAAS Authentication Login Module</h2>
             Custom JAAS authentication login modules could be used with the ssh instead of the default one. If a custom login module is used,
             then the property <code>osgi.console.ssh.useDefaultSecureStorage</code> must not be set at all. The custom module must be specified 
             in the file <code>org.eclipse.equinox.console.authentication.config</code> instead of the default entry there, or in a different file.
@@ -143,7 +142,7 @@ ob_start();
             Also, it will be necessary to create a fragment to sshd-core bundle, with which to import the package of the custom login module. This is necessary
             for the sshd to be able to load the module class.
                 
-            <p class=bar>Configuring of telnet and ssh host and port through Configuration Admin service</p>
+            <h2>Configuring of telnet and ssh host and port through Configuration Admin service</h2>
             The console provides the option to configure the telnet and ssh host and port through Configuration Admin instead of
             through the properties <code>osgi.console=&lt;host&gt;:&lt;port&gt;</code> and <code>osgi.console.ssh=&lt;host&gt;:&lt;port&gt;</code>.
             This could be helpful in more complex scenarios, for example when you want to run different instances of the console in different subsystems of the 
@@ -164,7 +163,7 @@ ob_start();
             </ul>
             Both must have values of type String.
             
-            <p class=bar>Using Commands</p>
+            <h2>Using Commands</h2>
             The Gogo shell, on which the new console is based, supports different type of commands from these currently supported in Equinox. Currently in Equinox,
             commands are provided by a class implementing the <code>CommandProvider</code> interface. The new console provides an adapter from this type of commands
             to the new type of commands, used in Gogo and specified in RFC 147. The RFC 147 commands are arbitrary classes, registered as services, with two special 
@@ -194,7 +193,7 @@ ob_start();
             The help command, provided by the new console, should be explicitly scoped, as in <code>equinox:help</code>. <br />
             Currently there is no <code>man</code> command. Help command should be used instead.
             
-            <p class=bar>Writing RFC 147 Commands</p>
+            <h2>Writing RFC 147 Commands</h2>
             Writing RFC 147 commands is easy. You have to do the following:
             <ul>
                 <li>Write your class with all commands you want implemented as public methods. Methods may have arbitrary arguments. Also, unlike Equinox command providers, in RFC 147 there is no interface that the class of the command provider should implement.</li>
@@ -208,7 +207,7 @@ ob_start();
             The formatter is a class which displays the result, returned by the command method. <br />
             For more information on RFC 147 commands, you can check the <a href="http://felix.apache.org/site/rfc-147-overview.html">Gogo documentation</a>.
             
-            <p class=bar>Tab Completion</p>
+            <h2>Tab Completion</h2>
             The console provides tab completion. This feature is available only when connecting through telnet or ssh. <br />
             Completion is available for:
             <ul>
@@ -232,10 +231,10 @@ ob_start();
             a map with all completion candidates, and the position in the command line, on which the completion begins. The keys in the map are the candidates, and the values - the start position
             for the completion.
             
-            <p class=bar>Closing Telnet or Ssh Session</p>
+            <h2>Closing Telnet or Ssh Session</h2>
             Currently the telnet and ssh sessions are closed by closing the console window. There is no command to close the session. Providing such command is a future enhancement.
             
-            <p class=bar>Running Non-interactive Shell</p>
+            <h2>Running Non-interactive Shell</h2>
             In some cases you may wish to run the console without an interactive session. In this case, the console can be connected from telnet and ssh, but is not available
             on standard in and out. For this the following property should be specified: <code>-Dgosh.args=--nointeractive</code> 
             
