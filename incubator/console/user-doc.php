@@ -101,7 +101,7 @@ ob_start();
                     &nbsp;&nbsp;&nbsp;&nbsp;-jar org.eclipse.osgi.jar <br />
                     </code>
                 </li>
-            <ol>
+            </ol>
             <br />
             <b>Notes:</b>
             <ul>
