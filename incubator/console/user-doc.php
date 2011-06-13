@@ -35,7 +35,7 @@ ob_start();
             </ul>
             The default authentication is password-based.
             
-            <p class=bar>Installation and configuration of the console</p>
+            <h2>Installation and configuration of the console</h2>
             
             <ol>
                 <li>Place the necessary bundles in a folder. The bundles are:
@@ -127,13 +127,15 @@ ob_start();
                 <li>remove user roles</li>
             </ul>
             There is a default user <b>equinox</b> with password <b>equinox</b>, which is dynamically created when the ssh starts if no other user exists
-            in the user store. Upon first login, the console prompts the user to create a new user, and automatically deletes the default user. 
+            in the user store. Upon first login, the console prompts the user to create a new user, and automatically deletes the default user. The password 
+            must be at least 8 symbols long. The username may contain alphanumerical characters, plus underscore and dot. 
             Currently only authentication is implemented in the console. All authenticated users have similar rights. Implementing authorization may
             be a future enhancement. That is why roles are introduced, although they are not currently used.
             If the default JAAS login module is be used, then the property <code>osgi.console.ssh.useDefaultSecureStorage</code> must be set to
             <code>true</code>. The file, where the users are stored, is specified through the property <code>org.eclipse.equinox.console.jaas.file<code>
             
             <h2>Using Custom JAAS Authentication Login Module</h2>
+            
             Custom JAAS authentication login modules could be used with the ssh instead of the default one. If a custom login module is used,
             then the property <code>osgi.console.ssh.useDefaultSecureStorage</code> must not be set at all. The custom module must be specified 
             in the file <code>org.eclipse.equinox.console.authentication.config</code> instead of the default entry there, or in a different file.
@@ -143,6 +145,7 @@ ob_start();
             for the sshd to be able to load the module class.
                 
             <h2>Configuring of telnet and ssh host and port through Configuration Admin service</h2>
+            
             The console provides the option to configure the telnet and ssh host and port through Configuration Admin instead of
             through the properties <code>osgi.console=&lt;host&gt;:&lt;port&gt;</code> and <code>osgi.console.ssh=&lt;host&gt;:&lt;port&gt;</code>.
             This could be helpful in more complex scenarios, for example when you want to run different instances of the console in different subsystems of the 
@@ -164,6 +167,7 @@ ob_start();
             Both must have values of type String.
             
             <h2>Using Commands</h2>
+            
             The Gogo shell, on which the new console is based, supports different type of commands from these currently supported in Equinox. Currently in Equinox,
             commands are provided by a class implementing the <code>CommandProvider</code> interface. The new console provides an adapter from this type of commands
             to the new type of commands, used in Gogo and specified in RFC 147. The RFC 147 commands are arbitrary classes, registered as services, with two special 
@@ -182,7 +186,8 @@ ob_start();
             scope to ensure that you will get executed exactly the command you want. <br />
             The legacy commands, adapted by the new console, have scope <code>equinox</code>. 
             
-            <p class=bar>Getting Help for Commands</p>
+            <h2>Getting Help for Commands</h2>
+            
             The default help command in Gogo lists the names of the registered commands, and if it is called with a command name as an argument, it displays help message for the 
             specified command. The default help command does not provide help for the legacy Equinox command, which are adapted by the new console. For this reason the 
             new console provides its own help command, which calls the default help, but accepts an additional optional argument, <code>-legacy</code>. <br />
@@ -194,6 +199,7 @@ ob_start();
             Currently there is no <code>man</code> command. Help command should be used instead.
             
             <h2>Writing RFC 147 Commands</h2>
+            
             Writing RFC 147 commands is easy. You have to do the following:
             <ul>
                 <li>Write your class with all commands you want implemented as public methods. Methods may have arbitrary arguments. Also, unlike Equinox command providers, in RFC 147 there is no interface that the class of the command provider should implement.</li>
@@ -208,6 +214,7 @@ ob_start();
             For more information on RFC 147 commands, you can check the <a href="http://felix.apache.org/site/rfc-147-overview.html">Gogo documentation</a>.
             
             <h2>Tab Completion</h2>
+            
             The console provides tab completion. This feature is available only when connecting through telnet or ssh. <br />
             Completion is available for:
             <ul>
@@ -232,9 +239,11 @@ ob_start();
             for the completion.
             
             <h2>Closing Telnet or Ssh Session</h2>
+            
             Currently the telnet and ssh sessions are closed by closing the console window. There is no command to close the session. Providing such command is a future enhancement.
             
             <h2>Running Non-interactive Shell</h2>
+            
             In some cases you may wish to run the console without an interactive session. In this case, the console can be connected from telnet and ssh, but is not available
             on standard in and out. For this the following property should be specified: <code>-Dgosh.args=--nointeractive</code> 
             
