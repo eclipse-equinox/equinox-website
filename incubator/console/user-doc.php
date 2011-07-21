@@ -159,12 +159,15 @@ ob_start();
             </ul>
             
             The configuration PID for the telnet configuration is <code>osgi.console.telnet</code> and for the ssh configuration is <code>osgi.console.ssh</code>. 
-            Both configurations have the following two properties:
+            Both configurations have the following properties:
             <ul>
                 <li><code>host</code></li>
                 <li><code>port</code></li>
+                <li><code>enabled</code></li>
             </ul>
-            Both must have values of type String.
+            All must have values of type String.
+            The <code>enabled</code> property determines if telnet/ssh is to be started at all. If the value is <code>true</code>, telnet/ssh is started.
+            If the value is <code>false</code>, or the property <code>enabled</code> is absent, the telnet/ssh is not started.
             
             <h2>Using Commands</h2>
             
