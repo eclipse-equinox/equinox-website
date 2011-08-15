@@ -46,8 +46,8 @@ ob_start();
                         <li>org.eclipse.equinox.console.jaas.fragment.jar</li>
                         <li>org.eclipse.equinox.console.supportability.jar</li>
                         <li>org.eclipse.osgi.jar</li>
-                        <li>sshd-core-0.5.0.jar</li>
-                        <li>mina-core-2.0.2.jar</li>
+                        <li>org.apache.mina.core_2.0.2v<version>.jar</li>
+                        <li>org.apache.sshd.core_0.5.0v<version>.jar</li>
                         <li>slf4j-api</li>
                         <li>some slf4j-api implementation</li>
                     </ul>
@@ -62,8 +62,8 @@ ob_start();
                     &nbsp;&nbsp;&nbsp;&nbsp;./org.apache.felix.gogo.shell-0.8.0.jar@start,\ <br />
                     &nbsp;&nbsp;&nbsp;&nbsp;./slf4j-api-&lt;version&gt;.jar@start,\ <br />
                     &nbsp;&nbsp;&nbsp;&nbsp;./&lt;slf4j-api_impl&gt;.jar,\ <br />
-                    &nbsp;&nbsp;&nbsp;&nbsp;./mina-core-2.0.2.jar@start,\ <br />
-                    &nbsp;&nbsp;&nbsp;&nbsp;./sshd-core-0.5.0.jar@start,\ <br /> 
+                    &nbsp;&nbsp;&nbsp;&nbsp;./org.apache.mina.core_2.0.2v<version>.jar@start,\ <br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;./org.apache.sshd.core_0.5.0v<version>.jar@start,\ <br /> 
                     &nbsp;&nbsp;&nbsp;&nbsp;./org.eclipse.equinox.console.supportability.jar@start,\ <br />
                     &nbsp;&nbsp;&nbsp;&nbsp;./org.eclipse.equinox.console.jaas.fragment.jar <br />
                     osgi.console.enable.builtin=false <br />
@@ -110,6 +110,7 @@ ob_start();
                 <li>The property <code>osgi.console.ssh.useDefaultSecureStorage</code> is necessary only if ssh is used and the default login mechanism is used (i. e., a custom login module is not provided)</li>
                 <li>The configuration file <b>org.eclipse.equinox.console.authentication.config</b> may have a different name, but its name must be given as a value of the property <code>-Djava.security.auth.login.config</code> accordingly.</li>
                 <li>You can download the three Gogo bundles and slf4j-api from <a href="http://download.eclipse.org/tools/orbit/downloads/">Eclipse Orbit repository</a>.</li>
+                <li>You can download the bundles org.apache.mina.core_2.0.2v<version>.jar and org.apache.sshd.core_0.5.0v<version>.jar <a href="http://download.eclipse.org/tools/orbit/downloads/">Eclipse Orbit repository</a>.</li>
                 <li>You can use ch.cos.logback.slf4j from <a href="http://download.eclipse.org/tools/orbit/downloads/">Eclipse Orbit repository</a>. Other implementations also may be used.</li>
                 <li>All configuration files, excluding <b>config.ini</b>, may be placed in a folder, different from the configuration subfolder. In this case the VM properties must be changed respectively to point to the correct folder.</li>
             </ul>
