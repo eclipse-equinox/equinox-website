@@ -58,12 +58,12 @@ ob_start();
                 <li>Add the following entries in the <b>config.ini</b> file: <br />
                     <code>
                     osgi.bundles=./org.apache.felix.gogo.runtime-0.8.0.jar@start,\ <br />
-                    &nbsp;&nbsp;&nbsp;&nbsp;./org.apache.felix.gogo.command-0.8.0.jar@start,\ <br />
-                    &nbsp;&nbsp;&nbsp;&nbsp;./org.apache.felix.gogo.shell-0.8.0.jar@start,\ <br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;./org.apache.felix.gogo.command-0.8.0v&lt;version&gt;.jar@start,\ <br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;./org.apache.felix.gogo.shell-0.8.0v&lt;version&gt;.jar@start,\ <br />
                     &nbsp;&nbsp;&nbsp;&nbsp;./slf4j-api-&lt;version&gt;.jar@start,\ <br />
                     &nbsp;&nbsp;&nbsp;&nbsp;./&lt;slf4j-api_impl&gt;.jar,\ <br />
-                    &nbsp;&nbsp;&nbsp;&nbsp;./org.apache.mina.core_2.0.2v<version>.jar@start,\ <br />
-                    &nbsp;&nbsp;&nbsp;&nbsp;./org.apache.sshd.core_0.5.0v<version>.jar@start,\ <br /> 
+                    &nbsp;&nbsp;&nbsp;&nbsp;./org.apache.mina.core_2.0.2v&lt;version&gt;.jar@start,\ <br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;./org.apache.sshd.core_0.5.0v&lt;version&gt;.jar@start,\ <br /> 
                     &nbsp;&nbsp;&nbsp;&nbsp;./org.eclipse.equinox.console.supportability.jar@start,\ <br />
                     &nbsp;&nbsp;&nbsp;&nbsp;./org.eclipse.equinox.console.jaas.fragment.jar <br />
                     osgi.console.enable.builtin=false <br />
@@ -109,9 +109,11 @@ ob_start();
                 <li>The version of slf4j-api must be in the range [1.5,2]</li>
                 <li>The property <code>osgi.console.ssh.useDefaultSecureStorage</code> is necessary only if ssh is used and the default login mechanism is used (i. e., a custom login module is not provided)</li>
                 <li>The configuration file <b>org.eclipse.equinox.console.authentication.config</b> may have a different name, but its name must be given as a value of the property <code>-Djava.security.auth.login.config</code> accordingly.</li>
-                <li>You can download the three Gogo bundles and slf4j-api from <a href="http://download.eclipse.org/tools/orbit/downloads/">Eclipse Orbit repository</a>.</li>
+                <li>You can download the three Gogo bundles from <a href="http://download.eclipse.org/tools/orbit/downloads/">Eclipse Orbit repository</a>.</li>
                 <li>You can download the bundles org.apache.mina.core_2.0.2v<version>.jar and org.apache.sshd.core_0.5.0v<version>.jar <a href="http://download.eclipse.org/tools/orbit/downloads/">Eclipse Orbit repository</a>.</li>
-                <li>You can use ch.cos.logback.slf4j from <a href="http://download.eclipse.org/tools/orbit/downloads/">Eclipse Orbit repository</a>. Other implementations also may be used.</li>
+                <li>You can download slf4j-api and an slf4j implementation from <a href="http://www.slf4j.org/download.html">here</a>.</li>
+                <li>For logging you can use instead org.slf4j.api from <a href="http://download.eclipse.org/tools/orbit/downloads/">Eclipse Orbit repository</a>. In this case you should take from this repository the logback slf4j implementation. It consists of
+                    three bundles - ch.qos.logback.classic, ch.qos.logback.core and ch.qos.logback.slf4j.</li>
                 <li>All configuration files, excluding <b>config.ini</b>, may be placed in a folder, different from the configuration subfolder. In this case the VM properties must be changed respectively to point to the correct folder.</li>
             </ul>
                        
