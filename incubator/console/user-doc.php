@@ -249,8 +249,8 @@ ob_start();
             
             <h2>Closing Telnet or Ssh Session</h2>
             
-            Currently the telnet and ssh sessions are closed by closing the console window. There is no command to close the session. Providing such command is a future enhancement.
-            
+            Both telnet and ssh sessions are closed with the disconnect command. 
+                        
             <h2>Running Non-interactive Shell</h2>
             
             In some cases you may wish to run the console without an interactive session. In this case, the console can be connected from telnet and ssh, but is not available
