@@ -195,15 +195,11 @@ ob_start();
             <h2>Getting Help for Commands</h2>
             
             The default help command in Gogo lists the names of the registered commands, and if it is called with a command name as an argument, it displays help message for the 
-            specified command. The default help command does not provide help for the legacy Equinox command, which are adapted by the new console. For this reason the 
-            new console provides its own help command, which calls the default help, but accepts two additional optional arguments, <code>-legacy</code> and <code>-all</code>. <br />
-            If no argument is specified, then the default help command is called and the names of all new commands are displayed. <br />
-            If only a command name is specified, the help message for this command is displayed. The command should be new. <br />
-            If <code>-legacy</code> is specified, then all legacy command names are listed. <br />
-            If this option is specified and a command name is passed as an argument, then help message for the particular legacy command is displayed. <br />
-            If the <code>CommandProvider</code>, which provides this command, does not provide separate help for each command
-            (this is a new feature, introduced in Equinox 3.7), then the help messages for all commands in this <code>CommandProvider</code> are displayed. <br />
-            If <code>-all</code> is specified, then all command names - both legacy and new - are listed. <br />
+            specified command. The default help command does not provide help for the legacy Equinox commands, which are adapted by the new console. For this reason the 
+            new console provides its own help command, which calls the default help, but could also provide help for the legacy commands. <br />
+            If no argument is specified the names of all new commands are displayed. <br />
+            If a command name is specified, the help message for this command is displayed. If the command is legacy and the <code>CommandProvider</code>, which provides this command, 
+            does not provide separate help for each command (this is a new feature, introduced in Equinox 3.7), then the help messages for all commands in this <code>CommandProvider</code> are displayed. <br />            
             The help command, provided by the new console, should be explicitly scoped, as in <code>equinox:help</code>. <br />
             There is also a <code>man</code> command. It accepts the same arguments as the help command and has the same semantics. <br />
             
