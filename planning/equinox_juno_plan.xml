@@ -90,27 +90,27 @@ marks interesting changes since the previous draft of
     repository</a>.</li>
 	<li><b>Framework:</b>
 		<ul>
-		   <li>An OSGi R4.4 Core Framework implementation</li>
+		   <li>An OSGi R5 Core Framework implementation</li>
 		   <li>Native launcher and splash screen support</li>
 </ul>
     </li>
 	<li><b>Compendium Services:</b>
 		<ul>
-		   <li>Application Container - An implementation of the OSGi R4.4 Application Container service.</li>
-		   <li>Config Admin - An implementation of the OSGi R4.4 Configuration Admin service.</li>
-		   <li>Coordinator - An implementation of the OSGi R4.4 Coordinator service.</li>
-		   <li>Device Access Service - An implementation of the OSGi R4.4 Device Access service.</li>
-		   <li>Declarative Services - An implementation of the OSGi R4.4 Declarative Services specification.</li>
-		   <li>Event Admin Service - An implementation of the OSGi R4.4 Event Admin Service.</li>
-		   <li>HTTP Service - An implementation of the OSGi R4.4 HTTP service.</li>
+		   <li>Application Container - An implementation of the OSGi R4.3 Application Container service.</li>
+		   <li>Config Admin - An implementation of the OSGi R4.3 Configuration Admin service.</li>
+		   <li>Coordinator - An implementation of the OSGi R4.3 Coordinator service.</li>
+		   <li>Device Access Service - An implementation of the OSGi R4.3 Device Access service.</li>
+		   <li>Declarative Services - An implementation of the OSGi R4.3 Declarative Services specification.</li>
+		   <li>Event Admin Service - An implementation of the OSGi R4.3 Event Admin Service.</li>
+		   <li>HTTP Service - An implementation of the OSGi R4.3 HTTP service.</li>
 		   <li>HTTP Servlet - Generic support for exposing another servlet facility (e.g., an underlying application server) as an OSGi HTTP service.</li>
-		   <li>IO Connector Service - An implementation of the OSGi R4.4 IO Connector Service.</li>
-		   <li>Initial Provisioning - An implementation of the OSGi R4.4 Initial Provisioning.</li>
-		   <li>Log Service - An implementation of the OSGi R4.4 Log service.</li>
-		   <li>Metatype Service - An implementation of the OSGi R4.4 Metatype service.</li>
+		   <li>IO Connector Service - An implementation of the OSGi R4.3 IO Connector Service.</li>
+		   <li>Initial Provisioning - An implementation of the OSGi R4.3 Initial Provisioning.</li>
+		   <li>Log Service - An implementation of the OSGi R4.3 Log service.</li>
+		   <li>Metatype Service - An implementation of the OSGi R4.3 Metatype service.</li>
 		   <li>Preferences Service - The Eclipse preference service is an extension of the standard OSGi preference service that adds listeners and the notion of preference scopes.</li>
-		   <li>User Admin Service - An implementation of the OSGi R4.4 User Admin Service.</li>
-		   <li>Wire Admin Service - An implementation of the OSGi R4.4 Wire Admin Service.</li>
+		   <li>User Admin Service - An implementation of the OSGi R4.3 User Admin Service.</li>
+		   <li>Wire Admin Service - An implementation of the OSGi R4.3 Wire Admin Service.</li>
     	</ul>
     </li>
     <li><b>p2</b>
