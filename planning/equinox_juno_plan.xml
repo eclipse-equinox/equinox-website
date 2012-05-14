@@ -518,7 +518,18 @@ marks interesting changes since the previous draft of
 </p:description>
 
 <p:committed>
-  <p><i>None at this time.</i></p>
+  <ul>
+  <li><strong>Use Felix gogo shell</strong>
+	Migrate to using the Felix gogo shell to provide the equinox console.  In
+	previous releases the Equinox framework has shipped with its own built-in console.
+	This has made it easy for console users because they always had it available to them.
+	But it made it difficult to add new functionality and provide more advanced functionality
+	without bloating the equinox framework with lots of code that is not related to implementing
+	the an OSGi Framework.  For Juno the equinox console is being replaced with the felix 
+	gogo console which provides a more rich console and shell.
+	[console] (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=317827">317827</a>)
+  </li>
+  </ul>
 </p:committed>
 
 <p:proposed>
@@ -542,7 +553,16 @@ marks interesting changes since the previous draft of
 </p:description>
 
 <p:committed>
-  <p><i>None at this time.</i></p>
+  <ul>
+  <li><strong>Metatype enhancements</strong>
+	Improve metatype implementation in equinox to allow better use of schema extensions 
+	[metatype] (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=349711">349711</a>)
+  </li>
+  <li><strong>Use jetty 8</strong>
+	Support for servlet 3.0 and use jetty 8 for Http Service implementation. 
+	[http service] (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=309529">309529</a>)
+  </li>
+  </ul>
 </p:committed>
 
 <p:proposed>
@@ -563,7 +583,16 @@ marks interesting changes since the previous draft of
 </p:description>
 
 <p:committed>
-  <p><i>None at this time.</i></p>
+  <ul>
+  <li><strong>Participate in the OSGi specification process</strong>
+	Various OSGi specifications are actively being developed by the OSGi Alliance.  Equinox will 
+	participate in the specification process to provide our expertise in areas that apply to Equinox.
+	In many cases Equinox will provide an implementation of the new specification if the specification
+	schedule aligns with the Equinox release schedule and we have Equinox community interest.
+	[All Components] (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=354191">354191</a>) and
+	[DS] (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=358108">358108</a>)
+  </li>
+  </ul>
 </p:committed>
 
 <p:proposed>
