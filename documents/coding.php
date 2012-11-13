@@ -36,7 +36,7 @@ legally owns the copyright should be listed first followed by "and others".  See
 (people and/or companies) has made contributions.  We do not need to be overly specific about which 
 contributions.  General descriptions such as "bug fixes", "performance enhancements" or "continuing
 development" are fine.  This is information is partly to cue the legal process to ensure 
-proper tracking (though the actual tracking is done through CVS and Bugzilla) and partly to give contributors
+proper tracking (though the actual tracking is done through Git and Bugzilla) and partly to give contributors
 visibility and acknowledgment for their contributions.  People are free to put their 
 names in this section if they choose however, traditionally we have identified simply identified
 companies/organizations here.  We have opted for this approach to eliminate the continual maintenance of 

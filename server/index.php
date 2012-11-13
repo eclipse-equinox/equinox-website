@@ -40,32 +40,32 @@ Looking at what options there are for embedding an HttpService implementation in
 <table BORDER=0 CELLSPACING=5 CELLPADDING=2 WIDTH="100%" >
   <tr>
     <td align=RIGHT valign=TOP><img src="/equinox/images/arrow.png" /></td>
-    <td><b><a name="http" id="http"></a>HTTP service (<a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox/compendium/bundles/org.eclipse.equinox.http/?root=RT_Project">org.eclipse.equinox.http</a>)</b> <A HREF="#legend" style="color:green;">status:green</a><br>
+    <td><b><a name="http" id="http"></a>HTTP service (<a href="http://git.eclipse.org/c/equinox/rt.equinox.bundles.git/tree/bundles/org.eclipse.equinox.http/">org.eclipse.equinox.http</a>)</b> <A HREF="#legend" style="color:green;">status:green</a><br>
     An implementation of the OSGi R4 HTTP service.</td>
   </tr>
   <tr>
     <td width="2%" align=RIGHT valign=TOP><img src="/equinox/images/arrow.png" /></td>
-    <td width="98%"><b><a name="http.registry" id="http.registry"></a>HTTP registry (<a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox/server-side/bundles/org.eclipse.equinox.http.registry/?root=RT_Project">org.eclipse.equinox.http.registry</a>)</b> </a><A HREF="#legend" style="color:green;">status:green</a><br>
+    <td width="98%"><b><a name="http.registry" id="http.registry"></a>HTTP registry (<a href="http://git.eclipse.org/c/equinox/rt.equinox.bundles.git/tree/bundles/org.eclipse.equinox.http.registry/">org.eclipse.equinox.http.registry</a>)</b> </a><A HREF="#legend" style="color:green;">status:green</a><br>
       Support for registering servlets, resources and JSPs via the Eclipse extension
         registry rather than using the code based OSGi registration mechanisms.</td>
   </tr>
   <tr>
     <td align=RIGHT valign=TOP><img src="/equinox/images/arrow.png" /></td>
-    <td><b><a name="servletbridge" id="servletbridge"></a>Servlet Bridge (<a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox/server-side/bundles/org.eclipse.equinox.servletbridge/?root=RT_Project">org.eclipse.equinox.servletbridge</a>)</b> <A HREF="#legend" style="color:green;">status:green</a><br>
+    <td><b><a name="servletbridge" id="servletbridge"></a>Servlet Bridge (<a href="http://git.eclipse.org/c/equinox/rt.equinox.bundles.git/tree/bundles/org.eclipse.equinox.servletbridge/">org.eclipse.equinox.servletbridge</a>)</b> <A HREF="#legend" style="color:green;">status:green</a><br>
     Low level hook servlet installed in an existing traditional application server.
       This servlet launches an embedded Equinox and enables it to handle incoming
       HTTP requests originally sent to the underlying server.</td>
   </tr>
   <tr>
     <td align=RIGHT valign=TOP><img src="/equinox/images/arrow.png" /></td>
-    <td><b><a name="http.servlet" id="http.servlet"></a>HTTP Servlet (<a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox/compendium/bundles/org.eclipse.equinox.http.servlet/?root=RT_Project">org.eclipse.equinox.http.servlet</a>)</b> <A HREF="#legend" style="color:green;">status:green</a><br>
+    <td><b><a name="http.servlet" id="http.servlet"></a>HTTP Servlet (<a href="http://git.eclipse.org/c/equinox/rt.equinox.bundles.git/tree/bundles/org.eclipse.equinox.http.servlet/">org.eclipse.equinox.http.servlet</a>)</b> <A HREF="#legend" style="color:green;">status:green</a><br>
     Generic support for exposing another servlet facility (e.g., an underlying
       application server) as an OSGi HTTP service.</td>
   </tr>
   <tr>
     <td align=RIGHT valign=TOP><img src="/equinox/images/arrow.png" /></td>
     <td><b><a name="http.servletbridge" id="http.servletbridge"></a>HTTP ServletBridge
-        (<a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox/server-side/bundles/org.eclipse.equinox.http.servletbridge/?root=RT_Project">org.eclipse.equinox.http.servletbridge</a>)</b> <A HREF="#legend" style="color:green;">status:green</a><br>
+        (<a href="http://git.eclipse.org/c/equinox/rt.equinox.bundles.git/tree/bundles/org.eclipse.equinox.http.servletbridge/">org.eclipse.equinox.http.servletbridge</a>)</b> <A HREF="#legend" style="color:green;">status:green</a><br>
     A thin layer that exposes an underlying application server (e.g., Tomcat
     or Jetty) as an
       OSGi HTTP
@@ -92,7 +92,7 @@ Looking at what options there are for embedding an HttpService implementation in
   </tr>
   <tr>
     <td align=RIGHT valign=TOP><img src="/equinox/images/arrow.png" /></td>
-    <td><b><a name="http.jetty" id="http.jetty"></a>HTTP Jetty (http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox/compendium/bundles/org.eclipse.equinox.http.jetty6/?root=RT_Project">org.eclipse.equinox.http.jetty</a>)</b> <A HREF="#legend" style="color:green;"> status:green</a><br>
+    <td><b><a name="http.jetty" id="http.jetty"></a>HTTP Jetty (<a href="http://git.eclipse.org/c/equinox/rt.equinox.bundles.git/tree/bundles/org.eclipse.equinox.http.jetty8/">org.eclipse.equinox.http.jetty</a>)</b> <A HREF="#legend" style="color:green;"> status:green</a><br>
     A thin layer that exposes an embedded Jetty server as a compliant OSGi HTTP
       service.</td>
   </tr>

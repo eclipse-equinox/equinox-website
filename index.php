@@ -31,7 +31,7 @@ $html=<<<EOHTML
         <a id="rap-button-support" href="/equinox/resources.php">
           <div class="rap-button-icon"></div>
           <h4>Resources</h4>
-          <p>Wiki, Newsgroup,<br/>CVS, Bug Tracker</p>
+          <p>Wiki, Newsgroup,<br/>GIT, Bug Tracker</p>
         </a>
       </li>
       <li>

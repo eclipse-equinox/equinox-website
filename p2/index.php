@@ -33,13 +33,9 @@ There you will find documents discussing:</p>
     <td colspan="2">Bugs use the p2 component, and use a variety of summary prefixes for various aspects of p2.
   </tr>
   <tr>
-    <td><strong>CVS</strong></td>
-    <td colspan="2">See the projects in the <a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox/p2/?root=RT_Project">p2</a>
-     folder of the normal Equinox CVS repository.
-            <blockquote>
-          :pserver:anonymous@dev.eclipse.org/cvsroot/rt/org.eclipse.equinox/p2/
-        </blockquote>
-    
+    <td><strong>GIT</strong></td>
+    <td colspan="2">See the projects in the <a href="http://git.eclipse.org/c/equinox/rt.equinox.p2.git/">p2</a>
+     git repository.
     </td>
   </tr>
 </table>

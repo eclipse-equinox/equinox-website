@@ -49,14 +49,11 @@ ob_start();
 	<tr>
       <td align=RIGHT valign=TOP><img src="http://eclipse.org/images/Adarrow.gif" width="16" height="16" border="0"></td>
       <td>
-        <p><a href="http://dev.eclipse.org/viewcvs/index.cgi/" target="_top"><b>CVS</b></a><br>
-      The Equinox Framework code repository is part of the normal Eclipse project
-        repository and is available via <a href="http://dev.eclipse.org/viewcvs/index.cgi/">web
-        access</a> or direct CVS access. For direct access, use anonymous login
-        to the CVS repo</p>
-        <blockquote>
-          <p>:pserver:anonymous@dev.eclipse.org/cvsroot/eclipse</p>
-        </blockquote>
+        <p><a href="http://git.eclipse.org/c/equinox/rt.equinox.framework.git/" target="_top"><b>GIT</b></a><br>
+      The Equinox Framework code repository is a GIT
+        repository and is available via <a href="http://git.eclipse.org/c/equinox/rt.equinox.framework.git/">web
+        access</a> or direct GIT access. For direct access, use anonymous login
+        to the GIT repo</p>
         <p>The Equinox work goes on in various folders as appropriate for the
       bundles being developed. For details, see the list of <a href="index.php#frameworkprojects">Framework
       projects</a>.</p></td>

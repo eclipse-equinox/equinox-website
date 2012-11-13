@@ -58,11 +58,8 @@ There you will find documents discussing:</p>
 
   <tr>
     <td ><strong>CVS</strong></td>
-    <td colspan="2">See the projects in the <a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox/incubator/p2/?root=RT_Project">p2 incubator</a>
-     folder of the normal Equinox CVS repository.
-            <blockquote>
-          :pserver:anonymous@dev.eclipse.org/cvsroot/rt/org.eclipse.equinox/incubator/p2/
-        </blockquote>
+    <td colspan="2">See the projects in the <a href="http://git.eclipse.org/c/equinox/rt.equinox.incubator.git/tree/p2">p2 incubator</a>
+     folder of the Equinox incubator GIT repository.
     
     </td>
   </tr>

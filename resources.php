@@ -57,14 +57,11 @@
 	  </tr>
 		<tr>
 	      <td align=RIGHT valign=TOP><img src="/equinox/images/arrow.png" border="0"></td>
-	      <td><a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox/?root=RT_Project" target="_top"><b>CVS</b></a><br>
-	      The Equinox code is hosted in the RT project repository and
-	        is available via <a href="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.equinox/?root=RT_Project">web
-	        access</a> or direct CVS access. For direct access, use anonymous login
-	        to the CVS repo
-	        <blockquote>
-	          <p>:pserver:anonymous@dev.eclipse.org:/cvsroot/rt</p>
-	        </blockquote>
+	      <td><a href="http://git.eclipse.org/c/equinox/" target="_top"><b>GIT</b></a><br>
+	      The Equinox code is hosted in the RT project and
+	        is available via <a href="http://git.eclipse.org/c/equinox/">web
+	        access</a> or direct GIT access. For direct access, use anonymous login
+	        to the GIT repo
 	        <p>The Equinox work goes on in various folders as appropriate for the
 	          work being done. See the project lists in the <a href="framework/index.php#frameworkprojects">framework</a>, <a href="bundles/index.php#bundleprojects">bundles</a> and <a href="incubator/index.php#workareas">incubator</a> components
 	          for more details.</p>

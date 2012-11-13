@@ -32,29 +32,29 @@ See the quick start guide for getting up and running aspect weaving with Equinox
 
 
 <h3>Weaving Bundles</h3>
-<p>The Weaving work component consists of several bundles maintained in Eclipse
-  CVS repository projects. See the <a href="../bundles/resources.php">resources</a> page
+<p>The Weaving work component consists of several bundles maintained in Equinox
+  GIT repository. See the <a href="../bundles/resources.php">resources</a> page
   for information on repository location and access. In general
   the name of the project matches the symbolic name of the resultant bundle.</p>
 <table BORDER=0 CELLSPACING=5 CELLPADDING=2 WIDTH="100%" >
   <tr>
     <td align=RIGHT valign=TOP><img src="/equinox/images/arrow.png" /></td>
-    <td><b><a name="http" id="http"></a>Weaving Hook (<a href="http://dev.eclipse.org/viewcvs/viewvc.cgi/org.eclipse.equinox/weaving/bundles/org.eclipse.equinox.weaving.hook/?root=RT_Project">org.eclipse.equinox.weaving.hook</a>)</b> <A HREF="#legend" style="color:green;">status:green</a><br>
+    <td><b><a name="http" id="http"></a>Weaving Hook (<a href="http://git.eclipse.org/c/equinox/rt.equinox.bundles.git/tree/bundles/org.eclipse.equinox.weaving.hook/">org.eclipse.equinox.weaving.hook</a>)</b> <A HREF="#legend" style="color:green;">status:green</a><br>
     This is the framework extension project containing the hooks to insert bytecode weaving and caching at load-time.</td>
   </tr>
   <tr>
     <td width="2%" align=RIGHT valign=TOP><img src="/equinox/images/arrow.png" /></td>
-    <td width="98%"><b><a name="http.registry" id="http.registry"></a>AspectJ Weaving (<a href="http://dev.eclipse.org/viewcvs/viewvc.cgi/org.eclipse.equinox/weaving/bundles/org.eclipse.equinox.weaving.aspectj/?root=RT_Project">org.eclipse.equinox.weaving.aspectj</a>)</b> </a><A HREF="#legend" style="color:green;">status:green</a><br>
+    <td width="98%"><b><a name="http.registry" id="http.registry"></a>AspectJ Weaving (<a href="http://git.eclipse.org/c/equinox/rt.equinox.bundles.git/tree/bundles/org.eclipse.equinox.weaving.aspectj/">org.eclipse.equinox.weaving.aspectj</a>)</b> </a><A HREF="#legend" style="color:green;">status:green</a><br>
       This bundle contains the bridge to use AspectJ as load-time weaving implementation.</td>
   </tr>
   <tr>
     <td align=RIGHT valign=TOP><img src="/equinox/images/arrow.png" /></td>
-    <td><b><a name="servletbridge" id="servletbridge"></a>Standard Caching (<a href="http://dev.eclipse.org/viewcvs/viewvc.cgi/org.eclipse.equinox/weaving/bundles/org.eclipse.equinox.weaving.caching/?root=RT_Project">org.eclipse.equinox.weaving.caching</a>)</b> <A HREF="#legend" style="color:green;">status:green</a><br>
+    <td><b><a name="servletbridge" id="servletbridge"></a>Standard Caching (<a href="http://git.eclipse.org/c/equinox/rt.equinox.bundles.git/tree/bundles/org.eclipse.equinox.weaving.caching/">org.eclipse.equinox.weaving.caching</a>)</b> <A HREF="#legend" style="color:green;">status:green</a><br>
     This bundle provides a caching for woven bytecode for standard Java virtual machines.</td>
   </tr>
   <tr>
     <td align=RIGHT valign=TOP><img src="/equinox/images/arrow.png" /></td>
-    <td><b><a name="http.servlet" id="http.servlet"></a>J9-Specific Caching (<a href="http://dev.eclipse.org/viewcvs/viewvc.cgi/org.eclipse.equinox/weaving/bundles/org.eclipse.equinox.weaving.caching.j9/?root=RT_Project">org.eclipse.equinox.weaving.caching.j9</a>)</b> <A HREF="#legend" style="color:green;">status:green</a><br>
+    <td><b><a name="http.servlet" id="http.servlet"></a>J9-Specific Caching (<a href="http://git.eclipse.org/c/equinox/rt.equinox.bundles.git/tree/bundles/org.eclipse.equinox.weaving.caching.j9/">org.eclipse.equinox.weaving.caching.j9</a>)</b> <A HREF="#legend" style="color:green;">status:green</a><br>
     This bundle contains a cache alternative cache implementation that uses IBM J9 VM shared classes for caching woven classes.</td>
   </tr>
 </table>

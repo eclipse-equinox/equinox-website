@@ -31,13 +31,12 @@
 	<tr>
       <td align=RIGHT valign=TOP><img src="/equinox/images/arrow.png"></td>
       <td>
-        <a href="http://dev.eclipse.org/viewcvs/index.cgi/" target="_top"><b>CVS</b></a><br>
-      The Equinox Bundles code repository is part of the normal Eclipse project
-        repository and is available via <a href="http://dev.eclipse.org/viewcvs/index.cgi/">web
-        access</a> or direct CVS access. For direct access, use anonymous login
-        to the CVS repo</p>
+        <a href="http://git.eclipse.org/c/equinox/rt.equinox.bundles.git/" target="_top"><b>Git</b></a><br>
+      The Equinox Bundles code repository is available via <a href="http://git.eclipse.org/c/equinox/rt.equinox.bundles.git/">web
+        access</a> or direct Git access. For direct access, use anonymous login
+        to the Git repo</p>
         <blockquote>
-          <p>:pserver:anonymous@dev.eclipse.org/cvsroot/eclipse</p>
+          <p>ssh://anonymous@git.eclipse.org/gitroot/equinox/rt.equinox.bundles.git</p>
         </blockquote>
         <p>The Equinox work goes on in various folders as appropriate for the
       bundles being developed. For details, see the list of <a href="index.php#bundleprojects">Bundle
