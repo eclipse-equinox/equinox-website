@@ -70,9 +70,11 @@
   <tr>
     <td align=RIGHT valign=TOP><img src="/equinox/images/arrow.png" ></td>
     <td><b> <a name="http"></a>HTTP Service
-        (<a href="http://git.eclipse.org/c/equinox/rt.equinox.bundles.git/tree/bundles/org.eclipse.equinox.http">org.eclipse.equinox.http</a>)</b><A HREF="#legend" style="color:green;"> status:green</a><br>
+        (<a href="http://git.eclipse.org/c/equinox/rt.equinox.bundles.git/tree/bundles/org.eclipse.equinox.http">org.eclipse.equinox.http</a>)</b><A HREF="#legend" style="color:orangered;"> status:orange</a><br>
     An implementation of the OSGi R4 HTTP service. This service provides an embedded
-    HTTP server that is capable of serving HTML and Java servlets.</td>
+    HTTP server that is capable of serving HTML and Java servlets.
+    <p/>
+    <i>The org.eclipse.equinox.http bundle was deprecated as of Eclipse 3.8 Juno in favor of <a href="https://www.eclipse.org/equinox/server/">org.eclipse.equinox.http.jetty</a> and is no longer shipped.</i></td>
   </tr>
   <tr>
     <td align=RIGHT valign=TOP><img src="/equinox/images/arrow.png" ></td>
@@ -164,6 +166,8 @@
 </table>
 <p> <A name="legend"> </A><b>Status key</b><br><FONT COLOR="GREEN">green</font> - bundle is production ready.
 <br>
+<FONT COLOR="orangered">orange</FONT> - bundle has been deprecated.
+<br/>
 <FONT COLOR="red">red</font> - bundle development is in progress.
 <p>The team typically develops using Eclipse itself with eGit installed so getting and
   managing the projects is quite straightforward. Simply start Eclipse, and use <strong>Import &gt; Git &gt; Projects
@@ -178,18 +182,7 @@
 			    download them.</p>
 
 			<h3>Committers</h3>
-				<p>The following people are committers on the Equinox bundles component:</p>
-				<ul>
-					<li>Oleg Besedin, IBM Rational</li>
-					<li>Stoyan Boshev, ProSyst</li>
-					<li>Pavlin Dobrev, ProSyst</li>
-					<li>Simon Kaegi, IBM Rational</li>
-					<li>BJ Hargrave, IBM Lotus</li>
-					<li>DJ Houghton, IBM Rational</li>
-					<li>Jeff McAffer, EclipseSource (Project co-lead)</li>
-					<li>Pascal Rapicault, IBM Rational</li>
-					<li>Tom Watson, IBM Lotus (Project co-lead)</li>
-				</ul>
+				<p>The <a href="https://projects.eclipse.org/projects/rt.equinox.bundles/who">following people</a> are committers on the Equinox bundles component.</p>
 </div>
 
 EOHTML;
